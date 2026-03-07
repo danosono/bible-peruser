@@ -1,0 +1,32 @@
+{
+  "bookId": "PSA",
+  "bookName": "- Berean Standard Bible",
+  "number": 150,
+  "verseCount": 6,
+  "verses": [
+    {
+      "n": "1",
+      "text": "Hallelujah! Praise God in His sanctuary. Praise Him in His mighty heavens."
+    },
+    {
+      "n": "2",
+      "text": "Praise Him for His mighty acts; praise Him for His excellent greatness."
+    },
+    {
+      "n": "3",
+      "text": "Praise Him with the sound of the horn; praise Him with the harp and lyre."
+    },
+    {
+      "n": "4",
+      "text": "Praise Him with tambourine and dancing; praise Him with strings and flute."
+    },
+    {
+      "n": "5",
+      "text": "Praise Him with clashing cymbals; praise Him with resounding cymbals."
+    },
+    {
+      "n": "6",
+      "text": "Let everything that has breath praise the LORD! Hallelujah!"
+    }
+  ]
+}

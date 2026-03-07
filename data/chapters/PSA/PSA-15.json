@@ -1,0 +1,28 @@
+{
+  "bookId": "PSA",
+  "bookName": "- Berean Standard Bible",
+  "number": 15,
+  "verseCount": 5,
+  "verses": [
+    {
+      "n": "1",
+      "text": "O LORD, who may abide in Your tent? Who may dwell on Your holy mountain?"
+    },
+    {
+      "n": "2",
+      "text": "He who walks with integrity and practices righteousness, who speaks the truth from his heart,"
+    },
+    {
+      "n": "3",
+      "text": "who has no slander on his tongue, who does no harm to his neighbor, who casts no scorn on his friend,"
+    },
+    {
+      "n": "4",
+      "text": "who despises the vile but honors those who fear the LORD, who does not revise a costly oath,"
+    },
+    {
+      "n": "5",
+      "text": "who lends his money without interest and refuses a bribe against the innocent. He who does these things will never be shaken."
+    }
+  ]
+}

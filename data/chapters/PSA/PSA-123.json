@@ -1,0 +1,24 @@
+{
+  "bookId": "PSA",
+  "bookName": "- Berean Standard Bible",
+  "number": 123,
+  "verseCount": 4,
+  "verses": [
+    {
+      "n": "1",
+      "text": "I lift up my eyes to You, the One enthroned in heaven."
+    },
+    {
+      "n": "2",
+      "text": "As the eyes of servants look to the hand of their master, as the eyes of a maidservant look to the hand of her mistress, so our eyes are on the LORD our God until He shows us mercy."
+    },
+    {
+      "n": "3",
+      "text": "Have mercy on us, O LORD, have mercy, for we have endured much contempt."
+    },
+    {
+      "n": "4",
+      "text": "We have endured much scorn from the arrogant, much contempt from the proud."
+    }
+  ]
+}

@@ -1,0 +1,405 @@
+{
+  "meta": {
+    "source": "BSB USFM",
+    "buildDate": "2026-02-16",
+    "totalVerses": 31086
+  },
+  "books": [
+    {
+      "id": "1CH",
+      "name": "- Berean Standard Bible",
+      "verseCount": 942,
+      "chapterCount": 29
+    },
+    {
+      "id": "1CO",
+      "name": "- Berean Standard Bible",
+      "verseCount": 437,
+      "chapterCount": 16
+    },
+    {
+      "id": "1JN",
+      "name": "- Berean Standard Bible",
+      "verseCount": 105,
+      "chapterCount": 5
+    },
+    {
+      "id": "1KI",
+      "name": "- Berean Standard Bible",
+      "verseCount": 816,
+      "chapterCount": 22
+    },
+    {
+      "id": "1PE",
+      "name": "- Berean Standard Bible",
+      "verseCount": 105,
+      "chapterCount": 5
+    },
+    {
+      "id": "1SA",
+      "name": "- Berean Standard Bible",
+      "verseCount": 810,
+      "chapterCount": 31
+    },
+    {
+      "id": "1TH",
+      "name": "- Berean Standard Bible",
+      "verseCount": 89,
+      "chapterCount": 5
+    },
+    {
+      "id": "1TI",
+      "name": "- Berean Standard Bible",
+      "verseCount": 113,
+      "chapterCount": 6
+    },
+    {
+      "id": "2CH",
+      "name": "- Berean Standard Bible",
+      "verseCount": 822,
+      "chapterCount": 36
+    },
+    {
+      "id": "2CO",
+      "name": "- Berean Standard Bible",
+      "verseCount": 257,
+      "chapterCount": 13
+    },
+    {
+      "id": "2JN",
+      "name": "- Berean Standard Bible",
+      "verseCount": 13,
+      "chapterCount": 1
+    },
+    {
+      "id": "2KI",
+      "name": "- Berean Standard Bible",
+      "verseCount": 719,
+      "chapterCount": 25
+    },
+    {
+      "id": "2PE",
+      "name": "- Berean Standard Bible",
+      "verseCount": 61,
+      "chapterCount": 3
+    },
+    {
+      "id": "2SA",
+      "name": "- Berean Standard Bible",
+      "verseCount": 695,
+      "chapterCount": 24
+    },
+    {
+      "id": "2TH",
+      "name": "- Berean Standard Bible",
+      "verseCount": 47,
+      "chapterCount": 3
+    },
+    {
+      "id": "2TI",
+      "name": "- Berean Standard Bible",
+      "verseCount": 83,
+      "chapterCount": 4
+    },
+    {
+      "id": "3JN",
+      "name": "- Berean Standard Bible",
+      "verseCount": 14,
+      "chapterCount": 1
+    },
+    {
+      "id": "ACT",
+      "name": "- Berean Standard Bible",
+      "verseCount": 1003,
+      "chapterCount": 28
+    },
+    {
+      "id": "AMO",
+      "name": "- Berean Standard Bible",
+      "verseCount": 146,
+      "chapterCount": 9
+    },
+    {
+      "id": "COL",
+      "name": "- Berean Standard Bible",
+      "verseCount": 95,
+      "chapterCount": 4
+    },
+    {
+      "id": "DAN",
+      "name": "- Berean Standard Bible",
+      "verseCount": 357,
+      "chapterCount": 12
+    },
+    {
+      "id": "DEU",
+      "name": "- Berean Standard Bible",
+      "verseCount": 959,
+      "chapterCount": 34
+    },
+    {
+      "id": "ECC",
+      "name": "- Berean Standard Bible",
+      "verseCount": 222,
+      "chapterCount": 12
+    },
+    {
+      "id": "EPH",
+      "name": "- Berean Standard Bible",
+      "verseCount": 155,
+      "chapterCount": 6
+    },
+    {
+      "id": "EST",
+      "name": "- Berean Standard Bible",
+      "verseCount": 167,
+      "chapterCount": 10
+    },
+    {
+      "id": "EXO",
+      "name": "- Berean Standard Bible",
+      "verseCount": 1213,
+      "chapterCount": 40
+    },
+    {
+      "id": "EZK",
+      "name": "- Berean Standard Bible",
+      "verseCount": 1273,
+      "chapterCount": 48
+    },
+    {
+      "id": "EZR",
+      "name": "- Berean Standard Bible",
+      "verseCount": 280,
+      "chapterCount": 10
+    },
+    {
+      "id": "GAL",
+      "name": "- Berean Standard Bible",
+      "verseCount": 149,
+      "chapterCount": 6
+    },
+    {
+      "id": "GEN",
+      "name": "- Berean Standard Bible",
+      "verseCount": 1533,
+      "chapterCount": 50
+    },
+    {
+      "id": "HAB",
+      "name": "- Berean Standard Bible",
+      "verseCount": 56,
+      "chapterCount": 3
+    },
+    {
+      "id": "HAG",
+      "name": "- Berean Standard Bible",
+      "verseCount": 38,
+      "chapterCount": 2
+    },
+    {
+      "id": "HEB",
+      "name": "- Berean Standard Bible",
+      "verseCount": 303,
+      "chapterCount": 13
+    },
+    {
+      "id": "HOS",
+      "name": "- Berean Standard Bible",
+      "verseCount": 197,
+      "chapterCount": 14
+    },
+    {
+      "id": "ISA",
+      "name": "- Berean Standard Bible",
+      "verseCount": 1292,
+      "chapterCount": 66
+    },
+    {
+      "id": "JAS",
+      "name": "- Berean Standard Bible",
+      "verseCount": 108,
+      "chapterCount": 5
+    },
+    {
+      "id": "JDG",
+      "name": "- Berean Standard Bible",
+      "verseCount": 618,
+      "chapterCount": 21
+    },
+    {
+      "id": "JER",
+      "name": "- Berean Standard Bible",
+      "verseCount": 1364,
+      "chapterCount": 52
+    },
+    {
+      "id": "JHN",
+      "name": "- Berean Standard Bible",
+      "verseCount": 878,
+      "chapterCount": 21
+    },
+    {
+      "id": "JOB",
+      "name": "- Berean Standard Bible",
+      "verseCount": 1070,
+      "chapterCount": 42
+    },
+    {
+      "id": "JOL",
+      "name": "- Berean Standard Bible",
+      "verseCount": 73,
+      "chapterCount": 3
+    },
+    {
+      "id": "JON",
+      "name": "- Berean Standard Bible",
+      "verseCount": 48,
+      "chapterCount": 4
+    },
+    {
+      "id": "JOS",
+      "name": "- Berean Standard Bible",
+      "verseCount": 658,
+      "chapterCount": 24
+    },
+    {
+      "id": "JUD",
+      "name": "- Berean Standard Bible",
+      "verseCount": 25,
+      "chapterCount": 1
+    },
+    {
+      "id": "LAM",
+      "name": "- Berean Standard Bible",
+      "verseCount": 154,
+      "chapterCount": 5
+    },
+    {
+      "id": "LEV",
+      "name": "- Berean Standard Bible",
+      "verseCount": 859,
+      "chapterCount": 27
+    },
+    {
+      "id": "LUK",
+      "name": "- Berean Standard Bible",
+      "verseCount": 1149,
+      "chapterCount": 24
+    },
+    {
+      "id": "MAL",
+      "name": "- Berean Standard Bible",
+      "verseCount": 55,
+      "chapterCount": 4
+    },
+    {
+      "id": "MAT",
+      "name": "- Berean Standard Bible",
+      "verseCount": 1068,
+      "chapterCount": 28
+    },
+    {
+      "id": "MIC",
+      "name": "- Berean Standard Bible",
+      "verseCount": 105,
+      "chapterCount": 7
+    },
+    {
+      "id": "MRK",
+      "name": "- Berean Standard Bible",
+      "verseCount": 673,
+      "chapterCount": 16
+    },
+    {
+      "id": "NAM",
+      "name": "- Berean Standard Bible",
+      "verseCount": 47,
+      "chapterCount": 3
+    },
+    {
+      "id": "NEH",
+      "name": "- Berean Standard Bible",
+      "verseCount": 406,
+      "chapterCount": 13
+    },
+    {
+      "id": "NUM",
+      "name": "- Berean Standard Bible",
+      "verseCount": 1288,
+      "chapterCount": 36
+    },
+    {
+      "id": "OBA",
+      "name": "- Berean Standard Bible",
+      "verseCount": 21,
+      "chapterCount": 1
+    },
+    {
+      "id": "PHM",
+      "name": "- Berean Standard Bible",
+      "verseCount": 25,
+      "chapterCount": 1
+    },
+    {
+      "id": "PHP",
+      "name": "- Berean Standard Bible",
+      "verseCount": 104,
+      "chapterCount": 4
+    },
+    {
+      "id": "PRO",
+      "name": "- Berean Standard Bible",
+      "verseCount": 915,
+      "chapterCount": 31
+    },
+    {
+      "id": "PSA",
+      "name": "- Berean Standard Bible",
+      "verseCount": 2461,
+      "chapterCount": 150
+    },
+    {
+      "id": "REV",
+      "name": "- Berean Standard Bible",
+      "verseCount": 404,
+      "chapterCount": 22
+    },
+    {
+      "id": "ROM",
+      "name": "- Berean Standard Bible",
+      "verseCount": 432,
+      "chapterCount": 16
+    },
+    {
+      "id": "RUT",
+      "name": "- Berean Standard Bible",
+      "verseCount": 85,
+      "chapterCount": 4
+    },
+    {
+      "id": "SNG",
+      "name": "- Berean Standard Bible",
+      "verseCount": 117,
+      "chapterCount": 8
+    },
+    {
+      "id": "TIT",
+      "name": "- Berean Standard Bible",
+      "verseCount": 46,
+      "chapterCount": 3
+    },
+    {
+      "id": "ZEC",
+      "name": "- Berean Standard Bible",
+      "verseCount": 211,
+      "chapterCount": 14
+    },
+    {
+      "id": "ZEP",
+      "name": "- Berean Standard Bible",
+      "verseCount": 53,
+      "chapterCount": 3
+    }
+  ]
+}
