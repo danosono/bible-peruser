@@ -132,7 +132,13 @@ body {
 }
 
 .verse-highlight {
-  background: var(--verse-highlight, #343b54);
+  background: linear-gradient(
+    to bottom,
+    transparent 15%,
+    var(--verse-highlight, #343b54) 35%,
+    var(--verse-highlight, #343b54) 65%,
+    transparent 85%
+  );
   color: #fff;
   border-radius: 4px;
   padding: 0 2px;
