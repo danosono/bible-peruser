@@ -1,0 +1,771 @@
+{
+  "chapterTopics": {
+    "1": [
+      {
+        "outline": "The Beginning",
+        "verses": [
+          "1-5"
+        ],
+        "references": [
+          "Genesis 1:1–2",
+          "Hebrews 11:1–3"
+        ]
+      },
+      {
+        "outline": "The Witness of John",
+        "verses": [
+          "6-13"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Word Became Flesh",
+        "verses": [
+          "14-18"
+        ],
+        "references": [
+          "Psalms 84:1–12"
+        ]
+      },
+      {
+        "outline": "The Mission of John the Baptist",
+        "verses": [
+          "19-28"
+        ],
+        "references": [
+          "Isaiah 40:1–5",
+          "Matthew 3:1–12",
+          "Mark 1:1–8",
+          "Luke 3:1–20"
+        ]
+      },
+      {
+        "outline": "Jesus the Lamb of God",
+        "verses": [
+          "29-34"
+        ],
+        "references": [
+          "Matthew 3:13–17",
+          "Mark 1:9–11",
+          "Luke 3:21–22"
+        ]
+      },
+      {
+        "outline": "The First Disciples",
+        "verses": [
+          "35-42"
+        ],
+        "references": [
+          "Matthew 4:18–22",
+          "Mark 1:16–20",
+          "Luke 5:1–11"
+        ]
+      },
+      {
+        "outline": "Jesus Calls Philip and Nathanael",
+        "verses": [
+          "43-51"
+        ],
+        "references": []
+      }
+    ],
+    "2": [
+      {
+        "outline": "The Wedding at Cana",
+        "verses": [
+          "1-11"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jesus Cleanses the Temple",
+        "verses": [
+          "12-25"
+        ],
+        "references": [
+          "Matthew 21:12–17",
+          "Mark 11:15–19",
+          "Luke 19:45–48"
+        ]
+      }
+    ],
+    "3": [
+      {
+        "outline": "Jesus and Nicodemus",
+        "verses": [
+          "1-21"
+        ],
+        "references": [
+          "Genesis 22:1–10",
+          "Romans 5:6–11"
+        ]
+      },
+      {
+        "outline": "John’s Testimony about Jesus",
+        "verses": [
+          "22-36"
+        ],
+        "references": []
+      }
+    ],
+    "4": [
+      {
+        "outline": "Jesus and the Samaritan Woman",
+        "verses": [
+          "1-26"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Disciples Return and Marvel",
+        "verses": [
+          "27-38"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Many Samaritans Believe",
+        "verses": [
+          "39-42"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jesus Heals the Official’s Son",
+        "verses": [
+          "43-54"
+        ],
+        "references": [
+          "Matthew 8:5–13",
+          "Luke 7:1–10"
+        ]
+      }
+    ],
+    "5": [
+      {
+        "outline": "The Pool of Bethesda",
+        "verses": [
+          "1-3",
+          "5-15"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Father and the Son",
+        "verses": [
+          "16-30"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Testimonies about Jesus",
+        "verses": [
+          "31-38"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Witness of Scripture",
+        "verses": [
+          "39-47"
+        ],
+        "references": [
+          "Luke 16:19–31"
+        ]
+      }
+    ],
+    "6": [
+      {
+        "outline": "The Feeding of the Five Thousand",
+        "verses": [
+          "1-15"
+        ],
+        "references": [
+          "Matthew 14:13–21",
+          "Mark 6:30–44",
+          "Luke 9:10–17"
+        ]
+      },
+      {
+        "outline": "Jesus Walks on Water",
+        "verses": [
+          "16-21"
+        ],
+        "references": [
+          "Matthew 14:22–33",
+          "Mark 6:45–52"
+        ]
+      },
+      {
+        "outline": "Jesus the Bread of Life",
+        "verses": [
+          "22-58"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Many Disciples Turn Back",
+        "verses": [
+          "59-66"
+        ],
+        "references": [
+          "Matthew 8:18–22",
+          "Luke 9:57–62",
+          "Luke 14:25–33"
+        ]
+      },
+      {
+        "outline": "Peter’s Confession of Faith",
+        "verses": [
+          "67-71"
+        ],
+        "references": [
+          "Matthew 16:13–20",
+          "Mark 8:27–30",
+          "Luke 9:18–20"
+        ]
+      }
+    ],
+    "7": [
+      {
+        "outline": "Jesus Teaches at the Feast",
+        "verses": [
+          "1-24"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Is Jesus the Christ?",
+        "verses": [
+          "25-36"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Living Water",
+        "verses": [
+          "37-39"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Division over Jesus",
+        "verses": [
+          "40-44"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Unbelief of the Jewish Leaders",
+        "verses": [
+          "45-53"
+        ],
+        "references": []
+      }
+    ],
+    "8": [
+      {
+        "outline": "The Woman Caught in Adultery",
+        "verses": [
+          "1-11"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jesus the Light of the World",
+        "verses": [
+          "12-29"
+        ],
+        "references": [
+          "1 John 1:5–10"
+        ]
+      },
+      {
+        "outline": "The Truth Will Set You Free",
+        "verses": [
+          "30-47"
+        ],
+        "references": [
+          "2 John 1:4–6"
+        ]
+      },
+      {
+        "outline": "Before Abraham Was Born, I Am",
+        "verses": [
+          "48-59"
+        ],
+        "references": []
+      }
+    ],
+    "9": [
+      {
+        "outline": "Jesus Heals the Man Born Blind",
+        "verses": [
+          "1-12"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Pharisees Investigate the Healing",
+        "verses": [
+          "13-34"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Spiritual Blindness",
+        "verses": [
+          "35-41"
+        ],
+        "references": []
+      }
+    ],
+    "10": [
+      {
+        "outline": "Jesus the Good Shepherd",
+        "verses": [
+          "1-21"
+        ],
+        "references": [
+          "Psalms 23:1–6",
+          "Ezekiel 34:11–24"
+        ]
+      },
+      {
+        "outline": "Jesus at the Feast of Dedication",
+        "verses": [
+          "22-39"
+        ],
+        "references": []
+      },
+      {
+        "outline": "John’s Testimony Confirmed",
+        "verses": [
+          "40-42"
+        ],
+        "references": []
+      }
+    ],
+    "11": [
+      {
+        "outline": "The Death of Lazarus",
+        "verses": [
+          "1-16"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jesus Comforts Martha and Mary",
+        "verses": [
+          "17-37"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jesus Raises Lazarus",
+        "verses": [
+          "38-44"
+        ],
+        "references": [
+          "Acts 9:36–43"
+        ]
+      },
+      {
+        "outline": "The Plot to Kill Jesus",
+        "verses": [
+          "45-57"
+        ],
+        "references": [
+          "Matthew 26:1–5",
+          "Mark 14:1–2",
+          "Luke 22:1–2"
+        ]
+      }
+    ],
+    "12": [
+      {
+        "outline": "Mary Anoints Jesus",
+        "verses": [
+          "1-8"
+        ],
+        "references": [
+          "Matthew 26:6–13",
+          "Mark 14:3–9",
+          "Luke 7:36–50"
+        ]
+      },
+      {
+        "outline": "The Plot to Kill Lazarus",
+        "verses": [
+          "9-11"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Triumphal Entry",
+        "verses": [
+          "12-19"
+        ],
+        "references": [
+          "Zechariah 9:9–13",
+          "Matthew 21:1–11",
+          "Mark 11:1–11",
+          "Luke 19:28–40"
+        ]
+      },
+      {
+        "outline": "Jesus Predicts His Death",
+        "verses": [
+          "20-36"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Belief and Unbelief",
+        "verses": [
+          "37-50"
+        ],
+        "references": []
+      }
+    ],
+    "13": [
+      {
+        "outline": "Jesus Washes His Disciples’ Feet",
+        "verses": [
+          "1-17"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jesus Predicts His Betrayal",
+        "verses": [
+          "18-30"
+        ],
+        "references": [
+          "Psalms 41:1–13"
+        ]
+      },
+      {
+        "outline": "Love One Another",
+        "verses": [
+          "31-35"
+        ],
+        "references": [
+          "Romans 12:9–13",
+          "1 John 3:11–24"
+        ]
+      },
+      {
+        "outline": "Jesus Predicts Peter’s Denial",
+        "verses": [
+          "36-38"
+        ],
+        "references": [
+          "Matthew 26:31–35",
+          "Mark 14:27–31",
+          "Luke 22:31–38"
+        ]
+      }
+    ],
+    "14": [
+      {
+        "outline": "In My Father’s House Are Many Rooms",
+        "verses": [
+          "1-4"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Way, the Truth, and the Life",
+        "verses": [
+          "5-14"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jesus Promises the Holy Spirit",
+        "verses": [
+          "15-26"
+        ],
+        "references": [
+          "John 16:5–16"
+        ]
+      },
+      {
+        "outline": "Peace I Leave with You",
+        "verses": [
+          "27-31"
+        ],
+        "references": []
+      }
+    ],
+    "15": [
+      {
+        "outline": "Jesus the True Vine",
+        "verses": [
+          "1-8"
+        ],
+        "references": [
+          "Isaiah 27:1–13"
+        ]
+      },
+      {
+        "outline": "No Greater Love",
+        "verses": [
+          "9-17"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Hatred of the World",
+        "verses": [
+          "18-27"
+        ],
+        "references": []
+      }
+    ],
+    "16": [
+      {
+        "outline": "Persecution Foretold",
+        "verses": [
+          "1-4"
+        ],
+        "references": [
+          "Acts 23:12–22"
+        ]
+      },
+      {
+        "outline": "The Promise of the Holy Spirit",
+        "verses": [
+          "5-16"
+        ],
+        "references": [
+          "John 14:15–26"
+        ]
+      },
+      {
+        "outline": "Grief Will Turn to Joy",
+        "verses": [
+          "17-22"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Ask in My Name",
+        "verses": [
+          "23-33"
+        ],
+        "references": [
+          "Matthew 18:19–20"
+        ]
+      }
+    ],
+    "17": [
+      {
+        "outline": "Prayer for the Son",
+        "verses": [
+          "1-5"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Prayer for the Disciples",
+        "verses": [
+          "6-19"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Prayer for All Believers",
+        "verses": [
+          "20-26"
+        ],
+        "references": []
+      }
+    ],
+    "18": [
+      {
+        "outline": "The Betrayal of Jesus",
+        "verses": [
+          "1-14"
+        ],
+        "references": [
+          "Matthew 26:47–56",
+          "Mark 14:43–52",
+          "Luke 22:47–53"
+        ]
+      },
+      {
+        "outline": "Peter’s First Denial",
+        "verses": [
+          "15-18"
+        ],
+        "references": [
+          "Matthew 26:69–70",
+          "Mark 14:66–68",
+          "Luke 22:54–57"
+        ]
+      },
+      {
+        "outline": "Jesus before the High Priest",
+        "verses": [
+          "19-24"
+        ],
+        "references": [
+          "Matthew 26:57–68",
+          "Mark 14:53–65",
+          "Luke 22:66–71"
+        ]
+      },
+      {
+        "outline": "Peter’s Second and Third Denials",
+        "verses": [
+          "25-27"
+        ],
+        "references": [
+          "Matthew 26:71–75",
+          "Mark 14:69–72",
+          "Luke 22:58–62"
+        ]
+      },
+      {
+        "outline": "Jesus before Pilate",
+        "verses": [
+          "28-40"
+        ],
+        "references": [
+          "Matthew 27:11–14",
+          "Luke 23:1–5"
+        ]
+      }
+    ],
+    "19": [
+      {
+        "outline": "The Soldiers Mock Jesus",
+        "verses": [
+          "1-15"
+        ],
+        "references": [
+          "Isaiah 50:4–11",
+          "Matthew 27:27–31",
+          "Mark 15:16–20",
+          "Luke 22:63–65"
+        ]
+      },
+      {
+        "outline": "The Crucifixion",
+        "verses": [
+          "16-27"
+        ],
+        "references": [
+          "Psalms 22:1–31",
+          "Matthew 27:32–44",
+          "Mark 15:21–32",
+          "Luke 23:26–43"
+        ]
+      },
+      {
+        "outline": "The Death of Jesus",
+        "verses": [
+          "28-30"
+        ],
+        "references": [
+          "Psalms 22:1–31",
+          "Matthew 27:45–56",
+          "Mark 15:33–41",
+          "Luke 23:44–49"
+        ]
+      },
+      {
+        "outline": "Jesus’ Side Is Pierced",
+        "verses": [
+          "31-37"
+        ],
+        "references": [
+          "Zechariah 12:10–14"
+        ]
+      },
+      {
+        "outline": "The Burial of Jesus",
+        "verses": [
+          "38-42"
+        ],
+        "references": [
+          "Isaiah 53:9–12",
+          "Matthew 27:57–61",
+          "Mark 15:42–47",
+          "Luke 23:50–56"
+        ]
+      }
+    ],
+    "20": [
+      {
+        "outline": "The Resurrection",
+        "verses": [
+          "1-9"
+        ],
+        "references": [
+          "Matthew 28:1–10",
+          "Mark 16:1–8",
+          "Luke 24:1–12"
+        ]
+      },
+      {
+        "outline": "Jesus Appears to Mary Magdalene",
+        "verses": [
+          "10-18"
+        ],
+        "references": [
+          "Mark 16:9–11"
+        ]
+      },
+      {
+        "outline": "Jesus Appears to the Disciples",
+        "verses": [
+          "19-23"
+        ],
+        "references": [
+          "Luke 24:36–49",
+          "1 John 1:1–4"
+        ]
+      },
+      {
+        "outline": "Jesus Appears to Thomas",
+        "verses": [
+          "24-29"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Purpose of John’s Book",
+        "verses": [
+          "30-31"
+        ],
+        "references": []
+      }
+    ],
+    "21": [
+      {
+        "outline": "Jesus Appears by the Sea of Tiberias",
+        "verses": [
+          "1-14"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jesus and Peter",
+        "verses": [
+          "15-19"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jesus and the Beloved Disciple",
+        "verses": [
+          "20-25"
+        ],
+        "references": []
+      }
+    ]
+  }
+}

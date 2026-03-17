@@ -1,0 +1,740 @@
+{
+  "chapterTopics": {
+    "1": [
+      {
+        "outline": "From Adam to Abraham",
+        "verses": [
+          "1-27"
+        ],
+        "references": [
+          "Genesis 5:1–32",
+          "Genesis 10:1–32",
+          "Genesis 11:10–26"
+        ]
+      },
+      {
+        "outline": "The Descendants of Abraham",
+        "verses": [
+          "28-34"
+        ],
+        "references": [
+          "Genesis 25:12–18"
+        ]
+      },
+      {
+        "outline": "The Descendants of Esau",
+        "verses": [
+          "35-37"
+        ],
+        "references": [
+          "Genesis 36:1–19"
+        ]
+      },
+      {
+        "outline": "The Descendants of Seir",
+        "verses": [
+          "38-42"
+        ],
+        "references": [
+          "Genesis 36:20–30"
+        ]
+      },
+      {
+        "outline": "The Kings of Edom",
+        "verses": [
+          "43-54"
+        ],
+        "references": [
+          "Genesis 36:31–43"
+        ]
+      }
+    ],
+    "2": [
+      {
+        "outline": "The Sons of Israel",
+        "verses": [
+          "1-55"
+        ],
+        "references": [
+          "Genesis 35:21–26",
+          "Genesis 38:1–30"
+        ]
+      }
+    ],
+    "3": [
+      {
+        "outline": "The Descendants of David",
+        "verses": [
+          "1-9"
+        ],
+        "references": [
+          "2 Samuel 3:1–5"
+        ]
+      },
+      {
+        "outline": "The Descendants of Solomon",
+        "verses": [
+          "10-16"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Royal Line After the Exile",
+        "verses": [
+          "17-24"
+        ],
+        "references": []
+      }
+    ],
+    "4": [
+      {
+        "outline": "The Descendants of Judah",
+        "verses": [
+          "1-8"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Prayer of Jabez",
+        "verses": [
+          "9-10"
+        ],
+        "references": []
+      },
+      {
+        "outline": "More Descendants of Judah",
+        "verses": [
+          "11-23"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Descendants of Simeon",
+        "verses": [
+          "24-43"
+        ],
+        "references": []
+      }
+    ],
+    "5": [
+      {
+        "outline": "The Descendants of Reuben",
+        "verses": [
+          "1-10"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Descendants of Gad",
+        "verses": [
+          "11-22"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Half-Tribe of Manasseh",
+        "verses": [
+          "23-26"
+        ],
+        "references": []
+      }
+    ],
+    "6": [
+      {
+        "outline": "The Descendants of Levi",
+        "verses": [
+          "1-30"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Temple Musicians",
+        "verses": [
+          "31-47"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Descendants of Aaron",
+        "verses": [
+          "48-53"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Territories for the Levites",
+        "verses": [
+          "54-81"
+        ],
+        "references": [
+          "Numbers 35:1–8",
+          "Joshua 21:1–45"
+        ]
+      }
+    ],
+    "7": [
+      {
+        "outline": "The Descendants of Issachar",
+        "verses": [
+          "1-5"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Descendants of Benjamin",
+        "verses": [
+          "6-12"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Descendants of Naphtali",
+        "verses": [
+          "13"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Descendants of Manasseh",
+        "verses": [
+          "14-19"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Descendants of Ephraim",
+        "verses": [
+          "20-29"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Descendants of Asher",
+        "verses": [
+          "30-40"
+        ],
+        "references": []
+      }
+    ],
+    "8": [
+      {
+        "outline": "Genealogy from Benjamin to Saul",
+        "verses": [
+          "1-32"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Family of Saul",
+        "verses": [
+          "33-40"
+        ],
+        "references": []
+      }
+    ],
+    "9": [
+      {
+        "outline": "The People of Jerusalem",
+        "verses": [
+          "1-34"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Descendants of Saul",
+        "verses": [
+          "35-44"
+        ],
+        "references": []
+      }
+    ],
+    "10": [
+      {
+        "outline": "Saul’s Overthrow and Death",
+        "verses": [
+          "1-6"
+        ],
+        "references": [
+          "1 Samuel 31:1–6",
+          "2 Samuel 1:1–16"
+        ]
+      },
+      {
+        "outline": "The Philistines Possess the Towns",
+        "verses": [
+          "7-10"
+        ],
+        "references": [
+          "1 Samuel 31:7–10"
+        ]
+      },
+      {
+        "outline": "Jabesh-gilead’s Tribute to Saul",
+        "verses": [
+          "11-14"
+        ],
+        "references": [
+          "1 Samuel 31:11–13"
+        ]
+      }
+    ],
+    "11": [
+      {
+        "outline": "David Anointed King of All Israel",
+        "verses": [
+          "1-3"
+        ],
+        "references": [
+          "2 Samuel 5:1–5"
+        ]
+      },
+      {
+        "outline": "David Conquers Jerusalem",
+        "verses": [
+          "4-9"
+        ],
+        "references": [
+          "2 Samuel 5:6–11"
+        ]
+      },
+      {
+        "outline": "David’s Mighty Men",
+        "verses": [
+          "10-47"
+        ],
+        "references": [
+          "2 Samuel 23:8–39"
+        ]
+      }
+    ],
+    "12": [
+      {
+        "outline": "The Mighty Men Join David at Ziklag",
+        "verses": [
+          "1-22"
+        ],
+        "references": []
+      },
+      {
+        "outline": "David’s Army Grows at Hebron",
+        "verses": [
+          "23-40"
+        ],
+        "references": []
+      }
+    ],
+    "13": [
+      {
+        "outline": "David Fetches the Ark",
+        "verses": [
+          "1-7"
+        ],
+        "references": [
+          "2 Samuel 6:1–4"
+        ]
+      },
+      {
+        "outline": "Uzzah Touches the Ark",
+        "verses": [
+          "8-14"
+        ],
+        "references": [
+          "2 Samuel 6:5–11"
+        ]
+      }
+    ],
+    "14": [
+      {
+        "outline": "David’s Family Grows",
+        "verses": [
+          "1-7"
+        ],
+        "references": [
+          "2 Samuel 5:12–16"
+        ]
+      },
+      {
+        "outline": "Two Victories over the Philistines",
+        "verses": [
+          "8-17"
+        ],
+        "references": [
+          "2 Samuel 5:17–25"
+        ]
+      }
+    ],
+    "15": [
+      {
+        "outline": "Preparing to Move the Ark",
+        "verses": [
+          "1-13"
+        ],
+        "references": [
+          "2 Samuel 6:12–15"
+        ]
+      },
+      {
+        "outline": "The Priests and Levites Carry the Ark",
+        "verses": [
+          "14-24"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Moving the Ark to Jerusalem",
+        "verses": [
+          "25-28"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Michal’s Contempt for David",
+        "verses": [
+          "29"
+        ],
+        "references": [
+          "2 Samuel 6:16"
+        ]
+      }
+    ],
+    "16": [
+      {
+        "outline": "A Tent for the Ark",
+        "verses": [
+          "1-6"
+        ],
+        "references": [
+          "2 Samuel 6:17–19"
+        ]
+      },
+      {
+        "outline": "David’s Psalms of Thanksgiving",
+        "verses": [
+          "7-22"
+        ],
+        "references": [
+          "Psalms 105:1–15"
+        ]
+      },
+      {
+        "outline": "Sing to the LORD, All the Earth",
+        "verses": [
+          "23-36"
+        ],
+        "references": [
+          "Psalms 96:1–13"
+        ]
+      },
+      {
+        "outline": "Worship before the Ark",
+        "verses": [
+          "37-43"
+        ],
+        "references": []
+      }
+    ],
+    "17": [
+      {
+        "outline": "God’s Covenant with David",
+        "verses": [
+          "1-15"
+        ],
+        "references": [
+          "2 Samuel 7:1–17"
+        ]
+      },
+      {
+        "outline": "David’s Prayer of Thanksgiving",
+        "verses": [
+          "16-27"
+        ],
+        "references": [
+          "2 Samuel 7:18–29"
+        ]
+      }
+    ],
+    "18": [
+      {
+        "outline": "David’s Triumphs",
+        "verses": [
+          "1-13"
+        ],
+        "references": [
+          "2 Samuel 8:1–14",
+          "Psalms 60:1–12"
+        ]
+      },
+      {
+        "outline": "David’s Officers",
+        "verses": [
+          "14-17"
+        ],
+        "references": [
+          "2 Samuel 8:15–18"
+        ]
+      }
+    ],
+    "19": [
+      {
+        "outline": "David’s Messengers Disgraced",
+        "verses": [
+          "1-9"
+        ],
+        "references": [
+          "2 Samuel 10:1–8"
+        ]
+      },
+      {
+        "outline": "David Defeats Ammon and Aram",
+        "verses": [
+          "10-19"
+        ],
+        "references": [
+          "2 Samuel 10:9–19"
+        ]
+      }
+    ],
+    "20": [
+      {
+        "outline": "The Capture of Rabbah",
+        "verses": [
+          "1-3"
+        ],
+        "references": [
+          "2 Samuel 12:26–31"
+        ]
+      },
+      {
+        "outline": "Battles against the Philistines",
+        "verses": [
+          "4-8"
+        ],
+        "references": [
+          "2 Samuel 21:15–22"
+        ]
+      }
+    ],
+    "21": [
+      {
+        "outline": "David’s Military Census",
+        "verses": [
+          "1-6"
+        ],
+        "references": [
+          "Exodus 30:11–16",
+          "2 Samuel 24:1–9"
+        ]
+      },
+      {
+        "outline": "Judgment for David’s Sin",
+        "verses": [
+          "7-13"
+        ],
+        "references": [
+          "2 Samuel 24:10–14"
+        ]
+      },
+      {
+        "outline": "A Plague on Israel",
+        "verses": [
+          "14-17"
+        ],
+        "references": [
+          "2 Samuel 24:15–17"
+        ]
+      },
+      {
+        "outline": "David Builds an Altar",
+        "verses": [
+          "18-30"
+        ],
+        "references": [
+          "2 Samuel 24:18–25"
+        ]
+      }
+    ],
+    "22": [
+      {
+        "outline": "Preparations for the Temple",
+        "verses": [
+          "1-5"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Solomon Anointed to Build the Temple",
+        "verses": [
+          "6-19"
+        ],
+        "references": []
+      }
+    ],
+    "23": [
+      {
+        "outline": "The Divisions of the Levites",
+        "verses": [
+          "1-6"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Gershonites",
+        "verses": [
+          "7-11"
+        ],
+        "references": [
+          "Numbers 3:21–26",
+          "Numbers 4:21–28"
+        ]
+      },
+      {
+        "outline": "The Kohathites",
+        "verses": [
+          "12-20"
+        ],
+        "references": [
+          "Numbers 3:27–32",
+          "Numbers 4:1–20"
+        ]
+      },
+      {
+        "outline": "The Merarites",
+        "verses": [
+          "21-23"
+        ],
+        "references": [
+          "Numbers 3:33–37",
+          "Numbers 4:29–33"
+        ]
+      },
+      {
+        "outline": "Levite Duties Revised",
+        "verses": [
+          "24-32"
+        ],
+        "references": []
+      }
+    ],
+    "24": [
+      {
+        "outline": "Twenty-Four Divisions of Priests",
+        "verses": [
+          "1-19"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Rest of the Levites",
+        "verses": [
+          "20-31"
+        ],
+        "references": []
+      }
+    ],
+    "25": [
+      {
+        "outline": "Twenty-Four Divisions of Musicians",
+        "verses": [
+          "1-31"
+        ],
+        "references": []
+      }
+    ],
+    "26": [
+      {
+        "outline": "The Divisions of the Gatekeepers",
+        "verses": [
+          "1-19"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Treasurers, Officers, and Judges",
+        "verses": [
+          "20-32"
+        ],
+        "references": []
+      }
+    ],
+    "27": [
+      {
+        "outline": "Twelve Captains for Twelve Months",
+        "verses": [
+          "1-15"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Leaders of the Twelve Tribes",
+        "verses": [
+          "16-24"
+        ],
+        "references": []
+      },
+      {
+        "outline": "David’s Various Overseers",
+        "verses": [
+          "25-31"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Counselors",
+        "verses": [
+          "32-34"
+        ],
+        "references": []
+      }
+    ],
+    "28": [
+      {
+        "outline": "David Commissions Solomon",
+        "verses": [
+          "1-10"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Plans for the Temple",
+        "verses": [
+          "11-21"
+        ],
+        "references": []
+      }
+    ],
+    "29": [
+      {
+        "outline": "Offerings for the Temple",
+        "verses": [
+          "1-9"
+        ],
+        "references": []
+      },
+      {
+        "outline": "David’s Prayer of Blessing",
+        "verses": [
+          "10-20"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Solomon Anointed King",
+        "verses": [
+          "21-25"
+        ],
+        "references": [
+          "1 Kings 1:32–40"
+        ]
+      },
+      {
+        "outline": "David’s Reign and Death",
+        "verses": [
+          "26-30"
+        ],
+        "references": [
+          "1 Kings 2:10–12"
+        ]
+      }
+    ]
+  }
+}

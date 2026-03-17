@@ -1,0 +1,425 @@
+{
+  "chapterTopics": {
+    "1": [
+      {
+        "outline": "The Conquest of Canaan Proceeds",
+        "verses": [
+          "1-7"
+        ],
+        "references": [
+          "Joshua 13:1–7"
+        ]
+      },
+      {
+        "outline": "The Capture of Jerusalem and Hebron",
+        "verses": [
+          "8-26"
+        ],
+        "references": [
+          "Joshua 15:13–19"
+        ]
+      },
+      {
+        "outline": "The Failure to Complete the Conquest",
+        "verses": [
+          "27-36"
+        ],
+        "references": []
+      }
+    ],
+    "2": [
+      {
+        "outline": "Israel Rebuked at Bochim",
+        "verses": [
+          "1-5"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Joshua’s Death and Burial",
+        "verses": [
+          "6-9"
+        ],
+        "references": [
+          "Joshua 24:29–33"
+        ]
+      },
+      {
+        "outline": "Israel’s Unfaithfulness",
+        "verses": [
+          "10-15"
+        ],
+        "references": [
+          "Isaiah 43:22–28",
+          "Jeremiah 2:23–37"
+        ]
+      },
+      {
+        "outline": "Judges Raised Up",
+        "verses": [
+          "16-23"
+        ],
+        "references": []
+      }
+    ],
+    "3": [
+      {
+        "outline": "Nations Left to Test Israel",
+        "verses": [
+          "1-6"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Othniel",
+        "verses": [
+          "7-11"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Ehud",
+        "verses": [
+          "12-30"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Shamgar",
+        "verses": [
+          "31"
+        ],
+        "references": []
+      }
+    ],
+    "4": [
+      {
+        "outline": "Deborah and Barak",
+        "verses": [
+          "1-16"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jael Kills Sisera",
+        "verses": [
+          "17-24"
+        ],
+        "references": []
+      }
+    ],
+    "5": [
+      {
+        "outline": "The Song of Deborah and Barak",
+        "verses": [
+          "1-31"
+        ],
+        "references": [
+          "Exodus 15:1–21"
+        ]
+      }
+    ],
+    "6": [
+      {
+        "outline": "Midian Oppresses Israel",
+        "verses": [
+          "1-10"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Call of Gideon",
+        "verses": [
+          "11-24"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Gideon Destroys Baal’s Altar",
+        "verses": [
+          "25-32"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Sign of the Fleece",
+        "verses": [
+          "33-40"
+        ],
+        "references": []
+      }
+    ],
+    "7": [
+      {
+        "outline": "Gideon’s Army of Three Hundred",
+        "verses": [
+          "1-8"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Sword of Gideon",
+        "verses": [
+          "9-14"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Gideon Defeats Midian",
+        "verses": [
+          "15-25"
+        ],
+        "references": []
+      }
+    ],
+    "8": [
+      {
+        "outline": "Gideon Defeats Zebah and Zalmunna",
+        "verses": [
+          "1-21"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Gideon’s Ephod",
+        "verses": [
+          "22-27"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Forty Years of Peace",
+        "verses": [
+          "28-31"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Gideon’s Death",
+        "verses": [
+          "32-35"
+        ],
+        "references": []
+      }
+    ],
+    "9": [
+      {
+        "outline": "Abimelech’s Conspiracy",
+        "verses": [
+          "1-6"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jotham’s Parable",
+        "verses": [
+          "7-21"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Gaal Conspires with the Shechemites",
+        "verses": [
+          "22-29"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Fall of Shechem",
+        "verses": [
+          "30-49"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Abimelech’s Punishment",
+        "verses": [
+          "50-57"
+        ],
+        "references": []
+      }
+    ],
+    "10": [
+      {
+        "outline": "Tola",
+        "verses": [
+          "1-2"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jair",
+        "verses": [
+          "3-5"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Oppression by the Philistines and Ammonites",
+        "verses": [
+          "6-18"
+        ],
+        "references": []
+      }
+    ],
+    "11": [
+      {
+        "outline": "Jephthah Delivers Israel",
+        "verses": [
+          "1-28"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jephthah’s Tragic Vow",
+        "verses": [
+          "29-40"
+        ],
+        "references": []
+      }
+    ],
+    "12": [
+      {
+        "outline": "Jephthah Defeats Ephraim",
+        "verses": [
+          "1-7"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Ibzan, Elon, and Abdon",
+        "verses": [
+          "8-15"
+        ],
+        "references": []
+      }
+    ],
+    "13": [
+      {
+        "outline": "The Birth of Samson",
+        "verses": [
+          "1-25"
+        ],
+        "references": [
+          "Numbers 6:1–21"
+        ]
+      }
+    ],
+    "14": [
+      {
+        "outline": "Samson’s Marriage",
+        "verses": [
+          "1-7"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Samson’s Riddle",
+        "verses": [
+          "8-20"
+        ],
+        "references": []
+      }
+    ],
+    "15": [
+      {
+        "outline": "Samson’s Revenge",
+        "verses": [
+          "1-20"
+        ],
+        "references": []
+      }
+    ],
+    "16": [
+      {
+        "outline": "Samson Escapes Gaza",
+        "verses": [
+          "1-3"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Samson and Delilah",
+        "verses": [
+          "4-14"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Delilah Learns the Secret",
+        "verses": [
+          "15-22"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Samson’s Vengeance and Death",
+        "verses": [
+          "23-31"
+        ],
+        "references": []
+      }
+    ],
+    "17": [
+      {
+        "outline": "Micah’s Idolatry",
+        "verses": [
+          "1-13"
+        ],
+        "references": []
+      }
+    ],
+    "18": [
+      {
+        "outline": "The Danites Settle in Laish",
+        "verses": [
+          "1-13"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Danites Take Micah’s Idols",
+        "verses": [
+          "14-31"
+        ],
+        "references": []
+      }
+    ],
+    "19": [
+      {
+        "outline": "The Crime of the Benjamites",
+        "verses": [
+          "1-30"
+        ],
+        "references": [
+          "Genesis 19:1–11"
+        ]
+      }
+    ],
+    "20": [
+      {
+        "outline": "The Decree of the Assembly",
+        "verses": [
+          "1-17"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Civil War against Benjamin",
+        "verses": [
+          "18-48"
+        ],
+        "references": []
+      }
+    ],
+    "21": [
+      {
+        "outline": "Wives for the Benjamites",
+        "verses": [
+          "1-25"
+        ],
+        "references": []
+      }
+    ]
+  }
+}

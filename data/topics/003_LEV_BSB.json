@@ -1,0 +1,643 @@
+{
+  "chapterTopics": {
+    "1": [
+      {
+        "outline": "Laws for Burnt Offerings",
+        "verses": [
+          "1-17"
+        ],
+        "references": [
+          "Leviticus 6:8–13"
+        ]
+      }
+    ],
+    "2": [
+      {
+        "outline": "Laws for Grain Offerings",
+        "verses": [
+          "1-16"
+        ],
+        "references": [
+          "Leviticus 6:14–23"
+        ]
+      }
+    ],
+    "3": [
+      {
+        "outline": "Laws for Peace Offerings",
+        "verses": [
+          "1-17"
+        ],
+        "references": [
+          "Leviticus 7:11–21"
+        ]
+      }
+    ],
+    "4": [
+      {
+        "outline": "Laws for Sin Offerings",
+        "verses": [
+          "1-35"
+        ],
+        "references": [
+          "Leviticus 5:1–13",
+          "Leviticus 6:24–30"
+        ]
+      }
+    ],
+    "5": [
+      {
+        "outline": "Sins Requiring a Sin Offering",
+        "verses": [
+          "1-13"
+        ],
+        "references": [
+          "Leviticus 4:1–35",
+          "Leviticus 6:24–30"
+        ]
+      },
+      {
+        "outline": "Laws for Guilt Offerings",
+        "verses": [
+          "14-19"
+        ],
+        "references": [
+          "Leviticus 6:1–7",
+          "Leviticus 7:1–10"
+        ]
+      }
+    ],
+    "6": [
+      {
+        "outline": "Sins Requiring a Guilt Offering",
+        "verses": [
+          "1-7"
+        ],
+        "references": [
+          "Leviticus 5:14–19",
+          "Leviticus 7:1–10"
+        ]
+      },
+      {
+        "outline": "The Burnt Offering",
+        "verses": [
+          "8-13"
+        ],
+        "references": [
+          "Leviticus 1:1–17"
+        ]
+      },
+      {
+        "outline": "The Grain Offering",
+        "verses": [
+          "14-23"
+        ],
+        "references": [
+          "Leviticus 2:1–16"
+        ]
+      },
+      {
+        "outline": "The Sin Offering",
+        "verses": [
+          "24-30"
+        ],
+        "references": [
+          "Leviticus 4:1–35",
+          "Leviticus 5:1–13"
+        ]
+      }
+    ],
+    "7": [
+      {
+        "outline": "The Guilt Offering",
+        "verses": [
+          "1-10"
+        ],
+        "references": [
+          "Leviticus 5:14–19",
+          "Leviticus 6:1–7"
+        ]
+      },
+      {
+        "outline": "The Peace Offering",
+        "verses": [
+          "11-21"
+        ],
+        "references": [
+          "Leviticus 3:1–17"
+        ]
+      },
+      {
+        "outline": "Fat and Blood Forbidden",
+        "verses": [
+          "22-27"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Priests’ Portion",
+        "verses": [
+          "28-38"
+        ],
+        "references": []
+      }
+    ],
+    "8": [
+      {
+        "outline": "Moses Consecrates Aaron and His Sons",
+        "verses": [
+          "1-13"
+        ],
+        "references": [
+          "Exodus 29:1–9"
+        ]
+      },
+      {
+        "outline": "The Priests’ Sin Offering",
+        "verses": [
+          "14-17"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Priests’ Burnt Offering",
+        "verses": [
+          "18-21"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Ram of Ordination",
+        "verses": [
+          "22-36"
+        ],
+        "references": [
+          "Exodus 29:10–30"
+        ]
+      }
+    ],
+    "9": [
+      {
+        "outline": "Aaron’s First Offerings",
+        "verses": [
+          "1-24"
+        ],
+        "references": []
+      }
+    ],
+    "10": [
+      {
+        "outline": "The Sin of Nadab and Abihu",
+        "verses": [
+          "1-7"
+        ],
+        "references": [
+          "Numbers 3:1–4"
+        ]
+      },
+      {
+        "outline": "Restrictions for Priests",
+        "verses": [
+          "8-20"
+        ],
+        "references": []
+      }
+    ],
+    "11": [
+      {
+        "outline": "Clean and Unclean Animals",
+        "verses": [
+          "1-47"
+        ],
+        "references": [
+          "Deuteronomy 14:1–21",
+          "Acts 10:9–16"
+        ]
+      }
+    ],
+    "12": [
+      {
+        "outline": "Purification after Childbirth",
+        "verses": [
+          "1-8"
+        ],
+        "references": []
+      }
+    ],
+    "13": [
+      {
+        "outline": "Laws about Skin Diseases",
+        "verses": [
+          "1-46"
+        ],
+        "references": [
+          "Numbers 5:1–4"
+        ]
+      },
+      {
+        "outline": "Laws about Mildew",
+        "verses": [
+          "47-59"
+        ],
+        "references": []
+      }
+    ],
+    "14": [
+      {
+        "outline": "Cleansing from Skin Diseases",
+        "verses": [
+          "1-32"
+        ],
+        "references": [
+          "Matthew 8:1–4",
+          "Mark 1:40–45",
+          "Luke 5:12–16"
+        ]
+      },
+      {
+        "outline": "Signs of Home Contamination",
+        "verses": [
+          "33-47"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Cleansing a Home",
+        "verses": [
+          "48-57"
+        ],
+        "references": []
+      }
+    ],
+    "15": [
+      {
+        "outline": "The Uncleanness of Men",
+        "verses": [
+          "1-12"
+        ],
+        "references": [
+          "Deuteronomy 23:9–14"
+        ]
+      },
+      {
+        "outline": "The Cleansing of Men",
+        "verses": [
+          "13-18"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Uncleanness of Women",
+        "verses": [
+          "19-27"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Cleansing of Women",
+        "verses": [
+          "28-33"
+        ],
+        "references": []
+      }
+    ],
+    "16": [
+      {
+        "outline": "The Day of Atonement",
+        "verses": [
+          "1-34"
+        ],
+        "references": [
+          "Leviticus 23:26–32",
+          "Numbers 29:7–11"
+        ]
+      }
+    ],
+    "17": [
+      {
+        "outline": "The Place of Sacrifice",
+        "verses": [
+          "1-9"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Laws against Eating Blood",
+        "verses": [
+          "10-16"
+        ],
+        "references": []
+      }
+    ],
+    "18": [
+      {
+        "outline": "Unlawful Sexual Relations",
+        "verses": [
+          "1-30"
+        ],
+        "references": [
+          "Matthew 5:27–30"
+        ]
+      }
+    ],
+    "19": [
+      {
+        "outline": "Commandments for Holiness",
+        "verses": [
+          "1-8"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Love Your Neighbor",
+        "verses": [
+          "9-18"
+        ],
+        "references": [
+          "Romans 13:8–10"
+        ]
+      },
+      {
+        "outline": "Keep My Statutes",
+        "verses": [
+          "19-37"
+        ],
+        "references": []
+      }
+    ],
+    "20": [
+      {
+        "outline": "Punishments for Disobedience",
+        "verses": [
+          "1-9"
+        ],
+        "references": [
+          "Leviticus 26:14–39",
+          "Deuteronomy 28:15–68"
+        ]
+      },
+      {
+        "outline": "Punishments for Sexual Immorality",
+        "verses": [
+          "10-21"
+        ],
+        "references": [
+          "Proverbs 5:1–23",
+          "1 Corinthians 5:1–8"
+        ]
+      },
+      {
+        "outline": "Distinguish between Clean and Unclean",
+        "verses": [
+          "22-27"
+        ],
+        "references": []
+      }
+    ],
+    "21": [
+      {
+        "outline": "Holiness Required of Priests",
+        "verses": [
+          "1-15"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Restrictions against Those with Blemishes",
+        "verses": [
+          "16-24"
+        ],
+        "references": []
+      }
+    ],
+    "22": [
+      {
+        "outline": "Restrictions against the Unclean",
+        "verses": [
+          "1-16"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Worthy Offerings",
+        "verses": [
+          "17-33"
+        ],
+        "references": []
+      }
+    ],
+    "23": [
+      {
+        "outline": "Feasts and Sabbaths",
+        "verses": [
+          "1-3"
+        ],
+        "references": [
+          "Exodus 23:14–19"
+        ]
+      },
+      {
+        "outline": "Passover and the Feast of Unleavened Bread",
+        "verses": [
+          "4-8"
+        ],
+        "references": [
+          "Exodus 12:14–28",
+          "Numbers 28:16–25",
+          "Deuteronomy 16:1–8"
+        ]
+      },
+      {
+        "outline": "The Feast of Firstfruits",
+        "verses": [
+          "9-14"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Feast of Weeks",
+        "verses": [
+          "15-22"
+        ],
+        "references": [
+          "Acts 2:1–13"
+        ]
+      },
+      {
+        "outline": "The Feast of Trumpets",
+        "verses": [
+          "23-25"
+        ],
+        "references": [
+          "Numbers 29:1–6"
+        ]
+      },
+      {
+        "outline": "The Day of Atonement",
+        "verses": [
+          "26-32"
+        ],
+        "references": [
+          "Leviticus 16:1–34",
+          "Numbers 29:7–11"
+        ]
+      },
+      {
+        "outline": "The Feast of Tabernacles",
+        "verses": [
+          "33-44"
+        ],
+        "references": [
+          "Nehemiah 8:13–18",
+          "Zechariah 14:16–21"
+        ]
+      }
+    ],
+    "24": [
+      {
+        "outline": "The Oil for the Lamps",
+        "verses": [
+          "1-4"
+        ],
+        "references": [
+          "Exodus 27:20–21"
+        ]
+      },
+      {
+        "outline": "The Showbread",
+        "verses": [
+          "5-9"
+        ],
+        "references": [
+          "Exodus 25:23–30",
+          "Exodus 37:10–16"
+        ]
+      },
+      {
+        "outline": "Punishment for Blasphemy",
+        "verses": [
+          "10-16"
+        ],
+        "references": []
+      },
+      {
+        "outline": "An Eye for an Eye",
+        "verses": [
+          "17-23"
+        ],
+        "references": [
+          "Matthew 5:38–48"
+        ]
+      }
+    ],
+    "25": [
+      {
+        "outline": "The Seventh Year",
+        "verses": [
+          "1-7"
+        ],
+        "references": [
+          "Exodus 23:10–13",
+          "Deuteronomy 15:1–6"
+        ]
+      },
+      {
+        "outline": "The Year of Jubilee",
+        "verses": [
+          "8-12"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Return of Property",
+        "verses": [
+          "13-17"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Blessing of Obedience",
+        "verses": [
+          "18-22"
+        ],
+        "references": [
+          "Deuteronomy 28:1–14"
+        ]
+      },
+      {
+        "outline": "The Law of Redemption",
+        "verses": [
+          "23-34"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Redemption of the Poor",
+        "verses": [
+          "35-38"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Redemption of Bondmen",
+        "verses": [
+          "39-46"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Redemption of Servants",
+        "verses": [
+          "47-55"
+        ],
+        "references": []
+      }
+    ],
+    "26": [
+      {
+        "outline": "Additional Blessings of Obedience",
+        "verses": [
+          "1-13"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Punishments for Disobedience",
+        "verses": [
+          "14-39"
+        ],
+        "references": [
+          "Leviticus 20:1–9",
+          "Deuteronomy 28:15–68"
+        ]
+      },
+      {
+        "outline": "God Remembers Those Who Repent",
+        "verses": [
+          "40-46"
+        ],
+        "references": []
+      }
+    ],
+    "27": [
+      {
+        "outline": "Rules about Valuations",
+        "verses": [
+          "1-29"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Instruction on Tithes",
+        "verses": [
+          "30-34"
+        ],
+        "references": [
+          "Deuteronomy 14:22–29",
+          "Deuteronomy 26:1–15",
+          "Nehemiah 13:10–14"
+        ]
+      }
+    ]
+  }
+}

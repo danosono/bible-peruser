@@ -1,0 +1,980 @@
+{
+  "chapterTopics": {
+    "1": [
+      {
+        "outline": "Solomon’s Prayer for Wisdom",
+        "verses": [
+          "1-13"
+        ],
+        "references": [
+          "1 Kings 3:1–15",
+          "Psalms 45:1–17",
+          "Psalms 72:1–20"
+        ]
+      },
+      {
+        "outline": "Solomon’s Riches",
+        "verses": [
+          "14-17"
+        ],
+        "references": [
+          "1 Kings 10:26–29"
+        ]
+      }
+    ],
+    "2": [
+      {
+        "outline": "Preparations for the Temple",
+        "verses": [
+          "1-10"
+        ],
+        "references": [
+          "1 Kings 5:1–6"
+        ]
+      },
+      {
+        "outline": "Hiram’s Reply to Solomon",
+        "verses": [
+          "11-18"
+        ],
+        "references": [
+          "1 Kings 5:7–12"
+        ]
+      }
+    ],
+    "3": [
+      {
+        "outline": "Temple Construction Begins",
+        "verses": [
+          "1-4"
+        ],
+        "references": [
+          "1 Kings 6:1–4"
+        ]
+      },
+      {
+        "outline": "The Temple’s Interior",
+        "verses": [
+          "5-9"
+        ],
+        "references": [
+          "1 Kings 6:14–22"
+        ]
+      },
+      {
+        "outline": "The Cherubim",
+        "verses": [
+          "10-13"
+        ],
+        "references": [
+          "1 Kings 6:23–30"
+        ]
+      },
+      {
+        "outline": "The Veil and Pillars",
+        "verses": [
+          "14-17"
+        ],
+        "references": [
+          "1 Kings 7:13–22"
+        ]
+      }
+    ],
+    "4": [
+      {
+        "outline": "The Bronze Altar and Molten Sea",
+        "verses": [
+          "1-5"
+        ],
+        "references": [
+          "1 Kings 7:23–26"
+        ]
+      },
+      {
+        "outline": "The Ten Basins, Lampstands, and Tables",
+        "verses": [
+          "6-8"
+        ],
+        "references": [
+          "1 Kings 7:38–39"
+        ]
+      },
+      {
+        "outline": "The Courts",
+        "verses": [
+          "9-10"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Completion of the Bronze Works",
+        "verses": [
+          "11-18"
+        ],
+        "references": [
+          "1 Kings 7:40–47"
+        ]
+      },
+      {
+        "outline": "Completion of the Gold Furnishings",
+        "verses": [
+          "19-22"
+        ],
+        "references": [
+          "1 Kings 7:48–51"
+        ]
+      }
+    ],
+    "5": [
+      {
+        "outline": "The Ark Enters the Temple",
+        "verses": [
+          "1-14"
+        ],
+        "references": [
+          "1 Kings 8:1–11"
+        ]
+      }
+    ],
+    "6": [
+      {
+        "outline": "Solomon Blesses the LORD",
+        "verses": [
+          "1-11"
+        ],
+        "references": [
+          "1 Kings 8:12–21"
+        ]
+      },
+      {
+        "outline": "Solomon’s Prayer of Dedication",
+        "verses": [
+          "12-42"
+        ],
+        "references": [
+          "1 Kings 8:22–53"
+        ]
+      }
+    ],
+    "7": [
+      {
+        "outline": "Fire from Heaven",
+        "verses": [
+          "1-3"
+        ],
+        "references": [
+          "Psalms 136:1–26"
+        ]
+      },
+      {
+        "outline": "Sacrifices of Dedication",
+        "verses": [
+          "4-10"
+        ],
+        "references": [
+          "1 Kings 8:62–66"
+        ]
+      },
+      {
+        "outline": "The LORD’s Response to Solomon",
+        "verses": [
+          "11-22"
+        ],
+        "references": [
+          "1 Kings 9:1–9"
+        ]
+      }
+    ],
+    "8": [
+      {
+        "outline": "Solomon’s Additional Achievements",
+        "verses": [
+          "1-18"
+        ],
+        "references": [
+          "1 Kings 9:10–28"
+        ]
+      }
+    ],
+    "9": [
+      {
+        "outline": "The Queen of Sheba",
+        "verses": [
+          "1-12"
+        ],
+        "references": [
+          "1 Kings 10:1–13"
+        ]
+      },
+      {
+        "outline": "Solomon’s Wealth and Splendor",
+        "verses": [
+          "13-28"
+        ],
+        "references": [
+          "1 Kings 10:14–29"
+        ]
+      },
+      {
+        "outline": "The Death of Solomon",
+        "verses": [
+          "29-31"
+        ],
+        "references": [
+          "1 Kings 11:41–43"
+        ]
+      }
+    ],
+    "10": [
+      {
+        "outline": "Rebellion against Rehoboam",
+        "verses": [
+          "1-15"
+        ],
+        "references": [
+          "1 Kings 12:1–15"
+        ]
+      },
+      {
+        "outline": "The Kingdom Divided",
+        "verses": [
+          "16-19"
+        ],
+        "references": [
+          "1 Kings 12:16–19"
+        ]
+      }
+    ],
+    "11": [
+      {
+        "outline": "Shemaiah’s Prophecy",
+        "verses": [
+          "1-4"
+        ],
+        "references": [
+          "1 Kings 12:20–24"
+        ]
+      },
+      {
+        "outline": "Rehoboam Fortifies Judah",
+        "verses": [
+          "5-12"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jeroboam Forsakes the Priests and Levites",
+        "verses": [
+          "13-17"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Rehoboam’s Family",
+        "verses": [
+          "18-23"
+        ],
+        "references": []
+      }
+    ],
+    "12": [
+      {
+        "outline": "Shishak Raids Jerusalem",
+        "verses": [
+          "1-12"
+        ],
+        "references": [
+          "1 Kings 14:25–28"
+        ]
+      },
+      {
+        "outline": "Rehoboam’s Reign and Death",
+        "verses": [
+          "13-16"
+        ],
+        "references": [
+          "1 Kings 14:21–24"
+        ]
+      }
+    ],
+    "13": [
+      {
+        "outline": "Abijah Reigns in Judah",
+        "verses": [
+          "1-3"
+        ],
+        "references": [
+          "1 Kings 15:1–8"
+        ]
+      },
+      {
+        "outline": "Civil War against Jeroboam",
+        "verses": [
+          "4-22"
+        ],
+        "references": []
+      }
+    ],
+    "14": [
+      {
+        "outline": "Asa Reigns in Judah",
+        "verses": [
+          "1-15"
+        ],
+        "references": [
+          "1 Kings 15:9–15"
+        ]
+      }
+    ],
+    "15": [
+      {
+        "outline": "The Prophecy of Azariah",
+        "verses": [
+          "1-7"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Asa’s Reforms",
+        "verses": [
+          "8-19"
+        ],
+        "references": [
+          "1 Kings 15:9–15"
+        ]
+      }
+    ],
+    "16": [
+      {
+        "outline": "War between Asa and Baasha",
+        "verses": [
+          "1-6"
+        ],
+        "references": [
+          "1 Kings 15:16–22"
+        ]
+      },
+      {
+        "outline": "Hanani’s Message to Asa",
+        "verses": [
+          "7-10"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Death and Burial of Asa",
+        "verses": [
+          "11-14"
+        ],
+        "references": []
+      }
+    ],
+    "17": [
+      {
+        "outline": "Jehoshaphat Reigns in Judah",
+        "verses": [
+          "1-19"
+        ],
+        "references": [
+          "1 Kings 15:23–24"
+        ]
+      }
+    ],
+    "18": [
+      {
+        "outline": "Jehoshaphat Allies with Ahab",
+        "verses": [
+          "1-11"
+        ],
+        "references": [
+          "1 Kings 22:1–12"
+        ]
+      },
+      {
+        "outline": "Micaiah Prophesies against Ahab",
+        "verses": [
+          "12-27"
+        ],
+        "references": [
+          "1 Kings 22:13–28"
+        ]
+      },
+      {
+        "outline": "Ahab’s Defeat and Death",
+        "verses": [
+          "28-34"
+        ],
+        "references": [
+          "1 Kings 22:29–40"
+        ]
+      }
+    ],
+    "19": [
+      {
+        "outline": "Jehoshaphat Reproved by Jehu",
+        "verses": [
+          "1-3"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jehoshaphat’s Reforms",
+        "verses": [
+          "4-11"
+        ],
+        "references": []
+      }
+    ],
+    "20": [
+      {
+        "outline": "War against Jehoshaphat",
+        "verses": [
+          "1-4"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jehoshaphat’s Prayer",
+        "verses": [
+          "5-13"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Prophecy of Jahaziel",
+        "verses": [
+          "14-19"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Enemies Destroy Themselves",
+        "verses": [
+          "20-25"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Joyful Return",
+        "verses": [
+          "26-30"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Summary of Jehoshaphat’s Reign",
+        "verses": [
+          "31-34"
+        ],
+        "references": [
+          "1 Kings 22:41–50"
+        ]
+      },
+      {
+        "outline": "Jehoshaphat’s Fleet Is Wrecked",
+        "verses": [
+          "35-37"
+        ],
+        "references": []
+      }
+    ],
+    "21": [
+      {
+        "outline": "Jehoram Reigns in Judah",
+        "verses": [
+          "1-7"
+        ],
+        "references": [
+          "2 Kings 8:16–19"
+        ]
+      },
+      {
+        "outline": "Edom and Libnah Rebel",
+        "verses": [
+          "8-11"
+        ],
+        "references": [
+          "2 Kings 8:20–24"
+        ]
+      },
+      {
+        "outline": "Elijah’s Letter to Jehoram",
+        "verses": [
+          "12-15"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jehoram’s Disease and Death",
+        "verses": [
+          "16-20"
+        ],
+        "references": []
+      }
+    ],
+    "22": [
+      {
+        "outline": "Ahaziah Reigns in Judah",
+        "verses": [
+          "1-7"
+        ],
+        "references": [
+          "2 Kings 8:25–29"
+        ]
+      },
+      {
+        "outline": "Jehu Kills the Princes of Judah",
+        "verses": [
+          "8-9"
+        ],
+        "references": [
+          "2 Kings 9:14–29"
+        ]
+      },
+      {
+        "outline": "Athaliah and Joash",
+        "verses": [
+          "10-12"
+        ],
+        "references": [
+          "2 Kings 11:1–3"
+        ]
+      }
+    ],
+    "23": [
+      {
+        "outline": "Joash Anointed King of Judah",
+        "verses": [
+          "1-11"
+        ],
+        "references": [
+          "2 Kings 11:4–12"
+        ]
+      },
+      {
+        "outline": "The Death of Athaliah",
+        "verses": [
+          "12-15"
+        ],
+        "references": [
+          "2 Kings 11:13–16"
+        ]
+      },
+      {
+        "outline": "Jehoiada Restores the Worship of the LORD",
+        "verses": [
+          "16-21"
+        ],
+        "references": [
+          "2 Kings 11:17–21"
+        ]
+      }
+    ],
+    "24": [
+      {
+        "outline": "Joash Repairs the Temple",
+        "verses": [
+          "1-14"
+        ],
+        "references": [
+          "2 Kings 12:1–16"
+        ]
+      },
+      {
+        "outline": "Jehoiada’s Death and Burial",
+        "verses": [
+          "15-16"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Wickedness of Joash",
+        "verses": [
+          "17-22"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Death of Joash",
+        "verses": [
+          "23-27"
+        ],
+        "references": [
+          "2 Kings 12:17–21"
+        ]
+      }
+    ],
+    "25": [
+      {
+        "outline": "Amaziah Reigns in Judah",
+        "verses": [
+          "1-4"
+        ],
+        "references": [
+          "2 Kings 14:1–7"
+        ]
+      },
+      {
+        "outline": "Amaziah’s Victories",
+        "verses": [
+          "5-13"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Amaziah Rebuked for Idolatry",
+        "verses": [
+          "14-16"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jehoash Defeats Amaziah",
+        "verses": [
+          "17-24"
+        ],
+        "references": [
+          "2 Kings 14:8–14"
+        ]
+      },
+      {
+        "outline": "The Death of Amaziah",
+        "verses": [
+          "25-28"
+        ],
+        "references": [
+          "2 Kings 14:17–20"
+        ]
+      }
+    ],
+    "26": [
+      {
+        "outline": "Uzziah Reigns in Judah",
+        "verses": [
+          "1-23"
+        ],
+        "references": [
+          "2 Kings 14:21–22",
+          "2 Kings 15:1–7"
+        ]
+      }
+    ],
+    "27": [
+      {
+        "outline": "Jotham Reigns in Judah",
+        "verses": [
+          "1-9"
+        ],
+        "references": [
+          "2 Kings 15:32–38"
+        ]
+      }
+    ],
+    "28": [
+      {
+        "outline": "Ahaz Reigns in Judah",
+        "verses": [
+          "1-4"
+        ],
+        "references": [
+          "2 Kings 16:1–9"
+        ]
+      },
+      {
+        "outline": "Aram Defeats Judah",
+        "verses": [
+          "5-15"
+        ],
+        "references": [
+          "Isaiah 1:1–9"
+        ]
+      },
+      {
+        "outline": "The Idolatry of Ahaz",
+        "verses": [
+          "16-27"
+        ],
+        "references": [
+          "2 Kings 16:10–20"
+        ]
+      }
+    ],
+    "29": [
+      {
+        "outline": "Hezekiah Cleanses the Temple",
+        "verses": [
+          "1-19"
+        ],
+        "references": [
+          "2 Kings 18:1–12"
+        ]
+      },
+      {
+        "outline": "Hezekiah Restores Temple Worship",
+        "verses": [
+          "20-36"
+        ],
+        "references": []
+      }
+    ],
+    "30": [
+      {
+        "outline": "Hezekiah Proclaims a Passover",
+        "verses": [
+          "1-12"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Hezekiah Celebrates the Passover",
+        "verses": [
+          "13-27"
+        ],
+        "references": []
+      }
+    ],
+    "31": [
+      {
+        "outline": "The Destruction of Idols",
+        "verses": [
+          "1-2"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Contributions for Worship",
+        "verses": [
+          "3-10"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Hezekiah Organizes the Priests",
+        "verses": [
+          "11-21"
+        ],
+        "references": []
+      }
+    ],
+    "32": [
+      {
+        "outline": "Sennacherib Invades Judah",
+        "verses": [
+          "1-8"
+        ],
+        "references": [
+          "2 Kings 18:13–16",
+          "Psalms 46:1–11"
+        ]
+      },
+      {
+        "outline": "Sennacherib Threatens Jerusalem",
+        "verses": [
+          "9-19"
+        ],
+        "references": [
+          "2 Kings 18:17–37",
+          "Isaiah 36:1–22"
+        ]
+      },
+      {
+        "outline": "Jerusalem Delivered from the Assyrians",
+        "verses": [
+          "20-23"
+        ],
+        "references": [
+          "2 Kings 19:35–37",
+          "Isaiah 37:36–38"
+        ]
+      },
+      {
+        "outline": "Hezekiah’s Illness and Recovery",
+        "verses": [
+          "24-31"
+        ],
+        "references": [
+          "2 Kings 20:1–11",
+          "Isaiah 38:1–8"
+        ]
+      },
+      {
+        "outline": "Hezekiah’s Death",
+        "verses": [
+          "32-33"
+        ],
+        "references": []
+      }
+    ],
+    "33": [
+      {
+        "outline": "Manasseh Reigns in Judah",
+        "verses": [
+          "1-9"
+        ],
+        "references": [
+          "2 Kings 21:1–9"
+        ]
+      },
+      {
+        "outline": "Manasseh’s Repentance and Restoration",
+        "verses": [
+          "10-20"
+        ],
+        "references": [
+          "2 Kings 21:10–18"
+        ]
+      },
+      {
+        "outline": "Amon Reigns in Judah",
+        "verses": [
+          "21-25"
+        ],
+        "references": [
+          "2 Kings 21:19–26"
+        ]
+      }
+    ],
+    "34": [
+      {
+        "outline": "Josiah Reigns in Judah",
+        "verses": [
+          "1-2"
+        ],
+        "references": [
+          "2 Kings 22:1–2"
+        ]
+      },
+      {
+        "outline": "Josiah Destroys Idolatry",
+        "verses": [
+          "3-7"
+        ],
+        "references": [
+          "1 Kings 13:1–10",
+          "2 Kings 23:4–20"
+        ]
+      },
+      {
+        "outline": "Josiah Repairs the Temple",
+        "verses": [
+          "8-13"
+        ],
+        "references": [
+          "2 Kings 22:3–7"
+        ]
+      },
+      {
+        "outline": "Hilkiah Finds the Book of the Law",
+        "verses": [
+          "14-21"
+        ],
+        "references": [
+          "2 Kings 22:8–13"
+        ]
+      },
+      {
+        "outline": "Huldah’s Prophecy",
+        "verses": [
+          "22-28"
+        ],
+        "references": [
+          "2 Kings 22:14–20"
+        ]
+      },
+      {
+        "outline": "Josiah Renews the Covenant",
+        "verses": [
+          "29-33"
+        ],
+        "references": [
+          "2 Kings 23:1–3"
+        ]
+      }
+    ],
+    "35": [
+      {
+        "outline": "Josiah Restores the Passover",
+        "verses": [
+          "1-19"
+        ],
+        "references": [
+          "2 Kings 23:21–27"
+        ]
+      },
+      {
+        "outline": "The Death of Josiah",
+        "verses": [
+          "20-24"
+        ],
+        "references": [
+          "2 Kings 23:28–30"
+        ]
+      },
+      {
+        "outline": "Laments over Josiah",
+        "verses": [
+          "25-27"
+        ],
+        "references": []
+      }
+    ],
+    "36": [
+      {
+        "outline": "Jehoahaz Succeeds Josiah",
+        "verses": [
+          "1-4"
+        ],
+        "references": [
+          "2 Kings 23:31–35"
+        ]
+      },
+      {
+        "outline": "Jehoiakim Reigns in Judah",
+        "verses": [
+          "5-8"
+        ],
+        "references": [
+          "2 Kings 23:36–37"
+        ]
+      },
+      {
+        "outline": "Jehoiachin Reigns in Judah",
+        "verses": [
+          "9-10"
+        ],
+        "references": [
+          "2 Kings 24:6–9"
+        ]
+      },
+      {
+        "outline": "Zedekiah Reigns in Judah",
+        "verses": [
+          "11-14"
+        ],
+        "references": [
+          "2 Kings 24:18–20",
+          "Jeremiah 52:1–3"
+        ]
+      },
+      {
+        "outline": "The Fall of Jerusalem",
+        "verses": [
+          "15-21"
+        ],
+        "references": [
+          "2 Kings 25:1–7"
+        ]
+      },
+      {
+        "outline": "The Proclamation of Cyrus",
+        "verses": [
+          "22-23"
+        ],
+        "references": [
+          "Ezra 1:1–4",
+          "Isaiah 45:1–25"
+        ]
+      }
+    ]
+  }
+}

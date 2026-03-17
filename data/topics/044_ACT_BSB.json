@@ -1,0 +1,927 @@
+{
+  "chapterTopics": {
+    "1": [
+      {
+        "outline": "Prologue",
+        "verses": [
+          "1-5"
+        ],
+        "references": [
+          "Luke 1:1–4"
+        ]
+      },
+      {
+        "outline": "The Ascension",
+        "verses": [
+          "6-11"
+        ],
+        "references": [
+          "Mark 16:19–20",
+          "Luke 24:50–53"
+        ]
+      },
+      {
+        "outline": "Matthias Replaces Judas",
+        "verses": [
+          "12-26"
+        ],
+        "references": []
+      }
+    ],
+    "2": [
+      {
+        "outline": "The Holy Spirit at Pentecost",
+        "verses": [
+          "1-13"
+        ],
+        "references": [
+          "Genesis 11:1–9",
+          "Leviticus 23:15–22"
+        ]
+      },
+      {
+        "outline": "Peter Addresses the Crowd",
+        "verses": [
+          "14-36"
+        ],
+        "references": [
+          "Psalms 16:1–11",
+          "Joel 2:28–32"
+        ]
+      },
+      {
+        "outline": "Three Thousand Believe",
+        "verses": [
+          "37-41"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Fellowship of Believers",
+        "verses": [
+          "42-47"
+        ],
+        "references": [
+          "Acts 4:32–37"
+        ]
+      }
+    ],
+    "3": [
+      {
+        "outline": "A Lame Man Walks",
+        "verses": [
+          "1-10"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Peter Speaks in Solomon’s Colonnade",
+        "verses": [
+          "11-26"
+        ],
+        "references": [
+          "Deuteronomy 18:15–22"
+        ]
+      }
+    ],
+    "4": [
+      {
+        "outline": "Peter and John before the Sanhedrin",
+        "verses": [
+          "1-12"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Name Forbidden",
+        "verses": [
+          "13-22"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Believers’ Prayer",
+        "verses": [
+          "23-31"
+        ],
+        "references": [
+          "Psalms 2:1–12"
+        ]
+      },
+      {
+        "outline": "Sharing among Believers",
+        "verses": [
+          "32-37"
+        ],
+        "references": [
+          "Acts 2:42–47"
+        ]
+      }
+    ],
+    "5": [
+      {
+        "outline": "Ananias and Sapphira",
+        "verses": [
+          "1-11"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Apostles Heal Many",
+        "verses": [
+          "12-16"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Apostles Arrested and Freed",
+        "verses": [
+          "17-23"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Apostles before the Sanhedrin",
+        "verses": [
+          "24-32"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Gamaliel’s Advice",
+        "verses": [
+          "33-42"
+        ],
+        "references": []
+      }
+    ],
+    "6": [
+      {
+        "outline": "The Choosing of the Seven",
+        "verses": [
+          "1-7"
+        ],
+        "references": [
+          "1 Timothy 3:8–13"
+        ]
+      },
+      {
+        "outline": "The Arrest of Stephen",
+        "verses": [
+          "8-15"
+        ],
+        "references": []
+      }
+    ],
+    "7": [
+      {
+        "outline": "Stephen’s Address: The Call of Abraham",
+        "verses": [
+          "1-8"
+        ],
+        "references": [
+          "Genesis 12:1–9"
+        ]
+      },
+      {
+        "outline": "Joseph Sold into Egypt",
+        "verses": [
+          "9-14"
+        ],
+        "references": [
+          "Genesis 37:12–30"
+        ]
+      },
+      {
+        "outline": "Israel Oppressed in Egypt",
+        "verses": [
+          "15-19"
+        ],
+        "references": [
+          "Exodus 1:8–22"
+        ]
+      },
+      {
+        "outline": "The Birth and Adoption of Moses",
+        "verses": [
+          "20-22"
+        ],
+        "references": [
+          "Exodus 2:1–10",
+          "Hebrews 11:23–29"
+        ]
+      },
+      {
+        "outline": "The Rejection and Flight of Moses",
+        "verses": [
+          "23-29"
+        ],
+        "references": [
+          "Exodus 2:11–22"
+        ]
+      },
+      {
+        "outline": "The Call of Moses",
+        "verses": [
+          "30-38"
+        ],
+        "references": [
+          "Exodus 3:1–22"
+        ]
+      },
+      {
+        "outline": "The Rebellion of Israel",
+        "verses": [
+          "39-43"
+        ],
+        "references": [
+          "Exodus 32:1–35",
+          "Deuteronomy 9:7–29",
+          "Amos 5:16–27"
+        ]
+      },
+      {
+        "outline": "The Tabernacle of the Testimony",
+        "verses": [
+          "44-53"
+        ],
+        "references": [
+          "Exodus 40:1–33",
+          "Hebrews 9:1–10"
+        ]
+      },
+      {
+        "outline": "The Stoning of Stephen",
+        "verses": [
+          "54-60"
+        ],
+        "references": []
+      }
+    ],
+    "8": [
+      {
+        "outline": "Saul Persecutes the Church",
+        "verses": [
+          "1-3"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Philip in Samaria",
+        "verses": [
+          "4-8"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Simon the Sorcerer",
+        "verses": [
+          "9-25"
+        ],
+        "references": [
+          "Deuteronomy 18:9–14"
+        ]
+      },
+      {
+        "outline": "Philip and the Ethiopian",
+        "verses": [
+          "26-36",
+          "38-40"
+        ],
+        "references": [
+          "Isaiah 53:1–8"
+        ]
+      }
+    ],
+    "9": [
+      {
+        "outline": "The Road to Damascus",
+        "verses": [
+          "1-9"
+        ],
+        "references": [
+          "Acts 22:1–21",
+          "Acts 26:1–23"
+        ]
+      },
+      {
+        "outline": "Ananias Baptizes Saul",
+        "verses": [
+          "10-19"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Saul Preaches at Damascus",
+        "verses": [
+          "20-22"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Escape from Damascus",
+        "verses": [
+          "23-25"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Saul in Jerusalem",
+        "verses": [
+          "26-30"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Healing of Aeneas",
+        "verses": [
+          "31-35"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Raising of Tabitha",
+        "verses": [
+          "36-43"
+        ],
+        "references": [
+          "John 11:38–44"
+        ]
+      }
+    ],
+    "10": [
+      {
+        "outline": "Cornelius Sends for Peter",
+        "verses": [
+          "1-8"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Peter’s Vision",
+        "verses": [
+          "9-16"
+        ],
+        "references": [
+          "Leviticus 11:1–47",
+          "Deuteronomy 14:1–21"
+        ]
+      },
+      {
+        "outline": "Peter Called to Caesarea",
+        "verses": [
+          "17-23"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Peter Visits Cornelius",
+        "verses": [
+          "24-33"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Good News for the Gentiles",
+        "verses": [
+          "34-43"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Gentiles Receive the Holy Spirit",
+        "verses": [
+          "44-48"
+        ],
+        "references": [
+          "Acts 19:1–7"
+        ]
+      }
+    ],
+    "11": [
+      {
+        "outline": "Peter’s Report at Jerusalem",
+        "verses": [
+          "1-18"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Church at Antioch",
+        "verses": [
+          "19-30"
+        ],
+        "references": []
+      }
+    ],
+    "12": [
+      {
+        "outline": "James Killed, Peter Imprisoned",
+        "verses": [
+          "1-4"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Rescue of Peter",
+        "verses": [
+          "5-19"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Death of Herod",
+        "verses": [
+          "20-25"
+        ],
+        "references": []
+      }
+    ],
+    "13": [
+      {
+        "outline": "Paul’s First Missionary Journey Begins",
+        "verses": [
+          "1-3"
+        ],
+        "references": [
+          "Acts 15:36–41",
+          "Acts 18:23–28"
+        ]
+      },
+      {
+        "outline": "On Cyprus",
+        "verses": [
+          "4-12"
+        ],
+        "references": []
+      },
+      {
+        "outline": "In Pisidian Antioch",
+        "verses": [
+          "13-41"
+        ],
+        "references": []
+      },
+      {
+        "outline": "A Light for the Gentiles",
+        "verses": [
+          "42-52"
+        ],
+        "references": [
+          "Isaiah 49:1–6"
+        ]
+      }
+    ],
+    "14": [
+      {
+        "outline": "Paul and Barnabas at Iconium",
+        "verses": [
+          "1-7"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Visit to Lystra and Derbe",
+        "verses": [
+          "8-20"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Strengthening the Disciples",
+        "verses": [
+          "21-28"
+        ],
+        "references": []
+      }
+    ],
+    "15": [
+      {
+        "outline": "The Dispute over Circumcision",
+        "verses": [
+          "1-4"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Council at Jerusalem",
+        "verses": [
+          "5-21"
+        ],
+        "references": [
+          "Amos 9:11–15",
+          "Galatians 2:1–10"
+        ]
+      },
+      {
+        "outline": "The Letter to the Gentile Believers",
+        "verses": [
+          "22-29"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Believers at Antioch Rejoice",
+        "verses": [
+          "30-33",
+          "35"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Paul’s Second Missionary Journey Begins",
+        "verses": [
+          "36-41"
+        ],
+        "references": [
+          "Acts 13:1–3",
+          "Acts 18:23–28"
+        ]
+      }
+    ],
+    "16": [
+      {
+        "outline": "Timothy Joins Paul and Silas",
+        "verses": [
+          "1-5"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Paul’s Vision of the Macedonian",
+        "verses": [
+          "6-10"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Lydia’s Conversion in Philippi",
+        "verses": [
+          "11-15"
+        ],
+        "references": [
+          "Revelation 2:18–29"
+        ]
+      },
+      {
+        "outline": "Paul and Silas Imprisoned",
+        "verses": [
+          "16-24"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Conversion of the Jailer",
+        "verses": [
+          "25-34"
+        ],
+        "references": []
+      },
+      {
+        "outline": "An Official Apology",
+        "verses": [
+          "35-40"
+        ],
+        "references": []
+      }
+    ],
+    "17": [
+      {
+        "outline": "The Uproar in Thessalonica",
+        "verses": [
+          "1-9"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Character of the Bereans",
+        "verses": [
+          "10-15"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Paul in Athens",
+        "verses": [
+          "16-21"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Paul’s Address in the Areopagus",
+        "verses": [
+          "22-34"
+        ],
+        "references": []
+      }
+    ],
+    "18": [
+      {
+        "outline": "Paul Ministers in Corinth",
+        "verses": [
+          "1-11"
+        ],
+        "references": [
+          "1 Corinthians 1:1–3",
+          "2 Corinthians 1:1–2"
+        ]
+      },
+      {
+        "outline": "Paul before Gallio",
+        "verses": [
+          "12-17"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Paul Returns to Antioch",
+        "verses": [
+          "18-22"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Paul’s Third Missionary Journey Begins",
+        "verses": [
+          "23-28"
+        ],
+        "references": [
+          "Acts 13:1–3",
+          "Acts 15:36–41"
+        ]
+      }
+    ],
+    "19": [
+      {
+        "outline": "The Holy Spirit Received at Ephesus",
+        "verses": [
+          "1-7"
+        ],
+        "references": [
+          "Acts 10:44–48"
+        ]
+      },
+      {
+        "outline": "Paul Ministers in Ephesus",
+        "verses": [
+          "8-12"
+        ],
+        "references": [
+          "Ephesians 1:1–2",
+          "Revelation 2:1–7"
+        ]
+      },
+      {
+        "outline": "Seven Sons of Sceva",
+        "verses": [
+          "13-20"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Riot in Ephesus",
+        "verses": [
+          "21-41"
+        ],
+        "references": []
+      }
+    ],
+    "20": [
+      {
+        "outline": "Paul in Macedonia and Greece",
+        "verses": [
+          "1-6"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Eutychus Revived at Troas",
+        "verses": [
+          "7-12"
+        ],
+        "references": [
+          "2 Kings 4:18–37"
+        ]
+      },
+      {
+        "outline": "From Troas to Miletus",
+        "verses": [
+          "13-16"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Paul’s Farewell to the Ephesians",
+        "verses": [
+          "17-38"
+        ],
+        "references": []
+      }
+    ],
+    "21": [
+      {
+        "outline": "Paul’s Journey to Jerusalem",
+        "verses": [
+          "1-7"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Paul Visits Philip the Evangelist",
+        "verses": [
+          "8-16"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Paul’s Arrival at Jerusalem",
+        "verses": [
+          "17-26"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Paul Seized at the Temple",
+        "verses": [
+          "27-36"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Paul Addresses the Crowd",
+        "verses": [
+          "37-40"
+        ],
+        "references": []
+      }
+    ],
+    "22": [
+      {
+        "outline": "Paul’s Defense to the Crowd",
+        "verses": [
+          "1-21"
+        ],
+        "references": [
+          "Acts 9:1–19",
+          "Acts 26:1–23"
+        ]
+      },
+      {
+        "outline": "Paul the Roman Citizen",
+        "verses": [
+          "22-30"
+        ],
+        "references": []
+      }
+    ],
+    "23": [
+      {
+        "outline": "Paul before the Sanhedrin",
+        "verses": [
+          "1-11"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Plot to Kill Paul",
+        "verses": [
+          "12-22"
+        ],
+        "references": [
+          "John 16:1–4"
+        ]
+      },
+      {
+        "outline": "Paul Sent to Felix",
+        "verses": [
+          "23-35"
+        ],
+        "references": []
+      }
+    ],
+    "24": [
+      {
+        "outline": "Tertullus Prosecutes Paul",
+        "verses": [
+          "1-6",
+          "8-9"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Paul’s Defense to Felix",
+        "verses": [
+          "10-21"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Verdict Postponed",
+        "verses": [
+          "22-27"
+        ],
+        "references": []
+      }
+    ],
+    "25": [
+      {
+        "outline": "Paul’s Trial before Festus",
+        "verses": [
+          "1-9"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Paul Appeals to Caesar",
+        "verses": [
+          "10-12"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Festus Consults Agrippa",
+        "verses": [
+          "13-22"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Paul before Agrippa and Bernice",
+        "verses": [
+          "23-27"
+        ],
+        "references": []
+      }
+    ],
+    "26": [
+      {
+        "outline": "Paul’s Testimony to Agrippa",
+        "verses": [
+          "1-23"
+        ],
+        "references": [
+          "Acts 9:1–19",
+          "Acts 22:1–21"
+        ]
+      },
+      {
+        "outline": "Festus Interrupts Paul’s Defense",
+        "verses": [
+          "24-32"
+        ],
+        "references": []
+      }
+    ],
+    "27": [
+      {
+        "outline": "Paul Sails for Rome",
+        "verses": [
+          "1-12"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Storm at Sea",
+        "verses": [
+          "13-26"
+        ],
+        "references": [
+          "Jonah 1:4–10"
+        ]
+      },
+      {
+        "outline": "The Shipwreck",
+        "verses": [
+          "27-44"
+        ],
+        "references": []
+      }
+    ],
+    "28": [
+      {
+        "outline": "Ashore on Malta",
+        "verses": [
+          "1-10"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Paul Arrives in Italy",
+        "verses": [
+          "11-15"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Paul Preaches at Rome",
+        "verses": [
+          "16-28",
+          "30-31"
+        ],
+        "references": [
+          "Isaiah 6:1–13"
+        ]
+      }
+    ]
+  }
+}

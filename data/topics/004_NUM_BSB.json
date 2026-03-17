@@ -1,0 +1,961 @@
+{
+  "chapterTopics": {
+    "1": [
+      {
+        "outline": "The First Census of Israel",
+        "verses": [
+          "1-4"
+        ],
+        "references": [
+          "Numbers 26:1–4"
+        ]
+      },
+      {
+        "outline": "The Leaders of the Tribes",
+        "verses": [
+          "5-16"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Number of Every Tribe",
+        "verses": [
+          "17-46"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Exemption of the Levites",
+        "verses": [
+          "47-54"
+        ],
+        "references": []
+      }
+    ],
+    "2": [
+      {
+        "outline": "The Order of the Camps",
+        "verses": [
+          "1-34"
+        ],
+        "references": []
+      }
+    ],
+    "3": [
+      {
+        "outline": "The Sons of Aaron",
+        "verses": [
+          "1-4"
+        ],
+        "references": [
+          "Leviticus 10:1–7"
+        ]
+      },
+      {
+        "outline": "The Duties of the Levites",
+        "verses": [
+          "5-13"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Numbering of the Levites",
+        "verses": [
+          "14-20"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Gershonites",
+        "verses": [
+          "21-26"
+        ],
+        "references": [
+          "Numbers 4:21–28",
+          "1 Chronicles 23:7–11"
+        ]
+      },
+      {
+        "outline": "The Kohathites",
+        "verses": [
+          "27-32"
+        ],
+        "references": [
+          "Numbers 4:1–20",
+          "1 Chronicles 23:12–20"
+        ]
+      },
+      {
+        "outline": "The Merarites",
+        "verses": [
+          "33-37"
+        ],
+        "references": [
+          "Numbers 4:29–33",
+          "1 Chronicles 23:21–23"
+        ]
+      },
+      {
+        "outline": "Moses and Aaron",
+        "verses": [
+          "38-39"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Redemption of the Firstborn",
+        "verses": [
+          "40-51"
+        ],
+        "references": []
+      }
+    ],
+    "4": [
+      {
+        "outline": "The Duties of the Kohathites",
+        "verses": [
+          "1-20"
+        ],
+        "references": [
+          "Numbers 3:27–32",
+          "1 Chronicles 23:12–20"
+        ]
+      },
+      {
+        "outline": "The Duties of the Gershonites",
+        "verses": [
+          "21-28"
+        ],
+        "references": [
+          "Numbers 3:21–26",
+          "1 Chronicles 23:7–11"
+        ]
+      },
+      {
+        "outline": "The Duties of the Merarites",
+        "verses": [
+          "29-33"
+        ],
+        "references": [
+          "Numbers 3:33–37",
+          "1 Chronicles 23:21–23"
+        ]
+      },
+      {
+        "outline": "The Numbering of the Levite Clans",
+        "verses": [
+          "34-49"
+        ],
+        "references": []
+      }
+    ],
+    "5": [
+      {
+        "outline": "Cleansing the Camps",
+        "verses": [
+          "1-4"
+        ],
+        "references": [
+          "Leviticus 13:1–46"
+        ]
+      },
+      {
+        "outline": "Confession and Restitution",
+        "verses": [
+          "5-10"
+        ],
+        "references": [
+          "Luke 19:1–10"
+        ]
+      },
+      {
+        "outline": "The Adultery Test",
+        "verses": [
+          "11-31"
+        ],
+        "references": []
+      }
+    ],
+    "6": [
+      {
+        "outline": "The Nazirite Vow",
+        "verses": [
+          "1-21"
+        ],
+        "references": [
+          "Judges 13:1–25"
+        ]
+      },
+      {
+        "outline": "Aaron’s Blessing",
+        "verses": [
+          "22-27"
+        ],
+        "references": []
+      }
+    ],
+    "7": [
+      {
+        "outline": "Offerings of Dedication",
+        "verses": [
+          "1-89"
+        ],
+        "references": []
+      }
+    ],
+    "8": [
+      {
+        "outline": "The Lampstand",
+        "verses": [
+          "1-4"
+        ],
+        "references": [
+          "Exodus 25:31–40",
+          "Exodus 37:17–24"
+        ]
+      },
+      {
+        "outline": "Cleansing the Levites",
+        "verses": [
+          "5-22"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Retirement for Levites",
+        "verses": [
+          "23-26"
+        ],
+        "references": []
+      }
+    ],
+    "9": [
+      {
+        "outline": "The Second Passover",
+        "verses": [
+          "1-14"
+        ],
+        "references": [
+          "Exodus 12:1–13"
+        ]
+      },
+      {
+        "outline": "The Cloud above the Tabernacle",
+        "verses": [
+          "15-23"
+        ],
+        "references": [
+          "Exodus 40:34–38"
+        ]
+      }
+    ],
+    "10": [
+      {
+        "outline": "The Two Silver Trumpets",
+        "verses": [
+          "1-10"
+        ],
+        "references": []
+      },
+      {
+        "outline": "From Sinai to Paran",
+        "verses": [
+          "11-36"
+        ],
+        "references": []
+      }
+    ],
+    "11": [
+      {
+        "outline": "The Complaints of the People",
+        "verses": [
+          "1-9"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Complaint of Moses",
+        "verses": [
+          "10-15"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Seventy Elders Anointed",
+        "verses": [
+          "16-30"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Quail and the Plague",
+        "verses": [
+          "31-35"
+        ],
+        "references": []
+      }
+    ],
+    "12": [
+      {
+        "outline": "The Complaint of Miriam and Aaron",
+        "verses": [
+          "1-16"
+        ],
+        "references": []
+      }
+    ],
+    "13": [
+      {
+        "outline": "The Spies Explore Canaan",
+        "verses": [
+          "1-24"
+        ],
+        "references": [
+          "Deuteronomy 1:19–25"
+        ]
+      },
+      {
+        "outline": "The Reports of the Spies",
+        "verses": [
+          "25-33"
+        ],
+        "references": []
+      }
+    ],
+    "14": [
+      {
+        "outline": "Israel’s Rebellion",
+        "verses": [
+          "1-12"
+        ],
+        "references": [
+          "Deuteronomy 1:26–33"
+        ]
+      },
+      {
+        "outline": "Moses Intercedes for Israel",
+        "verses": [
+          "13-19"
+        ],
+        "references": []
+      },
+      {
+        "outline": "God’s Forgiveness and Judgment",
+        "verses": [
+          "20-35"
+        ],
+        "references": [
+          "Deuteronomy 1:34–40"
+        ]
+      },
+      {
+        "outline": "The Plague on the Ten Spies",
+        "verses": [
+          "36-39"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Defeat at Hormah",
+        "verses": [
+          "40-45"
+        ],
+        "references": [
+          "Deuteronomy 1:41–46"
+        ]
+      }
+    ],
+    "15": [
+      {
+        "outline": "Laws about Offerings",
+        "verses": [
+          "1-21"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Offerings for Unintentional Sins",
+        "verses": [
+          "22-31"
+        ],
+        "references": []
+      },
+      {
+        "outline": "A Sabbath-Breaker Stoned",
+        "verses": [
+          "32-36"
+        ],
+        "references": [
+          "Exodus 31:12–17"
+        ]
+      },
+      {
+        "outline": "The Law of Tassels",
+        "verses": [
+          "37-41"
+        ],
+        "references": []
+      }
+    ],
+    "16": [
+      {
+        "outline": "Korah’s Rebellion",
+        "verses": [
+          "1-22"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Moses Separates the People",
+        "verses": [
+          "23-27"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Earth Swallows Korah",
+        "verses": [
+          "28-35"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Censers Reserved for Holy Use",
+        "verses": [
+          "36-40"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Murmuring and Plague",
+        "verses": [
+          "41-50"
+        ],
+        "references": [
+          "1 Corinthians 10:1–13"
+        ]
+      }
+    ],
+    "17": [
+      {
+        "outline": "Aaron’s Staff Buds",
+        "verses": [
+          "1-13"
+        ],
+        "references": []
+      }
+    ],
+    "18": [
+      {
+        "outline": "Duties of Priests and Levites",
+        "verses": [
+          "1-7"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Offerings for Priests and Levites",
+        "verses": [
+          "8-32"
+        ],
+        "references": []
+      }
+    ],
+    "19": [
+      {
+        "outline": "The Red Heifer",
+        "verses": [
+          "1-10"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Purification of the Unclean",
+        "verses": [
+          "11-22"
+        ],
+        "references": []
+      }
+    ],
+    "20": [
+      {
+        "outline": "Water from the Rock",
+        "verses": [
+          "1-13"
+        ],
+        "references": [
+          "Exodus 17:1–7"
+        ]
+      },
+      {
+        "outline": "Edom Refuses Passage",
+        "verses": [
+          "14-21"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Death of Aaron",
+        "verses": [
+          "22-29"
+        ],
+        "references": []
+      }
+    ],
+    "21": [
+      {
+        "outline": "The Defeat of Arad",
+        "verses": [
+          "1-3"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Bronze Serpent",
+        "verses": [
+          "4-9"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Journey to Moab",
+        "verses": [
+          "10-20"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Defeat of Sihon",
+        "verses": [
+          "21-30"
+        ],
+        "references": [
+          "Deuteronomy 2:24–37"
+        ]
+      },
+      {
+        "outline": "The Defeat of Og",
+        "verses": [
+          "31-35"
+        ],
+        "references": [
+          "Deuteronomy 3:1–11"
+        ]
+      }
+    ],
+    "22": [
+      {
+        "outline": "Balak Summons Balaam",
+        "verses": [
+          "1-21"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Angel and Balaam’s Donkey",
+        "verses": [
+          "22-41"
+        ],
+        "references": []
+      }
+    ],
+    "23": [
+      {
+        "outline": "Balaam’s First Oracle",
+        "verses": [
+          "1-12"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Balaam’s Second Oracle",
+        "verses": [
+          "13-30"
+        ],
+        "references": []
+      }
+    ],
+    "24": [
+      {
+        "outline": "Balaam’s Third Oracle",
+        "verses": [
+          "1-9"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Balak Dismisses Balaam",
+        "verses": [
+          "10-14"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Balaam’s Fourth Oracle",
+        "verses": [
+          "15-19"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Balaam’s Final Three Oracles",
+        "verses": [
+          "20-25"
+        ],
+        "references": []
+      }
+    ],
+    "25": [
+      {
+        "outline": "Moab Seduces Israel",
+        "verses": [
+          "1-5"
+        ],
+        "references": [
+          "1 Corinthians 10:1–13"
+        ]
+      },
+      {
+        "outline": "The Zeal of Phinehas",
+        "verses": [
+          "6-18"
+        ],
+        "references": []
+      }
+    ],
+    "26": [
+      {
+        "outline": "The Second Census of Israel",
+        "verses": [
+          "1-4"
+        ],
+        "references": [
+          "Numbers 1:1–4"
+        ]
+      },
+      {
+        "outline": "The Tribe of Reuben",
+        "verses": [
+          "5-11"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Tribe of Simeon",
+        "verses": [
+          "12-14"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Tribe of Gad",
+        "verses": [
+          "15-18"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Tribe of Judah",
+        "verses": [
+          "19-22"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Tribe of Issachar",
+        "verses": [
+          "23-25"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Tribe of Zebulun",
+        "verses": [
+          "26-27"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Tribe of Manasseh",
+        "verses": [
+          "28-34"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Tribe of Ephraim",
+        "verses": [
+          "35-37"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Tribe of Benjamin",
+        "verses": [
+          "38-41"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Tribe of Dan",
+        "verses": [
+          "42-43"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Tribe of Asher",
+        "verses": [
+          "44-47"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Tribe of Naphtali",
+        "verses": [
+          "48-51"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Inheritance by Lot",
+        "verses": [
+          "52-56"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Levites Numbered",
+        "verses": [
+          "57-62"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Only Caleb and Joshua Remain",
+        "verses": [
+          "63-65"
+        ],
+        "references": []
+      }
+    ],
+    "27": [
+      {
+        "outline": "The Daughters of Zelophehad",
+        "verses": [
+          "1-11"
+        ],
+        "references": [
+          "Numbers 36:1–13"
+        ]
+      },
+      {
+        "outline": "Moses Requests a Successor",
+        "verses": [
+          "12-17"
+        ],
+        "references": [
+          "Deuteronomy 3:23–29"
+        ]
+      },
+      {
+        "outline": "Joshua to Succeed Moses",
+        "verses": [
+          "18-23"
+        ],
+        "references": [
+          "Deuteronomy 31:1–8"
+        ]
+      }
+    ],
+    "28": [
+      {
+        "outline": "The Daily Offerings",
+        "verses": [
+          "1-8"
+        ],
+        "references": [
+          "Exodus 29:38–44"
+        ]
+      },
+      {
+        "outline": "The Sabbath Offerings",
+        "verses": [
+          "9-10"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Monthly Offerings",
+        "verses": [
+          "11-15"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Passover and the Feast of Unleavened Bread",
+        "verses": [
+          "16-25"
+        ],
+        "references": [
+          "Exodus 12:14–28",
+          "Leviticus 23:4–8",
+          "Deuteronomy 16:1–8"
+        ]
+      },
+      {
+        "outline": "The Feast of Weeks",
+        "verses": [
+          "26-31"
+        ],
+        "references": [
+          "Deuteronomy 16:9–12"
+        ]
+      }
+    ],
+    "29": [
+      {
+        "outline": "The Feast of Trumpets",
+        "verses": [
+          "1-6"
+        ],
+        "references": [
+          "Leviticus 23:23–25"
+        ]
+      },
+      {
+        "outline": "The Day of Atonement",
+        "verses": [
+          "7-11"
+        ],
+        "references": [
+          "Leviticus 16:1–34",
+          "Leviticus 23:26–32"
+        ]
+      },
+      {
+        "outline": "The Feast of Tabernacles",
+        "verses": [
+          "12-40"
+        ],
+        "references": [
+          "Deuteronomy 16:13–17"
+        ]
+      }
+    ],
+    "30": [
+      {
+        "outline": "Laws about Vows",
+        "verses": [
+          "1-16"
+        ],
+        "references": [
+          "Matthew 5:33–37"
+        ]
+      }
+    ],
+    "31": [
+      {
+        "outline": "Vengeance on Midian",
+        "verses": [
+          "1-24"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Division of the Spoils",
+        "verses": [
+          "25-47"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Voluntary Offering",
+        "verses": [
+          "48-54"
+        ],
+        "references": []
+      }
+    ],
+    "32": [
+      {
+        "outline": "The Tribes East of the Jordan",
+        "verses": [
+          "1-42"
+        ],
+        "references": [
+          "Deuteronomy 3:12–22",
+          "Joshua 13:8–14"
+        ]
+      }
+    ],
+    "33": [
+      {
+        "outline": "Forty-Two Journeys of the Israelites",
+        "verses": [
+          "1-49"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Instructions for Occupying Canaan",
+        "verses": [
+          "50-56"
+        ],
+        "references": []
+      }
+    ],
+    "34": [
+      {
+        "outline": "The Boundaries of Canaan",
+        "verses": [
+          "1-15"
+        ],
+        "references": [
+          "Genesis 15:8–21"
+        ]
+      },
+      {
+        "outline": "Leaders to Divide the Land",
+        "verses": [
+          "16-29"
+        ],
+        "references": []
+      }
+    ],
+    "35": [
+      {
+        "outline": "Forty-Eight Cities for the Levites",
+        "verses": [
+          "1-8"
+        ],
+        "references": [
+          "Joshua 21:1–45",
+          "1 Chronicles 6:54–81"
+        ]
+      },
+      {
+        "outline": "Six Cities of Refuge",
+        "verses": [
+          "9-34"
+        ],
+        "references": [
+          "Deuteronomy 4:41–43",
+          "Deuteronomy 19:1–14",
+          "Joshua 20:1–9"
+        ]
+      }
+    ],
+    "36": [
+      {
+        "outline": "Zelophehad’s Daughters Marry",
+        "verses": [
+          "1-13"
+        ],
+        "references": [
+          "Numbers 27:1–11"
+        ]
+      }
+    ]
+  }
+}

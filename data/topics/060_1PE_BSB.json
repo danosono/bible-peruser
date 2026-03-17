@@ -1,0 +1,141 @@
+{
+  "chapterTopics": {
+    "1": [
+      {
+        "outline": "A Greeting from Peter",
+        "verses": [
+          "1-2"
+        ],
+        "references": [
+          "2 Peter 1:1–2"
+        ]
+      },
+      {
+        "outline": "A Living Hope",
+        "verses": [
+          "3-12"
+        ],
+        "references": []
+      },
+      {
+        "outline": "A Call to Holiness",
+        "verses": [
+          "13-21"
+        ],
+        "references": [
+          "Hebrews 12:14–17"
+        ]
+      },
+      {
+        "outline": "The Enduring Word",
+        "verses": [
+          "22-25"
+        ],
+        "references": [
+          "Isaiah 40:6–8"
+        ]
+      }
+    ],
+    "2": [
+      {
+        "outline": "The Living Stone and Chosen People",
+        "verses": [
+          "1-12"
+        ],
+        "references": [
+          "Isaiah 28:14–22",
+          "1 Corinthians 3:10–15",
+          "Ephesians 2:19–22"
+        ]
+      },
+      {
+        "outline": "Submission to Authorities",
+        "verses": [
+          "13-20"
+        ],
+        "references": [
+          "Romans 13:1–7"
+        ]
+      },
+      {
+        "outline": "Christ’s Example of Suffering",
+        "verses": [
+          "21-25"
+        ],
+        "references": [
+          "Isaiah 53:1–8"
+        ]
+      }
+    ],
+    "3": [
+      {
+        "outline": "Wives and Husbands",
+        "verses": [
+          "1-7"
+        ],
+        "references": [
+          "Song 1:1–17",
+          "Ephesians 5:22–33"
+        ]
+      },
+      {
+        "outline": "Turning from Evil",
+        "verses": [
+          "8-13"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Suffering for Righteousness",
+        "verses": [
+          "14-22"
+        ],
+        "references": []
+      }
+    ],
+    "4": [
+      {
+        "outline": "Living for God’s Glory",
+        "verses": [
+          "1-11"
+        ],
+        "references": [
+          "1 Corinthians 10:23–33"
+        ]
+      },
+      {
+        "outline": "Suffering as Christians",
+        "verses": [
+          "12-19"
+        ],
+        "references": []
+      }
+    ],
+    "5": [
+      {
+        "outline": "Instructions to Elders",
+        "verses": [
+          "1-4"
+        ],
+        "references": [
+          "1 Timothy 3:1–7",
+          "Titus 1:5–9"
+        ]
+      },
+      {
+        "outline": "Cast Your Cares on Him",
+        "verses": [
+          "5-9"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Benediction and Farewell",
+        "verses": [
+          "10-14"
+        ],
+        "references": []
+      }
+    ]
+  }
+}

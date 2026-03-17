@@ -1,0 +1,38 @@
+{
+  "chapterTopics": {
+    "1": [
+      {
+        "outline": "A Greeting from the Elder",
+        "verses": [
+          "1-4"
+        ],
+        "references": [
+          "2 John 1:1–3"
+        ]
+      },
+      {
+        "outline": "Gaius Commended for Hospitality",
+        "verses": [
+          "5-8"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Diotrephes and Demetrius",
+        "verses": [
+          "9-12"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Conclusion",
+        "verses": [
+          "13-14"
+        ],
+        "references": [
+          "2 John 1:12–13"
+        ]
+      }
+    ]
+  }
+}

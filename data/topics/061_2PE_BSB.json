@@ -1,0 +1,74 @@
+{
+  "chapterTopics": {
+    "1": [
+      {
+        "outline": "A Greeting from Peter",
+        "verses": [
+          "1-2"
+        ],
+        "references": [
+          "1 Peter 1:1–2"
+        ]
+      },
+      {
+        "outline": "Partakers of the Divine Nature",
+        "verses": [
+          "3-15"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Eyewitnesses of His Majesty",
+        "verses": [
+          "16-21"
+        ],
+        "references": [
+          "Matthew 17:1–13",
+          "Mark 9:1–13",
+          "Luke 9:28–36"
+        ]
+      }
+    ],
+    "2": [
+      {
+        "outline": "Deliverance from False Prophets",
+        "verses": [
+          "1-22"
+        ],
+        "references": [
+          "Jude 1:3–16"
+        ]
+      }
+    ],
+    "3": [
+      {
+        "outline": "The Coming Judgment",
+        "verses": [
+          "1-7"
+        ],
+        "references": [
+          "Genesis 7:1–24",
+          "Jude 1:17–23"
+        ]
+      },
+      {
+        "outline": "The Day of the Lord",
+        "verses": [
+          "8-13"
+        ],
+        "references": [
+          "Zephaniah 1:7–18",
+          "Malachi 4:1–6",
+          "1 Thessalonians 5:1–11"
+        ]
+      },
+      {
+        "outline": "Final Exhortations",
+        "verses": [
+          "14-18"
+        ],
+        "references": []
+      }
+    ]
+  }
+}

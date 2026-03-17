@@ -1,0 +1,830 @@
+{
+  "chapterTopics": {
+    "1": [
+      {
+        "outline": "The Command to Leave Horeb",
+        "verses": [
+          "1-8"
+        ],
+        "references": [
+          "Exodus 33:1–6"
+        ]
+      },
+      {
+        "outline": "Moses Appoints Leaders",
+        "verses": [
+          "9-18"
+        ],
+        "references": [
+          "Exodus 18:13–27"
+        ]
+      },
+      {
+        "outline": "Twelve Spies Sent Out",
+        "verses": [
+          "19-25"
+        ],
+        "references": [
+          "Numbers 13:1–33"
+        ]
+      },
+      {
+        "outline": "Israel’s Rebellion",
+        "verses": [
+          "26-33"
+        ],
+        "references": [
+          "Numbers 14:1–12"
+        ]
+      },
+      {
+        "outline": "Israel’s Penalty",
+        "verses": [
+          "34-40"
+        ],
+        "references": [
+          "Numbers 14:20–35"
+        ]
+      },
+      {
+        "outline": "The Defeat at Hormah",
+        "verses": [
+          "41-46"
+        ],
+        "references": [
+          "Numbers 14:40–45"
+        ]
+      }
+    ],
+    "2": [
+      {
+        "outline": "Wanderings in the Wilderness",
+        "verses": [
+          "1-23"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Defeat of Sihon",
+        "verses": [
+          "24-37"
+        ],
+        "references": [
+          "Numbers 21:21–30"
+        ]
+      }
+    ],
+    "3": [
+      {
+        "outline": "The Defeat of Og",
+        "verses": [
+          "1-11"
+        ],
+        "references": [
+          "Numbers 21:31–35"
+        ]
+      },
+      {
+        "outline": "Land Division East of the Jordan",
+        "verses": [
+          "12-22"
+        ],
+        "references": [
+          "Numbers 32:1–42",
+          "Joshua 13:8–14"
+        ]
+      },
+      {
+        "outline": "Moses Forbidden to Cross the Jordan",
+        "verses": [
+          "23-29"
+        ],
+        "references": [
+          "Numbers 27:12–17"
+        ]
+      }
+    ],
+    "4": [
+      {
+        "outline": "An Exhortation to Obedience",
+        "verses": [
+          "1-14"
+        ],
+        "references": [
+          "Deuteronomy 11:1–7"
+        ]
+      },
+      {
+        "outline": "A Warning against Idolatry",
+        "verses": [
+          "15-31"
+        ],
+        "references": [
+          "Deuteronomy 12:29–32",
+          "Ezekiel 6:1–7"
+        ]
+      },
+      {
+        "outline": "The LORD Alone Is God",
+        "verses": [
+          "32-40"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Cities of Refuge",
+        "verses": [
+          "41-43"
+        ],
+        "references": [
+          "Numbers 35:9–34",
+          "Deuteronomy 19:1–14",
+          "Joshua 20:1–9"
+        ]
+      },
+      {
+        "outline": "Introduction to the Law",
+        "verses": [
+          "44-49"
+        ],
+        "references": []
+      }
+    ],
+    "5": [
+      {
+        "outline": "The Covenant at Horeb",
+        "verses": [
+          "1-4"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Ten Commandments",
+        "verses": [
+          "5-21"
+        ],
+        "references": [
+          "Exodus 20:1–17"
+        ]
+      },
+      {
+        "outline": "Moses Intercedes for the People",
+        "verses": [
+          "22-33"
+        ],
+        "references": [
+          "Exodus 20:18–21",
+          "Hebrews 12:18–29"
+        ]
+      }
+    ],
+    "6": [
+      {
+        "outline": "The Greatest Commandment",
+        "verses": [
+          "1-19"
+        ],
+        "references": [
+          "Matthew 22:34–40",
+          "Mark 12:28–34"
+        ]
+      },
+      {
+        "outline": "Teach Your Children",
+        "verses": [
+          "20-25"
+        ],
+        "references": []
+      }
+    ],
+    "7": [
+      {
+        "outline": "Drive Out the Nations",
+        "verses": [
+          "1-11"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Promises of God",
+        "verses": [
+          "12-26"
+        ],
+        "references": [
+          "Exodus 23:20–33"
+        ]
+      }
+    ],
+    "8": [
+      {
+        "outline": "Remember the LORD Your God",
+        "verses": [
+          "1-20"
+        ],
+        "references": []
+      }
+    ],
+    "9": [
+      {
+        "outline": "Assurance of Victory",
+        "verses": [
+          "1-6"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Golden Calf",
+        "verses": [
+          "7-29"
+        ],
+        "references": [
+          "Exodus 32:1–35",
+          "Acts 7:39–43"
+        ]
+      }
+    ],
+    "10": [
+      {
+        "outline": "New Stone Tablets",
+        "verses": [
+          "1-11"
+        ],
+        "references": [
+          "Exodus 34:1–9"
+        ]
+      },
+      {
+        "outline": "A Call to Obedience",
+        "verses": [
+          "12-22"
+        ],
+        "references": [
+          "Joshua 24:14–28"
+        ]
+      }
+    ],
+    "11": [
+      {
+        "outline": "Obedience and Discipline",
+        "verses": [
+          "1-7"
+        ],
+        "references": [
+          "Deuteronomy 4:1–14"
+        ]
+      },
+      {
+        "outline": "God’s Great Blessings",
+        "verses": [
+          "8-17"
+        ],
+        "references": [
+          "Joshua 1:1–9"
+        ]
+      },
+      {
+        "outline": "Remember God’s Words",
+        "verses": [
+          "18-25"
+        ],
+        "references": []
+      },
+      {
+        "outline": "A Blessing and a Curse",
+        "verses": [
+          "26-32"
+        ],
+        "references": []
+      }
+    ],
+    "12": [
+      {
+        "outline": "One Place for Worship",
+        "verses": [
+          "1-28"
+        ],
+        "references": []
+      },
+      {
+        "outline": "A Warning against Idolatry",
+        "verses": [
+          "29-32"
+        ],
+        "references": [
+          "Deuteronomy 4:15–31",
+          "Ezekiel 6:1–7"
+        ]
+      }
+    ],
+    "13": [
+      {
+        "outline": "Idolaters to Be Put to Death",
+        "verses": [
+          "1-11"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Idolatrous Cities to Be Destroyed",
+        "verses": [
+          "12-18"
+        ],
+        "references": []
+      }
+    ],
+    "14": [
+      {
+        "outline": "Clean and Unclean Animals",
+        "verses": [
+          "1-21"
+        ],
+        "references": [
+          "Leviticus 11:1–47",
+          "Acts 10:9–16"
+        ]
+      },
+      {
+        "outline": "Giving Tithes",
+        "verses": [
+          "22-29"
+        ],
+        "references": [
+          "Leviticus 27:30–34",
+          "Deuteronomy 26:1–15",
+          "Nehemiah 13:10–14"
+        ]
+      }
+    ],
+    "15": [
+      {
+        "outline": "The Seventh Year",
+        "verses": [
+          "1-6"
+        ],
+        "references": [
+          "Exodus 23:10–13",
+          "Leviticus 25:1–7"
+        ]
+      },
+      {
+        "outline": "Generosity in Lending and Giving",
+        "verses": [
+          "7-11"
+        ],
+        "references": [
+          "Matthew 6:1–4"
+        ]
+      },
+      {
+        "outline": "Hebrew Servants",
+        "verses": [
+          "12-18"
+        ],
+        "references": [
+          "Exodus 21:1–11"
+        ]
+      },
+      {
+        "outline": "Firstborn Animals",
+        "verses": [
+          "19-23"
+        ],
+        "references": [
+          "Exodus 13:1–16"
+        ]
+      }
+    ],
+    "16": [
+      {
+        "outline": "Passover and the Feast of Unleavened Bread",
+        "verses": [
+          "1-8"
+        ],
+        "references": [
+          "Exodus 12:14–28",
+          "Leviticus 23:4–8",
+          "Numbers 28:16–25"
+        ]
+      },
+      {
+        "outline": "The Feast of Weeks",
+        "verses": [
+          "9-12"
+        ],
+        "references": [
+          "Numbers 28:26–31"
+        ]
+      },
+      {
+        "outline": "The Feast of Tabernacles",
+        "verses": [
+          "13-17"
+        ],
+        "references": [
+          "Numbers 29:12–40"
+        ]
+      },
+      {
+        "outline": "Judges and Justice",
+        "verses": [
+          "18-20"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Forbidden Forms of Worship",
+        "verses": [
+          "21-22"
+        ],
+        "references": []
+      }
+    ],
+    "17": [
+      {
+        "outline": "Detestable Sacrifices",
+        "verses": [
+          "1"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Purge the Idolater",
+        "verses": [
+          "2-7"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Courts of Law",
+        "verses": [
+          "8-13"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Guidelines for a King",
+        "verses": [
+          "14-20"
+        ],
+        "references": [
+          "1 Samuel 8:1–9"
+        ]
+      }
+    ],
+    "18": [
+      {
+        "outline": "Provision for Priests and Levites",
+        "verses": [
+          "1-8"
+        ],
+        "references": [
+          "1 Corinthians 9:1–18"
+        ]
+      },
+      {
+        "outline": "Sorcery Forbidden",
+        "verses": [
+          "9-14"
+        ],
+        "references": [
+          "Acts 8:9–25"
+        ]
+      },
+      {
+        "outline": "A Prophet Like Moses",
+        "verses": [
+          "15-22"
+        ],
+        "references": [
+          "Acts 3:11–26"
+        ]
+      }
+    ],
+    "19": [
+      {
+        "outline": "Cities of Refuge",
+        "verses": [
+          "1-14"
+        ],
+        "references": [
+          "Numbers 35:9–34",
+          "Deuteronomy 4:41–43",
+          "Joshua 20:1–9"
+        ]
+      },
+      {
+        "outline": "The Testimony of Two or Three Witnesses",
+        "verses": [
+          "15-21"
+        ],
+        "references": [
+          "Matthew 18:15–20"
+        ]
+      }
+    ],
+    "20": [
+      {
+        "outline": "Laws of Warfare",
+        "verses": [
+          "1-20"
+        ],
+        "references": []
+      }
+    ],
+    "21": [
+      {
+        "outline": "Atonement for an Unsolved Murder",
+        "verses": [
+          "1-9"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Marrying a Captive Woman",
+        "verses": [
+          "10-14"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Inheritance Rights of the Firstborn",
+        "verses": [
+          "15-17"
+        ],
+        "references": []
+      },
+      {
+        "outline": "A Rebellious Son",
+        "verses": [
+          "18-21"
+        ],
+        "references": [
+          "Luke 15:11–32"
+        ]
+      },
+      {
+        "outline": "Cursed Is Anyone Hung on a Tree",
+        "verses": [
+          "22-23"
+        ],
+        "references": []
+      }
+    ],
+    "22": [
+      {
+        "outline": "Various Laws",
+        "verses": [
+          "1-12"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Marriage Violations",
+        "verses": [
+          "13-30"
+        ],
+        "references": []
+      }
+    ],
+    "23": [
+      {
+        "outline": "Exclusion from the Congregation",
+        "verses": [
+          "1-8"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Uncleanness in the Camp",
+        "verses": [
+          "9-14"
+        ],
+        "references": [
+          "Leviticus 15:1–12"
+        ]
+      },
+      {
+        "outline": "Miscellaneous Laws",
+        "verses": [
+          "15-25"
+        ],
+        "references": []
+      }
+    ],
+    "24": [
+      {
+        "outline": "Marriage and Divorce Laws",
+        "verses": [
+          "1-5"
+        ],
+        "references": [
+          "Matthew 5:31–32",
+          "Luke 16:18"
+        ]
+      },
+      {
+        "outline": "Additional Laws",
+        "verses": [
+          "6-22"
+        ],
+        "references": []
+      }
+    ],
+    "25": [
+      {
+        "outline": "Fairness and Mercy",
+        "verses": [
+          "1-4"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Widowhood and Marriage",
+        "verses": [
+          "5-12"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Standard Weights and Measures",
+        "verses": [
+          "13-16"
+        ],
+        "references": [
+          "Proverbs 11:1–3",
+          "Ezekiel 45:10–12"
+        ]
+      },
+      {
+        "outline": "Revenge on the Amalekites",
+        "verses": [
+          "17-19"
+        ],
+        "references": []
+      }
+    ],
+    "26": [
+      {
+        "outline": "Offering Firstfruits and Tithes",
+        "verses": [
+          "1-15"
+        ],
+        "references": [
+          "Leviticus 27:30–34",
+          "Deuteronomy 14:22–29",
+          "Nehemiah 13:10–14"
+        ]
+      },
+      {
+        "outline": "Obey the LORD’s Commands",
+        "verses": [
+          "16-19"
+        ],
+        "references": []
+      }
+    ],
+    "27": [
+      {
+        "outline": "The Altar on Mount Ebal",
+        "verses": [
+          "1-10"
+        ],
+        "references": [
+          "Joshua 8:30–35"
+        ]
+      },
+      {
+        "outline": "Curses Pronounced from Ebal",
+        "verses": [
+          "11-26"
+        ],
+        "references": []
+      }
+    ],
+    "28": [
+      {
+        "outline": "The Blessings of Obedience",
+        "verses": [
+          "1-14"
+        ],
+        "references": [
+          "Leviticus 25:18–22"
+        ]
+      },
+      {
+        "outline": "The Curses of Disobedience",
+        "verses": [
+          "15-68"
+        ],
+        "references": [
+          "Leviticus 20:1–9",
+          "Leviticus 26:14–39"
+        ]
+      }
+    ],
+    "29": [
+      {
+        "outline": "The Covenant in Moab",
+        "verses": [
+          "1-29"
+        ],
+        "references": []
+      }
+    ],
+    "30": [
+      {
+        "outline": "The Promise of Restoration",
+        "verses": [
+          "1-10"
+        ],
+        "references": [
+          "Nehemiah 1:1–11"
+        ]
+      },
+      {
+        "outline": "The Choice of Life or Death",
+        "verses": [
+          "11-20"
+        ],
+        "references": []
+      }
+    ],
+    "31": [
+      {
+        "outline": "Joshua to Succeed Moses",
+        "verses": [
+          "1-8"
+        ],
+        "references": [
+          "Numbers 27:18–23"
+        ]
+      },
+      {
+        "outline": "The Reading of the Law",
+        "verses": [
+          "9-13"
+        ],
+        "references": [
+          "Nehemiah 8:1–8"
+        ]
+      },
+      {
+        "outline": "God Commissions Joshua",
+        "verses": [
+          "14-23"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Law Placed in the Ark",
+        "verses": [
+          "24-29"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Moses Begins His Song",
+        "verses": [
+          "30"
+        ],
+        "references": []
+      }
+    ],
+    "32": [
+      {
+        "outline": "The Song of Moses",
+        "verses": [
+          "1-47"
+        ],
+        "references": [
+          "Revelation 15:1–4"
+        ]
+      },
+      {
+        "outline": "Moses’ Death Foretold",
+        "verses": [
+          "48-52"
+        ],
+        "references": []
+      }
+    ],
+    "33": [
+      {
+        "outline": "Moses Blesses the Twelve Tribes",
+        "verses": [
+          "1-29"
+        ],
+        "references": []
+      }
+    ],
+    "34": [
+      {
+        "outline": "The Death of Moses",
+        "verses": [
+          "1-12"
+        ],
+        "references": []
+      }
+    ]
+  }
+}

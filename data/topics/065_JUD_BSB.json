@@ -1,0 +1,43 @@
+{
+  "chapterTopics": {
+    "1": [
+      {
+        "outline": "A Greeting from Jude",
+        "verses": [
+          "1-2"
+        ],
+        "references": [
+          "James 1:1"
+        ]
+      },
+      {
+        "outline": "God’s Judgment on the Ungodly",
+        "verses": [
+          "3-16"
+        ],
+        "references": [
+          "2 Peter 3:1–7"
+        ]
+      },
+      {
+        "outline": "A Call to Persevere",
+        "verses": [
+          "17-23"
+        ],
+        "references": [
+          "Hebrews 10:19–39",
+          "2 Peter 3:1–7"
+        ]
+      },
+      {
+        "outline": "Doxology",
+        "verses": [
+          "24-25"
+        ],
+        "references": [
+          "Romans 16:25–27"
+        ]
+      }
+    ]
+  }
+}

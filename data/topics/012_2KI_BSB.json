@@ -1,0 +1,823 @@
+{
+  "chapterTopics": {
+    "1": [
+      {
+        "outline": "Elijah Denounces Ahaziah",
+        "verses": [
+          "1-16"
+        ],
+        "references": [
+          "1 Kings 22:51–53"
+        ]
+      },
+      {
+        "outline": "Jehoram Succeeds Ahaziah",
+        "verses": [
+          "17-18"
+        ],
+        "references": []
+      }
+    ],
+    "2": [
+      {
+        "outline": "Elijah Taken Up to Heaven",
+        "verses": [
+          "1-14"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Elisha Succeeds Elijah",
+        "verses": [
+          "15-18"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Elisha Heals the Waters of Jericho",
+        "verses": [
+          "19-22"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Elisha Mocked",
+        "verses": [
+          "23-25"
+        ],
+        "references": []
+      }
+    ],
+    "3": [
+      {
+        "outline": "Moab’s Rebellion",
+        "verses": [
+          "1-27"
+        ],
+        "references": []
+      }
+    ],
+    "4": [
+      {
+        "outline": "The Widow’s Oil",
+        "verses": [
+          "1-7"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Shunammite Woman",
+        "verses": [
+          "8-17"
+        ],
+        "references": [
+          "Matthew 10:40–42"
+        ]
+      },
+      {
+        "outline": "Elisha Raises the Shunammite’s Son",
+        "verses": [
+          "18-37"
+        ],
+        "references": [
+          "Acts 20:7–12"
+        ]
+      },
+      {
+        "outline": "Elisha Purifies the Poisonous Stew",
+        "verses": [
+          "38-41"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Feeding a Hundred Men",
+        "verses": [
+          "42-44"
+        ],
+        "references": [
+          "Matthew 15:29–39",
+          "Mark 8:1–10"
+        ]
+      }
+    ],
+    "5": [
+      {
+        "outline": "Naaman Cured of Leprosy",
+        "verses": [
+          "1-14"
+        ],
+        "references": [
+          "Luke 17:11–19"
+        ]
+      },
+      {
+        "outline": "Gehazi’s Greed and Leprosy",
+        "verses": [
+          "15-27"
+        ],
+        "references": []
+      }
+    ],
+    "6": [
+      {
+        "outline": "The Axe Head Floats",
+        "verses": [
+          "1-7"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Elisha Captures the Blinded Arameans",
+        "verses": [
+          "8-23"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Siege and Famine of Samaria",
+        "verses": [
+          "24-33"
+        ],
+        "references": []
+      }
+    ],
+    "7": [
+      {
+        "outline": "Elisha’s Prophecy of Plenty",
+        "verses": [
+          "1-2"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Syrians Flee",
+        "verses": [
+          "3-15"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Elisha’s Prophecy Fulfilled",
+        "verses": [
+          "16-20"
+        ],
+        "references": []
+      }
+    ],
+    "8": [
+      {
+        "outline": "The Shunammite’s Land Restored",
+        "verses": [
+          "1-6"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Hazael Murders Ben-hadad",
+        "verses": [
+          "7-15"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jehoram Reigns in Judah",
+        "verses": [
+          "16-19"
+        ],
+        "references": [
+          "2 Chronicles 21:1–7"
+        ]
+      },
+      {
+        "outline": "Edom and Libnah Rebel",
+        "verses": [
+          "20-24"
+        ],
+        "references": [
+          "2 Chronicles 21:8–11"
+        ]
+      },
+      {
+        "outline": "Ahaziah Reigns in Judah",
+        "verses": [
+          "25-29"
+        ],
+        "references": [
+          "2 Chronicles 22:1–7"
+        ]
+      }
+    ],
+    "9": [
+      {
+        "outline": "Jehu Anointed King of Israel",
+        "verses": [
+          "1-13"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jehu Kills Joram and Ahaziah",
+        "verses": [
+          "14-29"
+        ],
+        "references": [
+          "2 Chronicles 22:8–9"
+        ]
+      },
+      {
+        "outline": "Jezebel’s Violent Death",
+        "verses": [
+          "30-37"
+        ],
+        "references": []
+      }
+    ],
+    "10": [
+      {
+        "outline": "Ahab’s Seventy Sons Killed",
+        "verses": [
+          "1-17"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jehu Kills the Priests of Baal",
+        "verses": [
+          "18-27"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jehu Repeats Jeroboam’s Sins",
+        "verses": [
+          "28-33"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jehoahaz Succeeds Jehu in Israel",
+        "verses": [
+          "34-36"
+        ],
+        "references": []
+      }
+    ],
+    "11": [
+      {
+        "outline": "Athaliah and Joash",
+        "verses": [
+          "1-3"
+        ],
+        "references": [
+          "2 Chronicles 22:10–12"
+        ]
+      },
+      {
+        "outline": "Joash Anointed King of Judah",
+        "verses": [
+          "4-12"
+        ],
+        "references": [
+          "2 Chronicles 23:1–11"
+        ]
+      },
+      {
+        "outline": "The Death of Athaliah",
+        "verses": [
+          "13-16"
+        ],
+        "references": [
+          "2 Chronicles 23:12–15"
+        ]
+      },
+      {
+        "outline": "Jehoiada Restores the Worship of the LORD",
+        "verses": [
+          "17-21"
+        ],
+        "references": [
+          "2 Chronicles 23:16–21"
+        ]
+      }
+    ],
+    "12": [
+      {
+        "outline": "Joash Repairs the Temple",
+        "verses": [
+          "1-16"
+        ],
+        "references": [
+          "2 Chronicles 24:1–14"
+        ]
+      },
+      {
+        "outline": "The Death of Joash",
+        "verses": [
+          "17-21"
+        ],
+        "references": [
+          "2 Chronicles 24:23–27"
+        ]
+      }
+    ],
+    "13": [
+      {
+        "outline": "Jehoahaz Reigns in Israel",
+        "verses": [
+          "1-9"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jehoash Reigns in Israel",
+        "verses": [
+          "10-13"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Elisha’s Final Prophecy",
+        "verses": [
+          "14-25"
+        ],
+        "references": []
+      }
+    ],
+    "14": [
+      {
+        "outline": "Amaziah Reigns in Judah",
+        "verses": [
+          "1-7"
+        ],
+        "references": [
+          "2 Chronicles 25:1–4"
+        ]
+      },
+      {
+        "outline": "Jehoash Defeats Amaziah",
+        "verses": [
+          "8-14"
+        ],
+        "references": [
+          "2 Chronicles 25:17–24"
+        ]
+      },
+      {
+        "outline": "Jeroboam II Succeeds Jehoash in Israel",
+        "verses": [
+          "15-16"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Death of Amaziah",
+        "verses": [
+          "17-20"
+        ],
+        "references": [
+          "2 Chronicles 25:25–28"
+        ]
+      },
+      {
+        "outline": "Azariah Succeeds Amaziah in Judah",
+        "verses": [
+          "21-22"
+        ],
+        "references": [
+          "2 Chronicles 26:1–2"
+        ]
+      },
+      {
+        "outline": "Jeroboam II Reigns in Israel",
+        "verses": [
+          "23-29"
+        ],
+        "references": []
+      }
+    ],
+    "15": [
+      {
+        "outline": "Azariah Reigns in Judah",
+        "verses": [
+          "1-7"
+        ],
+        "references": [
+          "2 Chronicles 26:3–23"
+        ]
+      },
+      {
+        "outline": "Zechariah Reigns in Israel",
+        "verses": [
+          "8-12"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Shallum Reigns in Israel",
+        "verses": [
+          "13-16"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Menahem Reigns in Israel",
+        "verses": [
+          "17-22"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Pekahiah Reigns in Israel",
+        "verses": [
+          "23-26"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Pekah Reigns in Israel",
+        "verses": [
+          "27-31"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jotham Reigns in Judah",
+        "verses": [
+          "32-38"
+        ],
+        "references": [
+          "2 Chronicles 27:1–9"
+        ]
+      }
+    ],
+    "16": [
+      {
+        "outline": "Ahaz Reigns in Judah",
+        "verses": [
+          "1-9"
+        ],
+        "references": [
+          "2 Chronicles 28:1–4"
+        ]
+      },
+      {
+        "outline": "The Idolatry of Ahaz",
+        "verses": [
+          "10-20"
+        ],
+        "references": [
+          "2 Chronicles 28:16–27"
+        ]
+      }
+    ],
+    "17": [
+      {
+        "outline": "Hoshea the Last King of Israel",
+        "verses": [
+          "1-4"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Israel Carried Captive to Assyria",
+        "verses": [
+          "5-23"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Samaria Resettled",
+        "verses": [
+          "24-41"
+        ],
+        "references": []
+      }
+    ],
+    "18": [
+      {
+        "outline": "Hezekiah Destroys Idolatry in Judah",
+        "verses": [
+          "1-12"
+        ],
+        "references": [
+          "2 Chronicles 29:1–2"
+        ]
+      },
+      {
+        "outline": "Sennacherib Invades Judah",
+        "verses": [
+          "13-16"
+        ],
+        "references": [
+          "2 Chronicles 32:1–8",
+          "Psalms 46:1–11"
+        ]
+      },
+      {
+        "outline": "Sennacherib Threatens Jerusalem",
+        "verses": [
+          "17-37"
+        ],
+        "references": [
+          "2 Chronicles 32:9–19",
+          "Isaiah 36:1–22"
+        ]
+      }
+    ],
+    "19": [
+      {
+        "outline": "Isaiah’s Message of Deliverance",
+        "verses": [
+          "1-7"
+        ],
+        "references": [
+          "Isaiah 37:1–7"
+        ]
+      },
+      {
+        "outline": "Sennacherib’s Blasphemous Letter",
+        "verses": [
+          "8-13"
+        ],
+        "references": [
+          "Isaiah 37:8–13"
+        ]
+      },
+      {
+        "outline": "Hezekiah’s Prayer",
+        "verses": [
+          "14-19"
+        ],
+        "references": [
+          "Isaiah 37:14–20"
+        ]
+      },
+      {
+        "outline": "Sennacherib’s Fall Prophesied",
+        "verses": [
+          "20-34"
+        ],
+        "references": [
+          "Isaiah 37:21–35"
+        ]
+      },
+      {
+        "outline": "Jerusalem Delivered from the Assyrians",
+        "verses": [
+          "35-37"
+        ],
+        "references": [
+          "2 Chronicles 32:20–23",
+          "Isaiah 37:36–38"
+        ]
+      }
+    ],
+    "20": [
+      {
+        "outline": "Hezekiah’s Illness and Recovery",
+        "verses": [
+          "1-11"
+        ],
+        "references": [
+          "2 Chronicles 32:24–31",
+          "Isaiah 38:1–8"
+        ]
+      },
+      {
+        "outline": "Hezekiah Shows His Treasures",
+        "verses": [
+          "12-19"
+        ],
+        "references": [
+          "Isaiah 39:1–8"
+        ]
+      },
+      {
+        "outline": "Manasseh Succeeds Hezekiah",
+        "verses": [
+          "20-21"
+        ],
+        "references": []
+      }
+    ],
+    "21": [
+      {
+        "outline": "Manasseh Reigns in Judah",
+        "verses": [
+          "1-9"
+        ],
+        "references": [
+          "2 Chronicles 33:1–9"
+        ]
+      },
+      {
+        "outline": "Manasseh’s Idolatries Rebuked",
+        "verses": [
+          "10-18"
+        ],
+        "references": [
+          "2 Chronicles 33:10–20"
+        ]
+      },
+      {
+        "outline": "Amon Reigns in Judah",
+        "verses": [
+          "19-26"
+        ],
+        "references": [
+          "2 Chronicles 33:21–25"
+        ]
+      }
+    ],
+    "22": [
+      {
+        "outline": "Josiah Reigns in Judah",
+        "verses": [
+          "1-2"
+        ],
+        "references": [
+          "2 Chronicles 34:1–2"
+        ]
+      },
+      {
+        "outline": "Funding the Temple Repairs",
+        "verses": [
+          "3-7"
+        ],
+        "references": [
+          "2 Chronicles 34:8–13"
+        ]
+      },
+      {
+        "outline": "Hilkiah Finds the Book of the Law",
+        "verses": [
+          "8-13"
+        ],
+        "references": [
+          "2 Chronicles 34:14–21"
+        ]
+      },
+      {
+        "outline": "Huldah’s Prophecy",
+        "verses": [
+          "14-20"
+        ],
+        "references": [
+          "2 Chronicles 34:22–28"
+        ]
+      }
+    ],
+    "23": [
+      {
+        "outline": "Josiah Renews the Covenant",
+        "verses": [
+          "1-3"
+        ],
+        "references": [
+          "2 Chronicles 34:29–33"
+        ]
+      },
+      {
+        "outline": "Josiah Destroys Idolatry",
+        "verses": [
+          "4-20"
+        ],
+        "references": [
+          "1 Kings 13:1–10",
+          "2 Chronicles 34:3–7"
+        ]
+      },
+      {
+        "outline": "Josiah Restores the Passover",
+        "verses": [
+          "21-27"
+        ],
+        "references": [
+          "2 Chronicles 35:1–19"
+        ]
+      },
+      {
+        "outline": "The Death of Josiah",
+        "verses": [
+          "28-30"
+        ],
+        "references": [
+          "2 Chronicles 35:20–24"
+        ]
+      },
+      {
+        "outline": "Jehoahaz Succeeds Josiah",
+        "verses": [
+          "31-35"
+        ],
+        "references": [
+          "2 Chronicles 36:1–4"
+        ]
+      },
+      {
+        "outline": "Jehoiakim Reigns in Judah",
+        "verses": [
+          "36-37"
+        ],
+        "references": [
+          "2 Chronicles 36:5–8"
+        ]
+      }
+    ],
+    "24": [
+      {
+        "outline": "Babylon Controls Jehoiakim",
+        "verses": [
+          "1-5"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jehoiachin Reigns in Judah",
+        "verses": [
+          "6-9"
+        ],
+        "references": [
+          "2 Chronicles 36:9–10"
+        ]
+      },
+      {
+        "outline": "The Captivity of Jerusalem",
+        "verses": [
+          "10-17"
+        ],
+        "references": [
+          "Lamentations 1:1–22"
+        ]
+      },
+      {
+        "outline": "Zedekiah Reigns in Judah",
+        "verses": [
+          "18-20"
+        ],
+        "references": [
+          "2 Chronicles 36:11–14",
+          "Jeremiah 52:1–3"
+        ]
+      }
+    ],
+    "25": [
+      {
+        "outline": "Nebuchadnezzar Besieges Jerusalem",
+        "verses": [
+          "1-7"
+        ],
+        "references": [
+          "2 Chronicles 36:15–21",
+          "Jeremiah 39:1–10"
+        ]
+      },
+      {
+        "outline": "The Temple Destroyed",
+        "verses": [
+          "8-17"
+        ],
+        "references": [
+          "Jeremiah 52:12–23"
+        ]
+      },
+      {
+        "outline": "Captives Carried to Babylon",
+        "verses": [
+          "18-21"
+        ],
+        "references": [
+          "Jeremiah 52:24–30"
+        ]
+      },
+      {
+        "outline": "Gedaliah Governs in Judah",
+        "verses": [
+          "22-24"
+        ],
+        "references": [
+          "Jeremiah 40:1–16"
+        ]
+      },
+      {
+        "outline": "The Murder of Gedaliah",
+        "verses": [
+          "25-26"
+        ],
+        "references": [
+          "Jeremiah 41:1–10"
+        ]
+      },
+      {
+        "outline": "Jehoiachin Released from Prison",
+        "verses": [
+          "27-30"
+        ],
+        "references": [
+          "Jeremiah 52:31–34"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,559 @@
+{
+  "chapterTopics": {
+    "1": [
+      {
+        "outline": "Saul’s Death Reported to David",
+        "verses": [
+          "1-16"
+        ],
+        "references": [
+          "1 Samuel 31:1–6",
+          "1 Chronicles 10:1–6"
+        ]
+      },
+      {
+        "outline": "David’s Song for Saul and Jonathan",
+        "verses": [
+          "17-27"
+        ],
+        "references": []
+      }
+    ],
+    "2": [
+      {
+        "outline": "David Anointed King of Judah",
+        "verses": [
+          "1-7"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Ish-bosheth Made King of Israel",
+        "verses": [
+          "8-11"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Battle of Gibeon",
+        "verses": [
+          "12-32"
+        ],
+        "references": []
+      }
+    ],
+    "3": [
+      {
+        "outline": "The House of David Strengthened",
+        "verses": [
+          "1-5"
+        ],
+        "references": [
+          "1 Chronicles 3:1–9"
+        ]
+      },
+      {
+        "outline": "Abner Joins David",
+        "verses": [
+          "6-21"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Joab Murders Abner",
+        "verses": [
+          "22-30"
+        ],
+        "references": []
+      },
+      {
+        "outline": "David Mourns for Abner",
+        "verses": [
+          "31-39"
+        ],
+        "references": []
+      }
+    ],
+    "4": [
+      {
+        "outline": "The Murder of Ish-bosheth",
+        "verses": [
+          "1-8"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Execution of Rechab and Baanah",
+        "verses": [
+          "9-12"
+        ],
+        "references": []
+      }
+    ],
+    "5": [
+      {
+        "outline": "David Anointed King of All Israel",
+        "verses": [
+          "1-5"
+        ],
+        "references": [
+          "1 Chronicles 11:1–3"
+        ]
+      },
+      {
+        "outline": "David Conquers Jerusalem",
+        "verses": [
+          "6-11"
+        ],
+        "references": [
+          "1 Chronicles 11:4–9"
+        ]
+      },
+      {
+        "outline": "David’s Family Grows",
+        "verses": [
+          "12-16"
+        ],
+        "references": [
+          "1 Chronicles 14:1–7"
+        ]
+      },
+      {
+        "outline": "Two Victories over the Philistines",
+        "verses": [
+          "17-25"
+        ],
+        "references": [
+          "1 Chronicles 14:8–17"
+        ]
+      }
+    ],
+    "6": [
+      {
+        "outline": "David Fetches the Ark",
+        "verses": [
+          "1-4"
+        ],
+        "references": [
+          "1 Chronicles 13:1–7"
+        ]
+      },
+      {
+        "outline": "Uzzah Touches the Ark",
+        "verses": [
+          "5-11"
+        ],
+        "references": [
+          "1 Chronicles 13:8–14"
+        ]
+      },
+      {
+        "outline": "The Ark Brought to Jerusalem",
+        "verses": [
+          "12-15"
+        ],
+        "references": [
+          "1 Chronicles 15:1–28"
+        ]
+      },
+      {
+        "outline": "Michal’s Contempt for David",
+        "verses": [
+          "16-23"
+        ],
+        "references": [
+          "1 Chronicles 15:29—16:3"
+        ]
+      }
+    ],
+    "7": [
+      {
+        "outline": "God’s Covenant with David",
+        "verses": [
+          "1-17"
+        ],
+        "references": [
+          "1 Chronicles 17:1–15"
+        ]
+      },
+      {
+        "outline": "David’s Prayer of Thanksgiving",
+        "verses": [
+          "18-29"
+        ],
+        "references": [
+          "1 Chronicles 17:16–27"
+        ]
+      }
+    ],
+    "8": [
+      {
+        "outline": "David’s Triumphs",
+        "verses": [
+          "1-14"
+        ],
+        "references": [
+          "1 Chronicles 18:1–13",
+          "Psalms 60:1–12"
+        ]
+      },
+      {
+        "outline": "David’s Officers",
+        "verses": [
+          "15-18"
+        ],
+        "references": [
+          "1 Chronicles 18:14–17"
+        ]
+      }
+    ],
+    "9": [
+      {
+        "outline": "David and Mephibosheth",
+        "verses": [
+          "1-13"
+        ],
+        "references": []
+      }
+    ],
+    "10": [
+      {
+        "outline": "David’s Messengers Disgraced",
+        "verses": [
+          "1-8"
+        ],
+        "references": [
+          "1 Chronicles 19:1–9"
+        ]
+      },
+      {
+        "outline": "David Defeats Ammon and Aram",
+        "verses": [
+          "9-19"
+        ],
+        "references": [
+          "1 Chronicles 19:10–19"
+        ]
+      }
+    ],
+    "11": [
+      {
+        "outline": "David and Bathsheba",
+        "verses": [
+          "1-13"
+        ],
+        "references": []
+      },
+      {
+        "outline": "David Arranges Uriah’s Death",
+        "verses": [
+          "14-25"
+        ],
+        "references": []
+      },
+      {
+        "outline": "David Marries Bathsheba",
+        "verses": [
+          "26-27"
+        ],
+        "references": []
+      }
+    ],
+    "12": [
+      {
+        "outline": "Nathan Rebukes David",
+        "verses": [
+          "1-12"
+        ],
+        "references": [
+          "Psalms 51:1–19"
+        ]
+      },
+      {
+        "outline": "David’s Loss and Repentance",
+        "verses": [
+          "13-23"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Solomon’s Birth",
+        "verses": [
+          "24-25"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Capture of Rabbah",
+        "verses": [
+          "26-31"
+        ],
+        "references": [
+          "1 Chronicles 20:1–3"
+        ]
+      }
+    ],
+    "13": [
+      {
+        "outline": "Amnon and Tamar",
+        "verses": [
+          "1-22"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Absalom’s Revenge on Amnon",
+        "verses": [
+          "23-33"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Absalom Flees to Geshur",
+        "verses": [
+          "34-39"
+        ],
+        "references": []
+      }
+    ],
+    "14": [
+      {
+        "outline": "Absalom’s Return to Jerusalem",
+        "verses": [
+          "1-27"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Absalom Reconciled to David",
+        "verses": [
+          "28-33"
+        ],
+        "references": []
+      }
+    ],
+    "15": [
+      {
+        "outline": "Absalom’s Conspiracy",
+        "verses": [
+          "1-12"
+        ],
+        "references": []
+      },
+      {
+        "outline": "David Flees Jerusalem",
+        "verses": [
+          "13-29"
+        ],
+        "references": [
+          "Psalms 3:1–8"
+        ]
+      },
+      {
+        "outline": "David Weeps at the Mount of Olives",
+        "verses": [
+          "30-37"
+        ],
+        "references": [
+          "Psalms 63:1–11"
+        ]
+      }
+    ],
+    "16": [
+      {
+        "outline": "David and Ziba",
+        "verses": [
+          "1-4"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Shimei Curses David",
+        "verses": [
+          "5-14"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Counsel of Ahithophel and Hushai",
+        "verses": [
+          "15-23"
+        ],
+        "references": []
+      }
+    ],
+    "17": [
+      {
+        "outline": "Hushai Counters Ahithophel’s Advice",
+        "verses": [
+          "1-14"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Hushai’s Warning Saves David",
+        "verses": [
+          "15-29"
+        ],
+        "references": [
+          "Psalms 55:1–23"
+        ]
+      }
+    ],
+    "18": [
+      {
+        "outline": "Absalom Killed",
+        "verses": [
+          "1-18"
+        ],
+        "references": []
+      },
+      {
+        "outline": "David Mourns for Absalom",
+        "verses": [
+          "19-33"
+        ],
+        "references": []
+      }
+    ],
+    "19": [
+      {
+        "outline": "Joab Reproves David",
+        "verses": [
+          "1-7"
+        ],
+        "references": []
+      },
+      {
+        "outline": "David Restored as King",
+        "verses": [
+          "8-15"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Shimei Pardoned",
+        "verses": [
+          "16-23"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Mephibosheth Excused",
+        "verses": [
+          "24-30"
+        ],
+        "references": []
+      },
+      {
+        "outline": "David’s Kindness to Barzillai",
+        "verses": [
+          "31-40"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Contention over the King",
+        "verses": [
+          "41-43"
+        ],
+        "references": []
+      }
+    ],
+    "20": [
+      {
+        "outline": "Sheba’s Rebellion",
+        "verses": [
+          "1-26"
+        ],
+        "references": []
+      }
+    ],
+    "21": [
+      {
+        "outline": "David Avenges the Gibeonites",
+        "verses": [
+          "1-14"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Four Battles against the Philistines",
+        "verses": [
+          "15-22"
+        ],
+        "references": [
+          "1 Chronicles 20:4–8"
+        ]
+      }
+    ],
+    "22": [
+      {
+        "outline": "David’s Song of Deliverance",
+        "verses": [
+          "1-51"
+        ],
+        "references": [
+          "Psalms 18:1–50"
+        ]
+      }
+    ],
+    "23": [
+      {
+        "outline": "David’s Last Song",
+        "verses": [
+          "1-7"
+        ],
+        "references": []
+      },
+      {
+        "outline": "David’s Mighty Men",
+        "verses": [
+          "8-39"
+        ],
+        "references": [
+          "1 Chronicles 11:10–47"
+        ]
+      }
+    ],
+    "24": [
+      {
+        "outline": "David’s Military Census",
+        "verses": [
+          "1-9"
+        ],
+        "references": [
+          "Exodus 30:11–16",
+          "1 Chronicles 21:1–6"
+        ]
+      },
+      {
+        "outline": "Judgment for David’s Sin",
+        "verses": [
+          "10-14"
+        ],
+        "references": [
+          "1 Chronicles 21:7–13"
+        ]
+      },
+      {
+        "outline": "A Plague on Israel",
+        "verses": [
+          "15-17"
+        ],
+        "references": [
+          "1 Chronicles 21:14–17"
+        ]
+      },
+      {
+        "outline": "David Builds an Altar",
+        "verses": [
+          "18-25"
+        ],
+        "references": [
+          "1 Chronicles 21:18–30"
+        ]
+      }
+    ]
+  }
+}

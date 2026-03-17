@@ -1,0 +1,40 @@
+{
+  "chapterTopics": {
+    "1": [
+      {
+        "outline": "A Greeting from the Elder",
+        "verses": [
+          "1-3"
+        ],
+        "references": [
+          "3 John 1:1–4"
+        ]
+      },
+      {
+        "outline": "Walking in the Truth",
+        "verses": [
+          "4-6"
+        ],
+        "references": [
+          "John 8:30–47"
+        ]
+      },
+      {
+        "outline": "Beware of Deceivers",
+        "verses": [
+          "7-11"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Conclusion",
+        "verses": [
+          "12-13"
+        ],
+        "references": [
+          "3 John 1:13–14"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "chapterTopics": {
+    "1": [
+      {
+        "outline": "Habakkuk’s First Complaint",
+        "verses": [
+          "1-4"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The LORD’s Answer",
+        "verses": [
+          "5-11"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Habakkuk’s Second Complaint",
+        "verses": [
+          "12-17"
+        ],
+        "references": [
+          "Psalms 11:1–7"
+        ]
+      }
+    ],
+    "2": [
+      {
+        "outline": "The LORD Answers Again",
+        "verses": [
+          "1-5"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Woe to the Chaldeans",
+        "verses": [
+          "6-20"
+        ],
+        "references": []
+      }
+    ],
+    "3": [
+      {
+        "outline": "Habakkuk’s Prayer",
+        "verses": [
+          "1-16"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Habakkuk Rejoices",
+        "verses": [
+          "17-19"
+        ],
+        "references": []
+      }
+    ]
+  }
+}

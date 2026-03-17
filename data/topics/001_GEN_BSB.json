@@ -1,0 +1,1121 @@
+{
+  "chapterTopics": {
+    "1": [
+      {
+        "outline": "The Creation",
+        "verses": [
+          "1-31"
+        ],
+        "references": [
+          "John 1:1–5",
+          "Hebrews 11:1–3"
+        ]
+      }
+    ],
+    "2": [
+      {
+        "outline": "The Seventh Day",
+        "verses": [
+          "1-3"
+        ],
+        "references": [
+          "Exodus 16:22–30",
+          "Hebrews 4:1–11"
+        ]
+      },
+      {
+        "outline": "Man and Woman in the Garden",
+        "verses": [
+          "4-25"
+        ],
+        "references": []
+      }
+    ],
+    "3": [
+      {
+        "outline": "The Serpent’s Deception",
+        "verses": [
+          "1-7"
+        ],
+        "references": [
+          "Romans 5:12–21"
+        ]
+      },
+      {
+        "outline": "God Arraigns Adam and Eve",
+        "verses": [
+          "8-13"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Fate of the Serpent",
+        "verses": [
+          "14-15"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Punishment of Mankind",
+        "verses": [
+          "16-20"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Expulsion from Paradise",
+        "verses": [
+          "21-24"
+        ],
+        "references": []
+      }
+    ],
+    "4": [
+      {
+        "outline": "Cain and Abel",
+        "verses": [
+          "1-16"
+        ],
+        "references": [
+          "Hebrews 11:4"
+        ]
+      },
+      {
+        "outline": "The Descendants of Cain",
+        "verses": [
+          "17-24"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Seth and Enosh",
+        "verses": [
+          "25-26"
+        ],
+        "references": []
+      }
+    ],
+    "5": [
+      {
+        "outline": "The Descendants of Adam",
+        "verses": [
+          "1-17"
+        ],
+        "references": [
+          "1 Chronicles 1:1–3"
+        ]
+      },
+      {
+        "outline": "God Takes Up Enoch",
+        "verses": [
+          "18-24"
+        ],
+        "references": [
+          "Hebrews 11:5"
+        ]
+      },
+      {
+        "outline": "From Methuselah to Noah",
+        "verses": [
+          "25-32"
+        ],
+        "references": []
+      }
+    ],
+    "6": [
+      {
+        "outline": "Corruption on the Earth",
+        "verses": [
+          "1-7"
+        ],
+        "references": [
+          "Matthew 24:36–51"
+        ]
+      },
+      {
+        "outline": "Noah’s Favor with God",
+        "verses": [
+          "8-12"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Preparing the Ark",
+        "verses": [
+          "13-22"
+        ],
+        "references": [
+          "Hebrews 11:7"
+        ]
+      }
+    ],
+    "7": [
+      {
+        "outline": "The Great Flood",
+        "verses": [
+          "1-24"
+        ],
+        "references": [
+          "2 Peter 3:1–7"
+        ]
+      }
+    ],
+    "8": [
+      {
+        "outline": "The Ark Rests on Ararat",
+        "verses": [
+          "1-5"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Noah Sends a Raven and a Dove",
+        "verses": [
+          "6-12"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Exiting the Ark",
+        "verses": [
+          "13-19"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Noah Builds an Altar",
+        "verses": [
+          "20-22"
+        ],
+        "references": []
+      }
+    ],
+    "9": [
+      {
+        "outline": "The Covenant of the Rainbow",
+        "verses": [
+          "1-17"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Noah’s Shame and Canaan’s Curse",
+        "verses": [
+          "18-25"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Shem’s Blessing and Noah’s Death",
+        "verses": [
+          "26-29"
+        ],
+        "references": []
+      }
+    ],
+    "10": [
+      {
+        "outline": "The Table of Nations",
+        "verses": [
+          "1-32"
+        ],
+        "references": [
+          "1 Chronicles 1:4–27"
+        ]
+      }
+    ],
+    "11": [
+      {
+        "outline": "The Tower of Babel",
+        "verses": [
+          "1-9"
+        ],
+        "references": [
+          "Deuteronomy 32:8",
+          "Acts 2:1–13"
+        ]
+      },
+      {
+        "outline": "Genealogy from Shem to Abram",
+        "verses": [
+          "10-26"
+        ],
+        "references": [
+          "1 Chronicles 1:17–27"
+        ]
+      },
+      {
+        "outline": "Terah’s Descendants",
+        "verses": [
+          "27-32"
+        ],
+        "references": []
+      }
+    ],
+    "12": [
+      {
+        "outline": "The Call of Abram",
+        "verses": [
+          "1-9"
+        ],
+        "references": [
+          "Genesis 26:1–5",
+          "Acts 7:1–8"
+        ]
+      },
+      {
+        "outline": "Abram and Sarai in Egypt",
+        "verses": [
+          "10-20"
+        ],
+        "references": []
+      }
+    ],
+    "13": [
+      {
+        "outline": "Abram and Lot Part Ways",
+        "verses": [
+          "1-9"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Lot Proceeds toward Sodom",
+        "verses": [
+          "10-13"
+        ],
+        "references": []
+      },
+      {
+        "outline": "God Renews the Promise to Abram",
+        "verses": [
+          "14-18"
+        ],
+        "references": []
+      }
+    ],
+    "14": [
+      {
+        "outline": "The War of the Kings",
+        "verses": [
+          "1-9"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Abram Rescues Lot",
+        "verses": [
+          "10-16"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Melchizedek Blesses Abram",
+        "verses": [
+          "17-24"
+        ],
+        "references": [
+          "Psalms 110:1–7",
+          "Hebrews 7:1–10"
+        ]
+      }
+    ],
+    "15": [
+      {
+        "outline": "God’s Covenant with Abram",
+        "verses": [
+          "1-7"
+        ],
+        "references": [
+          "Romans 4:1–12",
+          "Hebrews 11:8–19"
+        ]
+      },
+      {
+        "outline": "God Confirms His Promise",
+        "verses": [
+          "8-21"
+        ],
+        "references": [
+          "Numbers 34:1–15",
+          "Romans 4:13–25"
+        ]
+      }
+    ],
+    "16": [
+      {
+        "outline": "Hagar and Ishmael",
+        "verses": [
+          "1-16"
+        ],
+        "references": []
+      }
+    ],
+    "17": [
+      {
+        "outline": "Abraham to Father Many Nations",
+        "verses": [
+          "1-8"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Covenant of Circumcision",
+        "verses": [
+          "9-27"
+        ],
+        "references": []
+      }
+    ],
+    "18": [
+      {
+        "outline": "The Three Visitors",
+        "verses": [
+          "1-8"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Sarah Laughs at the Promise",
+        "verses": [
+          "9-15"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Abraham Intercedes for Sodom",
+        "verses": [
+          "16-33"
+        ],
+        "references": []
+      }
+    ],
+    "19": [
+      {
+        "outline": "Lot Welcomes the Angels",
+        "verses": [
+          "1-11"
+        ],
+        "references": [
+          "Judges 19:1–30"
+        ]
+      },
+      {
+        "outline": "Lot Flees to Zoar",
+        "verses": [
+          "12-23"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Destruction of Sodom and Gomorrah",
+        "verses": [
+          "24-29"
+        ],
+        "references": [
+          "Luke 17:20–37"
+        ]
+      },
+      {
+        "outline": "Lot and His Daughters",
+        "verses": [
+          "30-38"
+        ],
+        "references": []
+      }
+    ],
+    "20": [
+      {
+        "outline": "Abraham, Sarah, and Abimelech",
+        "verses": [
+          "1-18"
+        ],
+        "references": []
+      }
+    ],
+    "21": [
+      {
+        "outline": "The Birth of Isaac",
+        "verses": [
+          "1-8"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Sarah Turns against Hagar",
+        "verses": [
+          "9-21"
+        ],
+        "references": [
+          "Galatians 4:21–30"
+        ]
+      },
+      {
+        "outline": "The Covenant at Beersheba",
+        "verses": [
+          "22-34"
+        ],
+        "references": []
+      }
+    ],
+    "22": [
+      {
+        "outline": "The Offering of Isaac",
+        "verses": [
+          "1-10"
+        ],
+        "references": [
+          "John 3:1–21"
+        ]
+      },
+      {
+        "outline": "The LORD Provides the Sacrifice",
+        "verses": [
+          "11-19"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Sons of Nahor",
+        "verses": [
+          "20-24"
+        ],
+        "references": []
+      }
+    ],
+    "23": [
+      {
+        "outline": "The Death and Burial of Sarah",
+        "verses": [
+          "1-20"
+        ],
+        "references": []
+      }
+    ],
+    "24": [
+      {
+        "outline": "A Wife for Isaac",
+        "verses": [
+          "1-14"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Rebekah Is Chosen",
+        "verses": [
+          "15-61"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Isaac Marries Rebekah",
+        "verses": [
+          "62-67"
+        ],
+        "references": []
+      }
+    ],
+    "25": [
+      {
+        "outline": "Abraham and Keturah",
+        "verses": [
+          "1-6"
+        ],
+        "references": [
+          "1 Chronicles 1:32–33"
+        ]
+      },
+      {
+        "outline": "The Death of Abraham",
+        "verses": [
+          "7-11"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Descendants of Ishmael",
+        "verses": [
+          "12-18"
+        ],
+        "references": [
+          "1 Chronicles 1:28–31"
+        ]
+      },
+      {
+        "outline": "Jacob and Esau",
+        "verses": [
+          "19-28"
+        ],
+        "references": [
+          "Malachi 1:1–5",
+          "Romans 9:6–29"
+        ]
+      },
+      {
+        "outline": "Esau Sells His Birthright",
+        "verses": [
+          "29-34"
+        ],
+        "references": []
+      }
+    ],
+    "26": [
+      {
+        "outline": "God’s Promise to Isaac",
+        "verses": [
+          "1-5"
+        ],
+        "references": [
+          "Genesis 12:1–9"
+        ]
+      },
+      {
+        "outline": "Isaac Deceives Abimelech",
+        "verses": [
+          "6-11"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Isaac’s Prosperity",
+        "verses": [
+          "12-25"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Isaac’s Covenant with Abimelech",
+        "verses": [
+          "26-33"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Esau’s Wives",
+        "verses": [
+          "34-35"
+        ],
+        "references": []
+      }
+    ],
+    "27": [
+      {
+        "outline": "Isaac Blesses Jacob",
+        "verses": [
+          "1-29"
+        ],
+        "references": [
+          "Hebrews 11:20"
+        ]
+      },
+      {
+        "outline": "Esau’s Lost Hope",
+        "verses": [
+          "30-46"
+        ],
+        "references": []
+      }
+    ],
+    "28": [
+      {
+        "outline": "Jacob’s Departure",
+        "verses": [
+          "1-5"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Esau Marries Mahalath",
+        "verses": [
+          "6-9"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jacob’s Ladder",
+        "verses": [
+          "10-17"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Stone of Bethel",
+        "verses": [
+          "18-22"
+        ],
+        "references": []
+      }
+    ],
+    "29": [
+      {
+        "outline": "Jacob Meets Rachel",
+        "verses": [
+          "1-13"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jacob Marries Leah and Rachel",
+        "verses": [
+          "14-30"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Reuben, Simeon, Levi, and Judah",
+        "verses": [
+          "31-35"
+        ],
+        "references": []
+      }
+    ],
+    "30": [
+      {
+        "outline": "Dan and Naphtali",
+        "verses": [
+          "1-8"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Gad and Asher",
+        "verses": [
+          "9-16"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Issachar, Zebulun, and Dinah",
+        "verses": [
+          "17-21"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Joseph",
+        "verses": [
+          "22-24"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jacob Prospers",
+        "verses": [
+          "25-43"
+        ],
+        "references": []
+      }
+    ],
+    "31": [
+      {
+        "outline": "Jacob Flees from Laban",
+        "verses": [
+          "1-21"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Laban Pursues Jacob",
+        "verses": [
+          "22-42"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jacob’s Covenant with Laban",
+        "verses": [
+          "43-55"
+        ],
+        "references": []
+      }
+    ],
+    "32": [
+      {
+        "outline": "Jacob Prepares to Meet Esau",
+        "verses": [
+          "1-21"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jacob Wrestles with God",
+        "verses": [
+          "22-32"
+        ],
+        "references": []
+      }
+    ],
+    "33": [
+      {
+        "outline": "Jacob Meets Esau",
+        "verses": [
+          "1-17"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jacob Settles in Shechem",
+        "verses": [
+          "18-20"
+        ],
+        "references": []
+      }
+    ],
+    "34": [
+      {
+        "outline": "The Defiling of Dinah",
+        "verses": [
+          "1-12"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Revenge of Dinah’s Brothers",
+        "verses": [
+          "13-31"
+        ],
+        "references": []
+      }
+    ],
+    "35": [
+      {
+        "outline": "Jacob Returns to Bethel",
+        "verses": [
+          "1-15"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Benjamin Born, Rachel Dies",
+        "verses": [
+          "16-20"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Sons of Jacob",
+        "verses": [
+          "21-26"
+        ],
+        "references": [
+          "1 Chronicles 2:1–2"
+        ]
+      },
+      {
+        "outline": "The Death of Isaac",
+        "verses": [
+          "27-29"
+        ],
+        "references": []
+      }
+    ],
+    "36": [
+      {
+        "outline": "The Descendants of Esau",
+        "verses": [
+          "1-19"
+        ],
+        "references": [
+          "1 Chronicles 1:35–37"
+        ]
+      },
+      {
+        "outline": "The Descendants of Seir",
+        "verses": [
+          "20-30"
+        ],
+        "references": [
+          "1 Chronicles 1:38–42"
+        ]
+      },
+      {
+        "outline": "The Kings of Edom",
+        "verses": [
+          "31-43"
+        ],
+        "references": [
+          "1 Chronicles 1:43–54"
+        ]
+      }
+    ],
+    "37": [
+      {
+        "outline": "Joseph’s Dreams",
+        "verses": [
+          "1-11"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Joseph Sold into Egypt",
+        "verses": [
+          "12-30"
+        ],
+        "references": [
+          "Acts 7:9–14"
+        ]
+      },
+      {
+        "outline": "Jacob Mourns Joseph",
+        "verses": [
+          "31-36"
+        ],
+        "references": []
+      }
+    ],
+    "38": [
+      {
+        "outline": "Judah and Tamar",
+        "verses": [
+          "1-26"
+        ],
+        "references": [
+          "1 Chronicles 2:3–4"
+        ]
+      },
+      {
+        "outline": "The Birth of Perez and Zerah",
+        "verses": [
+          "27-30"
+        ],
+        "references": []
+      }
+    ],
+    "39": [
+      {
+        "outline": "Joseph and Potiphar’s Wife",
+        "verses": [
+          "1-12"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Joseph Falsely Imprisoned",
+        "verses": [
+          "13-23"
+        ],
+        "references": []
+      }
+    ],
+    "40": [
+      {
+        "outline": "The Cupbearer and the Baker",
+        "verses": [
+          "1-23"
+        ],
+        "references": []
+      }
+    ],
+    "41": [
+      {
+        "outline": "The Dreams of Pharaoh",
+        "verses": [
+          "1-13"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Joseph Interprets Pharaoh’s Dreams",
+        "verses": [
+          "14-36"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Joseph Given Charge of Egypt",
+        "verses": [
+          "37-45"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Seven Years of Plenty",
+        "verses": [
+          "46-52"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Famine Begins",
+        "verses": [
+          "53-57"
+        ],
+        "references": []
+      }
+    ],
+    "42": [
+      {
+        "outline": "Joseph’s Brothers Sent to Egypt",
+        "verses": [
+          "1-24"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Joseph’s Brothers Return to Canaan",
+        "verses": [
+          "25-38"
+        ],
+        "references": []
+      }
+    ],
+    "43": [
+      {
+        "outline": "The Return to Egypt with Benjamin",
+        "verses": [
+          "1-15"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Joseph’s Hospitality to His Brothers",
+        "verses": [
+          "16-34"
+        ],
+        "references": []
+      }
+    ],
+    "44": [
+      {
+        "outline": "Benjamin and the Silver Cup",
+        "verses": [
+          "1-17"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Judah Pleads for Benjamin",
+        "verses": [
+          "18-34"
+        ],
+        "references": []
+      }
+    ],
+    "45": [
+      {
+        "outline": "Joseph Reveals His Identity",
+        "verses": [
+          "1-8"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Joseph Sends for His Father",
+        "verses": [
+          "9-15"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Pharaoh Invites Jacob to Egypt",
+        "verses": [
+          "16-24"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Revival of Jacob",
+        "verses": [
+          "25-28"
+        ],
+        "references": []
+      }
+    ],
+    "46": [
+      {
+        "outline": "Jacob’s Journey to Egypt",
+        "verses": [
+          "1-6"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Those Who Went to Egypt",
+        "verses": [
+          "7-27"
+        ],
+        "references": [
+          "Exodus 1:1–7"
+        ]
+      },
+      {
+        "outline": "Jacob Arrives in Egypt",
+        "verses": [
+          "28-34"
+        ],
+        "references": []
+      }
+    ],
+    "47": [
+      {
+        "outline": "Jacob Settles in Goshen",
+        "verses": [
+          "1-12"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Famine Continues",
+        "verses": [
+          "13-26"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Israelites Prosper in Goshen",
+        "verses": [
+          "27-31"
+        ],
+        "references": []
+      }
+    ],
+    "48": [
+      {
+        "outline": "Jacob Blesses Ephraim and Manasseh",
+        "verses": [
+          "1-22"
+        ],
+        "references": []
+      }
+    ],
+    "49": [
+      {
+        "outline": "Jacob Blesses His Sons",
+        "verses": [
+          "1-28"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Death of Jacob",
+        "verses": [
+          "29-33"
+        ],
+        "references": []
+      }
+    ],
+    "50": [
+      {
+        "outline": "Mourning and Burial for Jacob",
+        "verses": [
+          "1-14"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Joseph Comforts His Brothers",
+        "verses": [
+          "15-21"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Death of Joseph",
+        "verses": [
+          "22-26"
+        ],
+        "references": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,929 @@
+{
+  "chapterTopics": {
+    "1": [
+      {
+        "outline": "Ezekiel’s Vision by the River Kebar",
+        "verses": [
+          "1-3"
+        ],
+        "references": [
+          "Psalms 137:1–9"
+        ]
+      },
+      {
+        "outline": "The Four Living Creatures",
+        "verses": [
+          "4-14"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Four Wheels",
+        "verses": [
+          "15-21"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Divine Glory",
+        "verses": [
+          "22-28"
+        ],
+        "references": []
+      }
+    ],
+    "2": [
+      {
+        "outline": "Ezekiel’s Call",
+        "verses": [
+          "1-10"
+        ],
+        "references": []
+      }
+    ],
+    "3": [
+      {
+        "outline": "Ezekiel Eats the Scroll",
+        "verses": [
+          "1-15"
+        ],
+        "references": [
+          "Revelation 10:1–11"
+        ]
+      },
+      {
+        "outline": "A Watchman for Israel",
+        "verses": [
+          "16-27"
+        ],
+        "references": []
+      }
+    ],
+    "4": [
+      {
+        "outline": "A Sign of Jerusalem’s Siege",
+        "verses": [
+          "1-8"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Defiled Bread",
+        "verses": [
+          "9-17"
+        ],
+        "references": []
+      }
+    ],
+    "5": [
+      {
+        "outline": "The Razor of Judgment",
+        "verses": [
+          "1-10"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Famine, Sword, and Dispersion",
+        "verses": [
+          "11-17"
+        ],
+        "references": []
+      }
+    ],
+    "6": [
+      {
+        "outline": "Judgment against Idolatry",
+        "verses": [
+          "1-7"
+        ],
+        "references": [
+          "Deuteronomy 4:15–31",
+          "Deuteronomy 12:29–32"
+        ]
+      },
+      {
+        "outline": "A Remnant to Be Blessed",
+        "verses": [
+          "8-14"
+        ],
+        "references": []
+      }
+    ],
+    "7": [
+      {
+        "outline": "The Hour of Doom",
+        "verses": [
+          "1-13"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Desolation of Israel",
+        "verses": [
+          "14-27"
+        ],
+        "references": []
+      }
+    ],
+    "8": [
+      {
+        "outline": "The Vision of Idolatry in the Temple",
+        "verses": [
+          "1-18"
+        ],
+        "references": []
+      }
+    ],
+    "9": [
+      {
+        "outline": "Execution of the Idolaters",
+        "verses": [
+          "1-11"
+        ],
+        "references": []
+      }
+    ],
+    "10": [
+      {
+        "outline": "God’s Glory Exits the Temple",
+        "verses": [
+          "1-22"
+        ],
+        "references": []
+      }
+    ],
+    "11": [
+      {
+        "outline": "Evil in High Places",
+        "verses": [
+          "1-12"
+        ],
+        "references": []
+      },
+      {
+        "outline": "A Promise of Restoration",
+        "verses": [
+          "13-21"
+        ],
+        "references": [
+          "Jeremiah 32:36–44"
+        ]
+      },
+      {
+        "outline": "God’s Glory Leaves Jerusalem",
+        "verses": [
+          "22-25"
+        ],
+        "references": []
+      }
+    ],
+    "12": [
+      {
+        "outline": "Signs of the Coming Captivity",
+        "verses": [
+          "1-20"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Presumptuous Proverb",
+        "verses": [
+          "21-28"
+        ],
+        "references": []
+      }
+    ],
+    "13": [
+      {
+        "outline": "Reproof of False Prophets",
+        "verses": [
+          "1-16"
+        ],
+        "references": [
+          "Micah 2:6–11"
+        ]
+      },
+      {
+        "outline": "Reproof of False Prophetesses",
+        "verses": [
+          "17-23"
+        ],
+        "references": []
+      }
+    ],
+    "14": [
+      {
+        "outline": "Idolatrous Elders Condemned",
+        "verses": [
+          "1-11"
+        ],
+        "references": [
+          "Romans 14:13–23",
+          "1 Corinthians 8:1–13"
+        ]
+      },
+      {
+        "outline": "Four Dire Judgments",
+        "verses": [
+          "12-23"
+        ],
+        "references": []
+      }
+    ],
+    "15": [
+      {
+        "outline": "Jerusalem the Useless Vine",
+        "verses": [
+          "1-8"
+        ],
+        "references": []
+      }
+    ],
+    "16": [
+      {
+        "outline": "Jerusalem’s Unfaithfulness",
+        "verses": [
+          "1-34"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Judgment on Jerusalem",
+        "verses": [
+          "35-58"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Covenant Remembered",
+        "verses": [
+          "59-63"
+        ],
+        "references": []
+      }
+    ],
+    "17": [
+      {
+        "outline": "The Parable of Two Eagles and a Vine",
+        "verses": [
+          "1-10"
+        ],
+        "references": [
+          "Matthew 13:24–30"
+        ]
+      },
+      {
+        "outline": "The Parable Explained",
+        "verses": [
+          "11-24"
+        ],
+        "references": []
+      }
+    ],
+    "18": [
+      {
+        "outline": "The Soul Who Sins Will Die",
+        "verses": [
+          "1-32"
+        ],
+        "references": []
+      }
+    ],
+    "19": [
+      {
+        "outline": "A Lament for the Princes of Israel",
+        "verses": [
+          "1-14"
+        ],
+        "references": []
+      }
+    ],
+    "20": [
+      {
+        "outline": "Israel’s Rebellion in Egypt",
+        "verses": [
+          "1-9"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Israel’s Rebellion in the Wilderness",
+        "verses": [
+          "10-26"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Israel’s Rebellion in the Land",
+        "verses": [
+          "27-32"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Judgment and Restoration",
+        "verses": [
+          "33-44"
+        ],
+        "references": []
+      },
+      {
+        "outline": "A Prophecy against the South",
+        "verses": [
+          "45-49"
+        ],
+        "references": []
+      }
+    ],
+    "21": [
+      {
+        "outline": "God’s Sword of Judgment",
+        "verses": [
+          "1-32"
+        ],
+        "references": []
+      }
+    ],
+    "22": [
+      {
+        "outline": "The Sins of Jerusalem",
+        "verses": [
+          "1-16"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Refining Furnace",
+        "verses": [
+          "17-22"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Israel’s Wicked Leaders",
+        "verses": [
+          "23-31"
+        ],
+        "references": []
+      }
+    ],
+    "23": [
+      {
+        "outline": "The Two Adulterous Sisters",
+        "verses": [
+          "1-21"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Oholibah to Be Plagued",
+        "verses": [
+          "22-35"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Judgment on Both Sisters",
+        "verses": [
+          "36-49"
+        ],
+        "references": []
+      }
+    ],
+    "24": [
+      {
+        "outline": "The Parable of the Cooking Pot",
+        "verses": [
+          "1-14"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Ezekiel’s Wife Dies",
+        "verses": [
+          "15-27"
+        ],
+        "references": []
+      }
+    ],
+    "25": [
+      {
+        "outline": "A Prophecy against Ammon",
+        "verses": [
+          "1-7"
+        ],
+        "references": []
+      },
+      {
+        "outline": "A Prophecy against Moab",
+        "verses": [
+          "8-11"
+        ],
+        "references": []
+      },
+      {
+        "outline": "A Prophecy against Edom",
+        "verses": [
+          "12-14"
+        ],
+        "references": []
+      },
+      {
+        "outline": "A Prophecy against the Philistines",
+        "verses": [
+          "15-17"
+        ],
+        "references": []
+      }
+    ],
+    "26": [
+      {
+        "outline": "A Prophecy against Tyre",
+        "verses": [
+          "1-21"
+        ],
+        "references": [
+          "Isaiah 23:1–18"
+        ]
+      }
+    ],
+    "27": [
+      {
+        "outline": "A Lament for Tyre",
+        "verses": [
+          "1-36"
+        ],
+        "references": []
+      }
+    ],
+    "28": [
+      {
+        "outline": "A Prophecy against the Ruler of Tyre",
+        "verses": [
+          "1-10"
+        ],
+        "references": []
+      },
+      {
+        "outline": "A Lament for the King of Tyre",
+        "verses": [
+          "11-19"
+        ],
+        "references": []
+      },
+      {
+        "outline": "A Prophecy against Sidon",
+        "verses": [
+          "20-24"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Restoration of Israel",
+        "verses": [
+          "25-26"
+        ],
+        "references": [
+          "Jeremiah 30:1–17"
+        ]
+      }
+    ],
+    "29": [
+      {
+        "outline": "A Prophecy against Pharaoh",
+        "verses": [
+          "1-7"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Desolation of Egypt",
+        "verses": [
+          "8-16"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Egypt the Reward of Nebuchadnezzar",
+        "verses": [
+          "17-21"
+        ],
+        "references": []
+      }
+    ],
+    "30": [
+      {
+        "outline": "A Lament for Egypt",
+        "verses": [
+          "1-19"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Pharaoh’s Power Broken",
+        "verses": [
+          "20-26"
+        ],
+        "references": []
+      }
+    ],
+    "31": [
+      {
+        "outline": "Egypt Will Fall like Assyria",
+        "verses": [
+          "1-18"
+        ],
+        "references": []
+      }
+    ],
+    "32": [
+      {
+        "outline": "A Lament for Pharaoh King of Egypt",
+        "verses": [
+          "1-16"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Egypt Cast into the Pit",
+        "verses": [
+          "17-32"
+        ],
+        "references": []
+      }
+    ],
+    "33": [
+      {
+        "outline": "Ezekiel the Watchman for Israel",
+        "verses": [
+          "1-9"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Message of the Watchman",
+        "verses": [
+          "10-20"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Word of Jerusalem’s Fall",
+        "verses": [
+          "21-33"
+        ],
+        "references": []
+      }
+    ],
+    "34": [
+      {
+        "outline": "A Prophecy against Israel’s Shepherds",
+        "verses": [
+          "1-10"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Good Shepherd",
+        "verses": [
+          "11-24"
+        ],
+        "references": [
+          "Psalms 23:1–6",
+          "John 10:1–21"
+        ]
+      },
+      {
+        "outline": "The Covenant of Peace",
+        "verses": [
+          "25-31"
+        ],
+        "references": []
+      }
+    ],
+    "35": [
+      {
+        "outline": "A Prophecy against Mount Seir",
+        "verses": [
+          "1-15"
+        ],
+        "references": []
+      }
+    ],
+    "36": [
+      {
+        "outline": "A Prophecy to the Mountains of Israel",
+        "verses": [
+          "1-15"
+        ],
+        "references": []
+      },
+      {
+        "outline": "A New Heart and a New Spirit",
+        "verses": [
+          "16-38"
+        ],
+        "references": [
+          "Romans 8:9–11",
+          "Galatians 5:16–26"
+        ]
+      }
+    ],
+    "37": [
+      {
+        "outline": "The Valley of Dry Bones",
+        "verses": [
+          "1-14"
+        ],
+        "references": []
+      },
+      {
+        "outline": "One Nation with One King",
+        "verses": [
+          "15-28"
+        ],
+        "references": []
+      }
+    ],
+    "38": [
+      {
+        "outline": "A Prophecy against Gog",
+        "verses": [
+          "1-23"
+        ],
+        "references": []
+      }
+    ],
+    "39": [
+      {
+        "outline": "The Slaughter of Gog’s Armies",
+        "verses": [
+          "1-20"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Israel to Be Restored",
+        "verses": [
+          "21-29"
+        ],
+        "references": []
+      }
+    ],
+    "40": [
+      {
+        "outline": "The Man with a Measuring Rod",
+        "verses": [
+          "1-4"
+        ],
+        "references": [
+          "Zechariah 2:1–5"
+        ]
+      },
+      {
+        "outline": "The East Gate",
+        "verses": [
+          "5-16"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Outer Court",
+        "verses": [
+          "17-19"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The North Gate",
+        "verses": [
+          "20-23"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The South Gate",
+        "verses": [
+          "24-27"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Gates of the Inner Court",
+        "verses": [
+          "28-37"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Eight Tables for Sacrifices",
+        "verses": [
+          "38-43"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Chambers for Ministry",
+        "verses": [
+          "44-46"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Inner Court",
+        "verses": [
+          "47-49"
+        ],
+        "references": []
+      }
+    ],
+    "41": [
+      {
+        "outline": "Inside the Temple",
+        "verses": [
+          "1-4"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Outside the Temple",
+        "verses": [
+          "5-14"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Interior Structures",
+        "verses": [
+          "15-26"
+        ],
+        "references": []
+      }
+    ],
+    "42": [
+      {
+        "outline": "Chambers for the Priests",
+        "verses": [
+          "1-14"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Outer Measurements",
+        "verses": [
+          "15-20"
+        ],
+        "references": []
+      }
+    ],
+    "43": [
+      {
+        "outline": "The Glory of the LORD Returns to the Temple",
+        "verses": [
+          "1-12"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Altar of Sacrifice",
+        "verses": [
+          "13-27"
+        ],
+        "references": []
+      }
+    ],
+    "44": [
+      {
+        "outline": "The East Gate Assigned to the Prince",
+        "verses": [
+          "1-5"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Reproof of the Levites",
+        "verses": [
+          "6-14"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Duties of the Priests",
+        "verses": [
+          "15-31"
+        ],
+        "references": []
+      }
+    ],
+    "45": [
+      {
+        "outline": "Consecration of the Land",
+        "verses": [
+          "1-6"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Prince’s Portion",
+        "verses": [
+          "7-9"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Honest Scales",
+        "verses": [
+          "10-12"
+        ],
+        "references": [
+          "Deuteronomy 25:13–16",
+          "Proverbs 11:1–3"
+        ]
+      },
+      {
+        "outline": "Offerings and Feasts",
+        "verses": [
+          "13-25"
+        ],
+        "references": []
+      }
+    ],
+    "46": [
+      {
+        "outline": "The Prince’s Offerings",
+        "verses": [
+          "1-18"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Courts for Boiling and Baking",
+        "verses": [
+          "19-24"
+        ],
+        "references": []
+      }
+    ],
+    "47": [
+      {
+        "outline": "Waters from under the Temple",
+        "verses": [
+          "1-12"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Borders of the Land",
+        "verses": [
+          "13-23"
+        ],
+        "references": []
+      }
+    ],
+    "48": [
+      {
+        "outline": "The Portions for the Tribes",
+        "verses": [
+          "1-7"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Portions for the Priests and Levites",
+        "verses": [
+          "8-14"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Common Portion",
+        "verses": [
+          "15-20"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Portion for the Prince",
+        "verses": [
+          "21-22"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Portions for the Remaining Tribes",
+        "verses": [
+          "23-29"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The City Gates and Dimensions",
+        "verses": [
+          "30-35"
+        ],
+        "references": []
+      }
+    ]
+  }
+}

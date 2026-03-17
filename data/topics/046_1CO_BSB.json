@@ -1,0 +1,404 @@
+{
+  "chapterTopics": {
+    "1": [
+      {
+        "outline": "Greetings from Paul and Sosthenes",
+        "verses": [
+          "1-3"
+        ],
+        "references": [
+          "Acts 18:1–11",
+          "2 Corinthians 1:1–2"
+        ]
+      },
+      {
+        "outline": "Thanksgiving",
+        "verses": [
+          "4-9"
+        ],
+        "references": [
+          "Philippians 1:3–11",
+          "Colossians 1:3–14"
+        ]
+      },
+      {
+        "outline": "Unity in the Church",
+        "verses": [
+          "10-17"
+        ],
+        "references": [
+          "Psalms 133:1–3",
+          "Ephesians 4:1–16"
+        ]
+      },
+      {
+        "outline": "The Message of the Cross",
+        "verses": [
+          "18-25"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Wisdom from God",
+        "verses": [
+          "26-31"
+        ],
+        "references": []
+      }
+    ],
+    "2": [
+      {
+        "outline": "Paul’s Message by the Spirit’s Power",
+        "verses": [
+          "1-5"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Spiritual Wisdom",
+        "verses": [
+          "6-16"
+        ],
+        "references": [
+          "Ephesians 1:15–23"
+        ]
+      }
+    ],
+    "3": [
+      {
+        "outline": "God’s Fellow Workers",
+        "verses": [
+          "1-9"
+        ],
+        "references": [
+          "Hebrews 5:11–14"
+        ]
+      },
+      {
+        "outline": "Christ Our Foundation",
+        "verses": [
+          "10-15"
+        ],
+        "references": [
+          "Isaiah 28:14–22",
+          "Ephesians 2:19–22",
+          "1 Peter 2:1–8"
+        ]
+      },
+      {
+        "outline": "God’s Temple and God’s Wisdom",
+        "verses": [
+          "16-23"
+        ],
+        "references": [
+          "Romans 12:1–8",
+          "1 Corinthians 6:18–20"
+        ]
+      }
+    ],
+    "4": [
+      {
+        "outline": "Servants of Christ",
+        "verses": [
+          "1-13"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Paul’s Fatherly Warning",
+        "verses": [
+          "14-21"
+        ],
+        "references": []
+      }
+    ],
+    "5": [
+      {
+        "outline": "Immorality Rebuked",
+        "verses": [
+          "1-8"
+        ],
+        "references": [
+          "Leviticus 20:10–21",
+          "Proverbs 5:1–23"
+        ]
+      },
+      {
+        "outline": "Expel the Immoral Brother",
+        "verses": [
+          "9-13"
+        ],
+        "references": []
+      }
+    ],
+    "6": [
+      {
+        "outline": "Lawsuits among Believers",
+        "verses": [
+          "1-8"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Members of Christ",
+        "verses": [
+          "9-17"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Temple of the Holy Spirit",
+        "verses": [
+          "18-20"
+        ],
+        "references": [
+          "Romans 12:1–8",
+          "1 Corinthians 3:16–23"
+        ]
+      }
+    ],
+    "7": [
+      {
+        "outline": "Principles of Marriage",
+        "verses": [
+          "1-16"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Live Your Calling",
+        "verses": [
+          "17-24"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Unmarried and Widowed",
+        "verses": [
+          "25-40"
+        ],
+        "references": []
+      }
+    ],
+    "8": [
+      {
+        "outline": "Food Sacrificed to Idols",
+        "verses": [
+          "1-13"
+        ],
+        "references": [
+          "Ezekiel 14:1–11",
+          "Romans 14:13–23"
+        ]
+      }
+    ],
+    "9": [
+      {
+        "outline": "The Rights of an Apostle",
+        "verses": [
+          "1-18"
+        ],
+        "references": [
+          "Deuteronomy 18:1–8"
+        ]
+      },
+      {
+        "outline": "Paul the Servant to All",
+        "verses": [
+          "19-23"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Run Your Race to Win",
+        "verses": [
+          "24-27"
+        ],
+        "references": []
+      }
+    ],
+    "10": [
+      {
+        "outline": "Warnings from Israel’s Past",
+        "verses": [
+          "1-13"
+        ],
+        "references": [
+          "Numbers 16:41–50",
+          "Numbers 25:1–5"
+        ]
+      },
+      {
+        "outline": "Flee from Idolatry",
+        "verses": [
+          "14-22"
+        ],
+        "references": [
+          "Exodus 20:22–26"
+        ]
+      },
+      {
+        "outline": "All to God’s Glory",
+        "verses": [
+          "23-33"
+        ],
+        "references": [
+          "1 Peter 4:1–11"
+        ]
+      }
+    ],
+    "11": [
+      {
+        "outline": "Roles in Worship",
+        "verses": [
+          "1-16"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Sharing in the Lord’s Supper",
+        "verses": [
+          "17-34"
+        ],
+        "references": [
+          "Matthew 26:20–30",
+          "Mark 14:17–26",
+          "Luke 22:14–23"
+        ]
+      }
+    ],
+    "12": [
+      {
+        "outline": "Spiritual Gifts",
+        "verses": [
+          "1-11"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Body of Christ",
+        "verses": [
+          "12-26"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Greater Gifts",
+        "verses": [
+          "27-31"
+        ],
+        "references": []
+      }
+    ],
+    "13": [
+      {
+        "outline": "Love",
+        "verses": [
+          "1-13"
+        ],
+        "references": []
+      }
+    ],
+    "14": [
+      {
+        "outline": "Prophecy and Tongues",
+        "verses": [
+          "1-25"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Orderly Worship",
+        "verses": [
+          "26-40"
+        ],
+        "references": []
+      }
+    ],
+    "15": [
+      {
+        "outline": "The Resurrection of Christ",
+        "verses": [
+          "1-11"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Resurrection of the Dead",
+        "verses": [
+          "12-19"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Order of Resurrection",
+        "verses": [
+          "20-34"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Resurrection Body",
+        "verses": [
+          "35-49"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Where, O Death, Is Your Victory?",
+        "verses": [
+          "50-58"
+        ],
+        "references": [
+          "Hosea 13:9–14"
+        ]
+      }
+    ],
+    "16": [
+      {
+        "outline": "The Collection for the Saints",
+        "verses": [
+          "1-4"
+        ],
+        "references": [
+          "2 Corinthians 9:1–15"
+        ]
+      },
+      {
+        "outline": "Paul’s Travel Plans",
+        "verses": [
+          "5-9"
+        ],
+        "references": [
+          "Romans 15:23–33"
+        ]
+      },
+      {
+        "outline": "Timothy and Apollos",
+        "verses": [
+          "10-12"
+        ],
+        "references": [
+          "Philippians 2:19–30"
+        ]
+      },
+      {
+        "outline": "Concluding Exhortations",
+        "verses": [
+          "13-18"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Signature and Final Greetings",
+        "verses": [
+          "19-24"
+        ],
+        "references": [
+          "Colossians 4:15–18",
+          "2 Thessalonians 3:16–18"
+        ]
+      }
+    ]
+  }
+}

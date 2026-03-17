@@ -1,0 +1,585 @@
+{
+  "chapterTopics": {
+    "1": [
+      {
+        "outline": "Elkanah and His Wives",
+        "verses": [
+          "1-8"
+        ],
+        "references": [
+          "Psalms 113:1–9"
+        ]
+      },
+      {
+        "outline": "Hannah Prays for a Son",
+        "verses": [
+          "9-18"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Birth of Samuel",
+        "verses": [
+          "19-28"
+        ],
+        "references": []
+      }
+    ],
+    "2": [
+      {
+        "outline": "Hannah’s Prayer of Thanksgiving",
+        "verses": [
+          "1-11"
+        ],
+        "references": [
+          "Luke 1:46–56"
+        ]
+      },
+      {
+        "outline": "Eli’s Wicked Sons",
+        "verses": [
+          "12-26"
+        ],
+        "references": []
+      },
+      {
+        "outline": "A Prophecy against the House of Eli",
+        "verses": [
+          "27-36"
+        ],
+        "references": []
+      }
+    ],
+    "3": [
+      {
+        "outline": "The LORD Calls Samuel",
+        "verses": [
+          "1-14"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Samuel Shares the Vision",
+        "verses": [
+          "15-21"
+        ],
+        "references": []
+      }
+    ],
+    "4": [
+      {
+        "outline": "The Philistines Capture the Ark",
+        "verses": [
+          "1-11"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Death of Eli",
+        "verses": [
+          "12-22"
+        ],
+        "references": []
+      }
+    ],
+    "5": [
+      {
+        "outline": "The Ark Afflicts the Philistines",
+        "verses": [
+          "1-12"
+        ],
+        "references": []
+      }
+    ],
+    "6": [
+      {
+        "outline": "The Ark Returned to Israel",
+        "verses": [
+          "1-21"
+        ],
+        "references": []
+      }
+    ],
+    "7": [
+      {
+        "outline": "Samuel Subdues the Philistines",
+        "verses": [
+          "1-17"
+        ],
+        "references": []
+      }
+    ],
+    "8": [
+      {
+        "outline": "Israel Demands a King",
+        "verses": [
+          "1-9"
+        ],
+        "references": [
+          "Deuteronomy 17:14–20"
+        ]
+      },
+      {
+        "outline": "Samuel’s Warning",
+        "verses": [
+          "10-18"
+        ],
+        "references": []
+      },
+      {
+        "outline": "God Grants the Request",
+        "verses": [
+          "19-22"
+        ],
+        "references": []
+      }
+    ],
+    "9": [
+      {
+        "outline": "Saul Chosen as King",
+        "verses": [
+          "1-27"
+        ],
+        "references": []
+      }
+    ],
+    "10": [
+      {
+        "outline": "Samuel Anoints Saul",
+        "verses": [
+          "1-8"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Samuel’s Signs Fulfilled",
+        "verses": [
+          "9-16"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Saul Proclaimed King",
+        "verses": [
+          "17-27"
+        ],
+        "references": []
+      }
+    ],
+    "11": [
+      {
+        "outline": "Saul Defeats the Ammonites",
+        "verses": [
+          "1-11"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Saul Confirmed as King",
+        "verses": [
+          "12-15"
+        ],
+        "references": []
+      }
+    ],
+    "12": [
+      {
+        "outline": "Samuel’s Farewell Address",
+        "verses": [
+          "1-25"
+        ],
+        "references": []
+      }
+    ],
+    "13": [
+      {
+        "outline": "War with the Philistines",
+        "verses": [
+          "1-7"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Saul’s Unlawful Sacrifice",
+        "verses": [
+          "8-15"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Israel without Weapons",
+        "verses": [
+          "16-23"
+        ],
+        "references": []
+      }
+    ],
+    "14": [
+      {
+        "outline": "Jonathan’s Victory over the Philistines",
+        "verses": [
+          "1-23"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jonathan Eats the Honey",
+        "verses": [
+          "24-36"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The People Save Jonathan",
+        "verses": [
+          "37-46"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Saul’s Victories",
+        "verses": [
+          "47-52"
+        ],
+        "references": []
+      }
+    ],
+    "15": [
+      {
+        "outline": "Saul’s Disobedience",
+        "verses": [
+          "1-9"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Samuel Denounces Saul",
+        "verses": [
+          "10-23"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Saul’s Confession",
+        "verses": [
+          "24-35"
+        ],
+        "references": []
+      }
+    ],
+    "16": [
+      {
+        "outline": "Samuel Anoints David",
+        "verses": [
+          "1-13"
+        ],
+        "references": []
+      },
+      {
+        "outline": "David Serves Saul",
+        "verses": [
+          "14-23"
+        ],
+        "references": []
+      }
+    ],
+    "17": [
+      {
+        "outline": "Goliath’s Challenge",
+        "verses": [
+          "1-11"
+        ],
+        "references": []
+      },
+      {
+        "outline": "David Accepts the Challenge",
+        "verses": [
+          "12-37"
+        ],
+        "references": []
+      },
+      {
+        "outline": "David Slays Goliath",
+        "verses": [
+          "38-58"
+        ],
+        "references": []
+      }
+    ],
+    "18": [
+      {
+        "outline": "Jonathan Befriends David",
+        "verses": [
+          "1-4"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Saul Envies David",
+        "verses": [
+          "5-16"
+        ],
+        "references": []
+      },
+      {
+        "outline": "David Marries Michal",
+        "verses": [
+          "17-30"
+        ],
+        "references": []
+      }
+    ],
+    "19": [
+      {
+        "outline": "Saul Tries to Kill David",
+        "verses": [
+          "1-24"
+        ],
+        "references": [
+          "Psalms 59:1–17"
+        ]
+      }
+    ],
+    "20": [
+      {
+        "outline": "Jonathan Helps David",
+        "verses": [
+          "1-9"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Jonathan and David Renew Their Covenant",
+        "verses": [
+          "10-29"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Saul Seeks to Kill Jonathan",
+        "verses": [
+          "30-42"
+        ],
+        "references": []
+      }
+    ],
+    "21": [
+      {
+        "outline": "David Takes the Consecrated Bread",
+        "verses": [
+          "1-7"
+        ],
+        "references": [
+          "Matthew 12:1–8",
+          "Mark 2:23–28",
+          "Luke 6:1–5"
+        ]
+      },
+      {
+        "outline": "David Flees to Gath",
+        "verses": [
+          "8-15"
+        ],
+        "references": [
+          "Psalms 34:1–22",
+          "Psalms 56:1–13"
+        ]
+      }
+    ],
+    "22": [
+      {
+        "outline": "David Flees to Adullam and Mizpeh",
+        "verses": [
+          "1-5"
+        ],
+        "references": [
+          "Psalms 57:1–11",
+          "Psalms 142:1–7"
+        ]
+      },
+      {
+        "outline": "Saul Slays the Priests of Nob",
+        "verses": [
+          "6-23"
+        ],
+        "references": [
+          "Psalms 52:1–9"
+        ]
+      }
+    ],
+    "23": [
+      {
+        "outline": "David Delivers Keilah",
+        "verses": [
+          "1-6"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Saul Pursues David",
+        "verses": [
+          "7-29"
+        ],
+        "references": [
+          "Psalms 54:1–7"
+        ]
+      }
+    ],
+    "24": [
+      {
+        "outline": "David Spares Saul",
+        "verses": [
+          "1-15"
+        ],
+        "references": []
+      },
+      {
+        "outline": "David’s Oath to Saul",
+        "verses": [
+          "16-22"
+        ],
+        "references": []
+      }
+    ],
+    "25": [
+      {
+        "outline": "The Death of Samuel",
+        "verses": [
+          "1"
+        ],
+        "references": []
+      },
+      {
+        "outline": "David, Nabal, and Abigail",
+        "verses": [
+          "2-17"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Abigail Intercedes for Nabal",
+        "verses": [
+          "18-38"
+        ],
+        "references": []
+      },
+      {
+        "outline": "David Marries Abigail",
+        "verses": [
+          "39-44"
+        ],
+        "references": []
+      }
+    ],
+    "26": [
+      {
+        "outline": "David Again Spares Saul",
+        "verses": [
+          "1-12"
+        ],
+        "references": []
+      },
+      {
+        "outline": "David Reproves Abner",
+        "verses": [
+          "13-20"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Saul Acknowledges His Sin",
+        "verses": [
+          "21-25"
+        ],
+        "references": []
+      }
+    ],
+    "27": [
+      {
+        "outline": "David and the Philistines",
+        "verses": [
+          "1-12"
+        ],
+        "references": []
+      }
+    ],
+    "28": [
+      {
+        "outline": "The Philistines Gather against Israel",
+        "verses": [
+          "1-6"
+        ],
+        "references": []
+      },
+      {
+        "outline": "Saul and the Medium of Endor",
+        "verses": [
+          "7-25"
+        ],
+        "references": []
+      }
+    ],
+    "29": [
+      {
+        "outline": "The Philistines Reject David",
+        "verses": [
+          "1-11"
+        ],
+        "references": []
+      }
+    ],
+    "30": [
+      {
+        "outline": "The Amalekites Raid Ziklag",
+        "verses": [
+          "1-6"
+        ],
+        "references": []
+      },
+      {
+        "outline": "David Destroys the Amalekites",
+        "verses": [
+          "7-20"
+        ],
+        "references": []
+      },
+      {
+        "outline": "The Spoils Are Divided",
+        "verses": [
+          "21-31"
+        ],
+        "references": []
+      }
+    ],
+    "31": [
+      {
+        "outline": "Saul’s Overthrow and Death",
+        "verses": [
+          "1-6"
+        ],
+        "references": [
+          "2 Samuel 1:1–16",
+          "1 Chronicles 10:1–6"
+        ]
+      },
+      {
+        "outline": "The Philistines Possess the Towns",
+        "verses": [
+          "7-10"
+        ],
+        "references": [
+          "1 Chronicles 10:7–10"
+        ]
+      },
+      {
+        "outline": "Jabesh-gilead’s Tribute to Saul",
+        "verses": [
+          "11-13"
+        ],
+        "references": [
+          "1 Chronicles 10:11–14"
+        ]
+      }
+    ]
+  }
+}
