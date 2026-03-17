@@ -1,3 +1,37 @@
+/* Header navigation buttons (centered, dark mode) */
+.bp-header__nav-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2em;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+.bp-header__nav-center button {
+  background: #222;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 6px;
+  padding: 0.4em 1.1em;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
+.bp-header__nav-center button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.bp-header__nav-center button:hover:not(:disabled) {
+  background: #333;
+  color: #ffe082;
+  border: 1px solid #ffe082;
+}
+.bp-header {
+  position: relative;
+}
 /* 4K centered columns for bible-chapter */
 @media (min-width: 3000px) {
   .bp-app {

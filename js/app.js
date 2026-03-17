@@ -24,6 +24,53 @@ function bpHandleBreakpoint() {
 window.addEventListener("resize", bpHandleBreakpoint);
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Update the selected book button in the horizontal scrollbar
+    function updateBookScrollbar(bookId) {
+      const bookBar = document.getElementById("bp-book-scrollbar");
+      if (!bookBar) return;
+      bookBar.querySelectorAll(".bp-book-scrollbar__btn").forEach((btn) => {
+        if (btn.dataset.book === bookId) {
+          btn.classList.add("selected");
+          // Optionally scroll into view
+          btn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+        } else {
+          btn.classList.remove("selected");
+        }
+      });
+    }
+    // Expose updateBookScrollbar globally
+    window.updateBookScrollbar = updateBookScrollbar;
+  // --- Back/Forward Navigation Buttons ---
+  const backBtn = document.getElementById("bp-nav-back");
+  const forwardBtn = document.getElementById("bp-nav-forward");
+  function updateNavButtons() {
+    if (backBtn)
+      backBtn.disabled =
+        window.history.state && window.history.state.idx > 0 ? false : true;
+    if (forwardBtn)
+      forwardBtn.disabled =
+        window.history.state &&
+        window.history.state.idx < window.history.length - 1
+          ? false
+          : true;
+  }
+  if (backBtn && forwardBtn) {
+    backBtn.onclick = () => window.history.back();
+    forwardBtn.onclick = () => window.history.forward();
+    window.addEventListener("popstate", (e) => {
+      // Try to reload chapter from state, but do NOT push a new state
+      if (
+        e.state &&
+        e.state.bookId &&
+        e.state.chapterNum &&
+        window.loadBibleChapter
+      ) {
+        window.loadBibleChapter(e.state.bookId, e.state.chapterNum, false);
+      }
+      updateNavButtons();
+    });
+    updateNavButtons();
+  }
   bpHandleBreakpoint();
   // Mobile overlay actions
   const copyBtn = document.getElementById("bp-copy-btn");
