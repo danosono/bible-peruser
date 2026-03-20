@@ -1,3 +1,10 @@
+import {
+  bookNames,
+  bookOrder,
+  saveLastRead,
+  getLastRead,
+} from "./bible-utils.js";
+
 // js/bible-loader.js - loads a chapter from bible.json and displays it in <main>
 
 async function loadBibleChapter(
@@ -6,16 +13,12 @@ async function loadBibleChapter(
   pushState = true,
 ) {
   // Push state for browser navigation only if not handling popstate
-    // Update book scrollbar selection
-    if (window.updateBookScrollbar) window.updateBookScrollbar(bookId);
+  // Update book scrollbar selection
+  if (window.updateBookScrollbar) window.updateBookScrollbar(bookId);
   if (pushState && window.history && window.history.pushState) {
     const state = {
       bookId,
       chapterNum,
-      idx:
-        history.state && typeof history.state.idx === "number"
-          ? history.state.idx + 1
-          : 0,
     };
     window.history.pushState(
       state,
@@ -43,107 +46,40 @@ async function loadBibleChapter(
       return;
     }
     // Book name mapping from app.js
-    const bookNames = {
-      GEN: "Genesis",
-      EXO: "Exodus",
-      LEV: "Leviticus",
-      NUM: "Numbers",
-      DEU: "Deuteronomy",
-      JOS: "Joshua",
-      JDG: "Judges",
-      RUT: "Ruth",
-      "1SA": "1 Samuel",
-      "2SA": "2 Samuel",
-      "1KI": "1 Kings",
-      "2KI": "2 Kings",
-      "1CH": "1 Chronicles",
-      "2CH": "2 Chronicles",
-      EZR: "Ezra",
-      NEH: "Nehemiah",
-      EST: "Esther",
-      JOB: "Job",
-      PSA: "Psalms",
-      PRO: "Proverbs",
-      ECC: "Ecclesiastes",
-      SNG: "Song of Solomon",
-      ISA: "Isaiah",
-      JER: "Jeremiah",
-      LAM: "Lamentations",
-      EZK: "Ezekiel",
-      DAN: "Daniel",
-      HOS: "Hosea",
-      JOL: "Joel",
-      AMO: "Amos",
-      OBA: "Obadiah",
-      JON: "Jonah",
-      MIC: "Micah",
-      NAM: "Nahum",
-      HAB: "Habakkuk",
-      ZEP: "Zephaniah",
-      HAG: "Haggai",
-      ZEC: "Zechariah",
-      MAL: "Malachi",
-      MAT: "Matthew",
-      MRK: "Mark",
-      LUK: "Luke",
-      JHN: "John",
-      ACT: "Acts",
-      ROM: "Romans",
-      "1CO": "1 Corinthians",
-      "2CO": "2 Corinthians",
-      GAL: "Galatians",
-      EPH: "Ephesians",
-      PHP: "Philippians",
-      COL: "Colossians",
-      "1TH": "1 Thessalonians",
-      "2TH": "2 Thessalonians",
-      "1TI": "1 Timothy",
-      "2TI": "2 Timothy",
-      TIT: "Titus",
-      PHM: "Philemon",
-      HEB: "Hebrews",
-      JAS: "James",
-      "1PE": "1 Peter",
-      "2PE": "2 Peter",
-      "1JN": "1 John",
-      "2JN": "2 John",
-      "3JN": "3 John",
-      JUD: "Jude",
-      REV: "Revelation",
-    };
     let bookName = bookNames[bookId] || bookId;
     let html = `<h2>${bookName} ${chapterNum}</h2>`;
     // Determine column and font layout
     let columnClass = "";
     let fontClass = "";
-    const verseCount = chapter.verses.length;
+    let charCount = 0;
+    for (const verse of chapter.verses) {
+      charCount += verse.text.length;
+    }
     if (window.innerWidth >= 3000) {
-      if (verseCount <= 19) columnClass = "center-1";
-      else if (verseCount <= 48) columnClass = "center-2";
-      else if (verseCount <= 79) columnClass = "center-3";
-      else if (verseCount <= 90) columnClass = "center-4";
+      if (charCount <= 2700) columnClass = "center-1";
+      else if (charCount <= 5100) columnClass = "center-2";
+      else if (charCount <= 8000) columnClass = "center-3";
+      else if (charCount <= 12000) columnClass = "center-4";
       else {
         columnClass = "hd-center-4";
         fontClass = "font-4k-psalms-119";
       }
     }
     if (window.innerWidth >= 900 && window.innerWidth < 3000) {
-      if (verseCount > 81) {
+      if (charCount > 12000) {
         columnClass = "hd-center-3-psalms-119";
         fontClass = "font-psalms-119";
-      } else if (verseCount > 48) {
+      } else if (charCount > 4200) {
         columnClass = "hd-center-3";
         fontClass = "font-xsmall";
-      } else if (verseCount > 30) {
+      } else {
         columnClass = "hd-center-3";
         fontClass = fontClass || "font-small";
       }
     }
     html += `<div class="bible-chapter${columnClass ? " " + columnClass : ""}${fontClass ? " " + fontClass : ""}">`;
-    let charCount = 0;
     for (const verse of chapter.verses) {
       html += `<span class="verse-num" data-verse="${verse.n}">${verse.n}</span> <span class="verse-text" data-verse="${verse.n}">${verse.text}</span><br>`;
-      charCount += verse.text.length;
       // Collect words for frequency analysis
       if (!window._chapterWords) window._chapterWords = [];
       window._chapterWords.push(...verse.text.split(/\W+/));
@@ -155,83 +91,12 @@ async function loadBibleChapter(
     const topicBar = document.getElementById("chapter-topic-bar");
     if (topicBar) topicBar.innerHTML = "";
     // Try to load topics for the current book, using new predictable filename: NNN_BOOKID_BSB.json
-    const bookOrder = [
-      "GEN",
-      "EXO",
-      "LEV",
-      "NUM",
-      "DEU",
-      "JOS",
-      "JDG",
-      "RUT",
-      "1SA",
-      "2SA",
-      "1KI",
-      "2KI",
-      "1CH",
-      "2CH",
-      "EZR",
-      "NEH",
-      "EST",
-      "JOB",
-      "PSA",
-      "PRO",
-      "ECC",
-      "SNG",
-      "ISA",
-      "JER",
-      "LAM",
-      "EZK",
-      "DAN",
-      "HOS",
-      "JOL",
-      "AMO",
-      "OBA",
-      "JON",
-      "MIC",
-      "NAM",
-      "HAB",
-      "ZEP",
-      "HAG",
-      "ZEC",
-      "MAL",
-      "MAT",
-      "MRK",
-      "LUK",
-      "JHN",
-      "ACT",
-      "ROM",
-      "1CO",
-      "2CO",
-      "GAL",
-      "EPH",
-      "PHP",
-      "COL",
-      "1TH",
-      "2TH",
-      "1TI",
-      "2TI",
-      "TIT",
-      "PHM",
-      "HEB",
-      "JAS",
-      "1PE",
-      "2PE",
-      "1JN",
-      "2JN",
-      "3JN",
-      "JUD",
-      "REV",
-    ];
-    function getTopicFilename(bid) {
-      const idx = bookOrder.indexOf(bid);
-      if (idx === -1) return null;
-      const num = (idx + 1).toString().padStart(3, "0");
-      return `data/topics/${num}_${bid}_BSB.json`;
-    }
-
     const topicFile = getTopicFilename(bookId);
     const topicFileCandidates = topicFile ? [topicFile] : [];
+
+    // Clear right sidebar
+    const aside = document.querySelector(".bp-sidebar--right");
+    if (aside) aside.innerHTML = "";
 
     function tryFetchTopicFile(files, cb) {
       if (!files.length) return cb(null);
@@ -246,6 +111,7 @@ async function loadBibleChapter(
       const chapterTopics = topics.chapterTopics[chapterNum] || [];
       // Create highlight buttons in right sidebar
       const aside = document.querySelector(".bp-sidebar--right");
+      if (aside) aside.innerHTML = "";
       let highlightBar = document.getElementById("chapter-highlight-bar");
       if (!highlightBar && aside) {
         highlightBar = document.createElement("div");
@@ -257,40 +123,382 @@ async function loadBibleChapter(
         aside.insertBefore(highlightBar, aside.firstChild);
       }
       if (highlightBar) highlightBar.innerHTML = "";
-      // LEFT: label and outline buttons
+      // LEFT: label and outline buttons (with highlight logic)
       chapterTopics.forEach((topic) => {
         let btn = null;
+        let type = null;
         if (topic.label) {
           btn = document.createElement("button");
           btn.textContent = topic.label;
           btn.className = "topic-btn topic-label-btn";
-          topicBar.appendChild(btn);
+          type = "label";
         } else if (topic.outline) {
           btn = document.createElement("button");
           btn.className = "topic-btn topic-outline-btn";
           if (Array.isArray(topic.references) && topic.references.length) {
-            btn.innerHTML = `<span class=\"outline-arrow\">&#9654;</span> ${topic.outline}`;
-            // ...existing tooltip logic (copy from above if needed)...
+            // Create link icon span
+            const linkIcon = document.createElement("span");
+            linkIcon.className = "outline-link-icon";
+            linkIcon.innerHTML = "&#x1F4D6;"; // Unicode book icon
+            // Tooltip message
+            linkIcon.title =
+              topic.references.join("; ") +
+              "\nClick to pin or follow reference";
+            // Add click handler for sticky/follow
+            linkIcon.style.cursor = "pointer";
+            linkIcon.addEventListener("click", (e) => {
+              e.stopPropagation();
+              showReferenceMenu(linkIcon, topic.references, topic, btn);
+            });
+            btn.appendChild(linkIcon);
+            // Always append the outline text as a text node
+            btn.appendChild(document.createTextNode(" " + topic.outline));
+            // Show a menu of references for navigation and pinning
+            function showReferenceMenu(icon, references, topic, outlineBtn) {
+              // Remove any existing menu
+              document
+                .querySelectorAll(".reference-menu")
+                .forEach((m) => m.remove());
+              // Create menu
+              const menu = document.createElement("div");
+              menu.className = "reference-menu";
+              menu.style.position = "absolute";
+              menu.style.zIndex = 1000;
+              menu.style.background = "#fff";
+              menu.style.border = "1px solid #ccc";
+              menu.style.boxShadow = "0 2px 8px rgba(0,0,0,0.15)";
+              menu.style.padding = "6px 10px";
+              menu.style.borderRadius = "6px";
+              menu.style.fontSize = "14px";
+              menu.style.minWidth = "180px";
+              menu.style.maxWidth = "320px";
+              menu.style.color = "#222";
+              menu.style.cursor = "default";
+              // Add references as clickable items
+              references.forEach((ref) => {
+                const refItem = document.createElement("div");
+                refItem.className = "reference-menu-item";
+                refItem.textContent = ref;
+                refItem.style.padding = "4px 0";
+                refItem.style.cursor = "pointer";
+                refItem.addEventListener("click", (e) => {
+                  e.stopPropagation();
+                  menu.remove();
+                  handleReferenceClick(ref, topic, outlineBtn);
+                });
+                menu.appendChild(refItem);
+              });
+              // Add pin option
+              const pinItem = document.createElement("div");
+              pinItem.textContent = "Close";
+              pinItem.className = "reference-menu-item";
+              pinItem.style.padding = "4px 0";
+              pinItem.style.cursor = "pointer";
+              pinItem.style.color = "#0074d9";
+              pinItem.addEventListener("click", (e) => {
+                e.stopPropagation();
+                menu.remove();
+                pinOutline(topic, outlineBtn);
+              });
+              menu.appendChild(document.createElement("hr"));
+              menu.appendChild(pinItem);
+              // Position menu below icon
+              const rect = icon.getBoundingClientRect();
+              menu.style.left = `${rect.left + window.scrollX}px`;
+              menu.style.top = `${rect.bottom + window.scrollY + 2}px`;
+              document.body.appendChild(menu);
+              // Remove menu on outside click
+              setTimeout(() => {
+                document.addEventListener("mousedown", function handler(e) {
+                  if (!menu.contains(e.target)) {
+                    menu.remove();
+                    document.removeEventListener("mousedown", handler);
+                  }
+                });
+              }, 0);
+            }
+
+            // Handle clicking a reference: navigate and auto-select outline if possible
+            function handleReferenceClick(ref, topic, outlineBtn) {
+              // Parse reference (e.g., "Ruth 4:18–22")
+              const match = ref.match(
+                /([1-3]?[A-Za-z]+)\s+(\d+)(?::(\d+)(?:[-–](\d+))?)?/,
+              );
+              if (!match) return;
+              let [_, book, chapter, verseStart, verseEnd] = match;
+              book = bookNameToId(book);
+              chapter = parseInt(chapter, 10);
+              // Navigate to book/chapter
+              if (book && chapter) {
+                loadBibleChapter(book, chapter, true);
+                // After navigation, try to auto-select matching outline
+                setTimeout(() => {
+                  autoSelectMatchingOutline(
+                    topic,
+                    book,
+                    chapter,
+                    verseStart,
+                    verseEnd,
+                  );
+                }, 500);
+              }
+            }
+
+            // Try to select the outline button whose verses match the reference
+            function autoSelectMatchingOutline(
+              originTopic,
+              book,
+              chapter,
+              verseStart,
+              verseEnd,
+            ) {
+              // Find the topicBar and all outline buttons
+              const topicBar = document.getElementById("chapter-topic-bar");
+              if (!topicBar) return;
+              // Find all outline topics for this chapter
+              const topics = window._lastLoadedTopics;
+              const chapterTopics =
+                (topics &&
+                  topics.chapterTopics &&
+                  topics.chapterTopics[chapter]) ||
+                [];
+              // Try to match by verses
+              let refVerses = [];
+              if (verseStart && verseEnd) {
+                for (
+                  let v = parseInt(verseStart, 10);
+                  v <= parseInt(verseEnd, 10);
+                  v++
+                )
+                  refVerses.push(v);
+              } else if (verseStart) {
+                refVerses = [parseInt(verseStart, 10)];
+              }
+              // Find outline topic with matching verses
+              for (let i = 0; i < chapterTopics.length; i++) {
+                const t = chapterTopics[i];
+                if (t.outline && t.verses) {
+                  const tVerses = t.verses.flatMap((v) => {
+                    if (typeof v === "string" && v.includes("-")) {
+                      const [start, end] = v.split("-").map(Number);
+                      return Array.from(
+                        { length: end - start + 1 },
+                        (_, idx) => start + idx,
+                      );
+                    } else {
+                      return [Number(v)];
+                    }
+                  });
+                  if (
+                    refVerses.length &&
+                    tVerses.length &&
+                    refVerses.every((v) => tVerses.includes(v))
+                  ) {
+                    // Simulate click/select
+                    const btns =
+                      topicBar.querySelectorAll(".topic-outline-btn");
+                    if (btns[i]) btns[i].click();
+                    break;
+                  }
+                }
+              }
+            }
+
+            // Pin outline: visually mark as pinned (future: sticky highlight)
+            function pinOutline(topic, outlineBtn) {
+              outlineBtn.classList.add("pinned");
+              // Optionally, keep highlight active or show a pin icon
+            }
+
+            // Helper: map book name to ID (e.g., 'Matthew' -> 'MAT')
+            function bookNameToId(name) {
+              // Add more mappings as needed
+              const map = {
+                Genesis: "GEN",
+                Exodus: "EXO",
+                Leviticus: "LEV",
+                Numbers: "NUM",
+                Deuteronomy: "DEU",
+                Joshua: "JOS",
+                Judges: "JDG",
+                Ruth: "RUT",
+                "1 Samuel": "1SA",
+                "2 Samuel": "2SA",
+                "1 Kings": "1KI",
+                "2 Kings": "2KI",
+                "1 Chronicles": "1CH",
+                "2 Chronicles": "2CH",
+                Ezra: "EZR",
+                Nehemiah: "NEH",
+                Esther: "EST",
+                Job: "JOB",
+                Psalms: "PSA",
+                Proverbs: "PRO",
+                Ecclesiastes: "ECC",
+                "Song of Songs": "SNG",
+                Isaiah: "ISA",
+                Jeremiah: "JER",
+                Lamentations: "LAM",
+                Ezekiel: "EZK",
+                Daniel: "DAN",
+                Hosea: "HOS",
+                Joel: "JOL",
+                Amos: "AMO",
+                Obadiah: "OBA",
+                Jonah: "JON",
+                Micah: "MIC",
+                Nahum: "NAM",
+                Habakkuk: "HAB",
+                Zephaniah: "ZEP",
+                Haggai: "HAG",
+                Zechariah: "ZEC",
+                Malachi: "MAL",
+                Matthew: "MAT",
+                Mark: "MRK",
+                Luke: "LUK",
+                John: "JHN",
+                Acts: "ACT",
+                Romans: "ROM",
+                "1 Corinthians": "1CO",
+                "2 Corinthians": "2CO",
+                Galatians: "GAL",
+                Ephesians: "EPH",
+                Philippians: "PHP",
+                Colossians: "COL",
+                "1 Thessalonians": "1TH",
+                "2 Thessalonians": "2TH",
+                "1 Timothy": "1TI",
+                "2 Timothy": "2TI",
+                Titus: "TIT",
+                Philemon: "PHM",
+                Hebrews: "HEB",
+                James: "JAS",
+                "1 Peter": "1PE",
+                "2 Peter": "2PE",
+                "1 John": "1JN",
+                "2 John": "2JN",
+                "3 John": "3JN",
+                Jude: "JUD",
+                Revelation: "REV",
+                // Short forms
+                Ruth: "RUT",
+                Luke: "LUK",
+                Matthew: "MAT",
+                Mark: "MRK",
+                John: "JHN",
+                Acts: "ACT",
+                Rom: "ROM",
+                "1Cor": "1CO",
+                "2Cor": "2CO",
+                Gal: "GAL",
+                Eph: "EPH",
+                Phil: "PHP",
+                Col: "COL",
+                "1Thess": "1TH",
+                "2Thess": "2TH",
+                "1Tim": "1TI",
+                "2Tim": "2TI",
+                Titus: "TIT",
+                Phlm: "PHM",
+                Heb: "HEB",
+                Jas: "JAS",
+                "1Pet": "1PE",
+                "2Pet": "2PE",
+                "1John": "1JN",
+                "2John": "2JN",
+                "3John": "3JN",
+                Jude: "JUD",
+                Rev: "REV",
+              };
+              return map[name] || map[name.replace(/\.$/, "")] || null;
+            }
           } else {
+            // No references, just show the outline text
             btn.textContent = topic.outline;
           }
+          type = "outline";
+        }
+        if (btn) {
+          btn.onclick = () => {
+            const isActive = btn.classList.contains("active");
+            topicBar
+              .querySelectorAll(".topic-btn")
+              .forEach((b) => b.classList.remove("active"));
+            document
+              .querySelectorAll(".verse-highlight")
+              .forEach((el) => el.classList.remove("verse-highlight"));
+            if (!isActive) {
+              btn.classList.add("active");
+              let verses = [];
+              topic.verses &&
+                topic.verses.forEach((v) => {
+                  if (typeof v === "string" && v.includes("-")) {
+                    const [start, end] = v.split("-").map(Number);
+                    if (!isNaN(start) && !isNaN(end)) {
+                      for (let i = start; i <= end; i++) verses.push(i);
+                    }
+                  } else {
+                    verses.push(Number(v));
+                  }
+                });
+              verses.forEach((v) => {
+                document
+                  .querySelectorAll(`.verse-num[data-verse='${v}']`)
+                  .forEach((el) => el.classList.add("verse-highlight"));
+                document
+                  .querySelectorAll(`.verse-text[data-verse='${v}']`)
+                  .forEach((el) => el.classList.add("verse-highlight"));
+              });
+            }
+          };
           topicBar.appendChild(btn);
         }
       });
-      // RIGHT: highlight buttons only
+      // RIGHT: highlight buttons only (with highlight logic)
       chapterTopics.forEach((topic) => {
         if (topic.highlight) {
           let btn = document.createElement("button");
           btn.textContent = topic.highlight;
           btn.className = "topic-btn topic-highlight-btn";
+          btn.onclick = () => {
+            const isActive = btn.classList.contains("active");
+            highlightBar
+              .querySelectorAll(".topic-btn")
+              .forEach((b) => b.classList.remove("active"));
+            // Remove previous highlights
+            document.querySelectorAll(".verse-highlight").forEach((el) => {
+              // Unwrap the span, restoring the original text
+              const parent = el.parentNode;
+              parent.replaceChild(document.createTextNode(el.textContent), el);
+              parent.normalize();
+            });
+            if (!isActive) {
+              btn.classList.add("active");
+              // Highlight all matching words/phrases in all verse-texts
+              const phrases = Array.isArray(topic.text) ? topic.text : [];
+              if (phrases.length) {
+                document.querySelectorAll(".verse-text").forEach((el) => {
+                  let html = el.innerHTML;
+                  phrases.forEach((phrase) => {
+                    if (!phrase) return;
+                    // Escape regex special chars
+                    const safe = phrase.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&");
+                    // Whole word or phrase, case-insensitive
+                    html = html.replace(
+                      new RegExp(`(${safe})`, "gi"),
+                      '<span class="verse-highlight">$1</span>',
+                    );
+                  });
+                  el.innerHTML = html;
+                });
+              }
+            }
+          };
           highlightBar.appendChild(btn);
         }
       });
     }); // End tryFetchTopicFile callback
-    if (aside) {
-      // Remove character count from aside; will be set in footer instead
-      aside.innerHTML = "";
-    }
+    // Update character count in footer
     // Update character count in footer
     const footer = document.querySelector(".bp-footer");
     if (footer) {
@@ -409,8 +617,7 @@ async function loadBibleChapter(
       window._chapterWords = [];
     }
     if (typeof window !== "undefined" && window.localStorage) {
-      localStorage.setItem("bibleLastBook", bookId);
-      localStorage.setItem("bibleLastChapter", chapterNum);
+      saveLastRead(bookId, chapterNum);
     }
     // Update sticky nav buttons
     if (window.updateChapterNav) {
@@ -424,6 +631,72 @@ async function loadBibleChapter(
     main.innerHTML = `<div class="error">Failed to load Bible data.</div>`;
     if (aside) aside.textContent = "";
   }
+}
+
+// Helper: update main content
+function updateMainContent(main, html) {
+  main.innerHTML = html;
+}
+
+// Helper: update aside/sidebar
+function updateAside(aside, content = "") {
+  if (aside) aside.innerHTML = content;
+}
+
+// Helper: update topic bar
+function updateTopicBar(topicBar, content = "") {
+  if (topicBar) topicBar.innerHTML = content;
+}
+
+// Helper: update character count/footer
+function updateFooterCharCount(charCount, topWordsStr) {
+  const footer = document.querySelector(".bp-footer");
+  if (footer) {
+    let cc = document.getElementById("bp-char-count");
+    if (cc) {
+      cc.textContent =
+        `Character count: ${charCount}` +
+        (topWordsStr ? ` | ${topWordsStr}` : "");
+    }
+  }
+}
+
+// Helper: create a topic button
+function createTopicButton(topic, topicBar, onClick) {
+  const btn = document.createElement("button");
+  btn.textContent = topic.label || topic.outline || topic.highlight;
+  btn.className = topic.label
+    ? "topic-btn topic-label-btn"
+    : topic.outline
+      ? "topic-btn topic-outline-btn"
+      : "topic-btn topic-highlight-btn";
+  btn.onclick = onClick;
+  topicBar.appendChild(btn);
+  return btn;
+}
+
+// Helper: create highlightBar if needed
+function ensureHighlightBar(aside) {
+  let highlightBar = document.getElementById("chapter-highlight-bar");
+  if (!highlightBar && aside) {
+    highlightBar = document.createElement("div");
+    highlightBar.id = "chapter-highlight-bar";
+    highlightBar.style.display = "flex";
+    highlightBar.style.flexWrap = "wrap";
+    highlightBar.style.gap = "6px";
+    highlightBar.style.margin = "12px 0";
+    aside.insertBefore(highlightBar, aside.firstChild);
+  }
+  if (highlightBar) highlightBar.innerHTML = "";
+  return highlightBar;
+}
+
+// Helper to get topic filename for a book
+function getTopicFilename(bid) {
+  const idx = bookOrder.indexOf(bid);
+  if (idx === -1) return null;
+  const num = (idx + 1).toString().padStart(3, "0");
+  return `data/topics/${num}_${bid}_BSB.json`;
 }
 
 // Optionally, call on load

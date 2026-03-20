@@ -24,41 +24,40 @@ function bpHandleBreakpoint() {
 window.addEventListener("resize", bpHandleBreakpoint);
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Update the selected book button in the horizontal scrollbar
-    function updateBookScrollbar(bookId) {
-      const bookBar = document.getElementById("bp-book-scrollbar");
-      if (!bookBar) return;
-      bookBar.querySelectorAll(".bp-book-scrollbar__btn").forEach((btn) => {
-        if (btn.dataset.book === bookId) {
-          btn.classList.add("selected");
-          // Optionally scroll into view
-          btn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-        } else {
-          btn.classList.remove("selected");
-        }
-      });
-    }
-    // Expose updateBookScrollbar globally
-    window.updateBookScrollbar = updateBookScrollbar;
+  // Update the selected book button in the horizontal scrollbar
+  function updateBookScrollbar(bookId) {
+    const bookBar = document.getElementById("bp-book-scrollbar");
+    if (!bookBar) return;
+    bookBar.querySelectorAll(".bp-book-scrollbar__btn").forEach((btn) => {
+      if (btn.dataset.book === bookId) {
+        btn.classList.add("selected");
+        // Optionally scroll into view
+        btn.scrollIntoView({
+          behavior: "smooth",
+          inline: "center",
+          block: "nearest",
+        });
+      } else {
+        btn.classList.remove("selected");
+      }
+    });
+  }
+  // Expose updateBookScrollbar globally
+  window.updateBookScrollbar = updateBookScrollbar;
   // --- Back/Forward Navigation Buttons ---
   const backBtn = document.getElementById("bp-nav-back");
   const forwardBtn = document.getElementById("bp-nav-forward");
   function updateNavButtons() {
-    if (backBtn)
-      backBtn.disabled =
-        window.history.state && window.history.state.idx > 0 ? false : true;
-    if (forwardBtn)
-      forwardBtn.disabled =
-        window.history.state &&
-        window.history.state.idx < window.history.length - 1
-          ? false
-          : true;
+    if (backBtn) backBtn.disabled = window.history.length <= 1;
+    if (forwardBtn) forwardBtn.disabled = false;
+    // Always show pointer cursor for forward
+    forwardBtn.style.cursor = "pointer";
   }
   if (backBtn && forwardBtn) {
     backBtn.onclick = () => window.history.back();
     forwardBtn.onclick = () => window.history.forward();
     window.addEventListener("popstate", (e) => {
-      // Try to reload chapter from state, but do NOT push a new state
+      // Only reload chapter if state exists
       if (
         e.state &&
         e.state.bookId &&
