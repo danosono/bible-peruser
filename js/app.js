@@ -188,6 +188,18 @@ document.addEventListener("DOMContentLoaded", () => {
     if (scrollPos) {
       bookBar.scrollLeft = parseInt(scrollPos, 10);
     }
+
+    // Enable horizontal scrolling with mouse wheel
+    bookBar.addEventListener(
+      "wheel",
+      function (e) {
+        if (e.deltaY !== 0) {
+          e.preventDefault();
+          bookBar.scrollLeft += e.deltaY;
+        }
+      },
+      { passive: false },
+    );
   }
 
   // Book button click handler

@@ -166,12 +166,39 @@
         "text": ["Bethlehem", "Egypt", "Israel", "Judea", "Nazareth", "Galilee"]
       },
       {
+        "highlight": "Good",
+        "text": [
+          "Jesus was born in Bethlehem in Judea,",
+          "warned in a dream",
+          "appeared to Joseph in a dream",
+          "appeared in a dream"
+        ]
+      },
+      {
+        "highlight": "Evil",
+        "text": [
+          "Herod is going to search for the Child to kill Him",
+          "put to death"
+        ]
+      },
+      {
         "highlight": "Star",
         "text": ["star"]
       },
       {
         "highlight": "Prophecy",
-        "text": ["prophet", "prophets", "fulfilled", "shepherd", "Bethlehem"]
+        "text": [
+          "prophet",
+          "prophets",
+          "fulfilled",
+          "shepherd",
+          "Bethlehem",
+          "Egypt",
+          "weeping",
+          "mourning",
+          "Nazareth",
+          "Nazarene"
+        ]
       },
       {
         "highlight": "chief priests & scribes",
@@ -179,7 +206,11 @@
       },
       {
         "highlight": "Dream",
-        "text": ["dream"]
+        "text": [
+          "warned in a dream",
+          "appeared to Joseph in a dream",
+          "appeared in a dream"
+        ]
       },
       {
         "highlight": "Magi",
@@ -213,6 +244,96 @@
         "outline": "The Baptism of Jesus",
         "verses": ["13-17"],
         "references": ["Mark 1:9–11", "Luke 3:21–22", "John 1:29–34"]
+      },
+      {
+        "label": "Prophecy",
+        "verses": ["3"]
+      },
+      {
+        "label": "Pharisees & Sadducees",
+        "verses": ["7-12"]
+      },
+      {
+        "highlight": "Persons",
+        "text": [
+          "John the Baptist",
+          "Jesus",
+          "Isaiah",
+          "Lord",
+          "John",
+          "Pharisees",
+          "Sadducees",
+          "Abraham",
+          "the Spirit of God",
+          "God",
+          "Holy Spirit",
+          "My beloved Son"
+        ]
+      },
+      {
+        "highlight": "Places",
+        "text": [
+          "wilderness of Judea",
+          "heaven",
+          "Jerusalem",
+          "Judea",
+          "Galilee",
+          "Jordan"
+        ]
+      },
+      {
+        "highlight": "Good",
+        "text": [
+          "preaching",
+          "repentance",
+          "repent",
+          "confessing their sins",
+          "baptize you with the Holy Spirit and with fire",
+          "Jesus came from Galilee to the Jordan to be baptized by John"
+        ]
+      },
+      {
+        "highlight": "Evil",
+        "text": ["brood of vipers", "chaff"]
+      },
+      {
+        "highlight": "Repent",
+        "text": ["repentance", "repent"]
+      },
+      {
+        "highlight": "Heaven",
+        "text": ["heaven"]
+      },
+      {
+        "highlight": "Baptism",
+        "text": [
+          "baptist",
+          "baptized",
+          "baptize",
+          "baptism",
+          "fulfill all righteousness"
+        ]
+      },
+      {
+        "highlight": "Pharisees and Sadducees",
+        "text": [
+          "Pharisees",
+          "Sadducees",
+          "You brood of vipers, who warned you to flee from the coming wrath?"
+        ]
+      },
+      {
+        "highlight": "John the Baptist",
+        "text": [
+          "preaching in the wilderness",
+          "Repent, for the kingdom of heaven is near.",
+          "spoken of through the prophet Isaiah",
+          "A voice of one calling in the wilderness",
+          "garment of camel’s hair",
+          "leather belt",
+          "food was locusts and wild honey",
+          "baptized by him"
+        ]
       }
     ],
     "4": [

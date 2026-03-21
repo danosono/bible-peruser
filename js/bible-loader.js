@@ -465,8 +465,8 @@ async function loadBibleChapter(
             highlightBar
               .querySelectorAll(".topic-btn")
               .forEach((b) => b.classList.remove("active"));
-            // Remove previous highlights
-            document.querySelectorAll(".verse-highlight").forEach((el) => {
+            // Remove previous search highlights
+            document.querySelectorAll(".search-highlight").forEach((el) => {
               // Unwrap the span, restoring the original text
               const parent = el.parentNode;
               parent.replaceChild(document.createTextNode(el.textContent), el);
@@ -486,7 +486,7 @@ async function loadBibleChapter(
                     // Whole word or phrase, case-insensitive
                     html = html.replace(
                       new RegExp(`(${safe})`, "gi"),
-                      '<span class="verse-highlight">$1</span>',
+                      '<span class="search-highlight">$1</span>',
                     );
                   });
                   el.innerHTML = html;
