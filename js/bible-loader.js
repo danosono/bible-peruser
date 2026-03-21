@@ -108,7 +108,29 @@ async function loadBibleChapter(
 
     tryFetchTopicFile(topicFileCandidates, (topics) => {
       if (!topics) return;
-      const chapterTopics = topics.chapterTopics[chapterNum] || [];
+      let chapterTopics = topics.chapterTopics[chapterNum];
+      let meta = null;
+      // Support both new (object with meta/topics) and old (array) formats
+      if (chapterTopics && chapterTopics.meta && Array.isArray(chapterTopics.topics)) {
+        meta = chapterTopics.meta;
+        chapterTopics = chapterTopics.topics;
+      } else if (!Array.isArray(chapterTopics)) {
+        chapterTopics = [];
+      }
+      // --- Display chapter meta in legend/footer ---
+      const legendElem = document.querySelector('.bp-footer__legend');
+      if (legendElem && meta) {
+        // Display all key-value pairs in meta
+        let legendStr = '';
+        const metaKeys = Object.keys(meta);
+        metaKeys.forEach((key, idx) => {
+          if (idx > 0) legendStr += ' | ';
+          legendStr += `<b>${key}:</b> ${meta[key]}`;
+        });
+        legendElem.innerHTML = legendStr;
+      } else if (legendElem) {
+        legendElem.innerHTML = '';
+      }
       // Create highlight buttons in right sidebar
       const aside = document.querySelector(".bp-sidebar--right");
       if (aside) aside.innerHTML = "";
@@ -462,9 +484,6 @@ async function loadBibleChapter(
           btn.className = "topic-btn topic-highlight-btn";
           btn.onclick = () => {
             const isActive = btn.classList.contains("active");
-            highlightBar
-              .querySelectorAll(".topic-btn")
-              .forEach((b) => b.classList.remove("active"));
             // Remove previous search highlights
             document.querySelectorAll(".search-highlight").forEach((el) => {
               // Unwrap the span, restoring the original text
@@ -472,7 +491,14 @@ async function loadBibleChapter(
               parent.replaceChild(document.createTextNode(el.textContent), el);
               parent.normalize();
             });
-            if (!isActive) {
+            if (isActive) {
+              // If already active, unselect
+              btn.classList.remove("active");
+            } else {
+              // Unselect all highlight buttons
+              highlightBar
+                .querySelectorAll(".topic-btn")
+                .forEach((b) => b.classList.remove("active"));
               btn.classList.add("active");
               // Highlight all matching words/phrases in all verse-texts
               const phrases = Array.isArray(topic.text) ? topic.text : [];

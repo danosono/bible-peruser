@@ -1,363 +1,398 @@
 {
   "chapterTopics": {
-    "1": [
-      {
-        "outline": "The Genealogy of Jesus",
-        "verses": ["1-17"],
-        "references": ["Ruth 4:18–22", "Luke 3:23–38"]
+    "1": {
+      "meta": {
+        "Context": "The arrival of the promised Messiah",
+        "Type": "Gospels",
+        "Audience": "Jews, others"
       },
-      {
-        "outline": "The Birth of Jesus",
-        "verses": ["18-25"],
-        "references": ["Isaiah 7:10–16", "Luke 2:1–7"]
+      "topics": [
+        {
+          "outline": "The Genealogy of Jesus",
+          "verses": ["1-17"],
+          "references": ["Ruth 4:18–22", "Luke 3:23–38"]
+        },
+        {
+          "outline": "The Birth of Jesus",
+          "verses": ["18-25"],
+          "references": ["Isaiah 7:10–16", "Luke 2:1–7"]
+        },
+        {
+          "label": "Holy Spirit",
+          "verses": ["18"]
+        },
+        {
+          "label": "angel of the Lord",
+          "verses": ["20", "24"]
+        },
+        {
+          "label": "Prophecy",
+          "verses": ["23"]
+        },
+        {
+          "highlight": "Persons",
+          "text": [
+            "David",
+            "Abraham",
+            "Isaac",
+            "Jacob",
+            "Judah",
+            "Perez",
+            "Zerah",
+            "Tamar",
+            "Hezron",
+            "Ram",
+            "Amminadab",
+            "Nahshon",
+            "Salmon",
+            "Boaz",
+            "Rahab",
+            "Obed",
+            "Ruth",
+            "Jesse",
+            "Solomon",
+            "Zerah",
+            "Uriah",
+            "Rehoboam",
+            "Abijah",
+            "Amminadab",
+            "Asa",
+            "Jehoshaphat",
+            "Joram",
+            "Uzziah",
+            "Jotham",
+            "Ahaz",
+            "Hezekiah",
+            "Manasseh",
+            "Amon",
+            "Josiah",
+            "Jeconiah",
+            "Shealtiel",
+            "Zerubbabel",
+            "Abiud",
+            "Eliakim",
+            "Azor",
+            "Zadok",
+            "Achim",
+            "Eliud",
+            "Eleazar",
+            "Matthan",
+            "Jacob",
+            "Joseph",
+            "Mary",
+            "Jesus",
+            "Christ",
+            "Holy Spirit",
+            "Son",
+            "prophet",
+            "Lord",
+            "angel",
+            "One",
+            "God",
+            "Immanuel"
+          ]
+        },
+        {
+          "highlight": "Women",
+          "text": ["Tamar", "Rahab", "Ruth", "Bathsheba", "wife", "Mary"]
+        },
+        {
+          "highlight": "Places",
+          "text": ["Babylon"]
+        },
+        {
+          "highlight": "Jesus Christ",
+          "text": [
+            "Jesus",
+            "Christ",
+            "she was found to be with child through the Holy Spirit",
+            "Once conceived in her is from the holy Spirit",
+            "she will give birth to a Son",
+            "He will save His people from their sins",
+            "Immanuel",
+            "gave birth to a Son"
+          ]
+        },
+        {
+          "highlight": "angel of the Lord",
+          "text": ["angel of the Lord"]
+        }
+      ]
+    },
+    "2": {
+      "meta": {
+        "Context": "Jesus' childhood, Magi, Herod tries to kill the Messiah, flight to Egypt.",
+        "Type": "Gospels",
+        "Audience": "Jews, others"
       },
-      {
-        "label": "Holy Spirit",
-        "verses": ["18"]
+      "topics": [
+        {
+          "outline": "The Pilgrimage of the Magi",
+          "verses": ["1-12"],
+          "references": ["Micah 5:1–6"]
+        },
+        {
+          "outline": "The Flight to Egypt",
+          "verses": ["13-15"],
+          "references": ["Hosea 11:1–7"]
+        },
+        {
+          "outline": "Weeping and Great Mourning",
+          "verses": ["16-18"],
+          "references": ["Jeremiah 31:1–25"]
+        },
+        {
+          "outline": "The Return to Nazareth",
+          "verses": ["19-23"],
+          "references": ["Luke 2:39–40"]
+        },
+        {
+          "label": "Prophecy",
+          "verses": ["6", "15", "17", "23"]
+        },
+        {
+          "label": "Star of Bethlehem",
+          "verses": ["2", "7", "9-10"]
+        },
+        {
+          "label": "Herod",
+          "verses": ["3", "7", "12", "16"]
+        },
+        {
+          "highlight": "Persons",
+          "text": [
+            "Jesus",
+            "Herod",
+            "Magi",
+            "angel of the Lord",
+            "One",
+            "chief priests",
+            "scribes",
+            "Christ",
+            "Mary",
+            "Joseph",
+            "Archelaus"
+          ]
+        },
+        {
+          "highlight": "Places",
+          "text": [
+            "Bethlehem",
+            "Egypt",
+            "Israel",
+            "Judea",
+            "Nazareth",
+            "Galilee"
+          ]
+        },
+        {
+          "highlight": "Good",
+          "text": [
+            "Jesus was born in Bethlehem in Judea,",
+            "warned in a dream",
+            "appeared to Joseph in a dream",
+            "appeared in a dream"
+          ]
+        },
+        {
+          "highlight": "Evil",
+          "text": [
+            "Herod is going to search for the Child to kill Him",
+            "put to death"
+          ]
+        },
+        {
+          "highlight": "Star",
+          "text": ["star"]
+        },
+        {
+          "highlight": "Prophecy",
+          "text": [
+            "prophet",
+            "prophets",
+            "fulfilled",
+            "shepherd",
+            "Bethlehem",
+            "Egypt",
+            "weeping",
+            "mourning",
+            "Nazareth",
+            "Nazarene"
+          ]
+        },
+        {
+          "highlight": "chief priests & scribes",
+          "text": ["chief priests", "scribes"]
+        },
+        {
+          "highlight": "Dream",
+          "text": [
+            "warned in a dream",
+            "appeared to Joseph in a dream",
+            "appeared in a dream"
+          ]
+        },
+        {
+          "highlight": "Magi",
+          "text": ["magi"]
+        },
+        {
+          "highlight": "angel of the Lord",
+          "text": ["angel of the Lord"]
+        },
+        {
+          "highlight": "Herod",
+          "text": ["herod"]
+        },
+        {
+          "highlight": "child",
+          "text": ["child"]
+        }
+      ]
+    },
+    "3": {
+      "meta": {
+        "Context": "John the Baptist prepares the way for Jesus.",
+        "Genre": "Narrative",
+        "Audience": "General"
       },
-      {
-        "label": "angel of the Lord",
-        "verses": ["20", "24"]
+      "topics": [
+        {
+          "outline": "The Mission of John the Baptist",
+          "verses": ["1-12"],
+          "references": [
+            "Isaiah 40:1–5",
+            "Mark 1:1–8",
+            "Luke 3:1–20",
+            "John 1:19–28"
+          ]
+        },
+        {
+          "outline": "The Baptism of Jesus",
+          "verses": ["13-17"],
+          "references": ["Mark 1:9–11", "Luke 3:21–22", "John 1:29–34"]
+        },
+        {
+          "label": "Prophecy",
+          "verses": ["3"]
+        },
+        {
+          "label": "Pharisees & Sadducees",
+          "verses": ["7-12"]
+        },
+        {
+          "highlight": "Persons",
+          "text": [
+            "John the Baptist",
+            "Jesus",
+            "Isaiah",
+            "Lord",
+            "John",
+            "Pharisees",
+            "Sadducees",
+            "Abraham",
+            "the Spirit of God",
+            "God",
+            "Holy Spirit",
+            "My beloved Son"
+          ]
+        },
+        {
+          "highlight": "Places",
+          "text": [
+            "wilderness of Judea",
+            "heaven",
+            "Jerusalem",
+            "Judea",
+            "Galilee",
+            "Jordan"
+          ]
+        },
+        {
+          "highlight": "Good",
+          "text": [
+            "preaching",
+            "repentance",
+            "repent",
+            "confessing their sins",
+            "baptize you with the Holy Spirit and with fire",
+            "Jesus came from Galilee to the Jordan to be baptized by John"
+          ]
+        },
+        {
+          "highlight": "Evil",
+          "text": ["brood of vipers", "chaff"]
+        },
+        {
+          "highlight": "Repent",
+          "text": ["repentance", "repent"]
+        },
+        {
+          "highlight": "Heaven",
+          "text": ["heaven"]
+        },
+        {
+          "highlight": "Baptism",
+          "text": [
+            "baptist",
+            "baptized",
+            "baptize",
+            "baptism",
+            "fulfill all righteousness"
+          ]
+        },
+        {
+          "highlight": "Pharisees and Sadducees",
+          "text": [
+            "Pharisees",
+            "Sadducees",
+            "You brood of vipers, who warned you to flee from the coming wrath?"
+          ]
+        },
+        {
+          "highlight": "John the Baptist",
+          "text": [
+            "preaching in the wilderness",
+            "Repent, for the kingdom of heaven is near.",
+            "spoken of through the prophet Isaiah",
+            "A voice of one calling in the wilderness",
+            "garment of camel’s hair",
+            "leather belt",
+            "food was locusts and wild honey",
+            "baptized by him"
+          ]
+        }
+      ]
+    },
+    "4": {
+      "meta": {
+        "Context": "The beginning of Jesus' ministry and his early teachings.",
+        "Genre": "Narrative",
+        "Audience": "General"
       },
-      {
-        "label": "Prophecy",
-        "verses": ["23"]
-      },
-      {
-        "highlight": "Persons",
-        "text": [
-          "David",
-          "Abraham",
-          "Isaac",
-          "Jacob",
-          "Judah",
-          "Perez",
-          "Zerah",
-          "Tamar",
-          "Hezron",
-          "Ram",
-          "Amminadab",
-          "Nahshon",
-          "Salmon",
-          "Boaz",
-          "Rahab",
-          "Obed",
-          "Ruth",
-          "Jesse",
-          "Solomon",
-          "Zerah",
-          "Uriah",
-          "Rehoboam",
-          "Abijah",
-          "Amminadab",
-          "Asa",
-          "Jehoshaphat",
-          "Joram",
-          "Uzziah",
-          "Jotham",
-          "Ahaz",
-          "Hezekiah",
-          "Manasseh",
-          "Amon",
-          "Josiah",
-          "Jeconiah",
-          "Shealtiel",
-          "Zerubbabel",
-          "Abiud",
-          "Eliakim",
-          "Azor",
-          "Zadok",
-          "Achim",
-          "Eliud",
-          "Eleazar",
-          "Matthan",
-          "Jacob",
-          "Joseph",
-          "Mary",
-          "Jesus",
-          "Christ",
-          "Holy Spirit",
-          "Son",
-          "prophet",
-          "Lord",
-          "angel",
-          "One",
-          "God",
-          "Immanuel"
-        ]
-      },
-      {
-        "highlight": "Women",
-        "text": ["Tamar", "Rahab", "Ruth", "Bathsheba", "wife", "Mary"]
-      },
-      {
-        "highlight": "Places",
-        "text": ["Babylon"]
-      },
-      {
-        "highlight": "Jesus Christ",
-        "text": [
-          "Jesus",
-          "Christ",
-          "she was found to be with child through the Holy Spirit",
-          "Once conceived in her is from the holy Spirit",
-          "she will give birth to a Son",
-          "He will save His people from their sins",
-          "Immanuel",
-          "gave birth to a Son"
-        ]
-      },
-      {
-        "highlight": "angel of the Lord",
-        "text": ["angel of the Lord"]
-      }
-    ],
-    "2": [
-      {
-        "outline": "The Pilgrimage of the Magi",
-        "verses": ["1-12"],
-        "references": ["Micah 5:1–6"]
-      },
-      {
-        "outline": "The Flight to Egypt",
-        "verses": ["13-15"],
-        "references": ["Hosea 11:1–7"]
-      },
-      {
-        "outline": "Weeping and Great Mourning",
-        "verses": ["16-18"],
-        "references": ["Jeremiah 31:1–25"]
-      },
-      {
-        "outline": "The Return to Nazareth",
-        "verses": ["19-23"],
-        "references": ["Luke 2:39–40"]
-      },
-      {
-        "label": "Prophecy",
-        "verses": ["6", "15", "17", "23"]
-      },
-      {
-        "label": "Star of Bethlehem",
-        "verses": ["2", "7", "9-10"]
-      },
-      {
-        "label": "Herod",
-        "verses": ["3", "7", "12", "16"]
-      },
-      {
-        "highlight": "Persons",
-        "text": [
-          "Jesus",
-          "Herod",
-          "Magi",
-          "angel of the Lord",
-          "One",
-          "chief priests",
-          "scribes",
-          "Christ",
-          "Mary",
-          "Joseph",
-          "Archelaus"
-        ]
-      },
-      {
-        "highlight": "Places",
-        "text": ["Bethlehem", "Egypt", "Israel", "Judea", "Nazareth", "Galilee"]
-      },
-      {
-        "highlight": "Good",
-        "text": [
-          "Jesus was born in Bethlehem in Judea,",
-          "warned in a dream",
-          "appeared to Joseph in a dream",
-          "appeared in a dream"
-        ]
-      },
-      {
-        "highlight": "Evil",
-        "text": [
-          "Herod is going to search for the Child to kill Him",
-          "put to death"
-        ]
-      },
-      {
-        "highlight": "Star",
-        "text": ["star"]
-      },
-      {
-        "highlight": "Prophecy",
-        "text": [
-          "prophet",
-          "prophets",
-          "fulfilled",
-          "shepherd",
-          "Bethlehem",
-          "Egypt",
-          "weeping",
-          "mourning",
-          "Nazareth",
-          "Nazarene"
-        ]
-      },
-      {
-        "highlight": "chief priests & scribes",
-        "text": ["chief priests", "scribes"]
-      },
-      {
-        "highlight": "Dream",
-        "text": [
-          "warned in a dream",
-          "appeared to Joseph in a dream",
-          "appeared in a dream"
-        ]
-      },
-      {
-        "highlight": "Magi",
-        "text": ["magi"]
-      },
-      {
-        "highlight": "angel of the Lord",
-        "text": ["angel of the Lord"]
-      },
-      {
-        "highlight": "Herod",
-        "text": ["herod"]
-      },
-      {
-        "highlight": "child",
-        "text": ["child"]
-      }
-    ],
-    "3": [
-      {
-        "outline": "The Mission of John the Baptist",
-        "verses": ["1-12"],
-        "references": [
-          "Isaiah 40:1–5",
-          "Mark 1:1–8",
-          "Luke 3:1–20",
-          "John 1:19–28"
-        ]
-      },
-      {
-        "outline": "The Baptism of Jesus",
-        "verses": ["13-17"],
-        "references": ["Mark 1:9–11", "Luke 3:21–22", "John 1:29–34"]
-      },
-      {
-        "label": "Prophecy",
-        "verses": ["3"]
-      },
-      {
-        "label": "Pharisees & Sadducees",
-        "verses": ["7-12"]
-      },
-      {
-        "highlight": "Persons",
-        "text": [
-          "John the Baptist",
-          "Jesus",
-          "Isaiah",
-          "Lord",
-          "John",
-          "Pharisees",
-          "Sadducees",
-          "Abraham",
-          "the Spirit of God",
-          "God",
-          "Holy Spirit",
-          "My beloved Son"
-        ]
-      },
-      {
-        "highlight": "Places",
-        "text": [
-          "wilderness of Judea",
-          "heaven",
-          "Jerusalem",
-          "Judea",
-          "Galilee",
-          "Jordan"
-        ]
-      },
-      {
-        "highlight": "Good",
-        "text": [
-          "preaching",
-          "repentance",
-          "repent",
-          "confessing their sins",
-          "baptize you with the Holy Spirit and with fire",
-          "Jesus came from Galilee to the Jordan to be baptized by John"
-        ]
-      },
-      {
-        "highlight": "Evil",
-        "text": ["brood of vipers", "chaff"]
-      },
-      {
-        "highlight": "Repent",
-        "text": ["repentance", "repent"]
-      },
-      {
-        "highlight": "Heaven",
-        "text": ["heaven"]
-      },
-      {
-        "highlight": "Baptism",
-        "text": [
-          "baptist",
-          "baptized",
-          "baptize",
-          "baptism",
-          "fulfill all righteousness"
-        ]
-      },
-      {
-        "highlight": "Pharisees and Sadducees",
-        "text": [
-          "Pharisees",
-          "Sadducees",
-          "You brood of vipers, who warned you to flee from the coming wrath?"
-        ]
-      },
-      {
-        "highlight": "John the Baptist",
-        "text": [
-          "preaching in the wilderness",
-          "Repent, for the kingdom of heaven is near.",
-          "spoken of through the prophet Isaiah",
-          "A voice of one calling in the wilderness",
-          "garment of camel’s hair",
-          "leather belt",
-          "food was locusts and wild honey",
-          "baptized by him"
-        ]
-      }
-    ],
-    "4": [
-      {
-        "outline": "The Temptation of Jesus",
-        "verses": ["1-11"],
-        "references": ["Mark 1:12–13", "Luke 4:1–13"]
-      },
-      {
-        "outline": "Jesus Begins His Ministry",
-        "verses": ["12-17"],
-        "references": ["Isaiah 9:1–7", "Mark 1:14–15", "Luke 4:14–15"]
-      },
-      {
-        "outline": "The First Disciples",
-        "verses": ["18-22"],
-        "references": ["Mark 1:16–20", "Luke 5:1–11", "John 1:35–42"]
-      },
-      {
-        "outline": "Jesus Heals the Multitudes",
-        "verses": ["23-25"],
-        "references": ["Mark 3:7–12", "Luke 6:17–19"]
-      }
-    ],
+      "topics": [
+        {
+          "outline": "The Temptation of Jesus",
+          "verses": ["1-11"],
+          "references": ["Mark 1:12–13", "Luke 4:1–13"]
+        },
+        {
+          "outline": "Jesus Begins His Ministry",
+          "verses": ["12-17"],
+          "references": ["Isaiah 9:1–7", "Mark 1:14–15", "Luke 4:14–15"]
+        },
+        {
+          "outline": "The First Disciples",
+          "verses": ["18-22"],
+          "references": ["Mark 1:16–20", "Luke 5:1–11", "John 1:35–42"]
+        },
+        {
+          "outline": "Jesus Heals the Multitudes",
+          "verses": ["23-25"],
+          "references": ["Mark 3:7–12", "Luke 6:17–19"]
+        }
+      ]
+    },
     "5": [
       {
         "outline": "The Sermon on the Mount",
