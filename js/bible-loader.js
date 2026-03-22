@@ -79,7 +79,8 @@ async function loadBibleChapter(
     }
     html += `<div class="bible-chapter${columnClass ? " " + columnClass : ""}${fontClass ? " " + fontClass : ""}">`;
     for (const verse of chapter.verses) {
-      html += `<span class="verse-num" data-verse="${verse.n}">${verse.n}</span> <span class="verse-text" data-verse="${verse.n}">${verse.text}</span><br>`;
+      // Store original verse text in a data attribute for safe re-highlighting
+      html += `<span class="verse-num" data-verse="${verse.n}">${verse.n}</span> <span class="verse-text" data-verse="${verse.n}" data-original="${encodeURIComponent(verse.text)}">${verse.text}</span><br>`;
       // Collect words for frequency analysis
       if (!window._chapterWords) window._chapterWords = [];
       window._chapterWords.push(...verse.text.split(/\W+/));
@@ -111,25 +112,29 @@ async function loadBibleChapter(
       let chapterTopics = topics.chapterTopics[chapterNum];
       let meta = null;
       // Support both new (object with meta/topics) and old (array) formats
-      if (chapterTopics && chapterTopics.meta && Array.isArray(chapterTopics.topics)) {
+      if (
+        chapterTopics &&
+        chapterTopics.meta &&
+        Array.isArray(chapterTopics.topics)
+      ) {
         meta = chapterTopics.meta;
         chapterTopics = chapterTopics.topics;
       } else if (!Array.isArray(chapterTopics)) {
         chapterTopics = [];
       }
       // --- Display chapter meta in legend/footer ---
-      const legendElem = document.querySelector('.bp-footer__legend');
+      const legendElem = document.querySelector(".bp-footer__legend");
       if (legendElem && meta) {
         // Display all key-value pairs in meta
-        let legendStr = '';
+        let legendStr = "";
         const metaKeys = Object.keys(meta);
         metaKeys.forEach((key, idx) => {
-          if (idx > 0) legendStr += ' | ';
+          if (idx > 0) legendStr += " | ";
           legendStr += `<b>${key}:</b> ${meta[key]}`;
         });
         legendElem.innerHTML = legendStr;
       } else if (legendElem) {
-        legendElem.innerHTML = '';
+        legendElem.innerHTML = "";
       }
       // Create highlight buttons in right sidebar
       const aside = document.querySelector(".bp-sidebar--right");
@@ -484,40 +489,77 @@ async function loadBibleChapter(
           btn.className = "topic-btn topic-highlight-btn";
           btn.onclick = () => {
             const isActive = btn.classList.contains("active");
-            // Remove previous search highlights
-            document.querySelectorAll(".search-highlight").forEach((el) => {
-              // Unwrap the span, restoring the original text
-              const parent = el.parentNode;
-              parent.replaceChild(document.createTextNode(el.textContent), el);
-              parent.normalize();
+            // Always reset all verse-texts to their original text before highlighting
+            document.querySelectorAll(".verse-text").forEach((el) => {
+              const orig = el.getAttribute("data-original");
+              if (orig !== null) {
+                el.innerHTML = decodeURIComponent(orig);
+              }
             });
+            // Remove previous highlight button active state
+            highlightBar
+              .querySelectorAll(".topic-btn")
+              .forEach((b) => b.classList.remove("active"));
             if (isActive) {
               // If already active, unselect
               btn.classList.remove("active");
-            } else {
-              // Unselect all highlight buttons
-              highlightBar
-                .querySelectorAll(".topic-btn")
-                .forEach((b) => b.classList.remove("active"));
-              btn.classList.add("active");
-              // Highlight all matching words/phrases in all verse-texts
-              const phrases = Array.isArray(topic.text) ? topic.text : [];
-              if (phrases.length) {
-                document.querySelectorAll(".verse-text").forEach((el) => {
-                  let html = el.innerHTML;
-                  phrases.forEach((phrase) => {
-                    if (!phrase) return;
-                    // Escape regex special chars
-                    const safe = phrase.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&");
-                    // Whole word or phrase, case-insensitive
-                    html = html.replace(
-                      new RegExp(`(${safe})`, "gi"),
-                      '<span class="search-highlight">$1</span>',
-                    );
-                  });
-                  el.innerHTML = html;
+              return;
+            }
+            btn.classList.add("active");
+            // Highlight all matching words/phrases in all verse-texts
+            const phrases = Array.isArray(topic.text) ? topic.text : [];
+            if (phrases.length) {
+              // Robust non-overlapping, longest-match-first highlight logic
+              const sortedPhrases = [...phrases]
+                .filter(Boolean)
+                .sort((a, b) => b.length - a.length);
+              document.querySelectorAll(".verse-text").forEach((el) => {
+                const orig = el.getAttribute("data-original");
+                if (orig === null) return;
+                const text = decodeURIComponent(orig);
+                let matches = [];
+                // Find all matches for all phrases
+                sortedPhrases.forEach((phrase, pIdx) => {
+                  const safe = phrase.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&");
+                  const regex = new RegExp(safe, "gi");
+                  let match;
+                  while ((match = regex.exec(text)) !== null) {
+                    matches.push({
+                      start: match.index,
+                      end: match.index + match[0].length,
+                      phrase: match[0],
+                      phraseIdx: pIdx,
+                      len: match[0].length,
+                    });
+                    // Prevent infinite loop for zero-length matches
+                    if (regex.lastIndex === match.index) regex.lastIndex++;
+                  }
                 });
-              }
+                // Sort matches: first by start, then by length descending
+                matches.sort((a, b) => a.start - b.start || b.len - a.len);
+                // Filter out overlapping matches, keeping longest at each position
+                let result = [];
+                let lastEnd = 0;
+                for (let i = 0; i < matches.length; i++) {
+                  const m = matches[i];
+                  if (m.start >= lastEnd) {
+                    result.push(m);
+                    lastEnd = m.end;
+                  }
+                }
+                // Build highlighted HTML from end to start
+                let out = text;
+                for (let i = result.length - 1; i >= 0; i--) {
+                  const m = result[i];
+                  out =
+                    out.slice(0, m.start) +
+                    '<span class="search-highlight">' +
+                    out.slice(m.start, m.end) +
+                    "</span>" +
+                    out.slice(m.end);
+                }
+                el.innerHTML = out;
+              });
             }
           };
           highlightBar.appendChild(btn);
@@ -632,11 +674,12 @@ async function loadBibleChapter(
         .sort((a, b) => b[1] - a[1])
         .slice(0, 5);
       let topWordsStr = topWords.length
-        ? `Top words: ` + topWords.map(([w, c]) => `${w} (${c})`).join(", ")
+        ? `<b>Top words:</b> ` +
+          topWords.map(([w, c]) => `${w} (${c})`).join(", ")
         : "";
       if (cc) {
-        cc.textContent =
-          `Character count: ${charCount}` +
+        cc.innerHTML =
+          `<b>Character count:</b> ${charCount}` +
           (topWordsStr ? ` | ${topWordsStr}` : "");
       }
       // Reset for next chapter load

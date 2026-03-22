@@ -30,6 +30,14 @@
           "verses": ["23"]
         },
         {
+          "label": "Prophecy fulfilled",
+          "verses": ["18-22", "25"]
+        },
+        {
+          "label": "Obedience",
+          "verses": ["24"]
+        },
+        {
           "highlight": "Persons",
           "text": [
             "David",
@@ -148,7 +156,11 @@
         },
         {
           "label": "Prophecy",
-          "verses": ["6", "15", "17", "23"]
+          "verses": ["6", "15", "17-18", "23"]
+        },
+        {
+          "label": "Prophecy fulfilled",
+          "verses": ["1", "13-14", "16", "22"]
         },
         {
           "label": "Star of Bethlehem",
@@ -159,18 +171,23 @@
           "verses": ["3", "7", "12", "16"]
         },
         {
+          "label": "chief priests & scribes",
+          "verses": ["4-6"]
+        },
+        {
           "highlight": "Persons",
           "text": [
             "Jesus",
             "Herod",
             "Magi",
             "angel of the Lord",
-            "One",
+            "Rachel",
             "chief priests",
             "scribes",
             "Christ",
             "Mary",
             "Joseph",
+            "Jeremiah",
             "Archelaus"
           ]
         },
@@ -182,7 +199,8 @@
             "Israel",
             "Judea",
             "Nazareth",
-            "Galilee"
+            "Galilee",
+            "Ramah"
           ]
         },
         {
@@ -247,14 +265,34 @@
         {
           "highlight": "child",
           "text": ["child"]
+        },
+        {
+          "highlight": "Prophecy",
+          "text": [
+            "But you, Bethlehem, in the land of Judah, are by no means least among the rulers of Judah, for out of you will come a ruler who will be the shepherd of My people Israel.",
+            "“Out of Egypt I called My Son.",
+            "A voice is heard in Ramah, weeping and great mourning, Rachel weeping for her children and refusing to be comforted, because they are no more.",
+            "He will be called a Nazarene."
+          ]
+        },
+        {
+          "highlight": "Prophecy fulfilled",
+          "text": [
+            "Jesus was born in Bethlehem in Judea",
+            "Take the Child and His mother and flee to Egypt.",
+            "withdrew to Egypt",
+            "withdrew to Egypt",
+            "he put to death all the boys in Bethlehem and its vicinity who were two years old and under",
+            "warned in a dream, he withdrew to the district of Galilee"
+          ]
         }
       ]
     },
     "3": {
       "meta": {
         "Context": "John the Baptist prepares the way for Jesus.",
-        "Genre": "Narrative",
-        "Audience": "General"
+        "Genre": "Gospels",
+        "Audience": "Jews, others"
       },
       "topics": [
         {
@@ -275,6 +313,10 @@
         {
           "label": "Prophecy",
           "verses": ["3"]
+        },
+        {
+          "label": "Prophecy fulfilled",
+          "verses": ["1-2"]
         },
         {
           "label": "Pharisees & Sadducees",
@@ -361,14 +403,18 @@
             "food was locusts and wild honey",
             "baptized by him"
           ]
+        },
+        {
+          "highlight": "Holy Spirit",
+          "text": ["Holy Spirit", "the Spirit of God"]
         }
       ]
     },
     "4": {
       "meta": {
-        "Context": "The beginning of Jesus' ministry and his early teachings.",
-        "Genre": "Narrative",
-        "Audience": "General"
+        "Context": "Jesus is tempted after His baptism and before he begins His ministry and chooses His first disciples.",
+        "Genre": "Gospels",
+        "Audience": "Jews, others"
       },
       "topics": [
         {
@@ -390,6 +436,120 @@
           "outline": "Jesus Heals the Multitudes",
           "verses": ["23-25"],
           "references": ["Mark 3:7–12", "Luke 6:17–19"]
+        },
+        {
+          "label": "Prophecy",
+          "verses": ["14-16"]
+        },
+        {
+          "label": "Prophecy fulfilled",
+          "verses": ["13"]
+        },
+        {
+          "label": "Repent",
+          "verses": ["17"]
+        },
+        {
+          "label": "Obedience",
+          "verses": ["1", "20", "22"]
+        },
+        {
+          "highlight": "Persons",
+          "text": [
+            "Jesus",
+            "the Spirit",
+            "the devil",
+            "the tempter",
+            "God",
+            "angels",
+            "John",
+            "Isaiah",
+            "John",
+            "Simon called Peter",
+            "Andrew",
+            "James",
+            "Zebedee"
+          ]
+        },
+        {
+          "highlight": "Places",
+          "text": [
+            "wilderness",
+            "the holy city",
+            "temple",
+            "high mountain",
+            "Galilee",
+            "Nazareth",
+            "Capernaum",
+            "Zebulun",
+            "Naphtali",
+            "Nazareth",
+            "Galilee",
+            "Syria",
+            "Decapolis",
+            "Jerusalem",
+            "Judea",
+            "Jordan"
+          ]
+        },
+        {
+          "highlight": "Temptations",
+          "text": [
+            "tell these stones to become bread",
+            "throw Yourself down",
+            "fall down and worship me"
+          ]
+        },
+        {
+          "highlight": "Jesus' response to temptations",
+          "text": [
+            "It is written: ‘Man shall not live on bread alone, but on every word that comes from the mouth of God.",
+            "It is also written: ‘Do not put the Lord your God to the test.",
+            "Away from Me, Satan!” Jesus told him. “For it is written: ‘Worship the Lord your God and serve Him only."
+          ]
+        },
+        {
+          "highlight": "Angels",
+          "text": ["angels"]
+        },
+        {
+          "highlight": "Way of the Sea",
+          "text": ["Way of the Sea"]
+        },
+        {
+          "highlight": "Light",
+          "text": [
+            "people living in darkness have seen a great light",
+            "in the land of the shadow of death, a light has dawned",
+            "Man shall not live on bread alone, but on every word that comes from the mouth of God.",
+            "Do not put the Lord your God to the test.",
+            "Worship the Lord your God and serve Him only.",
+            "Repent, for the kingdom of heaven is near.",
+            "Come, follow Me",
+            "Jesus called them",
+            "preaching the gospel",
+            "healing"
+          ]
+        },
+        {
+          "highlight": "Galilee",
+          "text": ["Galilee"]
+        },
+        {
+          "highlight": "Jesus sent to the lost sheep of Israel",
+          "text": ["teaching in their synagogues"]
+        },
+        {
+          "highlight": "Gospel",
+          "text": ["gospel of the kingdom"]
+        },
+        {
+          "highlight": "Healing",
+          "text": ["healing", "healed"]
+        },
+        {
+          "highlight": "Crowds",
+          "text": ["crowds"]
         }
       ]
     },
