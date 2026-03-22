@@ -77,6 +77,13 @@
     margin-left: auto;
     margin-right: auto;
   }
+  .bible-chapter.hd-center-2 {
+    columns: 2;
+    column-gap: 3rem;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
   .bible-chapter.hd-center-3-psalms-119 {
     columns: 3;
     column-gap: 2rem;

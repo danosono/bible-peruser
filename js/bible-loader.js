@@ -57,7 +57,7 @@ async function loadBibleChapter(
     }
     if (window.innerWidth >= 3000) {
       if (charCount <= 2700) columnClass = "center-1";
-      else if (charCount <= 5100) columnClass = "center-2";
+      else if (charCount <= 5170) columnClass = "center-2";
       else if (charCount <= 8000) columnClass = "center-3";
       else if (charCount <= 12000) columnClass = "center-4";
       else {
@@ -72,8 +72,11 @@ async function loadBibleChapter(
       } else if (charCount > 4200) {
         columnClass = "hd-center-3";
         fontClass = "font-xsmall";
-      } else {
+      } else if (charCount > 2700) {
         columnClass = "hd-center-3";
+        fontClass = "font-small";
+      } else {
+        columnClass = "hd-center-2";
         fontClass = fontClass || "font-small";
       }
     }
