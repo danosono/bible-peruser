@@ -171,6 +171,56 @@ body {
   position: relative;
 }
 
+/* Header navigation and chapter groups */
+.bp-header__nav-group,
+.bp-header__chapter-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  border: 1px solid #4c4c4c;
+  border-radius: 6px;
+  padding: 0.4em 1.1em;
+}
+.bp-header__nav-label,
+.bp-header__chapter-label {
+  font-size: 1.1em;
+  color: var(--text-secondary);
+  margin: 0 0.5em;
+  font-weight: 500;
+}
+.bp-header__nav-group button,
+.bp-header__chapter-group button {
+  background: #222;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 6px;
+  padding: 0.4em 1.1em;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border 0.2s;
+}
+.bp-header__nav-group button:disabled,
+.bp-header__chapter-group button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.bp-header__nav-group button:hover:not(:disabled),
+.bp-header__chapter-group button:hover:not(:disabled) {
+  background: #333;
+  color: #ffe082;
+  border: 1px solid #ffe082;
+}
+.bp-header__berean-link {
+  color: var(--accent);
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 1.08em;
+  margin-right: 1.2em;
+}
+
 html,
 body {
   height: 100%;

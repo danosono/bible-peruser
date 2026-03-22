@@ -258,6 +258,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   // Listen for chapter changes to update nav buttons
   window.updateChapterNav = function (bookId, chapterNum, chapterCount) {
+    // Sidebar chapter buttons
     const prevBtn = document.getElementById("prev-chapter-btn");
     const nextBtn = document.getElementById("next-chapter-btn");
     if (prevBtn) {
@@ -269,6 +270,21 @@ document.addEventListener("DOMContentLoaded", () => {
     if (nextBtn) {
       nextBtn.disabled = chapterNum >= chapterCount;
       nextBtn.onclick = nextBtn.disabled
+        ? null
+        : () => window.loadBibleChapter(bookId, chapterNum + 1);
+    }
+    // Header chapter buttons
+    const headerPrevChapterBtn = document.getElementById("bp-chapter-prev");
+    const headerNextChapterBtn = document.getElementById("bp-chapter-next");
+    if (headerPrevChapterBtn) {
+      headerPrevChapterBtn.disabled = chapterNum <= 1;
+      headerPrevChapterBtn.onclick = headerPrevChapterBtn.disabled
+        ? null
+        : () => window.loadBibleChapter(bookId, chapterNum - 1);
+    }
+    if (headerNextChapterBtn) {
+      headerNextChapterBtn.disabled = chapterNum >= chapterCount;
+      headerNextChapterBtn.onclick = headerNextChapterBtn.disabled
         ? null
         : () => window.loadBibleChapter(bookId, chapterNum + 1);
     }

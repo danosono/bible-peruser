@@ -41,14 +41,70 @@
           </span>
         </h1>
         <div class="bp-header__nav-center">
-          <button id="bp-nav-back" title="Back" aria-label="Back">
-            &#8592;
-          </button>
-          <button id="bp-nav-forward" title="Forward" aria-label="Forward">
-            &#8594;
-          </button>
+          <div
+            class="bp-header__nav-group"
+            style="display: flex; align-items: center; gap: 0.5em"
+          >
+            <button id="bp-nav-back" title="Back" aria-label="Back">
+              &#8592;
+            </button>
+            <span class="bp-header__nav-label">Navigation</span>
+            <button id="bp-nav-forward" title="Forward" aria-label="Forward">
+              &#8594;
+            </button>
+          </div>
+          <div
+            class="bp-header__chapter-group"
+            style="
+              display: flex;
+              align-items: center;
+              gap: 0.5em;
+              margin-left: 2.5em;
+            "
+          >
+            <button
+              id="bp-chapter-prev"
+              title="Previous Chapter"
+              aria-label="Previous Chapter"
+            >
+              &#8592;
+            </button>
+            <span class="bp-header__chapter-label">Chapter</span>
+            <button
+              id="bp-chapter-next"
+              title="Next Chapter"
+              aria-label="Next Chapter"
+            >
+              &#8594;
+            </button>
+          </div>
         </div>
-        <div class="bp-header__info"><small>Best in 4K</small></div>
+        <div
+          class="bp-header__right"
+          style="
+            display: flex;
+            align-items: center;
+            gap: 1.5em;
+            position: absolute;
+            right: 2.5em;
+            top: 50%;
+            transform: translateY(-50%);
+          "
+        >
+          <a
+            href="https://bereanbible.com/"
+            target="_blank"
+            rel="noopener"
+            class="bp-header__berean-link"
+            style="
+              color: var(--accent);
+              font-weight: bold;
+              text-decoration: underline;
+            "
+            >Berean Standard Bible</a
+          >
+          <div class="bp-header__info"><small>Best in 4K</small></div>
+        </div>
       </header>
       <div class="bp-layout-container">
         <div class="bp-layout">
