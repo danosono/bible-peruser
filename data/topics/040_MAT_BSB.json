@@ -550,56 +550,67 @@
         {
           "highlight": "Crowds",
           "text": ["crowds"]
+        },
+        {
+          "highlight": "Follow Jesus",
+          "text": ["Come, follow Me", "Jesus called them"]
         }
       ]
     },
-    "5": [
-      {
-        "outline": "The Sermon on the Mount",
-        "verses": ["1-2"],
-        "references": []
+    "5": {
+      "meta": {
+        "Context": "Jesus teaches His disciples and the crowds about the kingdom of heaven and how to live as citizens of that kingdom (Matthew 5:1 - 7:29).",
+        "Genre": "Gospels",
+        "Audience": "Jews, others"
       },
-      {
-        "outline": "The Beatitudes",
-        "verses": ["3-12"],
-        "references": ["Psalms 1:1–6", "Luke 6:20–23"]
-      },
-      {
-        "outline": "Salt and Light",
-        "verses": ["13-16"],
-        "references": ["Mark 9:49–50", "Luke 14:34–35", "Philippians 2:12–18"]
-      },
-      {
-        "outline": "The Fulfillment of the Law",
-        "verses": ["17-20"],
-        "references": []
-      },
-      {
-        "outline": "Anger and Reconciliation",
-        "verses": ["21-26"],
-        "references": ["Luke 12:57–59"]
-      },
-      {
-        "outline": "Adultery",
-        "verses": ["27-30"],
-        "references": ["Leviticus 18:1–30"]
-      },
-      {
-        "outline": "Divorce",
-        "verses": ["31-32"],
-        "references": ["Deuteronomy 24:1–5", "Luke 16:18"]
-      },
-      {
-        "outline": "Oaths and Vows",
-        "verses": ["33-37"],
-        "references": ["Numbers 30:1–16"]
-      },
-      {
-        "outline": "Love Your Enemies",
-        "verses": ["38-48"],
-        "references": ["Leviticus 24:17–23", "Luke 6:27–36"]
-      }
-    ],
+      "topics": [
+        {
+          "outline": "The Sermon on the Mount",
+          "verses": ["1-2"],
+          "references": []
+        },
+        {
+          "outline": "The Beatitudes",
+          "verses": ["3-12"],
+          "references": ["Psalms 1:1–6", "Luke 6:20–23"]
+        },
+        {
+          "outline": "Salt and Light",
+          "verses": ["13-16"],
+          "references": ["Mark 9:49–50", "Luke 14:34–35", "Philippians 2:12–18"]
+        },
+        {
+          "outline": "The Fulfillment of the Law",
+          "verses": ["17-20"],
+          "references": []
+        },
+        {
+          "outline": "Anger and Reconciliation",
+          "verses": ["21-26"],
+          "references": ["Luke 12:57–59"]
+        },
+        {
+          "outline": "Adultery",
+          "verses": ["27-30"],
+          "references": ["Leviticus 18:1–30"]
+        },
+        {
+          "outline": "Divorce",
+          "verses": ["31-32"],
+          "references": ["Deuteronomy 24:1–5", "Luke 16:18"]
+        },
+        {
+          "outline": "Oaths and Vows",
+          "verses": ["33-37"],
+          "references": ["Numbers 30:1–16"]
+        },
+        {
+          "outline": "Love Your Enemies",
+          "verses": ["38-48"],
+          "references": ["Leviticus 24:17–23", "Luke 6:27–36"]
+        }
+      ]
+    },
     "6": [
       {
         "outline": "Giving to the Needy",

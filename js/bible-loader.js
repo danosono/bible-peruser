@@ -57,7 +57,7 @@ async function loadBibleChapter(
     }
     if (window.innerWidth >= 3000) {
       if (charCount <= 2700) columnClass = "center-1";
-      else if (charCount <= 5170) columnClass = "center-2";
+      else if (charCount <= 510) columnClass = "center-2";
       else if (charCount <= 8000) columnClass = "center-3";
       else if (charCount <= 12000) columnClass = "center-4";
       else {
@@ -683,7 +683,8 @@ async function loadBibleChapter(
       if (cc) {
         cc.innerHTML =
           `<b>Character count:</b> ${charCount}` +
-          (topWordsStr ? ` | ${topWordsStr}` : "");
+          (topWordsStr ? ` | ${topWordsStr}` : "") +
+          " | -> Control+F to highlight whatever you type.";
       }
       // Reset for next chapter load
       window._chapterWords = [];
