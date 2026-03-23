@@ -608,6 +608,33 @@
           "outline": "Love Your Enemies",
           "verses": ["38-48"],
           "references": ["Leviticus 24:17–23", "Luke 6:27–36"]
+        },
+        {
+          "highlight": "Blessed are",
+          "text": [
+            "the poor in spirit",
+            "those who mourn",
+            "the meek",
+            "those who hunger and thirst for righteousness",
+            "the merciful",
+            "the pure in heart",
+            "the peacemakers",
+            "those who are persecuted because of righteousness",
+            "you when people insult you, persecute you, and falsely say all kinds of evil against you because of Me."
+          ]
+        },
+        {
+          "highlight": "Blessed how",
+          "text": [
+            "for theirs is the kingdom of heaven.",
+            "for they will be comforted.",
+            "for they will inherit the earth.",
+            "for they will be filled.",
+            "for they will be shown mercy.",
+            "for they will see God.",
+            "for they will be called sons of God.",
+            "Rejoice and be glad, because great is your reward in heaven"
+          ]
         }
       ]
     },
