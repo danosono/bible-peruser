@@ -92,7 +92,19 @@ async function loadBibleChapter(
     main.innerHTML = html;
 
     // Load topics for current book/chapter
-    const topicBar = document.getElementById("chapter-topic-bar");
+    let topicBar = document.getElementById("chapter-topic-bar");
+    if (!topicBar) {
+      const nav = document.querySelector(".bp-sidebar--left");
+      if (nav) {
+        topicBar = document.createElement("div");
+        topicBar.id = "chapter-topic-bar";
+        topicBar.style.display = "flex";
+        topicBar.style.flexWrap = "wrap";
+        topicBar.style.gap = "6px";
+        topicBar.style.margin = "12px 0";
+        nav.insertBefore(topicBar, nav.children[1] || null);
+      }
+    }
     if (topicBar) topicBar.innerHTML = "";
     // Try to load topics for the current book, using new predictable filename: NNN_BOOKID_BSB.json
     const topicFile = getTopicFilename(bookId);
@@ -142,6 +154,15 @@ async function loadBibleChapter(
       // Create highlight buttons in right sidebar
       const aside = document.querySelector(".bp-sidebar--right");
       if (aside) aside.innerHTML = "";
+      // Re-insert sticky highlight toggle bar if function exists
+      if (window.renderStickyHighlightToggle) {
+        window.renderStickyHighlightToggle(aside);
+        // Move sticky toggle bar to top if not already
+        const stickyBar = aside.querySelector(".sticky-highlight-toggle-bar");
+        if (stickyBar && aside.firstChild !== stickyBar) {
+          aside.insertBefore(stickyBar, aside.firstChild);
+        }
+      }
       let highlightBar = document.getElementById("chapter-highlight-bar");
       if (!highlightBar && aside) {
         highlightBar = document.createElement("div");
@@ -150,7 +171,15 @@ async function loadBibleChapter(
         highlightBar.style.flexWrap = "wrap";
         highlightBar.style.gap = "6px";
         highlightBar.style.margin = "12px 0";
-        aside.insertBefore(highlightBar, aside.firstChild);
+        // Always insert highlightBar after sticky toggle bar
+        const stickyBar = aside.querySelector(".sticky-highlight-toggle-bar");
+        if (stickyBar && stickyBar.nextSibling) {
+          aside.insertBefore(highlightBar, stickyBar.nextSibling);
+        } else if (stickyBar) {
+          aside.appendChild(highlightBar);
+        } else {
+          aside.insertBefore(highlightBar, aside.firstChild);
+        }
       }
       if (highlightBar) highlightBar.innerHTML = "";
       // LEFT: label and outline buttons (with highlight logic)
@@ -481,93 +510,133 @@ async function loadBibleChapter(
               });
             }
           };
-          topicBar.appendChild(btn);
+          if (topicBar) topicBar.appendChild(btn);
         }
       });
-      // RIGHT: highlight buttons only (with highlight logic)
+      // RIGHT: highlight buttons only (supports sticky multi-select)
+      function resetVerseTextToOriginal() {
+        document.querySelectorAll(".verse-text").forEach((el) => {
+          const orig = el.getAttribute("data-original");
+          if (orig !== null) {
+            el.innerHTML = decodeURIComponent(orig);
+          }
+        });
+      }
+
+      function collectActivePhrases() {
+        if (!highlightBar) return [];
+        const phrases = [];
+        highlightBar
+          .querySelectorAll(".topic-highlight-btn.active")
+          .forEach((activeBtn) => {
+            const arr = Array.isArray(activeBtn._highlightPhrases)
+              ? activeBtn._highlightPhrases
+              : [];
+            arr.forEach((p) => {
+              if (p) phrases.push(p);
+            });
+          });
+        return [...new Set(phrases)];
+      }
+
+      function applyPhraseHighlights(phrases) {
+        if (!phrases.length) return;
+        const sortedPhrases = [...phrases].sort((a, b) => b.length - a.length);
+        document.querySelectorAll(".verse-text").forEach((el) => {
+          const orig = el.getAttribute("data-original");
+          if (orig === null) return;
+          const text = decodeURIComponent(orig);
+          let matches = [];
+          sortedPhrases.forEach((phrase) => {
+            const safe = phrase.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&");
+            const regex = new RegExp(safe, "gi");
+            let match;
+            while ((match = regex.exec(text)) !== null) {
+              matches.push({
+                start: match.index,
+                end: match.index + match[0].length,
+                len: match[0].length,
+              });
+              if (regex.lastIndex === match.index) regex.lastIndex++;
+            }
+          });
+          matches.sort((a, b) => a.start - b.start || b.len - a.len);
+          let result = [];
+          let lastEnd = 0;
+          for (let i = 0; i < matches.length; i++) {
+            const m = matches[i];
+            if (m.start >= lastEnd) {
+              result.push(m);
+              lastEnd = m.end;
+            }
+          }
+          let out = text;
+          for (let i = result.length - 1; i >= 0; i--) {
+            const m = result[i];
+            out =
+              out.slice(0, m.start) +
+              '<span class="search-highlight">' +
+              out.slice(m.start, m.end) +
+              "</span>" +
+              out.slice(m.end);
+          }
+          el.innerHTML = out;
+        });
+      }
+
+      function rerenderActiveHighlights() {
+        resetVerseTextToOriginal();
+        applyPhraseHighlights(collectActivePhrases());
+      }
+
       chapterTopics.forEach((topic) => {
-        if (topic.highlight) {
-          let btn = document.createElement("button");
+        if (topic.highlight && highlightBar) {
+          const btn = document.createElement("button");
           btn.textContent = topic.highlight;
           btn.className = "topic-btn topic-highlight-btn";
+          btn._highlightPhrases = Array.isArray(topic.text) ? topic.text : [];
           btn.onclick = () => {
-            const isActive = btn.classList.contains("active");
-            // Always reset all verse-texts to their original text before highlighting
-            document.querySelectorAll(".verse-text").forEach((el) => {
-              const orig = el.getAttribute("data-original");
-              if (orig !== null) {
-                el.innerHTML = decodeURIComponent(orig);
-              }
-            });
-            // Remove previous highlight button active state
-            highlightBar
-              .querySelectorAll(".topic-btn")
-              .forEach((b) => b.classList.remove("active"));
-            if (isActive) {
-              // If already active, unselect
-              btn.classList.remove("active");
-              return;
+            const stickyToggle = document.getElementById(
+              "sticky-highlight-toggle",
+            );
+            const stickyMode = !!(stickyToggle && stickyToggle.checked);
+
+            if (stickyMode) {
+              btn.classList.toggle("active");
+            } else {
+              const wasActive = btn.classList.contains("active");
+              highlightBar
+                .querySelectorAll(".topic-highlight-btn")
+                .forEach((b) => b.classList.remove("active"));
+              if (!wasActive) btn.classList.add("active");
             }
-            btn.classList.add("active");
-            // Highlight all matching words/phrases in all verse-texts
-            const phrases = Array.isArray(topic.text) ? topic.text : [];
-            if (phrases.length) {
-              // Robust non-overlapping, longest-match-first highlight logic
-              const sortedPhrases = [...phrases]
-                .filter(Boolean)
-                .sort((a, b) => b.length - a.length);
-              document.querySelectorAll(".verse-text").forEach((el) => {
-                const orig = el.getAttribute("data-original");
-                if (orig === null) return;
-                const text = decodeURIComponent(orig);
-                let matches = [];
-                // Find all matches for all phrases
-                sortedPhrases.forEach((phrase, pIdx) => {
-                  const safe = phrase.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&");
-                  const regex = new RegExp(safe, "gi");
-                  let match;
-                  while ((match = regex.exec(text)) !== null) {
-                    matches.push({
-                      start: match.index,
-                      end: match.index + match[0].length,
-                      phrase: match[0],
-                      phraseIdx: pIdx,
-                      len: match[0].length,
-                    });
-                    // Prevent infinite loop for zero-length matches
-                    if (regex.lastIndex === match.index) regex.lastIndex++;
-                  }
-                });
-                // Sort matches: first by start, then by length descending
-                matches.sort((a, b) => a.start - b.start || b.len - a.len);
-                // Filter out overlapping matches, keeping longest at each position
-                let result = [];
-                let lastEnd = 0;
-                for (let i = 0; i < matches.length; i++) {
-                  const m = matches[i];
-                  if (m.start >= lastEnd) {
-                    result.push(m);
-                    lastEnd = m.end;
-                  }
-                }
-                // Build highlighted HTML from end to start
-                let out = text;
-                for (let i = result.length - 1; i >= 0; i--) {
-                  const m = result[i];
-                  out =
-                    out.slice(0, m.start) +
-                    '<span class="search-highlight">' +
-                    out.slice(m.start, m.end) +
-                    "</span>" +
-                    out.slice(m.end);
-                }
-                el.innerHTML = out;
-              });
-            }
+
+            rerenderActiveHighlights();
           };
           highlightBar.appendChild(btn);
         }
       });
+
+      const stickyToggle = document.getElementById("sticky-highlight-toggle");
+      if (stickyToggle && !stickyToggle.dataset.highlightSyncBound) {
+        stickyToggle.addEventListener("change", () => {
+          if (!highlightBar) return;
+          if (!stickyToggle.checked) {
+            const activeBtns = Array.from(
+              highlightBar.querySelectorAll(".topic-highlight-btn.active"),
+            );
+            highlightBar
+              .querySelectorAll(".topic-highlight-btn")
+              .forEach((b) => b.classList.remove("active"));
+            if (activeBtns.length) {
+              const lastActive = activeBtns[activeBtns.length - 1];
+              lastActive.classList.add("active");
+            }
+          }
+          rerenderActiveHighlights();
+        });
+        stickyToggle.dataset.highlightSyncBound = "1";
+      }
     }); // End tryFetchTopicFile callback
     // Update character count in footer
     // Update character count in footer

@@ -291,8 +291,43 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // Placeholder: Notes/context
-  const aside = document.querySelector(".bp-sidebar--right");
-  if (aside) {
-    aside.innerHTML = `<strong>Notes:</strong><br>Click a book to navigate.`;
+  function renderStickyHighlightToggle(aside) {
+    if (!aside) return;
+    // Only add if not already present
+    if (!aside.querySelector(".sticky-highlight-toggle-bar")) {
+      const toggleBar = document.createElement("div");
+      toggleBar.className = "sticky-highlight-toggle-bar";
+      toggleBar.innerHTML = `
+        <label class="sticky-highlight-toggle-label">
+          <input type="checkbox" id="sticky-highlight-toggle" />
+          <span>Sticky Highlights</span>
+        </label>
+      `;
+      aside.prepend(toggleBar);
+      // Restore toggle state from localStorage
+      const stickyToggle = toggleBar.querySelector("#sticky-highlight-toggle");
+      if (stickyToggle) {
+        const stickyState =
+          localStorage.getItem("stickyHighlightMode") === "true";
+        stickyToggle.checked = stickyState;
+        stickyToggle.addEventListener("change", () => {
+          localStorage.setItem(
+            "stickyHighlightMode",
+            stickyToggle.checked ? "true" : "false",
+          );
+        });
+      }
+    }
   }
+
+  // Call this whenever you update the right sidebar content
+  function ensureStickyToggleInSidebar() {
+    const aside = document.querySelector(".bp-sidebar--right");
+    renderStickyHighlightToggle(aside);
+  }
+
+  // Initial render
+  ensureStickyToggleInSidebar();
+  // Expose for other modules (e.g., bible-loader.js)
+  window.renderStickyHighlightToggle = renderStickyHighlightToggle;
 });

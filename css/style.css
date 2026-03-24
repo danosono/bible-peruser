@@ -1,3 +1,30 @@
+/* Sticky highlight toggle bar in right sidebar */
+.sticky-highlight-toggle-bar {
+  position: sticky;
+  top: 0;
+  background: var(--bg-sidebar);
+  z-index: 10;
+  padding: 0.7em 0 0.5em 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 1px solid #333;
+}
+.sticky-highlight-toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 1.08em;
+  color: var(--accent);
+  font-weight: 600;
+  cursor: pointer;
+}
+.sticky-highlight-toggle-label input[type="checkbox"] {
+  accent-color: var(--accent);
+  width: 1.2em;
+  height: 1.2em;
+  margin-right: 0.2em;
+}
 /* 4K centered columns for bible-chapter */
 @media (min-width: 3000px) {
   .bp-app {
