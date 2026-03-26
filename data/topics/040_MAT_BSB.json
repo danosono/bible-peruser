@@ -677,38 +677,136 @@
         }
       ]
     },
-    "6": [
-      {
-        "outline": "Giving to the Needy",
-        "verses": ["1-4"],
-        "references": ["Deuteronomy 15:7–11"]
+    "6": {
+      "meta": {
+        "Context": "Jesus teaches His disciples and the crowds about the kingdom of heaven and how to live as citizens of that kingdom (Matthew 5:1 - 7:29).",
+        "Genre": "Gospels",
+        "Audience": "Jews, others"
       },
-      {
-        "outline": "The Lord’s Prayer",
-        "verses": ["5-15"],
-        "references": ["Luke 11:1–4"]
-      },
-      {
-        "outline": "Proper Fasting",
-        "verses": ["16-18"],
-        "references": []
-      },
-      {
-        "outline": "Treasures in Heaven",
-        "verses": ["19-21"],
-        "references": ["Luke 12:32–34"]
-      },
-      {
-        "outline": "The Lamp of the Body",
-        "verses": ["22-24"],
-        "references": ["Luke 11:33–36"]
-      },
-      {
-        "outline": "Do Not Worry",
-        "verses": ["25-34"],
-        "references": ["Luke 12:22–31"]
-      }
-    ],
+      "topics": [
+        {
+          "outline": "Giving to the Needy",
+          "verses": ["1-4"],
+          "references": ["Deuteronomy 15:7–11"]
+        },
+        {
+          "outline": "The Lord’s Prayer",
+          "verses": ["5-15"],
+          "references": ["Luke 11:1–4"]
+        },
+        {
+          "outline": "Proper Fasting",
+          "verses": ["16-18"],
+          "references": []
+        },
+        {
+          "outline": "Treasures in Heaven",
+          "verses": ["19-21"],
+          "references": ["Luke 12:32–34"]
+        },
+        {
+          "outline": "The Lamp of the Body",
+          "verses": ["22-24"],
+          "references": ["Luke 11:33–36"]
+        },
+        {
+          "outline": "Do Not Worry",
+          "verses": ["25-34"],
+          "references": ["Luke 12:22–31"]
+        },
+        {
+          "label": "Pride, Hypocrisy",
+          "verses": [1, 5, "16"]
+        },
+        {
+          "label": "Money",
+          "verses": [24]
+        },
+        {
+          "label": "Worry",
+          "verses": ["24-34"]
+        },
+        {
+          "highlight": "Father",
+          "text": ["Father"]
+        },
+        {
+          "highlight": "Heaven",
+          "text": ["heaven", "heavenly"]
+        },
+        {
+          "highlight": "Reward",
+          "text": ["reward"]
+        },
+        {
+          "highlight": "Secret",
+          "text": ["secret"]
+        },
+        {
+          "highlight": "I tell you",
+          "text": ["I tell you"]
+        },
+        {
+          "highlight": "Don't",
+          "text": [
+            "not to perform your righteous acts before men",
+            "do not sound a trumpet before you, as the hypocrites do",
+            "to be seen by men",
+            "do not babble on like pagans",
+            "When you fast, do not be somber like the hypocrites",
+            "Do not store up for yourselves treasures on earth",
+            "do not worry about your life",
+            "do not worry",
+            "do not worry about tomorrow"
+          ]
+        },
+        {
+          "highlight": "Do",
+          "text": [
+            "giving may be in secret",
+            "pray to your Father",
+            "this is how you should pray",
+            "you forgive men their trespasses",
+            "But when you fast, anoint your head and wash your face",
+            "so that your fasting will not be obvious to men, but only to your Father, who is unseen",
+            "store up for yourselves treasures in heaven",
+            "seek first the kingdom of God and His righteousness"
+          ]
+        },
+        {
+          "highlight": "Comfort",
+          "text": [
+            "your Father knows what you need before you ask Him",
+            "your heavenly Father feeds them. Are you not much more valuable than they?",
+            " will He not much more clothe you",
+            "your heavenly Father knows that you need them",
+            "all these things will be added unto you"
+          ]
+        },
+        {
+          "highlight": "Wisdom",
+          "text": [
+            " where your treasure is, there your heart will be also",
+            "You cannot serve both God and money",
+            "Today has enough trouble of its own"
+          ]
+        },
+        {
+          "highlight": "The Prayer",
+          "text": ["Your name", "Your kingdom", "Your will"]
+        },
+        {
+          "highlight": "The Prayer",
+          "text": [
+            "Our Father in heaven,",
+            "give us",
+            "forgive us",
+            "lead us not",
+            "deliver us"
+          ]
+        }
+      ]
+    },
     "7": [
       {
         "outline": "Judging Others",
