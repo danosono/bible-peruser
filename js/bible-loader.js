@@ -8,7 +8,7 @@ import {
 // js/bible-loader.js - loads a chapter from bible.json and displays it in <main>
 
 async function loadBibleChapter(
-  bookId = "GEN",
+  bookId = "JHN",
   chapterNum = 1,
   pushState = true,
 ) {
@@ -845,7 +845,7 @@ function getTopicFilename(bid) {
 if (typeof window !== "undefined") {
   window.loadBibleChapter = loadBibleChapter;
   document.addEventListener("DOMContentLoaded", () => {
-    let bookId = "GEN";
+    let bookId = "JHN";
     let chapterNum = 1;
     if (window.localStorage) {
       const lastBook = localStorage.getItem("bibleLastBook");
