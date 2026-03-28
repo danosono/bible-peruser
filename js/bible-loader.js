@@ -26,6 +26,109 @@ function setBpViewMode(mode) {
   }
 }
 
+function normalizePhraseList(phrases) {
+  const list = Array.isArray(phrases) ? phrases : [];
+  const seen = new Set();
+  const out = [];
+  list.forEach((p) => {
+    if (typeof p !== "string") return;
+    const trimmed = p.trim();
+    if (!trimmed) return;
+    const key = trimmed.toLowerCase();
+    if (seen.has(key)) return;
+    seen.add(key);
+    out.push(trimmed);
+  });
+  return out.sort((a, b) => b.length - a.length);
+}
+
+function buildVerseTextCache(verseElements) {
+  const cache = new Map();
+  (Array.isArray(verseElements) ? verseElements : []).forEach((el) => {
+    const raw = el.getAttribute("data-original");
+    if (raw === null) return;
+    const text = decodeURIComponent(raw);
+    cache.set(el, { text, lower: text.toLowerCase() });
+  });
+  return cache;
+}
+
+function resetVerseTextFromCache(verseTextCache) {
+  verseTextCache.forEach((entry, el) => {
+    el.innerHTML = entry.text;
+  });
+}
+
+function collectNonOverlappingMatches(lowerText, lowerPhrases) {
+  const matches = [];
+  lowerPhrases.forEach((phrase) => {
+    if (!phrase) return;
+    let fromIdx = 0;
+    while (true) {
+      const idx = lowerText.indexOf(phrase, fromIdx);
+      if (idx === -1) break;
+      matches.push({
+        start: idx,
+        end: idx + phrase.length,
+        len: phrase.length,
+      });
+      fromIdx = idx + 1;
+    }
+  });
+  matches.sort((a, b) => a.start - b.start || b.len - a.len);
+
+  const merged = [];
+  let lastEnd = 0;
+  matches.forEach((m) => {
+    if (m.start >= lastEnd) {
+      merged.push(m);
+      lastEnd = m.end;
+    }
+  });
+  return merged;
+}
+
+function renderHighlightedHtml(text, matches) {
+  if (!matches.length) return text;
+  let out = text;
+  for (let i = matches.length - 1; i >= 0; i--) {
+    const m = matches[i];
+    out =
+      out.slice(0, m.start) +
+      '<span class="search-highlight">' +
+      out.slice(m.start, m.end) +
+      "</span>" +
+      out.slice(m.end);
+  }
+  return out;
+}
+
+function applyPhraseHighlightsFromCache(verseTextCache, phrases) {
+  const normalized = normalizePhraseList(phrases);
+  if (!normalized.length) {
+    resetVerseTextFromCache(verseTextCache);
+    return;
+  }
+  const lowerPhrases = normalized.map((p) => p.toLowerCase());
+  verseTextCache.forEach((entry, el) => {
+    const matches = collectNonOverlappingMatches(entry.lower, lowerPhrases);
+    el.innerHTML = renderHighlightedHtml(entry.text, matches);
+  });
+}
+
+function clearBoundListener(el, eventName, propName) {
+  if (!el || !el[propName]) return;
+  el.removeEventListener(eventName, el[propName]);
+  el[propName] = null;
+}
+
+function bindSingleListener(el, eventName, propName, handler) {
+  if (!el) return;
+  clearBoundListener(el, eventName, propName);
+  el[propName] = handler;
+  el.addEventListener(eventName, handler);
+}
+
 async function loadBibleChapter(
   bookId = "MAT",
   chapterNum = 1,
@@ -112,6 +215,10 @@ async function loadBibleChapter(
     html += "</div>";
     main.innerHTML = html;
 
+    const chapterVerseTextCache = buildVerseTextCache(
+      Array.from(document.querySelectorAll(".verse-text[data-original]")),
+    );
+
     // Load topics for current book/chapter
     let topicBar = document.getElementById("chapter-topic-bar");
     if (!topicBar) {
@@ -184,6 +291,26 @@ async function loadBibleChapter(
           aside.insertBefore(stickyBar, aside.firstChild);
         }
       }
+
+      let chapterSearchField = null;
+      if (aside) {
+        chapterSearchField = document.createElement("input");
+        chapterSearchField.type = "text";
+        chapterSearchField.id = "chapter-search-field";
+        chapterSearchField.className = "bp-chapter-search-field";
+        chapterSearchField.placeholder = "Highlight text...";
+        chapterSearchField.setAttribute("autocomplete", "off");
+
+        const stickyBar = aside.querySelector(".sticky-highlight-toggle-bar");
+        if (stickyBar && stickyBar.nextSibling) {
+          aside.insertBefore(chapterSearchField, stickyBar.nextSibling);
+        } else if (stickyBar) {
+          aside.appendChild(chapterSearchField);
+        } else {
+          aside.insertBefore(chapterSearchField, aside.firstChild);
+        }
+      }
+
       let highlightBar = document.getElementById("chapter-highlight-bar");
       if (!highlightBar && aside) {
         highlightBar = document.createElement("div");
@@ -194,7 +321,11 @@ async function loadBibleChapter(
         highlightBar.style.margin = "12px 0";
         // Always insert highlightBar after sticky toggle bar
         const stickyBar = aside.querySelector(".sticky-highlight-toggle-bar");
-        if (stickyBar && stickyBar.nextSibling) {
+        if (chapterSearchField && chapterSearchField.nextSibling) {
+          aside.insertBefore(highlightBar, chapterSearchField.nextSibling);
+        } else if (chapterSearchField) {
+          aside.appendChild(highlightBar);
+        } else if (stickyBar && stickyBar.nextSibling) {
           aside.insertBefore(highlightBar, stickyBar.nextSibling);
         } else if (stickyBar) {
           aside.appendChild(highlightBar);
@@ -534,88 +665,44 @@ async function loadBibleChapter(
           if (topicBar) topicBar.appendChild(btn);
         }
       });
-      // RIGHT: highlight buttons only (supports sticky multi-select)
-      function resetVerseTextToOriginal() {
-        document.querySelectorAll(".verse-text").forEach((el) => {
-          const orig = el.getAttribute("data-original");
-          if (orig !== null) {
-            el.innerHTML = decodeURIComponent(orig);
-          }
-        });
-      }
+      // RIGHT: highlight buttons + typed field (supports sticky multi-select)
 
       function collectActivePhrases() {
-        if (!highlightBar) return [];
         const phrases = [];
-        highlightBar
-          .querySelectorAll(".topic-highlight-btn.active")
-          .forEach((activeBtn) => {
-            const arr = Array.isArray(activeBtn._highlightPhrases)
-              ? activeBtn._highlightPhrases
-              : [];
-            arr.forEach((p) => {
-              if (p) phrases.push(p);
-            });
-          });
-        return [...new Set(phrases)];
-      }
-
-      function applyPhraseHighlights(phrases) {
-        if (!phrases.length) return;
-        const sortedPhrases = [...phrases].sort((a, b) => b.length - a.length);
-        document.querySelectorAll(".verse-text").forEach((el) => {
-          const orig = el.getAttribute("data-original");
-          if (orig === null) return;
-          const text = decodeURIComponent(orig);
-          let matches = [];
-          sortedPhrases.forEach((phrase) => {
-            const safe = phrase.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&");
-            const regex = new RegExp(safe, "gi");
-            let match;
-            while ((match = regex.exec(text)) !== null) {
-              matches.push({
-                start: match.index,
-                end: match.index + match[0].length,
-                len: match[0].length,
+        if (highlightBar) {
+          highlightBar
+            .querySelectorAll(".topic-highlight-btn.active")
+            .forEach((activeBtn) => {
+              const arr = Array.isArray(activeBtn._highlightPhrases)
+                ? activeBtn._highlightPhrases
+                : [];
+              arr.forEach((p) => {
+                if (p) phrases.push(p);
               });
-              if (regex.lastIndex === match.index) regex.lastIndex++;
-            }
-          });
-          matches.sort((a, b) => a.start - b.start || b.len - a.len);
-          let result = [];
-          let lastEnd = 0;
-          for (let i = 0; i < matches.length; i++) {
-            const m = matches[i];
-            if (m.start >= lastEnd) {
-              result.push(m);
-              lastEnd = m.end;
-            }
-          }
-          let out = text;
-          for (let i = result.length - 1; i >= 0; i--) {
-            const m = result[i];
-            out =
-              out.slice(0, m.start) +
-              '<span class="search-highlight">' +
-              out.slice(m.start, m.end) +
-              "</span>" +
-              out.slice(m.end);
-          }
-          el.innerHTML = out;
-        });
+            });
+        }
+        if (chapterSearchField && chapterSearchField.value.trim()) {
+          phrases.push(chapterSearchField.value.trim());
+        }
+        return normalizePhraseList(phrases);
       }
 
       function rerenderActiveHighlights() {
-        resetVerseTextToOriginal();
-        applyPhraseHighlights(collectActivePhrases());
+        applyPhraseHighlightsFromCache(
+          chapterVerseTextCache,
+          collectActivePhrases(),
+        );
       }
 
       chapterTopics.forEach((topic) => {
-        if (topic.highlight && highlightBar) {
+        const highlightLabel =
+          typeof topic.highlight === "string" ? topic.highlight.trim() : "";
+        const highlightPhrases = normalizePhraseList(topic.text);
+        if (highlightLabel && highlightPhrases.length && highlightBar) {
           const btn = document.createElement("button");
-          btn.textContent = topic.highlight;
+          btn.textContent = highlightLabel;
           btn.className = "topic-btn topic-highlight-btn";
-          btn._highlightPhrases = Array.isArray(topic.text) ? topic.text : [];
+          btn._highlightPhrases = highlightPhrases;
           btn.onclick = () => {
             const stickyToggle = document.getElementById(
               "sticky-highlight-toggle",
@@ -638,25 +725,44 @@ async function loadBibleChapter(
         }
       });
 
-      const stickyToggle = document.getElementById("sticky-highlight-toggle");
-      if (stickyToggle && !stickyToggle.dataset.highlightSyncBound) {
-        stickyToggle.addEventListener("change", () => {
-          if (!highlightBar) return;
-          if (!stickyToggle.checked) {
-            const activeBtns = Array.from(
-              highlightBar.querySelectorAll(".topic-highlight-btn.active"),
-            );
-            highlightBar
-              .querySelectorAll(".topic-highlight-btn")
-              .forEach((b) => b.classList.remove("active"));
-            if (activeBtns.length) {
-              const lastActive = activeBtns[activeBtns.length - 1];
-              lastActive.classList.add("active");
-            }
-          }
-          rerenderActiveHighlights();
+      if (chapterSearchField) {
+        let chapterSearchDebounce = null;
+        chapterSearchField.addEventListener("input", () => {
+          clearTimeout(chapterSearchDebounce);
+          chapterSearchDebounce = setTimeout(() => {
+            rerenderActiveHighlights();
+          }, 300);
         });
-        stickyToggle.dataset.highlightSyncBound = "1";
+      }
+
+      const stickyToggle = document.getElementById("sticky-highlight-toggle");
+      if (stickyToggle) {
+        clearBoundListener(
+          stickyToggle,
+          "change",
+          "__bpBookHighlightSyncHandler",
+        );
+        bindSingleListener(
+          stickyToggle,
+          "change",
+          "__bpChapterHighlightSyncHandler",
+          () => {
+            if (!highlightBar) return;
+            if (!stickyToggle.checked) {
+              const activeBtns = Array.from(
+                highlightBar.querySelectorAll(".topic-highlight-btn.active"),
+              );
+              highlightBar
+                .querySelectorAll(".topic-highlight-btn")
+                .forEach((b) => b.classList.remove("active"));
+              if (activeBtns.length) {
+                const lastActive = activeBtns[activeBtns.length - 1];
+                lastActive.classList.add("active");
+              }
+            }
+            rerenderActiveHighlights();
+          },
+        );
       }
     }); // End tryFetchTopicFile callback
     // Update character count in footer
@@ -893,9 +999,12 @@ async function loadBibleBook(bookId = "MAT") {
     const chapterMaxVerseMap = {};
     let charCount = 0;
     book.chapters.forEach((ch) => {
-      chapterMaxVerseMap[ch.number] = Array.isArray(ch.verses)
-        ? ch.verses.length
-        : 0;
+      const verses = Array.isArray(ch.verses) ? ch.verses : [];
+      const maxVerse = verses.reduce((max, verse) => {
+        const n = parseInt(verse?.n, 10);
+        return Number.isFinite(n) ? Math.max(max, n) : max;
+      }, 0);
+      chapterMaxVerseMap[ch.number] = maxVerse;
       (ch.verses || []).forEach((verse) => {
         charCount += (verse.text || "").length;
       });
@@ -920,6 +1029,10 @@ async function loadBibleBook(bookId = "MAT") {
     html.push(`</div>`);
     html.push(`</div>`);
     main.innerHTML = html.join("");
+
+    const bookVerseTextCache = buildVerseTextCache(
+      Array.from(main.querySelectorAll(".verse-text[data-original]")),
+    );
 
     if (window.updateChapterNav) {
       window.updateChapterNav(bookId, 1, 1);
@@ -972,50 +1085,6 @@ async function loadBibleBook(bookId = "MAT") {
       return [...new Set(phrases)];
     }
 
-    function applyBookPhraseHighlights(phrases) {
-      if (!phrases.length) return;
-      const sortedPhrases = [...phrases].sort((a, b) => b.length - a.length);
-      document.querySelectorAll(".verse-text").forEach((el) => {
-        const orig = el.getAttribute("data-original");
-        if (orig === null) return;
-        const text = decodeURIComponent(orig);
-        const matches = [];
-        sortedPhrases.forEach((phrase) => {
-          const safe = phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-          const regex = new RegExp(safe, "gi");
-          let match;
-          while ((match = regex.exec(text)) !== null) {
-            matches.push({
-              start: match.index,
-              end: match.index + match[0].length,
-              len: match[0].length,
-            });
-            if (regex.lastIndex === match.index) regex.lastIndex++;
-          }
-        });
-        matches.sort((a, b) => a.start - b.start || b.len - a.len);
-        const merged = [];
-        let lastEnd = 0;
-        for (const m of matches) {
-          if (m.start >= lastEnd) {
-            merged.push(m);
-            lastEnd = m.end;
-          }
-        }
-        let out = text;
-        for (let i = merged.length - 1; i >= 0; i--) {
-          const m = merged[i];
-          out =
-            out.slice(0, m.start) +
-            '<span class="search-highlight">' +
-            out.slice(m.start, m.end) +
-            "</span>" +
-            out.slice(m.end);
-        }
-        el.innerHTML = out;
-      });
-    }
-
     function reapplyBookRangeHighlights() {
       if (!activeRangeKeys.size) return;
       activeRangeKeys.forEach((vk) => {
@@ -1027,15 +1096,13 @@ async function loadBibleBook(bookId = "MAT") {
 
     function rerenderBookHighlights() {
       // 1. Reset verse text to originals
-      document.querySelectorAll(".verse-text[data-original]").forEach((el) => {
-        el.innerHTML = decodeURIComponent(el.getAttribute("data-original"));
-      });
+      resetVerseTextFromCache(bookVerseTextCache);
       // Remove range highlight class from all verse spans
       document
-        .querySelectorAll(".verse-highlight")
+        .querySelectorAll(".bp-main .verse-highlight")
         .forEach((el) => el.classList.remove("verse-highlight"));
       // 2. Apply phrase highlights (search-highlight spans)
-      applyBookPhraseHighlights(collectBookPhrases());
+      applyPhraseHighlightsFromCache(bookVerseTextCache, collectBookPhrases());
       // 3. Re-apply verse range highlights on top
       reapplyBookRangeHighlights();
     }
@@ -1117,11 +1184,14 @@ async function loadBibleBook(bookId = "MAT") {
         aside.appendChild(bookHighlightBar);
 
         bookWideHighlights.forEach((entry) => {
-          if (!entry || !entry.highlight || !Array.isArray(entry.text)) return;
+          const label =
+            typeof entry?.highlight === "string" ? entry.highlight.trim() : "";
+          const phrases = normalizePhraseList(entry?.text);
+          if (!label || !phrases.length) return;
           const btn = document.createElement("button");
-          btn.textContent = entry.highlight;
+          btn.textContent = label;
           btn.className = "topic-btn topic-highlight-btn";
-          btn._highlightPhrases = entry.text.filter(Boolean);
+          btn._highlightPhrases = phrases;
           btn.onclick = () => {
             const stickyToggle = document.getElementById(
               "sticky-highlight-toggle",
@@ -1143,24 +1213,33 @@ async function loadBibleBook(bookId = "MAT") {
 
         // Wire sticky toggle change to rerender
         const stickyToggle = document.getElementById("sticky-highlight-toggle");
-        if (stickyToggle && !stickyToggle.dataset.bookHighlightSyncBound) {
-          stickyToggle.addEventListener("change", () => {
-            if (!bookHighlightBar) return;
-            if (!stickyToggle.checked) {
-              const activeBtns = Array.from(
-                bookHighlightBar.querySelectorAll(
-                  ".topic-highlight-btn.active",
-                ),
-              );
-              bookHighlightBar
-                .querySelectorAll(".topic-highlight-btn")
-                .forEach((b) => b.classList.remove("active"));
-              if (activeBtns.length)
-                activeBtns[activeBtns.length - 1].classList.add("active");
-            }
-            rerenderBookHighlights();
-          });
-          stickyToggle.dataset.bookHighlightSyncBound = "1";
+        if (stickyToggle) {
+          clearBoundListener(
+            stickyToggle,
+            "change",
+            "__bpChapterHighlightSyncHandler",
+          );
+          bindSingleListener(
+            stickyToggle,
+            "change",
+            "__bpBookHighlightSyncHandler",
+            () => {
+              if (!bookHighlightBar) return;
+              if (!stickyToggle.checked) {
+                const activeBtns = Array.from(
+                  bookHighlightBar.querySelectorAll(
+                    ".topic-highlight-btn.active",
+                  ),
+                );
+                bookHighlightBar
+                  .querySelectorAll(".topic-highlight-btn")
+                  .forEach((b) => b.classList.remove("active"));
+                if (activeBtns.length)
+                  activeBtns[activeBtns.length - 1].classList.add("active");
+              }
+              rerenderBookHighlights();
+            },
+          );
         }
       }
     }

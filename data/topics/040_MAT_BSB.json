@@ -21,12 +21,12 @@
       "verses": ["11:1-12:50"]
     },
     {
-      "label": "Jesus lives out the kingdom of heaven",
-      "verses": ["8:1-9:38"]
+      "label": "Parables of the kingdom of heaven",
+      "verses": ["13:1-13:52"]
     },
     {
-      "label": "Kingdom of heaven revealed in parables",
-      "verses": ["13:1-17:27"]
+      "label": "Identity of the King revealed",
+      "verses": ["13:53-17:27"]
     },
     {
       "label": "Community in the kingdom of heaven",
@@ -42,7 +42,7 @@
     },
     {
       "label": "The King examined for blemish",
-      "verses": ["21:23-23:29"]
+      "verses": ["21:23-23:39"]
     },
     {
       "label": "Olivet Discourse",
@@ -59,30 +59,20 @@
   ],
   "bookWideHighlights": [
     {
+      "highlight": "Jesus",
+      "text": ["Jesus"]
+    },
+    {
+      "highlight": "God",
+      "text": ["God"]
+    },
+    {
       "highlight": "Kingdom",
       "text": ["kingdom of heaven", "kingdom of God"]
     },
     {
       "highlight": "Faith",
       "text": ["faith", "believe", "believed", "trust"]
-    },
-    {
-      "highlight": "Prophecy",
-      "text": [
-        "fulfill",
-        "fulfilled",
-        "was written",
-        "prophet said",
-        "prophets"
-      ]
-    },
-    {
-      "highlight": "Prayer",
-      "text": ["pray", "prayer", "ask", "seek", "knock"]
-    },
-    {
-      "highlight": "Miracles",
-      "text": ["healed", "healing", "cast out", "raised", "miracle", "marveled"]
     }
   ],
   "chapterTopics": {
