@@ -149,9 +149,9 @@ export function saveLastRead(bookId, chapterNum) {
 export function getLastRead() {
   if (typeof window !== "undefined" && window.localStorage) {
     return {
-      bookId: localStorage.getItem("bibleLastBook") || "JHN",
+      bookId: localStorage.getItem("bibleLastBook") || "MAT",
       chapterNum: parseInt(localStorage.getItem("bibleLastChapter"), 10) || 1,
     };
   }
-  return { bookId: "JHN", chapterNum: 1 };
+  return { bookId: "MAT", chapterNum: 1 };
 }

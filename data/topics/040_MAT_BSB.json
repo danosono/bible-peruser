@@ -808,38 +808,74 @@
         }
       ]
     },
-    "7": [
-      {
-        "outline": "Judging Others",
-        "verses": ["1-6"],
-        "references": ["Luke 6:37–42", "Romans 14:1–12"]
+    "7": {
+      "meta": {
+        "Context": "Jesus teaches His disciples and the crowds about the kingdom of heaven and how to live as citizens of that kingdom (Matthew 5:1 - 7:29).",
+        "Genre": "Gospels",
+        "Audience": "Jews, others"
       },
-      {
-        "outline": "Ask, Seek, Knock",
-        "verses": ["7-12"],
-        "references": ["Luke 11:5–13"]
-      },
-      {
-        "outline": "The Narrow Gate",
-        "verses": ["13-14"],
-        "references": ["Luke 13:22–30"]
-      },
-      {
-        "outline": "A Tree and Its Fruit",
-        "verses": ["15-23"],
-        "references": ["Luke 6:43–45"]
-      },
-      {
-        "outline": "The House on the Rock",
-        "verses": ["24-27"],
-        "references": ["Luke 6:46–49"]
-      },
-      {
-        "outline": "The Authority of Jesus",
-        "verses": ["28-29"],
-        "references": []
-      }
-    ],
+      "topics": [
+        {
+          "outline": "Judging Others",
+          "verses": ["1-6"],
+          "references": ["Luke 6:37–42", "Romans 14:1–12"]
+        },
+        {
+          "outline": "Ask, Seek, Knock",
+          "verses": ["7-12"],
+          "references": ["Luke 11:5–13"]
+        },
+        {
+          "outline": "The Narrow Gate",
+          "verses": ["13-14"],
+          "references": ["Luke 13:22–30"]
+        },
+        {
+          "outline": "A Tree and Its Fruit",
+          "verses": ["15-23"],
+          "references": ["Luke 6:43–45"]
+        },
+        {
+          "outline": "The House on the Rock",
+          "verses": ["24-27"],
+          "references": ["Luke 6:46–49"]
+        },
+        {
+          "outline": "The Authority of Jesus",
+          "verses": ["28-29"],
+          "references": []
+        },
+        { "label": "Trust God", "verses": ["7-11", "24-25"] },
+        { "label": "The golden rule", "verses": ["12"] },
+        { "label": "False prophets", "verses": ["16"] },
+        { "label": "Test false prophets", "verses": ["17-20"] },
+        { "label": "Jesus is AMAZING", "verses": ["28-29"] },
+        {
+          "highlight": "Don't",
+          "text": ["Do not"]
+        },
+        {
+          "highlight": "Do",
+          "text": [
+            "take the beam out of your own eye",
+            "ask,",
+            "seek,",
+            "do to others as you would have them do to you",
+            "Enter through the narrow gate",
+            "Beware of false prophets",
+            "hears these words of Mine and acts on them"
+          ]
+        },
+        {
+          "highlight": "good",
+          "text": ["good"]
+        },
+        {
+          "highlight": "scribes",
+          "text": ["scribes"]
+        }
+      ]
+    },
     "8": [
       {
         "outline": "The Leper’s Prayer",
