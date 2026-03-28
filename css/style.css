@@ -224,7 +224,7 @@ body {
 }
 
 .bible-book.bible-book--dense .verse-num {
-  color: #c2c424;
+  color: #dd8181;
   font-size: 0.92em;
   font-weight: 600;
 }
@@ -798,4 +798,48 @@ footer {
   height: 100px;
   width: auto;
   vertical-align: middle;
+}
+
+/* Compact header: 900px–1474px (items overlap above this range is fine, below needs scaling) */
+@media (min-width: 900px) and (max-width: 1474px) {
+  .bp-header {
+    padding: 0.4rem 1rem;
+  }
+  .bp-header__title {
+    font-size: 1.1em;
+  }
+  .bp-header__by-gospelgo {
+    font-size: 0.65em;
+  }
+  .bp-header__nav-center {
+    gap: 0.5em;
+  }
+  .bp-header__nav-center button {
+    padding: 0.2em 0.55em;
+    font-size: 0.9em;
+  }
+  .bp-header__nav-group,
+  .bp-header__chapter-group {
+    padding: 0.2em 0.55em;
+    gap: 0.25em;
+    margin-left: 1em !important;
+  }
+  .bp-header__nav-group button,
+  .bp-header__chapter-group button {
+    padding: 0.2em 0.55em;
+    font-size: 0.9em;
+  }
+  .bp-header__nav-label,
+  .bp-header__chapter-label {
+    font-size: 0.8em;
+    margin: 0 0.25em;
+  }
+  .bp-header__berean-link {
+    font-size: 0.82em;
+    margin-right: 0.5em;
+  }
+  .bp-header__right {
+    gap: 0.7em !important;
+    right: 1rem !important;
+  }
 }
