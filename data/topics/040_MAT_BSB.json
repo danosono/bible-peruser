@@ -1,4 +1,90 @@
 {
+  "bookWideLabels": [
+    {
+      "label": "Jesus is born and starts His ministry",
+      "verses": ["1:1-4:25"]
+    },
+    {
+      "label": "Sermon on the Mount",
+      "verses": ["5:1-7:29"]
+    },
+    {
+      "label": "Jesus lives out the kingdom of heaven",
+      "verses": ["8:1-9:38"]
+    },
+    {
+      "label": "Twelve apostles are commissioned",
+      "verses": ["10:1-10:42"]
+    },
+    {
+      "label": "Responses to Jesus (John the Baptist, Pharisees, Jesus' family)",
+      "verses": ["11:1-12:50"]
+    },
+    {
+      "label": "Jesus lives out the kingdom of heaven",
+      "verses": ["8:1-9:38"]
+    },
+    {
+      "label": "Kingdom of heaven revealed in parables",
+      "verses": ["13:1-17:27"]
+    },
+    {
+      "label": "Community in the kingdom of heaven",
+      "verses": ["18:1-18:35"]
+    },
+    {
+      "label": "Jesus teaches in Judea about community",
+      "verses": ["19:1-20:34"]
+    },
+    {
+      "label": "The King",
+      "verses": ["21:1-21:22"]
+    },
+    {
+      "label": "The King examined for blemish",
+      "verses": ["21:23-23:29"]
+    },
+    {
+      "label": "Olivet Discourse",
+      "verses": ["24:1-25:46"]
+    },
+    {
+      "label": "Jesus' Passover",
+      "verses": ["26:1-27:66"]
+    },
+    {
+      "label": "Resurrection and Great Commission",
+      "verses": ["28:1-28:20"]
+    }
+  ],
+  "bookWideHighlights": [
+    {
+      "highlight": "Kingdom",
+      "text": ["kingdom of heaven", "kingdom of God"]
+    },
+    {
+      "highlight": "Faith",
+      "text": ["faith", "believe", "believed", "trust"]
+    },
+    {
+      "highlight": "Prophecy",
+      "text": [
+        "fulfill",
+        "fulfilled",
+        "was written",
+        "prophet said",
+        "prophets"
+      ]
+    },
+    {
+      "highlight": "Prayer",
+      "text": ["pray", "prayer", "ask", "seek", "knock"]
+    },
+    {
+      "highlight": "Miracles",
+      "text": ["healed", "healing", "cast out", "raised", "miracle", "marveled"]
+    }
+  ],
   "chapterTopics": {
     "1": {
       "meta": {

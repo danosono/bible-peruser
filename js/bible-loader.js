@@ -7,11 +7,33 @@ import {
 
 // js/bible-loader.js - loads a chapter from bible.json and displays it in <main>
 
+let bpBibleDataCache = null;
+
+async function getBibleData() {
+  if (bpBibleDataCache) return bpBibleDataCache;
+  const response = await fetch("data/bible.json");
+  bpBibleDataCache = await response.json();
+  return bpBibleDataCache;
+}
+
+function setBpViewMode(mode) {
+  const app = document.querySelector(".bp-app");
+  if (!app) return;
+  app.classList.toggle("bp-entire-book-mode", mode === "entireBook");
+  window._currentViewMode = mode;
+  if (window.updateEntireBookButton) {
+    window.updateEntireBookButton(mode);
+  }
+}
+
 async function loadBibleChapter(
   bookId = "MAT",
   chapterNum = 1,
   pushState = true,
 ) {
+  setBpViewMode("chapter");
+  window._currentBookId = bookId;
+  window._currentChapterNum = chapterNum;
   // Push state for browser navigation only if not handling popstate
   // Update book scrollbar selection
   if (window.updateBookScrollbar) window.updateBookScrollbar(bookId);
@@ -31,8 +53,7 @@ async function loadBibleChapter(
   if (!main) return;
   main.innerHTML = '<div class="loading">Loading...</div>';
   try {
-    const response = await fetch("data/bible.json");
-    const data = await response.json();
+    const data = await getBibleData();
     const book = data.books.find((b) => b.id === bookId);
     if (!book) {
       main.innerHTML = `<div class="error">Book not found.</div>`;
@@ -775,6 +796,382 @@ async function loadBibleChapter(
   }
 }
 
+function parseBookWideRangeToken(token) {
+  if (typeof token !== "string") return null;
+  const trimmed = token.trim();
+  const m = trimmed.match(/^(\d+):(\d+)-(\d+):(\d+)$/);
+  if (!m) return null;
+  let startChapter = parseInt(m[1], 10);
+  let startVerse = parseInt(m[2], 10);
+  let endChapter = parseInt(m[3], 10);
+  let endVerse = parseInt(m[4], 10);
+  if ([startChapter, startVerse, endChapter, endVerse].some((n) => n < 1)) {
+    return null;
+  }
+
+  const isReversed =
+    startChapter > endChapter ||
+    (startChapter === endChapter && startVerse > endVerse);
+  if (isReversed) {
+    const tempStartChapter = startChapter;
+    const tempStartVerse = startVerse;
+    startChapter = endChapter;
+    startVerse = endVerse;
+    endChapter = tempStartChapter;
+    endVerse = tempStartVerse;
+  }
+
+  return {
+    raw: trimmed,
+    startChapter,
+    startVerse,
+    endChapter,
+    endVerse,
+  };
+}
+
+function buildBookWideLabelVerseKeys(label, chapterMaxVerseMap) {
+  const tokens = Array.isArray(label?.verses) ? label.verses : [];
+  const verseKeys = [];
+  let firstKey = null;
+
+  tokens.forEach((token) => {
+    const parsed = parseBookWideRangeToken(token);
+    if (!parsed) {
+      console.warn("Skipping invalid bookWideLabels range:", token);
+      return;
+    }
+    const { startChapter, startVerse, endChapter, endVerse, raw } = parsed;
+
+    for (let ch = startChapter; ch <= endChapter; ch++) {
+      const chapterMax = chapterMaxVerseMap[ch];
+      if (!chapterMax) continue;
+      const fromVerse = ch === startChapter ? startVerse : 1;
+      const toVerse = ch === endChapter ? endVerse : chapterMax;
+      if (fromVerse > chapterMax) continue;
+      const cappedTo = Math.min(toVerse, chapterMax);
+      for (let v = fromVerse; v <= cappedTo; v++) {
+        const key = `${ch}:${v}`;
+        if (!firstKey) firstKey = key;
+        verseKeys.push(key);
+      }
+    }
+
+    if (!firstKey) {
+      console.warn("Range resolved to no verses in this book:", raw);
+    }
+  });
+
+  return { verseKeys, firstKey };
+}
+
+async function loadBibleBook(bookId = "MAT") {
+  setBpViewMode("entireBook");
+  window._currentBookId = bookId;
+  window._currentChapterNum = 1;
+
+  if (window.updateBookScrollbar) window.updateBookScrollbar(bookId);
+
+  const main = document.querySelector(".bp-main");
+  const aside = document.querySelector(".bp-sidebar--right");
+  const topicBar = document.getElementById("chapter-topic-bar");
+  const legendElem = document.querySelector(".bp-footer__legend");
+  if (!main) return;
+  main.innerHTML = '<div class="loading">Loading book...</div>';
+  if (aside) aside.innerHTML = "";
+  if (legendElem) legendElem.innerHTML = "";
+
+  try {
+    const data = await getBibleData();
+    const book = data.books.find((b) => b.id === bookId);
+    if (!book) {
+      main.innerHTML = `<div class="error">Book not found.</div>`;
+      if (topicBar) topicBar.innerHTML = "";
+      return;
+    }
+
+    const chapterMaxVerseMap = {};
+    let charCount = 0;
+    book.chapters.forEach((ch) => {
+      chapterMaxVerseMap[ch.number] = Array.isArray(ch.verses)
+        ? ch.verses.length
+        : 0;
+      (ch.verses || []).forEach((verse) => {
+        charCount += (verse.text || "").length;
+      });
+    });
+
+    const bookName = bookNames[bookId] || bookId;
+    const html = [];
+    html.push(`<div class="bp-book-view">`);
+    html.push(`<h2 class="bp-book-view__title">${bookName} (Entire Book)</h2>`);
+    html.push(`<div class="bible-book bible-book--dense">`);
+    book.chapters.forEach((chapter) => {
+      html.push(
+        `<h3 class="bp-book-view__chapter">Chapter ${chapter.number}</h3>`,
+      );
+      (chapter.verses || []).forEach((verse) => {
+        const safeText = encodeURIComponent(verse.text || "");
+        html.push(
+          `<span class="verse-num" data-chapter="${chapter.number}" data-verse="${verse.n}" data-verse-key="${chapter.number}:${verse.n}">${chapter.number}:${verse.n}</span> <span class="verse-text" data-chapter="${chapter.number}" data-verse="${verse.n}" data-verse-key="${chapter.number}:${verse.n}" data-original="${safeText}">${verse.text}</span><br>`,
+        );
+      });
+    });
+    html.push(`</div>`);
+    html.push(`</div>`);
+    main.innerHTML = html.join("");
+
+    if (window.updateChapterNav) {
+      window.updateChapterNav(bookId, 1, 1);
+    }
+    if (window.updateChapterDropdown) {
+      window.updateChapterDropdown(bookId, 1, 1);
+    }
+
+    if (topicBar) topicBar.innerHTML = "";
+    const topicFile = getTopicFilename(bookId);
+    if (!topicFile || !topicBar) return;
+
+    const resp = await fetch(topicFile);
+    if (!resp.ok) {
+      topicBar.innerHTML = `<div class="error">No book-wide labels found.</div>`;
+      return;
+    }
+
+    const topicsData = await resp.json();
+    const bookWideLabels = Array.isArray(topicsData.bookWideLabels)
+      ? topicsData.bookWideLabels
+      : [];
+    const bookWideHighlights = Array.isArray(topicsData.bookWideHighlights)
+      ? topicsData.bookWideHighlights
+      : [];
+
+    // ── State for active verse-range keys (from left-panel label) ────────────
+    let activeRangeKeys = new Set();
+
+    // ── Unified rerender: phrase highlights + verse-range highlights ──────────
+    // Phrase pass uses data-original to reset, then wraps matches in search-highlight.
+    // Range pass then re-applies verse-highlight class on top without touching innerHTML.
+    function collectBookPhrases() {
+      const phrases = [];
+      if (bookHighlightBar) {
+        bookHighlightBar
+          .querySelectorAll(".topic-highlight-btn.active")
+          .forEach((activeBtn) => {
+            (Array.isArray(activeBtn._highlightPhrases)
+              ? activeBtn._highlightPhrases
+              : []
+            ).forEach((p) => {
+              if (p) phrases.push(p);
+            });
+          });
+      }
+      if (bookSearchField && bookSearchField.value.trim()) {
+        phrases.push(bookSearchField.value.trim());
+      }
+      return [...new Set(phrases)];
+    }
+
+    function applyBookPhraseHighlights(phrases) {
+      if (!phrases.length) return;
+      const sortedPhrases = [...phrases].sort((a, b) => b.length - a.length);
+      document.querySelectorAll(".verse-text").forEach((el) => {
+        const orig = el.getAttribute("data-original");
+        if (orig === null) return;
+        const text = decodeURIComponent(orig);
+        const matches = [];
+        sortedPhrases.forEach((phrase) => {
+          const safe = phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+          const regex = new RegExp(safe, "gi");
+          let match;
+          while ((match = regex.exec(text)) !== null) {
+            matches.push({
+              start: match.index,
+              end: match.index + match[0].length,
+              len: match[0].length,
+            });
+            if (regex.lastIndex === match.index) regex.lastIndex++;
+          }
+        });
+        matches.sort((a, b) => a.start - b.start || b.len - a.len);
+        const merged = [];
+        let lastEnd = 0;
+        for (const m of matches) {
+          if (m.start >= lastEnd) {
+            merged.push(m);
+            lastEnd = m.end;
+          }
+        }
+        let out = text;
+        for (let i = merged.length - 1; i >= 0; i--) {
+          const m = merged[i];
+          out =
+            out.slice(0, m.start) +
+            '<span class="search-highlight">' +
+            out.slice(m.start, m.end) +
+            "</span>" +
+            out.slice(m.end);
+        }
+        el.innerHTML = out;
+      });
+    }
+
+    function reapplyBookRangeHighlights() {
+      if (!activeRangeKeys.size) return;
+      activeRangeKeys.forEach((vk) => {
+        document
+          .querySelectorAll(`[data-verse-key='${vk}']`)
+          .forEach((el) => el.classList.add("verse-highlight"));
+      });
+    }
+
+    function rerenderBookHighlights() {
+      // 1. Reset verse text to originals
+      document.querySelectorAll(".verse-text[data-original]").forEach((el) => {
+        el.innerHTML = decodeURIComponent(el.getAttribute("data-original"));
+      });
+      // Remove range highlight class from all verse spans
+      document
+        .querySelectorAll(".verse-highlight")
+        .forEach((el) => el.classList.remove("verse-highlight"));
+      // 2. Apply phrase highlights (search-highlight spans)
+      applyBookPhraseHighlights(collectBookPhrases());
+      // 3. Re-apply verse range highlights on top
+      reapplyBookRangeHighlights();
+    }
+
+    // ── Left panel: bookWideLabels ────────────────────────────────────────────
+    if (bookWideLabels.length) {
+      bookWideLabels.forEach((labelEntry) => {
+        if (
+          !labelEntry ||
+          !labelEntry.label ||
+          !Array.isArray(labelEntry.verses)
+        )
+          return;
+        const btn = document.createElement("button");
+        btn.className = "topic-btn topic-label-btn";
+        btn.textContent = labelEntry.label;
+        btn.onclick = () => {
+          const wasActive = btn.classList.contains("active");
+          topicBar
+            .querySelectorAll(".topic-btn")
+            .forEach((b) => b.classList.remove("active"));
+          activeRangeKeys.clear();
+          if (!wasActive) {
+            const { verseKeys, firstKey } = buildBookWideLabelVerseKeys(
+              labelEntry,
+              chapterMaxVerseMap,
+            );
+            verseKeys.forEach((vk) => activeRangeKeys.add(vk));
+            if (verseKeys.length) {
+              btn.classList.add("active");
+              rerenderBookHighlights();
+              if (firstKey) {
+                const first = document.querySelector(
+                  `.verse-text[data-verse-key='${firstKey}']`,
+                );
+                if (first)
+                  first.scrollIntoView({ behavior: "smooth", block: "center" });
+              }
+            }
+          } else {
+            rerenderBookHighlights();
+          }
+        };
+        topicBar.appendChild(btn);
+      });
+    }
+
+    // ── Right panel: sticky toggle + search field + bookWideHighlights ────────
+    let bookHighlightBar = null;
+    let bookSearchField = null;
+
+    if (aside) {
+      // Sticky toggle (reuse existing renderer from app.js if available)
+      if (window.renderStickyHighlightToggle) {
+        window.renderStickyHighlightToggle(aside);
+      }
+
+      // Text search field
+      bookSearchField = document.createElement("input");
+      bookSearchField.type = "text";
+      bookSearchField.id = "book-search-field";
+      bookSearchField.className = "bp-book-search-field";
+      bookSearchField.placeholder = "Highlight text…";
+      bookSearchField.setAttribute("autocomplete", "off");
+      aside.appendChild(bookSearchField);
+
+      let searchDebounceTimer = null;
+      bookSearchField.addEventListener("input", () => {
+        clearTimeout(searchDebounceTimer);
+        searchDebounceTimer = setTimeout(() => rerenderBookHighlights(), 300);
+      });
+
+      // Highlight buttons from bookWideHighlights
+      if (bookWideHighlights.length) {
+        bookHighlightBar = document.createElement("div");
+        bookHighlightBar.id = "book-highlight-bar";
+        bookHighlightBar.style.cssText =
+          "display:flex;flex-wrap:wrap;gap:6px;margin:8px 0;";
+        aside.appendChild(bookHighlightBar);
+
+        bookWideHighlights.forEach((entry) => {
+          if (!entry || !entry.highlight || !Array.isArray(entry.text)) return;
+          const btn = document.createElement("button");
+          btn.textContent = entry.highlight;
+          btn.className = "topic-btn topic-highlight-btn";
+          btn._highlightPhrases = entry.text.filter(Boolean);
+          btn.onclick = () => {
+            const stickyToggle = document.getElementById(
+              "sticky-highlight-toggle",
+            );
+            const stickyMode = !!(stickyToggle && stickyToggle.checked);
+            if (stickyMode) {
+              btn.classList.toggle("active");
+            } else {
+              const wasActive = btn.classList.contains("active");
+              bookHighlightBar
+                .querySelectorAll(".topic-highlight-btn")
+                .forEach((b) => b.classList.remove("active"));
+              if (!wasActive) btn.classList.add("active");
+            }
+            rerenderBookHighlights();
+          };
+          bookHighlightBar.appendChild(btn);
+        });
+
+        // Wire sticky toggle change to rerender
+        const stickyToggle = document.getElementById("sticky-highlight-toggle");
+        if (stickyToggle && !stickyToggle.dataset.bookHighlightSyncBound) {
+          stickyToggle.addEventListener("change", () => {
+            if (!bookHighlightBar) return;
+            if (!stickyToggle.checked) {
+              const activeBtns = Array.from(
+                bookHighlightBar.querySelectorAll(
+                  ".topic-highlight-btn.active",
+                ),
+              );
+              bookHighlightBar
+                .querySelectorAll(".topic-highlight-btn")
+                .forEach((b) => b.classList.remove("active"));
+              if (activeBtns.length)
+                activeBtns[activeBtns.length - 1].classList.add("active");
+            }
+            rerenderBookHighlights();
+          });
+          stickyToggle.dataset.bookHighlightSyncBound = "1";
+        }
+      }
+    }
+
+    updateFooterCharCount(charCount, "");
+  } catch (e) {
+    main.innerHTML = `<div class="error">Failed to load entire book.</div>`;
+    if (topicBar) topicBar.innerHTML = "";
+  }
+}
+
 // Helper: update main content
 function updateMainContent(main, html) {
   main.innerHTML = html;
@@ -844,6 +1241,7 @@ function getTopicFilename(bid) {
 // Optionally, call on load
 if (typeof window !== "undefined") {
   window.loadBibleChapter = loadBibleChapter;
+  window.loadBibleBook = loadBibleBook;
   document.addEventListener("DOMContentLoaded", () => {
     let bookId = "MAT";
     let chapterNum = 1;

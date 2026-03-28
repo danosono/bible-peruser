@@ -233,14 +233,43 @@ document.addEventListener("DOMContentLoaded", () => {
                     <button id="next-chapter-btn" disabled>CH&gt;</button>
                 </div>
                 <select id="chapter-dropdown" style="margin-top:8px;padding:4px 12px;border-radius:4px;background:var(--bg-sidebar);color:var(--text-main);border:1px solid var(--accent);font-size:1em;width:90%;max-width:220px;"></select>
+                <button id="entire-book-btn" style="margin-top:8px;width:90%;max-width:220px;">Entire Book</button>
             </div>
             <div id="chapter-topic-bar" style="display:flex;flex-wrap:wrap;gap:6px;margin:12px 0;"></div>
         `;
   }
+
+  function updateEntireBookButton(mode) {
+    const btn = document.getElementById("entire-book-btn");
+    if (!btn) return;
+    btn.textContent =
+      mode === "entireBook" ? "Exit Entire Book" : "Entire Book";
+  }
+  window.updateEntireBookButton = updateEntireBookButton;
+
+  const entireBookBtn = document.getElementById("entire-book-btn");
+  if (entireBookBtn) {
+    entireBookBtn.onclick = () => {
+      const currentBook = window._currentBookId || "MAT";
+      if (window._currentViewMode === "entireBook") {
+        const currentChapter = window._currentChapterNum || 1;
+        if (window.loadBibleChapter) {
+          window.loadBibleChapter(currentBook, currentChapter, false);
+        }
+        return;
+      }
+      if (window.loadBibleBook) {
+        window.loadBibleBook(currentBook);
+      }
+    };
+  }
+  updateEntireBookButton(window._currentViewMode || "chapter");
+
   // Populate chapter dropdown after chapter loads
   window.updateChapterDropdown = function (bookId, chapterNum, chapterCount) {
     const dropdown = document.getElementById("chapter-dropdown");
     if (dropdown) {
+      const inBookMode = window._currentViewMode === "entireBook";
       dropdown.innerHTML = "";
       for (let i = 1; i <= chapterCount; i++) {
         const opt = document.createElement("option");
@@ -249,7 +278,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (i === chapterNum) opt.selected = true;
         dropdown.appendChild(opt);
       }
+      dropdown.disabled = inBookMode;
       dropdown.onchange = function () {
+        if (window._currentViewMode === "entireBook") return;
         if (window.loadBibleChapter) {
           window.loadBibleChapter(bookId, parseInt(dropdown.value, 10));
         }
@@ -258,17 +289,18 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   // Listen for chapter changes to update nav buttons
   window.updateChapterNav = function (bookId, chapterNum, chapterCount) {
+    const inBookMode = window._currentViewMode === "entireBook";
     // Sidebar chapter buttons
     const prevBtn = document.getElementById("prev-chapter-btn");
     const nextBtn = document.getElementById("next-chapter-btn");
     if (prevBtn) {
-      prevBtn.disabled = chapterNum <= 1;
+      prevBtn.disabled = inBookMode || chapterNum <= 1;
       prevBtn.onclick = prevBtn.disabled
         ? null
         : () => window.loadBibleChapter(bookId, chapterNum - 1);
     }
     if (nextBtn) {
-      nextBtn.disabled = chapterNum >= chapterCount;
+      nextBtn.disabled = inBookMode || chapterNum >= chapterCount;
       nextBtn.onclick = nextBtn.disabled
         ? null
         : () => window.loadBibleChapter(bookId, chapterNum + 1);
@@ -277,17 +309,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const headerPrevChapterBtn = document.getElementById("bp-chapter-prev");
     const headerNextChapterBtn = document.getElementById("bp-chapter-next");
     if (headerPrevChapterBtn) {
-      headerPrevChapterBtn.disabled = chapterNum <= 1;
+      headerPrevChapterBtn.disabled = inBookMode || chapterNum <= 1;
       headerPrevChapterBtn.onclick = headerPrevChapterBtn.disabled
         ? null
         : () => window.loadBibleChapter(bookId, chapterNum - 1);
     }
     if (headerNextChapterBtn) {
-      headerNextChapterBtn.disabled = chapterNum >= chapterCount;
+      headerNextChapterBtn.disabled = inBookMode || chapterNum >= chapterCount;
       headerNextChapterBtn.onclick = headerNextChapterBtn.disabled
         ? null
         : () => window.loadBibleChapter(bookId, chapterNum + 1);
     }
+    updateEntireBookButton(window._currentViewMode || "chapter");
   };
 
   // Placeholder: Notes/context
