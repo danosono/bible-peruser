@@ -32,14 +32,18 @@ function normalizePhraseList(phrases) {
   const out = [];
   list.forEach((p) => {
     if (typeof p !== "string") return;
-    const trimmed = p.trim();
-    if (!trimmed) return;
-    const key = trimmed.toLowerCase();
+    if (!p.trim()) return;
+    const key = p.toLowerCase();
     if (seen.has(key)) return;
     seen.add(key);
-    out.push(trimmed);
+    out.push(p);
   });
   return out.sort((a, b) => b.length - a.length);
+}
+
+function getLiteralSearchPhrase(inputEl) {
+  if (!inputEl || typeof inputEl.value !== "string") return "";
+  return inputEl.value.trim() ? inputEl.value : "";
 }
 
 function buildVerseTextCache(verseElements) {
@@ -681,8 +685,9 @@ async function loadBibleChapter(
               });
             });
         }
-        if (chapterSearchField && chapterSearchField.value.trim()) {
-          phrases.push(chapterSearchField.value.trim());
+        const typedPhrase = getLiteralSearchPhrase(chapterSearchField);
+        if (typedPhrase) {
+          phrases.push(typedPhrase);
         }
         return normalizePhraseList(phrases);
       }
@@ -765,7 +770,6 @@ async function loadBibleChapter(
         );
       }
     }); // End tryFetchTopicFile callback
-    // Update character count in footer
     // Update character count in footer
     const footer = document.querySelector(".bp-footer");
     if (footer) {
@@ -1079,8 +1083,9 @@ async function loadBibleBook(bookId = "MAT") {
             });
           });
       }
-      if (bookSearchField && bookSearchField.value.trim()) {
-        phrases.push(bookSearchField.value.trim());
+      const typedPhrase = getLiteralSearchPhrase(bookSearchField);
+      if (typedPhrase) {
+        phrases.push(typedPhrase);
       }
       return [...new Set(phrases)];
     }
