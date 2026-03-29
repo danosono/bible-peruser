@@ -228,12 +228,12 @@ document.addEventListener("DOMContentLoaded", () => {
   if (nav) {
     nav.innerHTML = `
             <div class="chapter-nav-sticky" style="flex-direction:column;align-items:center;">
-                <div style="display:flex;justify-content:center;align-items:center;width:100%;">
-                    <button id="prev-chapter-btn" disabled>&lt;CH</button>
-                    <button id="next-chapter-btn" disabled>CH&gt;</button>
-                </div>
-                <select id="chapter-dropdown" style="margin-top:8px;padding:4px 12px;border-radius:4px;background:var(--bg-sidebar);color:var(--text-main);border:1px solid var(--accent);font-size:1em;width:90%;max-width:220px;"></select>
                 <button id="entire-book-btn" style="margin-top:8px;width:90%;max-width:220px;">Entire Book</button>
+          <select id="chapter-dropdown" style="margin-top:8px;padding:4px 12px;border-radius:4px;background:var(--bg-sidebar);color:var(--text-main);border:1px solid var(--accent);font-size:1em;width:90%;max-width:220px;"></select>
+          <div style="display:flex;justify-content:center;align-items:center;width:100%;margin-top:8px;">
+            <button id="prev-chapter-btn" disabled>&lt;CH</button>
+            <button id="next-chapter-btn" disabled>CH&gt;</button>
+          </div>
             </div>
             <div id="chapter-topic-bar" style="display:flex;flex-wrap:wrap;gap:6px;margin:12px 0;"></div>
         `;
@@ -252,12 +252,28 @@ document.addEventListener("DOMContentLoaded", () => {
     entireBookBtn.onclick = () => {
       const currentBook = window._currentBookId || "MAT";
       if (window._currentViewMode === "entireBook") {
-        const currentChapter = window._currentChapterNum || 1;
+        let returnChapter = Number.parseInt(
+          window._chapterBeforeEntireBook,
+          10,
+        );
+        if (!Number.isInteger(returnChapter) || returnChapter < 1) {
+          const savedChapter = localStorage.getItem(
+            "bpChapterBeforeEntireBook",
+          );
+          returnChapter = Number.parseInt(savedChapter, 10);
+        }
+        const currentChapter =
+          Number.isInteger(returnChapter) && returnChapter > 0
+            ? returnChapter
+            : window._currentChapterNum || 1;
         if (window.loadBibleChapter) {
           window.loadBibleChapter(currentBook, currentChapter, false);
         }
         return;
       }
+      const currentChapter = window._currentChapterNum || 1;
+      window._chapterBeforeEntireBook = currentChapter;
+      localStorage.setItem("bpChapterBeforeEntireBook", String(currentChapter));
       if (window.loadBibleBook) {
         window.loadBibleBook(currentBook);
       }
@@ -326,8 +342,17 @@ document.addEventListener("DOMContentLoaded", () => {
   // Placeholder: Notes/context
   function renderStickyHighlightToggle(aside) {
     if (!aside) return;
+    let stickyControls = aside.querySelector(".bp-sidebar-sticky-controls");
+    if (!stickyControls) {
+      stickyControls = document.createElement("div");
+      stickyControls.className = "bp-sidebar-sticky-controls";
+      aside.prepend(stickyControls);
+    } else if (aside.firstChild !== stickyControls) {
+      aside.insertBefore(stickyControls, aside.firstChild);
+    }
+
     // Only add if not already present
-    if (!aside.querySelector(".sticky-highlight-toggle-bar")) {
+    if (!stickyControls.querySelector(".sticky-highlight-toggle-bar")) {
       const toggleBar = document.createElement("div");
       toggleBar.className = "sticky-highlight-toggle-bar";
       toggleBar.innerHTML = `
@@ -336,7 +361,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <span>Sticky Highlights</span>
         </label>
       `;
-      aside.prepend(toggleBar);
+      stickyControls.appendChild(toggleBar);
       // Restore toggle state from localStorage
       const stickyToggle = toggleBar.querySelector("#sticky-highlight-toggle");
       if (stickyToggle) {

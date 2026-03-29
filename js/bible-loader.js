@@ -289,11 +289,6 @@ async function loadBibleChapter(
       // Re-insert sticky highlight toggle bar if function exists
       if (window.renderStickyHighlightToggle) {
         window.renderStickyHighlightToggle(aside);
-        // Move sticky toggle bar to top if not already
-        const stickyBar = aside.querySelector(".sticky-highlight-toggle-bar");
-        if (stickyBar && aside.firstChild !== stickyBar) {
-          aside.insertBefore(stickyBar, aside.firstChild);
-        }
       }
 
       let chapterSearchField = null;
@@ -305,11 +300,11 @@ async function loadBibleChapter(
         chapterSearchField.placeholder = "Highlight text...";
         chapterSearchField.setAttribute("autocomplete", "off");
 
-        const stickyBar = aside.querySelector(".sticky-highlight-toggle-bar");
-        if (stickyBar && stickyBar.nextSibling) {
-          aside.insertBefore(chapterSearchField, stickyBar.nextSibling);
-        } else if (stickyBar) {
-          aside.appendChild(chapterSearchField);
+        const stickyControls = aside.querySelector(
+          ".bp-sidebar-sticky-controls",
+        );
+        if (stickyControls) {
+          stickyControls.appendChild(chapterSearchField);
         } else {
           aside.insertBefore(chapterSearchField, aside.firstChild);
         }
@@ -323,19 +318,7 @@ async function loadBibleChapter(
         highlightBar.style.flexWrap = "wrap";
         highlightBar.style.gap = "6px";
         highlightBar.style.margin = "12px 0";
-        // Always insert highlightBar after sticky toggle bar
-        const stickyBar = aside.querySelector(".sticky-highlight-toggle-bar");
-        if (chapterSearchField && chapterSearchField.nextSibling) {
-          aside.insertBefore(highlightBar, chapterSearchField.nextSibling);
-        } else if (chapterSearchField) {
-          aside.appendChild(highlightBar);
-        } else if (stickyBar && stickyBar.nextSibling) {
-          aside.insertBefore(highlightBar, stickyBar.nextSibling);
-        } else if (stickyBar) {
-          aside.appendChild(highlightBar);
-        } else {
-          aside.insertBefore(highlightBar, aside.firstChild);
-        }
+        aside.appendChild(highlightBar);
       }
       if (highlightBar) highlightBar.innerHTML = "";
       // LEFT: label and outline buttons (with highlight logic)
@@ -976,9 +959,17 @@ function buildBookWideLabelVerseKeys(label, chapterMaxVerseMap) {
 }
 
 async function loadBibleBook(bookId = "MAT") {
+  const chapterBeforeBookMode = window._currentChapterNum || 1;
+  window._chapterBeforeEntireBook = chapterBeforeBookMode;
+  if (typeof window !== "undefined" && window.localStorage) {
+    window.localStorage.setItem(
+      "bpChapterBeforeEntireBook",
+      String(chapterBeforeBookMode),
+    );
+  }
+
   setBpViewMode("entireBook");
   window._currentBookId = bookId;
-  window._currentChapterNum = 1;
 
   if (window.updateBookScrollbar) window.updateBookScrollbar(bookId);
 
@@ -1172,7 +1163,12 @@ async function loadBibleBook(bookId = "MAT") {
       bookSearchField.className = "bp-book-search-field";
       bookSearchField.placeholder = "Highlight text…";
       bookSearchField.setAttribute("autocomplete", "off");
-      aside.appendChild(bookSearchField);
+      const stickyControls = aside.querySelector(".bp-sidebar-sticky-controls");
+      if (stickyControls) {
+        stickyControls.appendChild(bookSearchField);
+      } else {
+        aside.insertBefore(bookSearchField, aside.firstChild);
+      }
 
       let searchDebounceTimer = null;
       bookSearchField.addEventListener("input", () => {
