@@ -952,191 +952,293 @@
         }
       ]
     },
-    "8": [
-      {
-        "outline": "The Leper’s Prayer",
-        "verses": ["1-4"],
-        "references": ["Leviticus 14:1–32", "Mark 1:40–45", "Luke 5:12–16"]
+    "8": {
+      "meta": {
+        "Context": "Jesus lives out the kingdom of heaven (Matthew 8 - 9).",
+        "Genre": "Gospels",
+        "Audience": "Jews, others"
       },
-      {
-        "outline": "The Faith of the Centurion",
-        "verses": ["5-13"],
-        "references": ["Luke 7:1–10", "John 4:43–54"]
+      "topics": [
+        {
+          "outline": "The Leper’s Prayer",
+          "verses": ["1-4"],
+          "references": ["Leviticus 14:1–32", "Mark 1:40–45", "Luke 5:12–16"]
+        },
+        {
+          "outline": "The Faith of the Centurion",
+          "verses": ["5-13"],
+          "references": ["Luke 7:1–10", "John 4:43–54"]
+        },
+        {
+          "outline": "Jesus Heals at Peter’s House",
+          "verses": ["14-17"],
+          "references": ["Mark 1:29–34", "Luke 4:38–41"]
+        },
+        {
+          "outline": "The Cost of Discipleship",
+          "verses": ["18-22"],
+          "references": ["Luke 9:57–62", "Luke 14:25–33", "John 6:59–66"]
+        },
+        {
+          "outline": "Jesus Calms the Storm",
+          "verses": ["23-27"],
+          "references": ["Psalms 107:1–43", "Mark 4:35–41", "Luke 8:22–25"]
+        },
+        {
+          "outline": "The Demons and the Pigs",
+          "verses": ["28-34"],
+          "references": ["Mark 5:1–20", "Luke 8:26–39"]
+        },
+        {
+          "label": "Gentiles included in New Coveneant",
+          "verses": [11]
+        },
+        {
+          "label": "Prophecy",
+          "verses": ["16-17"]
+        },
+        {
+          "highlight": "Jesus",
+          "text": ["Jesus"]
+        },
+        {
+          "highlight": "Jesus controls ...",
+          "text": [
+            "leprosy was cleansed",
+            "paralyzed",
+            "terrible agony",
+            "healed at that very hour",
+            "fever left her",
+            "He drove out the spirits with a word and healed all the sick",
+            "fulfill what was spoken through the prophet Isaiah",
+            "He got up and rebuked the winds and the sea, and it was perfectly calm",
+            "Even the winds and the sea obey Him!",
+            "Have You come here to torture us",
+            "So the demons begged Jesus"
+          ]
+        },
+        {
+          "highlight": "Jesus is God",
+          "text": [
+            "immediately his leprosy was cleansed",
+            " “Go! As you have believed, so will it be done for you.” And his servant was healed at that very hour",
+            "He touched her hand, and the fever left her",
+            "He drove out the spirits with a word and healed all the sick",
+            "fulfill what was spoken through the prophet Isaiah",
+            "He got up and rebuked the winds and the sea, and it was perfectly calm",
+            "Even the winds and the sea obey Him!",
+            "two demon-possessed men",
+            "so violent",
+            "What do You want with us, Son of God?",
+            "Have You come here to torture us before the appointed time?",
+            "So the demons begged Jesus",
+            "“Go!” He told them."
+          ]
+        },
+        {
+          "highlight": "",
+          "text": ["Lord"]
+        },
+        {
+          "highlight": "Go",
+          "text": [" go ", "go!", "go,", "go."]
+        },
+        {
+          "highlight": "Lord",
+          "text": ["Lord"]
+        },
+        {
+          "highlight": "Crowds",
+          "text": ["crowd", "crowds"]
+        },
+        {
+          "highlight": "Scribes",
+          "text": ["scribes"]
+        },
+        {
+          "highlight": "Persons",
+          "text": [
+            "Jesus",
+            "leper",
+            "Lord",
+            "priest",
+            "Moses",
+            "centurion ",
+            "servant",
+            "soldiers",
+            "Abraham",
+            "Isaac",
+            "Jacob",
+            "sons of the kingdom",
+            "Peter",
+            "Peter’s mother-in-law",
+            "many who were demon-possessed",
+            "Isaiah",
+            "large crowds",
+            "large crowd",
+            "one of the scribes",
+            "Another of His disciples",
+            "disciples",
+            "two demon-possessed men",
+            "demons",
+            "Those tending the pigs",
+            "the whole town"
+          ]
+        },
+        {
+          "highlight": "Places",
+          "text": [
+            "mountain",
+            "Capernaum",
+            "Israel",
+            "east",
+            "west",
+            "kingdom of heaven",
+            "at home",
+            "Peter’s house",
+            "other side of the sea",
+            "on the sea",
+            "into the sea",
+            "boat ",
+            "region of the Gadarenes",
+            "the tombs",
+            "into the herd of pigs",
+            "the town",
+            "their region"
+          ]
+        },
+        {
+          "highlight": "Violent",
+          "text": ["violent", "terrible agony"]
+        },
+        {
+          "highlight": "Trust",
+          "text": [
+            "You can make me clean",
+            "great faith",
+            "faith",
+            "believed",
+            "brought to Jesus",
+            "little faith"
+          ]
+        }
+      ]
+    },
+    "9": {
+      "meta": {
+        "Context": "Jesus lives out the kingdom of heaven (Matthew 8 - 9).",
+        "Genre": "Gospels",
+        "Audience": "Jews, others"
       },
-      {
-        "outline": "Jesus Heals at Peter’s House",
-        "verses": ["14-17"],
-        "references": ["Mark 1:29–34", "Luke 4:38–41"]
-      },
-      {
-        "outline": "The Cost of Discipleship",
-        "verses": ["18-22"],
-        "references": ["Luke 9:57–62", "Luke 14:25–33", "John 6:59–66"]
-      },
-      {
-        "outline": "Jesus Calms the Storm",
-        "verses": ["23-27"],
-        "references": ["Psalms 107:1–43", "Mark 4:35–41", "Luke 8:22–25"]
-      },
-      {
-        "outline": "The Demons and the Pigs",
-        "verses": ["28-34"],
-        "references": ["Mark 5:1–20", "Luke 8:26–39"]
-      },
-      {
-        "label": "Gentiles included in New Coveneant",
-        "verses": [11]
-      },
-      {
-        "label": "Prophecy",
-        "verses": ["16-17"]
-      },
-      {
-        "highlight": "Jesus",
-        "text": ["Jesus"]
-      },
-      {
-        "highlight": "Jesus controls ...",
-        "text": [
-          "leprosy was cleansed",
-          "paralyzed",
-          "agony",
-          "healed at that very hour",
-          "fever left her",
-          "He drove out the spirits with a word and healed all the sick",
-          "fulfill what was spoken through the prophet Isaiah",
-          "He got up and rebuked the winds and the sea, and it was perfectly calm",
-          "Even the winds and the sea obey Him!",
-          "Have You come here to torture us",
-          "So the demons begged Jesus"
-        ]
-      },
-      {
-        "highlight": "Jesus is God",
-        "text": [
-          "immediately his leprosy was cleansed",
-          " “Go! As you have believed, so will it be done for you.” And his servant was healed at that very hour",
-          "He touched her hand, and the fever left her",
-          "He drove out the spirits with a word and healed all the sick",
-          "fulfill what was spoken through the prophet Isaiah",
-          "He got up and rebuked the winds and the sea, and it was perfectly calm",
-          "Even the winds and the sea obey Him!",
-          "What do You want with us, Son of God?",
-          "Have You come here to torture us before the appointed time?",
-          "So the demons begged Jesus",
-          "“Go!” He told them."
-        ]
-      },
-      {
-        "highlight": "",
-        "text": ["Lord"]
-      },
-      {
-        "highlight": "Go",
-        "text": [" go ", "go!", "go,", "go."]
-      },
-      {
-        "highlight": "Lord",
-        "text": ["Lord"]
-      },
-      {
-        "highlight": "Crowds",
-        "text": ["crowd", "crowds"]
-      },
-      {
-        "highlight": "Scribes",
-        "text": ["scribes"]
-      },
-      {
-        "highlight": "Persons",
-        "text": [
-          "Jesus",
-          "leper",
-          "Lord",
-          "priest",
-          "Moses",
-          "centurion ",
-          "servant",
-          "soldiers",
-          "Abraham",
-          "Isaac",
-          "Jacob",
-          "sons of the kingdom",
-          "Peter",
-          "Peter’s mother-in-law",
-          "many who were demon-possessed",
-          "Isaiah",
-          "large crowds",
-          "large crowd",
-          "one of the scribes",
-          "Another of His disciples",
-          "disciples",
-          "two demon-possessed men",
-          "demons",
-          "Those tending the pigs",
-          "the whole town"
-        ]
-      },
-      {
-        "highlight": "Places",
-        "text": [
-          "mountain",
-          "Capernaum",
-          "Israel",
-          "east",
-          "west",
-          "kingdom of heaven",
-          "at home",
-          "Peter’s house",
-          "other side of the sea",
-          "on the sea",
-          "into the sea",
-          "boat ",
-          "region of the Gadarenes",
-          "the tombs",
-          "into the herd of pigs",
-          "the town",
-          "their region"
-        ]
-      }
-    ],
-    "9": [
-      {
-        "outline": "Jesus Heals a Paralytic",
-        "verses": ["1-8"],
-        "references": ["Mark 2:1–12", "Luke 5:17–26"]
-      },
-      {
-        "outline": "Jesus Calls Matthew",
-        "verses": ["9-13"],
-        "references": ["Mark 2:13–17", "Luke 5:27–32"]
-      },
-      {
-        "outline": "Questions about Fasting",
-        "verses": ["14-15"],
-        "references": ["Mark 2:18–20", "Luke 5:33–35"]
-      },
-      {
-        "outline": "The Patches and the Wineskins",
-        "verses": ["16-17"],
-        "references": ["Mark 2:21–22", "Luke 5:36–39"]
-      },
-      {
-        "outline": "The Healing Touch of Jesus",
-        "verses": ["18-26"],
-        "references": ["Mark 5:21–43", "Luke 8:40–56"]
-      },
-      {
-        "outline": "Jesus Heals the Blind and Mute",
-        "verses": ["27-34"],
-        "references": ["Mark 7:31–37"]
-      },
-      {
-        "outline": "The Lord of the Harvest",
-        "verses": ["35-38"],
-        "references": ["Luke 10:1–12"]
-      }
-    ],
+      "topics": [
+        {
+          "outline": "Jesus Heals a Paralytic",
+          "verses": ["1-8"],
+          "references": ["Mark 2:1–12", "Luke 5:17–26"]
+        },
+        {
+          "outline": "Jesus Calls Matthew",
+          "verses": ["9-13"],
+          "references": ["Mark 2:13–17", "Luke 5:27–32"]
+        },
+        {
+          "outline": "Questions about Fasting",
+          "verses": ["14-15"],
+          "references": ["Mark 2:18–20", "Luke 5:33–35"]
+        },
+        {
+          "outline": "The Patches and the Wineskins",
+          "verses": ["16-17"],
+          "references": ["Mark 2:21–22", "Luke 5:36–39"]
+        },
+        {
+          "outline": "The Healing Touch of Jesus",
+          "verses": ["18-26"],
+          "references": ["Mark 5:21–43", "Luke 8:40–56"]
+        },
+        {
+          "outline": "Jesus Heals the Blind and Mute",
+          "verses": ["27-34"],
+          "references": ["Mark 7:31–37"]
+        },
+        {
+          "outline": "The Lord of the Harvest",
+          "verses": ["35-38"],
+          "references": ["Luke 10:1–12"]
+        },
+        {
+          "label": "placeholder",
+          "verses": [1, 5, "16"]
+        },
+        {
+          "highlight": "Jesus",
+          "text": ["Jesus"]
+        },
+        {
+          "highlight": "Persons",
+          "text": [
+            "Jesus",
+            "paralytic",
+            "scribes",
+            "Son of Man",
+            "Matthew",
+            "tax collectors",
+            "Pharisees",
+            "disciples",
+            "John’s disciples",
+            "crowd",
+            "crowds",
+            "synagogue leader",
+            "daughter",
+            "a woman who had suffered from bleeding for twelve years",
+            "flute players",
+            "noisy crowd",
+            "the girl",
+            "two blind men",
+            "Son of David",
+            "demon-possessed man",
+            "demon",
+            "the prince of demons",
+            "demons",
+            "crowd",
+            "workers",
+            "the Lord of the harvest"
+          ]
+        },
+        {
+          "highlight": "Places",
+          "text": [
+            "His own town",
+            "the house of the synagogue leader",
+            "that region",
+            "Israel",
+            "throughout the land",
+            "all the towns and villages",
+            " into His harvest."
+          ]
+        },
+        {
+          "highlight": "Trust",
+          "text": [
+            "faith",
+            "Matthew got up and followed Him",
+            "But come and place Your hand on her, and she will live.",
+            "If only I touch His cloak, I will be healed.",
+            "your faith has healed you",
+            "Do you believe that I am able to do this?",
+            "Yes, Lord",
+            "According to your faith will it be done to you.",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "highlight": "Laughed",
+          "text": ["laughed"]
+        }
+      ]
+    },
     "10": [
       {
         "outline": "The Twelve Apostles",
