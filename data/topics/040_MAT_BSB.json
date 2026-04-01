@@ -1167,8 +1167,12 @@
           "references": ["Luke 10:1–12"]
         },
         {
-          "label": "placeholder",
-          "verses": [1, 5, "16"]
+          "label": "Glory",
+          "verses": [8, 33]
+        },
+        {
+          "label": "Old/New Convenants",
+          "verses": ["16-17"]
         },
         {
           "highlight": "Jesus",
@@ -1228,14 +1232,101 @@
             "Do you believe that I am able to do this?",
             "Yes, Lord",
             "According to your faith will it be done to you.",
-            "",
-            "",
-            ""
+            " a demon-possessed man who was mute was brought to Jesus"
+          ]
+        },
+        {
+          "highlight": "Sinners",
+          "text": ["sin", "sins", "sinners"]
+        },
+        {
+          "highlight": "Scribes/Pharisees",
+          "text": [
+            "scribes",
+            "This man is blaspheming!",
+            "Pharisees",
+            "Why does your Teacher eat with tax collectors and sinners?",
+            "It is by the prince of demons that He drives out demons."
           ]
         },
         {
           "highlight": "Laughed",
           "text": ["laughed"]
+        },
+        {
+          "highlight": "Healing/Restoration",
+          "text": [
+            "Take courage, son; your sins are forgiven",
+            "He said to the paralytic, “Get up, pick up your mat, and go home",
+            "And the man got up and went home",
+            "the woman was healed from that very hour",
+            "Jesus went in and took the girl by the hand, and she got up",
+            "their eyes were opened",
+            "And when the demon had been driven out, the man began to speak. The crowds were amazed"
+          ]
+        },
+        {
+          "highlight": "Jesus forgives sins",
+          "text": [
+            "Take courage, son; your sins are forgiven",
+            " Son of Man has authority on earth to forgive sins"
+          ]
+        },
+        {
+          "highlight": "Jesus raises the dead",
+          "text": [
+            "My daughter has just died",
+            "Jesus went in and took the girl by the hand, and she got up."
+          ]
+        },
+        {
+          "highlight": "Jesus heals chronic disease",
+          "text": [
+            "a woman who had suffered from bleeding for twelve years",
+            "touched the fringe of His cloak",
+            "Take courage, daughter",
+            "your faith has healed you"
+          ]
+        },
+        {
+          "highlight": "Jesus heals blindness",
+          "text": [
+            "two blind men",
+            "He touched their eyes",
+            "their eyes were opened"
+          ]
+        },
+        {
+          "highlight": "Jesus drives out demons",
+          "text": ["the demon", "driven out"]
+        },
+        {
+          "highlight": "Harvest",
+          "text": [
+            "; your sins are forgiven",
+            "paralytic, “Get up, pick up your mat, and go home",
+            "Follow Me",
+            "Matthew got up and followed Him.",
+            "‘I desire mercy, not sacrifice.’ For I have not come to call the righteous, but sinners.”",
+            "“Take courage, daughter,” He said, “your faith has healed you.”",
+            " Jesus went in and took the girl by the hand, and she got up",
+            "Have mercy on us, Son of David!",
+            "Do you believe that I am able to do this?",
+            "Yes, Lord",
+            "their eyes were opened",
+            "demon had been driven out",
+            "When He saw the crowds, He was moved with compassion for them",
+            "The harvest is plentiful, but the workers are few",
+            "Ask the Lord of the harvest, therefore, to send out workers into His harvest."
+          ]
+        },
+        {
+          "highlight": "Gospel",
+          "text": ["gospel of the kingdom"]
+        },
+        {
+          "highlight": "Jesus' ministry continues",
+          "text": ["teaching", "preaching", "healing"]
         }
       ]
     },
