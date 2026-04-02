@@ -1330,43 +1330,91 @@
         }
       ]
     },
-    "10": [
-      {
-        "outline": "The Twelve Apostles",
-        "verses": ["1-4"],
-        "references": ["Mark 3:13–19", "Luke 6:12–16"]
+    "10": {
+      "meta": {
+        "Context": "Jesus gives authority to the twelve apostles and sends them out to preach, drive out demons and heal the sick. Jesus prepares the twelve.",
+        "Genre": "Gospels",
+        "Audience": "Jews, others"
       },
-      {
-        "outline": "The Ministry of the Twelve",
-        "verses": ["5-15"],
-        "references": ["Mark 6:7–13", "Luke 9:1–6"]
-      },
-      {
-        "outline": "Sheep among Wolves",
-        "verses": ["16-25"],
-        "references": ["2 Timothy 1:3–12"]
-      },
-      {
-        "outline": "Fear God Alone",
-        "verses": ["26-31"],
-        "references": ["Luke 12:4–7"]
-      },
-      {
-        "outline": "Confessing Christ",
-        "verses": ["32-33"],
-        "references": ["Luke 12:8–12"]
-      },
-      {
-        "outline": "Not Peace but a Sword",
-        "verses": ["34-39"],
-        "references": ["Micah 7:1–6", "Luke 12:49–53"]
-      },
-      {
-        "outline": "The Reward of Service",
-        "verses": ["40-42"],
-        "references": ["2 Kings 4:8–17"]
-      }
-    ],
+      "topics": [
+        {
+          "outline": "The Twelve Apostles",
+          "verses": ["1-4"],
+          "references": ["Mark 3:13–19", "Luke 6:12–16"]
+        },
+        {
+          "outline": "The Ministry of the Twelve",
+          "verses": ["5-15"],
+          "references": ["Mark 6:7–13", "Luke 9:1–6"]
+        },
+        {
+          "outline": "Sheep among Wolves",
+          "verses": ["16-25"],
+          "references": ["2 Timothy 1:3–12"]
+        },
+        {
+          "outline": "Fear God Alone",
+          "verses": ["26-31"],
+          "references": ["Luke 12:4–7"]
+        },
+        {
+          "outline": "Confessing Christ",
+          "verses": ["32-33"],
+          "references": ["Luke 12:8–12"]
+        },
+        {
+          "outline": "Not Peace but a Sword",
+          "verses": ["34-39"],
+          "references": ["Micah 7:1–6", "Luke 12:49–53"]
+        },
+        {
+          "outline": "The Reward of Service",
+          "verses": ["40-42"],
+          "references": ["2 Kings 4:8–17"]
+        },
+        {
+          "label": "Israel first, then Gentiles",
+          "verses": ["5-6", 18]
+        },
+        {
+          "label": "Authority",
+          "verses": [1, "7-8"]
+        },
+        {
+          "label": "Jesus is speaking",
+          "verses": ["5-42"]
+        },
+        {
+          "label": "Provision",
+          "verses": ["9-11"]
+        },
+        {
+          "highlight": "Twelve Apostles",
+          "text": [
+            "Simon, called Peter",
+            "Andrew",
+            "James son of Zebedee",
+            "John",
+            "Philip",
+            "Bartholomew",
+            "Thomas",
+            "Matthew the tax collector",
+            "James son of Alphaeus",
+            "Thaddaeus",
+            "Simon the Zealot",
+            "Judas Iscariot, who betrayed Jesus"
+          ]
+        },
+        {
+          "highlight": "Israel first, then Gentiles",
+          "text": ["Israel", "gentiles", "healing"]
+        },
+        {
+          "highlight": "Grace and abundance",
+          "text": ["Freely you have received; freely give"]
+        }
+      ]
+    },
     "11": [
       {
         "outline": "John’s Inquiry",
