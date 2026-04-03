@@ -1332,7 +1332,7 @@
     },
     "10": {
       "meta": {
-        "Context": "Jesus gives authority to the twelve apostles and sends them out to preach, drive out demons and heal the sick. Jesus prepares the twelve.",
+        "Context": "Jesus gives authority to the twelve apostles to drive out demons and heal the sick, sends them out to preach the kingdom of heaven with specific instructions for their mission.",
         "Genre": "Gospels",
         "Audience": "Jews, others"
       },
@@ -1381,7 +1381,7 @@
           "verses": [1, "7-8"]
         },
         {
-          "label": "Jesus is speaking",
+          "label": "Jesus speaking",
           "verses": ["5-42"]
         },
         {
@@ -1412,6 +1412,81 @@
         {
           "highlight": "Grace and abundance",
           "text": ["Freely you have received; freely give"]
+        },
+        {
+          "highlight": "Tough times were not unexpected",
+          "text": [
+            "they will hand you over",
+            " flog you",
+            "you will be brought before governors and kings",
+            "betray",
+            "rise against",
+            "You will be hated by everyone",
+            "persecute you",
+            "disciple is not above his teacher",
+            "A man’s enemies will be the members of his own household.",
+            "take up his cross"
+          ]
+        },
+        {
+          "highlight": "Spiritual intervention",
+          "text": [
+            "In that hour you will be given what to say",
+            "the Spirit of your Father speaking through you",
+            "I will also confess him before My Father in heaven",
+            "whoever loses his life for My sake will find it"
+          ]
+        },
+        {
+          "highlight": "OO",
+          "text": [
+            "authority over unclean spirits, so that they could drive them out and heal every disease and sickness",
+            "The kingdom of heaven is near",
+            "Heal the sick, raise the dead, cleanse the lepers, drive out demons.",
+            "whoever loses his life for My sake will find it",
+            "Therefore everyone who confesses Me before men, I will also confess him before My Father in heaven.",
+            "In that hour you will be given what to say",
+            "the Spirit of your Father speaking through you"
+          ]
+        },
+        {
+          "highlight": "Wisdom",
+          "text": [
+            "the worker is worthy of his provisions",
+            "be as shrewd as snakes and as innocent as doves",
+            "beware of men",
+            "the one who perseveres to the end will be saved",
+            "do not be afraid",
+            "Whoever finds his life will lose it, and whoever loses his life for My sake will find it.",
+            "whoever denies Me before men"
+          ]
+        },
+        {
+          "highlight": "Mystery/Wisdom",
+          "text": [
+            " For there is nothing concealed that will not be disclosed, and nothing hidden that will not be made known.",
+            "What I tell you in the dark, speak in the daylight; what is whispered in your ear, proclaim from the housetops."
+          ]
+        },
+        {
+          "highlight": "Some were more worthy",
+          "text": ["find out who is worthy there", "If the home is worthy"]
+        },
+        {
+          "highlight": "Worthy",
+          "text": ["worthy"]
+        },
+        {
+          "highlight": "Fear",
+          "text": ["do not be afraid", "fear"]
+        },
+        {
+          "highlight": "Receive",
+          "text": ["receive", "receives"]
+        },
+        {
+          "highlight": "Reward",
+          "text": ["reward"]
         }
       ]
     },
