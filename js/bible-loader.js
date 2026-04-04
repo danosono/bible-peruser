@@ -892,12 +892,28 @@ async function loadBibleChapter(
 function parseBookWideRangeToken(token) {
   if (typeof token !== "string") return null;
   const trimmed = token.trim();
-  const m = trimmed.match(/^(\d+):(\d+)-(\d+):(\d+)$/);
-  if (!m) return null;
-  let startChapter = parseInt(m[1], 10);
-  let startVerse = parseInt(m[2], 10);
-  let endChapter = parseInt(m[3], 10);
-  let endVerse = parseInt(m[4], 10);
+  let startChapter;
+  let startVerse;
+  let endChapter;
+  let endVerse;
+
+  const rangeMatch = trimmed.match(/^(\d+):(\d+)-(\d+):(\d+)$/);
+  const singleVerseMatch = trimmed.match(/^(\d+):(\d+)$/);
+
+  if (rangeMatch) {
+    startChapter = parseInt(rangeMatch[1], 10);
+    startVerse = parseInt(rangeMatch[2], 10);
+    endChapter = parseInt(rangeMatch[3], 10);
+    endVerse = parseInt(rangeMatch[4], 10);
+  } else if (singleVerseMatch) {
+    startChapter = parseInt(singleVerseMatch[1], 10);
+    startVerse = parseInt(singleVerseMatch[2], 10);
+    endChapter = startChapter;
+    endVerse = startVerse;
+  } else {
+    return null;
+  }
+
   if ([startChapter, startVerse, endChapter, endVerse].some((n) => n < 1)) {
     return null;
   }

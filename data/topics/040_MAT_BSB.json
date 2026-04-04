@@ -1040,10 +1040,6 @@
           ]
         },
         {
-          "highlight": "",
-          "text": ["Lord"]
-        },
-        {
           "highlight": "Go",
           "text": [" go ", "go!", "go,", "go."]
         },
@@ -1446,7 +1442,7 @@
           ]
         },
         {
-          "highlight": "OO",
+          "highlight": "0_0",
           "text": [
             "authority over unclean spirits, so that they could drive them out and heal every disease and sickness",
             "The kingdom of heaven is near",
@@ -1532,16 +1528,33 @@
         "verses": ["16-19"]
       },
       {
-        "label": "Yes",
-        "verses": ["4-6"]
+        "label": "Elijah to come",
+        "verses": ["13-14"]
       },
       {
-        "highlight": "??",
-        "text": ["receive", "receives"]
+        "label": "0_0",
+        "verses": [5, 28]
       },
       {
-        "highlight": "??",
-        "text": ["reward"]
+        "highlight": "John",
+        "text": ["John", "Elijah who was to come"]
+      },
+      {
+        "highlight": "0_0",
+        "text": [
+          "the dead are raised",
+          "the good news is preached to the poor",
+          "Jesus declared, “I praise You, Father",
+          "knows the Son",
+          "knows the Father",
+          " those to whom the Son chooses to reveal Him",
+          "Come to me",
+          "I will give you rest"
+        ]
+      },
+      {
+        "highlight": "The kingdom of heaven",
+        "text": ["the kingdom of heaven", "Lord of heaven"]
       }
     ],
     "12": [
