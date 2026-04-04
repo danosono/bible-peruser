@@ -55,6 +55,10 @@
     {
       "label": "Resurrection and Great Commission",
       "verses": ["28:1-28:20"]
+    },
+    {
+      "label": "Scribes/Pharisees",
+      "verses": ["9:1-9:13", "9:34", "12:1-12:45", "15:1-15:20"]
     }
   ],
   "bookWideHighlights": [
@@ -1171,6 +1175,10 @@
           "verses": [8, 33]
         },
         {
+          "label": "Scribes/Pharisees",
+          "verses": ["1-13", 34]
+        },
+        {
           "label": "Old/New Convenants",
           "verses": ["16-17"]
         },
@@ -1510,6 +1518,30 @@
         "outline": "Rest for the Weary",
         "verses": ["25-30"],
         "references": ["Luke 10:21–24"]
+      },
+      {
+        "label": "Are you the Messiah?",
+        "verses": ["2-3"]
+      },
+      {
+        "label": "Yes",
+        "verses": ["4-6"]
+      },
+      {
+        "label": "This generation / dirge",
+        "verses": ["16-19"]
+      },
+      {
+        "label": "Yes",
+        "verses": ["4-6"]
+      },
+      {
+        "highlight": "??",
+        "text": ["receive", "receives"]
+      },
+      {
+        "highlight": "??",
+        "text": ["reward"]
       }
     ],
     "12": [
@@ -1557,6 +1589,10 @@
         "outline": "Jesus’ Mother and Brothers",
         "verses": ["46-50"],
         "references": ["Mark 3:31–35", "Luke 8:19–21"]
+      },
+      {
+        "label": "Scribes/Pharisees",
+        "verses": ["1-45"]
       }
     ],
     "13": [
@@ -1658,6 +1694,10 @@
         "outline": "The Feeding of the Four Thousand",
         "verses": ["29-39"],
         "references": ["2 Kings 4:42–44", "Mark 8:1–10"]
+      },
+      {
+        "label": "Scribes/Pharisees",
+        "verses": ["1-20"]
       }
     ],
     "16": [
