@@ -1,60 +1,67 @@
 {
-  "bookWideLabels": [
+  "bookWideOutline": [
     {
-      "label": "Jesus is born and starts His ministry",
+      "outline": "Jesus is born and starts His ministry",
       "verses": ["1:1-4:25"]
     },
     {
-      "label": "Sermon on the Mount",
+      "outline": "Sermon on the Mount",
       "verses": ["5:1-7:29"]
     },
     {
-      "label": "Jesus lives out the kingdom of heaven",
+      "outline": "Jesus lives out the kingdom of heaven",
       "verses": ["8:1-9:38"]
     },
     {
-      "label": "Twelve apostles are commissioned",
+      "outline": "Twelve apostles are commissioned",
       "verses": ["10:1-10:42"]
     },
     {
-      "label": "Responses to Jesus (John the Baptist, Pharisees, Jesus' family)",
+      "outline": "Responses to Jesus (John the Baptist, Pharisees, Jesus' family)",
       "verses": ["11:1-12:50"]
     },
     {
-      "label": "Parables of the kingdom of heaven",
+      "outline": "Parables of the kingdom of heaven",
       "verses": ["13:1-13:52"]
     },
     {
-      "label": "Identity of the King revealed",
+      "outline": "Identity of the King revealed",
       "verses": ["13:53-17:27"]
     },
     {
-      "label": "Community in the kingdom of heaven",
+      "outline": "Community in the kingdom of heaven",
       "verses": ["18:1-18:35"]
     },
     {
-      "label": "Jesus teaches in Judea about community",
+      "outline": "Jesus teaches in Judea about community",
       "verses": ["19:1-20:34"]
     },
     {
-      "label": "The King",
+      "outline": "The King",
       "verses": ["21:1-21:22"]
     },
     {
-      "label": "The King examined for blemish",
+      "outline": "The King examined for blemish",
       "verses": ["21:23-23:39"]
     },
     {
-      "label": "Olivet Discourse",
+      "outline": "Olivet Discourse",
       "verses": ["24:1-25:46"]
     },
     {
-      "label": "Jesus' Passover",
+      "outline": "Jesus' Passover",
       "verses": ["26:1-27:66"]
     },
     {
-      "label": "Resurrection and Great Commission",
+      "outline": "Resurrection and Great Commission",
       "verses": ["28:1-28:20"]
+    }
+  ],
+  "bookWideLabels": [
+    {
+      "label": "Jesus calls the disciples",
+      "verses": ["4:18", "4:21", "9:9", "10:1-10:2"],
+      "references": ["Mark 1:16–20", "Luke 5:2–11", "Luke 5:27-32"]
     },
     {
       "label": "Scribes/Pharisees",

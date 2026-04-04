@@ -420,6 +420,24 @@ body {
   background: var(--accent, #7289da);
   color: #fff;
 }
+.book-view-nav-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 0.5em;
+}
+.book-view-nav-label {
+  color: var(--accent);
+  font-size: 0.95em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.book-view-nav-row button {
+  min-width: 2.5em;
+  padding-left: 0.8em;
+  padding-right: 0.8em;
+}
 
 .bp-sidebar--right {
   position: sticky;
@@ -718,6 +736,22 @@ footer {
 .topic-label-btn:active {
   background: #3e4c5a;
   color: #fffde7;
+}
+.topic-btn--with-reference {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+}
+.topic-book-outline-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+}
+.outline-link-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95em;
 }
 
 /* Dark mode for outline reference menu tooltip */

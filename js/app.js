@@ -229,6 +229,11 @@ document.addEventListener("DOMContentLoaded", () => {
     nav.innerHTML = `
             <div class="chapter-nav-sticky" style="flex-direction:column;align-items:center;">
                 <button id="entire-book-btn" style="margin-top:8px;width:90%;max-width:220px;">Entire Book</button>
+          <div id="book-view-nav-row" class="book-view-nav-row" style="display:none;justify-content:center;align-items:center;width:100%;margin-top:8px;">
+            <button id="book-view-back-btn" aria-label="Book view back" disabled>&lt;</button>
+            <span class="book-view-nav-label">NAV</span>
+            <button id="book-view-forward-btn" aria-label="Book view forward" disabled>&gt;</button>
+          </div>
           <select id="chapter-dropdown" style="margin-top:8px;padding:4px 12px;border-radius:4px;background:var(--bg-sidebar);color:var(--text-main);border:1px solid var(--accent);font-size:1em;width:90%;max-width:220px;"></select>
           <div style="display:flex;justify-content:center;align-items:center;width:100%;margin-top:8px;">
             <button id="prev-chapter-btn" disabled>&lt;CH</button>
@@ -247,33 +252,122 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   window.updateEntireBookButton = updateEntireBookButton;
 
+  function setEntireBookOrigin(origin) {
+    if (!origin || !origin.bookId || !origin.chapterNum) return;
+    window._entireBookOrigin = {
+      bookId: origin.bookId,
+      chapterNum: origin.chapterNum,
+    };
+    window._chapterBeforeEntireBook = origin.chapterNum;
+    localStorage.setItem(
+      "bpChapterBeforeEntireBook",
+      String(origin.chapterNum),
+    );
+    localStorage.setItem(
+      "bpEntireBookOrigin",
+      JSON.stringify(window._entireBookOrigin),
+    );
+  }
+
+  function getEntireBookOrigin() {
+    if (
+      window._entireBookOrigin &&
+      window._entireBookOrigin.bookId &&
+      Number.isInteger(window._entireBookOrigin.chapterNum)
+    ) {
+      return window._entireBookOrigin;
+    }
+    const raw = localStorage.getItem("bpEntireBookOrigin");
+    if (!raw) return null;
+    try {
+      const parsed = JSON.parse(raw);
+      if (parsed && parsed.bookId && Number.isInteger(parsed.chapterNum)) {
+        window._entireBookOrigin = parsed;
+        return parsed;
+      }
+    } catch {
+      return null;
+    }
+    return null;
+  }
+
+  function updateBookViewNavButtons() {
+    const navRow = document.getElementById("book-view-nav-row");
+    const back = document.getElementById("book-view-back-btn");
+    const forward = document.getElementById("book-view-forward-btn");
+    const inBookMode = window._currentViewMode === "entireBook";
+    const historyStack = Array.isArray(window._bookViewHistoryStack)
+      ? window._bookViewHistoryStack
+      : [];
+    const historyIndex = Number.isInteger(window._bookViewHistoryIndex)
+      ? window._bookViewHistoryIndex
+      : -1;
+
+    if (navRow) {
+      navRow.style.display = inBookMode ? "flex" : "none";
+    }
+    if (back) {
+      back.disabled = !inBookMode || historyIndex <= 0;
+      back.onclick = back.disabled
+        ? null
+        : () => window.navigateBookViewHistory(-1);
+    }
+    if (forward) {
+      forward.disabled =
+        !inBookMode ||
+        historyIndex < 0 ||
+        historyIndex >= historyStack.length - 1;
+      forward.onclick = forward.disabled
+        ? null
+        : () => window.navigateBookViewHistory(1);
+    }
+  }
+  window.updateBookViewNavButtons = updateBookViewNavButtons;
+
+  window.navigateBookViewHistory = function (direction) {
+    const historyStack = Array.isArray(window._bookViewHistoryStack)
+      ? window._bookViewHistoryStack
+      : [];
+    const historyIndex = Number.isInteger(window._bookViewHistoryIndex)
+      ? window._bookViewHistoryIndex
+      : -1;
+    const targetIndex = historyIndex + direction;
+    if (targetIndex < 0 || targetIndex >= historyStack.length) return;
+    const targetBookId = historyStack[targetIndex];
+    window._bookViewHistoryIndex = targetIndex;
+    updateBookViewNavButtons();
+    if (window.loadBibleBook) {
+      window.loadBibleBook(targetBookId, {
+        preserveOrigin: true,
+        skipBookHistory: true,
+      });
+    }
+  };
+
   const entireBookBtn = document.getElementById("entire-book-btn");
   if (entireBookBtn) {
     entireBookBtn.onclick = () => {
       const currentBook = window._currentBookId || "MAT";
       if (window._currentViewMode === "entireBook") {
-        let returnChapter = Number.parseInt(
-          window._chapterBeforeEntireBook,
-          10,
-        );
-        if (!Number.isInteger(returnChapter) || returnChapter < 1) {
-          const savedChapter = localStorage.getItem(
-            "bpChapterBeforeEntireBook",
-          );
-          returnChapter = Number.parseInt(savedChapter, 10);
-        }
+        const origin = getEntireBookOrigin();
+        const targetBook = origin?.bookId || currentBook;
         const currentChapter =
-          Number.isInteger(returnChapter) && returnChapter > 0
-            ? returnChapter
-            : window._currentChapterNum || 1;
+          origin?.chapterNum ||
+          Number.parseInt(window._chapterBeforeEntireBook, 10) ||
+          window._currentChapterNum ||
+          1;
+        window._bookViewHistoryStack = [];
+        window._bookViewHistoryIndex = -1;
+        updateBookViewNavButtons();
         if (window.loadBibleChapter) {
-          window.loadBibleChapter(currentBook, currentChapter, false);
+          window.loadBibleChapter(targetBook, currentChapter, false);
         }
         return;
       }
-      const currentChapter = window._currentChapterNum || 1;
-      window._chapterBeforeEntireBook = currentChapter;
-      localStorage.setItem("bpChapterBeforeEntireBook", String(currentChapter));
+      setEntireBookOrigin({
+        bookId: currentBook,
+        chapterNum: window._currentChapterNum || 1,
+      });
       if (window.loadBibleBook) {
         window.loadBibleBook(currentBook);
       }
@@ -337,6 +431,7 @@ document.addEventListener("DOMContentLoaded", () => {
         : () => window.loadBibleChapter(bookId, chapterNum + 1);
     }
     updateEntireBookButton(window._currentViewMode || "chapter");
+    updateBookViewNavButtons();
   };
 
   // Placeholder: Notes/context
