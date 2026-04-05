@@ -1539,8 +1539,20 @@
         "verses": ["13-14"]
       },
       {
+        "label": "hidden/revealed",
+        "verses": ["25-26"]
+      },
+      {
+        "label": "know God",
+        "verses": [27]
+      },
+      {
         "label": "0_0",
         "verses": [5, 28]
+      },
+      {
+        "label": "Comfort",
+        "verses": ["28-30"]
       },
       {
         "highlight": "John",
@@ -1551,7 +1563,7 @@
         "text": [
           "the dead are raised",
           "the good news is preached to the poor",
-          "Jesus declared, “I praise You, Father",
+          "revealed them to little children",
           "knows the Son",
           "knows the Father",
           " those to whom the Son chooses to reveal Him",
@@ -1562,6 +1574,23 @@
       {
         "highlight": "The kingdom of heaven",
         "text": ["the kingdom of heaven", "Lord of heaven"]
+      },
+      {
+        "highlight": "Wisdom",
+        "text": ["Wisdom is vindicated by her actions"]
+      },
+      {
+        "highlight": "Woe",
+        "text": ["woe", "And you,"]
+      },
+      {
+        "highlight": "Comfort",
+        "text": [
+          "Come to me",
+          "I will give you rest",
+          "I am gentle and humble in heart",
+          "you will find rest for your souls"
+        ]
       }
     ],
     "12": [
