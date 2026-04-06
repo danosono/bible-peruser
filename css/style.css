@@ -483,14 +483,6 @@ body {
   margin-right: 0.2em;
 }
 
-.bp-main {
-  overflow-y: auto;
-  height: calc(100vh - 3.5em - 11em);
-  min-width: 0;
-  padding-bottom: 4.2em; /* match book scroller height to prevent overlap */
-  box-sizing: border-box;
-}
-
 .bp-header {
   position: sticky;
   top: 0;
@@ -548,8 +540,18 @@ body {
 }
 
 .bp-main {
+  overflow-y: auto;
+  height: calc(100vh - 3.5em - 11em);
+  min-width: 0;
+  padding-bottom: 4.2em; /* match book scroller height to prevent overlap */
+  box-sizing: border-box;
+}
+
+.bp-main {
   flex: 1;
-  padding: 2rem 1.5rem;
+  padding-bottom: 0.6rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
   background: var(--bg-main);
   color: var(--text-main);
   overflow-y: auto;

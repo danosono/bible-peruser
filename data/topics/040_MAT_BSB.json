@@ -818,8 +818,33 @@
           "text": ["Father"]
         },
         {
+          "highlight": "Father ...",
+          "text": [
+            "Father",
+            "father in heaven",
+            "heavenly",
+            "who sees what is done in secret, will reward you",
+            "who is unseen",
+            "knows what you need before you ask Him",
+            "also forgive you",
+            "feeds them",
+            "knows that you need them"
+          ]
+        },
+        {
+          "highlight": "Father knows",
+          "text": [
+            "Father knows what you need",
+            "Father knows that you need them"
+          ]
+        },
+        {
           "highlight": "Heaven",
           "text": ["heaven", "heavenly"]
+        },
+        {
+          "highlight": "Need",
+          "text": ["need", "needy"]
         },
         {
           "highlight": "Reward",
@@ -1642,6 +1667,58 @@
       {
         "label": "Scribes/Pharisees",
         "verses": ["1-45"]
+      },
+      {
+        "label": "Prophecy",
+        "verses": ["16-21"]
+      },
+      {
+        "label": "Gentiles included in New Coveneant",
+        "verses": ["21"]
+      },
+      {
+        "highlight": "Sabbath",
+        "text": ["sabbath"]
+      },
+      {
+        "highlight": "Son of Man",
+        "text": [
+          "son of man",
+          "Lord of the Sabbath",
+          "will be three days and three nights in the heart of the earth"
+        ]
+      },
+      {
+        "highlight": "Son of David",
+        "text": ["Son of David"]
+      },
+      {
+        "highlight": "Prophecy",
+        "text": [" spoken through the prophet Isaiah"]
+      },
+      {
+        "highlight": "Scribes/Pharisees",
+        "text": [
+          "pharisees",
+          "scribes",
+          "Look, Your disciples are doing what is unlawful on the Sabbath",
+          " In order to accuse Jesus",
+          "went out",
+          "plotted how they might kill Jesus",
+          "Only by Beelzebul, the prince of demons, does this man drive out demons.",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "highlight": "Knowing their thoughts",
+        "text": ["knowing their thoughts"]
       }
     ],
     "13": [
