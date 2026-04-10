@@ -68,7 +68,9 @@ function parseReferenceDetails(reference) {
   if (typeof reference !== "string") return null;
   const match = reference
     .trim()
-    .match(/^((?:[1-3]\s+)?[A-Za-z]+(?:\s+[A-Za-z]+)*)\s+(\d+)(?::(\d+)(?:[-–](\d+))?)?/);
+    .match(
+      /^((?:[1-3]\s+)?[A-Za-z]+(?:\s+[A-Za-z]+)*)\s+(\d+)(?::(\d+)(?:[-–](\d+))?)?/,
+    );
   if (!match) return null;
   const [, rawBookName, rawChapterNum, rawVerseStart, rawVerseEnd] = match;
   const normalizedBookName = rawBookName
@@ -450,18 +452,25 @@ async function loadBibleChapter(
         aside.appendChild(highlightBar);
       }
       if (highlightBar) highlightBar.innerHTML = "";
-      function autoSelectMatchingChapterTopic(chapterNum, verseStart, verseEnd) {
+      function autoSelectMatchingChapterTopic(
+        chapterNum,
+        verseStart,
+        verseEnd,
+      ) {
         const sidebarTopicBar = document.getElementById("chapter-topic-bar");
         if (!sidebarTopicBar || !verseStart) return;
         const topics = window._lastLoadedTopics;
         const targetChapterTopics =
-          (topics && topics.chapterTopics && topics.chapterTopics[chapterNum]) ||
+          (topics &&
+            topics.chapterTopics &&
+            topics.chapterTopics[chapterNum]) ||
           [];
         const renderableTopics = targetChapterTopics.filter(
           (entry) =>
             entry &&
             Array.isArray(entry.verses) &&
-            (typeof entry.label === "string" || typeof entry.outline === "string"),
+            (typeof entry.label === "string" ||
+              typeof entry.outline === "string"),
         );
         const targetVerses = [];
         const rangeEnd = verseEnd || verseStart;
@@ -788,7 +797,7 @@ async function loadBibleChapter(
         cc.innerHTML =
           `<b>Character count:</b> ${charCount}` +
           (topWordsStr ? ` | ${topWordsStr}` : "") +
-          " | -> Control+F to highlight whatever you type.";
+          " |  Jesus, name above all names!";
       }
       // Reset for next chapter load
       window._chapterWords = [];

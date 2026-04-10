@@ -1526,201 +1526,293 @@
         }
       ]
     },
-    "11": [
-      {
-        "outline": "John’s Inquiry",
-        "verses": ["1-6"],
-        "references": ["Luke 7:18–23"]
+    "11": {
+      "meta": {
+        "Context": "Matthew 11: John the Baptist responds to Jesus. Matthew 12: The pharisees and scribes respond to Jesus.",
+        "Genre": "Gospels",
+        "Audience": "Jews, others"
       },
-      {
-        "outline": "Jesus Testifies about John",
-        "verses": ["7-19"],
-        "references": ["Malachi 3:1–5", "Luke 7:24–35"]
+      "topics": [
+        {
+          "outline": "John’s Inquiry",
+          "verses": ["1-6"],
+          "references": ["Luke 7:18–23"]
+        },
+        {
+          "outline": "Jesus Testifies about John",
+          "verses": ["7-19"],
+          "references": ["Malachi 3:1–5", "Luke 7:24–35"]
+        },
+        {
+          "outline": "Woe to the Unrepentant",
+          "verses": ["20-24"],
+          "references": ["Luke 10:13–16"]
+        },
+        {
+          "outline": "Rest for the Weary",
+          "verses": ["25-30"],
+          "references": ["Luke 10:21–24"]
+        },
+        {
+          "label": "Are you the Messiah?",
+          "verses": ["2-3"]
+        },
+        {
+          "label": "Yes",
+          "verses": ["4-6"]
+        },
+        {
+          "label": "This generation / dirge",
+          "verses": ["16-19"]
+        },
+        {
+          "label": "Elijah to come",
+          "verses": ["13-14"]
+        },
+        {
+          "label": "Comparative judgement",
+          "verses": ["21-24"]
+        },
+        {
+          "label": "hidden/revealed",
+          "verses": ["25-26"]
+        },
+        {
+          "label": "know God",
+          "verses": [27]
+        },
+        {
+          "label": "0_0",
+          "verses": [5, 28]
+        },
+        {
+          "label": "Comfort",
+          "verses": ["28-30"]
+        },
+        {
+          "highlight": "John",
+          "text": ["John", "Elijah who was to come"]
+        },
+        {
+          "highlight": "0_0",
+          "text": [
+            "the dead are raised",
+            "the good news is preached to the poor",
+            "revealed them to little children",
+            "knows the Son",
+            "knows the Father",
+            " those to whom the Son chooses to reveal Him",
+            "Come to me",
+            "I will give you rest"
+          ]
+        },
+        {
+          "highlight": "The kingdom of heaven",
+          "text": ["the kingdom of heaven", "Lord of heaven"]
+        },
+        {
+          "highlight": "Wisdom",
+          "text": ["Wisdom is vindicated by her actions"]
+        },
+        {
+          "highlight": "Woe",
+          "text": ["woe", "And you,"]
+        },
+        {
+          "highlight": "Comfort",
+          "text": [
+            "Come to me",
+            "I will give you rest",
+            "I am gentle and humble in heart",
+            "you will find rest for your souls"
+          ]
+        }
+      ]
+    },
+    "12": {
+      "meta": {
+        "Context": "Matthew 11: John the Baptist responds to Jesus. Matthew 12: The pharisees and scribes respond to Jesus.",
+        "Genre": "Gospels",
+        "Audience": "Jews, others"
       },
-      {
-        "outline": "Woe to the Unrepentant",
-        "verses": ["20-24"],
-        "references": ["Luke 10:13–16"]
-      },
-      {
-        "outline": "Rest for the Weary",
-        "verses": ["25-30"],
-        "references": ["Luke 10:21–24"]
-      },
-      {
-        "label": "Are you the Messiah?",
-        "verses": ["2-3"]
-      },
-      {
-        "label": "Yes",
-        "verses": ["4-6"]
-      },
-      {
-        "label": "This generation / dirge",
-        "verses": ["16-19"]
-      },
-      {
-        "label": "Elijah to come",
-        "verses": ["13-14"]
-      },
-      {
-        "label": "hidden/revealed",
-        "verses": ["25-26"]
-      },
-      {
-        "label": "know God",
-        "verses": [27]
-      },
-      {
-        "label": "0_0",
-        "verses": [5, 28]
-      },
-      {
-        "label": "Comfort",
-        "verses": ["28-30"]
-      },
-      {
-        "highlight": "John",
-        "text": ["John", "Elijah who was to come"]
-      },
-      {
-        "highlight": "0_0",
-        "text": [
-          "the dead are raised",
-          "the good news is preached to the poor",
-          "revealed them to little children",
-          "knows the Son",
-          "knows the Father",
-          " those to whom the Son chooses to reveal Him",
-          "Come to me",
-          "I will give you rest"
-        ]
-      },
-      {
-        "highlight": "The kingdom of heaven",
-        "text": ["the kingdom of heaven", "Lord of heaven"]
-      },
-      {
-        "highlight": "Wisdom",
-        "text": ["Wisdom is vindicated by her actions"]
-      },
-      {
-        "highlight": "Woe",
-        "text": ["woe", "And you,"]
-      },
-      {
-        "highlight": "Comfort",
-        "text": [
-          "Come to me",
-          "I will give you rest",
-          "I am gentle and humble in heart",
-          "you will find rest for your souls"
-        ]
-      }
-    ],
-    "12": [
-      {
-        "outline": "The Lord of the Sabbath",
-        "verses": ["1-8"],
-        "references": ["1 Samuel 21:1–7", "Mark 2:23–28", "Luke 6:1–5"]
-      },
-      {
-        "outline": "Jesus Heals on the Sabbath",
-        "verses": ["9-14"],
-        "references": ["Mark 3:1–6", "Luke 6:6–11"]
-      },
-      {
-        "outline": "God’s Chosen Servant",
-        "verses": ["15-21"],
-        "references": ["Isaiah 42:1–9"]
-      },
-      {
-        "outline": "A House Divided",
-        "verses": ["22-30"],
-        "references": ["Mark 3:20–27", "Luke 11:14–23"]
-      },
-      {
-        "outline": "The Unpardonable Sin",
-        "verses": ["31-32"],
-        "references": ["Mark 3:28–30"]
-      },
-      {
-        "outline": "Good and Bad Fruit",
-        "verses": ["33-37"],
-        "references": ["Luke 6:43–45"]
-      },
-      {
-        "outline": "The Sign of Jonah",
-        "verses": ["38-42"],
-        "references": ["Jonah 3:1–10", "Luke 11:29–32"]
-      },
-      {
-        "outline": "An Unclean Spirit Returns",
-        "verses": ["43-45"],
-        "references": ["Luke 11:24–26"]
-      },
-      {
-        "outline": "Jesus’ Mother and Brothers",
-        "verses": ["46-50"],
-        "references": ["Mark 3:31–35", "Luke 8:19–21"]
-      },
-      {
-        "label": "Scribes/Pharisees",
-        "verses": ["1-45"]
-      },
-      {
-        "label": "Prophecy",
-        "verses": ["16-21"]
-      },
-      {
-        "label": "Gentiles included in New Coveneant",
-        "verses": ["21"]
-      },
-      {
-        "highlight": "Sabbath",
-        "text": ["sabbath"]
-      },
-      {
-        "highlight": "Son of Man",
-        "text": [
-          "son of man",
-          "Lord of the Sabbath",
-          "will be three days and three nights in the heart of the earth"
-        ]
-      },
-      {
-        "highlight": "Son of David",
-        "text": ["Son of David"]
-      },
-      {
-        "highlight": "Prophecy",
-        "text": [" spoken through the prophet Isaiah"]
-      },
-      {
-        "highlight": "Scribes/Pharisees",
-        "text": [
-          "pharisees",
-          "scribes",
-          "Look, Your disciples are doing what is unlawful on the Sabbath",
-          " In order to accuse Jesus",
-          "went out",
-          "plotted how they might kill Jesus",
-          "Only by Beelzebul, the prince of demons, does this man drive out demons.",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ]
-      },
-      {
-        "highlight": "Knowing their thoughts",
-        "text": ["knowing their thoughts"]
-      }
-    ],
+      "topics": [
+        {
+          "outline": "The Lord of the Sabbath",
+          "verses": ["1-8"],
+          "references": ["1 Samuel 21:1–7", "Mark 2:23–28", "Luke 6:1–5"]
+        },
+        {
+          "outline": "Jesus Heals on the Sabbath",
+          "verses": ["9-14"],
+          "references": ["Mark 3:1–6", "Luke 6:6–11"]
+        },
+        {
+          "outline": "God’s Chosen Servant",
+          "verses": ["15-21"],
+          "references": ["Isaiah 42:1–9"]
+        },
+        {
+          "outline": "A House Divided",
+          "verses": ["22-30"],
+          "references": ["Mark 3:20–27", "Luke 11:14–23"]
+        },
+        {
+          "outline": "The Unpardonable Sin",
+          "verses": ["31-32"],
+          "references": ["Mark 3:28–30"]
+        },
+        {
+          "outline": "Good and Bad Fruit",
+          "verses": ["33-37"],
+          "references": ["Luke 6:43–45"]
+        },
+        {
+          "outline": "The Sign of Jonah",
+          "verses": ["38-42"],
+          "references": ["Jonah 3:1–10", "Luke 11:29–32"]
+        },
+        {
+          "outline": "An Unclean Spirit Returns",
+          "verses": ["43-45"],
+          "references": ["Luke 11:24–26"]
+        },
+        {
+          "outline": "Jesus’ Mother and Brothers",
+          "verses": ["46-50"],
+          "references": ["Mark 3:31–35", "Luke 8:19–21"]
+        },
+        {
+          "label": "Scribes/Pharisees",
+          "verses": ["1-45"]
+        },
+        {
+          "label": "Prophecy",
+          "verses": ["16-21"]
+        },
+        {
+          "label": "Gentiles included in New Coveneant",
+          "verses": ["21"]
+        },
+        {
+          "label": "Jesus' power over evil",
+          "verses": ["29"]
+        },
+        {
+          "label": "with Me, against Me",
+          "verses": ["30"]
+        },
+        {
+          "label": "This generation",
+          "verses": ["38-45"]
+        },
+        {
+          "label": "Comparative judgement",
+          "verses": ["41-42"]
+        },
+        {
+          "highlight": "Sabbath",
+          "text": ["sabbath"]
+        },
+        {
+          "highlight": "Son of Man",
+          "text": [
+            "son of man",
+            "Lord of the Sabbath",
+            "will be three days and three nights in the heart of the earth"
+          ]
+        },
+        {
+          "highlight": "Son of David",
+          "text": ["Son of David"]
+        },
+        {
+          "highlight": "Scribes/Pharisees",
+          "text": [
+            "pharisees",
+            "scribes",
+            "Look, Your disciples are doing what is unlawful on the Sabbath",
+            " In order to accuse Jesus",
+            "went out",
+            "plotted how they might kill Jesus",
+            "Only by Beelzebul, the prince of demons, does this man drive out demons.",
+            "You brood of vipers, how can you who are evil say anything good?",
+            "Teacher, we want to see a sign from You"
+          ]
+        },
+        {
+          "highlight": "Crowds",
+          "text": ["crowds"]
+        },
+        {
+          "highlight": "Prophecy",
+          "text": [" spoken through the prophet Isaiah"]
+        },
+        {
+          "highlight": "Holy Spirit",
+          "text": [
+            "My Spirit",
+            "the Spirit of God",
+            "blasphemy against the Spirit",
+            "Holy Spirit"
+          ]
+        },
+        {
+          "highlight": "The Unpardonable Sin",
+          "text": [
+            "Only by Beelzebul, the prince of demons, does this man drive out demons",
+            "But if I drive out demons by the Spirit of God, then the kingdom of God has come upon you"
+          ]
+        },
+        {
+          "highlight": "Knowing their thoughts",
+          "text": ["knowing their thoughts"]
+        },
+        {
+          "highlight": "Guard your heart",
+          "text": ["fruit", "treasure"]
+        },
+        {
+          "highlight": "By your words",
+          "text": ["careless word", "by your words"]
+        },
+        {
+          "highlight": "This generation",
+          "text": [
+            "wicked and adulterous generation",
+            "this generation",
+            "this wicked generation"
+          ]
+        },
+        {
+          "highlight": "Sign of Jonah",
+          "text": [
+            " three days and three nights",
+            "great fish",
+            "heart of the earth"
+          ]
+        },
+        {
+          "highlight": "Comparative judgement",
+          "text": ["the judgment", "men of Nineveh", "Queen of the south"]
+        },
+        {
+          "highlight": "One greater than",
+          "text": [
+            "",
+            "One greater than the temple is here",
+            "One greater than Jonah is here",
+            "One greater than Solomon is here"
+          ]
+        },
+        {
+          "highlight": "Who is My mother, who are My brothers",
+          "text": [
+            "Pointing to His disciples",
+            "whoever does the will of My Father in heaven"
+          ]
+        }
+      ]
+    },
     "13": [
       {
         "outline": "The Parable of the Sower",
