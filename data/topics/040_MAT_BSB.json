@@ -1868,6 +1868,36 @@
         "outline": "The Rejection at Nazareth",
         "verses": ["53-58"],
         "references": ["Mark 6:1–6", "Luke 4:16–30"]
+      },
+      {
+        "label": "Dufflepods (CS Lewis)",
+        "verses": ["15-16"]
+      },
+      {
+        "highlight": "seed",
+        "text": ["seed"]
+      },
+      {
+        "highlight": "kingdom",
+        "text": ["kingdom"]
+      },
+      {
+        "highlight": "hear",
+        "text": ["hear"]
+      },
+      {
+        "highlight": "like",
+        "text": ["like"]
+      },
+      {
+        "highlight": "Parables",
+        "text": ["parable", "treasure", "pearl", "net"]
+      },
+      {
+        "highlight": "God's glory",
+        "text": [
+          "Then the righteous will shine like the sun in the kingdom of their Father."
+        ]
       }
     ],
     "14": [

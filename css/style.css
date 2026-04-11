@@ -95,6 +95,9 @@
   .bible-chapter.font-xsmall {
     font-size: 0.82em !important;
   }
+  .bible-chapter.font-msmall {
+    font-size: 0.64em !important;
+  }
   .bible-chapter.font-small {
     font-size: 0.92em !important;
   }
