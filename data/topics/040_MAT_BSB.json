@@ -1874,6 +1874,18 @@
         "verses": ["15-16"]
       },
       {
+        "label": "Jesus' hometown",
+        "verses": ["53-58"]
+      },
+      {
+        "highlight": "crowds",
+        "text": [
+          "crowds",
+          "Why do You speak to the people in parables?",
+          "this people’s heart has grown callous"
+        ]
+      },
+      {
         "highlight": "seed",
         "text": ["seed"]
       },
@@ -1886,18 +1898,70 @@
         "text": ["hear"]
       },
       {
+        "highlight": "see",
+        "text": ["see "]
+      },
+      {
         "highlight": "like",
         "text": ["like"]
+      },
+      {
+        "highlight": "Mystery",
+        "text": ["mysteries"]
       },
       {
         "highlight": "Parables",
         "text": ["parable", "treasure", "pearl", "net"]
       },
       {
+        "highlight": "Heart",
+        "text": ["path", "rocky ground", "among thorns", "thorns", "good soil"]
+      },
+      {
+        "highlight": "Understand",
+        "text": ["understand", "understood"]
+      },
+      {
+        "highlight": "Sow",
+        "text": ["sow", "sower", "sown", "sowing", "sows", "sowed"]
+      },
+      {
+        "highlight": "Harvest",
+        "text": ["harvest"]
+      },
+      {
+        "highlight": "Angels",
+        "text": ["angels"]
+      },
+      {
+        "highlight": "evil",
+        "text": ["evil", "devil"]
+      },
+      {
+        "highlight": "weeds",
+        "text": ["weeds", "weed"]
+      },
+      {
         "highlight": "God's glory",
         "text": [
           "Then the righteous will shine like the sun in the kingdom of their Father."
         ]
+      },
+      {
+        "highlight": "weeping and gnashing of teeth",
+        "text": ["weeping and gnashing of teeth"]
+      },
+      {
+        "highlight": "righteous",
+        "text": ["righteous"]
+      },
+      {
+        "highlight": "prophet without honor",
+        "text": ["prophet without honor"]
+      },
+      {
+        "highlight": "unbelief",
+        "text": ["unbelief"]
       }
     ],
     "14": [
