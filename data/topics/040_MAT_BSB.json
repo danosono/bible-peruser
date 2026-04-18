@@ -1813,259 +1813,327 @@
         }
       ]
     },
-    "13": [
-      {
-        "outline": "The Parable of the Sower",
-        "verses": ["1-9"],
-        "references": ["Mark 4:1–9", "Luke 8:4–8"]
+    "13": {
+      "meta": {
+        "Context": "Parables of the kingdom of heaven.",
+        "Genre": "Gospels",
+        "Audience": "Jews, others"
       },
-      {
-        "outline": "The Purpose of Jesus’ Parables",
-        "verses": ["10-17"],
-        "references": ["Isaiah 6:1–13", "Mark 4:10–12", "Luke 8:9–10"]
+      "topics": [
+        {
+          "outline": "The Parable of the Sower",
+          "verses": ["1-9"],
+          "references": ["Mark 4:1–9", "Luke 8:4–8"]
+        },
+        {
+          "outline": "The Purpose of Jesus’ Parables",
+          "verses": ["10-17"],
+          "references": ["Isaiah 6:1–13", "Mark 4:10–12", "Luke 8:9–10"]
+        },
+        {
+          "outline": "The Parable of the Sower Explained",
+          "verses": ["18-23"],
+          "references": ["Mark 4:13–20", "Luke 8:11–15"]
+        },
+        {
+          "outline": "The Parable of the Weeds",
+          "verses": ["24-30"],
+          "references": ["Ezekiel 17:1–10"]
+        },
+        {
+          "outline": "The Parable of the Mustard Seed",
+          "verses": ["31-32"],
+          "references": ["Mark 4:30–34", "Luke 13:18–19"]
+        },
+        {
+          "outline": "The Parable of the Leaven",
+          "verses": ["33"],
+          "references": ["Luke 13:20–21"]
+        },
+        {
+          "outline": "I Will Open My Mouth in Parables",
+          "verses": ["34-35"],
+          "references": ["Psalms 78:1–72"]
+        },
+        {
+          "outline": "The Parable of the Weeds Explained",
+          "verses": ["36-43"],
+          "references": ["Zephaniah 1:1–6"]
+        },
+        {
+          "outline": "The Parables of the Treasure and the Pearl",
+          "verses": ["44-46"],
+          "references": []
+        },
+        {
+          "outline": "The Parable of the Net",
+          "verses": ["47-52"],
+          "references": []
+        },
+        {
+          "outline": "The Rejection at Nazareth",
+          "verses": ["53-58"],
+          "references": ["Mark 6:1–6", "Luke 4:16–30"]
+        },
+        {
+          "label": "Dufflepods (CS Lewis)",
+          "verses": ["15-16"]
+        },
+        {
+          "label": "Jesus' hometown",
+          "verses": ["53-58"]
+        },
+        {
+          "highlight": "crowds",
+          "text": [
+            "crowds",
+            "Why do You speak to the people in parables?",
+            "this people’s heart has grown callous"
+          ]
+        },
+        {
+          "highlight": "seed",
+          "text": ["seed"]
+        },
+        {
+          "highlight": "kingdom",
+          "text": ["kingdom"]
+        },
+        {
+          "highlight": "hear",
+          "text": ["hear"]
+        },
+        {
+          "highlight": "see",
+          "text": ["see "]
+        },
+        {
+          "highlight": "like",
+          "text": ["like"]
+        },
+        {
+          "highlight": "Mystery",
+          "text": ["mysteries"]
+        },
+        {
+          "highlight": "Parables",
+          "text": ["parable", "treasure", "pearl", "net"]
+        },
+        {
+          "highlight": "Heart",
+          "text": [
+            "path",
+            "rocky ground",
+            "among thorns",
+            "thorns",
+            "good soil"
+          ]
+        },
+        {
+          "highlight": "Understand",
+          "text": ["understand", "understood"]
+        },
+        {
+          "highlight": "Sow",
+          "text": ["sow", "sower", "sown", "sowing", "sows", "sowed"]
+        },
+        {
+          "highlight": "Harvest",
+          "text": ["harvest"]
+        },
+        {
+          "highlight": "Angels",
+          "text": ["angels"]
+        },
+        {
+          "highlight": "evil",
+          "text": ["evil", "devil"]
+        },
+        {
+          "highlight": "weeds",
+          "text": ["weeds", "weed"]
+        },
+        {
+          "highlight": "God's glory",
+          "text": [
+            "Then the righteous will shine like the sun in the kingdom of their Father."
+          ]
+        },
+        {
+          "highlight": "weeping and gnashing of teeth",
+          "text": ["weeping and gnashing of teeth"]
+        },
+        {
+          "highlight": "righteous",
+          "text": ["righteous"]
+        },
+        {
+          "highlight": "prophet without honor",
+          "text": ["prophet without honor"]
+        },
+        {
+          "highlight": "unbelief",
+          "text": ["unbelief"]
+        }
+      ]
+    },
+    "14": {
+      "meta": {
+        "Context": "The identity of the King revealed (Matthew 13:53 - 17:27).",
+        "Genre": "Gospels",
+        "Audience": "Jews, others"
       },
-      {
-        "outline": "The Parable of the Sower Explained",
-        "verses": ["18-23"],
-        "references": ["Mark 4:13–20", "Luke 8:11–15"]
+      "topics": [
+        {
+          "outline": "The Beheading of John",
+          "verses": ["1-12"],
+          "references": ["Mark 6:14–29", "Luke 9:7–9"]
+        },
+        {
+          "outline": "The Feeding of the Five Thousand",
+          "verses": ["13-21"],
+          "references": ["Mark 6:30–44", "Luke 9:10–17", "John 6:1–15"]
+        },
+        {
+          "outline": "Jesus Walks on Water",
+          "verses": ["22-33"],
+          "references": ["Mark 6:45–52", "John 6:16–21"]
+        },
+        {
+          "outline": "Jesus Heals at Gennesaret",
+          "verses": ["34-36"],
+          "references": ["Mark 6:53–56"]
+        },
+        {
+          "highlight": "Jesus",
+          "text": ["Jesus"]
+        },
+        {
+          "highlight": "Disciples",
+          "text": ["disciples"]
+        },
+        {
+          "highlight": "Jesus seeks solitude",
+          "text": [
+            "He withdrew by boat privately to a solitary place",
+            "He went up on the mountain by Himself to pray. When evening came, He was there alone"
+          ]
+        },
+        {
+          "highlight": "boat",
+          "text": ["boat"]
+        },
+        {
+          "highlight": "Peter",
+          "text": ["Peter"]
+        },
+        {
+          "highlight": "God's glory",
+          "text": ["walking on the sea", "Truly You are the Son of God!"]
+        }
+      ]
+    },
+    "15": {
+      "meta": {
+        "Context": "The identity of the King revealed (Matthew 13:53 - 17:27).",
+        "Genre": "Gospels",
+        "Audience": "Jews, others"
       },
-      {
-        "outline": "The Parable of the Weeds",
-        "verses": ["24-30"],
-        "references": ["Ezekiel 17:1–10"]
+      "topics": [
+        {
+          "outline": "The Tradition of the Elders",
+          "verses": ["1-9"],
+          "references": ["Mark 7:1–13"]
+        },
+        {
+          "outline": "What Defiles a Man",
+          "verses": ["10-20"],
+          "references": ["Mark 7:14–23"]
+        },
+        {
+          "outline": "The Faith of the Canaanite Woman",
+          "verses": ["21-28"],
+          "references": ["Mark 7:24–30"]
+        },
+        {
+          "outline": "The Feeding of the Four Thousand",
+          "verses": ["29-39"],
+          "references": ["2 Kings 4:42–44", "Mark 8:1–10"]
+        },
+        {
+          "label": "Scribes/Pharisees",
+          "verses": ["1-20"]
+        }
+      ]
+    },
+    "16": {
+      "meta": {
+        "Context": "The identity of the King revealed (Matthew 13:53 - 17:27).",
+        "Genre": "Gospels",
+        "Audience": "Jews, others"
       },
-      {
-        "outline": "The Parable of the Mustard Seed",
-        "verses": ["31-32"],
-        "references": ["Mark 4:30–34", "Luke 13:18–19"]
+      "topics": [
+        {
+          "outline": "The Demand for a Sign",
+          "verses": ["1-4"],
+          "references": ["Mark 8:11–13", "Luke 12:54–56"]
+        },
+        {
+          "outline": "The Leaven of the Pharisees and Sadducees",
+          "verses": ["5-12"],
+          "references": ["Mark 8:14–21", "Luke 12:1–3"]
+        },
+        {
+          "outline": "Peter’s Confession of Christ",
+          "verses": ["13-20"],
+          "references": ["Mark 8:27–30", "Luke 9:18–20", "John 6:67–71"]
+        },
+        {
+          "outline": "Christ’s Passion Foretold",
+          "verses": ["21-23"],
+          "references": ["Mark 8:31–33", "Luke 9:21–22"]
+        },
+        {
+          "outline": "Take Up Your Cross",
+          "verses": ["24-28"],
+          "references": ["Mark 8:34–38", "Luke 9:23–27"]
+        }
+      ]
+    },
+    "17": {
+      "meta": {
+        "Context": "The identity of the King revealed (Matthew 13:53 - 17:27).",
+        "Genre": "Gospels",
+        "Audience": "Jews, others"
       },
-      {
-        "outline": "The Parable of the Leaven",
-        "verses": ["33"],
-        "references": ["Luke 13:20–21"]
-      },
-      {
-        "outline": "I Will Open My Mouth in Parables",
-        "verses": ["34-35"],
-        "references": ["Psalms 78:1–72"]
-      },
-      {
-        "outline": "The Parable of the Weeds Explained",
-        "verses": ["36-43"],
-        "references": ["Zephaniah 1:1–6"]
-      },
-      {
-        "outline": "The Parables of the Treasure and the Pearl",
-        "verses": ["44-46"],
-        "references": []
-      },
-      {
-        "outline": "The Parable of the Net",
-        "verses": ["47-52"],
-        "references": []
-      },
-      {
-        "outline": "The Rejection at Nazareth",
-        "verses": ["53-58"],
-        "references": ["Mark 6:1–6", "Luke 4:16–30"]
-      },
-      {
-        "label": "Dufflepods (CS Lewis)",
-        "verses": ["15-16"]
-      },
-      {
-        "label": "Jesus' hometown",
-        "verses": ["53-58"]
-      },
-      {
-        "highlight": "crowds",
-        "text": [
-          "crowds",
-          "Why do You speak to the people in parables?",
-          "this people’s heart has grown callous"
-        ]
-      },
-      {
-        "highlight": "seed",
-        "text": ["seed"]
-      },
-      {
-        "highlight": "kingdom",
-        "text": ["kingdom"]
-      },
-      {
-        "highlight": "hear",
-        "text": ["hear"]
-      },
-      {
-        "highlight": "see",
-        "text": ["see "]
-      },
-      {
-        "highlight": "like",
-        "text": ["like"]
-      },
-      {
-        "highlight": "Mystery",
-        "text": ["mysteries"]
-      },
-      {
-        "highlight": "Parables",
-        "text": ["parable", "treasure", "pearl", "net"]
-      },
-      {
-        "highlight": "Heart",
-        "text": ["path", "rocky ground", "among thorns", "thorns", "good soil"]
-      },
-      {
-        "highlight": "Understand",
-        "text": ["understand", "understood"]
-      },
-      {
-        "highlight": "Sow",
-        "text": ["sow", "sower", "sown", "sowing", "sows", "sowed"]
-      },
-      {
-        "highlight": "Harvest",
-        "text": ["harvest"]
-      },
-      {
-        "highlight": "Angels",
-        "text": ["angels"]
-      },
-      {
-        "highlight": "evil",
-        "text": ["evil", "devil"]
-      },
-      {
-        "highlight": "weeds",
-        "text": ["weeds", "weed"]
-      },
-      {
-        "highlight": "God's glory",
-        "text": [
-          "Then the righteous will shine like the sun in the kingdom of their Father."
-        ]
-      },
-      {
-        "highlight": "weeping and gnashing of teeth",
-        "text": ["weeping and gnashing of teeth"]
-      },
-      {
-        "highlight": "righteous",
-        "text": ["righteous"]
-      },
-      {
-        "highlight": "prophet without honor",
-        "text": ["prophet without honor"]
-      },
-      {
-        "highlight": "unbelief",
-        "text": ["unbelief"]
-      }
-    ],
-    "14": [
-      {
-        "outline": "The Beheading of John",
-        "verses": ["1-12"],
-        "references": ["Mark 6:14–29", "Luke 9:7–9"]
-      },
-      {
-        "outline": "The Feeding of the Five Thousand",
-        "verses": ["13-21"],
-        "references": ["Mark 6:30–44", "Luke 9:10–17", "John 6:1–15"]
-      },
-      {
-        "outline": "Jesus Walks on Water",
-        "verses": ["22-33"],
-        "references": ["Mark 6:45–52", "John 6:16–21"]
-      },
-      {
-        "outline": "Jesus Heals at Gennesaret",
-        "verses": ["34-36"],
-        "references": ["Mark 6:53–56"]
-      }
-    ],
-    "15": [
-      {
-        "outline": "The Tradition of the Elders",
-        "verses": ["1-9"],
-        "references": ["Mark 7:1–13"]
-      },
-      {
-        "outline": "What Defiles a Man",
-        "verses": ["10-20"],
-        "references": ["Mark 7:14–23"]
-      },
-      {
-        "outline": "The Faith of the Canaanite Woman",
-        "verses": ["21-28"],
-        "references": ["Mark 7:24–30"]
-      },
-      {
-        "outline": "The Feeding of the Four Thousand",
-        "verses": ["29-39"],
-        "references": ["2 Kings 4:42–44", "Mark 8:1–10"]
-      },
-      {
-        "label": "Scribes/Pharisees",
-        "verses": ["1-20"]
-      }
-    ],
-    "16": [
-      {
-        "outline": "The Demand for a Sign",
-        "verses": ["1-4"],
-        "references": ["Mark 8:11–13", "Luke 12:54–56"]
-      },
-      {
-        "outline": "The Leaven of the Pharisees and Sadducees",
-        "verses": ["5-12"],
-        "references": ["Mark 8:14–21", "Luke 12:1–3"]
-      },
-      {
-        "outline": "Peter’s Confession of Christ",
-        "verses": ["13-20"],
-        "references": ["Mark 8:27–30", "Luke 9:18–20", "John 6:67–71"]
-      },
-      {
-        "outline": "Christ’s Passion Foretold",
-        "verses": ["21-23"],
-        "references": ["Mark 8:31–33", "Luke 9:21–22"]
-      },
-      {
-        "outline": "Take Up Your Cross",
-        "verses": ["24-28"],
-        "references": ["Mark 8:34–38", "Luke 9:23–27"]
-      }
-    ],
-    "17": [
-      {
-        "outline": "The Transfiguration",
-        "verses": ["1-13"],
-        "references": ["Mark 9:1–13", "Luke 9:28–36", "2 Peter 1:16–21"]
-      },
-      {
-        "outline": "The Boy with a Demon",
-        "verses": ["14-18"],
-        "references": ["Mark 9:14–29", "Luke 9:37–42"]
-      },
-      {
-        "outline": "The Power of Faith",
-        "verses": ["19-20"],
-        "references": ["Luke 17:5–10"]
-      },
-      {
-        "outline": "The Second Prediction of the Passion",
-        "verses": ["22-23"],
-        "references": ["Mark 9:30–32", "Luke 9:43–45"]
-      },
-      {
-        "outline": "The Temple Tax",
-        "verses": ["24-27"],
-        "references": []
-      }
-    ],
+      "topics": [
+        {
+          "outline": "The Transfiguration",
+          "verses": ["1-13"],
+          "references": ["Mark 9:1–13", "Luke 9:28–36", "2 Peter 1:16–21"]
+        },
+        {
+          "outline": "The Boy with a Demon",
+          "verses": ["14-18"],
+          "references": ["Mark 9:14–29", "Luke 9:37–42"]
+        },
+        {
+          "outline": "The Power of Faith",
+          "verses": ["19-20"],
+          "references": ["Luke 17:5–10"]
+        },
+        {
+          "outline": "The Second Prediction of the Passion",
+          "verses": ["22-23"],
+          "references": ["Mark 9:30–32", "Luke 9:43–45"]
+        },
+        {
+          "outline": "The Temple Tax",
+          "verses": ["24-27"],
+          "references": []
+        }
+      ]
+    },
     "18": [
       {
         "outline": "The Greatest in the Kingdom",
