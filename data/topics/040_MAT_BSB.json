@@ -1974,6 +1974,10 @@
         {
           "highlight": "unbelief",
           "text": ["unbelief"]
+        },
+        {
+          "highlight": "Identity of the King",
+          "text": ["a prophet", "wisdom and miraculous powers"]
         }
       ]
     },
@@ -2030,6 +2034,19 @@
         {
           "highlight": "God's glory",
           "text": ["walking on the sea", "Truly You are the Son of God!"]
+        },
+        {
+          "highlight": "Identity of the King",
+          "text": [
+            "He had compassion on them and healed their sick",
+            "only five loaves of bread and two fish",
+            "all ate and were satisfied",
+            "five thousand",
+            " Jesus went out to them, walking on the sea",
+            "wind died down",
+            "worshiped Him, saying, “Truly You are the Son of God!",
+            "And all who touched Him were healed"
+          ]
         }
       ]
     },
