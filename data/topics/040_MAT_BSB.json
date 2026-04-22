@@ -2091,6 +2091,61 @@
         {
           "label": "Scribes/Pharisees",
           "verses": ["1-20"]
+        },
+        {
+          "highlight": "Jesus",
+          "text": ["Jesus"]
+        },
+        {
+          "highlight": "Jesus",
+          "text": [
+            "A man is not defiled by what enters his mouth, but by what comes out of it",
+            "blind guides",
+            "“O woman,” Jesus answered, “your faith is great! Let it be done for you as you desire.”",
+            "large crowds",
+            "he healed them",
+            "four thousand men were fed"
+          ]
+        },
+        {
+          "highlight": "Disciples",
+          "text": ["Disciples"]
+        },
+        {
+          "highlight": "came to Jesus",
+          "text": [
+            "came to Jesus",
+            "came to Him",
+            "came and urged Him",
+            "came and knelt before Him"
+          ]
+        },
+        {
+          "highlight": "came to Jesus",
+          "text": [
+            "Pharisees and scribes",
+            "so His disciples",
+            "a Canaanite woman",
+            "the woman",
+            "large crowds"
+          ]
+        },
+        {
+          "highlight": "Pharisees and scribes",
+          "text": [
+            "break the command of God",
+            "nullify the word of God",
+            "hypocrites!",
+            "hearts are far from Me",
+            " worship Me in vain",
+            "teach as doctrine the precepts of men.",
+            "Disregard them!",
+            "blind guides"
+          ]
+        },
+        {
+          "highlight": "tradition",
+          "text": ["tradition of the elders", "for the sake of your tradition"]
         }
       ]
     },
