@@ -2180,6 +2180,29 @@
           "outline": "Take Up Your Cross",
           "verses": ["24-28"],
           "references": ["Mark 8:34–38", "Luke 9:23–27"]
+        },
+        {
+          "highlight": "disciples",
+          "text": [
+            "disciples forgot to take bread",
+            "questioned His disciples",
+            "admonished the disciples",
+            "show His disciples",
+            "told His disciples"
+          ]
+        },
+        {
+          "highlight": "bread",
+          "text": ["bread"]
+        },
+        {
+          "highlight": "confront lies with truth",
+          "text": [
+            "beware",
+            "of the leaven of the",
+            "teaching of the",
+            "Pharisees and Sadducees."
+          ]
         }
       ]
     },
