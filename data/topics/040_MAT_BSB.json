@@ -2151,7 +2151,7 @@
     },
     "16": {
       "meta": {
-        "Context": "The identity of the King revealed (Matthew 13:53 - 17:27).",
+        "Context": "The identity of the King revealed (Matthew 13:53 - 17:27). Jesus rebukes the corrupt leaders of the old covenant and teaches the new covenant.",
         "Genre": "Gospels",
         "Audience": "Jews, others"
       },
@@ -2184,6 +2184,34 @@
         {
           "label": "Spiritual Warfare",
           "verses": ["17-19"]
+        },
+        {
+          "label": "Timing",
+          "verses": ["20"]
+        },
+        {
+          "label": "Jesus predicts His Death and Resurrection",
+          "verses": ["21"]
+        },
+        {
+          "label": "Man's wisdom vs God's wisdom",
+          "verses": ["22-23"]
+        },
+        {
+          "label": "Man's wisdom vs God's wisdom",
+          "verses": ["24-26"]
+        },
+        {
+          "label": "True Freedom",
+          "verses": ["24-26"]
+        },
+        {
+          "label": "Future",
+          "verses": ["27"]
+        },
+        {
+          "label": "Beginning of Next Chapter",
+          "verses": ["28"]
         },
         {
           "highlight": "disciples",
@@ -2230,6 +2258,23 @@
             "keys",
             "in heaven",
             "on earth"
+          ]
+        },
+        {
+          "highlight": "True Freedom",
+          "text": ["deny himself and take up his cross and follow Me"]
+        },
+        {
+          "highlight": "Jesus rebukes the corrupt leaders of the Old Covenant and teaches the New Covenant",
+          "text": [
+            "wicked and adulterous generation",
+            "beware of the leaven of the Pharisees and Sadducees",
+            "the Christ, the Son of the living God",
+            "suffer",
+            "killed",
+            "raised to life",
+            "deny himself and take up his cross and follow Me",
+            "the Son of Man will come in His Father’s glory with His angels"
           ]
         }
       ]
