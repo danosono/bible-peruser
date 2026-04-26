@@ -2261,6 +2261,10 @@
           ]
         },
         {
+          "highlight": "Jesus predicts His Death and Resurrection",
+          "text": ["suffer many things", "killed", "raised to life"]
+        },
+        {
           "highlight": "True Freedom",
           "text": ["deny himself and take up his cross and follow Me"]
         },
@@ -2310,6 +2314,119 @@
           "outline": "The Temple Tax",
           "verses": ["24-27"],
           "references": []
+        },
+        {
+          "label": "Jesus unveiled",
+          "verses": ["2"]
+        },
+        {
+          "label": "Portal between heaven and earth",
+          "verses": ["3"]
+        },
+        {
+          "label": "God the Father speaks to disciples",
+          "verses": ["5"]
+        },
+        {
+          "label": "Portal closed",
+          "verses": ["8"]
+        },
+        {
+          "label": "Timing",
+          "verses": ["9"]
+        },
+        {
+          "label": "Jesus predicts His Death and Resurrection",
+          "verses": ["9", "12", "22-23"]
+        },
+        {
+          "highlight": "People",
+          "text": [
+            "Jesus",
+            "Peter",
+            "James",
+            "John",
+            "Moses",
+            "Elijah",
+            "a voice from the cloud",
+            "Son of Man",
+            "scribes",
+            "John the Baptist",
+            "crowd",
+            "a man",
+            "unbelieving and perverse generation",
+            "the boy",
+            "the collectors of the two-drachma tax",
+            "Simon"
+          ]
+        },
+        {
+          "highlight": "Places",
+          "text": [
+            "high mountain",
+            "cloud",
+            "to the crowd",
+            "Capernaum",
+            "house",
+            "sea"
+          ]
+        },
+        {
+          "highlight": "Jesus touched them",
+          "text": ["Jesus came over and touched them"]
+        },
+        {
+          "highlight": "Mountain",
+          "text": ["high mountain", "the mountain", "this mountain"]
+        },
+        {
+          "highlight": "Jesus predicts His Death and Resurrection",
+          "text": [
+            "delivered into the hands of men",
+            "kill Him",
+            "raised to life",
+            "raised from the dead",
+            "In the same way, the Son of Man will suffer at their hands"
+          ]
+        },
+        {
+          "highlight": "Jesus is Son of Man",
+          "text": [
+            "Son of Man",
+            "delivered into the hands of men",
+            "kill Him",
+            "raised to life",
+            "raised from the dead"
+          ]
+        },
+        {
+          "highlight": "Scribes",
+          "text": ["scribes"]
+        },
+        {
+          "highlight": "Elijah",
+          "text": ["will restore", "has already come"]
+        },
+        {
+          "highlight": "John the Baptist",
+          "text": [
+            "Elijah has already come",
+            "did not recognize him",
+            "done to him whatever they wished"
+          ]
+        },
+        {
+          "highlight": "demon",
+          "text": ["seizures", "suffering terribly", "often falls", "demon"]
+        },
+        {
+          "highlight": "Trust God",
+          "text": [
+            "Why couldn’t we drive it out?",
+            "so little faith",
+            "faith",
+            "nothing will be impossible for you"
+          ]
         }
       ]
     },
