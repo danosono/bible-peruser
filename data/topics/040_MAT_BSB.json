@@ -2366,6 +2366,7 @@
             "high mountain",
             "cloud",
             "to the crowd",
+            "Galilee",
             "Capernaum",
             "house",
             "sea"
@@ -2427,6 +2428,26 @@
             "faith",
             "nothing will be impossible for you"
           ]
+        },
+        {
+          "highlight": "For God so loved the world",
+          "text": [
+            "The Son of Man is about to be delivered into the hands of men",
+            "they will kill Him",
+            "on the third day He will be raised to life"
+          ]
+        },
+        {
+          "highlight": "Jesus knew",
+          "text": ["Jesus preempted him"]
+        },
+        {
+          "highlight": "God owns it all",
+          "text": ["Then the sons are exempt"]
+        },
+        {
+          "highlight": "In the world, not of it",
+          "text": ["give it to them for My tax and yours"]
         }
       ]
     },
