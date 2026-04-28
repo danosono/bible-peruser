@@ -2443,7 +2443,7 @@
         },
         {
           "highlight": "God owns it all",
-          "text": ["Then the sons are exempt"]
+          "text": [" “Then the sons are exempt,” Jesus said to him.", "“But"]
         },
         {
           "highlight": "In the world, not of it",
@@ -2481,6 +2481,50 @@
         "outline": "The Unforgiving Servant",
         "verses": ["21-35"],
         "references": ["Romans 12:14–21"]
+      },
+      {
+        "label": "Referencing prev ch. Mat 17:25-27",
+        "verses": ["1"]
+      },
+      {
+        "label": "Greatest are like little children",
+        "verses": ["2-4"]
+      },
+      {
+        "label": "Personal to Jesus",
+        "verses": ["5"]
+      },
+      {
+        "label": "Warning from Jesus regarding little ones",
+        "verses": ["6-7"]
+      },
+      {
+        "label": "Root out the causes of sin",
+        "verses": ["8-9"]
+      },
+      {
+        "label": "Warning from Jesus regarding little ones",
+        "verses": ["10"]
+      },
+      {
+        "label": "The Father cares deeply for little ones",
+        "verses": ["12-14"]
+      },
+      {
+        "highlight": "Little ones",
+        "text": ["little ones"]
+      },
+      {
+        "highlight": "Causes of sin",
+        "text": ["Causes"]
+      },
+      {
+        "highlight": "Heaven",
+        "text": ["heaven"]
+      },
+      {
+        "highlight": "I tell you ...",
+        "text": ["I tell you"]
       }
     ],
     "19": [
