@@ -2556,7 +2556,7 @@
         ]
       },
       {
-        "highlight": "Reconcile>Agree>Gather",
+        "highlight": "Agree>Gather",
         "text": ["agree", "gather together in My name"]
       },
       {
@@ -2590,6 +2590,22 @@
         "outline": "The Rich Young Man",
         "verses": ["16-30"],
         "references": ["Mark 10:17–31", "Luke 18:18–30"]
+      },
+      {
+        "label": "Christ and the church",
+        "verses": ["5"],
+        "references": ["Ephesians 5:31-32"]
+      },
+      {
+        "highlight": "crowds",
+        "text": ["crowds"]
+      },
+      {
+        "highlight": "Regarding sex outside marriage",
+        "text": [
+          "better not to marry",
+          " live like eunuchs for the sake of the kingdom of heaven"
+        ]
       }
     ],
     "20": [
