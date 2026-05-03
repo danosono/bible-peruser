@@ -2336,7 +2336,7 @@
           "verses": ["9"]
         },
         {
-          "label": "Jesus predicts His Death and Resurrection",
+          "label": "Jesus predicts His Death and Resurrection again",
           "verses": ["9", "12", "22-23"]
         },
         {
@@ -2381,7 +2381,7 @@
           "text": ["high mountain", "the mountain", "this mountain"]
         },
         {
-          "highlight": "Jesus predicts His Death and Resurrection",
+          "highlight": "Jesus predicts His Death and Resurrection again",
           "text": [
             "delivered into the hands of men",
             "kill Him",
@@ -2451,163 +2451,247 @@
         }
       ]
     },
-    "18": [
-      {
-        "outline": "The Greatest in the Kingdom",
-        "verses": ["1-5"],
-        "references": ["Mark 9:33–41", "Luke 9:46–50"]
+    "18": {
+      "meta": {
+        "Context": "Community in the kingdom of heaven",
+        "Genre": "Gospels",
+        "Audience": "Jews, others"
       },
-      {
-        "outline": "Temptations and Trespasses",
-        "verses": ["6-9"],
-        "references": ["Mark 9:42–48", "Luke 17:1–4"]
+      "topics": [
+        {
+          "outline": "The Greatest in the Kingdom",
+          "verses": ["1-5"],
+          "references": ["Mark 9:33–41", "Luke 9:46–50"]
+        },
+        {
+          "outline": "Temptations and Trespasses",
+          "verses": ["6-9"],
+          "references": ["Mark 9:42–48", "Luke 17:1–4"]
+        },
+        {
+          "outline": "The Parable of the Lost Sheep",
+          "verses": ["10", "12-14"],
+          "references": ["Luke 15:1–7"]
+        },
+        {
+          "outline": "A Brother Who Sins",
+          "verses": ["15-18"],
+          "references": ["Deuteronomy 19:15–21"]
+        },
+        {
+          "outline": "Ask in My Name",
+          "verses": ["19-20"],
+          "references": ["John 16:23–33"]
+        },
+        {
+          "outline": "The Unforgiving Servant",
+          "verses": ["21-35"],
+          "references": ["Romans 12:14–21"]
+        },
+        {
+          "label": "Referencing prev ch. Mat 17:25-27",
+          "verses": ["1"]
+        },
+        {
+          "label": "Greatest are like little children",
+          "verses": ["2-4"]
+        },
+        {
+          "label": "Personal to Jesus",
+          "verses": ["5"]
+        },
+        {
+          "label": "Warning from Jesus regarding little ones",
+          "verses": ["6-7"]
+        },
+        {
+          "label": "Root out the causes of sin",
+          "verses": ["8-9"]
+        },
+        {
+          "label": "Warning from Jesus regarding little ones",
+          "verses": ["10"]
+        },
+        {
+          "label": "The Father cares deeply for little ones",
+          "verses": ["12-14"]
+        },
+        {
+          "label": "Forgive others",
+          "verses": ["15-35"]
+        },
+        {
+          "highlight": "Little ones",
+          "text": ["little ones"]
+        },
+        {
+          "highlight": "Causes of sin",
+          "text": ["Causes"]
+        },
+        {
+          "highlight": "Heaven",
+          "text": ["heaven"]
+        },
+        {
+          "highlight": "I tell you ...",
+          "text": ["I tell you"]
+        },
+        {
+          "highlight": "Spiritual Intervention",
+          "text": [
+            " their angels in heaven always see the face of My Father in heaven",
+            "go out to search",
+            "your Father in heaven is not willing that any of these little ones should perish",
+            "it will be done for you by My Father in heaven"
+          ]
+        },
+        {
+          "highlight": "Forgive",
+          "text": ["forgive"]
+        },
+        {
+          "highlight": "Forgive",
+          "text": [
+            "If your brother sins against you",
+            "confront",
+            "bind",
+            "loose",
+            "bound",
+            "loosed",
+            "forgive"
+          ]
+        },
+        {
+          "highlight": "Agree>Gather",
+          "text": ["agree", "gather together in My name"]
+        },
+        {
+          "highlight": "Reconcile>Agree>Gather",
+          "text": [
+            "you have won your brother over",
+            "whatever you loose",
+            "seventy-seven times!",
+            "agree",
+            "gather together in My name",
+            "Shouldn’t you have had mercy on your fellow servant, just as I had on you?"
+          ]
+        },
+        {
+          "highlight": "Spiritual Warfare",
+          "text": ["bound in heaven", "loosed in heaven"]
+        }
+      ]
+    },
+    "19": {
+      "meta": {
+        "Context": "Jesus teaches about the kingdom of heaven.",
+        "Genre": "Gospels",
+        "Audience": "Jews, others"
       },
-      {
-        "outline": "The Parable of the Lost Sheep",
-        "verses": ["10", "12-14"],
-        "references": ["Luke 15:1–7"]
-      },
-      {
-        "outline": "A Brother Who Sins",
-        "verses": ["15-18"],
-        "references": ["Deuteronomy 19:15–21"]
-      },
-      {
-        "outline": "Ask in My Name",
-        "verses": ["19-20"],
-        "references": ["John 16:23–33"]
-      },
-      {
-        "outline": "The Unforgiving Servant",
-        "verses": ["21-35"],
-        "references": ["Romans 12:14–21"]
-      },
-      {
-        "label": "Referencing prev ch. Mat 17:25-27",
-        "verses": ["1"]
-      },
-      {
-        "label": "Greatest are like little children",
-        "verses": ["2-4"]
-      },
-      {
-        "label": "Personal to Jesus",
-        "verses": ["5"]
-      },
-      {
-        "label": "Warning from Jesus regarding little ones",
-        "verses": ["6-7"]
-      },
-      {
-        "label": "Root out the causes of sin",
-        "verses": ["8-9"]
-      },
-      {
-        "label": "Warning from Jesus regarding little ones",
-        "verses": ["10"]
-      },
-      {
-        "label": "The Father cares deeply for little ones",
-        "verses": ["12-14"]
-      },
-      {
-        "label": "Forgive others",
-        "verses": ["15-35"]
-      },
-      {
-        "highlight": "Little ones",
-        "text": ["little ones"]
-      },
-      {
-        "highlight": "Causes of sin",
-        "text": ["Causes"]
-      },
-      {
-        "highlight": "Heaven",
-        "text": ["heaven"]
-      },
-      {
-        "highlight": "I tell you ...",
-        "text": ["I tell you"]
-      },
-      {
-        "highlight": "Spiritual Intervention",
-        "text": [
-          " their angels in heaven always see the face of My Father in heaven",
-          "go out to search",
-          "your Father in heaven is not willing that any of these little ones should perish",
-          "it will be done for you by My Father in heaven"
-        ]
-      },
-      {
-        "highlight": "Forgive",
-        "text": ["forgive"]
-      },
-      {
-        "highlight": "Forgive",
-        "text": [
-          "If your brother sins against you",
-          "confront",
-          "bind",
-          "loose",
-          "bound",
-          "loosed",
-          "forgive"
-        ]
-      },
-      {
-        "highlight": "Agree>Gather",
-        "text": ["agree", "gather together in My name"]
-      },
-      {
-        "highlight": "Reconcile>Agree>Gather",
-        "text": [
-          "you have won your brother over",
-          "whatever you loose",
-          "seventy-seven times!",
-          "agree",
-          "gather together in My name",
-          "Shouldn’t you have had mercy on your fellow servant, just as I had on you?"
-        ]
-      },
-      {
-        "highlight": "Spiritual Warfare",
-        "text": ["bound in heaven", "loosed in heaven"]
-      }
-    ],
-    "19": [
-      {
-        "outline": "Teachings about Divorce",
-        "verses": ["1-12"],
-        "references": ["Mark 10:1–12"]
-      },
-      {
-        "outline": "Jesus Blesses the Children",
-        "verses": ["13-15"],
-        "references": ["Mark 10:13–16", "Luke 18:15–17"]
-      },
-      {
-        "outline": "The Rich Young Man",
-        "verses": ["16-30"],
-        "references": ["Mark 10:17–31", "Luke 18:18–30"]
-      },
-      {
-        "label": "Christ and the church",
-        "verses": ["5"],
-        "references": ["Ephesians 5:31-32"]
-      },
-      {
-        "highlight": "crowds",
-        "text": ["crowds"]
-      },
-      {
-        "highlight": "Regarding sex outside marriage",
-        "text": [
-          "better not to marry",
-          " live like eunuchs for the sake of the kingdom of heaven"
-        ]
-      }
-    ],
+      "topics": [
+        {
+          "outline": "Teachings about Divorce",
+          "verses": ["1-12"],
+          "references": ["Mark 10:1–12"]
+        },
+        {
+          "outline": "Jesus Blesses the Children",
+          "verses": ["13-15"],
+          "references": ["Mark 10:13–16", "Luke 18:15–17"]
+        },
+        {
+          "outline": "The Rich Young Man",
+          "verses": ["16-30"],
+          "references": ["Mark 10:17–31", "Luke 18:18–30"]
+        },
+        {
+          "label": "Christ and the church",
+          "verses": ["5"],
+          "references": ["Ephesians 5:31-32"]
+        },
+        {
+          "label": "Little children and the kingdom of heaven",
+          "verses": ["13-15"],
+          "references": ["Mat 18:1-14"]
+        },
+        {
+          "label": "Cannot serve two masters",
+          "verses": ["23-24"],
+          "references": ["Matthew 6:24"]
+        },
+        {
+          "label": "Eternal life",
+          "verses": ["16", "29"],
+          "references": ["Matthew 25:46"]
+        },
+        {
+          "label": "First last and last first",
+          "verses": ["30"],
+          "references": ["Matthew 20:16"]
+        },
+        {
+          "highlight": "crowds",
+          "text": ["crowds"]
+        },
+        {
+          "highlight": "Jesus",
+          "text": ["Jesus"]
+        },
+        {
+          "highlight": "man",
+          "text": [" man ", "man."]
+        },
+        {
+          "highlight": "said/replied",
+          "text": ["said", "replied"]
+        },
+        {
+          "highlight": "Regarding sex outside marriage",
+          "text": [
+            "better not to marry",
+            " live like eunuchs for the sake of the kingdom of heaven"
+          ]
+        },
+        {
+          "highlight": "Cannot serve two masters. Mat 6:24",
+          "text": [
+            "Truly I tell you, it is hard for a rich man to enter the kingdom of heaven"
+          ]
+        },
+        {
+          "highlight": "I tell you",
+          "text": ["I tell you", "truly"]
+        },
+        {
+          "highlight": "Hope for the lost",
+          "text": [
+            "Who then can be saved?",
+            "with God all things are possible."
+          ]
+        },
+        {
+          "highlight": "eternal life",
+          "text": ["eternal life"]
+        },
+        {
+          "highlight": "Self denial",
+          "text": [
+            "what God has joined together, let man not separate.",
+            "live like eunuchs for the sake of the kingdom of heaven",
+            "If you want to be perfect, go, sell your possessions and give to the poor,",
+            "we have left everything to follow You"
+          ]
+        },
+        {
+          "highlight": "Reward",
+          "text": ["a hundredfold", "inherit eternal life"]
+        },
+        {
+          "highlight": "first last (also next ch)",
+          "text": ["first", "last"]
+        }
+      ]
+    },
     "20": [
       {
         "outline": "The Parable of the Workers",
