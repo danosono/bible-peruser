@@ -2692,28 +2692,42 @@
         }
       ]
     },
-    "20": [
-      {
-        "outline": "The Parable of the Workers",
-        "verses": ["1-16"],
-        "references": []
+    "20": {
+      "meta": {
+        "Context": "Jesus continues first/last teaching, predicts his death and resurrection a third time, teaches more about the kingdom of heaven, and heals two blind men.",
+        "Genre": "Gospels",
+        "Audience": "Jews, others"
       },
-      {
-        "outline": "The Third Prediction of the Passion",
-        "verses": ["17-19"],
-        "references": ["Mark 10:32–34", "Luke 18:31–34"]
-      },
-      {
-        "outline": "A Mother’s Request",
-        "verses": ["20-28"],
-        "references": ["Mark 10:35–45"]
-      },
-      {
-        "outline": "The Blind Men by the Road",
-        "verses": ["29-34"],
-        "references": ["Mark 10:46–52", "Luke 18:35–43"]
-      }
-    ],
+      "topics": [
+        {
+          "outline": "The Parable of the Workers",
+          "verses": ["1-16"],
+          "references": []
+        },
+        {
+          "outline": "The Third Prediction of the Passion",
+          "verses": ["17-19"],
+          "references": ["Mark 10:32–34", "Luke 18:31–34"]
+        },
+        {
+          "outline": "A Mother’s Request",
+          "verses": ["20-28"],
+          "references": ["Mark 10:35–45"]
+        },
+        {
+          "outline": "The Blind Men by the Road",
+          "verses": ["29-34"],
+          "references": ["Mark 10:46–52", "Luke 18:35–43"]
+        },
+        {
+          "highlight": "related?",
+          "text": [
+            "So the last will be first, and the first will be last.",
+            "Declare that in Your kingdom one of these two sons of mine may sit at Your right hand, and the other at Your left."
+          ]
+        }
+      ]
+    },
     "21": [
       {
         "outline": "The Triumphal Entry",
