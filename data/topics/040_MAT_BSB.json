@@ -2719,6 +2719,30 @@
           "verses": ["29-34"],
           "references": ["Mark 10:46–52", "Luke 18:35–43"]
         },
+        { "label": "Be humble", "verses": ["16", "26-27"] },
+        {
+          "label": "First last, last first",
+          "verses": ["1-16", "20-28"],
+          "references": ["Matthew 19:30", "Matthew 20:16"]
+        },
+        {
+          "label": "Jesus predicts His Death and Resurrection a third time",
+          "verses": ["17-19"],
+          "references": ["Mark 10:32–34", "Luke 18:31–34"]
+        },
+        {
+          "highlight": "First/Last",
+          "text": ["first", "last"]
+        },
+        {
+          "highlight": "First is last",
+          "text": [
+            "Son of Man",
+            "condemn Him to death",
+            "mocked and flogged and crucified",
+            "did not come to be served, but to serve, and to give His life as a ransom for many"
+          ]
+        },
         {
           "highlight": "related?",
           "text": [
