@@ -2730,12 +2730,38 @@
           "verses": ["17-19"],
           "references": ["Mark 10:32–34", "Luke 18:31–34"]
         },
-        { "label": "Jesus teaches disciples how to lead", "verses": ["25-28"] },
+        {
+          "label": "Jesus teaches the 12 disciples how to lead",
+          "verses": ["25-28"]
+        },
         { "label": "Jesus power over physical world", "verses": ["32-34"] },
+        {
+          "highlight": "People",
+          "text": [
+            "landowner",
+            "workers",
+            "twelve disciples",
+            "Jesus",
+            "Son of Man",
+            "chief priests",
+            "scribes",
+            "gentiles",
+            "mother of Zebedee’s sons",
+            "two sons of mine",
+            "Father",
+            "the ten",
+            "two brothers",
+            "crowd",
+            "two blind men",
+            "Lord, Son of David"
+          ]
+        },
+        { "highlight": "Places", "text": ["Jerusalem", "Jericho"] },
         {
           "highlight": "First/Last",
           "text": ["first", "last"]
         },
+        { "highlight": "Crowds", "text": ["crowd"] },
         {
           "highlight": "Jesus predicts His Death and Resurrection a third time",
           "text": [
@@ -2832,6 +2858,84 @@
         "outline": "The Parable of the Wicked Tenants",
         "verses": ["33-46"],
         "references": ["Mark 12:1–12", "Luke 20:9–18"]
+      },
+      {
+        "label": "Chief Priests, Scribes, Pharisees, Elders",
+        "verses": ["15-16", "23-46"]
+      },
+      {
+        "label": "Chief Priests, Scribes, Pharisees, Elders",
+        "verses": ["15", "23", "45"]
+      },
+      {
+        "label": "Chief Priests, Scribes, Pharisees, Elders",
+        "verses": ["16", "24", "28", "33", "43", "45"]
+      },
+      {
+        "highlight": "People",
+        "text": [
+          "Jesus",
+          "disciples",
+          "the prophet:",
+          "whole city",
+          "Son of David",
+          "all who were buying and selling",
+          "money changers",
+          "those selling doves",
+          "the blind and the lame",
+          "chief priests",
+          "scribes",
+          "the children",
+          "elders",
+          "John",
+          "the people,",
+          "tax collectors",
+          "prostitutes",
+          "God",
+          "the stone",
+          "the Lord ",
+          "the Lord,",
+          "Pharisees",
+          "crowd"
+        ]
+      },
+      {
+        "highlight": "Places",
+        "text": [
+          "Jerusalem",
+          "Bethphage",
+          "mount of olives",
+          "village",
+          "Nazareth in Galilee",
+          "temple courts",
+          "My house",
+          "temple",
+          "Bethany",
+          "the city",
+          "vineyard"
+        ]
+      },
+      {
+        "highlight": "Crowd",
+        "text": ["crowds", "massive crowd", "whole city"]
+      },
+      {
+        "highlight": "I tell you",
+        "text": ["Therefore I tell you", "Truly I tell you"]
+      },
+      {
+        "highlight": "Chief Priests, Scribes, Pharisees, Elders",
+        "text": ["Chief Priests", "Scribes", "Pharisees", "Elders"]
+      },
+      {
+        "highlight": "Chief Priests, Scribes, Pharisees, Elders",
+        "text": [
+          "They deliberated",
+          "We do not know",
+          "Truly I tell you, the tax collectors and prostitutes are entering the kingdom of God before you",
+          "the kingdom of God will be taken away from you",
+          "they wanted to arrest Him"
+        ]
       }
     ],
     "22": [
