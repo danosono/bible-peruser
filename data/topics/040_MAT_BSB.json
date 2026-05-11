@@ -2869,7 +2869,11 @@
       },
       {
         "label": "Chief Priests, Scribes, Pharisees, Elders",
-        "verses": ["16", "24", "28", "33", "43", "45"]
+        "verses": ["16", "24", "31", "33", "43", "45"]
+      },
+      {
+        "label": "Prophecy fulfilled",
+        "verses": ["4-9"]
       },
       {
         "highlight": "People",
@@ -2935,6 +2939,54 @@
           "Truly I tell you, the tax collectors and prostitutes are entering the kingdom of God before you",
           "the kingdom of God will be taken away from you",
           "they wanted to arrest Him"
+        ]
+      },
+      {
+        "highlight": "Jesus is Messiah",
+        "text": [
+          "fulfill what was spoken through the prophet",
+          "riding on a donkey",
+          "“Hosanna to the Son of David!” “Blessed is He who comes in the name of the Lord!” “Hosanna in the highest!”"
+        ]
+      },
+      {
+        "highlight": "Jesus is God",
+        "text": [
+          ", “Hosanna to the Son of David!",
+          "From the mouths of children and infants You have ordained praise"
+        ]
+      },
+      {
+        "highlight": "words without fruit",
+        "text": [
+          "nothing on it except leaves",
+          "‘I will, sir,’ he said. But he did not go."
+        ]
+      },
+      {
+        "highlight": "Old Covenant misused",
+        "text": [
+          "My house will be called a house of prayer.’ But you are making it ‘a den of robbers.",
+          "chief priests and scribes were indignant",
+          "nothing on it except leaves",
+          "I will, sir,’ he said. But he did not go",
+          "John came to you in the way of righteousness, and you did not believe him",
+          "But the tenants seized his servants. They beat one, killed another, and stoned a third.",
+          "the tenants saw the son",
+          "they seized him and threw him out of the vineyard and killed him",
+          "The stone the builders rejected"
+        ]
+      },
+      {
+        "highlight": "New Covenant arrives",
+        "text": [
+          "fulfill what was spoken through the prophet",
+          "John’s baptism",
+          "See, your King comes to you, gentle and riding on a donkey, on a colt, the foal of a donkey.",
+          "sent his son",
+          "other tenants",
+          "has become the cornerstone",
+          " the kingdom of God will be taken away from you and given to a people who will produce its fruit"
         ]
       }
     ],
