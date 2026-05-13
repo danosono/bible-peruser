@@ -2928,6 +2928,12 @@
         "text": ["Therefore I tell you", "Truly I tell you"]
       },
       {
+        "highlight": "Compassion amid correction",
+        "text": [
+          "The blind and the lame came to Him at the temple, and He healed them"
+        ]
+      },
+      {
         "highlight": "Chief Priests, Scribes, Pharisees, Elders",
         "text": ["Chief Priests", "Scribes", "Pharisees", "Elders"]
       },
@@ -2937,7 +2943,7 @@
           "They deliberated",
           "We do not know",
           "Truly I tell you, the tax collectors and prostitutes are entering the kingdom of God before you",
-          "the kingdom of God will be taken away from you",
+          "I tell you that the kingdom of God will be taken away from you",
           "they wanted to arrest Him"
         ]
       },
@@ -2966,6 +2972,9 @@
       {
         "highlight": "Old Covenant misused",
         "text": [
+          "buying and selling there",
+          "money changers",
+          "selling doves",
           "My house will be called a house of prayer.’ But you are making it ‘a den of robbers.",
           "chief priests and scribes were indignant",
           "nothing on it except leaves",
@@ -2987,6 +2996,21 @@
           "other tenants",
           "has become the cornerstone",
           " the kingdom of God will be taken away from you and given to a people who will produce its fruit"
+        ]
+      },
+      {
+        "highlight": "Praise",
+        "text": [
+          "A massive crowd spread their cloaks on the road",
+          "The crowds that went ahead of Him and those that followed were shouting: “Hosanna to the Son of David!” “Blessed is He who comes in the name of the Lord!” “Hosanna in the highest!”",
+          "children shouting in the temple courts, “Hosanna to the Son of David!”"
+        ]
+      },
+      {
+        "highlight": "Opposition",
+        "text": [
+          "But the chief priests and scribes were indignant",
+          "Do You hear what these children are saying?"
         ]
       }
     ],
