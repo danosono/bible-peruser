@@ -2948,6 +2948,17 @@
         ]
       },
       {
+        "highlight": "Chief Priests, Scribes, Pharisees, Elders",
+        "text": [
+          "the chief priests and scribes were indignant",
+          "wonders",
+          "children shouting in the temple",
+          "By what authority are You doing these things?",
+          "And who gave You this authority?",
+          "they knew that Jesus was speaking about them"
+        ]
+      },
+      {
         "highlight": "Jesus is Messiah",
         "text": [
           "fulfill what was spoken through the prophet",
@@ -3049,12 +3060,93 @@
         "verses": ["14"]
       },
       {
+        "label": "Trap",
+        "verses": ["15", "17", "22"]
+      },
+      {
+        "label": "Question",
+        "verses": ["23", "31-32"]
+      },
+      {
+        "label": "Test",
+        "verses": ["35-36", "40"]
+      },
+      {
         "label": "Trap, Question, Test",
         "verses": ["15", "23", "35"]
       },
       {
         "label": "Free, Answer, Pass",
-        "verses": ["22", "32", "40"]
+        "verses": ["21-22", "31-32", "40"]
+      },
+      {
+        "highlight": "Jesus",
+        "text": ["Jesus"]
+      },
+      {
+        "highlight": "God",
+        "text": ["God"]
+      },
+      {
+        "highlight": "Wedding",
+        "text": ["wedding"]
+      },
+      {
+        "highlight": "Pharisees, Sadducees",
+        "text": ["Pharisees", "Sadducees"]
+      },
+      {
+        "highlight": "Pharisees, Sadducees",
+        "text": [
+          "conspired to trap Jesus",
+          " they were amazed",
+          "came to Jesus and questioned Him",
+          "crowds",
+          "astonished at His teaching",
+          "an expert in the law, tested Him with a question"
+        ]
+      },
+      {
+        "highlight": "Trap",
+        "text": [
+          "pharisees",
+          "trap Jesus in His words",
+          "Is it lawful to pay taxes to Caesar",
+          "Give to Caesar what is Caesar’s, and to God what is God’s.",
+          "they were amazed",
+          "left Him and went away"
+        ]
+      },
+      {
+        "highlight": "Question",
+        "text": [
+          "That same day the Sadducees",
+          "resurrection",
+          "questioned Him",
+          "He is not the God of the dead, but of the living.",
+          "astonished "
+        ]
+      },
+      {
+        "highlight": "Test",
+        "text": [
+          "tested Him",
+          "which commandment is the greatest",
+          "Love the Lord your God",
+          "Love your neighbor"
+        ]
+      },
+      {
+        "highlight": "Trap, Question, Test",
+        "text": ["15", "23", "35"]
+      },
+      {
+        "highlight": "Free, Answer, Pass",
+        "text": ["21-22", "31-32", "40"]
+      },
+      {
+        "highlight": "Crowds",
+        "text": ["crowds"]
       }
     ],
     "23": [
