@@ -1359,14 +1359,51 @@ function getTopicFilename(bid) {
   return `data/topics/${num}_${bid}_BSB.json`;
 }
 
+function parseChapterDeepLink() {
+  if (typeof window === "undefined" || !window.location) return null;
+  const params = new URLSearchParams(window.location.search || "");
+  const rawBook = (params.get("book") || "").trim().toUpperCase();
+  const rawChapter = (params.get("chapter") || "").trim();
+  if (!rawBook || !rawChapter) return null;
+
+  if (!bookOrder.includes(rawBook)) return null;
+
+  const chapterNum = parseInt(rawChapter, 10);
+  if (!Number.isInteger(chapterNum) || chapterNum < 1) return null;
+
+  return { bookId: rawBook, chapterNum };
+}
+
+function buildChapterUrl(bookId, chapterNum) {
+  const normalizedBook = String(bookId || "").toUpperCase();
+  const normalizedChapter = parseInt(chapterNum, 10);
+  if (!bookOrder.includes(normalizedBook)) return null;
+  if (!Number.isInteger(normalizedChapter) || normalizedChapter < 1)
+    return null;
+  const origin =
+    typeof window !== "undefined" && window.location
+      ? window.location.origin
+      : "";
+  const path =
+    typeof window !== "undefined" && window.location
+      ? window.location.pathname
+      : "/";
+  return `${origin}${path}?book=${normalizedBook}&chapter=${normalizedChapter}`;
+}
+
 // Optionally, call on load
 if (typeof window !== "undefined") {
   window.loadBibleChapter = loadBibleChapter;
   window.loadBibleBook = loadBibleBook;
+  window.buildBibleChapterUrl = buildChapterUrl;
   document.addEventListener("DOMContentLoaded", () => {
     let bookId = "MAT";
     let chapterNum = 1;
-    if (window.localStorage) {
+    const deepLink = parseChapterDeepLink();
+    if (deepLink) {
+      bookId = deepLink.bookId;
+      chapterNum = deepLink.chapterNum;
+    } else if (window.localStorage) {
       const lastBook = localStorage.getItem("bibleLastBook");
       const lastChapter = localStorage.getItem("bibleLastChapter");
       if (lastBook && lastChapter) {
