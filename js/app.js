@@ -71,27 +71,85 @@ document.addEventListener("DOMContentLoaded", () => {
     updateNavButtons();
   }
   bpHandleBreakpoint();
+
+  function getCurrentChapterLink() {
+    const bookId = window._currentBookId;
+    const chapterNum = window._currentChapterNum;
+    if (
+      window.buildBibleChapterUrl &&
+      typeof bookId === "string" &&
+      Number.isInteger(chapterNum)
+    ) {
+      const builtUrl = window.buildBibleChapterUrl(bookId, chapterNum);
+      if (builtUrl) return builtUrl;
+    }
+    return window.location.href;
+  }
+
+  async function copyTextToClipboard(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(text);
+      return;
+    }
+
+    const temp = document.createElement("textarea");
+    temp.value = text;
+    temp.setAttribute("readonly", "");
+    temp.style.position = "fixed";
+    temp.style.left = "-9999px";
+    document.body.appendChild(temp);
+    temp.select();
+    document.execCommand("copy");
+    document.body.removeChild(temp);
+  }
+
+  function flashButtonText(button, nextText, defaultText, ms = 1500) {
+    if (!button) return;
+    button.textContent = nextText;
+    setTimeout(() => {
+      button.textContent = defaultText;
+    }, ms);
+  }
+
+  const desktopCopyLinkBtn = document.getElementById("bp-copy-link-btn");
+  if (desktopCopyLinkBtn) {
+    desktopCopyLinkBtn.onclick = async () => {
+      try {
+        await copyTextToClipboard(getCurrentChapterLink());
+        flashButtonText(desktopCopyLinkBtn, "Copied!", "Copy Link");
+      } catch {
+        flashButtonText(desktopCopyLinkBtn, "Copy Failed", "Copy Link", 1800);
+      }
+    };
+  }
+
   // Mobile overlay actions
   const copyBtn = document.getElementById("bp-copy-btn");
   if (copyBtn) {
-    copyBtn.onclick = () => {
-      navigator.clipboard.writeText("https://bible-peruser.gospelgo.org");
-      copyBtn.textContent = "Copied!";
-      setTimeout(() => {
-        copyBtn.textContent = "Copy Address";
-      }, 1500);
+    copyBtn.onclick = async () => {
+      try {
+        await copyTextToClipboard(getCurrentChapterLink());
+        flashButtonText(copyBtn, "Copied!", "Copy Address");
+      } catch {
+        flashButtonText(copyBtn, "Copy Failed", "Copy Address", 1800);
+      }
     };
   }
   const shareBtn = document.getElementById("bp-share-btn");
   if (shareBtn) {
     shareBtn.onclick = async () => {
+      const chapterUrl = getCurrentChapterLink();
       if (navigator.share) {
-        await navigator.share({
-          title: "Bible Peruser",
-          url: "https://bible-peruser.gospelgo.org",
-        });
+        try {
+          await navigator.share({
+            title: "Bible Peruser",
+            url: chapterUrl,
+          });
+        } catch {
+          // User cancel or share failure; keep silent.
+        }
       } else {
-        window.open("https://bible-peruser.gospelgo.org", "_blank");
+        window.open(chapterUrl, "_blank");
       }
     };
   }
