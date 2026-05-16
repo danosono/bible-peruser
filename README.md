@@ -6,7 +6,15 @@ Bible Peruser supports chapter deep links using URL query parameters.
 
 Use this format:
 
-`https://your-domain/path/?book=MAT&chapter=5`
+`https://your-domain/?book=MAT&chapter=5`
+
+Production example:
+
+`https://bible-peruser.gospelgo.org/?book=MIC&chapter=1`
+
+If the app is hosted in a subfolder, use that folder path:
+
+`https://your-domain/your-app-path/?book=MAT&chapter=5`
 
 Parameters:
 
@@ -15,10 +23,10 @@ Parameters:
 
 Examples:
 
-- `/?book=GEN&chapter=1`
-- `/?book=PSA&chapter=23`
-- `/?book=JHN&chapter=3`
-- `/?book=REV&chapter=22`
+- `https://bible-peruser.gospelgo.org/?book=GEN&chapter=1`
+- `https://bible-peruser.gospelgo.org/?book=PSA&chapter=23`
+- `https://bible-peruser.gospelgo.org/?book=JHN&chapter=3`
+- `https://bible-peruser.gospelgo.org/?book=REV&chapter=22`
 
 ## Full Documentation
 

@@ -6,11 +6,15 @@ This app supports chapter-level deep links via query parameters.
 
 Use this URL pattern:
 
-`https://your-domain/path/?book=BOOK&chapter=CHAPTER`
+`https://your-domain/?book=BOOK&chapter=CHAPTER`
 
 Example:
 
-`https://example.com/?book=MAT&chapter=5`
+`https://bible-peruser.gospelgo.org/?book=MAT&chapter=5`
+
+If you deploy in a subfolder, include that subfolder in the path:
+
+`https://your-domain/your-app-path/?book=BOOK&chapter=CHAPTER`
 
 ## Parameters
 
@@ -92,10 +96,10 @@ Use these exact values for `book`:
 
 ## Practical Examples
 
-- Start users in Matthew 5: `/?book=MAT&chapter=5`
-- Start users in Psalm 23: `/?book=PSA&chapter=23`
-- Start users in John 3: `/?book=JHN&chapter=3`
-- Start users in Revelation 22: `/?book=REV&chapter=22`
+- Start users in Matthew 5: `https://bible-peruser.gospelgo.org/?book=MAT&chapter=5`
+- Start users in Psalm 23: `https://bible-peruser.gospelgo.org/?book=PSA&chapter=23`
+- Start users in John 3: `https://bible-peruser.gospelgo.org/?book=JHN&chapter=3`
+- Start users in Revelation 22: `https://bible-peruser.gospelgo.org/?book=REV&chapter=22`
 
 ## Notes
 
