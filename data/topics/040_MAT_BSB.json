@@ -2928,6 +2928,21 @@
         "text": ["Therefore I tell you", "Truly I tell you"]
       },
       {
+        "highlight": "King",
+        "text": [
+          "your King comes to you",
+          "A massive crowd spread their cloaks on the road",
+          "crowds t",
+          "shouting",
+          "Hosanna in the highest!",
+          "Hosanna to the Son of David!"
+        ]
+      },
+      {
+        "highlight": "No softie",
+        "text": ["drove out", "overturned"]
+      },
+      {
         "highlight": "Compassion amid correction",
         "text": [
           "The blind and the lame came to Him at the temple, and He healed them"
@@ -2940,22 +2955,24 @@
       {
         "highlight": "Chief Priests, Scribes, Pharisees, Elders",
         "text": [
+          "the chief priests and scribes were indignant",
+          "wonders",
+          "children shouting in the temple",
+          "By what authority are You doing these things?",
+          "And who gave You this authority?",
           "They deliberated",
           "We do not know",
-          "Truly I tell you, the tax collectors and prostitutes are entering the kingdom of God before you",
-          "I tell you that the kingdom of God will be taken away from you",
+          "they knew that Jesus was speaking about them",
           "they wanted to arrest Him"
         ]
       },
       {
         "highlight": "Chief Priests, Scribes, Pharisees, Elders",
         "text": [
-          "the chief priests and scribes were indignant",
-          "wonders",
-          "children shouting in the temple",
-          "By what authority are You doing these things?",
-          "And who gave You this authority?",
-          "they knew that Jesus was speaking about them"
+          "Truly I tell you, the tax collectors and prostitutes are entering the kingdom of God before you",
+          "you did not repent",
+          "I tell you that the kingdom of God will be taken away from you",
+          "He who falls on this stone will be broken to pieces, but he on whom it falls will be crushed."
         ]
       },
       {
@@ -2963,7 +2980,8 @@
         "text": [
           "fulfill what was spoken through the prophet",
           "riding on a donkey",
-          "“Hosanna to the Son of David!” “Blessed is He who comes in the name of the Lord!” “Hosanna in the highest!”"
+          "“Hosanna to the Son of David!” “Blessed is He who comes in the name of the Lord!” “Hosanna in the highest!”",
+          "The stone the builders rejected has become the cornerstone."
         ]
       },
       {
@@ -3109,7 +3127,7 @@
       {
         "highlight": "Trap",
         "text": [
-          "pharisees",
+          " Pharisees went out and conspired to trap Jesus in His words.",
           "trap Jesus in His words",
           "Is it lawful to pay taxes to Caesar",
           "Give to Caesar what is Caesar’s, and to God what is God’s.",
@@ -3133,20 +3151,45 @@
           "tested Him",
           "which commandment is the greatest",
           "Love the Lord your God",
-          "Love your neighbor"
+          "Love your neighbor",
+          "All the Law and the Prophets hang on these two commandments."
         ]
       },
       {
         "highlight": "Trap, Question, Test",
-        "text": ["15", "23", "35"]
+        "text": [
+          "Pharisees went out and conspired to trap Jesus",
+          "is it lawful to pay taxes",
+          "Sadducees, w",
+          "questioned Him",
+          "In the resurrection, then, whose wife will she be",
+          "an expert in the law, tested Him",
+          "which commandment is the greatest"
+        ]
       },
       {
         "highlight": "Free, Answer, Pass",
-        "text": ["21-22", "31-32", "40"]
+        "text": [
+          "Give to Caesar what is Caesar’s, and to God what is God’s.",
+          "they were amazed. So they left Him and went away",
+          "He is not the God of the dead, but of the living.",
+          "When the crowds heard this, they were astonished at His teaching.",
+          "Love the Lord your God with all your heart and with all your soul and with all your mind.",
+          "Love your neighbor as yourself.",
+          "All the Law and the Prophets hang on these two commandments."
+        ]
       },
       {
         "highlight": "Crowds",
         "text": ["crowds"]
+      },
+      {
+        "highlight": "Tables turned (again)",
+        "text": ["While the Pharisees were assembled, Jesus questioned them"]
+      },
+      {
+        "highlight": "Jesus is God",
+        "text": ["So if David calls Him ‘Lord,’ how can He be David’s son?"]
       }
     ],
     "23": [
