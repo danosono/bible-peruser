@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bible Peruser</title>
+    <link rel="icon" type="image/png" href="images/Gg.png" />
+    <link rel="shortcut icon" type="image/png" href="images/Gg.png" />
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/style.css" />
   </head>
@@ -29,17 +31,44 @@
       <header class="bp-header">
         <h1 class="bp-header__title">
           Bible Peruser
-          <span class="bp-header__by-gospelgo">
-            by
-            <a
-              href="https://gospelgo.org"
-              target="_blank"
-              rel="noopener"
-              class="bp-header__gospelgo-link"
-              >Gospelgo</a
-            >
-          </span>
+          <a
+            href="https://gospelgo.org"
+            target="_blank"
+            rel="noopener"
+            class="bp-header__brand-link"
+            aria-label="Gospelgo"
+          >
+            <img
+              src="images/Gg.png"
+              alt="Gospelgo"
+              class="bp-header__brand-logo"
+            />
+          </a>
         </h1>
+        <form
+          class="bp-header__jump"
+          id="bp-header-jump-form"
+          autocomplete="off"
+        >
+          <input
+            id="bp-header-jump-input"
+            class="bp-header__jump-input"
+            type="text"
+            inputmode="text"
+            spellcheck="false"
+            aria-label="Jump to book and chapter"
+            placeholder="Jump: mat4"
+          />
+          <button
+            id="bp-header-jump-btn"
+            class="bp-header__jump-btn"
+            type="submit"
+            aria-label="Jump to chapter"
+            title="Jump to chapter"
+          >
+            Go
+          </button>
+        </form>
         <div class="bp-header__nav-center">
           <div
             class="bp-header__nav-group"

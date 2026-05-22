@@ -24,6 +24,39 @@ function bpHandleBreakpoint() {
 window.addEventListener("resize", bpHandleBreakpoint);
 
 document.addEventListener("DOMContentLoaded", () => {
+  let bpBibleDataPromise = null;
+
+  function getBibleDataForJump() {
+    if (!bpBibleDataPromise) {
+      bpBibleDataPromise = fetch("data/bible.json").then((r) => {
+        if (!r.ok) throw new Error("Failed to load bible.json");
+        return r.json();
+      });
+    }
+    return bpBibleDataPromise;
+  }
+
+  async function getChapterCountForBook(bookId) {
+    const data = await getBibleDataForJump();
+    const book = Array.isArray(data?.books)
+      ? data.books.find((b) => b.id === bookId)
+      : null;
+    if (!book) return null;
+    if (Number.isInteger(book.chapterCount) && book.chapterCount > 0) {
+      return book.chapterCount;
+    }
+    if (Array.isArray(book.chapters)) {
+      return book.chapters.length;
+    }
+    return null;
+  }
+
+  function normalizeBookAlias(value) {
+    return String(value || "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, "");
+  }
+
   // Update the selected book button in the horizontal scrollbar
   function updateBookScrollbar(bookId) {
     const bookBar = document.getElementById("bp-book-scrollbar");
@@ -230,6 +263,105 @@ document.addEventListener("DOMContentLoaded", () => {
     { id: "REV", name: "Revelation" },
   ];
 
+  const bookNameById = books.reduce((acc, book) => {
+    acc[book.id] = book.name;
+    return acc;
+  }, {});
+
+  function buildBookAliasMap(bookList) {
+    const aliasMap = new Map();
+    const ordinalByNumber = {
+      1: ["first", "1st"],
+      2: ["second", "2nd"],
+      3: ["third", "3rd"],
+    };
+
+    function addAlias(rawAlias, bookId) {
+      const key = normalizeBookAlias(rawAlias);
+      if (!key || aliasMap.has(key)) return;
+      aliasMap.set(key, bookId);
+    }
+
+    bookList.forEach(({ id, name }) => {
+      const nameLower = name.toLowerCase();
+      const normalizedName = nameLower.replace(/\s+/g, " ").trim();
+      const compactName = normalizeBookAlias(normalizedName);
+
+      addAlias(id.toLowerCase(), id);
+      addAlias(normalizedName, id);
+      addAlias(compactName, id);
+
+      const short = compactName.slice(0, 3);
+      if (short.length === 3) addAlias(short, id);
+
+      const numberedMatch = id.match(/^([1-3])(.*)$/);
+      if (numberedMatch) {
+        const number = parseInt(numberedMatch[1], 10);
+        const baseIdLetters = numberedMatch[2].toLowerCase();
+        const baseName = normalizedName.replace(/^[1-3]\s+/, "").trim();
+        const baseCompact = normalizeBookAlias(baseName);
+
+        addAlias(`${number}${baseIdLetters}`, id);
+        addAlias(`${number}${baseCompact}`, id);
+        addAlias(`${number} ${baseName}`, id);
+        addAlias(`${number}.${baseName}`, id);
+
+        (ordinalByNumber[number] || []).forEach((ord) => {
+          addAlias(`${ord}${baseCompact}`, id);
+          addAlias(`${ord} ${baseName}`, id);
+        });
+      }
+    });
+
+    // Common alternates and shorthand spellings.
+    addAlias("ps", "PSA");
+    addAlias("psalm", "PSA");
+    addAlias("psalms", "PSA");
+    addAlias("song", "SNG");
+    addAlias("songs", "SNG");
+    addAlias("songofsongs", "SNG");
+    addAlias("songofsolomon", "SNG");
+    addAlias("canticles", "SNG");
+    addAlias("matt", "MAT");
+    addAlias("jn", "JHN");
+    addAlias("joh", "JHN");
+    addAlias("phil", "PHP");
+    addAlias("philip", "PHP");
+    addAlias("phlm", "PHM");
+    addAlias("judg", "JDG");
+
+    return aliasMap;
+  }
+
+  const bookAliasMap = buildBookAliasMap(books);
+
+  function parseBookChapterInput(rawInput) {
+    const source = String(rawInput || "")
+      .trim()
+      .toLowerCase();
+    if (!source) return { ok: false, reason: "Enter a reference." };
+
+    const cleaned = source.replace(/[^a-z0-9\s._:-]/g, " ");
+    const match = cleaned.match(/^(.+?)[\s._:-]*(\d+)$/);
+    if (!match) {
+      return {
+        ok: false,
+        reason: "Use format like mat4 or matthew 4.",
+      };
+    }
+
+    const bookToken = normalizeBookAlias(match[1]);
+    const chapterNum = parseInt(match[2], 10);
+    const bookId = bookAliasMap.get(bookToken) || null;
+
+    if (!bookId) return { ok: false, reason: "Unknown book name." };
+    if (!Number.isInteger(chapterNum) || chapterNum < 1) {
+      return { ok: false, reason: "Chapter must be 1 or greater." };
+    }
+
+    return { ok: true, bookId, chapterNum };
+  }
+
   // Populate book scrollbar
   const bookBar = document.getElementById("bp-book-scrollbar");
   if (bookBar) {
@@ -281,17 +413,79 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  const headerJumpForm = document.getElementById("bp-header-jump-form");
+  const headerJumpInput = document.getElementById("bp-header-jump-input");
+  let jumpErrorTimer = null;
+
+  function clearHeaderJumpError() {
+    if (!headerJumpInput) return;
+    headerJumpInput.classList.remove("bp-header__jump-input--error");
+    headerJumpInput.removeAttribute("title");
+  }
+
+  function setHeaderJumpError(message) {
+    if (!headerJumpInput) return;
+    if (jumpErrorTimer) clearTimeout(jumpErrorTimer);
+    headerJumpInput.classList.add("bp-header__jump-input--error");
+    headerJumpInput.title = message;
+    jumpErrorTimer = setTimeout(() => {
+      clearHeaderJumpError();
+    }, 2200);
+  }
+
+  async function submitHeaderJump() {
+    if (!headerJumpInput) return;
+    const parsed = parseBookChapterInput(headerJumpInput.value);
+    if (!parsed.ok) {
+      setHeaderJumpError(parsed.reason);
+      return;
+    }
+
+    let maxChapter;
+    try {
+      maxChapter = await getChapterCountForBook(parsed.bookId);
+    } catch {
+      setHeaderJumpError("Unable to verify chapter count right now.");
+      return;
+    }
+
+    if (!Number.isInteger(maxChapter) || maxChapter < 1) {
+      setHeaderJumpError("Book data unavailable.");
+      return;
+    }
+
+    if (parsed.chapterNum > maxChapter) {
+      const bookLabel = bookNameById[parsed.bookId] || parsed.bookId;
+      setHeaderJumpError(`${bookLabel} has ${maxChapter} chapters.`);
+      return;
+    }
+
+    clearHeaderJumpError();
+    headerJumpInput.value = "";
+    if (window.loadBibleChapter) {
+      window.loadBibleChapter(parsed.bookId, parsed.chapterNum);
+    }
+    if (window.updateBookScrollbar) {
+      window.updateBookScrollbar(parsed.bookId);
+    }
+  }
+
+  if (headerJumpInput) {
+    headerJumpInput.addEventListener("input", clearHeaderJumpError);
+  }
+  if (headerJumpForm) {
+    headerJumpForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      submitHeaderJump();
+    });
+  }
+
   // Navigation and sticky chapter nav
   const nav = document.querySelector(".bp-sidebar--left");
   if (nav) {
     nav.innerHTML = `
             <div class="chapter-nav-sticky" style="flex-direction:column;align-items:center;">
                 <button id="entire-book-btn" style="margin-top:8px;width:90%;max-width:220px;">Entire Book</button>
-          <div id="book-view-nav-row" class="book-view-nav-row" style="display:none;justify-content:center;align-items:center;width:100%;margin-top:8px;">
-            <button id="book-view-back-btn" aria-label="Book view back" disabled>&lt;</button>
-            <span class="book-view-nav-label">NAV</span>
-            <button id="book-view-forward-btn" aria-label="Book view forward" disabled>&gt;</button>
-          </div>
           <select id="chapter-dropdown" style="margin-top:8px;padding:4px 12px;border-radius:4px;background:var(--bg-sidebar);color:var(--text-main);border:1px solid var(--accent);font-size:1em;width:90%;max-width:220px;"></select>
           <div style="display:flex;justify-content:center;align-items:center;width:100%;margin-top:8px;">
             <button id="prev-chapter-btn" disabled>&lt;CH</button>
@@ -350,57 +544,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function updateBookViewNavButtons() {
-    const navRow = document.getElementById("book-view-nav-row");
-    const back = document.getElementById("book-view-back-btn");
-    const forward = document.getElementById("book-view-forward-btn");
-    const inBookMode = window._currentViewMode === "entireBook";
-    const historyStack = Array.isArray(window._bookViewHistoryStack)
-      ? window._bookViewHistoryStack
-      : [];
-    const historyIndex = Number.isInteger(window._bookViewHistoryIndex)
-      ? window._bookViewHistoryIndex
-      : -1;
-
-    if (navRow) {
-      navRow.style.display = inBookMode ? "flex" : "none";
-    }
-    if (back) {
-      back.disabled = !inBookMode || historyIndex <= 0;
-      back.onclick = back.disabled
-        ? null
-        : () => window.navigateBookViewHistory(-1);
-    }
-    if (forward) {
-      forward.disabled =
-        !inBookMode ||
-        historyIndex < 0 ||
-        historyIndex >= historyStack.length - 1;
-      forward.onclick = forward.disabled
-        ? null
-        : () => window.navigateBookViewHistory(1);
-    }
+    // Intentionally kept as a no-op to preserve compatibility with bible-loader hooks.
   }
   window.updateBookViewNavButtons = updateBookViewNavButtons;
-
-  window.navigateBookViewHistory = function (direction) {
-    const historyStack = Array.isArray(window._bookViewHistoryStack)
-      ? window._bookViewHistoryStack
-      : [];
-    const historyIndex = Number.isInteger(window._bookViewHistoryIndex)
-      ? window._bookViewHistoryIndex
-      : -1;
-    const targetIndex = historyIndex + direction;
-    if (targetIndex < 0 || targetIndex >= historyStack.length) return;
-    const targetBookId = historyStack[targetIndex];
-    window._bookViewHistoryIndex = targetIndex;
-    updateBookViewNavButtons();
-    if (window.loadBibleBook) {
-      window.loadBibleBook(targetBookId, {
-        preserveOrigin: true,
-        skipBookHistory: true,
-      });
-    }
-  };
 
   const entireBookBtn = document.getElementById("entire-book-btn");
   if (entireBookBtn) {
