@@ -1,91 +1,4 @@
 {
-  "bookWideOutline": [
-    {
-      "outline": "Jesus is born and starts His ministry",
-      "verses": ["1:1-4:25"]
-    },
-    {
-      "outline": "Sermon on the Mount",
-      "verses": ["5:1-7:29"]
-    },
-    {
-      "outline": "Jesus lives out the kingdom of heaven",
-      "verses": ["8:1-9:38"]
-    },
-    {
-      "outline": "Twelve apostles are commissioned",
-      "verses": ["10:1-10:42"]
-    },
-    {
-      "outline": "Responses to Jesus (John the Baptist, Pharisees, Jesus' family)",
-      "verses": ["11:1-12:50"]
-    },
-    {
-      "outline": "Parables of the kingdom of heaven",
-      "verses": ["13:1-13:52"]
-    },
-    {
-      "outline": "Identity of the King revealed",
-      "verses": ["13:53-17:27"]
-    },
-    {
-      "outline": "Community in the kingdom of heaven",
-      "verses": ["18:1-18:35"]
-    },
-    {
-      "outline": "Jesus teaches in Judea about community",
-      "verses": ["19:1-20:34"]
-    },
-    {
-      "outline": "The King",
-      "verses": ["21:1-21:22"]
-    },
-    {
-      "outline": "The King examined for blemish",
-      "verses": ["21:23-23:39"]
-    },
-    {
-      "outline": "Olivet Discourse",
-      "verses": ["24:1-25:46"]
-    },
-    {
-      "outline": "Jesus' Passover",
-      "verses": ["26:1-27:66"]
-    },
-    {
-      "outline": "Resurrection and Great Commission",
-      "verses": ["28:1-28:20"]
-    }
-  ],
-  "bookWideLabels": [
-    {
-      "label": "Jesus calls the disciples",
-      "verses": ["4:18", "4:21", "9:9", "10:1-10:2"],
-      "references": ["Mark 1:16–20", "Luke 5:2–11", "Luke 5:27-32"]
-    },
-    {
-      "label": "Scribes/Pharisees",
-      "verses": ["9:1-9:13", "9:34", "12:1-12:45", "15:1-15:20"]
-    }
-  ],
-  "bookWideHighlights": [
-    {
-      "highlight": "Jesus",
-      "text": ["Jesus"]
-    },
-    {
-      "highlight": "God",
-      "text": ["God"]
-    },
-    {
-      "highlight": "Kingdom",
-      "text": ["kingdom of heaven", "kingdom of God"]
-    },
-    {
-      "highlight": "Faith",
-      "text": ["faith", "believe", "believed", "trust"]
-    }
-  ],
   "chapterTopics": {
     "1": {
       "meta": {
@@ -96,33 +9,55 @@
       "topics": [
         {
           "outline": "The Genealogy of Jesus",
-          "verses": ["1-17"],
-          "references": ["Ruth 4:18–22", "Luke 3:23–38"]
+          "verses": [
+            "1-17"
+          ],
+          "references": [
+            "Ruth 4:18–22",
+            "Luke 3:23–38"
+          ]
         },
         {
           "outline": "The Birth of Jesus",
-          "verses": ["18-25"],
-          "references": ["Isaiah 7:10–16", "Luke 2:1–7"]
+          "verses": [
+            "18-25"
+          ],
+          "references": [
+            "Isaiah 7:10–16",
+            "Luke 2:1–7"
+          ]
         },
         {
           "label": "Holy Spirit",
-          "verses": ["18"]
+          "verses": [
+            "18"
+          ]
         },
         {
           "label": "angel of the Lord",
-          "verses": ["20", "24"]
+          "verses": [
+            "20",
+            "24"
+          ]
         },
         {
           "label": "Prophecy",
-          "verses": ["23"]
+          "verses": [
+            "23"
+          ]
         },
         {
           "label": "Prophecy fulfilled",
-          "verses": ["18-22", "25"]
+          "verses": [
+            "18-22",
+            "25"
+          ]
         },
         {
           "label": "Obedience",
-          "verses": ["24"]
+          "verses": [
+            "24"
+          ]
         },
         {
           "highlight": "Persons",
@@ -189,11 +124,20 @@
         },
         {
           "highlight": "Women",
-          "text": ["Tamar", "Rahab", "Ruth", "Bathsheba", "wife", "Mary"]
+          "text": [
+            "Tamar",
+            "Rahab",
+            "Ruth",
+            "Bathsheba",
+            "wife",
+            "Mary"
+          ]
         },
         {
           "highlight": "Places",
-          "text": ["Babylon"]
+          "text": [
+            "Babylon"
+          ]
         },
         {
           "highlight": "Jesus Christ",
@@ -210,7 +154,9 @@
         },
         {
           "highlight": "angel of the Lord",
-          "text": ["angel of the Lord"]
+          "text": [
+            "angel of the Lord"
+          ]
         }
       ]
     },
@@ -223,43 +169,80 @@
       "topics": [
         {
           "outline": "The Pilgrimage of the Magi",
-          "verses": ["1-12"],
-          "references": ["Micah 5:1–6"]
+          "verses": [
+            "1-12"
+          ],
+          "references": [
+            "Micah 5:1–6"
+          ]
         },
         {
           "outline": "The Flight to Egypt",
-          "verses": ["13-15"],
-          "references": ["Hosea 11:1–7"]
+          "verses": [
+            "13-15"
+          ],
+          "references": [
+            "Hosea 11:1–7"
+          ]
         },
         {
           "outline": "Weeping and Great Mourning",
-          "verses": ["16-18"],
-          "references": ["Jeremiah 31:1–25"]
+          "verses": [
+            "16-18"
+          ],
+          "references": [
+            "Jeremiah 31:1–25"
+          ]
         },
         {
           "outline": "The Return to Nazareth",
-          "verses": ["19-23"],
-          "references": ["Luke 2:39–40"]
+          "verses": [
+            "19-23"
+          ],
+          "references": [
+            "Luke 2:39–40"
+          ]
         },
         {
           "label": "Prophecy",
-          "verses": ["6", "15", "17-18", "23"]
+          "verses": [
+            "6",
+            "15",
+            "17-18",
+            "23"
+          ]
         },
         {
           "label": "Prophecy fulfilled",
-          "verses": ["1", "13-14", "16", "22"]
+          "verses": [
+            "1",
+            "13-14",
+            "16",
+            "22"
+          ]
         },
         {
           "label": "Star of Bethlehem",
-          "verses": ["2", "7", "9-10"]
+          "verses": [
+            "2",
+            "7",
+            "9-10"
+          ]
         },
         {
           "label": "Herod",
-          "verses": ["3", "7", "12", "16"]
+          "verses": [
+            "3",
+            "7",
+            "12",
+            "16"
+          ]
         },
         {
           "label": "chief priests & scribes",
-          "verses": ["4-6"]
+          "verses": [
+            "4-6"
+          ]
         },
         {
           "highlight": "Persons",
@@ -308,7 +291,9 @@
         },
         {
           "highlight": "Star",
-          "text": ["star"]
+          "text": [
+            "star"
+          ]
         },
         {
           "highlight": "Prophecy",
@@ -327,7 +312,10 @@
         },
         {
           "highlight": "chief priests & scribes",
-          "text": ["chief priests", "scribes"]
+          "text": [
+            "chief priests",
+            "scribes"
+          ]
         },
         {
           "highlight": "Dream",
@@ -339,19 +327,27 @@
         },
         {
           "highlight": "Magi",
-          "text": ["magi"]
+          "text": [
+            "magi"
+          ]
         },
         {
           "highlight": "angel of the Lord",
-          "text": ["angel of the Lord"]
+          "text": [
+            "angel of the Lord"
+          ]
         },
         {
           "highlight": "Herod",
-          "text": ["herod"]
+          "text": [
+            "herod"
+          ]
         },
         {
           "highlight": "child",
-          "text": ["child"]
+          "text": [
+            "child"
+          ]
         },
         {
           "highlight": "Prophecy",
@@ -384,7 +380,9 @@
       "topics": [
         {
           "outline": "The Mission of John the Baptist",
-          "verses": ["1-12"],
+          "verses": [
+            "1-12"
+          ],
           "references": [
             "Isaiah 40:1–5",
             "Mark 1:1–8",
@@ -394,20 +392,32 @@
         },
         {
           "outline": "The Baptism of Jesus",
-          "verses": ["13-17"],
-          "references": ["Mark 1:9–11", "Luke 3:21–22", "John 1:29–34"]
+          "verses": [
+            "13-17"
+          ],
+          "references": [
+            "Mark 1:9–11",
+            "Luke 3:21–22",
+            "John 1:29–34"
+          ]
         },
         {
           "label": "Prophecy",
-          "verses": ["3"]
+          "verses": [
+            "3"
+          ]
         },
         {
           "label": "Prophecy fulfilled",
-          "verses": ["1-2"]
+          "verses": [
+            "1-2"
+          ]
         },
         {
           "label": "Pharisees & Sadducees",
-          "verses": ["7-12"]
+          "verses": [
+            "7-12"
+          ]
         },
         {
           "highlight": "Persons",
@@ -450,15 +460,23 @@
         },
         {
           "highlight": "Evil",
-          "text": ["brood of vipers", "chaff"]
+          "text": [
+            "brood of vipers",
+            "chaff"
+          ]
         },
         {
           "highlight": "Repent",
-          "text": ["repentance", "repent"]
+          "text": [
+            "repentance",
+            "repent"
+          ]
         },
         {
           "highlight": "Heaven",
-          "text": ["heaven"]
+          "text": [
+            "heaven"
+          ]
         },
         {
           "highlight": "Baptism",
@@ -493,7 +511,10 @@
         },
         {
           "highlight": "Holy Spirit",
-          "text": ["Holy Spirit", "the Spirit of God"]
+          "text": [
+            "Holy Spirit",
+            "the Spirit of God"
+          ]
         }
       ]
     },
@@ -506,39 +527,71 @@
       "topics": [
         {
           "outline": "The Temptation of Jesus",
-          "verses": ["1-11"],
-          "references": ["Mark 1:12–13", "Luke 4:1–13"]
+          "verses": [
+            "1-11"
+          ],
+          "references": [
+            "Mark 1:12–13",
+            "Luke 4:1–13"
+          ]
         },
         {
           "outline": "Jesus Begins His Ministry",
-          "verses": ["12-17"],
-          "references": ["Isaiah 9:1–7", "Mark 1:14–15", "Luke 4:14–15"]
+          "verses": [
+            "12-17"
+          ],
+          "references": [
+            "Isaiah 9:1–7",
+            "Mark 1:14–15",
+            "Luke 4:14–15"
+          ]
         },
         {
           "outline": "The First Disciples",
-          "verses": ["18-22"],
-          "references": ["Mark 1:16–20", "Luke 5:1–11", "John 1:35–42"]
+          "verses": [
+            "18-22"
+          ],
+          "references": [
+            "Mark 1:16–20",
+            "Luke 5:1–11",
+            "John 1:35–42"
+          ]
         },
         {
           "outline": "Jesus Heals the Multitudes",
-          "verses": ["23-25"],
-          "references": ["Mark 3:7–12", "Luke 6:17–19"]
+          "verses": [
+            "23-25"
+          ],
+          "references": [
+            "Mark 3:7–12",
+            "Luke 6:17–19"
+          ]
         },
         {
           "label": "Prophecy",
-          "verses": ["14-16"]
+          "verses": [
+            "14-16"
+          ]
         },
         {
           "label": "Prophecy fulfilled",
-          "verses": ["13"]
+          "verses": [
+            "13"
+          ]
         },
         {
           "label": "Repent",
-          "verses": ["17"]
+          "verses": [
+            "17"
+          ]
         },
         {
           "label": "Obedience",
-          "verses": ["1", "20", "22"]
+          "verses": [
+            "1",
+            "20",
+            "22"
+          ]
         },
         {
           "highlight": "Persons",
@@ -597,11 +650,15 @@
         },
         {
           "highlight": "Angels",
-          "text": ["angels"]
+          "text": [
+            "angels"
+          ]
         },
         {
           "highlight": "Way of the Sea",
-          "text": ["Way of the Sea"]
+          "text": [
+            "Way of the Sea"
+          ]
         },
         {
           "highlight": "Light",
@@ -620,27 +677,41 @@
         },
         {
           "highlight": "Galilee",
-          "text": ["Galilee"]
+          "text": [
+            "Galilee"
+          ]
         },
         {
           "highlight": "Jesus sent to the lost sheep of Israel",
-          "text": ["teaching in their synagogues"]
+          "text": [
+            "teaching in their synagogues"
+          ]
         },
         {
           "highlight": "Gospel",
-          "text": ["gospel of the kingdom"]
+          "text": [
+            "gospel of the kingdom"
+          ]
         },
         {
           "highlight": "Healing",
-          "text": ["healing", "healed"]
+          "text": [
+            "healing",
+            "healed"
+          ]
         },
         {
           "highlight": "Crowds",
-          "text": ["crowds"]
+          "text": [
+            "crowds"
+          ]
         },
         {
           "highlight": "Follow Jesus",
-          "text": ["Come, follow Me", "Jesus called them"]
+          "text": [
+            "Come, follow Me",
+            "Jesus called them"
+          ]
         }
       ]
     },
@@ -653,48 +724,85 @@
       "topics": [
         {
           "outline": "The Sermon on the Mount",
-          "verses": ["1-2"],
+          "verses": [
+            "1-2"
+          ],
           "references": []
         },
         {
           "outline": "The Beatitudes",
-          "verses": ["3-12"],
-          "references": ["Psalms 1:1–6", "Luke 6:20–23"]
+          "verses": [
+            "3-12"
+          ],
+          "references": [
+            "Psalms 1:1–6",
+            "Luke 6:20–23"
+          ]
         },
         {
           "outline": "Salt and Light",
-          "verses": ["13-16"],
-          "references": ["Mark 9:49–50", "Luke 14:34–35", "Philippians 2:12–18"]
+          "verses": [
+            "13-16"
+          ],
+          "references": [
+            "Mark 9:49–50",
+            "Luke 14:34–35",
+            "Philippians 2:12–18"
+          ]
         },
         {
           "outline": "The Fulfillment of the Law",
-          "verses": ["17-20"],
+          "verses": [
+            "17-20"
+          ],
           "references": []
         },
         {
           "outline": "Anger and Reconciliation",
-          "verses": ["21-26"],
-          "references": ["Luke 12:57–59"]
+          "verses": [
+            "21-26"
+          ],
+          "references": [
+            "Luke 12:57–59"
+          ]
         },
         {
           "outline": "Adultery",
-          "verses": ["27-30"],
-          "references": ["Leviticus 18:1–30"]
+          "verses": [
+            "27-30"
+          ],
+          "references": [
+            "Leviticus 18:1–30"
+          ]
         },
         {
           "outline": "Divorce",
-          "verses": ["31-32"],
-          "references": ["Deuteronomy 24:1–5", "Luke 16:18"]
+          "verses": [
+            "31-32"
+          ],
+          "references": [
+            "Deuteronomy 24:1–5",
+            "Luke 16:18"
+          ]
         },
         {
           "outline": "Oaths and Vows",
-          "verses": ["33-37"],
-          "references": ["Numbers 30:1–16"]
+          "verses": [
+            "33-37"
+          ],
+          "references": [
+            "Numbers 30:1–16"
+          ]
         },
         {
           "outline": "Love Your Enemies",
-          "verses": ["38-48"],
-          "references": ["Leviticus 24:17–23", "Luke 6:27–36"]
+          "verses": [
+            "38-48"
+          ],
+          "references": [
+            "Leviticus 24:17–23",
+            "Luke 6:27–36"
+          ]
         },
         {
           "highlight": "Blessed are",
@@ -725,15 +833,23 @@
         },
         {
           "highlight": "Heaven Heavenly",
-          "text": ["heaven", "heavenly"]
+          "text": [
+            "heaven",
+            "heavenly"
+          ]
         },
         {
           "highlight": "It was said",
-          "text": ["It was said", "It has also been said"]
+          "text": [
+            "It was said",
+            "It has also been said"
+          ]
         },
         {
           "highlight": "I tell you",
-          "text": ["I tell you"]
+          "text": [
+            "I tell you"
+          ]
         },
         {
           "highlight": "It was said ...",
@@ -773,49 +889,81 @@
       "topics": [
         {
           "outline": "Giving to the Needy",
-          "verses": ["1-4"],
-          "references": ["Deuteronomy 15:7–11"]
+          "verses": [
+            "1-4"
+          ],
+          "references": [
+            "Deuteronomy 15:7–11"
+          ]
         },
         {
           "outline": "The Lord’s Prayer",
-          "verses": ["5-15"],
-          "references": ["Luke 11:1–4"]
+          "verses": [
+            "5-15"
+          ],
+          "references": [
+            "Luke 11:1–4"
+          ]
         },
         {
           "outline": "Proper Fasting",
-          "verses": ["16-18"],
+          "verses": [
+            "16-18"
+          ],
           "references": []
         },
         {
           "outline": "Treasures in Heaven",
-          "verses": ["19-21"],
-          "references": ["Luke 12:32–34"]
+          "verses": [
+            "19-21"
+          ],
+          "references": [
+            "Luke 12:32–34"
+          ]
         },
         {
           "outline": "The Lamp of the Body",
-          "verses": ["22-24"],
-          "references": ["Luke 11:33–36"]
+          "verses": [
+            "22-24"
+          ],
+          "references": [
+            "Luke 11:33–36"
+          ]
         },
         {
           "outline": "Do Not Worry",
-          "verses": ["25-34"],
-          "references": ["Luke 12:22–31"]
+          "verses": [
+            "25-34"
+          ],
+          "references": [
+            "Luke 12:22–31"
+          ]
         },
         {
           "label": "Pride, Hypocrisy",
-          "verses": [1, 5, "16"]
+          "verses": [
+            1,
+            5,
+            "16"
+          ]
         },
         {
           "label": "Money",
-          "verses": [24]
+          "verses": [
+            24
+          ]
         },
         {
           "label": "Worry",
-          "verses": ["24-34"]
+          "verses": [
+            "24-34"
+          ]
         },
         {
           "highlight": "Father",
-          "text": ["Father"]
+          "text": [
+            "Father"
+          ]
         },
         {
           "highlight": "Father ...",
@@ -840,23 +988,35 @@
         },
         {
           "highlight": "Heaven",
-          "text": ["heaven", "heavenly"]
+          "text": [
+            "heaven",
+            "heavenly"
+          ]
         },
         {
           "highlight": "Need",
-          "text": ["need", "needy"]
+          "text": [
+            "need",
+            "needy"
+          ]
         },
         {
           "highlight": "Reward",
-          "text": ["reward"]
+          "text": [
+            "reward"
+          ]
         },
         {
           "highlight": "Secret",
-          "text": ["secret"]
+          "text": [
+            "secret"
+          ]
         },
         {
           "highlight": "I tell you",
-          "text": ["I tell you"]
+          "text": [
+            "I tell you"
+          ]
         },
         {
           "highlight": "Don't",
@@ -906,7 +1066,11 @@
         },
         {
           "highlight": "The Prayer",
-          "text": ["Your name", "Your kingdom", "Your will"]
+          "text": [
+            "Your name",
+            "Your kingdom",
+            "Your will"
+          ]
         },
         {
           "highlight": "The Prayer",
@@ -929,42 +1093,93 @@
       "topics": [
         {
           "outline": "Judging Others",
-          "verses": ["1-6"],
-          "references": ["Luke 6:37–42", "Romans 14:1–12"]
+          "verses": [
+            "1-6"
+          ],
+          "references": [
+            "Luke 6:37–42",
+            "Romans 14:1–12"
+          ]
         },
         {
           "outline": "Ask, Seek, Knock",
-          "verses": ["7-12"],
-          "references": ["Luke 11:5–13"]
+          "verses": [
+            "7-12"
+          ],
+          "references": [
+            "Luke 11:5–13"
+          ]
         },
         {
           "outline": "The Narrow Gate",
-          "verses": ["13-14"],
-          "references": ["Luke 13:22–30"]
+          "verses": [
+            "13-14"
+          ],
+          "references": [
+            "Luke 13:22–30"
+          ]
         },
         {
           "outline": "A Tree and Its Fruit",
-          "verses": ["15-23"],
-          "references": ["Luke 6:43–45"]
+          "verses": [
+            "15-23"
+          ],
+          "references": [
+            "Luke 6:43–45"
+          ]
         },
         {
           "outline": "The House on the Rock",
-          "verses": ["24-27"],
-          "references": ["Luke 6:46–49"]
+          "verses": [
+            "24-27"
+          ],
+          "references": [
+            "Luke 6:46–49"
+          ]
         },
         {
           "outline": "The Authority of Jesus",
-          "verses": ["28-29"],
+          "verses": [
+            "28-29"
+          ],
           "references": []
         },
-        { "label": "Trust God", "verses": ["7-11", "24-25"] },
-        { "label": "The golden rule", "verses": ["12"] },
-        { "label": "False prophets", "verses": ["16"] },
-        { "label": "Test false prophets", "verses": ["17-20"] },
-        { "label": "Jesus is AMAZING", "verses": ["28-29"] },
+        {
+          "label": "Trust God",
+          "verses": [
+            "7-11",
+            "24-25"
+          ]
+        },
+        {
+          "label": "The golden rule",
+          "verses": [
+            "12"
+          ]
+        },
+        {
+          "label": "False prophets",
+          "verses": [
+            "16"
+          ]
+        },
+        {
+          "label": "Test false prophets",
+          "verses": [
+            "17-20"
+          ]
+        },
+        {
+          "label": "Jesus is AMAZING",
+          "verses": [
+            "28-29"
+          ]
+        },
         {
           "highlight": "Don't",
-          "text": ["Do not"]
+          "text": [
+            "Do not"
+          ]
         },
         {
           "highlight": "Do",
@@ -980,11 +1195,15 @@
         },
         {
           "highlight": "good",
-          "text": ["good"]
+          "text": [
+            "good"
+          ]
         },
         {
           "highlight": "scribes",
-          "text": ["scribes"]
+          "text": [
+            "scribes"
+          ]
         }
       ]
     },
@@ -997,45 +1216,84 @@
       "topics": [
         {
           "outline": "The Leper’s Prayer",
-          "verses": ["1-4"],
-          "references": ["Leviticus 14:1–32", "Mark 1:40–45", "Luke 5:12–16"]
+          "verses": [
+            "1-4"
+          ],
+          "references": [
+            "Leviticus 14:1–32",
+            "Mark 1:40–45",
+            "Luke 5:12–16"
+          ]
         },
         {
           "outline": "The Faith of the Centurion",
-          "verses": ["5-13"],
-          "references": ["Luke 7:1–10", "John 4:43–54"]
+          "verses": [
+            "5-13"
+          ],
+          "references": [
+            "Luke 7:1–10",
+            "John 4:43–54"
+          ]
         },
         {
           "outline": "Jesus Heals at Peter’s House",
-          "verses": ["14-17"],
-          "references": ["Mark 1:29–34", "Luke 4:38–41"]
+          "verses": [
+            "14-17"
+          ],
+          "references": [
+            "Mark 1:29–34",
+            "Luke 4:38–41"
+          ]
         },
         {
           "outline": "The Cost of Discipleship",
-          "verses": ["18-22"],
-          "references": ["Luke 9:57–62", "Luke 14:25–33", "John 6:59–66"]
+          "verses": [
+            "18-22"
+          ],
+          "references": [
+            "Luke 9:57–62",
+            "Luke 14:25–33",
+            "John 6:59–66"
+          ]
         },
         {
           "outline": "Jesus Calms the Storm",
-          "verses": ["23-27"],
-          "references": ["Psalms 107:1–43", "Mark 4:35–41", "Luke 8:22–25"]
+          "verses": [
+            "23-27"
+          ],
+          "references": [
+            "Psalms 107:1–43",
+            "Mark 4:35–41",
+            "Luke 8:22–25"
+          ]
         },
         {
           "outline": "The Demons and the Pigs",
-          "verses": ["28-34"],
-          "references": ["Mark 5:1–20", "Luke 8:26–39"]
+          "verses": [
+            "28-34"
+          ],
+          "references": [
+            "Mark 5:1–20",
+            "Luke 8:26–39"
+          ]
         },
         {
           "label": "Gentiles included in New Coveneant",
-          "verses": [11]
+          "verses": [
+            11
+          ]
         },
         {
           "label": "Prophecy",
-          "verses": ["16-17"]
+          "verses": [
+            "16-17"
+          ]
         },
         {
           "highlight": "Jesus",
-          "text": ["Jesus"]
+          "text": [
+            "Jesus"
+          ]
         },
         {
           "highlight": "Jesus controls ...",
@@ -1073,19 +1331,31 @@
         },
         {
           "highlight": "Go",
-          "text": [" go ", "go!", "go,", "go."]
+          "text": [
+            " go ",
+            "go!",
+            "go,",
+            "go."
+          ]
         },
         {
           "highlight": "Lord",
-          "text": ["Lord"]
+          "text": [
+            "Lord"
+          ]
         },
         {
           "highlight": "Crowds",
-          "text": ["crowd", "crowds"]
+          "text": [
+            "crowd",
+            "crowds"
+          ]
         },
         {
           "highlight": "Scribes",
-          "text": ["scribes"]
+          "text": [
+            "scribes"
+          ]
         },
         {
           "highlight": "Persons",
@@ -1141,7 +1411,10 @@
         },
         {
           "highlight": "Violent",
-          "text": ["violent", "terrible agony"]
+          "text": [
+            "violent",
+            "terrible agony"
+          ]
         },
         {
           "highlight": "Trust",
@@ -1165,54 +1438,97 @@
       "topics": [
         {
           "outline": "Jesus Heals a Paralytic",
-          "verses": ["1-8"],
-          "references": ["Mark 2:1–12", "Luke 5:17–26"]
+          "verses": [
+            "1-8"
+          ],
+          "references": [
+            "Mark 2:1–12",
+            "Luke 5:17–26"
+          ]
         },
         {
           "outline": "Jesus Calls Matthew",
-          "verses": ["9-13"],
-          "references": ["Mark 2:13–17", "Luke 5:27–32"]
+          "verses": [
+            "9-13"
+          ],
+          "references": [
+            "Mark 2:13–17",
+            "Luke 5:27–32"
+          ]
         },
         {
           "outline": "Questions about Fasting",
-          "verses": ["14-15"],
-          "references": ["Mark 2:18–20", "Luke 5:33–35"]
+          "verses": [
+            "14-15"
+          ],
+          "references": [
+            "Mark 2:18–20",
+            "Luke 5:33–35"
+          ]
         },
         {
           "outline": "The Patches and the Wineskins",
-          "verses": ["16-17"],
-          "references": ["Mark 2:21–22", "Luke 5:36–39"]
+          "verses": [
+            "16-17"
+          ],
+          "references": [
+            "Mark 2:21–22",
+            "Luke 5:36–39"
+          ]
         },
         {
           "outline": "The Healing Touch of Jesus",
-          "verses": ["18-26"],
-          "references": ["Mark 5:21–43", "Luke 8:40–56"]
+          "verses": [
+            "18-26"
+          ],
+          "references": [
+            "Mark 5:21–43",
+            "Luke 8:40–56"
+          ]
         },
         {
           "outline": "Jesus Heals the Blind and Mute",
-          "verses": ["27-34"],
-          "references": ["Mark 7:31–37"]
+          "verses": [
+            "27-34"
+          ],
+          "references": [
+            "Mark 7:31–37"
+          ]
         },
         {
           "outline": "The Lord of the Harvest",
-          "verses": ["35-38"],
-          "references": ["Luke 10:1–12"]
+          "verses": [
+            "35-38"
+          ],
+          "references": [
+            "Luke 10:1–12"
+          ]
         },
         {
           "label": "Glory",
-          "verses": [8, 33]
+          "verses": [
+            8,
+            33
+          ]
         },
         {
           "label": "Scribes/Pharisees",
-          "verses": ["1-13", 34]
+          "verses": [
+            "1-13",
+            34
+          ]
         },
         {
           "label": "Old/New Convenants",
-          "verses": ["16-17"]
+          "verses": [
+            "16-17"
+          ]
         },
         {
           "highlight": "Jesus",
-          "text": ["Jesus"]
+          "text": [
+            "Jesus"
+          ]
         },
         {
           "highlight": "Persons",
@@ -1273,7 +1589,11 @@
         },
         {
           "highlight": "Sinners",
-          "text": ["sin", "sins", "sinners"]
+          "text": [
+            "sin",
+            "sins",
+            "sinners"
+          ]
         },
         {
           "highlight": "Scribes/Pharisees",
@@ -1287,7 +1607,9 @@
         },
         {
           "highlight": "Laughed",
-          "text": ["laughed"]
+          "text": [
+            "laughed"
+          ]
         },
         {
           "highlight": "Healing/Restoration",
@@ -1334,7 +1656,10 @@
         },
         {
           "highlight": "Jesus drives out demons",
-          "text": ["the demon", "driven out"]
+          "text": [
+            "the demon",
+            "driven out"
+          ]
         },
         {
           "highlight": "Harvest",
@@ -1358,11 +1683,17 @@
         },
         {
           "highlight": "Gospel",
-          "text": ["gospel of the kingdom"]
+          "text": [
+            "gospel of the kingdom"
+          ]
         },
         {
           "highlight": "Jesus' ministry continues",
-          "text": ["teaching", "preaching", "healing"]
+          "text": [
+            "teaching",
+            "preaching",
+            "healing"
+          ]
         }
       ]
     },
@@ -1375,54 +1706,95 @@
       "topics": [
         {
           "outline": "The Twelve Apostles",
-          "verses": ["1-4"],
-          "references": ["Mark 3:13–19", "Luke 6:12–16"]
+          "verses": [
+            "1-4"
+          ],
+          "references": [
+            "Mark 3:13–19",
+            "Luke 6:12–16"
+          ]
         },
         {
           "outline": "The Ministry of the Twelve",
-          "verses": ["5-15"],
-          "references": ["Mark 6:7–13", "Luke 9:1–6"]
+          "verses": [
+            "5-15"
+          ],
+          "references": [
+            "Mark 6:7–13",
+            "Luke 9:1–6"
+          ]
         },
         {
           "outline": "Sheep among Wolves",
-          "verses": ["16-25"],
-          "references": ["2 Timothy 1:3–12"]
+          "verses": [
+            "16-25"
+          ],
+          "references": [
+            "2 Timothy 1:3–12"
+          ]
         },
         {
           "outline": "Fear God Alone",
-          "verses": ["26-31"],
-          "references": ["Luke 12:4–7"]
+          "verses": [
+            "26-31"
+          ],
+          "references": [
+            "Luke 12:4–7"
+          ]
         },
         {
           "outline": "Confessing Christ",
-          "verses": ["32-33"],
-          "references": ["Luke 12:8–12"]
+          "verses": [
+            "32-33"
+          ],
+          "references": [
+            "Luke 12:8–12"
+          ]
         },
         {
           "outline": "Not Peace but a Sword",
-          "verses": ["34-39"],
-          "references": ["Micah 7:1–6", "Luke 12:49–53"]
+          "verses": [
+            "34-39"
+          ],
+          "references": [
+            "Micah 7:1–6",
+            "Luke 12:49–53"
+          ]
         },
         {
           "outline": "The Reward of Service",
-          "verses": ["40-42"],
-          "references": ["2 Kings 4:8–17"]
+          "verses": [
+            "40-42"
+          ],
+          "references": [
+            "2 Kings 4:8–17"
+          ]
         },
         {
           "label": "Israel first, then Gentiles",
-          "verses": ["5-6", 18]
+          "verses": [
+            "5-6",
+            18
+          ]
         },
         {
           "label": "Authority",
-          "verses": [1, "7-8"]
+          "verses": [
+            1,
+            "7-8"
+          ]
         },
         {
           "label": "Jesus speaking",
-          "verses": ["5-42"]
+          "verses": [
+            "5-42"
+          ]
         },
         {
           "label": "Provision",
-          "verses": ["9-11"]
+          "verses": [
+            "9-11"
+          ]
         },
         {
           "highlight": "Twelve Apostles",
@@ -1443,11 +1815,17 @@
         },
         {
           "highlight": "Israel first, then Gentiles",
-          "text": ["Israel", "gentiles", "healing"]
+          "text": [
+            "Israel",
+            "gentiles",
+            "healing"
+          ]
         },
         {
           "highlight": "Grace and abundance",
-          "text": ["Freely you have received; freely give"]
+          "text": [
+            "Freely you have received; freely give"
+          ]
         },
         {
           "highlight": "Tough times were not unexpected",
@@ -1506,23 +1884,36 @@
         },
         {
           "highlight": "Some were more worthy",
-          "text": ["find out who is worthy there", "If the home is worthy"]
+          "text": [
+            "find out who is worthy there",
+            "If the home is worthy"
+          ]
         },
         {
           "highlight": "Worthy",
-          "text": ["worthy"]
+          "text": [
+            "worthy"
+          ]
         },
         {
           "highlight": "Fear",
-          "text": ["do not be afraid", "fear"]
+          "text": [
+            "do not be afraid",
+            "fear"
+          ]
         },
         {
           "highlight": "Receive",
-          "text": ["receive", "receives"]
+          "text": [
+            "receive",
+            "receives"
+          ]
         },
         {
           "highlight": "Reward",
-          "text": ["reward"]
+          "text": [
+            "reward"
+          ]
         }
       ]
     },
@@ -1535,63 +1926,102 @@
       "topics": [
         {
           "outline": "John’s Inquiry",
-          "verses": ["1-6"],
-          "references": ["Luke 7:18–23"]
+          "verses": [
+            "1-6"
+          ],
+          "references": [
+            "Luke 7:18–23"
+          ]
         },
         {
           "outline": "Jesus Testifies about John",
-          "verses": ["7-19"],
-          "references": ["Malachi 3:1–5", "Luke 7:24–35"]
+          "verses": [
+            "7-19"
+          ],
+          "references": [
+            "Malachi 3:1–5",
+            "Luke 7:24–35"
+          ]
         },
         {
           "outline": "Woe to the Unrepentant",
-          "verses": ["20-24"],
-          "references": ["Luke 10:13–16"]
+          "verses": [
+            "20-24"
+          ],
+          "references": [
+            "Luke 10:13–16"
+          ]
         },
         {
           "outline": "Rest for the Weary",
-          "verses": ["25-30"],
-          "references": ["Luke 10:21–24"]
+          "verses": [
+            "25-30"
+          ],
+          "references": [
+            "Luke 10:21–24"
+          ]
         },
         {
           "label": "Are you the Messiah?",
-          "verses": ["2-3"]
+          "verses": [
+            "2-3"
+          ]
         },
         {
           "label": "Yes",
-          "verses": ["4-6"]
+          "verses": [
+            "4-6"
+          ]
         },
         {
           "label": "This generation / dirge",
-          "verses": ["16-19"]
+          "verses": [
+            "16-19"
+          ]
         },
         {
           "label": "Elijah to come",
-          "verses": ["13-14"]
+          "verses": [
+            "13-14"
+          ]
         },
         {
           "label": "Comparative judgement",
-          "verses": ["21-24"]
+          "verses": [
+            "21-24"
+          ]
         },
         {
           "label": "hidden/revealed",
-          "verses": ["25-26"]
+          "verses": [
+            "25-26"
+          ]
         },
         {
           "label": "know God",
-          "verses": [27]
+          "verses": [
+            27
+          ]
         },
         {
           "label": "0_0",
-          "verses": [5, 28]
+          "verses": [
+            5,
+            28
+          ]
         },
         {
           "label": "Comfort",
-          "verses": ["28-30"]
+          "verses": [
+            "28-30"
+          ]
         },
         {
           "highlight": "John",
-          "text": ["John", "Elijah who was to come"]
+          "text": [
+            "John",
+            "Elijah who was to come"
+          ]
         },
         {
           "highlight": "0_0",
@@ -1608,15 +2038,23 @@
         },
         {
           "highlight": "The kingdom of heaven",
-          "text": ["the kingdom of heaven", "Lord of heaven"]
+          "text": [
+            "the kingdom of heaven",
+            "Lord of heaven"
+          ]
         },
         {
           "highlight": "Wisdom",
-          "text": ["Wisdom is vindicated by her actions"]
+          "text": [
+            "Wisdom is vindicated by her actions"
+          ]
         },
         {
           "highlight": "Woe",
-          "text": ["woe", "And you,"]
+          "text": [
+            "woe",
+            "And you,"
+          ]
         },
         {
           "highlight": "Comfort",
@@ -1638,80 +2076,138 @@
       "topics": [
         {
           "outline": "The Lord of the Sabbath",
-          "verses": ["1-8"],
-          "references": ["1 Samuel 21:1–7", "Mark 2:23–28", "Luke 6:1–5"]
+          "verses": [
+            "1-8"
+          ],
+          "references": [
+            "1 Samuel 21:1–7",
+            "Mark 2:23–28",
+            "Luke 6:1–5"
+          ]
         },
         {
           "outline": "Jesus Heals on the Sabbath",
-          "verses": ["9-14"],
-          "references": ["Mark 3:1–6", "Luke 6:6–11"]
+          "verses": [
+            "9-14"
+          ],
+          "references": [
+            "Mark 3:1–6",
+            "Luke 6:6–11"
+          ]
         },
         {
           "outline": "God’s Chosen Servant",
-          "verses": ["15-21"],
-          "references": ["Isaiah 42:1–9"]
+          "verses": [
+            "15-21"
+          ],
+          "references": [
+            "Isaiah 42:1–9"
+          ]
         },
         {
           "outline": "A House Divided",
-          "verses": ["22-30"],
-          "references": ["Mark 3:20–27", "Luke 11:14–23"]
+          "verses": [
+            "22-30"
+          ],
+          "references": [
+            "Mark 3:20–27",
+            "Luke 11:14–23"
+          ]
         },
         {
           "outline": "The Unpardonable Sin",
-          "verses": ["31-32"],
-          "references": ["Mark 3:28–30"]
+          "verses": [
+            "31-32"
+          ],
+          "references": [
+            "Mark 3:28–30"
+          ]
         },
         {
           "outline": "Good and Bad Fruit",
-          "verses": ["33-37"],
-          "references": ["Luke 6:43–45"]
+          "verses": [
+            "33-37"
+          ],
+          "references": [
+            "Luke 6:43–45"
+          ]
         },
         {
           "outline": "The Sign of Jonah",
-          "verses": ["38-42"],
-          "references": ["Jonah 3:1–10", "Luke 11:29–32"]
+          "verses": [
+            "38-42"
+          ],
+          "references": [
+            "Jonah 3:1–10",
+            "Luke 11:29–32"
+          ]
         },
         {
           "outline": "An Unclean Spirit Returns",
-          "verses": ["43-45"],
-          "references": ["Luke 11:24–26"]
+          "verses": [
+            "43-45"
+          ],
+          "references": [
+            "Luke 11:24–26"
+          ]
         },
         {
           "outline": "Jesus’ Mother and Brothers",
-          "verses": ["46-50"],
-          "references": ["Mark 3:31–35", "Luke 8:19–21"]
+          "verses": [
+            "46-50"
+          ],
+          "references": [
+            "Mark 3:31–35",
+            "Luke 8:19–21"
+          ]
         },
         {
           "label": "Scribes/Pharisees",
-          "verses": ["1-45"]
+          "verses": [
+            "1-45"
+          ]
         },
         {
           "label": "Prophecy",
-          "verses": ["16-21"]
+          "verses": [
+            "16-21"
+          ]
         },
         {
           "label": "Gentiles included in New Coveneant",
-          "verses": ["21"]
+          "verses": [
+            "21"
+          ]
         },
         {
           "label": "Jesus' power over evil",
-          "verses": ["29"]
+          "verses": [
+            "29"
+          ]
         },
         {
           "label": "with Me, against Me",
-          "verses": ["30"]
+          "verses": [
+            "30"
+          ]
         },
         {
           "label": "This generation",
-          "verses": ["38-45"]
+          "verses": [
+            "38-45"
+          ]
         },
         {
           "label": "Comparative judgement",
-          "verses": ["41-42"]
+          "verses": [
+            "41-42"
+          ]
         },
         {
           "highlight": "Sabbath",
-          "text": ["sabbath"]
+          "text": [
+            "sabbath"
+          ]
         },
         {
           "highlight": "Son of Man",
@@ -1723,7 +2219,9 @@
         },
         {
           "highlight": "Son of David",
-          "text": ["Son of David"]
+          "text": [
+            "Son of David"
+          ]
         },
         {
           "highlight": "Scribes/Pharisees",
@@ -1741,11 +2239,15 @@
         },
         {
           "highlight": "Crowds",
-          "text": ["crowds"]
+          "text": [
+            "crowds"
+          ]
         },
         {
           "highlight": "Prophecy",
-          "text": [" spoken through the prophet Isaiah"]
+          "text": [
+            " spoken through the prophet Isaiah"
+          ]
         },
         {
           "highlight": "Holy Spirit",
@@ -1765,15 +2267,23 @@
         },
         {
           "highlight": "Knowing their thoughts",
-          "text": ["knowing their thoughts"]
+          "text": [
+            "knowing their thoughts"
+          ]
         },
         {
           "highlight": "Guard your heart",
-          "text": ["fruit", "treasure"]
+          "text": [
+            "fruit",
+            "treasure"
+          ]
         },
         {
           "highlight": "By your words",
-          "text": ["careless word", "by your words"]
+          "text": [
+            "careless word",
+            "by your words"
+          ]
         },
         {
           "highlight": "This generation",
@@ -1793,7 +2303,11 @@
         },
         {
           "highlight": "Comparative judgement",
-          "text": ["the judgment", "men of Nineveh", "Queen of the south"]
+          "text": [
+            "the judgment",
+            "men of Nineveh",
+            "Queen of the south"
+          ]
         },
         {
           "highlight": "One greater than",
@@ -1822,66 +2336,116 @@
       "topics": [
         {
           "outline": "The Parable of the Sower",
-          "verses": ["1-9"],
-          "references": ["Mark 4:1–9", "Luke 8:4–8"]
+          "verses": [
+            "1-9"
+          ],
+          "references": [
+            "Mark 4:1–9",
+            "Luke 8:4–8"
+          ]
         },
         {
           "outline": "The Purpose of Jesus’ Parables",
-          "verses": ["10-17"],
-          "references": ["Isaiah 6:1–13", "Mark 4:10–12", "Luke 8:9–10"]
+          "verses": [
+            "10-17"
+          ],
+          "references": [
+            "Isaiah 6:1–13",
+            "Mark 4:10–12",
+            "Luke 8:9–10"
+          ]
         },
         {
           "outline": "The Parable of the Sower Explained",
-          "verses": ["18-23"],
-          "references": ["Mark 4:13–20", "Luke 8:11–15"]
+          "verses": [
+            "18-23"
+          ],
+          "references": [
+            "Mark 4:13–20",
+            "Luke 8:11–15"
+          ]
         },
         {
           "outline": "The Parable of the Weeds",
-          "verses": ["24-30"],
-          "references": ["Ezekiel 17:1–10"]
+          "verses": [
+            "24-30"
+          ],
+          "references": [
+            "Ezekiel 17:1–10"
+          ]
         },
         {
           "outline": "The Parable of the Mustard Seed",
-          "verses": ["31-32"],
-          "references": ["Mark 4:30–34", "Luke 13:18–19"]
+          "verses": [
+            "31-32"
+          ],
+          "references": [
+            "Mark 4:30–34",
+            "Luke 13:18–19"
+          ]
         },
         {
           "outline": "The Parable of the Leaven",
-          "verses": ["33"],
-          "references": ["Luke 13:20–21"]
+          "verses": [
+            "33"
+          ],
+          "references": [
+            "Luke 13:20–21"
+          ]
         },
         {
           "outline": "I Will Open My Mouth in Parables",
-          "verses": ["34-35"],
-          "references": ["Psalms 78:1–72"]
+          "verses": [
+            "34-35"
+          ],
+          "references": [
+            "Psalms 78:1–72"
+          ]
         },
         {
           "outline": "The Parable of the Weeds Explained",
-          "verses": ["36-43"],
-          "references": ["Zephaniah 1:1–6"]
+          "verses": [
+            "36-43"
+          ],
+          "references": [
+            "Zephaniah 1:1–6"
+          ]
         },
         {
           "outline": "The Parables of the Treasure and the Pearl",
-          "verses": ["44-46"],
+          "verses": [
+            "44-46"
+          ],
           "references": []
         },
         {
           "outline": "The Parable of the Net",
-          "verses": ["47-52"],
+          "verses": [
+            "47-52"
+          ],
           "references": []
         },
         {
           "outline": "The Rejection at Nazareth",
-          "verses": ["53-58"],
-          "references": ["Mark 6:1–6", "Luke 4:16–30"]
+          "verses": [
+            "53-58"
+          ],
+          "references": [
+            "Mark 6:1–6",
+            "Luke 4:16–30"
+          ]
         },
         {
           "label": "Dufflepods (CS Lewis)",
-          "verses": ["15-16"]
+          "verses": [
+            "15-16"
+          ]
         },
         {
           "label": "Jesus' hometown",
-          "verses": ["53-58"]
+          "verses": [
+            "53-58"
+          ]
         },
         {
           "highlight": "crowds",
@@ -1893,31 +2457,48 @@
         },
         {
           "highlight": "seed",
-          "text": ["seed"]
+          "text": [
+            "seed"
+          ]
         },
         {
           "highlight": "kingdom",
-          "text": ["kingdom"]
+          "text": [
+            "kingdom"
+          ]
         },
         {
           "highlight": "hear",
-          "text": ["hear"]
+          "text": [
+            "hear"
+          ]
         },
         {
           "highlight": "see",
-          "text": ["see "]
+          "text": [
+            "see "
+          ]
         },
         {
           "highlight": "like",
-          "text": ["like"]
+          "text": [
+            "like"
+          ]
         },
         {
           "highlight": "Mystery",
-          "text": ["mysteries"]
+          "text": [
+            "mysteries"
+          ]
         },
         {
           "highlight": "Parables",
-          "text": ["parable", "treasure", "pearl", "net"]
+          "text": [
+            "parable",
+            "treasure",
+            "pearl",
+            "net"
+          ]
         },
         {
           "highlight": "Heart",
@@ -1931,27 +2512,47 @@
         },
         {
           "highlight": "Understand",
-          "text": ["understand", "understood"]
+          "text": [
+            "understand",
+            "understood"
+          ]
         },
         {
           "highlight": "Sow",
-          "text": ["sow", "sower", "sown", "sowing", "sows", "sowed"]
+          "text": [
+            "sow",
+            "sower",
+            "sown",
+            "sowing",
+            "sows",
+            "sowed"
+          ]
         },
         {
           "highlight": "Harvest",
-          "text": ["harvest"]
+          "text": [
+            "harvest"
+          ]
         },
         {
           "highlight": "Angels",
-          "text": ["angels"]
+          "text": [
+            "angels"
+          ]
         },
         {
           "highlight": "evil",
-          "text": ["evil", "devil"]
+          "text": [
+            "evil",
+            "devil"
+          ]
         },
         {
           "highlight": "weeds",
-          "text": ["weeds", "weed"]
+          "text": [
+            "weeds",
+            "weed"
+          ]
         },
         {
           "highlight": "God's glory",
@@ -1961,23 +2562,34 @@
         },
         {
           "highlight": "weeping and gnashing of teeth",
-          "text": ["weeping and gnashing of teeth"]
+          "text": [
+            "weeping and gnashing of teeth"
+          ]
         },
         {
           "highlight": "righteous",
-          "text": ["righteous"]
+          "text": [
+            "righteous"
+          ]
         },
         {
           "highlight": "prophet without honor",
-          "text": ["prophet without honor"]
+          "text": [
+            "prophet without honor"
+          ]
         },
         {
           "highlight": "unbelief",
-          "text": ["unbelief"]
+          "text": [
+            "unbelief"
+          ]
         },
         {
           "highlight": "Identity of the King",
-          "text": ["a prophet", "wisdom and miraculous powers"]
+          "text": [
+            "a prophet",
+            "wisdom and miraculous powers"
+          ]
         }
       ]
     },
@@ -1990,31 +2602,55 @@
       "topics": [
         {
           "outline": "The Beheading of John",
-          "verses": ["1-12"],
-          "references": ["Mark 6:14–29", "Luke 9:7–9"]
+          "verses": [
+            "1-12"
+          ],
+          "references": [
+            "Mark 6:14–29",
+            "Luke 9:7–9"
+          ]
         },
         {
           "outline": "The Feeding of the Five Thousand",
-          "verses": ["13-21"],
-          "references": ["Mark 6:30–44", "Luke 9:10–17", "John 6:1–15"]
+          "verses": [
+            "13-21"
+          ],
+          "references": [
+            "Mark 6:30–44",
+            "Luke 9:10–17",
+            "John 6:1–15"
+          ]
         },
         {
           "outline": "Jesus Walks on Water",
-          "verses": ["22-33"],
-          "references": ["Mark 6:45–52", "John 6:16–21"]
+          "verses": [
+            "22-33"
+          ],
+          "references": [
+            "Mark 6:45–52",
+            "John 6:16–21"
+          ]
         },
         {
           "outline": "Jesus Heals at Gennesaret",
-          "verses": ["34-36"],
-          "references": ["Mark 6:53–56"]
+          "verses": [
+            "34-36"
+          ],
+          "references": [
+            "Mark 6:53–56"
+          ]
         },
         {
           "highlight": "Jesus",
-          "text": ["Jesus"]
+          "text": [
+            "Jesus"
+          ]
         },
         {
           "highlight": "Disciples",
-          "text": ["disciples"]
+          "text": [
+            "disciples"
+          ]
         },
         {
           "highlight": "Jesus seeks solitude",
@@ -2025,15 +2661,22 @@
         },
         {
           "highlight": "boat",
-          "text": ["boat"]
+          "text": [
+            "boat"
+          ]
         },
         {
           "highlight": "Peter",
-          "text": ["Peter"]
+          "text": [
+            "Peter"
+          ]
         },
         {
           "highlight": "God's glory",
-          "text": ["walking on the sea", "Truly You are the Son of God!"]
+          "text": [
+            "walking on the sea",
+            "Truly You are the Son of God!"
+          ]
         },
         {
           "highlight": "Identity of the King",
@@ -2070,31 +2713,52 @@
       "topics": [
         {
           "outline": "The Tradition of the Elders",
-          "verses": ["1-9"],
-          "references": ["Mark 7:1–13"]
+          "verses": [
+            "1-9"
+          ],
+          "references": [
+            "Mark 7:1–13"
+          ]
         },
         {
           "outline": "What Defiles a Man",
-          "verses": ["10-20"],
-          "references": ["Mark 7:14–23"]
+          "verses": [
+            "10-20"
+          ],
+          "references": [
+            "Mark 7:14–23"
+          ]
         },
         {
           "outline": "The Faith of the Canaanite Woman",
-          "verses": ["21-28"],
-          "references": ["Mark 7:24–30"]
+          "verses": [
+            "21-28"
+          ],
+          "references": [
+            "Mark 7:24–30"
+          ]
         },
         {
           "outline": "The Feeding of the Four Thousand",
-          "verses": ["29-39"],
-          "references": ["2 Kings 4:42–44", "Mark 8:1–10"]
+          "verses": [
+            "29-39"
+          ],
+          "references": [
+            "2 Kings 4:42–44",
+            "Mark 8:1–10"
+          ]
         },
         {
           "label": "Scribes/Pharisees",
-          "verses": ["1-20"]
+          "verses": [
+            "1-20"
+          ]
         },
         {
           "highlight": "Jesus",
-          "text": ["Jesus"]
+          "text": [
+            "Jesus"
+          ]
         },
         {
           "highlight": "Jesus",
@@ -2109,7 +2773,9 @@
         },
         {
           "highlight": "Disciples",
-          "text": ["Disciples"]
+          "text": [
+            "Disciples"
+          ]
         },
         {
           "highlight": "came to Jesus",
@@ -2145,7 +2811,10 @@
         },
         {
           "highlight": "tradition",
-          "text": ["tradition of the elders", "for the sake of your tradition"]
+          "text": [
+            "tradition of the elders",
+            "for the sake of your tradition"
+          ]
         }
       ]
     },
@@ -2158,60 +2827,102 @@
       "topics": [
         {
           "outline": "The Demand for a Sign",
-          "verses": ["1-4"],
-          "references": ["Mark 8:11–13", "Luke 12:54–56"]
+          "verses": [
+            "1-4"
+          ],
+          "references": [
+            "Mark 8:11–13",
+            "Luke 12:54–56"
+          ]
         },
         {
           "outline": "The Leaven of the Pharisees and Sadducees",
-          "verses": ["5-12"],
-          "references": ["Mark 8:14–21", "Luke 12:1–3"]
+          "verses": [
+            "5-12"
+          ],
+          "references": [
+            "Mark 8:14–21",
+            "Luke 12:1–3"
+          ]
         },
         {
           "outline": "Peter’s Confession of Christ",
-          "verses": ["13-20"],
-          "references": ["Mark 8:27–30", "Luke 9:18–20", "John 6:67–71"]
+          "verses": [
+            "13-20"
+          ],
+          "references": [
+            "Mark 8:27–30",
+            "Luke 9:18–20",
+            "John 6:67–71"
+          ]
         },
         {
           "outline": "Christ’s Passion Foretold",
-          "verses": ["21-23"],
-          "references": ["Mark 8:31–33", "Luke 9:21–22"]
+          "verses": [
+            "21-23"
+          ],
+          "references": [
+            "Mark 8:31–33",
+            "Luke 9:21–22"
+          ]
         },
         {
           "outline": "Take Up Your Cross",
-          "verses": ["24-28"],
-          "references": ["Mark 8:34–38", "Luke 9:23–27"]
+          "verses": [
+            "24-28"
+          ],
+          "references": [
+            "Mark 8:34–38",
+            "Luke 9:23–27"
+          ]
         },
         {
           "label": "Spiritual Warfare",
-          "verses": ["17-19"]
+          "verses": [
+            "17-19"
+          ]
         },
         {
           "label": "Timing",
-          "verses": ["20"]
+          "verses": [
+            "20"
+          ]
         },
         {
           "label": "Jesus predicts His Death and Resurrection",
-          "verses": ["21"]
+          "verses": [
+            "21"
+          ]
         },
         {
           "label": "Man's wisdom vs God's wisdom",
-          "verses": ["22-23"]
+          "verses": [
+            "22-23"
+          ]
         },
         {
           "label": "Man's wisdom vs God's wisdom",
-          "verses": ["24-26"]
+          "verses": [
+            "24-26"
+          ]
         },
         {
           "label": "True Freedom",
-          "verses": ["24-26"]
+          "verses": [
+            "24-26"
+          ]
         },
         {
           "label": "Future",
-          "verses": ["27"]
+          "verses": [
+            "27"
+          ]
         },
         {
           "label": "Beginning of Next Chapter",
-          "verses": ["28"]
+          "verses": [
+            "28"
+          ]
         },
         {
           "highlight": "disciples",
@@ -2225,7 +2936,9 @@
         },
         {
           "highlight": "bread",
-          "text": ["bread"]
+          "text": [
+            "bread"
+          ]
         },
         {
           "highlight": "confront lies with truth",
@@ -2262,11 +2975,17 @@
         },
         {
           "highlight": "Jesus predicts His Death and Resurrection",
-          "text": ["suffer many things", "killed", "raised to life"]
+          "text": [
+            "suffer many things",
+            "killed",
+            "raised to life"
+          ]
         },
         {
           "highlight": "True Freedom",
-          "text": ["deny himself and take up his cross and follow Me"]
+          "text": [
+            "deny himself and take up his cross and follow Me"
+          ]
         },
         {
           "highlight": "Jesus rebukes the corrupt leaders of the Old Covenant and teaches the New Covenant",
@@ -2292,52 +3011,88 @@
       "topics": [
         {
           "outline": "The Transfiguration",
-          "verses": ["1-13"],
-          "references": ["Mark 9:1–13", "Luke 9:28–36", "2 Peter 1:16–21"]
+          "verses": [
+            "1-13"
+          ],
+          "references": [
+            "Mark 9:1–13",
+            "Luke 9:28–36",
+            "2 Peter 1:16–21"
+          ]
         },
         {
           "outline": "The Boy with a Demon",
-          "verses": ["14-18"],
-          "references": ["Mark 9:14–29", "Luke 9:37–42"]
+          "verses": [
+            "14-18"
+          ],
+          "references": [
+            "Mark 9:14–29",
+            "Luke 9:37–42"
+          ]
         },
         {
           "outline": "The Power of Faith",
-          "verses": ["19-20"],
-          "references": ["Luke 17:5–10"]
+          "verses": [
+            "19-20"
+          ],
+          "references": [
+            "Luke 17:5–10"
+          ]
         },
         {
           "outline": "The Second Prediction of the Passion",
-          "verses": ["22-23"],
-          "references": ["Mark 9:30–32", "Luke 9:43–45"]
+          "verses": [
+            "22-23"
+          ],
+          "references": [
+            "Mark 9:30–32",
+            "Luke 9:43–45"
+          ]
         },
         {
           "outline": "The Temple Tax",
-          "verses": ["24-27"],
+          "verses": [
+            "24-27"
+          ],
           "references": []
         },
         {
           "label": "Jesus unveiled",
-          "verses": ["2"]
+          "verses": [
+            "2"
+          ]
         },
         {
           "label": "Portal between heaven and earth",
-          "verses": ["3"]
+          "verses": [
+            "3"
+          ]
         },
         {
           "label": "God the Father speaks to disciples",
-          "verses": ["5"]
+          "verses": [
+            "5"
+          ]
         },
         {
           "label": "Portal closed",
-          "verses": ["8"]
+          "verses": [
+            "8"
+          ]
         },
         {
           "label": "Timing",
-          "verses": ["9"]
+          "verses": [
+            "9"
+          ]
         },
         {
           "label": "Jesus predicts His Death and Resurrection again",
-          "verses": ["9", "12", "22-23"]
+          "verses": [
+            "9",
+            "12",
+            "22-23"
+          ]
         },
         {
           "highlight": "People",
@@ -2374,11 +3129,17 @@
         },
         {
           "highlight": "Jesus touched them",
-          "text": ["Jesus came over and touched them"]
+          "text": [
+            "Jesus came over and touched them"
+          ]
         },
         {
           "highlight": "Mountain",
-          "text": ["high mountain", "the mountain", "this mountain"]
+          "text": [
+            "high mountain",
+            "the mountain",
+            "this mountain"
+          ]
         },
         {
           "highlight": "Jesus predicts His Death and Resurrection again",
@@ -2402,11 +3163,16 @@
         },
         {
           "highlight": "Scribes",
-          "text": ["scribes"]
+          "text": [
+            "scribes"
+          ]
         },
         {
           "highlight": "Elijah",
-          "text": ["will restore", "has already come"]
+          "text": [
+            "will restore",
+            "has already come"
+          ]
         },
         {
           "highlight": "John the Baptist",
@@ -2418,7 +3184,12 @@
         },
         {
           "highlight": "demon",
-          "text": ["seizures", "suffering terribly", "often falls", "demon"]
+          "text": [
+            "seizures",
+            "suffering terribly",
+            "often falls",
+            "demon"
+          ]
         },
         {
           "highlight": "Trust God",
@@ -2439,15 +3210,22 @@
         },
         {
           "highlight": "Jesus knew",
-          "text": ["Jesus preempted him"]
+          "text": [
+            "Jesus preempted him"
+          ]
         },
         {
           "highlight": "God owns it all",
-          "text": [" “Then the sons are exempt,” Jesus said to him.", "“But"]
+          "text": [
+            " “Then the sons are exempt,” Jesus said to him.",
+            "“But"
+          ]
         },
         {
           "highlight": "In the world, not of it",
-          "text": ["give it to them for My tax and yours"]
+          "text": [
+            "give it to them for My tax and yours"
+          ]
         }
       ]
     },
@@ -2460,81 +3238,132 @@
       "topics": [
         {
           "outline": "The Greatest in the Kingdom",
-          "verses": ["1-5"],
-          "references": ["Mark 9:33–41", "Luke 9:46–50"]
+          "verses": [
+            "1-5"
+          ],
+          "references": [
+            "Mark 9:33–41",
+            "Luke 9:46–50"
+          ]
         },
         {
           "outline": "Temptations and Trespasses",
-          "verses": ["6-9"],
-          "references": ["Mark 9:42–48", "Luke 17:1–4"]
+          "verses": [
+            "6-9"
+          ],
+          "references": [
+            "Mark 9:42–48",
+            "Luke 17:1–4"
+          ]
         },
         {
           "outline": "The Parable of the Lost Sheep",
-          "verses": ["10", "12-14"],
-          "references": ["Luke 15:1–7"]
+          "verses": [
+            "10",
+            "12-14"
+          ],
+          "references": [
+            "Luke 15:1–7"
+          ]
         },
         {
           "outline": "A Brother Who Sins",
-          "verses": ["15-18"],
-          "references": ["Deuteronomy 19:15–21"]
+          "verses": [
+            "15-18"
+          ],
+          "references": [
+            "Deuteronomy 19:15–21"
+          ]
         },
         {
           "outline": "Ask in My Name",
-          "verses": ["19-20"],
-          "references": ["John 16:23–33"]
+          "verses": [
+            "19-20"
+          ],
+          "references": [
+            "John 16:23–33"
+          ]
         },
         {
           "outline": "The Unforgiving Servant",
-          "verses": ["21-35"],
-          "references": ["Romans 12:14–21"]
+          "verses": [
+            "21-35"
+          ],
+          "references": [
+            "Romans 12:14–21"
+          ]
         },
         {
           "label": "Referencing prev ch. Mat 17:25-27",
-          "verses": ["1"]
+          "verses": [
+            "1"
+          ]
         },
         {
           "label": "Greatest are like little children",
-          "verses": ["2-4"]
+          "verses": [
+            "2-4"
+          ]
         },
         {
           "label": "Personal to Jesus",
-          "verses": ["5"]
+          "verses": [
+            "5"
+          ]
         },
         {
           "label": "Warning from Jesus regarding little ones",
-          "verses": ["6-7"]
+          "verses": [
+            "6-7"
+          ]
         },
         {
           "label": "Root out the causes of sin",
-          "verses": ["8-9"]
+          "verses": [
+            "8-9"
+          ]
         },
         {
           "label": "Warning from Jesus regarding little ones",
-          "verses": ["10"]
+          "verses": [
+            "10"
+          ]
         },
         {
           "label": "The Father cares deeply for little ones",
-          "verses": ["12-14"]
+          "verses": [
+            "12-14"
+          ]
         },
         {
           "label": "Forgive others",
-          "verses": ["15-35"]
+          "verses": [
+            "15-35"
+          ]
         },
         {
           "highlight": "Little ones",
-          "text": ["little ones"]
+          "text": [
+            "little ones"
+          ]
         },
         {
           "highlight": "Causes of sin",
-          "text": ["Causes"]
+          "text": [
+            "Causes"
+          ]
         },
         {
           "highlight": "Heaven",
-          "text": ["heaven"]
+          "text": [
+            "heaven"
+          ]
         },
         {
           "highlight": "I tell you ...",
-          "text": ["I tell you"]
+          "text": [
+            "I tell you"
+          ]
         },
         {
           "highlight": "Spiritual Intervention",
@@ -2547,7 +3376,9 @@
         },
         {
           "highlight": "Forgive",
-          "text": ["forgive"]
+          "text": [
+            "forgive"
+          ]
         },
         {
           "highlight": "Forgive",
@@ -2563,7 +3394,10 @@
         },
         {
           "highlight": "Agree>Gather",
-          "text": ["agree", "gather together in My name"]
+          "text": [
+            "agree",
+            "gather together in My name"
+          ]
         },
         {
           "highlight": "Reconcile>Agree>Gather",
@@ -2578,7 +3412,10 @@
         },
         {
           "highlight": "Spiritual Warfare",
-          "text": ["bound in heaven", "loosed in heaven"]
+          "text": [
+            "bound in heaven",
+            "loosed in heaven"
+          ]
         }
       ]
     },
@@ -2591,59 +3428,104 @@
       "topics": [
         {
           "outline": "Teachings about Divorce",
-          "verses": ["1-12"],
-          "references": ["Mark 10:1–12"]
+          "verses": [
+            "1-12"
+          ],
+          "references": [
+            "Mark 10:1–12"
+          ]
         },
         {
           "outline": "Jesus Blesses the Children",
-          "verses": ["13-15"],
-          "references": ["Mark 10:13–16", "Luke 18:15–17"]
+          "verses": [
+            "13-15"
+          ],
+          "references": [
+            "Mark 10:13–16",
+            "Luke 18:15–17"
+          ]
         },
         {
           "outline": "The Rich Young Man",
-          "verses": ["16-30"],
-          "references": ["Mark 10:17–31", "Luke 18:18–30"]
+          "verses": [
+            "16-30"
+          ],
+          "references": [
+            "Mark 10:17–31",
+            "Luke 18:18–30"
+          ]
         },
         {
           "label": "Christ and the church",
-          "verses": ["5"],
-          "references": ["Ephesians 5:31-32"]
+          "verses": [
+            "5"
+          ],
+          "references": [
+            "Ephesians 5:31-32"
+          ]
         },
         {
           "label": "Little children and the kingdom of heaven",
-          "verses": ["13-15"],
-          "references": ["Mat 18:1-14"]
+          "verses": [
+            "13-15"
+          ],
+          "references": [
+            "Mat 18:1-14"
+          ]
         },
         {
           "label": "Cannot serve two masters",
-          "verses": ["23-24"],
-          "references": ["Matthew 6:24"]
+          "verses": [
+            "23-24"
+          ],
+          "references": [
+            "Matthew 6:24"
+          ]
         },
         {
           "label": "Eternal life",
-          "verses": ["16", "29"],
-          "references": ["Matthew 25:46"]
+          "verses": [
+            "16",
+            "29"
+          ],
+          "references": [
+            "Matthew 25:46"
+          ]
         },
         {
           "label": "First last and last first",
-          "verses": ["30"],
-          "references": ["Matthew 20:16"]
+          "verses": [
+            "30"
+          ],
+          "references": [
+            "Matthew 20:16"
+          ]
         },
         {
           "highlight": "crowds",
-          "text": ["crowds"]
+          "text": [
+            "crowds"
+          ]
         },
         {
           "highlight": "Jesus",
-          "text": ["Jesus"]
+          "text": [
+            "Jesus"
+          ]
         },
         {
           "highlight": "man",
-          "text": [" man ", "man."]
+          "text": [
+            " man ",
+            "man."
+          ]
         },
         {
           "highlight": "said/replied",
-          "text": ["said", "replied"]
+          "text": [
+            "said",
+            "replied"
+          ]
         },
         {
           "highlight": "Regarding sex outside marriage",
@@ -2660,7 +3542,10 @@
         },
         {
           "highlight": "I tell you",
-          "text": ["I tell you", "truly"]
+          "text": [
+            "I tell you",
+            "truly"
+          ]
         },
         {
           "highlight": "Hope for the lost",
@@ -2671,7 +3556,9 @@
         },
         {
           "highlight": "eternal life",
-          "text": ["eternal life"]
+          "text": [
+            "eternal life"
+          ]
         },
         {
           "highlight": "Self denial",
@@ -2684,11 +3571,17 @@
         },
         {
           "highlight": "Reward",
-          "text": ["a hundredfold", "inherit eternal life"]
+          "text": [
+            "a hundredfold",
+            "inherit eternal life"
+          ]
         },
         {
           "highlight": "first last (also next ch)",
-          "text": ["first", "last"]
+          "text": [
+            "first",
+            "last"
+          ]
         }
       ]
     },
@@ -2701,40 +3594,80 @@
       "topics": [
         {
           "outline": "The Parable of the Workers",
-          "verses": ["1-16"],
+          "verses": [
+            "1-16"
+          ],
           "references": []
         },
         {
           "outline": "The Third Prediction of the Passion",
-          "verses": ["17-19"],
-          "references": ["Mark 10:32–34", "Luke 18:31–34"]
+          "verses": [
+            "17-19"
+          ],
+          "references": [
+            "Mark 10:32–34",
+            "Luke 18:31–34"
+          ]
         },
         {
           "outline": "A Mother’s Request",
-          "verses": ["20-28"],
-          "references": ["Mark 10:35–45"]
+          "verses": [
+            "20-28"
+          ],
+          "references": [
+            "Mark 10:35–45"
+          ]
         },
         {
           "outline": "The Blind Men by the Road",
-          "verses": ["29-34"],
-          "references": ["Mark 10:46–52", "Luke 18:35–43"]
+          "verses": [
+            "29-34"
+          ],
+          "references": [
+            "Mark 10:46–52",
+            "Luke 18:35–43"
+          ]
         },
-        { "label": "Humility and Trust", "verses": ["16", "26-27"] },
+        {
+          "label": "Humility and Trust",
+          "verses": [
+            "16",
+            "26-27"
+          ]
+        },
         {
           "label": "First last, last first",
-          "verses": ["1-16", "20-28"],
-          "references": ["Matthew 19:30", "Matthew 20:16"]
+          "verses": [
+            "1-16",
+            "20-28"
+          ],
+          "references": [
+            "Matthew 19:30",
+            "Matthew 20:16"
+          ]
         },
         {
           "label": "Jesus predicts His Death and Resurrection a third time",
-          "verses": ["17-19"],
-          "references": ["Mark 10:32–34", "Luke 18:31–34"]
+          "verses": [
+            "17-19"
+          ],
+          "references": [
+            "Mark 10:32–34",
+            "Luke 18:31–34"
+          ]
         },
         {
           "label": "Jesus teaches the 12 disciples how to lead",
-          "verses": ["25-28"]
+          "verses": [
+            "25-28"
+          ]
         },
-        { "label": "Jesus power over physical world", "verses": ["32-34"] },
+        {
+          "label": "Jesus power over physical world",
+          "verses": [
+            "32-34"
+          ]
+        },
         {
           "highlight": "People",
           "text": [
@@ -2756,12 +3689,26 @@
             "Lord, Son of David"
           ]
         },
-        { "highlight": "Places", "text": ["Jerusalem", "Jericho"] },
+        {
+          "highlight": "Places",
+          "text": [
+            "Jerusalem",
+            "Jericho"
+          ]
+        },
         {
           "highlight": "First/Last",
-          "text": ["first", "last"]
+          "text": [
+            "first",
+            "last"
+          ]
         },
-        { "highlight": "Crowds", "text": ["crowd"] },
+        {
+          "highlight": "Crowds",
+          "text": [
+            "crowd"
+          ]
+        },
         {
           "highlight": "Jesus predicts His Death and Resurrection a third time",
           "text": [
@@ -2783,7 +3730,9 @@
         },
         {
           "highlight": "Our hope",
-          "text": ["on the third day He will be raised to life."]
+          "text": [
+            "on the third day He will be raised to life."
+          ]
         },
         {
           "highlight": "related?",
@@ -2794,7 +3743,9 @@
         },
         {
           "highlight": "Prohecy about James and John",
-          "text": ["You will indeed drink My cup"]
+          "text": [
+            "You will indeed drink My cup"
+          ]
         },
         {
           "highlight": "Humility and Trust",
@@ -2807,26 +3758,37 @@
         },
         {
           "highlight": "Messiah",
-          "text": ["Lord, Son of David"]
+          "text": [
+            "Lord, Son of David"
+          ]
         },
         {
           "highlight": "Jesus' is willing",
-          "text": ["Jesus stopped and called them"]
+          "text": [
+            "Jesus stopped and called them"
+          ]
         },
         {
           "highlight": "Jesus' heart",
-          "text": ["Moved with compassion"]
+          "text": [
+            "Moved with compassion"
+          ]
         },
         {
           "highlight": "mercy and compassion",
-          "text": ["mercy", "compassion"]
+          "text": [
+            "mercy",
+            "compassion"
+          ]
         }
       ]
     },
     "21": [
       {
         "outline": "The Triumphal Entry",
-        "verses": ["1-11"],
+        "verses": [
+          "1-11"
+        ],
         "references": [
           "Zechariah 9:9–13",
           "Mark 11:1–11",
@@ -2836,44 +3798,83 @@
       },
       {
         "outline": "Jesus Cleanses the Temple",
-        "verses": ["12-17"],
-        "references": ["Mark 11:15–19", "Luke 19:45–48", "John 2:12–25"]
+        "verses": [
+          "12-17"
+        ],
+        "references": [
+          "Mark 11:15–19",
+          "Luke 19:45–48",
+          "John 2:12–25"
+        ]
       },
       {
         "outline": "The Barren Fig Tree",
-        "verses": ["18-22"],
-        "references": ["Mark 11:12–14", "Mark 11:20–25"]
+        "verses": [
+          "18-22"
+        ],
+        "references": [
+          "Mark 11:12–14",
+          "Mark 11:20–25"
+        ]
       },
       {
         "outline": "Jesus’ Authority Challenged",
-        "verses": ["23-27"],
-        "references": ["Mark 11:27–33", "Luke 20:1–8"]
+        "verses": [
+          "23-27"
+        ],
+        "references": [
+          "Mark 11:27–33",
+          "Luke 20:1–8"
+        ]
       },
       {
         "outline": "The Parable of the Two Sons",
-        "verses": ["28-32"],
+        "verses": [
+          "28-32"
+        ],
         "references": []
       },
       {
         "outline": "The Parable of the Wicked Tenants",
-        "verses": ["33-46"],
-        "references": ["Mark 12:1–12", "Luke 20:9–18"]
+        "verses": [
+          "33-46"
+        ],
+        "references": [
+          "Mark 12:1–12",
+          "Luke 20:9–18"
+        ]
       },
       {
         "label": "Chief Priests, Scribes, Pharisees, Elders",
-        "verses": ["15-16", "23-46"]
+        "verses": [
+          "15-16",
+          "23-46"
+        ]
       },
       {
         "label": "Chief Priests, Scribes, Pharisees, Elders",
-        "verses": ["15", "23", "45"]
+        "verses": [
+          "15",
+          "23",
+          "45"
+        ]
       },
       {
         "label": "Chief Priests, Scribes, Pharisees, Elders",
-        "verses": ["16", "24", "31", "33", "43", "45"]
+        "verses": [
+          "16",
+          "24",
+          "31",
+          "33",
+          "43",
+          "45"
+        ]
       },
       {
         "label": "Prophecy fulfilled",
-        "verses": ["4-9"]
+        "verses": [
+          "4-9"
+        ]
       },
       {
         "highlight": "People",
@@ -2921,11 +3922,18 @@
       },
       {
         "highlight": "Crowd",
-        "text": ["crowds", "massive crowd", "whole city"]
+        "text": [
+          "crowds",
+          "massive crowd",
+          "whole city"
+        ]
       },
       {
         "highlight": "I tell you",
-        "text": ["Therefore I tell you", "Truly I tell you"]
+        "text": [
+          "Therefore I tell you",
+          "Truly I tell you"
+        ]
       },
       {
         "highlight": "King",
@@ -2940,7 +3948,10 @@
       },
       {
         "highlight": "No softie",
-        "text": ["drove out", "overturned"]
+        "text": [
+          "drove out",
+          "overturned"
+        ]
       },
       {
         "highlight": "Compassion amid correction",
@@ -2950,7 +3961,12 @@
       },
       {
         "highlight": "Chief Priests, Scribes, Pharisees, Elders",
-        "text": ["Chief Priests", "Scribes", "Pharisees", "Elders"]
+        "text": [
+          "Chief Priests",
+          "Scribes",
+          "Pharisees",
+          "Elders"
+        ]
       },
       {
         "highlight": "Chief Priests, Scribes, Pharisees, Elders",
@@ -3046,72 +4062,127 @@
     "22": [
       {
         "outline": "The Parable of the Banquet",
-        "verses": ["1-14"],
-        "references": ["Luke 14:15–24"]
+        "verses": [
+          "1-14"
+        ],
+        "references": [
+          "Luke 14:15–24"
+        ]
       },
       {
         "outline": "Paying Taxes to Caesar",
-        "verses": ["15-22"],
-        "references": ["Mark 12:13–17", "Luke 20:19–26"]
+        "verses": [
+          "15-22"
+        ],
+        "references": [
+          "Mark 12:13–17",
+          "Luke 20:19–26"
+        ]
       },
       {
         "outline": "The Sadducees and the Resurrection",
-        "verses": ["23-33"],
-        "references": ["Mark 12:18–27", "Luke 20:27–40"]
+        "verses": [
+          "23-33"
+        ],
+        "references": [
+          "Mark 12:18–27",
+          "Luke 20:27–40"
+        ]
       },
       {
         "outline": "The Greatest Commandment",
-        "verses": ["34-40"],
-        "references": ["Deuteronomy 6:1–19", "Mark 12:28–34"]
+        "verses": [
+          "34-40"
+        ],
+        "references": [
+          "Deuteronomy 6:1–19",
+          "Mark 12:28–34"
+        ]
       },
       {
         "outline": "Whose Son Is the Christ?",
-        "verses": ["41-46"],
-        "references": ["Mark 12:35–37", "Luke 20:41–44"]
+        "verses": [
+          "41-46"
+        ],
+        "references": [
+          "Mark 12:35–37",
+          "Luke 20:41–44"
+        ]
       },
       {
         "label": "New Covenant",
-        "verses": ["8-9"]
+        "verses": [
+          "8-9"
+        ]
       },
       {
         "label": "Many called but few chosen",
-        "verses": ["14"]
+        "verses": [
+          "14"
+        ]
       },
       {
         "label": "Trap",
-        "verses": ["15", "17", "22"]
+        "verses": [
+          "15",
+          "17",
+          "22"
+        ]
       },
       {
         "label": "Question",
-        "verses": ["23", "31-32"]
+        "verses": [
+          "23",
+          "31-32"
+        ]
       },
       {
         "label": "Test",
-        "verses": ["35-36", "40"]
+        "verses": [
+          "35-36",
+          "40"
+        ]
       },
       {
         "label": "Trap, Question, Test",
-        "verses": ["15", "23", "35"]
+        "verses": [
+          "15",
+          "23",
+          "35"
+        ]
       },
       {
         "label": "Free, Answer, Pass",
-        "verses": ["21-22", "31-32", "40"]
+        "verses": [
+          "21-22",
+          "31-32",
+          "40"
+        ]
       },
       {
         "highlight": "Jesus",
-        "text": ["Jesus"]
+        "text": [
+          "Jesus"
+        ]
       },
       {
         "highlight": "God",
-        "text": ["God"]
+        "text": [
+          "God"
+        ]
       },
       {
         "highlight": "Wedding",
-        "text": ["wedding"]
+        "text": [
+          "wedding"
+        ]
       },
       {
         "highlight": "Pharisees, Sadducees",
-        "text": ["Pharisees", "Sadducees"]
+        "text": [
+          "Pharisees",
+          "Sadducees"
+        ]
       },
       {
         "highlight": "Trap",
@@ -3170,40 +4241,69 @@
       },
       {
         "highlight": "Crowds",
-        "text": ["crowds"]
+        "text": [
+          "crowds"
+        ]
       },
       {
         "highlight": "Tables turned",
-        "text": ["While the Pharisees were assembled, Jesus questioned them"]
+        "text": [
+          "While the Pharisees were assembled, Jesus questioned them"
+        ]
       },
       {
         "highlight": "Jesus is God",
-        "text": ["So if David calls Him ‘Lord,’ how can He be David’s son?"]
+        "text": [
+          "So if David calls Him ‘Lord,’ how can He be David’s son?"
+        ]
       }
     ],
     "23": [
       {
         "outline": "Woes to Scribes and Pharisees",
-        "verses": ["1-13", "15-36"],
-        "references": ["Luke 11:37–54"]
+        "verses": [
+          "1-13",
+          "15-36"
+        ],
+        "references": [
+          "Luke 11:37–54"
+        ]
       },
       {
         "outline": "Lament over Jerusalem",
-        "verses": ["37-39"],
-        "references": ["Luke 13:31–35"]
+        "verses": [
+          "37-39"
+        ],
+        "references": [
+          "Luke 13:31–35"
+        ]
       },
       {
         "label": "Woes",
-        "verses": ["13", "15-16", "23", "25", "27", "29"]
+        "verses": [
+          "13",
+          "15-16",
+          "23",
+          "25",
+          "27",
+          "29"
+        ]
       },
       {
         "label": "First last, last first",
-        "verses": ["11-12"],
-        "references": ["Matthew 20:16, 27"]
+        "verses": [
+          "11-12"
+        ],
+        "references": [
+          "Matthew 20:16, 27"
+        ]
       },
       {
         "highlight": "Scribes and Pharisees",
-        "text": ["Scribes", "Pharisees"]
+        "text": [
+          "Scribes",
+          "Pharisees"
+        ]
       },
       {
         "highlight": "Pride",
@@ -3237,6 +4337,7 @@
           "blind guides",
           "blind fools!",
           "blind men!",
+          "snakes!",
           "brood of vipers!"
         ]
       },
@@ -3279,7 +4380,10 @@
       },
       {
         "highlight": "I tell you ...",
-        "text": ["Truly I tell you", "I tell you"]
+        "text": [
+          "Truly I tell you",
+          "I tell you"
+        ]
       },
       {
         "highlight": "Lament for Jerusalem",
@@ -3301,76 +4405,139 @@
     "24": [
       {
         "outline": "Temple Destruction and Other Signs",
-        "verses": ["1-8"],
-        "references": ["Mark 13:1–8", "Luke 21:5–9"]
+        "verses": [
+          "1-8"
+        ],
+        "references": [
+          "Mark 13:1–8",
+          "Luke 21:5–9"
+        ]
       },
       {
         "outline": "Witnessing to All Nations",
-        "verses": ["9-14"],
-        "references": ["Mark 13:9–13", "Luke 21:10–19"]
+        "verses": [
+          "9-14"
+        ],
+        "references": [
+          "Mark 13:9–13",
+          "Luke 21:10–19"
+        ]
       },
       {
         "outline": "The Abomination of Desolation",
-        "verses": ["15-25"],
-        "references": ["Mark 13:14–23", "Luke 21:20–24"]
+        "verses": [
+          "15-25"
+        ],
+        "references": [
+          "Mark 13:14–23",
+          "Luke 21:20–24"
+        ]
       },
       {
         "outline": "The Return of the Son of Man",
-        "verses": ["26-31"],
-        "references": ["Mark 13:24–27", "Luke 21:25–28"]
+        "verses": [
+          "26-31"
+        ],
+        "references": [
+          "Mark 13:24–27",
+          "Luke 21:25–28"
+        ]
       },
       {
         "outline": "The Lesson of the Fig Tree",
-        "verses": ["32-35"],
-        "references": ["Mark 13:28–31", "Luke 21:29–33"]
+        "verses": [
+          "32-35"
+        ],
+        "references": [
+          "Mark 13:28–31",
+          "Luke 21:29–33"
+        ]
       },
       {
         "outline": "Readiness at Any Hour",
-        "verses": ["36-51"],
-        "references": ["Genesis 6:1–7", "Mark 13:32–37", "Luke 12:35–48"]
+        "verses": [
+          "36-51"
+        ],
+        "references": [
+          "Genesis 6:1–7",
+          "Mark 13:32–37",
+          "Luke 12:35–48"
+        ]
       }
     ],
     "25": [
       {
         "outline": "The Parable of the Ten Virgins",
-        "verses": ["1-13"],
+        "verses": [
+          "1-13"
+        ],
         "references": []
       },
       {
         "outline": "The Parable of the Talents",
-        "verses": ["14-30"],
-        "references": ["Luke 19:11–27"]
+        "verses": [
+          "14-30"
+        ],
+        "references": [
+          "Luke 19:11–27"
+        ]
       },
       {
         "outline": "The Sheep and the Goats",
-        "verses": ["31-46"],
+        "verses": [
+          "31-46"
+        ],
         "references": []
       }
     ],
     "26": [
       {
         "outline": "The Plot to Kill Jesus",
-        "verses": ["1-5"],
-        "references": ["Mark 14:1–2", "Luke 22:1–2", "John 11:45–57"]
+        "verses": [
+          "1-5"
+        ],
+        "references": [
+          "Mark 14:1–2",
+          "Luke 22:1–2",
+          "John 11:45–57"
+        ]
       },
       {
         "outline": "Jesus Anointed at Bethany",
-        "verses": ["6-13"],
-        "references": ["Mark 14:3–9", "Luke 7:36–50", "John 12:1–8"]
+        "verses": [
+          "6-13"
+        ],
+        "references": [
+          "Mark 14:3–9",
+          "Luke 7:36–50",
+          "John 12:1–8"
+        ]
       },
       {
         "outline": "Judas Agrees to Betray Jesus",
-        "verses": ["14-16"],
-        "references": ["Mark 14:10–11", "Luke 22:3–6"]
+        "verses": [
+          "14-16"
+        ],
+        "references": [
+          "Mark 14:10–11",
+          "Luke 22:3–6"
+        ]
       },
       {
         "outline": "Preparing the Passover",
-        "verses": ["17-19"],
-        "references": ["Mark 14:12–16", "Luke 22:7–13"]
+        "verses": [
+          "17-19"
+        ],
+        "references": [
+          "Mark 14:12–16",
+          "Luke 22:7–13"
+        ]
       },
       {
         "outline": "The Last Supper",
-        "verses": ["20-30"],
+        "verses": [
+          "20-30"
+        ],
         "references": [
           "Mark 14:17–26",
           "Luke 22:14–23",
@@ -3379,7 +4546,9 @@
       },
       {
         "outline": "Jesus Predicts Peter’s Denial",
-        "verses": ["31-35"],
+        "verses": [
+          "31-35"
+        ],
         "references": [
           "Zechariah 13:7–9",
           "Mark 14:27–31",
@@ -3389,54 +4558,101 @@
       },
       {
         "outline": "Jesus Prays at Gethsemane",
-        "verses": ["36-46"],
-        "references": ["Mark 14:32–42", "Luke 22:39–46"]
+        "verses": [
+          "36-46"
+        ],
+        "references": [
+          "Mark 14:32–42",
+          "Luke 22:39–46"
+        ]
       },
       {
         "outline": "The Betrayal of Jesus",
-        "verses": ["47-56"],
-        "references": ["Mark 14:43–52", "Luke 22:47–53", "John 18:1–14"]
+        "verses": [
+          "47-56"
+        ],
+        "references": [
+          "Mark 14:43–52",
+          "Luke 22:47–53",
+          "John 18:1–14"
+        ]
       },
       {
         "outline": "Jesus before the Sanhedrin",
-        "verses": ["57-68"],
-        "references": ["Mark 14:53–65", "Luke 22:66–71", "John 18:19–24"]
+        "verses": [
+          "57-68"
+        ],
+        "references": [
+          "Mark 14:53–65",
+          "Luke 22:66–71",
+          "John 18:19–24"
+        ]
       },
       {
         "outline": "Peter Denies Jesus",
-        "verses": ["69-75"],
-        "references": ["Mark 14:66–72", "Luke 22:54–62", "John 18:15–18"]
+        "verses": [
+          "69-75"
+        ],
+        "references": [
+          "Mark 14:66–72",
+          "Luke 22:54–62",
+          "John 18:15–18"
+        ]
       }
     ],
     "27": [
       {
         "outline": "Jesus Delivered to Pilate",
-        "verses": ["1-2"],
-        "references": ["Mark 15:1–5"]
+        "verses": [
+          "1-2"
+        ],
+        "references": [
+          "Mark 15:1–5"
+        ]
       },
       {
         "outline": "Judas Hangs Himself",
-        "verses": ["3-10"],
-        "references": ["Zechariah 11:10–17"]
+        "verses": [
+          "3-10"
+        ],
+        "references": [
+          "Zechariah 11:10–17"
+        ]
       },
       {
         "outline": "Jesus before Pilate",
-        "verses": ["11-14"],
-        "references": ["Luke 23:1–5", "John 18:28–40"]
+        "verses": [
+          "11-14"
+        ],
+        "references": [
+          "Luke 23:1–5",
+          "John 18:28–40"
+        ]
       },
       {
         "outline": "The Crowd Chooses Barabbas",
-        "verses": ["15-23"],
-        "references": ["Mark 15:6–11", "Luke 23:13–25"]
+        "verses": [
+          "15-23"
+        ],
+        "references": [
+          "Mark 15:6–11",
+          "Luke 23:13–25"
+        ]
       },
       {
         "outline": "Pilate Washes His Hands",
-        "verses": ["24-26"],
-        "references": ["Mark 15:12–15"]
+        "verses": [
+          "24-26"
+        ],
+        "references": [
+          "Mark 15:12–15"
+        ]
       },
       {
         "outline": "The Soldiers Mock Jesus",
-        "verses": ["27-31"],
+        "verses": [
+          "27-31"
+        ],
         "references": [
           "Isaiah 50:4–11",
           "Mark 15:16–20",
@@ -3446,7 +4662,9 @@
       },
       {
         "outline": "The Crucifixion",
-        "verses": ["32-44"],
+        "verses": [
+          "32-44"
+        ],
         "references": [
           "Psalms 22:1–31",
           "Mark 15:21–32",
@@ -3456,7 +4674,9 @@
       },
       {
         "outline": "The Death of Jesus",
-        "verses": ["45-56"],
+        "verses": [
+          "45-56"
+        ],
         "references": [
           "Psalms 22:1–31",
           "Mark 15:33–41",
@@ -3466,7 +4686,9 @@
       },
       {
         "outline": "The Burial of Jesus",
-        "verses": ["57-61"],
+        "verses": [
+          "57-61"
+        ],
         "references": [
           "Isaiah 53:9–12",
           "Mark 15:42–47",
@@ -3476,25 +4698,39 @@
       },
       {
         "outline": "The Guards at the Tomb",
-        "verses": ["62-66"],
+        "verses": [
+          "62-66"
+        ],
         "references": []
       }
     ],
     "28": [
       {
         "outline": "The Resurrection",
-        "verses": ["1-10"],
-        "references": ["Mark 16:1–8", "Luke 24:1–12", "John 20:1–9"]
+        "verses": [
+          "1-10"
+        ],
+        "references": [
+          "Mark 16:1–8",
+          "Luke 24:1–12",
+          "John 20:1–9"
+        ]
       },
       {
         "outline": "The Report of the Guards",
-        "verses": ["11-15"],
+        "verses": [
+          "11-15"
+        ],
         "references": []
       },
       {
         "outline": "The Great Commission",
-        "verses": ["16-20"],
-        "references": ["Mark 16:14–18"]
+        "verses": [
+          "16-20"
+        ],
+        "references": [
+          "Mark 16:14–18"
+        ]
       }
     ]
   }

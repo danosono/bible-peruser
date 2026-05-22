@@ -1028,10 +1028,15 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
     }
 
     if (topicBar) topicBar.innerHTML = "";
-    const topicFile = getTopicFilename(bookId);
-    if (!topicFile || !topicBar) return;
+    const bookWideFile = getBookWideFilename(bookId);
+    const legacyTopicFile = getTopicFilename(bookId);
+    if (!bookWideFile || !topicBar) return;
 
-    const resp = await fetch(topicFile);
+    let resp = await fetch(bookWideFile);
+    if (!resp.ok && legacyTopicFile) {
+      // Backward compatibility for older datasets that still keep book-wide data in topics.
+      resp = await fetch(legacyTopicFile);
+    }
     if (!resp.ok) {
       topicBar.innerHTML = `<div class="error">No book-wide labels found.</div>`;
       return;
@@ -1357,6 +1362,13 @@ function getTopicFilename(bid) {
   if (idx === -1) return null;
   const num = (idx + 1).toString().padStart(3, "0");
   return `data/topics/${num}_${bid}_BSB.json`;
+}
+
+function getBookWideFilename(bid) {
+  const idx = bookOrder.indexOf(bid);
+  if (idx === -1) return null;
+  const num = (idx + 1).toString().padStart(3, "0");
+  return `data/bookwide/${num}_${bid}_BSB.json`;
 }
 
 function parseChapterDeepLink() {
