@@ -2,142 +2,145 @@
   "bookWideOutline": [
     {
       "outline": "Jesus is born and starts His ministry",
-      "verses": [
-        "1:1-4:25"
-      ]
+      "verses": ["1:1-4:25"]
     },
     {
       "outline": "Sermon on the Mount",
-      "verses": [
-        "5:1-7:29"
-      ]
+      "verses": ["5:1-7:29"]
     },
     {
       "outline": "Jesus lives out the kingdom of heaven",
-      "verses": [
-        "8:1-9:38"
-      ]
+      "verses": ["8:1-9:38"]
     },
     {
       "outline": "Twelve apostles are commissioned",
-      "verses": [
-        "10:1-10:42"
-      ]
+      "verses": ["10:1-10:42"]
     },
     {
       "outline": "Responses to Jesus (John the Baptist, Pharisees, Jesus' family)",
-      "verses": [
-        "11:1-12:50"
-      ]
+      "verses": ["11:1-12:50"]
     },
     {
       "outline": "Parables of the kingdom of heaven",
-      "verses": [
-        "13:1-13:52"
-      ]
+      "verses": ["13:1-13:52"]
     },
     {
       "outline": "Identity of the King revealed",
-      "verses": [
-        "13:53-17:27"
-      ]
+      "verses": ["13:53-17:27"]
     },
     {
       "outline": "Community in the kingdom of heaven",
-      "verses": [
-        "18:1-18:35"
-      ]
+      "verses": ["18:1-18:35"]
     },
     {
       "outline": "Jesus teaches in Judea about community",
-      "verses": [
-        "19:1-20:34"
-      ]
+      "verses": ["19:1-20:34"]
     },
     {
       "outline": "The King",
-      "verses": [
-        "21:1-21:22"
-      ]
+      "verses": ["21:1-21:22"]
     },
     {
       "outline": "The King examined for blemish",
-      "verses": [
-        "21:23-23:39"
-      ]
+      "verses": ["21:23-23:39"]
     },
     {
       "outline": "Olivet Discourse",
-      "verses": [
-        "24:1-25:46"
-      ]
+      "verses": ["24:1-25:46"]
     },
     {
       "outline": "Jesus' Passover",
-      "verses": [
-        "26:1-27:66"
-      ]
+      "verses": ["26:1-27:66"]
     },
     {
       "outline": "Resurrection and Great Commission",
-      "verses": [
-        "28:1-28:20"
-      ]
+      "verses": ["28:1-28:20"]
     }
   ],
   "bookWideLabels": [
     {
       "label": "Jesus calls the disciples",
-      "verses": [
-        "4:18",
-        "4:21",
-        "9:9",
-        "10:1-10:2"
-      ],
-      "references": [
-        "Mark 1:16–20",
-        "Luke 5:2–11",
-        "Luke 5:27-32"
-      ]
+      "verses": ["4:18", "4:21", "9:9", "10:1-10:2"],
+      "references": ["Mark 1:16–20", "Luke 5:2–11", "Luke 5:27-32"]
     },
     {
       "label": "Scribes/Pharisees",
-      "verses": [
-        "9:1-9:13",
-        "9:34",
-        "12:1-12:45",
-        "15:1-15:20"
-      ]
+      "verses": ["9:1-9:13", "9:34", "12:1-12:45", "15:1-15:20"]
+    },
+    {
+      "label": "Jesus knowing their thoughts",
+      "verses": ["12:25", "22:18"]
+    },
+    {
+      "label": "Comparative judgment",
+      "verses": ["11:21-11:24", "12:41-12:42"]
+    },
+    {
+      "label": "Jesus is God",
+      "verses": ["14:33", "16:16-16:17", "26:63-26:64"]
+    },
+    {
+      "label": "Jesus seeks solitude",
+      "verses": ["14:13", "14:23", "26:36"]
+    },
+    {
+      "label": "Bread from heaven",
+      "verses": ["15:34-15:37"]
+    },
+    {
+      "label": "Little children",
+      "verses": ["18:1-18:14", "19:13-19:15"]
     }
   ],
   "bookWideHighlights": [
     {
       "highlight": "Jesus",
-      "text": [
-        "Jesus"
-      ]
+      "text": ["Jesus"]
     },
     {
       "highlight": "God",
-      "text": [
-        "God"
-      ]
+      "text": ["God"]
+    },
+    {
+      "highlight": "Life",
+      "text": ["life"]
+    },
+    {
+      "highlight": "Prophecy",
+      "text": ["fulfill", "fulfilled", "prophet", "prophecy", "prophecies"]
     },
     {
       "highlight": "Kingdom",
-      "text": [
-        "kingdom of heaven",
-        "kingdom of God"
-      ]
+      "text": ["kingdom of heaven", "kingdom of God"]
     },
     {
       "highlight": "Faith",
+      "text": [" faith", "believe", "believed", "trust"]
+    },
+    {
+      "highlight": "Scribes/Pharisees...",
       "text": [
-        "faith",
-        "believe",
-        "believed",
-        "trust"
+        "scribes",
+        " scribe",
+        "pharisees",
+        "pharisee",
+        "teachers of the law",
+        "elders",
+        "chief priest",
+        "chief priests"
       ]
+    },
+    {
+      "highlight": "Crowds",
+      "text": ["crowds", "crowd"]
+    },
+    {
+      "highlight": "It is written",
+      "text": ["it is written"]
+    },
+    {
+      "highlight": "I tell you",
+      "text": ["I tell you", "Truly I tell you"]
     }
   ]
 }
