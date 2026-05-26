@@ -18,6 +18,11 @@ jobs:
           script: |
             const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
 
+            if (!webhookUrl) {
+              core.setFailed("Missing secret: DISCORD_DEV_NOTES_WEBHOOK");
+              return;
+            }
+
             const commits = context.payload.commits || [];
             if (commits.length === 0) {
               console.log("No commits to post");
@@ -44,8 +49,16 @@ jobs:
               ]
             };
 
-            await fetch(webhookUrl, {
+            const response = await fetch(webhookUrl, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify(payload)
             });
+
+            if (!response.ok) {
+              const body = await response.text();
+              core.setFailed(`Discord webhook failed (${response.status}): ${body}`);
+              return;
+            }
+
+            console.log(`Discord webhook sent: HTTP ${response.status}`);
