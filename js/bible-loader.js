@@ -315,9 +315,9 @@ async function loadBibleChapter(
       charCount += verse.text.length;
     }
     if (window.innerWidth >= 3000) {
-      if (charCount <= 2700) columnClass = "center-1";
-      else if (charCount <= 5400) columnClass = "center-2";
-      else if (charCount <= 8000) columnClass = "center-3";
+      if (charCount <= 2000) columnClass = "center-1";
+      else if (charCount <= 3500) columnClass = "center-2";
+      else if (charCount <= 6500) columnClass = "center-3";
       else if (charCount <= 12000) columnClass = "center-4";
       else {
         columnClass = "hd-center-4";
