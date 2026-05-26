@@ -4,6 +4,9 @@
     /* Example ultra-wide rules, adjust as needed */
     font-size: 1.18em;
   }
+  .bp-header__jump {
+    left: clamp(42rem, 30vw, 64rem) !important;
+  }
   .bp-header__info {
     display: none !important;
   }
