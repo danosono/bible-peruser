@@ -140,7 +140,11 @@
     },
     {
       "highlight": "I tell you",
-      "text": ["I tell you", "Truly I tell you"]
+      "text": [
+        "I tell you",
+        "Truly I tell you",
+        "See, I have told you in advance"
+      ]
     },
     {
       "highlight": "Woe",
