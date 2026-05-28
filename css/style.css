@@ -822,6 +822,9 @@ footer {
   justify-content: center;
   font-size: 0.95em;
 }
+.note-link-icon {
+  color: #8bd3ff;
+}
 
 /* Dark mode for outline reference menu tooltip */
 .reference-menu {

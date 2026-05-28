@@ -148,6 +148,59 @@ function openReferenceMenu(icon, references, onSelectReference, onClose) {
   }, 0);
 }
 
+function openNoteMenu(icon, noteText, onClose) {
+  document.querySelectorAll(".reference-menu").forEach((m) => m.remove());
+  const menu = document.createElement("div");
+  menu.className = "reference-menu";
+  menu.style.position = "absolute";
+  menu.style.zIndex = 1000;
+  menu.style.background = "#fff";
+  menu.style.border = "1px solid #ccc";
+  menu.style.boxShadow = "0 2px 8px rgba(0,0,0,0.15)";
+  menu.style.padding = "6px 10px";
+  menu.style.borderRadius = "6px";
+  menu.style.fontSize = "14px";
+  menu.style.minWidth = "220px";
+  menu.style.maxWidth = "420px";
+  menu.style.color = "#222";
+  menu.style.cursor = "default";
+
+  const noteItem = document.createElement("div");
+  noteItem.className = "reference-menu-item";
+  noteItem.textContent = noteText;
+  noteItem.style.whiteSpace = "pre-wrap";
+  noteItem.style.cursor = "default";
+  menu.appendChild(noteItem);
+
+  const closeItem = document.createElement("div");
+  closeItem.className = "reference-menu-item";
+  closeItem.textContent = "Close";
+  closeItem.style.padding = "4px 0";
+  closeItem.style.cursor = "pointer";
+  closeItem.style.color = "#0074d9";
+  closeItem.addEventListener("click", (e) => {
+    e.stopPropagation();
+    menu.remove();
+    if (onClose) onClose();
+  });
+  menu.appendChild(document.createElement("hr"));
+  menu.appendChild(closeItem);
+
+  const rect = icon.getBoundingClientRect();
+  menu.style.left = `${rect.left + window.scrollX}px`;
+  menu.style.top = `${rect.bottom + window.scrollY + 2}px`;
+  document.body.appendChild(menu);
+
+  setTimeout(() => {
+    document.addEventListener("mousedown", function handler(e) {
+      if (!menu.contains(e.target)) {
+        menu.remove();
+        document.removeEventListener("mousedown", handler);
+      }
+    });
+  }, 0);
+}
+
 function decorateTopicButtonWithReferences(
   btn,
   label,
@@ -175,6 +228,22 @@ function decorateTopicButtonWithReferences(
   });
   btn.appendChild(linkIcon);
   btn.appendChild(document.createTextNode(` ${label}`));
+}
+
+function decorateTopicButtonWithNote(btn, noteText, helperText, onClose) {
+  if (typeof noteText !== "string" || !noteText.trim()) return;
+
+  btn.classList.add("topic-btn--with-reference");
+  const noteIcon = document.createElement("span");
+  noteIcon.className = "outline-link-icon note-link-icon";
+  noteIcon.innerHTML = "&#x1F4DD;";
+  noteIcon.title = helperText || "Show note";
+  noteIcon.style.cursor = "pointer";
+  noteIcon.addEventListener("click", (e) => {
+    e.stopPropagation();
+    openNoteMenu(noteIcon, noteText.trim(), onClose);
+  });
+  btn.appendChild(noteIcon);
 }
 
 function buildVerseTextCache(verseElements) {
@@ -535,6 +604,7 @@ async function loadBibleChapter(
             openChapterTopicReference,
             "Click to follow reference",
           );
+          decorateTopicButtonWithNote(btn, topic.note, "Click to view note");
           type = "label";
         } else if (topic.outline) {
           btn = document.createElement("button");
@@ -546,6 +616,9 @@ async function loadBibleChapter(
             openChapterTopicReference,
             "Click to follow reference",
             () => pinTopicButton(btn),
+          );
+          decorateTopicButtonWithNote(btn, topic.note, "Click to view note", () =>
+            pinTopicButton(btn),
           );
           type = "outline";
         }
@@ -1159,6 +1232,11 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
           openBookWideOutlineReference,
           "Click to open referenced book in Entire Book view",
         );
+        decorateTopicButtonWithNote(
+          btn,
+          outlineEntry.note,
+          "Click to view note",
+        );
 
         btn.onclick = () => {
           activateBookWideRangeEntry(btn, outlineEntry);
@@ -1185,6 +1263,7 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
           openBookWideOutlineReference,
           "Click to open referenced book in Entire Book view",
         );
+        decorateTopicButtonWithNote(btn, labelEntry.note, "Click to view note");
         btn.onclick = () => {
           activateBookWideRangeEntry(btn, labelEntry);
         };
