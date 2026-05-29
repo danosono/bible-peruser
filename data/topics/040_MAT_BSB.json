@@ -3285,6 +3285,10 @@
         "note": "It is obvious that there is a carcass when you see the birds circling; you don't need someone to tell you to go out and see. When Jesus returns, it will be obvious (as the lightning flashes, sun and moon darkened, stars falling, etc.)"
       },
       {
+        "label": "Perseverance",
+        "verses": ["13"]
+      },
+      {
         "highlight": "Come",
         "text": [" come", "flood came", "coming"]
       },
@@ -3318,6 +3322,44 @@
           "cold",
           "flee",
           "miserable"
+        ]
+      },
+      {
+        "highlight": "the end",
+        "text": [
+          "end of the age",
+          "end is still to come",
+          "then the end will come",
+          "great tribulation",
+          "those days will be cut short",
+          "sun will be darkened",
+          "moon will not give its light",
+          "stars will fall from the sky",
+          "heaven will be shaken",
+          "the Son of Man coming on the clouds of heaven with power and great glory",
+          "this generation",
+          "No one knows about that day or hour",
+          "the coming of the Son of Man",
+          "Son of Man will come at an hour you do not expect"
+        ]
+      },
+      {
+        "highlight": "Warning",
+        "text": [
+          "See to it that no one deceives you",
+          "see to it that you are not alarmed",
+          "they will deliver you over to be persecuted and killed",
+          "there will be great tribulation",
+          "See, I have told you in advance",
+          " when you see all these things, you will know that He is near",
+          "keep watch, because you do not know the day on which your Lord will come",
+          "you also must be ready, because the Son of Man will come at an hour you do not expect"
+        ]
+      },
+      {
+        "highlight": "Jesus is God",
+        "text": [
+          "Heaven and earth will pass away, but My words will never pass away."
         ]
       }
     ],
