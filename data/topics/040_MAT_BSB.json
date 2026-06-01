@@ -2763,729 +2763,779 @@
         }
       ]
     },
-    "21": [
-      {
-        "outline": "The Triumphal Entry",
-        "verses": ["1-11"],
-        "references": [
-          "Zechariah 9:9–13",
-          "Mark 11:1–11",
-          "Luke 19:28–40",
-          "John 12:12–19"
-        ]
-      },
-      {
-        "outline": "Jesus Cleanses the Temple",
-        "verses": ["12-17"],
-        "references": ["Mark 11:15–19", "Luke 19:45–48", "John 2:12–25"]
-      },
-      {
-        "outline": "The Barren Fig Tree",
-        "verses": ["18-22"],
-        "references": ["Mark 11:12–14", "Mark 11:20–25"]
-      },
-      {
-        "outline": "Jesus’ Authority Challenged",
-        "verses": ["23-27"],
-        "references": ["Mark 11:27–33", "Luke 20:1–8"]
-      },
-      {
-        "outline": "The Parable of the Two Sons",
-        "verses": ["28-32"],
-        "references": []
-      },
-      {
-        "outline": "The Parable of the Wicked Tenants",
-        "verses": ["33-46"],
-        "references": ["Mark 12:1–12", "Luke 20:9–18"]
-      },
-      {
-        "label": "Chief Priests, Scribes, Pharisees, Elders",
-        "verses": ["15-16", "23-46"]
-      },
-      {
-        "label": "Chief Priests, Scribes, Pharisees, Elders",
-        "verses": ["15", "23", "45"]
-      },
-      {
-        "label": "Chief Priests, Scribes, Pharisees, Elders",
-        "verses": ["16", "24", "31", "33", "43", "45"]
-      },
-      {
-        "label": "Prophecy fulfilled",
-        "verses": ["4-9"]
-      },
-      {
-        "highlight": "People",
-        "text": [
-          "Jesus",
-          "disciples",
-          "the prophet:",
-          "whole city",
-          "Son of David",
-          "all who were buying and selling",
-          "money changers",
-          "those selling doves",
-          "the blind and the lame",
-          "chief priests",
-          "scribes",
-          "the children",
-          "elders",
-          "John",
-          "the people,",
-          "tax collectors",
-          "prostitutes",
-          "God",
-          "the stone",
-          "the Lord ",
-          "the Lord,",
-          "Pharisees",
-          "crowd"
-        ]
-      },
-      {
-        "highlight": "Places",
-        "text": [
-          "Jerusalem",
-          "Bethphage",
-          "mount of olives",
-          "village",
-          "Nazareth in Galilee",
-          "temple courts",
-          "My house",
-          "temple",
-          "Bethany",
-          "the city",
-          "vineyard"
-        ]
-      },
-      {
-        "highlight": "Crowd",
-        "text": ["crowds", "massive crowd", "whole city"]
-      },
-      {
-        "highlight": "I tell you",
-        "text": ["Therefore I tell you", "Truly I tell you"]
-      },
-      {
-        "highlight": "King",
-        "text": [
-          "your King comes to you",
-          "A massive crowd spread their cloaks on the road",
-          "crowds t",
-          "shouting",
-          "Hosanna in the highest!",
-          "Hosanna to the Son of David!"
-        ]
-      },
-      {
-        "highlight": "No softie",
-        "text": ["drove out", "overturned"]
-      },
-      {
-        "highlight": "Compassion amid correction",
-        "text": [
-          "The blind and the lame came to Him at the temple, and He healed them"
-        ]
-      },
-      {
-        "highlight": "Chief Priests, Scribes, Pharisees, Elders",
-        "text": ["Chief Priests", "Scribes", "Pharisees", "Elders"]
-      },
-      {
-        "highlight": "Chief Priests, Scribes, Pharisees, Elders",
-        "text": [
-          "the chief priests and scribes were indignant",
-          "wonders",
-          "children shouting in the temple",
-          "By what authority are You doing these things?",
-          "And who gave You this authority?",
-          "They deliberated",
-          "We do not know",
-          "they knew that Jesus was speaking about them",
-          "they wanted to arrest Him"
-        ]
-      },
-      {
-        "highlight": "Chief Priests, Scribes, Pharisees, Elders",
-        "text": [
-          "Truly I tell you, the tax collectors and prostitutes are entering the kingdom of God before you",
-          "you did not repent",
-          "I tell you that the kingdom of God will be taken away from you",
-          "He who falls on this stone will be broken to pieces, but he on whom it falls will be crushed."
-        ]
-      },
-      {
-        "highlight": "Jesus is Messiah",
-        "text": [
-          "fulfill what was spoken through the prophet",
-          "riding on a donkey",
-          "“Hosanna to the Son of David!” “Blessed is He who comes in the name of the Lord!” “Hosanna in the highest!”",
-          "The stone the builders rejected has become the cornerstone."
-        ]
-      },
-      {
-        "highlight": "Jesus is God",
-        "text": [
-          ", “Hosanna to the Son of David!",
-          "From the mouths of children and infants You have ordained praise"
-        ]
-      },
-      {
-        "highlight": "words without fruit",
-        "text": [
-          "nothing on it except leaves",
-          "‘I will, sir,’ he said. But he did not go."
-        ]
-      },
-      {
-        "highlight": "Old Covenant misused",
-        "text": [
-          "buying and selling there",
-          "money changers",
-          "selling doves",
-          "My house will be called a house of prayer.’ But you are making it ‘a den of robbers.",
-          "chief priests and scribes were indignant",
-          "nothing on it except leaves",
-          "I will, sir,’ he said. But he did not go",
-          "John came to you in the way of righteousness, and you did not believe him",
-          "But the tenants seized his servants. They beat one, killed another, and stoned a third.",
-          "the tenants saw the son",
-          "they seized him and threw him out of the vineyard and killed him",
-          "The stone the builders rejected"
-        ]
-      },
-      {
-        "highlight": "New Covenant arrives",
-        "text": [
-          "fulfill what was spoken through the prophet",
-          "John’s baptism",
-          "See, your King comes to you, gentle and riding on a donkey, on a colt, the foal of a donkey.",
-          "sent his son",
-          "other tenants",
-          "has become the cornerstone",
-          " the kingdom of God will be taken away from you and given to a people who will produce its fruit"
-        ]
-      },
-      {
-        "highlight": "Praise",
-        "text": [
-          "A massive crowd spread their cloaks on the road",
-          "The crowds that went ahead of Him and those that followed were shouting: “Hosanna to the Son of David!” “Blessed is He who comes in the name of the Lord!” “Hosanna in the highest!”",
-          "children shouting in the temple courts, “Hosanna to the Son of David!”"
-        ]
-      },
-      {
-        "highlight": "Opposition",
-        "text": [
-          "But the chief priests and scribes were indignant",
-          "Do You hear what these children are saying?"
-        ]
-      }
-    ],
-    "22": [
-      {
-        "outline": "The Parable of the Banquet",
-        "verses": ["1-14"],
-        "references": ["Luke 14:15–24"]
-      },
-      {
-        "outline": "Paying Taxes to Caesar",
-        "verses": ["15-22"],
-        "references": ["Mark 12:13–17", "Luke 20:19–26"]
-      },
-      {
-        "outline": "The Sadducees and the Resurrection",
-        "verses": ["23-33"],
-        "references": ["Mark 12:18–27", "Luke 20:27–40"]
-      },
-      {
-        "outline": "The Greatest Commandment",
-        "verses": ["34-40"],
-        "references": ["Deuteronomy 6:1–19", "Mark 12:28–34"]
-      },
-      {
-        "outline": "Whose Son Is the Christ?",
-        "verses": ["41-46"],
-        "references": ["Mark 12:35–37", "Luke 20:41–44"]
-      },
-      {
-        "label": "New Covenant",
-        "verses": ["8-9"]
-      },
-      {
-        "label": "Many called but few chosen",
-        "verses": ["14"]
-      },
-      {
-        "label": "Trap",
-        "verses": ["15", "17", "22"]
-      },
-      {
-        "label": "Question",
-        "verses": ["23", "31-32"]
-      },
-      {
-        "label": "Test",
-        "verses": ["35-36", "40"]
-      },
-      {
-        "label": "Trap, Question, Test",
-        "verses": ["15", "23", "35"]
-      },
-      {
-        "label": "Free, Answer, Pass",
-        "verses": ["21-22", "31-32", "40"]
-      },
-      {
-        "highlight": "Jesus",
-        "text": ["Jesus"]
-      },
-      {
-        "highlight": "God",
-        "text": ["God"]
-      },
-      {
-        "highlight": "Wedding",
-        "text": ["wedding"]
-      },
-      {
-        "highlight": "Pharisees, Sadducees",
-        "text": ["Pharisees", "Sadducees"]
-      },
-      {
-        "highlight": "Trap",
-        "text": [
-          " Pharisees went out and conspired to trap Jesus in His words.",
-          "trap Jesus in His words",
-          "Is it lawful to pay taxes to Caesar",
-          "Give to Caesar what is Caesar’s, and to God what is God’s.",
-          "they were amazed",
-          "left Him and went away"
-        ]
-      },
-      {
-        "highlight": "Question",
-        "text": [
-          "That same day the Sadducees",
-          "resurrection",
-          "questioned Him",
-          "He is not the God of the dead, but of the living.",
-          "astonished "
-        ]
-      },
-      {
-        "highlight": "Test",
-        "text": [
-          "tested Him",
-          "which commandment is the greatest",
-          "Love the Lord your God",
-          "Love your neighbor",
-          "All the Law and the Prophets hang on these two commandments."
-        ]
-      },
-      {
-        "highlight": "Trap, Question, Test",
-        "text": [
-          "Pharisees went out and conspired to trap Jesus",
-          "is it lawful to pay taxes",
-          "Sadducees, w",
-          "questioned Him",
-          "In the resurrection, then, whose wife will she be",
-          "an expert in the law, tested Him",
-          "which commandment is the greatest"
-        ]
-      },
-      {
-        "highlight": "Free, Answer, Pass",
-        "text": [
-          "Give to Caesar what is Caesar’s, and to God what is God’s.",
-          "they were amazed. So they left Him and went away",
-          "He is not the God of the dead, but of the living.",
-          "When the crowds heard this, they were astonished at His teaching.",
-          "Love the Lord your God with all your heart and with all your soul and with all your mind.",
-          "Love your neighbor as yourself.",
-          "All the Law and the Prophets hang on these two commandments."
-        ]
-      },
-      {
-        "highlight": "Crowds",
-        "text": ["crowds"]
-      },
-      {
-        "highlight": "Tables turned",
-        "text": ["While the Pharisees were assembled, Jesus questioned them"]
-      },
-      {
-        "highlight": "Jesus is God",
-        "text": ["So if David calls Him ‘Lord,’ how can He be David’s son?"]
-      }
-    ],
-    "23": [
-      {
-        "outline": "Woes to Scribes and Pharisees",
-        "verses": ["1-13", "15-36"],
-        "references": ["Luke 11:37–54"]
-      },
-      {
-        "outline": "Lament over Jerusalem",
-        "verses": ["37-39"],
-        "references": ["Luke 13:31–35"]
-      },
-      {
-        "label": "Woes",
-        "verses": ["13", "15-16", "23", "25", "27", "29"]
-      },
-      {
-        "label": "First last, last first",
-        "verses": ["11-12"],
-        "references": ["Matthew 20:16, 27"]
-      },
-      {
-        "highlight": "Scribes and Pharisees",
-        "text": ["Scribes", "Pharisees"]
-      },
-      {
-        "highlight": "Pride",
-        "text": [
-          "All their deeds are done for men to see",
-          "love the places of honor",
-          "chief seats",
-          "greetings",
-          "title",
-          "whoever exalts himself will be humbled"
-        ]
-      },
-      {
-        "highlight": "Humility",
-        "text": [
-          "The greatest among you shall be your servant.",
-          "whoever humbles himself will be exalted"
-        ]
-      },
-      {
-        "highlight": "Woes",
-        "text": [
-          "Woe to you, scribes and Pharisees, you hypocrites!",
-          "Woe to you, blind guides!"
-        ]
-      },
-      {
-        "highlight": "Woe to you",
-        "text": [
-          "hypocrites!",
-          "blind guides",
-          "blind fools!",
-          "blind men!",
-          "snakes!",
-          "brood of vipers!"
-        ]
-      },
-      {
-        "highlight": "Woe to you",
-        "text": [
-          "they do not practice what they preach",
-          "tie up heavy, burdensome loads and lay them on men’s shoulders",
-          "shut the kingdom of heaven",
-          "not willing",
-          "All their deeds are done for men to see",
-          "love the places of honor",
-          "chief seats",
-          "greetings",
-          "title",
-          "make him twice as much a son of hell",
-          "! you say",
-          "And you say",
-          "disregarded the weightier matters of the law: justice, mercy, and faithfulness",
-          "You strain out a gnat but swallow a camel",
-          "full of greed and self-indulgence",
-          "ike whitewashed tombs",
-          "full of hypocrisy and wickedness",
-          "you testify against yourselves",
-          "you will kill and crucify",
-          "you will flog",
-          "and persecute"
-        ]
-      },
-      {
-        "highlight": "Judgement",
-        "text": [
-          "woe",
-          "How will you escape the sentence of hell?",
-          "upon you will come all the righteous blood shed on earth",
-          "all these things will come upon this generation",
-          "you were unwilling!",
-          "desolate"
-        ]
-      },
-      {
-        "highlight": "I tell you ...",
-        "text": ["Truly I tell you", "I tell you"]
-      },
-      {
-        "highlight": "Lament for Jerusalem",
-        "text": [
-          "O Jerusalem, Jerusalem",
-          "you who kill the prophets and stone those sent to you",
-          "how often I have longed to gather your children together",
-          "but you were unwilling!"
-        ]
-      },
-      {
-        "highlight": "Future Restoration for Jerusalem",
-        "text": [
-          "see Me",
-          "you say, ‘Blessed is He who comes in the name of the Lord.’"
-        ]
-      }
-    ],
-    "24": [
-      {
-        "outline": "Temple Destruction and Other Signs",
-        "verses": ["1-8"],
-        "references": ["Mark 13:1–8", "Luke 21:5–9"]
-      },
-      {
-        "outline": "Witnessing to All Nations",
-        "verses": ["9-14"],
-        "references": ["Mark 13:9–13", "Luke 21:10–19"]
-      },
-      {
-        "outline": "The Abomination of Desolation",
-        "verses": ["15-25"],
-        "references": ["Mark 13:14–23", "Luke 21:20–24"]
-      },
-      {
-        "outline": "The Return of the Son of Man",
-        "verses": ["26-31"],
-        "references": ["Mark 13:24–27", "Luke 21:25–28"]
-      },
-      {
-        "outline": "The Lesson of the Fig Tree",
-        "verses": ["32-35"],
-        "references": ["Mark 13:28–31", "Luke 21:29–33"]
-      },
-      {
-        "outline": "Readiness at Any Hour",
-        "verses": ["36-51"],
-        "references": ["Genesis 6:1–7", "Mark 13:32–37", "Luke 12:35–48"]
-      },
-      {
-        "label": "False prophets. False christ. Deception",
-        "verses": ["4-5", "11", "15", "23-24", "26"],
-        "note": "Interesting that the real Christ and a real prophet are prophecying about false prophets and false christs"
-      },
-      {
-        "label": "Real prophets/prophecy",
-        "verses": ["2", "8", "14-15", "25", "27-35", "39-41"]
-      },
-      {
-        "label": "carcass / vultures",
-        "verses": ["28"],
-        "note": "It is obvious that there is a carcass when you see the birds circling; you don't need someone to tell you to go out and see. When Jesus returns, it will be obvious (as the lightning flashes, sun and moon darkened, stars falling, etc.)"
-      },
-      {
-        "label": "Perseverance",
-        "verses": ["13"]
-      },
-      {
-        "highlight": "Come",
-        "text": [" come", "flood came", "coming"]
-      },
-      {
-        "highlight": "Son of Man",
-        "text": ["Son of man", " son,"]
-      },
-      {
-        "highlight": "I tell you",
-        "text": ["Truly I tell you"]
-      },
-      {
-        "highlight": "deceivers",
-        "text": ["deceive", "deceives", "false"]
-      },
-      {
-        "highlight": "Tribulation",
-        "text": [
-          "persecuted",
-          "killed",
-          "hated",
-          "tribulation",
-          "great tribulation",
-          "abomination of desolation",
-          "darkened",
-          "fall",
-          "shaken",
-          "betray",
-          "hate",
-          "multiplication of wickedness",
-          "cold",
-          "flee",
-          "miserable"
-        ]
-      },
-      {
-        "highlight": "the end",
-        "text": [
-          "end of the age",
-          "end is still to come",
-          "then the end will come",
-          "great tribulation",
-          "those days will be cut short",
-          "sun will be darkened",
-          "moon will not give its light",
-          "stars will fall from the sky",
-          "heaven will be shaken",
-          "the Son of Man coming on the clouds of heaven with power and great glory",
-          "this generation",
-          "No one knows about that day or hour",
-          "the coming of the Son of Man",
-          "Son of Man will come at an hour you do not expect"
-        ]
-      },
-      {
-        "highlight": "Warning",
-        "text": [
-          "See to it that no one deceives you",
-          "see to it that you are not alarmed",
-          "they will deliver you over to be persecuted and killed",
-          "there will be great tribulation",
-          "See, I have told you in advance",
-          " when you see all these things, you will know that He is near",
-          "keep watch, because you do not know the day on which your Lord will come",
-          "you also must be ready, because the Son of Man will come at an hour you do not expect"
-        ]
-      },
-      {
-        "highlight": "dark",
-        "text": [
-          "against",
-          "famines",
-          "earthquakes",
-          "persecuted",
-          "killed",
-          "hated",
-          "hate",
-          "deceive many",
-          "multiplication of wickedness",
-          "love of most will grow cold",
-          "betray",
-          "hate",
-          "miserable",
-          "great tribulation, unseen",
-          "perform great signs and wonders to deceive",
-          "sun will be darkened",
-          "weeping and gnashing of teeth"
-        ]
-      },
-      {
-        "highlight": "Light",
-        "text": [
-          "the one who perseveres to the end will be saved",
-          "gospel of the kingdom will be preached in all the world",
-          "those days will be cut short",
-          " just as the lightning comes from the east and flashes as far as the west, so will be the coming of the Son of Man",
-          "sign of the Son of Man will appear in heaven",
-          "Son of Man coming on the clouds of heaven with power and great glory",
-          "He will send out His angels with a loud trumpet call, and they will gather His elect",
-          "Heaven and earth will pass away, but My words will never pass away",
-          "keep watch",
-          "your Lord will come"
-        ]
-      },
-      {
-        "highlight": "Jesus is God",
-        "text": [
-          "Heaven and earth will pass away, but My words will never pass away."
-        ]
-      }
-    ],
-    "25": [
-      {
-        "outline": "The Parable of the Ten Virgins",
-        "verses": ["1-13"],
-        "references": []
-      },
-      {
-        "outline": "The Parable of the Talents",
-        "verses": ["14-30"],
-        "references": ["Luke 19:11–27"]
-      },
-      {
-        "outline": "The Sheep and the Goats",
-        "verses": ["31-46"],
-        "references": []
-      },
-      {
-        "label": "Arrival, Return",
-        "verses": ["10", "19", "31"]
-      },
-      {
-        "highlight": "Truly I tell you",
-        "text": ["truly I tell you"]
-      }
-    ],
-    "26": [
-      {
-        "outline": "The Plot to Kill Jesus",
-        "verses": ["1-5"],
-        "references": ["Mark 14:1–2", "Luke 22:1–2", "John 11:45–57"]
-      },
-      {
-        "outline": "Jesus Anointed at Bethany",
-        "verses": ["6-13"],
-        "references": ["Mark 14:3–9", "Luke 7:36–50", "John 12:1–8"]
-      },
-      {
-        "outline": "Judas Agrees to Betray Jesus",
-        "verses": ["14-16"],
-        "references": ["Mark 14:10–11", "Luke 22:3–6"]
-      },
-      {
-        "outline": "Preparing the Passover",
-        "verses": ["17-19"],
-        "references": ["Mark 14:12–16", "Luke 22:7–13"]
-      },
-      {
-        "outline": "The Last Supper",
-        "verses": ["20-30"],
-        "references": [
-          "Mark 14:17–26",
-          "Luke 22:14–23",
-          "1 Corinthians 11:17–34"
-        ]
-      },
-      {
-        "outline": "Jesus Predicts Peter’s Denial",
-        "verses": ["31-35"],
-        "references": [
-          "Zechariah 13:7–9",
-          "Mark 14:27–31",
-          "Luke 22:31–38",
-          "John 13:36–38"
-        ]
-      },
-      {
-        "outline": "Jesus Prays at Gethsemane",
-        "verses": ["36-46"],
-        "references": ["Mark 14:32–42", "Luke 22:39–46"]
-      },
-      {
-        "outline": "The Betrayal of Jesus",
-        "verses": ["47-56"],
-        "references": ["Mark 14:43–52", "Luke 22:47–53", "John 18:1–14"]
-      },
-      {
-        "outline": "Jesus before the Sanhedrin",
-        "verses": ["57-68"],
-        "references": ["Mark 14:53–65", "Luke 22:66–71", "John 18:19–24"]
-      },
-      {
-        "outline": "Peter Denies Jesus",
-        "verses": ["69-75"],
-        "references": ["Mark 14:66–72", "Luke 22:54–62", "John 18:15–18"]
-      }
-    ],
+    "21": {
+      "meta": {
+        "Context": "Jesus' entering Jerusalem on a donkey with praise and cleansing the temple sets in motion the events leading to Jesus’ crucifixion and resurrection.",
+        "Genre": "Gospels",
+        "Audience": "Jews, others"
+      },
+      "topics": [
+        {
+          "outline": "The Triumphal Entry",
+          "verses": ["1-11"],
+          "references": [
+            "Zechariah 9:9–13",
+            "Mark 11:1–11",
+            "Luke 19:28–40",
+            "John 12:12–19"
+          ]
+        },
+        {
+          "outline": "Jesus Cleanses the Temple",
+          "verses": ["12-17"],
+          "references": ["Mark 11:15–19", "Luke 19:45–48", "John 2:12–25"]
+        },
+        {
+          "outline": "The Barren Fig Tree",
+          "verses": ["18-22"],
+          "references": ["Mark 11:12–14", "Mark 11:20–25"]
+        },
+        {
+          "outline": "Jesus’ Authority Challenged",
+          "verses": ["23-27"],
+          "references": ["Mark 11:27–33", "Luke 20:1–8"]
+        },
+        {
+          "outline": "The Parable of the Two Sons",
+          "verses": ["28-32"],
+          "references": []
+        },
+        {
+          "outline": "The Parable of the Wicked Tenants",
+          "verses": ["33-46"],
+          "references": ["Mark 12:1–12", "Luke 20:9–18"]
+        },
+        {
+          "label": "Chief Priests, Scribes, Pharisees, Elders",
+          "verses": ["15-16", "23-46"]
+        },
+        {
+          "label": "Chief Priests, Scribes, Pharisees, Elders",
+          "verses": ["15", "23", "45"]
+        },
+        {
+          "label": "Chief Priests, Scribes, Pharisees, Elders",
+          "verses": ["16", "24", "31", "33", "43", "45"]
+        },
+        {
+          "label": "Prophecy fulfilled",
+          "verses": ["4-9"]
+        },
+        {
+          "highlight": "People",
+          "text": [
+            "Jesus",
+            "disciples",
+            "the prophet:",
+            "whole city",
+            "Son of David",
+            "all who were buying and selling",
+            "money changers",
+            "those selling doves",
+            "the blind and the lame",
+            "chief priests",
+            "scribes",
+            "the children",
+            "elders",
+            "John",
+            "the people,",
+            "tax collectors",
+            "prostitutes",
+            "God",
+            "the stone",
+            "the Lord ",
+            "the Lord,",
+            "Pharisees",
+            "crowd"
+          ]
+        },
+        {
+          "highlight": "Places",
+          "text": [
+            "Jerusalem",
+            "Bethphage",
+            "mount of olives",
+            "village",
+            "Nazareth in Galilee",
+            "temple courts",
+            "My house",
+            "temple",
+            "Bethany",
+            "the city",
+            "vineyard"
+          ]
+        },
+        {
+          "highlight": "Crowd",
+          "text": ["crowds", "massive crowd", "whole city"]
+        },
+        {
+          "highlight": "I tell you",
+          "text": ["Therefore I tell you", "Truly I tell you"]
+        },
+        {
+          "highlight": "King",
+          "text": [
+            "your King comes to you",
+            "A massive crowd spread their cloaks on the road",
+            "crowds t",
+            "shouting",
+            "Hosanna in the highest!",
+            "Hosanna to the Son of David!"
+          ]
+        },
+        {
+          "highlight": "No softie",
+          "text": ["drove out", "overturned"]
+        },
+        {
+          "highlight": "Compassion amid correction",
+          "text": [
+            "The blind and the lame came to Him at the temple, and He healed them"
+          ]
+        },
+        {
+          "highlight": "Chief Priests, Scribes, Pharisees, Elders",
+          "text": ["Chief Priests", "Scribes", "Pharisees", "Elders"]
+        },
+        {
+          "highlight": "Chief Priests, Scribes, Pharisees, Elders",
+          "text": [
+            "the chief priests and scribes were indignant",
+            "wonders",
+            "children shouting in the temple",
+            "By what authority are You doing these things?",
+            "And who gave You this authority?",
+            "They deliberated",
+            "We do not know",
+            "they knew that Jesus was speaking about them",
+            "they wanted to arrest Him"
+          ]
+        },
+        {
+          "highlight": "Chief Priests, Scribes, Pharisees, Elders",
+          "text": [
+            "Truly I tell you, the tax collectors and prostitutes are entering the kingdom of God before you",
+            "you did not repent",
+            "I tell you that the kingdom of God will be taken away from you",
+            "He who falls on this stone will be broken to pieces, but he on whom it falls will be crushed."
+          ]
+        },
+        {
+          "highlight": "Jesus is Messiah",
+          "text": [
+            "fulfill what was spoken through the prophet",
+            "riding on a donkey",
+            "“Hosanna to the Son of David!” “Blessed is He who comes in the name of the Lord!” “Hosanna in the highest!”",
+            "The stone the builders rejected has become the cornerstone."
+          ]
+        },
+        {
+          "highlight": "Jesus is God",
+          "text": [
+            ", “Hosanna to the Son of David!",
+            "From the mouths of children and infants You have ordained praise"
+          ]
+        },
+        {
+          "highlight": "words without fruit",
+          "text": [
+            "nothing on it except leaves",
+            "‘I will, sir,’ he said. But he did not go."
+          ]
+        },
+        {
+          "highlight": "Old Covenant misused",
+          "text": [
+            "buying and selling there",
+            "money changers",
+            "selling doves",
+            "My house will be called a house of prayer.’ But you are making it ‘a den of robbers.",
+            "chief priests and scribes were indignant",
+            "nothing on it except leaves",
+            "I will, sir,’ he said. But he did not go",
+            "John came to you in the way of righteousness, and you did not believe him",
+            "But the tenants seized his servants. They beat one, killed another, and stoned a third.",
+            "the tenants saw the son",
+            "they seized him and threw him out of the vineyard and killed him",
+            "The stone the builders rejected"
+          ]
+        },
+        {
+          "highlight": "New Covenant arrives",
+          "text": [
+            "fulfill what was spoken through the prophet",
+            "John’s baptism",
+            "See, your King comes to you, gentle and riding on a donkey, on a colt, the foal of a donkey.",
+            "sent his son",
+            "other tenants",
+            "has become the cornerstone",
+            " the kingdom of God will be taken away from you and given to a people who will produce its fruit"
+          ]
+        },
+        {
+          "highlight": "Praise",
+          "text": [
+            "A massive crowd spread their cloaks on the road",
+            "The crowds that went ahead of Him and those that followed were shouting: “Hosanna to the Son of David!” “Blessed is He who comes in the name of the Lord!” “Hosanna in the highest!”",
+            "children shouting in the temple courts, “Hosanna to the Son of David!”"
+          ]
+        },
+        {
+          "highlight": "Opposition",
+          "text": [
+            "But the chief priests and scribes were indignant",
+            "Do You hear what these children are saying?"
+          ]
+        }
+      ]
+    },
+    "22": {
+      "meta": {
+        "Context": "Jesus confronts the Pharisees and Sadducees.",
+        "Genre": "Gospels",
+        "Audience": "Jews, others"
+      },
+      "topics": [
+        {
+          "outline": "The Parable of the Banquet",
+          "verses": ["1-14"],
+          "references": ["Luke 14:15–24"]
+        },
+        {
+          "outline": "Paying Taxes to Caesar",
+          "verses": ["15-22"],
+          "references": ["Mark 12:13–17", "Luke 20:19–26"]
+        },
+        {
+          "outline": "The Sadducees and the Resurrection",
+          "verses": ["23-33"],
+          "references": ["Mark 12:18–27", "Luke 20:27–40"]
+        },
+        {
+          "outline": "The Greatest Commandment",
+          "verses": ["34-40"],
+          "references": ["Deuteronomy 6:1–19", "Mark 12:28–34"]
+        },
+        {
+          "outline": "Whose Son Is the Christ?",
+          "verses": ["41-46"],
+          "references": ["Mark 12:35–37", "Luke 20:41–44"]
+        },
+        {
+          "label": "New Covenant",
+          "verses": ["8-9"]
+        },
+        {
+          "label": "Many called but few chosen",
+          "verses": ["14"]
+        },
+        {
+          "label": "Trap",
+          "verses": ["15", "17", "22"]
+        },
+        {
+          "label": "Question",
+          "verses": ["23", "31-32"]
+        },
+        {
+          "label": "Test",
+          "verses": ["35-36", "40"]
+        },
+        {
+          "label": "Trap, Question, Test",
+          "verses": ["15", "23", "35"]
+        },
+        {
+          "label": "Free, Answer, Pass",
+          "verses": ["21-22", "31-32", "40"]
+        },
+        {
+          "highlight": "Jesus",
+          "text": ["Jesus"]
+        },
+        {
+          "highlight": "God",
+          "text": ["God"]
+        },
+        {
+          "highlight": "Wedding",
+          "text": ["wedding"]
+        },
+        {
+          "highlight": "Pharisees, Sadducees",
+          "text": ["Pharisees", "Sadducees"]
+        },
+        {
+          "highlight": "Trap",
+          "text": [
+            " Pharisees went out and conspired to trap Jesus in His words.",
+            "trap Jesus in His words",
+            "Is it lawful to pay taxes to Caesar",
+            "Give to Caesar what is Caesar’s, and to God what is God’s.",
+            "they were amazed",
+            "left Him and went away"
+          ]
+        },
+        {
+          "highlight": "Question",
+          "text": [
+            "That same day the Sadducees",
+            "resurrection",
+            "questioned Him",
+            "He is not the God of the dead, but of the living.",
+            "astonished "
+          ]
+        },
+        {
+          "highlight": "Test",
+          "text": [
+            "tested Him",
+            "which commandment is the greatest",
+            "Love the Lord your God",
+            "Love your neighbor",
+            "All the Law and the Prophets hang on these two commandments."
+          ]
+        },
+        {
+          "highlight": "Trap, Question, Test",
+          "text": [
+            "Pharisees went out and conspired to trap Jesus",
+            "is it lawful to pay taxes",
+            "Sadducees, w",
+            "questioned Him",
+            "In the resurrection, then, whose wife will she be",
+            "an expert in the law, tested Him",
+            "which commandment is the greatest"
+          ]
+        },
+        {
+          "highlight": "Free, Answer, Pass",
+          "text": [
+            "Give to Caesar what is Caesar’s, and to God what is God’s.",
+            "they were amazed. So they left Him and went away",
+            "He is not the God of the dead, but of the living.",
+            "When the crowds heard this, they were astonished at His teaching.",
+            "Love the Lord your God with all your heart and with all your soul and with all your mind.",
+            "Love your neighbor as yourself.",
+            "All the Law and the Prophets hang on these two commandments."
+          ]
+        },
+        {
+          "highlight": "Crowds",
+          "text": ["crowds"]
+        },
+        {
+          "highlight": "Tables turned",
+          "text": ["While the Pharisees were assembled, Jesus questioned them"]
+        },
+        {
+          "highlight": "Jesus is God",
+          "text": ["So if David calls Him ‘Lord,’ how can He be David’s son?"]
+        }
+      ]
+    },
+    "23": {
+      "meta": {
+        "Context": "Jesus pronounces woes on the Pharisees and Scribes, and laments over Jerusalem’s rejection of the prophets and Jesus Himself.",
+        "Genre": "Gospels",
+        "Audience": "Jews, others"
+      },
+      "topics": [
+        {
+          "outline": "Woes to Scribes and Pharisees",
+          "verses": ["1-13", "15-36"],
+          "references": ["Luke 11:37–54"]
+        },
+        {
+          "outline": "Lament over Jerusalem",
+          "verses": ["37-39"],
+          "references": ["Luke 13:31–35"]
+        },
+        {
+          "label": "Woes",
+          "verses": ["13", "15-16", "23", "25", "27", "29"]
+        },
+        {
+          "label": "First last, last first",
+          "verses": ["11-12"],
+          "references": ["Matthew 20:16, 27"]
+        },
+        {
+          "highlight": "Scribes and Pharisees",
+          "text": ["Scribes", "Pharisees"]
+        },
+        {
+          "highlight": "Pride",
+          "text": [
+            "All their deeds are done for men to see",
+            "love the places of honor",
+            "chief seats",
+            "greetings",
+            "title",
+            "whoever exalts himself will be humbled"
+          ]
+        },
+        {
+          "highlight": "Humility",
+          "text": [
+            "The greatest among you shall be your servant.",
+            "whoever humbles himself will be exalted"
+          ]
+        },
+        {
+          "highlight": "Woes",
+          "text": [
+            "Woe to you, scribes and Pharisees, you hypocrites!",
+            "Woe to you, blind guides!"
+          ]
+        },
+        {
+          "highlight": "Woe to you",
+          "text": [
+            "hypocrites!",
+            "blind guides",
+            "blind fools!",
+            "blind men!",
+            "snakes!",
+            "brood of vipers!"
+          ]
+        },
+        {
+          "highlight": "Woe to you",
+          "text": [
+            "they do not practice what they preach",
+            "tie up heavy, burdensome loads and lay them on men’s shoulders",
+            "shut the kingdom of heaven",
+            "not willing",
+            "All their deeds are done for men to see",
+            "love the places of honor",
+            "chief seats",
+            "greetings",
+            "title",
+            "make him twice as much a son of hell",
+            "! you say",
+            "And you say",
+            "disregarded the weightier matters of the law: justice, mercy, and faithfulness",
+            "You strain out a gnat but swallow a camel",
+            "full of greed and self-indulgence",
+            "ike whitewashed tombs",
+            "full of hypocrisy and wickedness",
+            "you testify against yourselves",
+            "you will kill and crucify",
+            "you will flog",
+            "and persecute"
+          ]
+        },
+        {
+          "highlight": "Judgement",
+          "text": [
+            "woe",
+            "How will you escape the sentence of hell?",
+            "upon you will come all the righteous blood shed on earth",
+            "all these things will come upon this generation",
+            "you were unwilling!",
+            "desolate"
+          ]
+        },
+        {
+          "highlight": "I tell you ...",
+          "text": ["Truly I tell you", "I tell you"]
+        },
+        {
+          "highlight": "Lament for Jerusalem",
+          "text": [
+            "O Jerusalem, Jerusalem",
+            "you who kill the prophets and stone those sent to you",
+            "how often I have longed to gather your children together",
+            "but you were unwilling!"
+          ]
+        },
+        {
+          "highlight": "Future Restoration for Jerusalem",
+          "text": [
+            "see Me",
+            "you say, ‘Blessed is He who comes in the name of the Lord.’"
+          ]
+        }
+      ]
+    },
+    "24": {
+      "meta": {
+        "Context": "Jesus predicts the destruction of the temple and the end times. Keep watch.",
+        "Genre": "Gospels",
+        "Audience": "Jews, others"
+      },
+      "topics": [
+        {
+          "outline": "Temple Destruction and Other Signs",
+          "verses": ["1-8"],
+          "references": ["Mark 13:1–8", "Luke 21:5–9"]
+        },
+        {
+          "outline": "Witnessing to All Nations",
+          "verses": ["9-14"],
+          "references": ["Mark 13:9–13", "Luke 21:10–19"]
+        },
+        {
+          "outline": "The Abomination of Desolation",
+          "verses": ["15-25"],
+          "references": ["Mark 13:14–23", "Luke 21:20–24"]
+        },
+        {
+          "outline": "The Return of the Son of Man",
+          "verses": ["26-31"],
+          "references": ["Mark 13:24–27", "Luke 21:25–28"]
+        },
+        {
+          "outline": "The Lesson of the Fig Tree",
+          "verses": ["32-35"],
+          "references": ["Mark 13:28–31", "Luke 21:29–33"]
+        },
+        {
+          "outline": "Readiness at Any Hour",
+          "verses": ["36-51"],
+          "references": ["Genesis 6:1–7", "Mark 13:32–37", "Luke 12:35–48"]
+        },
+        {
+          "label": "False prophets. False christ. Deception",
+          "verses": ["4-5", "11", "15", "23-24", "26"],
+          "note": "Interesting that the real Christ and a real prophet are prophecying about false prophets and false christs"
+        },
+        {
+          "label": "Real prophets/prophecy",
+          "verses": ["2", "8", "14-15", "25", "27-35", "39-41"]
+        },
+        {
+          "label": "carcass / vultures",
+          "verses": ["28"],
+          "note": "It is obvious that there is a carcass when you see the birds circling; you don't need someone to tell you to go out and see. When Jesus returns, it will be obvious (as the lightning flashes, sun and moon darkened, stars falling, etc.)"
+        },
+        {
+          "label": "Perseverance",
+          "verses": ["13"]
+        },
+        {
+          "highlight": "Come",
+          "text": [" come", "flood came", "coming"]
+        },
+        {
+          "highlight": "Son of Man",
+          "text": ["Son of man", " son,"]
+        },
+        {
+          "highlight": "I tell you",
+          "text": ["Truly I tell you"]
+        },
+        {
+          "highlight": "deceivers",
+          "text": ["deceive", "deceives", "false"]
+        },
+        {
+          "highlight": "Tribulation",
+          "text": [
+            "persecuted",
+            "killed",
+            "hated",
+            "tribulation",
+            "great tribulation",
+            "abomination of desolation",
+            "darkened",
+            "fall",
+            "shaken",
+            "betray",
+            "hate",
+            "multiplication of wickedness",
+            "cold",
+            "flee",
+            "miserable"
+          ]
+        },
+        {
+          "highlight": "the end",
+          "text": [
+            "end of the age",
+            "end is still to come",
+            "then the end will come",
+            "great tribulation",
+            "those days will be cut short",
+            "sun will be darkened",
+            "moon will not give its light",
+            "stars will fall from the sky",
+            "heaven will be shaken",
+            "the Son of Man coming on the clouds of heaven with power and great glory",
+            "this generation",
+            "No one knows about that day or hour",
+            "the coming of the Son of Man",
+            "Son of Man will come at an hour you do not expect"
+          ]
+        },
+        {
+          "highlight": "Warning",
+          "text": [
+            "See to it that no one deceives you",
+            "see to it that you are not alarmed",
+            "they will deliver you over to be persecuted and killed",
+            "there will be great tribulation",
+            "See, I have told you in advance",
+            " when you see all these things, you will know that He is near",
+            "keep watch, because you do not know the day on which your Lord will come",
+            "you also must be ready, because the Son of Man will come at an hour you do not expect"
+          ]
+        },
+        {
+          "highlight": "dark",
+          "text": [
+            "against",
+            "famines",
+            "earthquakes",
+            "persecuted",
+            "killed",
+            "hated",
+            "hate",
+            "deceive many",
+            "multiplication of wickedness",
+            "love of most will grow cold",
+            "betray",
+            "hate",
+            "miserable",
+            "great tribulation, unseen",
+            "perform great signs and wonders to deceive",
+            "sun will be darkened",
+            "weeping and gnashing of teeth"
+          ]
+        },
+        {
+          "highlight": "Light",
+          "text": [
+            "the one who perseveres to the end will be saved",
+            "gospel of the kingdom will be preached in all the world",
+            "those days will be cut short",
+            " just as the lightning comes from the east and flashes as far as the west, so will be the coming of the Son of Man",
+            "sign of the Son of Man will appear in heaven",
+            "Son of Man coming on the clouds of heaven with power and great glory",
+            "He will send out His angels with a loud trumpet call, and they will gather His elect",
+            "Heaven and earth will pass away, but My words will never pass away",
+            "keep watch",
+            "your Lord will come"
+          ]
+        },
+        {
+          "highlight": "Jesus is God",
+          "text": [
+            "Heaven and earth will pass away, but My words will never pass away."
+          ]
+        }
+      ]
+    },
+    "25": {
+      "meta": {
+        "Context": "Jesus prepares His disciples for His return and the final judgement with three parables.",
+        "Genre": "Gospels",
+        "Audience": "Jews, others"
+      },
+      "topics": [
+        {
+          "outline": "The Parable of the Ten Virgins",
+          "verses": ["1-13"],
+          "references": []
+        },
+        {
+          "outline": "The Parable of the Talents",
+          "verses": ["14-30"],
+          "references": ["Luke 19:11–27"]
+        },
+        {
+          "outline": "The Sheep and the Goats",
+          "verses": ["31-46"],
+          "references": []
+        },
+        {
+          "label": "Arrival, Return",
+          "verses": ["10", "19", "31"]
+        },
+        {
+          "label": "Oil, Talents, Least",
+          "verses": ["1", "14", "31"]
+        },
+        {
+          "highlight": "Oil, Talents, Least",
+          "text": ["lamp", "oil", "keep watch", "talents", "gained"]
+        },
+        {
+          "highlight": "Truly I tell you",
+          "text": ["truly I tell you"]
+        }
+      ]
+    },
+    "26": {
+      "meta": {
+        "Context": "Jesus is anointed at Bethany, celebrates the Passover with His disciples, and is arrested, tried, and denied by Peter.",
+        "Genre": "Gospels",
+        "Audience": "Jews, others"
+      },
+      "topics": [
+        {
+          "outline": "The Plot to Kill Jesus",
+          "verses": ["1-5"],
+          "references": ["Mark 14:1–2", "Luke 22:1–2", "John 11:45–57"]
+        },
+        {
+          "outline": "Jesus Anointed at Bethany",
+          "verses": ["6-13"],
+          "references": ["Mark 14:3–9", "Luke 7:36–50", "John 12:1–8"]
+        },
+        {
+          "outline": "Judas Agrees to Betray Jesus",
+          "verses": ["14-16"],
+          "references": ["Mark 14:10–11", "Luke 22:3–6"]
+        },
+        {
+          "outline": "Preparing the Passover",
+          "verses": ["17-19"],
+          "references": ["Mark 14:12–16", "Luke 22:7–13"]
+        },
+        {
+          "outline": "The Last Supper",
+          "verses": ["20-30"],
+          "references": [
+            "Mark 14:17–26",
+            "Luke 22:14–23",
+            "1 Corinthians 11:17–34"
+          ]
+        },
+        {
+          "outline": "Jesus Predicts Peter’s Denial",
+          "verses": ["31-35"],
+          "references": [
+            "Zechariah 13:7–9",
+            "Mark 14:27–31",
+            "Luke 22:31–38",
+            "John 13:36–38"
+          ]
+        },
+        {
+          "outline": "Jesus Prays at Gethsemane",
+          "verses": ["36-46"],
+          "references": ["Mark 14:32–42", "Luke 22:39–46"]
+        },
+        {
+          "outline": "The Betrayal of Jesus",
+          "verses": ["47-56"],
+          "references": ["Mark 14:43–52", "Luke 22:47–53", "John 18:1–14"]
+        },
+        {
+          "outline": "Jesus before the Sanhedrin",
+          "verses": ["57-68"],
+          "references": ["Mark 14:53–65", "Luke 22:66–71", "John 18:19–24"]
+        },
+        {
+          "outline": "Peter Denies Jesus",
+          "verses": ["69-75"],
+          "references": ["Mark 14:66–72", "Luke 22:54–62", "John 18:15–18"]
+        }
+      ]
+    },
     "27": [
       {
         "outline": "Jesus Delivered to Pilate",
