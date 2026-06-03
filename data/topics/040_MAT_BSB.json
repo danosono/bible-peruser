@@ -3430,7 +3430,7 @@
     },
     "25": {
       "meta": {
-        "Context": "Jesus prepares His disciples for His return and the final judgement with three parables.",
+        "Context": "Jesus prepares His followers for His return and the final judgement with three parables.",
         "Genre": "Gospels",
         "Audience": "Jews, others"
       },
@@ -3451,7 +3451,7 @@
           "references": []
         },
         {
-          "label": "Arrival, Return",
+          "label": "Jesus' second arrival, return",
           "verses": ["10", "19", "31"]
         },
         {
@@ -3460,7 +3460,45 @@
         },
         {
           "highlight": "Oil, Talents, Least",
-          "text": ["lamp", "oil", "keep watch", "talents", "gained"]
+          "text": [
+            "lamps",
+            "oil",
+            "keep watch",
+            "talents",
+            "gained",
+            "least",
+            "least of these brothers of Mine"
+          ]
+        },
+        {
+          "highlight": "Be ready",
+          "text": [
+            "keep watch, because you do not know the day or the hour",
+            "you entrusted me",
+            "I have gained",
+            "Well done",
+            "Enter into the joy of your master!",
+            "Come, you who are blessed by My Father, inherit the kingdom prepared for you from the foundation of the world",
+            "whatever you did for one of the least of these brothers of Mine, you did for Me"
+          ]
+        },
+        {
+          "highlight": "Warning",
+          "text": [
+            "I do not know you",
+            "throw that worthless servant into the outer darkness",
+            "they will go away into eternal punishment"
+          ]
+        },
+        {
+          "highlight": "Reward",
+          "text": [
+            "Those who were ready went in with him to the wedding banquet",
+            "Well done",
+            "joy",
+            "everyone who has will be given more, and he will have an abundance",
+            "Come, you who are blessed by My Father, inherit the kingdom prepared for you from the foundation of the world"
+          ]
         },
         {
           "highlight": "Truly I tell you",
