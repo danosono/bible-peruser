@@ -3501,6 +3501,14 @@
           ]
         },
         {
+          "highlight": "Delay",
+          "text": [
+            "the bridegroom was delayed",
+            "After a long time the master of those servants returned",
+            "when"
+          ]
+        },
+        {
           "highlight": "Truly I tell you",
           "text": ["truly I tell you"]
         }
@@ -3571,6 +3579,40 @@
           "outline": "Peter Denies Jesus",
           "verses": ["69-75"],
           "references": ["Mark 14:66–72", "Luke 22:54–62", "John 18:15–18"]
+        },
+        {
+          "highlight": "Fulfilled prophecy",
+          "text": [
+            "how then would the Scriptures be fulfilled that say it must happen this way?",
+            "that the writings of the prophets would be fulfilled"
+          ]
+        },
+        {
+          "highlight": "Twisting words",
+          "text": [
+            "seeking false testimony",
+            "This man said, ‘I am able to destroy the temple of God"
+          ]
+        },
+        {
+          "highlight": "Charging the living God by the living God",
+          "text": ["I charge You under oath by the living God"]
+        },
+        {
+          "highlight": "Spit in the face of the living God",
+          "text": ["they spit in His face and struck Him"]
+        },
+        {
+          "highlight": "Slap the living God",
+          "text": ["slapped Him"]
+        },
+        {
+          "highlight": "Mocking the living God",
+          "text": ["Prophesy to us, Christ! Who hit You?"]
+        },
+        {
+          "highlight": "For whom the rooster crows",
+          "text": ["rooster"]
         }
       ]
     },
