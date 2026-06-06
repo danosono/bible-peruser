@@ -3581,6 +3581,128 @@
           "references": ["Mark 14:66–72", "Luke 22:54–62", "John 18:15–18"]
         },
         {
+          "label": "Jesus predicts His death",
+          "verses": ["1-2"]
+        },
+        {
+          "label": "Jesus predicts His betrayal",
+          "verses": ["1-2", 21, "45-46"]
+        },
+        {
+          "label": "Jesus predicts ...",
+          "verses": [
+            "1-2",
+            21,
+            "23-24",
+            "29",
+            "31-32",
+            "34",
+            "45-46",
+            54,
+            56,
+            64
+          ]
+        },
+        {
+          "label": "Power",
+          "verses": ["53"]
+        },
+        {
+          "highlight": "Jesus",
+          "text": ["Jesus"]
+        },
+        {
+          "highlight": "Son of Man",
+          "text": ["Son of Man"]
+        },
+        {
+          "highlight": "My body, My blood",
+          "text": [
+            "My body",
+            "My blood",
+            "poured out for many for the forgiveness of sins"
+          ]
+        },
+        {
+          "highlight": "suffering Savior",
+          "text": [
+            "she has prepared My body for burial",
+            "",
+            "sorrowful",
+            "deeply distressed",
+            "My soul is consumed with sorrow to the point of death",
+            " if it is possible, let this cup pass from Me",
+            "if this cup cannot pass unless I drink it, may Your will be done",
+            "a third time, saying the same thing",
+            "betrayed into the hands of sinners",
+            "false witnesses",
+            "spit in His face and struck Him",
+            "slapped Him"
+          ]
+        },
+        {
+          "highlight": "New covenant, forgiveness of sins",
+          "text": [
+            "broke it",
+            "this is My body",
+            "My blood of the covenant",
+            "poured out for many for the forgiveness of sins"
+          ]
+        },
+        {
+          "highlight": "Bread",
+          "text": [
+            "My body",
+            "Passover",
+            "Jesus took bread, spoke a blessing and broke it",
+            "Take and eat; this is My body."
+          ]
+        },
+        {
+          "highlight": "Disciples",
+          "text": ["Disciples"]
+        },
+        {
+          "highlight": "Peter",
+          "text": ["peter"]
+        },
+        {
+          "highlight": "deny",
+          "text": ["deny", "denied"]
+        },
+        {
+          "highlight": " courtyard of the high priest",
+          "text": [
+            "courtyard of the high priest",
+            "conspired ",
+            "seeking false testimony",
+            "courtyard",
+            "denied"
+          ]
+        },
+        {
+          "highlight": "betray",
+          "text": ["betray", "thirty pieces of silver"]
+        },
+        {
+          "highlight": "Judas",
+          "text": [
+            "Judas",
+            "iscariot",
+            "My betrayer",
+            "woe to that man by whom He is betrayed. It would be better for him if he had not been born.",
+            "thirty pieces of silver"
+          ]
+        },
+        {
+          "highlight": "kiss",
+          "text": ["kiss"]
+        },
+        {
+          "highlight": "crowd",
+          "text": ["crowd", "the people"]
+        },
+        {
           "highlight": "Fulfilled prophecy",
           "text": [
             "how then would the Scriptures be fulfilled that say it must happen this way?",
@@ -3613,6 +3735,24 @@
         {
           "highlight": "For whom the rooster crows",
           "text": ["rooster"]
+        },
+        {
+          "highlight": "Chief priests, elders",
+          "text": [
+            "chief priests",
+            "high priest",
+            "Caiaphas",
+            "elders",
+            "whole Sanhedrin",
+            "conspired",
+            "covertly",
+            "kill",
+            "thirty pieces of silver"
+          ]
+        },
+        {
+          "highlight": "sword",
+          "text": ["sword"]
         }
       ]
     },
