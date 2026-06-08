@@ -35,3 +35,41 @@ See `docs/linking.md` for:
 - full link specification
 - full 66-book abbreviation list
 - validation behavior and notes
+
+## Topic Notes Quick Reference
+
+Topic metadata for each chapter lives in files like `data/topics/040_MAT_BSB.json` under:
+
+- `chapterTopics` -> chapter number -> `topics`
+
+To add a note on a label item, include a `note` field on that label object:
+
+```json
+{
+  "label": "carcass / vultures",
+  "verses": ["28"],
+  "note": "It is obvious that there is a carcass when you see the birds circling..."
+}
+```
+
+If you also want it searchable as a highlight, add a separate highlight object:
+
+```json
+{
+  "highlight": "carcass / vultures",
+  "text": ["wherever there is a carcass, there the vultures will gather"]
+}
+```
+
+## Sibling Project Link (Header)
+
+Bible Peruser includes a compact desktop header link to sibling project Bible Explorer:
+
+- URL: `https://bible-explorer.gospelgo.org/`
+- Placement: between Copy Link and Berean Standard Bible in the right header control group
+- Label: `Bible Explorer` (text-only, no icon)
+
+Implementation files:
+
+- `index.html` (`.bp-header__right` link markup)
+- `css/style.css` (`.bp-header__explorer-link` and responsive spacing for HD/4K)

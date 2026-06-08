@@ -3605,7 +3605,7 @@
         },
         {
           "label": "Power",
-          "verses": ["53"]
+          "verses": ["32", "53", 64]
         },
         {
           "highlight": "Jesus",
@@ -3826,6 +3826,37 @@
         "outline": "The Guards at the Tomb",
         "verses": ["62-66"],
         "references": []
+      },
+      {
+        "label": "Crucify",
+        "verses": ["35"],
+        "references": ["Matthew 20:19", "Matthew 26:2"]
+      },
+      {
+        "highlight": "Jesus",
+        "text": ["Jesus"]
+      },
+      {
+        "highlight": "Pilate",
+        "text": ["Pilate"]
+      },
+      {
+        "highlight": "Chief priests, et al.",
+        "text": ["chief priests", "elders", "pharisees", "scribes"]
+      },
+      {
+        "highlight": "Chief priests, et al.",
+        "text": [
+          "conspired",
+          "accused",
+          "persuaded the crowd",
+          "chief priests, scribes, and elders mocked Him, saying",
+          "while He was alive that deceiver"
+        ]
+      },
+      {
+        "highlight": "Crucify",
+        "text": ["crucify", "crucified"]
       }
     ],
     "28": [
