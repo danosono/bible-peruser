@@ -3316,6 +3316,11 @@
           "verses": ["13"]
         },
         {
+          "label": "This generation",
+          "verses": ["34"],
+          "references": ["Mark 13:30", "Luke 21:32"]
+        },
+        {
           "highlight": "Come",
           "text": [" come", "flood came", "coming"]
         },
@@ -3828,17 +3833,93 @@
         "references": []
       },
       {
+        "label": "Prophecy  fulfilled",
+        "verses": ["9-10", "12", "14", "29-31", "35-36", "46"],
+        "references": [
+          "Zechariah 11:12-13",
+          "Jeremiah 18",
+          "Isaiah 53:7",
+          "Psalms 22:7-8",
+          "Isaiah 53",
+          "Psalms 22:16-18",
+          "Psalms 22:1",
+          "Psalms 69:21"
+        ]
+      },
+      {
         "label": "Crucify",
         "verses": ["35"],
         "references": ["Matthew 20:19", "Matthew 26:2"]
+      },
+      {
+        "label": "This generation",
+        "verses": ["25"],
+        "references": ["Matthew 23:35-38"]
       },
       {
         "highlight": "Jesus",
         "text": ["Jesus"]
       },
       {
+        "highlight": "People",
+        "text": [
+          "chief priests",
+          "elders",
+          "pharisees",
+          "scribes",
+          "Jesus",
+          "Pilate",
+          "Judas",
+          "crowd",
+          "barabbas",
+          "his wife",
+          "the people",
+          "soldiers",
+          "Simon",
+          "robbers",
+          "those who passed by",
+          "God",
+          "those standing there",
+          "saints ",
+          "many people",
+          "centurion and those with him",
+          "many women",
+          "Mary Magdalene",
+          "Mary",
+          "the mother of Zebedee’s sons",
+          "Joseph",
+          "His disciples",
+          "a guard"
+        ]
+      },
+      {
+        "highlight": "Places",
+        "text": [
+          "temple",
+          "potter’s field",
+          "before the governor",
+          "judgment seat",
+          "praetorium",
+          "Golgotha",
+          "the tombs",
+          "holy city",
+          "new tomb",
+          "before Pilate",
+          "the tomb"
+        ]
+      },
+      {
         "highlight": "Pilate",
         "text": ["Pilate"]
+      },
+      {
+        "highlight": "Judas",
+        "text": [
+          "Judas",
+          "filled with remorse",
+          "I have sinned by betraying innocent blood",
+          "hanged himself"
+        ]
       },
       {
         "highlight": "Chief priests, et al.",
@@ -3848,6 +3929,9 @@
         "highlight": "Chief priests, et al.",
         "text": [
           "conspired",
+          "What is that to us",
+          "you bear the responsibility",
+          "blood money",
           "accused",
           "persuaded the crowd",
           "chief priests, scribes, and elders mocked Him, saying",
@@ -3855,8 +3939,36 @@
         ]
       },
       {
+        "highlight": "Mocked",
+        "text": [
+          "those who passed by heaped abuse",
+          "the governor’s soldiers",
+          "mocked",
+          "mocking",
+          "chief priests, scribes, and elders",
+          "even the robbers",
+          "berated"
+        ]
+      },
+      {
         "highlight": "Crucify",
         "text": ["crucify", "crucified"]
+      },
+      {
+        "highlight": "Suffering",
+        "text": ["flogged", ""]
+      },
+      {
+        "highlight": "Response",
+        "text": [
+          "veil of the temple was torn in two from top to bottom",
+          "earth quaked",
+          "rocks were split",
+          "tombs broke open",
+          "bodies of many saints who had fallen asleep were raised",
+          "out of the tombs, they entered the holy city and appeared to many people",
+          "Truly this was the Son of God"
+        ]
       }
     ],
     "28": [
