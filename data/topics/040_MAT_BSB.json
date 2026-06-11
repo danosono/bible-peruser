@@ -3857,6 +3857,11 @@
         "references": ["Matthew 23:35-38"]
       },
       {
+        "label": "He cannot save Himself",
+        "verses": ["42"],
+        "references": ["John 10:17-18"]
+      },
+      {
         "highlight": "Jesus",
         "text": ["Jesus"]
       },
@@ -3956,12 +3961,25 @@
       },
       {
         "highlight": "Suffering",
-        "text": ["flogged", ""]
+        "text": [
+          "Crucify Him!",
+          "stripped Him",
+          "spit on Him",
+          "struck Him on the head repeatedly",
+          "flogged",
+          "crown of thorns",
+          "mocked Him",
+          "crucified Him",
+          "heaped abuse on Him",
+          "berated Him",
+          "rom the sixth hour until the ninth hour",
+          "My God, My God, why have You forsaken Me?"
+        ]
       },
       {
-        "highlight": "Response",
+        "highlight": "the response",
         "text": [
-          "veil of the temple was torn in two from top to bottom",
+          "the veil of the temple was torn in two from top to bottom",
           "earth quaked",
           "rocks were split",
           "tombs broke open",
@@ -3969,6 +3987,10 @@
           "out of the tombs, they entered the holy city and appeared to many people",
           "Truly this was the Son of God"
         ]
+      },
+      {
+        "highlight": "Women",
+        "text": ["Mary", "mother", "women", "minister to Him"]
       }
     ],
     "28": [
