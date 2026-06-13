@@ -3761,254 +3761,356 @@
         }
       ]
     },
-    "27": [
-      {
-        "outline": "Jesus Delivered to Pilate",
-        "verses": ["1-2"],
-        "references": ["Mark 15:1–5"]
+    "27": {
+      "meta": {
+        "Context": "Jesus is delivered to Pilate, mocked, beaten and nailed to a cross (crucified); He dies, and is buried in a sealed and guarded tomb.",
+        "Genre": "Gospels",
+        "Audience": "Jews, others"
       },
-      {
-        "outline": "Judas Hangs Himself",
-        "verses": ["3-10"],
-        "references": ["Zechariah 11:10–17"]
+      "topics": [
+        {
+          "outline": "Jesus Delivered to Pilate",
+          "verses": ["1-2"],
+          "references": ["Mark 15:1–5"]
+        },
+        {
+          "outline": "Judas Hangs Himself",
+          "verses": ["3-10"],
+          "references": ["Zechariah 11:10–17"]
+        },
+        {
+          "outline": "Jesus before Pilate",
+          "verses": ["11-14"],
+          "references": ["Luke 23:1–5", "John 18:28–40"]
+        },
+        {
+          "outline": "The Crowd Chooses Barabbas",
+          "verses": ["15-23"],
+          "references": ["Mark 15:6–11", "Luke 23:13–25"]
+        },
+        {
+          "outline": "Pilate Washes His Hands",
+          "verses": ["24-26"],
+          "references": ["Mark 15:12–15"]
+        },
+        {
+          "outline": "The Soldiers Mock Jesus",
+          "verses": ["27-31"],
+          "references": [
+            "Isaiah 50:4–11",
+            "Mark 15:16–20",
+            "Luke 22:63–65",
+            "John 19:1–15"
+          ]
+        },
+        {
+          "outline": "The Crucifixion",
+          "verses": ["32-44"],
+          "references": [
+            "Psalms 22:1–31",
+            "Mark 15:21–32",
+            "Luke 23:26–43",
+            "John 19:16–27"
+          ]
+        },
+        {
+          "outline": "The Death of Jesus",
+          "verses": ["45-56"],
+          "references": [
+            "Psalms 22:1–31",
+            "Mark 15:33–41",
+            "Luke 23:44–49",
+            "John 19:28–30"
+          ]
+        },
+        {
+          "outline": "The Burial of Jesus",
+          "verses": ["57-61"],
+          "references": [
+            "Isaiah 53:9–12",
+            "Mark 15:42–47",
+            "Luke 23:50–56",
+            "John 19:38–42"
+          ]
+        },
+        {
+          "outline": "The Guards at the Tomb",
+          "verses": ["62-66"],
+          "references": []
+        },
+        {
+          "label": "Prophecy  fulfilled",
+          "verses": ["9-10", "12", "14", "29-31", "35-36", "46"],
+          "references": [
+            "Zechariah 11:12-13",
+            "Jeremiah 18",
+            "Isaiah 53:7",
+            "Psalms 22:7-8",
+            "Isaiah 53",
+            "Psalms 22:16-18",
+            "Psalms 22:1",
+            "Psalms 69:21"
+          ]
+        },
+        {
+          "label": "Crucify",
+          "verses": ["35"],
+          "references": ["Matthew 20:19", "Matthew 26:2"]
+        },
+        {
+          "label": "This generation",
+          "verses": ["25"],
+          "references": ["Matthew 23:35-38"]
+        },
+        {
+          "label": "He cannot save Himself",
+          "verses": ["42"],
+          "references": ["John 10:17-18"]
+        },
+        {
+          "label": "Jesus' death as He predicted",
+          "verses": ["50"],
+          "references": [
+            "Matthew 16:21",
+            "Matthew 17:12",
+            "Matthew 20:18-19",
+            "Matthew 26:1-2"
+          ]
+        },
+        {
+          "label": "WOW",
+          "verses": ["51"]
+        },
+        {
+          "label": "New life",
+          "verses": ["52-53"],
+          "references": [
+            "Romans 6:4-5",
+            "1 Corinthians 15:42-44",
+            "1 Corinthians 15:51-52",
+            "1 Thessalonians 4:16-17",
+            "Matthew 22:31-32"
+          ],
+          "note": "So many questions, but this is a foreshadowing of the resurrection of the followers of Jesus."
+        },
+        {
+          "label": "He saw it and he called it",
+          "verses": ["54"]
+        },
+        {
+          "highlight": "Jesus",
+          "text": ["Jesus"]
+        },
+        {
+          "highlight": "People",
+          "text": [
+            "chief priests",
+            "elders",
+            "pharisees",
+            "scribes",
+            "Jesus",
+            "Pilate",
+            "Judas",
+            "crowd",
+            "barabbas",
+            "his wife",
+            "the people",
+            "soldiers",
+            "Simon",
+            "robbers",
+            "those who passed by",
+            "God",
+            "those standing there",
+            "saints ",
+            "many people",
+            "centurion and those with him",
+            "many women",
+            "Mary Magdalene",
+            "Mary",
+            "the mother of Zebedee’s sons",
+            "Joseph",
+            "His disciples",
+            "a guard"
+          ]
+        },
+        {
+          "highlight": "Places",
+          "text": [
+            "temple",
+            "potter’s field",
+            "before the governor",
+            "judgment seat",
+            "praetorium",
+            "Golgotha",
+            "the tombs",
+            "holy city",
+            "new tomb",
+            "before Pilate",
+            "the tomb"
+          ]
+        },
+        {
+          "highlight": "Pilate",
+          "text": ["Pilate"]
+        },
+        {
+          "highlight": "Judas",
+          "text": [
+            "Judas",
+            "filled with remorse",
+            "I have sinned by betraying innocent blood",
+            "hanged himself"
+          ]
+        },
+        {
+          "highlight": "Chief priests, et al.",
+          "text": ["chief priests", "elders", "pharisees", "scribes"]
+        },
+        {
+          "highlight": "Chief priests, et al.",
+          "text": [
+            "conspired",
+            "What is that to us",
+            "you bear the responsibility",
+            "blood money",
+            "accused",
+            "persuaded the crowd",
+            "chief priests, scribes, and elders mocked Him, saying",
+            "while He was alive that deceiver"
+          ]
+        },
+        {
+          "highlight": "Mocked",
+          "text": [
+            "those who passed by heaped abuse",
+            "the governor’s soldiers",
+            "mocked",
+            "mocking",
+            "chief priests, scribes, and elders",
+            "even the robbers",
+            "berated"
+          ]
+        },
+        {
+          "highlight": "Crucify",
+          "text": ["crucify", "crucified"]
+        },
+        {
+          "highlight": "Suffering",
+          "text": [
+            "Crucify Him!",
+            "stripped Him",
+            "spit on Him",
+            "struck Him on the head repeatedly",
+            "flogged",
+            "crown of thorns",
+            "mocked Him",
+            "crucified Him",
+            "heaped abuse on Him",
+            "berated Him",
+            "rom the sixth hour until the ninth hour",
+            "My God, My God, why have You forsaken Me?"
+          ]
+        },
+        {
+          "highlight": "the response",
+          "text": [
+            "the veil of the temple was torn in two from top to bottom",
+            "earth quaked",
+            "rocks were split",
+            "tombs broke open",
+            "bodies of many saints who had fallen asleep were raised",
+            "out of the tombs, they entered the holy city and appeared to many people",
+            "Truly this was the Son of God"
+          ]
+        },
+        {
+          "highlight": "Women",
+          "text": ["Mary", "mother", "women", "minister to Him"]
+        }
+      ]
+    },
+    "28": {
+      "meta": {
+        "Context": "Bright angel, earthquake, guards like dead men. Angel rolls stone away revealing Jesus is raised from the dead. Women meet Jesus, sent to disciples, bribe, great commission.",
+        "Genre": "Gospels",
+        "Audience": "Jews, others"
       },
-      {
-        "outline": "Jesus before Pilate",
-        "verses": ["11-14"],
-        "references": ["Luke 23:1–5", "John 18:28–40"]
-      },
-      {
-        "outline": "The Crowd Chooses Barabbas",
-        "verses": ["15-23"],
-        "references": ["Mark 15:6–11", "Luke 23:13–25"]
-      },
-      {
-        "outline": "Pilate Washes His Hands",
-        "verses": ["24-26"],
-        "references": ["Mark 15:12–15"]
-      },
-      {
-        "outline": "The Soldiers Mock Jesus",
-        "verses": ["27-31"],
-        "references": [
-          "Isaiah 50:4–11",
-          "Mark 15:16–20",
-          "Luke 22:63–65",
-          "John 19:1–15"
-        ]
-      },
-      {
-        "outline": "The Crucifixion",
-        "verses": ["32-44"],
-        "references": [
-          "Psalms 22:1–31",
-          "Mark 15:21–32",
-          "Luke 23:26–43",
-          "John 19:16–27"
-        ]
-      },
-      {
-        "outline": "The Death of Jesus",
-        "verses": ["45-56"],
-        "references": [
-          "Psalms 22:1–31",
-          "Mark 15:33–41",
-          "Luke 23:44–49",
-          "John 19:28–30"
-        ]
-      },
-      {
-        "outline": "The Burial of Jesus",
-        "verses": ["57-61"],
-        "references": [
-          "Isaiah 53:9–12",
-          "Mark 15:42–47",
-          "Luke 23:50–56",
-          "John 19:38–42"
-        ]
-      },
-      {
-        "outline": "The Guards at the Tomb",
-        "verses": ["62-66"],
-        "references": []
-      },
-      {
-        "label": "Prophecy  fulfilled",
-        "verses": ["9-10", "12", "14", "29-31", "35-36", "46"],
-        "references": [
-          "Zechariah 11:12-13",
-          "Jeremiah 18",
-          "Isaiah 53:7",
-          "Psalms 22:7-8",
-          "Isaiah 53",
-          "Psalms 22:16-18",
-          "Psalms 22:1",
-          "Psalms 69:21"
-        ]
-      },
-      {
-        "label": "Crucify",
-        "verses": ["35"],
-        "references": ["Matthew 20:19", "Matthew 26:2"]
-      },
-      {
-        "label": "This generation",
-        "verses": ["25"],
-        "references": ["Matthew 23:35-38"]
-      },
-      {
-        "label": "He cannot save Himself",
-        "verses": ["42"],
-        "references": ["John 10:17-18"]
-      },
-      {
-        "highlight": "Jesus",
-        "text": ["Jesus"]
-      },
-      {
-        "highlight": "People",
-        "text": [
-          "chief priests",
-          "elders",
-          "pharisees",
-          "scribes",
-          "Jesus",
-          "Pilate",
-          "Judas",
-          "crowd",
-          "barabbas",
-          "his wife",
-          "the people",
-          "soldiers",
-          "Simon",
-          "robbers",
-          "those who passed by",
-          "God",
-          "those standing there",
-          "saints ",
-          "many people",
-          "centurion and those with him",
-          "many women",
-          "Mary Magdalene",
-          "Mary",
-          "the mother of Zebedee’s sons",
-          "Joseph",
-          "His disciples",
-          "a guard"
-        ]
-      },
-      {
-        "highlight": "Places",
-        "text": [
-          "temple",
-          "potter’s field",
-          "before the governor",
-          "judgment seat",
-          "praetorium",
-          "Golgotha",
-          "the tombs",
-          "holy city",
-          "new tomb",
-          "before Pilate",
-          "the tomb"
-        ]
-      },
-      {
-        "highlight": "Pilate",
-        "text": ["Pilate"]
-      },
-      {
-        "highlight": "Judas",
-        "text": [
-          "Judas",
-          "filled with remorse",
-          "I have sinned by betraying innocent blood",
-          "hanged himself"
-        ]
-      },
-      {
-        "highlight": "Chief priests, et al.",
-        "text": ["chief priests", "elders", "pharisees", "scribes"]
-      },
-      {
-        "highlight": "Chief priests, et al.",
-        "text": [
-          "conspired",
-          "What is that to us",
-          "you bear the responsibility",
-          "blood money",
-          "accused",
-          "persuaded the crowd",
-          "chief priests, scribes, and elders mocked Him, saying",
-          "while He was alive that deceiver"
-        ]
-      },
-      {
-        "highlight": "Mocked",
-        "text": [
-          "those who passed by heaped abuse",
-          "the governor’s soldiers",
-          "mocked",
-          "mocking",
-          "chief priests, scribes, and elders",
-          "even the robbers",
-          "berated"
-        ]
-      },
-      {
-        "highlight": "Crucify",
-        "text": ["crucify", "crucified"]
-      },
-      {
-        "highlight": "Suffering",
-        "text": [
-          "Crucify Him!",
-          "stripped Him",
-          "spit on Him",
-          "struck Him on the head repeatedly",
-          "flogged",
-          "crown of thorns",
-          "mocked Him",
-          "crucified Him",
-          "heaped abuse on Him",
-          "berated Him",
-          "rom the sixth hour until the ninth hour",
-          "My God, My God, why have You forsaken Me?"
-        ]
-      },
-      {
-        "highlight": "the response",
-        "text": [
-          "the veil of the temple was torn in two from top to bottom",
-          "earth quaked",
-          "rocks were split",
-          "tombs broke open",
-          "bodies of many saints who had fallen asleep were raised",
-          "out of the tombs, they entered the holy city and appeared to many people",
-          "Truly this was the Son of God"
-        ]
-      },
-      {
-        "highlight": "Women",
-        "text": ["Mary", "mother", "women", "minister to Him"]
-      }
-    ],
-    "28": [
-      {
-        "outline": "The Resurrection",
-        "verses": ["1-10"],
-        "references": ["Mark 16:1–8", "Luke 24:1–12", "John 20:1–9"]
-      },
-      {
-        "outline": "The Report of the Guards",
-        "verses": ["11-15"],
-        "references": []
-      },
-      {
-        "outline": "The Great Commission",
-        "verses": ["16-20"],
-        "references": ["Mark 16:14–18"]
-      }
-    ]
+      "topics": [
+        {
+          "outline": "The Resurrection",
+          "verses": ["1-10"],
+          "references": ["Mark 16:1–8", "Luke 24:1–12", "John 20:1–9"]
+        },
+        {
+          "outline": "The Report of the Guards",
+          "verses": ["11-15"],
+          "references": []
+        },
+        {
+          "outline": "The Great Commission",
+          "verses": ["16-20"],
+          "references": ["Mark 16:14–18"]
+        },
+        {
+          "label": "Power properly used",
+          "verses": ["4-5"],
+          "note": "The angel had power to incapacitate the guards, but was harmless and helpful to the women who were seeking Jesus' body. God is the source of all power and He is always good."
+        },
+        {
+          "label": "Jesus rose as He predicted",
+          "verses": ["6"],
+          "references": [
+            "Matthew 16:21",
+            "Matthew 17:9",
+            "Matthew 17:22-23",
+            "Matthew 20:18-19",
+            "Matthew 26:2"
+          ],
+          "note": "Jesus told his disciples that He would be raised on the third day, and He was. This is a powerful confirmation of His identity and the truth of all that He said."
+        },
+        {
+          "label": "Evidence",
+          "verses": ["6"],
+          "note": "The angel provides evidence to the women for the resurrection. He shows them the empty tomb."
+        },
+        {
+          "label": "First to see Jesus",
+          "verses": ["9"],
+          "note": "As far as we know, these women were the first people to see Jesus after His resurrection"
+        },
+        {
+          "label": "Lies!",
+          "verses": ["11-15"],
+          "references": [],
+          "note": "Even after they killed Him, the lies don't stop. Even after they lose, they conspire to cover up the truth. This goes on till now but there is victory in Jesus' resurrection for us in the hear and now. When Jesus returns again, all things will be set right."
+        },
+        {
+          "label": "Go",
+          "verses": ["19-20"],
+          "note": "Gospelgo's go to verses!"
+        },
+        {
+          "highlight": "Jesus",
+          "text": ["Jesus"]
+        },
+        {
+          "highlight": "See",
+          "text": ["see"]
+        },
+        {
+          "highlight": "Disciples",
+          "text": ["disciples"]
+        },
+        {
+          "highlight": "Go",
+          "text": ["go "]
+        },
+        {
+          "highlight": "Jesus",
+          "text": ["Jesus"]
+        }
+      ]
+    }
   }
 }
