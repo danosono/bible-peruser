@@ -4083,12 +4083,43 @@
           "label": "Lies!",
           "verses": ["11-15"],
           "references": [],
-          "note": "Even after they killed Him, the lies don't stop. Even after they lose, they conspire to cover up the truth. This goes on till now but there is victory in Jesus' resurrection for us in the hear and now. When Jesus returns again, all things will be set right."
+          "note": "Even after they killed Him, the lies don't stop. Even after they lose, they conspire to cover up the truth. This type of evil goes on till now but there is victory for us in Jesus' resurrection. When Jesus returns again, all things will be set right."
         },
         {
           "label": "Go",
           "verses": ["19-20"],
           "note": "Gospelgo's go to verses!"
+        },
+        {
+          "label": "All authority",
+          "verses": ["18"],
+          "references": [
+            "Daniel 7:13-14",
+            "Ephesians 1:20-23",
+            "Philippians 2:9-11",
+            "Revelation 19:11-16",
+            "Romans 14:9-12",
+            "1 Corinthians 15:24-28",
+            "1 Peter 3:22",
+            "Genesis 1:26-28"
+          ],
+          "note": "Jesus has all authority in heaven and on earth (including all nations)."
+        },
+        {
+          "label": "Baptised in the name of the triune God",
+          "verses": ["19"],
+          "references": [
+            "Romans 6:3-4",
+            "Acts 2:23",
+            "John 14:16-17",
+            "John 14:26",
+            "Romans 8:9-11",
+            "Ephesians 4:4-6",
+            "1 Corinthians 12:13",
+            "Galatians 3:27",
+            "Titus 3:5-6"
+          ],
+          "note": "Romans 6:3-4 (Father, Son), Acts 2:23 (Father, Son), John 14:16-17 (Father, Son, Holy Spirit), John 14:26 (Father, Son, Holy Spirit), Romans 8:9-11 (Father, Son, Holy Spirit), Ephesians 4:4-6 (Father, Son, Holy Spirit), 1 Corinthians 12:13 (Son, Holy Spirit), Galatians 3:27 (Son), Titus 3:5-6 (Son, Holy Spirit)"
         },
         {
           "highlight": "Jesus",
@@ -4107,8 +4138,30 @@
           "text": ["go "]
         },
         {
-          "highlight": "Jesus",
-          "text": ["Jesus"]
+          "highlight": "Godly instructions",
+          "text": [
+            "go quickly and tell His disciples",
+            "Go and tell My brothers",
+            "go and make disciples"
+          ]
+        },
+        {
+          "highlight": "ungodly instructions",
+          "text": [
+            "gave the soldiers a large sum of money",
+            "and instructed them: “You are to say,"
+          ]
+        },
+        {
+          "highlight": "Chief priests, elders",
+          "text": [
+            "chief priests",
+            "elders",
+            "formed a plan",
+            "large sum of money",
+            "You are to say",
+            "this account has been circulated among the Jews to this very day"
+          ]
         }
       ]
     }
