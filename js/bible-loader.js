@@ -88,6 +88,40 @@ function parseReferenceDetails(reference) {
   };
 }
 
+function positionFloatingMenu(icon, menu) {
+  const gap = 2;
+  const viewportPadding = 8;
+  const anchorRect = icon.getBoundingClientRect();
+  const menuRect = menu.getBoundingClientRect();
+
+  const viewportTop = window.scrollY;
+  const viewportBottom = window.scrollY + window.innerHeight;
+  const viewportLeft = window.scrollX;
+  const viewportRight = window.scrollX + window.innerWidth;
+
+  // Preserve current behavior by default: open under the icon.
+  let top = anchorRect.bottom + window.scrollY + gap;
+  let left = anchorRect.left + window.scrollX;
+
+  const wouldOverflowBottom =
+    top + menuRect.height > viewportBottom - viewportPadding;
+  if (wouldOverflowBottom) {
+    top = anchorRect.top + window.scrollY - menuRect.height - gap;
+  }
+
+  // Clamp to viewport if content is still taller than available room.
+  const minTop = viewportTop + viewportPadding;
+  const maxTop = viewportBottom - menuRect.height - viewportPadding;
+  top = Math.max(minTop, Math.min(top, maxTop));
+
+  const minLeft = viewportLeft + viewportPadding;
+  const maxLeft = viewportRight - menuRect.width - viewportPadding;
+  left = Math.max(minLeft, Math.min(left, maxLeft));
+
+  menu.style.top = `${top}px`;
+  menu.style.left = `${left}px`;
+}
+
 function openReferenceMenu(icon, references, onSelectReference, onClose) {
   document.querySelectorAll(".reference-menu").forEach((m) => m.remove());
   const menu = document.createElement("div");
@@ -102,6 +136,8 @@ function openReferenceMenu(icon, references, onSelectReference, onClose) {
   menu.style.fontSize = "14px";
   menu.style.minWidth = "180px";
   menu.style.maxWidth = "320px";
+  menu.style.maxHeight = "70vh";
+  menu.style.overflowY = "auto";
   menu.style.color = "#222";
   menu.style.cursor = "default";
 
@@ -133,10 +169,8 @@ function openReferenceMenu(icon, references, onSelectReference, onClose) {
   menu.appendChild(document.createElement("hr"));
   menu.appendChild(closeItem);
 
-  const rect = icon.getBoundingClientRect();
-  menu.style.left = `${rect.left + window.scrollX}px`;
-  menu.style.top = `${rect.bottom + window.scrollY + 2}px`;
   document.body.appendChild(menu);
+  positionFloatingMenu(icon, menu);
 
   setTimeout(() => {
     document.addEventListener("mousedown", function handler(e) {
@@ -162,6 +196,8 @@ function openNoteMenu(icon, noteText, onClose) {
   menu.style.fontSize = "14px";
   menu.style.minWidth = "220px";
   menu.style.maxWidth = "420px";
+  menu.style.maxHeight = "70vh";
+  menu.style.overflowY = "auto";
   menu.style.color = "#222";
   menu.style.cursor = "default";
 
@@ -186,10 +222,8 @@ function openNoteMenu(icon, noteText, onClose) {
   menu.appendChild(document.createElement("hr"));
   menu.appendChild(closeItem);
 
-  const rect = icon.getBoundingClientRect();
-  menu.style.left = `${rect.left + window.scrollX}px`;
-  menu.style.top = `${rect.bottom + window.scrollY + 2}px`;
   document.body.appendChild(menu);
+  positionFloatingMenu(icon, menu);
 
   setTimeout(() => {
     document.addEventListener("mousedown", function handler(e) {
@@ -617,8 +651,11 @@ async function loadBibleChapter(
             "Click to follow reference",
             () => pinTopicButton(btn),
           );
-          decorateTopicButtonWithNote(btn, topic.note, "Click to view note", () =>
-            pinTopicButton(btn),
+          decorateTopicButtonWithNote(
+            btn,
+            topic.note,
+            "Click to view note",
+            () => pinTopicButton(btn),
           );
           type = "outline";
         }

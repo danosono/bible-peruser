@@ -4013,7 +4013,7 @@
           ]
         },
         {
-          "highlight": "the response",
+          "highlight": "Response to the death of the Creator of life",
           "text": [
             "the veil of the temple was torn in two from top to bottom",
             "earth quaked",
@@ -4051,6 +4051,33 @@
           "outline": "The Great Commission",
           "verses": ["16-20"],
           "references": ["Mark 16:14–18"]
+        },
+        {
+          "label": "Sunday",
+          "verses": ["1"],
+          "references": [
+            "John 20:19",
+            "John 20:26",
+            "Acts 2:33",
+            "Acts 20:7",
+            "1 Corinthians 16:2",
+            "Revelation 1:10"
+          ],
+          "note": "Jesus rose on Sunday (the first day of the week). Jesus appeared to His disciples on resurrection Sunday (John 20:19) and the following Sunday (John 20:26). Pentecost fell on a Sunday and the Holy Spirit was poured out (Acts 2:33) birthing the church, as Israel was birthed at the first Pentecost. All this likely influenced the early church to meet on Sundays (Acts 20:7, 1 Corinthians 16:2) and to call it the Lord's Day (Revelation 1:10)."
+        },
+        {
+          "label": "Earthquake",
+          "verses": ["2-3"],
+          "references": [
+            "Matthew 27:51",
+            "Exodus 19:18",
+            "Nahum 1:5-6",
+            "Psalms 18:7",
+            "Isaiah 29:6",
+            "Revelation 16:17-18",
+            "Revelation 4:5-8"
+          ],
+          "note": "Earthquakes upon his death and resurrection."
         },
         {
           "label": "Power properly used",
@@ -4122,6 +4149,17 @@
           "note": "Romans 6:3-4 (Father, Son), Acts 2:23 (Father, Son), John 14:16-17 (Father, Son, Holy Spirit), John 14:26 (Father, Son, Holy Spirit), Romans 8:9-11 (Father, Son, Holy Spirit), Ephesians 4:4-6 (Father, Son, Holy Spirit), 1 Corinthians 12:13 (Son, Holy Spirit), Galatians 3:27 (Son), Titus 3:5-6 (Son, Holy Spirit)"
         },
         {
+          "label": "Obey",
+          "verses": ["20"],
+          "references": [
+            "John 14:15",
+            "Matthew 10:39",
+            "Matthew 11:28-30",
+            "Matthew 16:24-26"
+          ],
+          "note": "Followers of Jesus should obey Him"
+        },
+        {
           "highlight": "Jesus",
           "text": ["Jesus"]
         },
@@ -4136,6 +4174,19 @@
         {
           "highlight": "Go",
           "text": ["go "]
+        },
+        {
+          "highlight": "Do not be afraid",
+          "text": ["do not be afraid"]
+        },
+        {
+          "highlight": "They worshiped Him",
+          "text": [
+            "women,",
+            "worshiped Him",
+            "eleven disciples",
+            "they worshiped Him"
+          ]
         },
         {
           "highlight": "Godly instructions",
@@ -4162,6 +4213,10 @@
             "You are to say",
             "this account has been circulated among the Jews to this very day"
           ]
+        },
+        {
+          "highlight": "disciples make disciples",
+          "text": ["eleven disciples", "go and make disciples"]
         }
       ]
     }
