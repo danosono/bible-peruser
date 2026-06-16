@@ -409,7 +409,17 @@ async function loadBibleChapter(
     }
     // Book name mapping from app.js
     let bookName = bookNames[bookId] || bookId;
-    let html = `<h2>${bookName} ${chapterNum}</h2>`;
+    let html = `<div class="bp-chapter-header">
+      <h2>${bookName} ${chapterNum}</h2>
+      <div class="bp-font-controls">
+        <span class="bp-font-label-sm" aria-hidden="true">A</span>
+        <input type="range" class="bp-font-slider" id="bp-font-slider"
+               min="1.0" max="2.0" step="0.1" value="1.0"
+               aria-label="Font size">
+        <span class="bp-font-label-lg" aria-hidden="true">A</span>
+        <button class="bp-font-reset" id="bp-font-reset" title="Reset font size">&#8634;</button>
+      </div>
+    </div>`;
     // Determine column and font layout
     let columnClass = "";
     let fontClass = "";
@@ -455,6 +465,29 @@ async function loadBibleChapter(
     }
     html += "</div>";
     main.innerHTML = html;
+
+    // Wire font-size slider
+    (function () {
+      const scale = 1.0;
+      localStorage.setItem('bpFontScale', '1.0');
+      document.documentElement.style.setProperty('--bp-font-scale', scale);
+      const slider = document.getElementById('bp-font-slider');
+      const reset  = document.getElementById('bp-font-reset');
+      if (slider) {
+        slider.addEventListener('input', () => {
+          const v = parseFloat(slider.value);
+          document.documentElement.style.setProperty('--bp-font-scale', v);
+          localStorage.setItem('bpFontScale', v);
+        });
+      }
+      if (reset) {
+        reset.addEventListener('click', () => {
+          slider.value = '1.0';
+          document.documentElement.style.setProperty('--bp-font-scale', 1.0);
+          localStorage.setItem('bpFontScale', '1.0');
+        });
+      }
+    })();
 
     const chapterVerseTextCache = buildVerseTextCache(
       Array.from(document.querySelectorAll(".verse-text[data-original]")),

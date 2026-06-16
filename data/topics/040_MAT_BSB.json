@@ -3763,7 +3763,7 @@
     },
     "27": {
       "meta": {
-        "Context": "Jesus is delivered to Pilate, mocked, beaten and nailed to a cross (crucified); He dies, and is buried in a sealed and guarded tomb.",
+        "Context": "Jesus is delivered to Pilate, mocked, beaten and nailed to a cross (crucified); He dies (He yielded up His spirit), and is buried in a sealed and guarded tomb.",
         "Genre": "Gospels",
         "Audience": "Jews, others"
       },
@@ -4032,7 +4032,7 @@
     },
     "28": {
       "meta": {
-        "Context": "Bright angel, earthquake, guards like dead men. Angel rolls stone away revealing Jesus is raised from the dead. Women meet Jesus, sent to disciples, bribe, great commission.",
+        "Context": "Bright angel, earthquake, guards like dead men. Angel rolls stone away revealing Jesus is raised from the dead. Women meet Jesus, disciples meet Jesus and receive great commission.",
         "Genre": "Gospels",
         "Audience": "Jews, others"
       },
@@ -4133,7 +4133,7 @@
           "note": "Jesus has all authority in heaven and on earth (including all nations)."
         },
         {
-          "label": "Baptised in the name of the triune God",
+          "label": "Baptize in the name of the triune God",
           "verses": ["19"],
           "references": [
             "Romans 6:3-4",
@@ -4217,6 +4217,10 @@
         {
           "highlight": "disciples make disciples",
           "text": ["eleven disciples", "go and make disciples"]
+        },
+        {
+          "highlight": "they worshiped Him",
+          "text": ["worshiped Him"]
         }
       ]
     }
