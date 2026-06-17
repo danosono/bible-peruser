@@ -344,6 +344,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const cleaned = source.replace(/[^a-z0-9\s._:-]/g, " ");
     const match = cleaned.match(/^(.+?)[\s._:-]*(\d+)$/);
     if (!match) {
+      const bookToken = normalizeBookAlias(cleaned.trim());
+      const bookId = bookAliasMap.get(bookToken) || null;
+      if (bookId) return { ok: true, bookId, chapterNum: 1 };
       return {
         ok: false,
         reason: "Use format like mat4 or matthew 4.",

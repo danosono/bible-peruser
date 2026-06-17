@@ -1142,8 +1142,19 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
     const bookName = bookNames[bookId] || bookId;
     const html = [];
     html.push(`<div class="bp-book-view">`);
-    html.push(`<h2 class="bp-book-view__title">${bookName} (Entire Book)</h2>`);
-    html.push(`<div class="bible-book bible-book--dense">`);
+    html.push(`<div class="bp-chapter-header">
+      <h2 class="bp-book-view__title">${bookName} (Entire Book)</h2>
+      <div class="bp-font-controls">
+        <span class="bp-font-label-sm" aria-hidden="true">A</span>
+        <input type="range" class="bp-font-slider" id="bp-font-slider"
+               min="1.0" max="2.0" step="0.1" value="1.0"
+               aria-label="Font size">
+        <span class="bp-font-label-lg" aria-hidden="true">A</span>
+        <button class="bp-font-reset" id="bp-font-reset" title="Reset font size">&#8634;</button>
+        <button class="bp-font-overview" id="bp-font-overview" title="Overview: show entire book at minimum size">Overview</button>
+      </div>
+    </div>`);
+    html.push(`<div class="bible-book bible-book--dense book-${bookId.toLowerCase()}">`);
     book.chapters.forEach((chapter) => {
       html.push(
         `<h3 class="bp-book-view__chapter">Chapter ${chapter.number}</h3>`,
@@ -1158,6 +1169,50 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
     html.push(`</div>`);
     html.push(`</div>`);
     main.innerHTML = html.join("");
+
+    // Wire font-size slider and Overview toggle
+    (function () {
+      const scale     = 1.0;
+      localStorage.setItem('bpFontScale', '1.0');
+      document.documentElement.style.setProperty('--bp-font-scale', scale);
+      const slider    = document.getElementById('bp-font-slider');
+      const reset     = document.getElementById('bp-font-reset');
+      const overview  = document.getElementById('bp-font-overview');
+      const bookDense = main.querySelector('.bible-book.bible-book--dense');
+
+      if (slider) {
+        slider.addEventListener('input', () => {
+          const v = parseFloat(slider.value);
+          document.documentElement.style.setProperty('--bp-font-scale', v);
+          localStorage.setItem('bpFontScale', v);
+        });
+      }
+      if (reset) {
+        reset.addEventListener('click', () => {
+          if (overview) overview.classList.remove('active');
+          if (bookDense) bookDense.classList.remove('bp-overview-active');
+          if (slider) slider.disabled = false;
+          slider.value = '1.0';
+          document.documentElement.style.setProperty('--bp-font-scale', 1.0);
+          localStorage.setItem('bpFontScale', '1.0');
+        });
+      }
+      if (overview && bookDense) {
+        overview.addEventListener('click', () => {
+          const isActive = overview.classList.toggle('active');
+          if (isActive) {
+            bookDense.classList.add('bp-overview-active');
+            document.documentElement.style.setProperty('--bp-font-scale', 0.3);
+            slider.disabled = true;
+          } else {
+            bookDense.classList.remove('bp-overview-active');
+            const v = parseFloat(slider.value);
+            document.documentElement.style.setProperty('--bp-font-scale', v);
+            slider.disabled = false;
+          }
+        });
+      }
+    })();
 
     const bookVerseTextCache = buildVerseTextCache(
       Array.from(main.querySelectorAll(".verse-text[data-original]")),
