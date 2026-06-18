@@ -18,6 +18,41 @@
           "references": ["Isaiah 7:10–16", "Luke 2:1–7"]
         },
         {
+          "label": "Abraham, Isaac, Jacob",
+          "verses": ["2"],
+          "references": [
+            "Genesis 12:1 (Abram)",
+            "Genesis 17:5 (Abraham)",
+            "Genesis 26:2-4 (Isaac)",
+            "Genesis 28:12-14 (Jacob)"
+          ]
+        },
+        {
+          "label": "Judah",
+          "verses": ["3"],
+          "references": [
+            "Genesis 37:26-27 (Sells Joseph but saves his life)",
+            "Genesis 38:27 (Tamar > Perez and Zerah)",
+            "Genesis 44:33 (Offers himself in place of Benjamin)"
+          ]
+        },
+        {
+          "label": "Gentiles",
+          "verses": ["5-6"],
+          "references": [
+            "Genesis 12:3 (all nations)",
+            "Genesis 18:18 (all nations)",
+            "Genesis 22:18 (all nations)",
+            "Genesis 26:4 (all nations)",
+            "Genesis 28:14 (all nations)",
+            "Galatians 3:8 (all nations)",
+            "Joshua 2:1 (Rahab)",
+            "Joshua 6:22–25 (Rahab)",
+            "Ruth 1:4"
+          ],
+          "note": "Rahab and Ruth were gentiles (really, Jewish converts from other nations) who were included in the genealogy of Jesus. Seems to be a forshadowing that Jesus would be the Savior of all nations."
+        },
+        {
           "label": "Holy Spirit",
           "verses": ["18"]
         },

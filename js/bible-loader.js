@@ -34,6 +34,21 @@ const bpBookNameToId = Object.entries(bookNames).reduce((acc, [id, name]) => {
   return acc;
 }, {});
 
+const BOOK_AND_CHAPTER_RE =
+  /^((?:[1-3]\s+)?[A-Za-z]+(?:\s+[A-Za-z]+)*)\s+(\d+)/;
+const FULL_REFERENCE_RE =
+  /^((?:[1-3]\s+)?[A-Za-z]+(?:\s+[A-Za-z]+)*)\s+(\d+)(?::(\d+)(?:[-–](\d+))?)?$/;
+const REFERENCE_CORE_RE =
+  /^((?:[1-3]\s+)?[A-Za-z]+(?:\s+[A-Za-z]+)*)\s+\d+(?::\d+(?:[-–]\d+)?)?/;
+
+function extractReferenceCore(reference) {
+  if (typeof reference !== "string") return null;
+  const trimmed = reference.trim();
+  // Supports human-readable suffixes by parsing only the leading canonical reference.
+  const match = trimmed.match(REFERENCE_CORE_RE);
+  return match ? match[0] : null;
+}
+
 function normalizePhraseList(phrases) {
   const list = Array.isArray(phrases) ? phrases : [];
   const seen = new Set();
@@ -55,22 +70,18 @@ function getLiteralSearchPhrase(inputEl) {
 }
 
 function getBookIdFromReference(reference) {
-  if (typeof reference !== "string") return null;
-  const match = reference
-    .trim()
-    .match(/^((?:[1-3]\s+)?[A-Za-z]+(?:\s+[A-Za-z]+)*)\s+\d+/);
+  const canonicalReference = extractReferenceCore(reference);
+  if (!canonicalReference) return null;
+  const match = canonicalReference.match(BOOK_AND_CHAPTER_RE);
   if (!match) return null;
   const normalizedBookName = match[1].replace(/\s+/g, " ").trim().toLowerCase();
   return bpBookNameToId[normalizedBookName] || null;
 }
 
 function parseReferenceDetails(reference) {
-  if (typeof reference !== "string") return null;
-  const match = reference
-    .trim()
-    .match(
-      /^((?:[1-3]\s+)?[A-Za-z]+(?:\s+[A-Za-z]+)*)\s+(\d+)(?::(\d+)(?:[-–](\d+))?)?/,
-    );
+  const canonicalReference = extractReferenceCore(reference);
+  if (!canonicalReference) return null;
+  const match = canonicalReference.match(FULL_REFERENCE_RE);
   if (!match) return null;
   const [, rawBookName, rawChapterNum, rawVerseStart, rawVerseEnd] = match;
   const normalizedBookName = rawBookName
@@ -469,22 +480,22 @@ async function loadBibleChapter(
     // Wire font-size slider
     (function () {
       const scale = 1.0;
-      localStorage.setItem('bpFontScale', '1.0');
-      document.documentElement.style.setProperty('--bp-font-scale', scale);
-      const slider = document.getElementById('bp-font-slider');
-      const reset  = document.getElementById('bp-font-reset');
+      localStorage.setItem("bpFontScale", "1.0");
+      document.documentElement.style.setProperty("--bp-font-scale", scale);
+      const slider = document.getElementById("bp-font-slider");
+      const reset = document.getElementById("bp-font-reset");
       if (slider) {
-        slider.addEventListener('input', () => {
+        slider.addEventListener("input", () => {
           const v = parseFloat(slider.value);
-          document.documentElement.style.setProperty('--bp-font-scale', v);
-          localStorage.setItem('bpFontScale', v);
+          document.documentElement.style.setProperty("--bp-font-scale", v);
+          localStorage.setItem("bpFontScale", v);
         });
       }
       if (reset) {
-        reset.addEventListener('click', () => {
-          slider.value = '1.0';
-          document.documentElement.style.setProperty('--bp-font-scale', 1.0);
-          localStorage.setItem('bpFontScale', '1.0');
+        reset.addEventListener("click", () => {
+          slider.value = "1.0";
+          document.documentElement.style.setProperty("--bp-font-scale", 1.0);
+          localStorage.setItem("bpFontScale", "1.0");
         });
       }
     })();
@@ -1154,7 +1165,9 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
         <button class="bp-font-overview" id="bp-font-overview" title="Overview: show entire book at minimum size">Overview</button>
       </div>
     </div>`);
-    html.push(`<div class="bible-book bible-book--dense book-${bookId.toLowerCase()}">`);
+    html.push(
+      `<div class="bible-book bible-book--dense book-${bookId.toLowerCase()}">`,
+    );
     book.chapters.forEach((chapter) => {
       html.push(
         `<h3 class="bp-book-view__chapter">Chapter ${chapter.number}</h3>`,
@@ -1172,42 +1185,42 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
 
     // Wire font-size slider and Overview toggle
     (function () {
-      const scale     = 1.0;
-      localStorage.setItem('bpFontScale', '1.0');
-      document.documentElement.style.setProperty('--bp-font-scale', scale);
-      const slider    = document.getElementById('bp-font-slider');
-      const reset     = document.getElementById('bp-font-reset');
-      const overview  = document.getElementById('bp-font-overview');
-      const bookDense = main.querySelector('.bible-book.bible-book--dense');
+      const scale = 1.0;
+      localStorage.setItem("bpFontScale", "1.0");
+      document.documentElement.style.setProperty("--bp-font-scale", scale);
+      const slider = document.getElementById("bp-font-slider");
+      const reset = document.getElementById("bp-font-reset");
+      const overview = document.getElementById("bp-font-overview");
+      const bookDense = main.querySelector(".bible-book.bible-book--dense");
 
       if (slider) {
-        slider.addEventListener('input', () => {
+        slider.addEventListener("input", () => {
           const v = parseFloat(slider.value);
-          document.documentElement.style.setProperty('--bp-font-scale', v);
-          localStorage.setItem('bpFontScale', v);
+          document.documentElement.style.setProperty("--bp-font-scale", v);
+          localStorage.setItem("bpFontScale", v);
         });
       }
       if (reset) {
-        reset.addEventListener('click', () => {
-          if (overview) overview.classList.remove('active');
-          if (bookDense) bookDense.classList.remove('bp-overview-active');
+        reset.addEventListener("click", () => {
+          if (overview) overview.classList.remove("active");
+          if (bookDense) bookDense.classList.remove("bp-overview-active");
           if (slider) slider.disabled = false;
-          slider.value = '1.0';
-          document.documentElement.style.setProperty('--bp-font-scale', 1.0);
-          localStorage.setItem('bpFontScale', '1.0');
+          slider.value = "1.0";
+          document.documentElement.style.setProperty("--bp-font-scale", 1.0);
+          localStorage.setItem("bpFontScale", "1.0");
         });
       }
       if (overview && bookDense) {
-        overview.addEventListener('click', () => {
-          const isActive = overview.classList.toggle('active');
+        overview.addEventListener("click", () => {
+          const isActive = overview.classList.toggle("active");
           if (isActive) {
-            bookDense.classList.add('bp-overview-active');
-            document.documentElement.style.setProperty('--bp-font-scale', 0.3);
+            bookDense.classList.add("bp-overview-active");
+            document.documentElement.style.setProperty("--bp-font-scale", 0.3);
             slider.disabled = true;
           } else {
-            bookDense.classList.remove('bp-overview-active');
+            bookDense.classList.remove("bp-overview-active");
             const v = parseFloat(slider.value);
-            document.documentElement.style.setProperty('--bp-font-scale', v);
+            document.documentElement.style.setProperty("--bp-font-scale", v);
             slider.disabled = false;
           }
         });
