@@ -845,6 +845,39 @@ footer {
   transition: background 0.2s;
 }
 
+/* Book view: stronger highlights — solid bg replaces faded gradient, box-shadow extends
+   visual area without affecting layout (no clipping) */
+.bible-book.bible-book--dense .verse-highlight {
+  background: var(--verse-highlight, #185398);
+  box-shadow: 0 0 0 1px var(--verse-highlight, #185398);
+  border-radius: 2px;
+}
+.bible-book.bible-book--dense .search-highlight {
+  font-weight: bold;
+  background: rgba(255, 233, 35, 0.18);
+  border-radius: 2px;
+}
+.bible-book.bible-book--dense .verse-highlight .search-highlight {
+  background: none;
+  font-weight: bold;
+}
+
+/* Overview mode: maximum contrast — highlights read as colored blocks at minimum font size */
+.bible-book.bible-book--dense.bp-overview-active .verse-highlight {
+  background: #2070d0;
+  box-shadow: 0 0 0 2px #2070d0;
+  border-radius: 2px;
+}
+.bible-book.bible-book--dense.bp-overview-active .search-highlight {
+  font-weight: bold;
+  background: rgba(255, 233, 35, 0.5);
+  border-radius: 2px;
+}
+.bible-book.bible-book--dense.bp-overview-active .verse-highlight .search-highlight {
+  background: none;
+  font-weight: bold;
+}
+
 .topic-btn {
   background: var(--bg-sidebar);
   color: var(--text-main);
