@@ -242,11 +242,17 @@ body {
   flex-direction: column;
 }
 
-/* Entire Book mode: maximize reading area; show both sidebars, hide header/footer/scrollbar */
-.bp-app.bp-entire-book-mode .bp-header,
+/* Entire Book mode: maximize reading area; show both sidebars, hide footer/scrollbar.
+   Keep .bp-header visible so the brand logo and the book/chapter jump field
+   (.bp-header__jump) stay usable — only the chapter-relative nav controls,
+   which don't apply when the whole book is on screen, are hidden below. */
 .bp-app.bp-entire-book-mode .bp-book-scrollbar-container,
 .bp-app.bp-entire-book-mode .bp-footer,
 .bp-app.bp-entire-book-mode .bp-footer__legend {
+  display: none !important;
+}
+
+.bp-app.bp-entire-book-mode .bp-header__nav-center {
   display: none !important;
 }
 
