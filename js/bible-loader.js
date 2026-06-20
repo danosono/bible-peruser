@@ -133,7 +133,7 @@ function positionFloatingMenu(icon, menu) {
   menu.style.left = `${left}px`;
 }
 
-function openReferenceMenu(icon, references, onSelectReference, onClose) {
+function openReferenceMenu(icon, references, links, onSelectReference, onClose) {
   document.querySelectorAll(".reference-menu").forEach((m) => m.remove());
   const menu = document.createElement("div");
   menu.className = "reference-menu";
@@ -152,7 +152,8 @@ function openReferenceMenu(icon, references, onSelectReference, onClose) {
   menu.style.color = "#222";
   menu.style.cursor = "default";
 
-  references.forEach((ref) => {
+  (references || []).forEach((ref) => {
+    if (!ref) return;
     const refItem = document.createElement("div");
     refItem.className = "reference-menu-item";
     refItem.textContent = ref;
@@ -164,6 +165,25 @@ function openReferenceMenu(icon, references, onSelectReference, onClose) {
       onSelectReference(ref);
     });
     menu.appendChild(refItem);
+  });
+
+  (links || []).forEach((link) => {
+    if (!link || !link.url || !link.label) return;
+    const linkItem = document.createElement("div");
+    linkItem.className = "reference-menu-item reference-menu-item--external";
+    linkItem.style.padding = "4px 0";
+    linkItem.style.cursor = "pointer";
+    linkItem.textContent = link.label;
+    const arrow = document.createElement("span");
+    arrow.className = "reference-menu-item--external-icon";
+    arrow.textContent = " ↗";
+    linkItem.appendChild(arrow);
+    linkItem.addEventListener("click", (e) => {
+      e.stopPropagation();
+      menu.remove();
+      window.open(link.url, "_blank", "noopener,noreferrer");
+    });
+    menu.appendChild(linkItem);
   });
 
   const closeItem = document.createElement("div");
@@ -250,11 +270,14 @@ function decorateTopicButtonWithReferences(
   btn,
   label,
   references,
+  links,
   onSelectReference,
   helperText,
   onClose,
 ) {
-  if (!Array.isArray(references) || !references.length) {
+  const hasRefs = Array.isArray(references) && references.length;
+  const hasLinks = Array.isArray(links) && links.length;
+  if (!hasRefs && !hasLinks) {
     btn.textContent = label;
     return;
   }
@@ -263,13 +286,14 @@ function decorateTopicButtonWithReferences(
   const linkIcon = document.createElement("span");
   linkIcon.className = "outline-link-icon";
   linkIcon.innerHTML = "&#x1F4D6;";
-  linkIcon.title = helperText
-    ? `${references.join("; ")}\n${helperText}`
-    : references.join("; ");
+  const refsPart = hasRefs ? references.filter(Boolean).join("; ") : "";
+  const linksPart = hasLinks ? links.map((l) => l.label).join("; ") : "";
+  const tooltipCore = [refsPart, linksPart].filter(Boolean).join("; ");
+  linkIcon.title = helperText ? `${tooltipCore}\n${helperText}` : tooltipCore;
   linkIcon.style.cursor = "pointer";
   linkIcon.addEventListener("click", (e) => {
     e.stopPropagation();
-    openReferenceMenu(linkIcon, references, onSelectReference, onClose);
+    openReferenceMenu(linkIcon, references, links, onSelectReference, onClose);
   });
   btn.appendChild(linkIcon);
   btn.appendChild(document.createTextNode(` ${label}`));
@@ -679,6 +703,7 @@ async function loadBibleChapter(
             btn,
             topic.label,
             topic.references,
+            topic.links,
             openChapterTopicReference,
             "Click to follow reference",
           );
@@ -691,6 +716,7 @@ async function loadBibleChapter(
             btn,
             topic.outline,
             topic.references,
+            topic.links,
             openChapterTopicReference,
             "Click to follow reference",
             () => pinTopicButton(btn),
@@ -1367,6 +1393,7 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
           btn,
           outlineEntry.outline,
           outlineEntry.references,
+          outlineEntry.links,
           openBookWideOutlineReference,
           "Click to open referenced book in Entire Book view",
         );
@@ -1398,6 +1425,7 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
           btn,
           labelEntry.label,
           labelEntry.references,
+          labelEntry.links,
           openBookWideOutlineReference,
           "Click to open referenced book in Entire Book view",
         );

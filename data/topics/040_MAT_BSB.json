@@ -105,11 +105,27 @@
         },
         {
           "label": "Holy Spirit",
-          "verses": ["18"]
+          "verses": ["18"],
+          "references": ["Romans 8:11 (resurrection)", ""],
+          "note": "The Holy Spirit is involved in the conception of Jesus and in His resurrection. And, the same Spirit lives in Christians."
         },
         {
           "label": "angel of the Lord",
-          "verses": ["20", "24"]
+          "verses": ["20", "24"],
+          "references": [
+            "Genesis 16:7-14 (Hagar)",
+            "Genesis 22:11-18 (Abraham)"
+          ],
+          "links": [
+            {
+              "label": "angel of the Lord (Nave's 1)",
+              "url": "https://bible-explorer.gospelgo.org/?dataset=topics&topic=ANGEL+%28a+spirit%29"
+            },
+            {
+              "label": "angel of the Lord (Nave's 2)",
+              "url": "https://bible-explorer.gospelgo.org/?dataset=topics&topic=ANGEL+%28Holy+Trinity%29"
+            }
+          ]
         },
         {
           "label": "Prophecy",

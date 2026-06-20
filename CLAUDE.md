@@ -45,6 +45,7 @@ The only tooled script is `js/usfm-outline-extractor.js`, a standalone Node.js u
         "outline": "Section heading",
         "verses": ["1-5", "7"],
         "references": ["John 1:1-5"],
+        "links": [{ "label": "Explore this in Bible Explorer", "url": "https://bible-explorer.gospelgo.org/..." }],
         "note": "Optional explanatory text"
       }
     ]
@@ -52,7 +53,9 @@ The only tooled script is `js/usfm-outline-extractor.js`, a standalone Node.js u
 }
 ```
 
-Topic entry fields: `outline` (or `label`), `verses` (string array of ranges), `references`, `note`, `highlight`, `text`.
+Topic entry fields: `outline` (or `label`), `verses` (string array of ranges), `references`, `links`, `note`, `highlight`, `text`.
+
+`links` is optional and manual-only (like `note`/`highlight`/`text` — `js/usfm-outline-extractor.js` never generates it and overwrites the whole file on regeneration). Each entry is `{ label, url }`; the label is shown in the references popup, clicking opens `url` in a new tab instead of navigating within the app. Used the same way in `data/bookwide/` entries.
 
 **`data/bookwide/`** — Optional book-wide highlights and labels.
 

@@ -971,6 +971,17 @@ footer {
   background: #3d4b85;
   color: #fff;
 }
+.reference-menu-item--external {
+  color: #8bd3ff !important;
+  font-style: italic;
+}
+.reference-menu-item--external:hover {
+  background: #3d4b85;
+  color: #fff;
+}
+.reference-menu-item--external-icon {
+  margin-left: 0.25em;
+}
 
 /* Mobile/tablet overlay */
 @media (max-width: 899px) {
