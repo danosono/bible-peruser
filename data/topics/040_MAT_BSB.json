@@ -265,16 +265,20 @@
           "verses": ["1", "13-14", "16", "22"]
         },
         {
-          "label": "Star of Bethlehem",
+          "label": "Star",
           "verses": ["2", "7", "9-10"]
         },
         {
           "label": "Herod",
-          "verses": ["3", "7", "12", "16"]
+          "verses": ["3-4", "7-8", "16"]
         },
         {
           "label": "chief priests & scribes",
           "verses": ["4-6"]
+        },
+        {
+          "label": "angel of the Lord",
+          "verses": ["13", "19-20"]
         },
         {
           "highlight": "Persons",
@@ -363,6 +367,17 @@
         {
           "highlight": "Herod",
           "text": ["herod"]
+        },
+        {
+          "highlight": "Herod",
+          "text": [
+            "disturbed",
+            "assembled all the chief priests and scribes",
+            "asked them where the Christ was to be born",
+            "learned from them the exact time the star had appeared",
+            "find Him, report to me",
+            "put to death all the boys in Bethlehem and its vicinity who were two years old and under"
+          ]
         },
         {
           "highlight": "child",
