@@ -278,7 +278,17 @@
         },
         {
           "label": "angel of the Lord",
-          "verses": ["13", "19-20"]
+          "verses": ["13", "19-20"],
+          "links": [
+            {
+              "label": "angel of the Lord (Nave's 1)",
+              "url": "https://bible-explorer.gospelgo.org/?dataset=topics&topic=ANGEL+%28a+spirit%29"
+            },
+            {
+              "label": "angel of the Lord (Nave's 2)",
+              "url": "https://bible-explorer.gospelgo.org/?dataset=topics&topic=ANGEL+%28Holy+Trinity%29"
+            }
+          ]
         },
         {
           "highlight": "Persons",
@@ -330,21 +340,6 @@
           "text": ["star"]
         },
         {
-          "highlight": "Prophecy",
-          "text": [
-            "prophet",
-            "prophets",
-            "fulfilled",
-            "shepherd",
-            "Bethlehem",
-            "Egypt",
-            "weeping",
-            "mourning",
-            "Nazareth",
-            "Nazarene"
-          ]
-        },
-        {
           "highlight": "chief priests & scribes",
           "text": ["chief priests", "scribes"]
         },
@@ -382,6 +377,21 @@
         {
           "highlight": "child",
           "text": ["child"]
+        },
+        {
+          "highlight": "Prophecy",
+          "text": [
+            "prophet",
+            "prophets",
+            "fulfilled",
+            "shepherd",
+            "Bethlehem",
+            "Egypt",
+            "weeping",
+            "mourning",
+            "Nazareth",
+            "Nazarene"
+          ]
         },
         {
           "highlight": "Prophecy",
@@ -437,7 +447,32 @@
         },
         {
           "label": "Pharisees & Sadducees",
-          "verses": ["7-12"]
+          "verses": ["7-12"],
+          "references": [
+            "Luke 1:5-6 (John's father was a righeous priest. v13)"
+          ],
+          "note": "Since John's father was a priest and a righteous one, John likely had extra insight into the religious leaders."
+        },
+        {
+          "label": "Baptize with the Holy Spirit and with fire",
+          "verses": ["11"],
+          "references": [
+            "Acts 2:1-4",
+            "Acts 10:44-48",
+            "Acts 19:1-7",
+            "1 Corinthians 12:13",
+            "Hebrews 12:29"
+          ],
+          "links": [
+            {
+              "label": "Got Questions",
+              "url": "https://www.gotquestions.org/baptized-with-the-Holy-Spirit-and-fire.html"
+            },
+            {
+              "label": "Bible Explorer",
+              "url": "https://bible-explorer.gospelgo.org/?dataset=topics&topic=BAPTISM"
+            }
+          ]
         },
         {
           "highlight": "Persons",

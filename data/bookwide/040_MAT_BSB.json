@@ -79,7 +79,7 @@
     },
     {
       "label": "Jesus knowing their thoughts",
-      "verses": ["12:25", "22:18"]
+      "verses": ["9:4", "12:25", "22:18"]
     },
     {
       "label": "Comparative judgment",
@@ -146,6 +146,17 @@
     {
       "highlight": "Faith",
       "text": [" faith", "believe", "believed", "trust"]
+    },
+    {
+      "highlight": "Baptism",
+      "text": [
+        "baptist",
+        "baptized",
+        "baptize",
+        "baptism",
+        "baptizing",
+        "fulfill all righteousness"
+      ]
     },
     {
       "highlight": "Scribes/Pharisees...",
