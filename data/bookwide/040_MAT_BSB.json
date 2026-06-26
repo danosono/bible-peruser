@@ -74,6 +74,32 @@
       "references": ["Mark 1:16–20", "Luke 5:2–11", "Luke 5:27-32"]
     },
     {
+      "label": "5 Discourses",
+      "verses": [
+        "5:1-7:29",
+        "9:35-10:42",
+        "13:1-13:52",
+        "18:1-28:35",
+        "23:1-25:46"
+      ],
+      "links": [
+        {
+          "label": "5 Discourses",
+          "url": "https://tscottwomble.com/wp-content/uploads/2023/02/matthew-key-book.pdf"
+        }
+      ]
+    },
+    {
+      "label": "End of 5 Discourses",
+      "verses": ["7:28", "11:1", "13:53", "19:1", "26:1"],
+      "links": [
+        {
+          "label": "5 Discourses",
+          "url": "https://tscottwomble.com/wp-content/uploads/2023/02/matthew-key-book.pdf"
+        }
+      ]
+    },
+    {
       "label": "Scribes/Pharisees",
       "verses": ["2:4-2:6", "9:1-9:13", "9:34", "12:1-12:45", "15:1-15:20"]
     },
@@ -144,8 +170,24 @@
       "text": ["kingdom of heaven", "kingdom of God"]
     },
     {
+      "highlight": "Heaven",
+      "text": ["heaven"]
+    },
+    {
+      "highlight": "Kingdom of Heaven",
+      "text": ["kingdom of heaven"]
+    },
+    {
       "highlight": "Faith",
       "text": [" faith", "believe", "believed", "trust"]
+    },
+    {
+      "highlight": "Father",
+      "text": ["Father"]
+    },
+    {
+      "highlight": "Disciples",
+      "text": ["disciples", "disciple"]
     },
     {
       "highlight": "Baptism",
@@ -173,6 +215,10 @@
       ]
     },
     {
+      "highlight": "End of 5 Discourses",
+      "text": ["when Jesus had finished", "after Jesus had finished"]
+    },
+    {
       "highlight": "Crowds",
       "text": ["crowds", "crowd"]
     },
@@ -187,6 +233,34 @@
         "Truly I tell you",
         "See, I have told you in advance"
       ]
+    },
+    {
+      "highlight": "Truly I tell you",
+      "text": ["Truly I tell you"]
+    },
+    {
+      "highlight": "Tell",
+      "text": ["tell"]
+    },
+    {
+      "highlight": "into",
+      "text": ["into"]
+    },
+    {
+      "highlight": "went",
+      "text": ["went"]
+    },
+    {
+      "highlight": "Came",
+      "text": ["came"]
+    },
+    {
+      "highlight": "Come",
+      "text": ["come"]
+    },
+    {
+      "highlight": "into, went, came, come",
+      "text": ["into", "went", "came", "come"]
     },
     {
       "highlight": "Woe",
