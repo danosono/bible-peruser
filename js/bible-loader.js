@@ -383,10 +383,14 @@ function applyPhraseHighlightsFromCache(verseTextCache, phrases) {
     return;
   }
   const lowerPhrases = normalized.map((p) => p.toLowerCase());
-  verseTextCache.forEach((entry, el) => {
-    const matches = collectNonOverlappingMatches(entry.lower, lowerPhrases);
-    el.innerHTML = renderHighlightedHtml(entry.text, matches);
-  });
+  try {
+    verseTextCache.forEach((entry, el) => {
+      const matches = collectNonOverlappingMatches(entry.lower, lowerPhrases);
+      el.innerHTML = renderHighlightedHtml(entry.text, matches);
+    });
+  } catch (e) {
+    console.error("[BiblePeruser] phrase highlight apply failed:", e);
+  }
 }
 
 function clearBoundListener(el, eventName, propName) {
@@ -433,13 +437,21 @@ async function loadBibleChapter(
     const book = data.books.find((b) => b.id === bookId);
     if (!book) {
       main.innerHTML = `<div class="error">Book not found.</div>`;
-      if (aside) aside.textContent = "";
+      if (aside) {
+        const _sb = aside.querySelector(".bp-sidebar__scroll-body");
+        if (_sb) _sb.innerHTML = "";
+        else aside.textContent = "";
+      }
       return;
     }
     const chapter = book.chapters.find((c) => c.number === chapterNum);
     if (!chapter) {
       main.innerHTML = `<div class="error">Chapter not found.</div>`;
-      if (aside) aside.textContent = "";
+      if (aside) {
+        const _sb = aside.querySelector(".bp-sidebar__scroll-body");
+        if (_sb) _sb.innerHTML = "";
+        else aside.textContent = "";
+      }
       return;
     }
     // Book name mapping from app.js
@@ -524,9 +536,15 @@ async function loadBibleChapter(
       }
     })();
 
-    const chapterVerseTextCache = buildVerseTextCache(
-      Array.from(document.querySelectorAll(".verse-text[data-original]")),
-    );
+    let chapterVerseTextCache;
+    try {
+      chapterVerseTextCache = buildVerseTextCache(
+        Array.from(document.querySelectorAll(".verse-text[data-original]")),
+      );
+    } catch (e) {
+      console.error("[BiblePeruser] verse cache build failed:", e);
+      chapterVerseTextCache = new Map();
+    }
 
     // Load topics for current book/chapter
     let topicBar = document.getElementById("chapter-topic-bar");
@@ -547,9 +565,13 @@ async function loadBibleChapter(
     const topicFile = getTopicFilename(bookId);
     const topicFileCandidates = topicFile ? [topicFile] : [];
 
-    // Clear right sidebar
+    // Clear right sidebar scroll body only (keep sticky controls intact)
     const aside = document.querySelector(".bp-sidebar--right");
-    if (aside) aside.innerHTML = "";
+    if (aside) {
+      const _sb = aside.querySelector(".bp-sidebar__scroll-body");
+      if (_sb) _sb.innerHTML = "";
+      else aside.innerHTML = "";
+    }
 
     function tryFetchTopicFile(files, cb) {
       if (!files.length) return cb(null);
@@ -588,9 +610,13 @@ async function loadBibleChapter(
       } else if (legendElem) {
         legendElem.innerHTML = "";
       }
-      // Create highlight buttons in right sidebar
+      // Create highlight buttons in right sidebar (clear scroll body only)
       const aside = document.querySelector(".bp-sidebar--right");
-      if (aside) aside.innerHTML = "";
+      if (aside) {
+        const _sb = aside.querySelector(".bp-sidebar__scroll-body");
+        if (_sb) _sb.innerHTML = "";
+        else aside.innerHTML = "";
+      }
       // Re-insert sticky highlight toggle bar if function exists
       if (window.renderStickyHighlightToggle) {
         window.renderStickyHighlightToggle(aside);
@@ -623,7 +649,7 @@ async function loadBibleChapter(
         highlightBar.style.flexWrap = "wrap";
         highlightBar.style.gap = "6px";
         highlightBar.style.margin = "12px 0";
-        aside.appendChild(highlightBar);
+        (aside.querySelector(".bp-sidebar__scroll-body") || aside).appendChild(highlightBar);
       }
       if (highlightBar) highlightBar.innerHTML = "";
       function autoSelectMatchingChapterTopic(
@@ -1150,7 +1176,11 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
   const legendElem = document.querySelector(".bp-footer__legend");
   if (!main) return;
   main.innerHTML = '<div class="loading">Loading book...</div>';
-  if (aside) aside.innerHTML = "";
+  if (aside) {
+    const _sb = aside.querySelector(".bp-sidebar__scroll-body");
+    if (_sb) _sb.innerHTML = "";
+    else aside.innerHTML = "";
+  }
   if (legendElem) legendElem.innerHTML = "";
 
   try {
@@ -1473,7 +1503,7 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
         bookHighlightBar.id = "book-highlight-bar";
         bookHighlightBar.style.cssText =
           "display:flex;flex-wrap:wrap;gap:6px;margin:8px 0;";
-        aside.appendChild(bookHighlightBar);
+        (aside.querySelector(".bp-sidebar__scroll-body") || aside).appendChild(bookHighlightBar);
 
         bookWideHighlights.forEach((entry) => {
           const label =
@@ -1595,7 +1625,7 @@ function ensureHighlightBar(aside) {
     highlightBar.style.flexWrap = "wrap";
     highlightBar.style.gap = "6px";
     highlightBar.style.margin = "12px 0";
-    aside.insertBefore(highlightBar, aside.firstChild);
+    (aside.querySelector(".bp-sidebar__scroll-body") || aside).appendChild(highlightBar);
   }
   if (highlightBar) highlightBar.innerHTML = "";
   return highlightBar;

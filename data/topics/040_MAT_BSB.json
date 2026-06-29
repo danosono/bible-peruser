@@ -439,11 +439,16 @@
         },
         {
           "label": "Prophecy",
-          "verses": ["3"]
+          "verses": ["3"],
+          "references": ["Isaiah 40:3"]
         },
         {
           "label": "Prophecy fulfilled",
-          "verses": ["1-2"]
+          "verses": ["1-2", "5-6"]
+        },
+        {
+          "label": "Baptize",
+          "verses": ["6", "11", "13"]
         },
         {
           "label": "Pharisees & Sadducees",
@@ -454,7 +459,7 @@
           "note": "Since John's father was a priest and a righteous one, John likely had extra insight into the religious leaders."
         },
         {
-          "label": "Baptize with the Holy Spirit and with fire",
+          "label": "Baptize with the Holy Spirit / fire",
           "verses": ["11"],
           "references": [
             "Acts 2:1-4",
@@ -482,6 +487,38 @@
             "Jeremiah 51:33",
             "Psalms 1:4",
             "Isaiah 17:13"
+          ]
+        },
+        {
+          "label": "gather wheat",
+          "verses": ["12"],
+          "references": [
+            "Matthew 13:30",
+            "Joel 3:13",
+            "Jeremiah 51:33",
+            "Hosea 6:11",
+            "Revelation 14:14-15"
+          ]
+        },
+        {
+          "label": "Unquenchable fire",
+          "verses": ["12"],
+          "references": [
+            "Jeremiah 17:27",
+            "Isaiah 66:24",
+            "Malachi 4:1",
+            "Hebrews 12:29",
+            "Revelation 20:10"
+          ]
+        },
+        {
+          "label": "Beloved Son, well pleased",
+          "verses": ["17"],
+          "references": [
+            "Matthew 17:5",
+            "Psalms 2:7",
+            "Isaiah 42:1",
+            "Deuteronomy 18:15"
           ]
         },
         {
@@ -550,7 +587,8 @@
           "text": [
             "Pharisees",
             "Sadducees",
-            "You brood of vipers, who warned you to flee from the coming wrath?"
+            "You brood of vipers, who warned you to flee from the coming wrath?",
+            "Produce fruit, then, in keeping with repentance"
           ]
         },
         {
@@ -563,12 +601,19 @@
             "garment of camel’s hair",
             "leather belt",
             "food was locusts and wild honey",
-            "baptized by him"
+            "baptized by him",
+            "You brood of vipers",
+            "I baptize you with water for repentance, but",
+            "I need to be baptized by You, and do You come to me?"
           ]
         },
         {
           "highlight": "Holy Spirit",
           "text": ["Holy Spirit", "the Spirit of God"]
+        },
+        {
+          "highlight": "Fire",
+          "text": ["fire"]
         }
       ]
     },

@@ -6,6 +6,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Bible Peruser** is a vanilla JavaScript/HTML/CSS Bible study web app hosted at https://bible-peruser.gospelgo.org. No build step is required — it's a static site. The "Unity Projects/Builds" path is just the host machine's folder convention; this is not a Unity project.
 
+## Debug Panel
+
+Add `?debug=1` (or `&debug=1` if other params are present) to any URL to show a bottom-left diagnostic overlay: DPR, viewport size, breakpoint name, and any JS errors in red. The flag persists via `sessionStorage` for the session. Dismiss with the `[x] close debug` button in the panel, or via `sessionStorage.removeItem("_bpDebug")` in the console. Implemented in `js/app.js` at the top of the file (before `DOMContentLoaded`).
+
 ## Development
 
 No build pipeline. Open `index.html` in a browser or serve the directory with any static file server:

@@ -611,15 +611,21 @@ body {
 }
 .bp-sidebar--right {
   border-left: 1px solid #222;
-  overflow-y: auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 .bp-sidebar-sticky-controls {
-  position: sticky;
-  top: 0;
+  flex-shrink: 0;
   z-index: 20;
   background: var(--bg-sidebar);
   padding: 0.55em 0 0.6em;
   border-bottom: 1px solid #333;
+}
+.bp-sidebar__scroll-body {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
 }
 /* Sticky highlight toggle bar in right sidebar */
 .sticky-highlight-toggle-bar {

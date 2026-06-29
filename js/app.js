@@ -1,5 +1,49 @@
 // js/app.js - Bible Peruser
 
+// Capture debug flag immediately before any pushState can strip it.
+// Also persist to sessionStorage so it survives navigation.
+(function () {
+  if (/[?&]debug/.test(location.search) || /[?&]debug/.test(location.href)) {
+    sessionStorage.setItem("_bpDebug", "1");
+  }
+  if (sessionStorage.getItem("_bpDebug")) {
+    var panel = document.createElement("div");
+    panel.id = "bp-debug-panel";
+    panel.style.cssText =
+      "position:fixed;bottom:8px;left:8px;background:rgba(0,0,0,0.88);color:#0f0;" +
+      "font:11px monospace;padding:8px 10px;z-index:99999;max-width:360px;" +
+      "border-radius:4px;line-height:1.7;pointer-events:none;";
+    var statusLine = document.createElement("div");
+    panel.appendChild(statusLine);
+    var closeBtn = document.createElement("div");
+    closeBtn.textContent = "[x] close debug";
+    closeBtn.style.cssText = "cursor:pointer;color:#f88;margin-top:4px;pointer-events:auto;";
+    closeBtn.onclick = function () {
+      sessionStorage.removeItem("_bpDebug");
+      panel.remove();
+    };
+    panel.appendChild(closeBtn);
+    document.body.appendChild(panel);
+    function _bpUpdateStatus() {
+      var bp = typeof bpGetBreakpoint === "function" ? bpGetBreakpoint() : "?";
+      statusLine.textContent =
+        "DPR: " + window.devicePixelRatio +
+        " | " + window.innerWidth + "\xD7" + window.innerHeight +
+        " | BP: " + bp;
+    }
+    window.addEventListener("resize", _bpUpdateStatus);
+    window.onerror = function (msg, src, line) {
+      var errEl = document.createElement("div");
+      errEl.style.color = "#f55";
+      errEl.textContent =
+        "ERR " + (src ? src.split("/").pop() : "?") + ":" + line + " — " + msg;
+      panel.appendChild(errEl);
+      return false;
+    };
+    _bpUpdateStatus();
+  }
+}());
+
 function bpGetBreakpoint() {
   const w = window.innerWidth;
   if (w < 900) return "mobile";
@@ -690,4 +734,5 @@ document.addEventListener("DOMContentLoaded", () => {
   ensureStickyToggleInSidebar();
   // Expose for other modules (e.g., bible-loader.js)
   window.renderStickyHighlightToggle = renderStickyHighlightToggle;
+
 });

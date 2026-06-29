@@ -28,6 +28,38 @@ Examples:
 - `https://bible-peruser.gospelgo.org/?book=JHN&chapter=3`
 - `https://bible-peruser.gospelgo.org/?book=REV&chapter=22`
 
+## Debug Panel
+
+A diagnostic overlay for troubleshooting layout and JavaScript errors on any device.
+
+**Turn on** — add `debug=1` to the URL:
+
+```
+# Starting fresh (no existing params):
+https://bible-peruser.gospelgo.org/?debug=1
+
+# Already have book/chapter params — use & not ?:
+https://bible-peruser.gospelgo.org/?book=MAT&chapter=3&debug=1
+```
+
+The panel appears in the bottom-left corner and shows:
+- `DPR` — device pixel ratio (1.5 = Windows 150% display scale)
+- Viewport width × height in CSS pixels
+- Current breakpoint (`mobile` / `hd` / `ultrawide`)
+- Any JavaScript errors in red as they occur
+
+The debug flag persists via `sessionStorage` for the rest of the browser session, so it survives chapter navigation.
+
+**Turn off** — click `[x] close debug` in the panel, or run in the browser console:
+
+```js
+sessionStorage.removeItem("_bpDebug")
+```
+
+Then refresh the page.
+
+> **Note:** `?debug=1` at the end of an existing URL (double `?`) still works — the app detects it — but the correct format is `&debug=1` when other params are already present.
+
 ## Full Documentation
 
 See `docs/linking.md` for:
