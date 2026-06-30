@@ -144,8 +144,18 @@
       "verses": ["24:42-24:44", "25:13", "26:38-26:41"]
     },
     {
-      "label": "Keep watch",
-      "verses": ["24:36-25:30", "25:13", "26:38-26:41"]
+      "label": "Escalations*",
+      "verses": ["3:6", "3:11", "5:17"],
+      "note": [
+        "Escalations moving from old to new covenants:",
+        "cerimonial washings -> baptism (complete submersion)",
+        "John's baptism -> Jesus' baptism",
+        "physical act (adultery, murder) -> heart (lust, anger)",
+        "blood of animals -> blood of Jesus Christ",
+        "copies of heavenly things (temple) -> Jesus entered heaven itself (Heb 9:24)",
+        "sacrifices again and again -> Jesus offered Himself once for all (Heb 9:26)",
+        "Jesus came not to abolish the law but to fulfill it"
+      ]
     }
   ],
   "bookWideHighlights": [
@@ -160,6 +170,10 @@
     {
       "highlight": "Life",
       "text": ["life"]
+    },
+    {
+      "highlight": "Light",
+      "text": ["lightning", " light", "daylight"]
     },
     {
       "highlight": "Prophecy",

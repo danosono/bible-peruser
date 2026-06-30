@@ -133,7 +133,13 @@ function positionFloatingMenu(icon, menu) {
   menu.style.left = `${left}px`;
 }
 
-function openReferenceMenu(icon, references, links, onSelectReference, onClose) {
+function openReferenceMenu(
+  icon,
+  references,
+  links,
+  onSelectReference,
+  onClose,
+) {
   document.querySelectorAll(".reference-menu").forEach((m) => m.remove());
   const menu = document.createElement("div");
   menu.className = "reference-menu";
@@ -226,7 +232,7 @@ function openNoteMenu(icon, noteText, onClose) {
   menu.style.borderRadius = "6px";
   menu.style.fontSize = "14px";
   menu.style.minWidth = "220px";
-  menu.style.maxWidth = "420px";
+  menu.style.maxWidth = "min(483px, 85vw)";
   menu.style.maxHeight = "70vh";
   menu.style.overflowY = "auto";
   menu.style.color = "#222";
@@ -300,7 +306,16 @@ function decorateTopicButtonWithReferences(
 }
 
 function decorateTopicButtonWithNote(btn, noteText, helperText, onClose) {
-  if (typeof noteText !== "string" || !noteText.trim()) return;
+  let normalizedNote = "";
+  if (typeof noteText === "string") {
+    normalizedNote = noteText.trim();
+  } else if (Array.isArray(noteText)) {
+    normalizedNote = noteText
+      .map((item) => (typeof item === "string" ? item.trim() : ""))
+      .filter(Boolean)
+      .join("\n");
+  }
+  if (!normalizedNote) return;
 
   btn.classList.add("topic-btn--with-reference");
   const noteIcon = document.createElement("span");
@@ -310,7 +325,7 @@ function decorateTopicButtonWithNote(btn, noteText, helperText, onClose) {
   noteIcon.style.cursor = "pointer";
   noteIcon.addEventListener("click", (e) => {
     e.stopPropagation();
-    openNoteMenu(noteIcon, noteText.trim(), onClose);
+    openNoteMenu(noteIcon, normalizedNote, onClose);
   });
   btn.appendChild(noteIcon);
 }
@@ -355,6 +370,14 @@ function collectNonOverlappingMatches(lowerText, lowerPhrases) {
   matches.forEach((m) => {
     if (m.start >= lastEnd) {
       merged.push(m);
+      lastEnd = m.end;
+      return;
+    }
+
+    const prev = merged[merged.length - 1];
+    // When overlaps occur, prefer the longer phrase match.
+    if (prev && m.len > prev.len) {
+      merged[merged.length - 1] = m;
       lastEnd = m.end;
     }
   });
@@ -649,7 +672,9 @@ async function loadBibleChapter(
         highlightBar.style.flexWrap = "wrap";
         highlightBar.style.gap = "6px";
         highlightBar.style.margin = "12px 0";
-        (aside.querySelector(".bp-sidebar__scroll-body") || aside).appendChild(highlightBar);
+        (aside.querySelector(".bp-sidebar__scroll-body") || aside).appendChild(
+          highlightBar,
+        );
       }
       if (highlightBar) highlightBar.innerHTML = "";
       function autoSelectMatchingChapterTopic(
@@ -1503,7 +1528,9 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
         bookHighlightBar.id = "book-highlight-bar";
         bookHighlightBar.style.cssText =
           "display:flex;flex-wrap:wrap;gap:6px;margin:8px 0;";
-        (aside.querySelector(".bp-sidebar__scroll-body") || aside).appendChild(bookHighlightBar);
+        (aside.querySelector(".bp-sidebar__scroll-body") || aside).appendChild(
+          bookHighlightBar,
+        );
 
         bookWideHighlights.forEach((entry) => {
           const label =
@@ -1625,7 +1652,9 @@ function ensureHighlightBar(aside) {
     highlightBar.style.flexWrap = "wrap";
     highlightBar.style.gap = "6px";
     highlightBar.style.margin = "12px 0";
-    (aside.querySelector(".bp-sidebar__scroll-body") || aside).appendChild(highlightBar);
+    (aside.querySelector(".bp-sidebar__scroll-body") || aside).appendChild(
+      highlightBar,
+    );
   }
   if (highlightBar) highlightBar.innerHTML = "";
   return highlightBar;
