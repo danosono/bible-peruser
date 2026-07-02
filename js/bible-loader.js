@@ -647,6 +647,10 @@ async function loadBibleChapter(
 
       let chapterSearchField = null;
       if (aside) {
+        aside
+          .querySelectorAll(".bp-chapter-search-field, .bp-book-search-field")
+          .forEach((el) => el.remove());
+
         chapterSearchField = document.createElement("input");
         chapterSearchField.type = "text";
         chapterSearchField.id = "chapter-search-field";
@@ -1501,6 +1505,10 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
       if (window.renderStickyHighlightToggle) {
         window.renderStickyHighlightToggle(aside);
       }
+
+      aside
+        .querySelectorAll(".bp-chapter-search-field, .bp-book-search-field")
+        .forEach((el) => el.remove());
 
       // Text search field
       bookSearchField = document.createElement("input");
