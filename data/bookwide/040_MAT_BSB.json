@@ -173,7 +173,7 @@
     },
     {
       "highlight": "Light",
-      "text": ["lightning", " light", "daylight"]
+      "text": [" light", "daylight", "lightning"]
     },
     {
       "highlight": "Prophecy",
@@ -279,6 +279,10 @@
     {
       "highlight": "Woe",
       "text": ["Woe"]
+    },
+    {
+      "highlight": "Righteous",
+      "text": ["righteous", "righteousness"]
     }
   ]
 }

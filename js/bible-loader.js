@@ -141,6 +141,221 @@ function openReferenceMenu(
   onClose,
 ) {
   document.querySelectorAll(".reference-menu").forEach((m) => m.remove());
+  document
+    .querySelectorAll(".reference-preview-popover")
+    .forEach((m) => m.remove());
+
+  const previewCache = new Map();
+
+  function parseReferenceForPreview(reference) {
+    const details = parseReferenceDetails(reference);
+    if (!details || !details.bookId || !details.chapterNum) return null;
+    return details;
+  }
+
+  async function resolveReferencePreview(reference) {
+    const canonical = extractReferenceCore(reference);
+    if (!canonical) return null;
+    if (previewCache.has(canonical)) return previewCache.get(canonical);
+
+    const details = parseReferenceForPreview(reference);
+    if (!details) return null;
+
+    const data = await getBibleData();
+    const books = Array.isArray(data?.books) ? data.books : [];
+    const book = books.find((b) => b.id === details.bookId);
+    if (!book || !Array.isArray(book.chapters)) return null;
+
+    const chapter = book.chapters.find((c) => c.number === details.chapterNum);
+    if (!chapter || !Array.isArray(chapter.verses) || !chapter.verses.length)
+      return null;
+
+    const bookLabel = bookNames[details.bookId] || details.bookId;
+    let title = `${bookLabel} ${details.chapterNum}`;
+    let lines = [];
+
+    if (Number.isInteger(details.verseStart) && details.verseStart > 0) {
+      const verseEnd =
+        Number.isInteger(details.verseEnd) &&
+        details.verseEnd >= details.verseStart
+          ? details.verseEnd
+          : details.verseStart;
+      title = `${bookLabel} ${details.chapterNum}:${details.verseStart}${verseEnd > details.verseStart ? `-${verseEnd}` : ""}`;
+
+      lines = chapter.verses
+        .filter((v) => {
+          const n = parseInt(v?.n, 10);
+          return (
+            Number.isInteger(n) && n >= details.verseStart && n <= verseEnd
+          );
+        })
+        .map((v) => `${v.n}. ${v.text}`);
+    } else {
+      lines = chapter.verses.slice(0, 2).map((v) => `${v.n}. ${v.text}`);
+    }
+
+    if (!lines.length) return null;
+
+    const preview = {
+      title,
+      text: lines.join("\n"),
+    };
+    previewCache.set(canonical, preview);
+    return preview;
+  }
+
+  function positionPreviewPopover(anchorEl, popoverEl) {
+    const gap = 8;
+    const viewportPadding = 8;
+    const anchorRect = anchorEl.getBoundingClientRect();
+    const popRect = popoverEl.getBoundingClientRect();
+    const viewportLeft = window.scrollX;
+    const viewportRight = window.scrollX + window.innerWidth;
+    const viewportTop = window.scrollY;
+    const viewportBottom = window.scrollY + window.innerHeight;
+
+    let left = anchorRect.right + window.scrollX + gap;
+    let top = anchorRect.top + window.scrollY;
+
+    if (left + popRect.width > viewportRight - viewportPadding) {
+      left = anchorRect.left + window.scrollX - popRect.width - gap;
+    }
+
+    const minLeft = viewportLeft + viewportPadding;
+    const maxLeft = viewportRight - popRect.width - viewportPadding;
+    const minTop = viewportTop + viewportPadding;
+    const maxTop = viewportBottom - popRect.height - viewportPadding;
+
+    popoverEl.style.left = `${Math.max(minLeft, Math.min(left, maxLeft))}px`;
+    popoverEl.style.top = `${Math.max(minTop, Math.min(top, maxTop))}px`;
+  }
+
+  let activePreviewAnchor = null;
+  let activePreviewPopover = null;
+  let previewPinned = false;
+  let previewShowTimer = null;
+  let previewHideTimer = null;
+  let previewRequestToken = 0;
+
+  function clearPreviewTimers() {
+    if (previewShowTimer) {
+      clearTimeout(previewShowTimer);
+      previewShowTimer = null;
+    }
+    if (previewHideTimer) {
+      clearTimeout(previewHideTimer);
+      previewHideTimer = null;
+    }
+  }
+
+  function removePreview(force = false) {
+    if (previewPinned && !force) return;
+    if (activePreviewPopover) {
+      activePreviewPopover.remove();
+      activePreviewPopover = null;
+    }
+    activePreviewAnchor = null;
+    previewPinned = false;
+  }
+
+  function schedulePreviewHide() {
+    clearPreviewTimers();
+    previewHideTimer = setTimeout(() => {
+      removePreview(false);
+    }, 140);
+  }
+
+  function renderPreview(anchorEl, preview) {
+    if (!preview || !anchorEl) return;
+    if (!activePreviewPopover) {
+      activePreviewPopover = document.createElement("div");
+      activePreviewPopover.className = "reference-preview-popover";
+      activePreviewPopover.style.position = "absolute";
+      activePreviewPopover.style.zIndex = 1001;
+      activePreviewPopover.style.background = "#fff";
+      activePreviewPopover.style.border = "1px solid #ccc";
+      activePreviewPopover.style.boxShadow = "0 2px 8px rgba(0,0,0,0.15)";
+      activePreviewPopover.style.borderRadius = "6px";
+      activePreviewPopover.style.padding = "8px 10px";
+      activePreviewPopover.style.color = "#222";
+      activePreviewPopover.style.minWidth = "260px";
+      activePreviewPopover.style.maxWidth = "min(560px, 80vw)";
+      activePreviewPopover.style.maxHeight = "50vh";
+      activePreviewPopover.style.overflowY = "auto";
+      activePreviewPopover.style.whiteSpace = "pre-wrap";
+      activePreviewPopover.style.cursor = "default";
+
+      activePreviewPopover.addEventListener("mouseenter", () => {
+        clearPreviewTimers();
+      });
+      activePreviewPopover.addEventListener("mouseleave", () => {
+        schedulePreviewHide();
+      });
+      activePreviewPopover.addEventListener("click", (e) => {
+        e.stopPropagation();
+        previewPinned = !previewPinned;
+      });
+      document.body.appendChild(activePreviewPopover);
+    }
+
+    const safeTitle = String(preview.title || "Reference");
+    const safeText = String(preview.text || "");
+    activePreviewPopover.innerHTML = "";
+
+    const titleEl = document.createElement("div");
+    titleEl.style.fontWeight = "600";
+    titleEl.style.marginBottom = "6px";
+    titleEl.textContent = safeTitle;
+
+    const textEl = document.createElement("div");
+    textEl.style.fontSize = "13px";
+    textEl.style.lineHeight = "1.35";
+    textEl.textContent = safeText;
+
+    const helperEl = document.createElement("div");
+    helperEl.style.marginTop = "6px";
+    helperEl.style.fontSize = "11px";
+    helperEl.style.color = "#666";
+    helperEl.textContent = "Hover preview. Click preview to pin/unpin.";
+
+    activePreviewPopover.appendChild(titleEl);
+    activePreviewPopover.appendChild(textEl);
+    activePreviewPopover.appendChild(helperEl);
+    activePreviewAnchor = anchorEl;
+    positionPreviewPopover(anchorEl, activePreviewPopover);
+  }
+
+  function attachReferencePreviewBehavior(refItem, ref) {
+    if (!parseReferenceForPreview(ref)) return;
+
+    refItem.addEventListener("mouseenter", () => {
+      if (previewPinned) return;
+      clearPreviewTimers();
+      previewShowTimer = setTimeout(async () => {
+        const token = ++previewRequestToken;
+        try {
+          const preview = await resolveReferencePreview(ref);
+          if (token !== previewRequestToken || previewPinned) return;
+          renderPreview(refItem, preview);
+        } catch {
+          // Keep hover behavior silent on preview failures.
+        }
+      }, 170);
+    });
+
+    refItem.addEventListener("mouseleave", () => {
+      if (previewPinned) return;
+      schedulePreviewHide();
+    });
+  }
+
+  function closeReferenceUi(force = true) {
+    clearPreviewTimers();
+    removePreview(force);
+    menu.remove();
+    if (onClose) onClose();
+  }
+
   const menu = document.createElement("div");
   menu.className = "reference-menu";
   menu.style.position = "absolute";
@@ -165,8 +380,11 @@ function openReferenceMenu(
     refItem.textContent = ref;
     refItem.style.padding = "4px 0";
     refItem.style.cursor = "pointer";
+    attachReferencePreviewBehavior(refItem, ref);
     refItem.addEventListener("click", (e) => {
       e.stopPropagation();
+      clearPreviewTimers();
+      removePreview(true);
       menu.remove();
       onSelectReference(ref);
     });
@@ -186,6 +404,8 @@ function openReferenceMenu(
     linkItem.appendChild(arrow);
     linkItem.addEventListener("click", (e) => {
       e.stopPropagation();
+      clearPreviewTimers();
+      removePreview(true);
       menu.remove();
       window.open(link.url, "_blank", "noopener,noreferrer");
     });
@@ -200,8 +420,7 @@ function openReferenceMenu(
   closeItem.style.color = "#0074d9";
   closeItem.addEventListener("click", (e) => {
     e.stopPropagation();
-    menu.remove();
-    if (onClose) onClose();
+    closeReferenceUi(true);
   });
   menu.appendChild(document.createElement("hr"));
   menu.appendChild(closeItem);
@@ -211,8 +430,10 @@ function openReferenceMenu(
 
   setTimeout(() => {
     document.addEventListener("mousedown", function handler(e) {
-      if (!menu.contains(e.target)) {
-        menu.remove();
+      const clickInsidePreview =
+        activePreviewPopover && activePreviewPopover.contains(e.target);
+      if (!menu.contains(e.target) && !clickInsidePreview) {
+        closeReferenceUi(true);
         document.removeEventListener("mousedown", handler);
       }
     });

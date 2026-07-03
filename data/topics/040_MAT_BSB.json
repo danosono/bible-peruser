@@ -467,7 +467,7 @@
           "references": ["Luke 19:40", "Exodus 17:6"]
         },
         {
-          "label": "Stones",
+          "label": "Stone",
           "verses": ["9"],
           "references": [
             "Daniel 2:34-35 (also veres 44-45)",
@@ -531,6 +531,43 @@
           ]
         },
         {
+          "label": "Jesus' baptism",
+          "verses": ["13"],
+          "references": [
+            "Identified Jesus with sinners (though He had no sin)",
+            "Mark 10:38-39 (death)",
+            "Luke 12:50 (death)",
+            "Psalms 69:1-2 (judgement)",
+            "Matthew 12:38-41 (sign of Jonah)",
+            "Matthew 16:1-4 (sign of Jonah)"
+          ]
+        },
+        {
+          "label": "Fulfill all righteousness",
+          "verses": ["15"],
+          "references": [
+            "Isaiah 40:3 | Identified Jesus as the promised Messiah",
+            "Malachi 3:1 | Marked new covenant, joining it to the old",
+            "God the Father, Spirit and Son (v16-17)",
+            "Hebrews 4:15  | Jesus is righteous",
+            "2 Corinthians 5:21 | Jesus became sin so we could become righteous",
+            "1 Peter 2:22  | Jesus did not sin",
+            "1 John 3:5 | Jesus takes away sin",
+            "Hebrews 7:26-28 | Jesus is separate from sinners yet offered Himself for sinners",
+            "Romans 5:19  | Jesus makes righteous those who call on Him in repentance and trust",
+            "Philippians 3:9",
+            "1 Peter 2:24 | Jesus bore our sins in His body on the cross",
+            "Acts 17:31  | He will judge the world in righteousness",
+            "Revelation 19:11  | in righteousness He judges"
+          ],
+          "links": [
+            {
+              "label": "Righteousness",
+              "url": "https://bible-explorer.gospelgo.org/?dataset=concordance&topic=Righteousness"
+            }
+          ]
+        },
+        {
           "label": "Heavens opened Spirit descends",
           "verses": ["16"],
           "references": [
@@ -557,6 +594,11 @@
             "Isaiah 42:1",
             "Deuteronomy 18:15"
           ]
+        },
+        {
+          "label": "triune God",
+          "verses": ["16-17"],
+          "note": "The Father, Son and Spirit are all present and distinct."
         },
         {
           "highlight": "Persons",
