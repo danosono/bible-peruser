@@ -724,12 +724,53 @@
           "references": ["Mark 3:7–12", "Luke 6:17–19"]
         },
         {
+          "label": "Bread alone",
+          "verses": ["4"],
+          "references": ["Deuteronomy 8:3", "John 6:48-51"]
+        },
+        {
           "label": "Prophecy",
           "verses": ["14-16"]
         },
         {
           "label": "Prophecy fulfilled",
           "verses": ["13"]
+        },
+        {
+          "label": "Light",
+          "verses": ["16"],
+          "references": [
+            "Isaiah 9:1-2",
+            "John 1:5-9",
+            "John 8:12",
+            "John 12:46",
+            "1 John 1:5-7",
+            "2 Corinthians 4:6",
+            "Ephesians 5:14",
+            "Philippians 2:15",
+            "Matthew 5:14-16",
+            "Revelation 21:23"
+          ]
+        },
+        {
+          "label": "Repent",
+          "verses": ["17"]
+        },
+        {
+          "label": "Obedience",
+          "verses": ["1", "20", "22"]
+        },
+        {
+          "label": "Temptations",
+          "verses": ["3-10"]
+        },
+        {
+          "label": "Jesus' response to temptations",
+          "verses": ["4", "7", "10"]
+        },
+        {
+          "label": "Angels",
+          "verses": ["11"]
         },
         {
           "label": "Repent",
@@ -804,6 +845,10 @@
         },
         {
           "highlight": "Light",
+          "text": ["light"]
+        },
+        {
+          "highlight": "Light",
           "text": [
             "people living in darkness have seen a great light",
             "in the land of the shadow of death, a light has dawned",
@@ -832,6 +877,17 @@
         {
           "highlight": "Healing",
           "text": ["healing", "healed"]
+        },
+        {
+          "highlight": "Healing",
+          "text": [
+            "every disease and sickness",
+            "various diseases",
+            "suffering acute pain",
+            "demon-possessed",
+            "seizures",
+            "paralyzed"
+          ]
         },
         {
           "highlight": "Crowds",
