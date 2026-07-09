@@ -258,7 +258,16 @@
         },
         {
           "label": "Prophecy",
-          "verses": ["6", "15", "17-18", "23"]
+          "verses": ["6", "15", "17-18", "23"],
+          "references": [
+            "Micah 5:2 (Bethlehem)",
+            "Hosea 11:1 (Egypt)",
+            "Jeremiah 31:15 (weeping)",
+            "-",
+            "Acts 22:7-8 (Nazareth)",
+            "Acts 24:5 (Nazarene)",
+            "Acts 26:9 (Nazareth)"
+          ]
         },
         {
           "label": "Prophecy fulfilled",
@@ -724,6 +733,37 @@
           "references": ["Mark 3:7–12", "Luke 6:17–19"]
         },
         {
+          "label": "Wilderness",
+          "verses": ["1"],
+          "references": [
+            "Deuteronomy 8:2",
+            "Exodus 3:1-2",
+            "1 Kings 19:3-5",
+            "1 Samuel 17:37 (alone with the sheep)",
+            "Psalms 23:4"
+          ]
+        },
+        {
+          "label": "40 days",
+          "verses": ["2"],
+          "references": [
+            "Genesis 7:12",
+            "Acts 7:29-30",
+            "Exodus 24:18",
+            "Deuteronomy 9:18 (also v25)",
+            "Deuteronomy 25:3",
+            "Numbers 13:25",
+            "Deuteronomy 8:2-5",
+            "Judges 13:1",
+            "1 Samuel 17:16",
+            "1 Kings 19:8",
+            "Ezekiel 4:6",
+            "Ezekiel 29:11-13",
+            "Jonah 3:4",
+            "Acts 1:3"
+          ]
+        },
+        {
           "label": "Bread alone",
           "verses": ["4"],
           "references": ["Deuteronomy 8:3", "John 6:48-51"]
@@ -820,6 +860,10 @@
           ]
         },
         {
+          "highlight": "the devil",
+          "text": ["the devil", "the tempter ", "satan"]
+        },
+        {
           "highlight": "Temptations",
           "text": [
             "tell these stones to become bread",
@@ -867,8 +911,16 @@
           "text": ["Galilee"]
         },
         {
+          "highlight": "Follow Jesus",
+          "text": ["Come, follow Me", "Jesus called them"]
+        },
+        {
           "highlight": "Jesus sent to the lost sheep of Israel",
           "text": ["teaching in their synagogues"]
+        },
+        {
+          "highlight": "Teaching Preaching",
+          "text": ["teaching", "preaching"]
         },
         {
           "highlight": "Gospel",
@@ -892,10 +944,6 @@
         {
           "highlight": "Crowds",
           "text": ["crowds"]
-        },
-        {
-          "highlight": "Follow Jesus",
-          "text": ["Come, follow Me", "Jesus called them"]
         }
       ]
     },
