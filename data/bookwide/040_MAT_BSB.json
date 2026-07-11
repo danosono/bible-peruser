@@ -189,11 +189,23 @@
     },
     {
       "highlight": "Kingdom of Heaven",
-      "text": ["kingdom of heaven"]
+      "text": ["kingdom of heaven", "kingdom of God", "gospel of the kingdom"]
     },
     {
-      "highlight": "Faith",
+      "highlight": "Repent",
+      "text": [" repent", "repentance"]
+    },
+    {
+      "highlight": "Faith/Belief/Trust",
       "text": [" faith", "believe", "believed", "trust"]
+    },
+    {
+      "highlight": "Gospel",
+      "text": ["gospel", "good news"]
+    },
+    {
+      "highlight": "Good",
+      "text": ["good"]
     },
     {
       "highlight": "Father",
