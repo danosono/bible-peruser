@@ -995,8 +995,10 @@ footer {
   margin-left: 0.25em;
 }
 
-/* Mobile/tablet overlay */
-@media (max-width: 899px) {
+/* Too-narrow overlay — the mobile layout is default-on below 900px
+   (html.bp-mobile, opt out with ?mobile=0); this fallback only blocks
+   screens too narrow for even the mobile layout. */
+@media (max-width: 319px) {
   .bp-app {
     filter: blur(2px) grayscale(0.5);
     pointer-events: none;
@@ -1220,4 +1222,328 @@ footer {
     padding: 0.14em 0.4em;
   }
 
+}
+
+/* =====================================================================
+   Drawer handles + popup bottom sheet (base rules; only activated by the
+   mobile layout below — handles stay hidden on desktop, the sheet class is
+   only added by JS when the mobile layout is active).
+   ===================================================================== */
+.bp-drawer-handle {
+  display: none;
+}
+
+/* Bottom-sheet variant of reference/note menus. !important is required to
+   beat the menus' inline positioning styles set in bible-loader.js. */
+.reference-menu--sheet {
+  position: fixed !important;
+  top: auto !important;
+  left: 0.5rem !important;
+  right: 0.5rem !important;
+  bottom: calc(2.9em + env(safe-area-inset-bottom, 0px) + 0.5rem) !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  max-height: 50vh !important;
+  max-height: 50dvh !important;
+  overflow-y: auto !important;
+  z-index: 1000 !important;
+}
+
+/* =====================================================================
+   Mobile layout (<900px), opt-in via html.bp-mobile
+   (?mobile=1 or the overlay's "Try Mobile View" button).
+   Desktop (>=900px) is untouched: everything here is gated on both the
+   media query and the html.bp-mobile class.
+   ===================================================================== */
+@media (max-width: 899px) {
+  html.bp-mobile .bp-app {
+    height: 100vh;
+    height: 100dvh; /* keeps the bottom handle above mobile browser chrome */
+    min-height: 0;
+  }
+
+  /* --- Compact single-row header --- */
+  html.bp-mobile .bp-header {
+    height: auto;
+    min-height: 2.6em;
+    padding: 0.3rem 0.6rem;
+    gap: 0.5rem;
+    box-sizing: border-box;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+  /* Logo stands in for the wordmark; horizontal space is scarce */
+  html.bp-mobile .bp-header__title {
+    font-size: 0;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+  html.bp-mobile .bp-header__brand-link {
+    margin-left: 0;
+  }
+  html.bp-mobile .bp-header__brand-logo {
+    height: 1.7rem;
+  }
+  html.bp-mobile .bp-header__jump {
+    position: static;
+    transform: none;
+    flex: 1;
+    min-width: 0;
+    justify-content: flex-end;
+  }
+  html.bp-mobile .bp-header__jump-input {
+    width: clamp(5.5rem, 28vw, 8rem);
+    min-width: 0;
+    font-size: 16px; /* <16px triggers iOS focus auto-zoom */
+  }
+  html.bp-mobile .bp-header__nav-center {
+    position: static;
+    transform: none;
+    gap: 0;
+    flex-shrink: 0;
+  }
+  html.bp-mobile .bp-header__nav-center button {
+    font-size: 1em;
+    padding: 0.3em 0.75em;
+  }
+  /* !important: these carry inline display:flex in index.html */
+  html.bp-mobile .bp-header__nav-group,
+  html.bp-mobile .bp-header__right {
+    display: none !important;
+  }
+  html.bp-mobile .bp-header__chapter-group {
+    border: none;
+    padding: 0;
+    margin-left: 0 !important;
+  }
+  html.bp-mobile .bp-header__chapter-label {
+    display: none;
+  }
+  html.bp-mobile .bp-header__chapter-group button {
+    padding: 0.3em 0.85em;
+    min-height: 2.2em;
+  }
+
+  /* --- Drawer handles --- */
+  html.bp-mobile .bp-drawer-handle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    flex-shrink: 0;
+    width: 100%;
+    min-height: 2.4em;
+    padding: 0.2em 0.75em;
+    box-sizing: border-box;
+    background: var(--bg-sidebar);
+    color: var(--text-main);
+    border: none;
+    font-size: 1em;
+    font-family: inherit;
+    cursor: pointer;
+    position: relative;
+    z-index: 160; /* above the drawers so the handle edge stays crisp */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  html.bp-mobile .bp-drawer-handle--top {
+    border-bottom: 1px solid var(--accent);
+    box-shadow: 0 2px 6px #0006;
+  }
+  html.bp-mobile .bp-drawer-handle--bottom {
+    border-top: 1px solid var(--accent);
+    box-shadow: 0 -2px 6px #0006;
+    padding-bottom: calc(0.2em + env(safe-area-inset-bottom, 0px));
+  }
+  html.bp-mobile .bp-drawer-handle__label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  html.bp-mobile .bp-drawer-handle__chevron {
+    color: #ffe082;
+  }
+
+  /* --- Sidebars become slide-in drawers over the text --- */
+  html.bp-mobile .bp-sidebar--left,
+  html.bp-mobile .bp-sidebar--right {
+    position: absolute; /* anchored to .bp-layout-container (relative) */
+    left: 0;
+    right: 0;
+    width: auto;
+    z-index: 150; /* above sticky .bp-chapter-header (10), below header (200) */
+    box-sizing: border-box;
+    padding: 0.5rem 0.75rem 0.75rem;
+    transition: transform 0.22s ease;
+    overscroll-behavior: contain;
+  }
+  html.bp-mobile .bp-sidebar--left {
+    top: 0;
+    max-height: min(45vh, 24em);
+    max-height: min(45dvh, 24em);
+    overflow-y: auto;
+    transform: translateY(-103%);
+    border-right: none;
+    border-bottom: 2px solid var(--accent);
+    box-shadow: 0 6px 16px #000a;
+  }
+  html.bp-mobile .bp-sidebar--right {
+    bottom: 0;
+    max-height: min(50vh, 26em);
+    max-height: min(50dvh, 26em);
+    transform: translateY(103%);
+    border-left: none;
+    border-top: 2px solid var(--accent);
+    box-shadow: 0 -6px 16px #000a;
+  }
+  html.bp-mobile .bp-app.bp-drawer-top-open .bp-sidebar--left,
+  html.bp-mobile .bp-app.bp-drawer-bottom-open .bp-sidebar--right {
+    transform: translateY(0);
+  }
+
+  /* Chapter nav inside the top drawer: one wrapping row instead of a tall
+     stack. !important beats the inline styles on the injected elements. */
+  html.bp-mobile .chapter-nav-sticky {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    gap: 0.4em;
+    padding: 6px 0 8px;
+  }
+  html.bp-mobile .chapter-nav-sticky > #entire-book-btn,
+  html.bp-mobile .chapter-nav-sticky > #chapter-dropdown,
+  html.bp-mobile .chapter-nav-sticky > div {
+    width: auto !important;
+    max-width: none !important;
+    margin-top: 0 !important;
+  }
+  html.bp-mobile .chapter-nav-sticky button {
+    margin: 0;
+  }
+  html.bp-mobile .chapter-nav-sticky > div button {
+    margin: 0 4px;
+  }
+
+  /* Book strip relocated into the top drawer (moved there by app.js) */
+  html.bp-mobile .bp-sidebar--left .bp-book-scrollbar-container {
+    position: static;
+    height: auto;
+    padding: 0.25rem 0;
+    margin-top: 0.5rem;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+
+  /* --- Main text: single column, edge to edge --- */
+  html.bp-mobile .bp-main {
+    padding: 0 0.75rem 1.25rem;
+  }
+  html.bp-mobile .bible-chapter {
+    font-size: calc(1.05em * var(--bp-font-scale, 1));
+    line-height: 1.5;
+    max-width: none;
+    column-gap: 0;
+  }
+  html.bp-mobile .bp-chapter-header {
+    grid-template-columns: 1fr auto;
+    padding: 0.15em 0 0.25em;
+  }
+  html.bp-mobile .bp-chapter-header h2 {
+    grid-column: 1;
+    text-align: left;
+    font-size: 1.05em;
+    margin: 0.15em 0;
+  }
+  html.bp-mobile .bp-font-slider {
+    width: 5em;
+  }
+  html.bp-mobile .bp-font-overview {
+    display: none; /* 0.3x overview scale is unusable on a phone */
+  }
+  html.bp-mobile .bp-footer,
+  html.bp-mobile .bp-footer__legend {
+    display: none;
+  }
+
+  /* --- Tap ergonomics --- */
+  html.bp-mobile .topic-btn,
+  html.bp-mobile .topic-highlight-btn,
+  html.bp-mobile .bp-book-scrollbar__btn,
+  html.bp-mobile .chapter-nav-sticky button,
+  html.bp-mobile #chapter-dropdown {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    min-height: 2.5em;
+  }
+  html.bp-mobile .bp-chapter-search-field,
+  html.bp-mobile .bp-book-search-field {
+    font-size: 16px; /* <16px triggers iOS focus auto-zoom */
+  }
+
+  /* --- One-time "try it on desktop" tip toast (created in app.js) --- */
+  html.bp-mobile .bp-desktop-tip {
+    position: fixed;
+    left: 0.5rem;
+    right: 0.5rem;
+    bottom: calc(2.9em + env(safe-area-inset-bottom, 0px) + 0.5rem);
+    z-index: 500; /* above drawers (150), below reference menus (1000) */
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    padding: 0.6em 0.75em;
+    box-sizing: border-box;
+    background: var(--bg-header);
+    color: var(--text-main);
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    box-shadow: 0 4px 14px #000a;
+    font-size: 0.9em;
+    line-height: 1.35;
+  }
+  html.bp-mobile .bp-desktop-tip__text {
+    flex: 1;
+    min-width: 0;
+  }
+  html.bp-mobile .bp-desktop-tip__copy {
+    flex-shrink: 0;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 0.45em 0.8em;
+    font-size: 1em;
+    font-family: inherit;
+    cursor: pointer;
+    touch-action: manipulation;
+    white-space: nowrap;
+  }
+  html.bp-mobile .bp-desktop-tip__close {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5em;
+    line-height: 1;
+    padding: 0.1em 0.25em;
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+}
+
+/* Landscape phones: allow taller drawers (viewport is short) */
+@media (max-width: 899px) and (orientation: landscape) {
+  html.bp-mobile .bp-sidebar--left,
+  html.bp-mobile .bp-sidebar--right {
+    max-height: 70vh;
+    max-height: 70dvh;
+  }
+}
+
+@media (max-width: 899px) and (prefers-reduced-motion: reduce) {
+  html.bp-mobile .bp-sidebar--left,
+  html.bp-mobile .bp-sidebar--right {
+    transition: none;
+  }
 }

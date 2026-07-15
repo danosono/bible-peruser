@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content"
+    />
     <title>Bible Peruser</title>
     <link rel="icon" type="image/png" href="images/Gg.png" />
     <link rel="shortcut icon" type="image/png" href="images/Gg.png" />
@@ -13,7 +16,7 @@
     <div class="bp-mobile-overlay">
       <div class="bp-mobile-overlay__msg">
         Bible Peruser<br />
-        requires 900 pixel width.
+        requires a wider screen.
       </div>
       <div class="bp-mobile-overlay__actions">
         <button class="bp-mobile-overlay__btn" id="bp-copy-btn">
@@ -141,15 +144,24 @@
           </div>
         </div>
       </header>
+      <button
+        class="bp-drawer-handle bp-drawer-handle--top"
+        id="bp-drawer-top-toggle"
+        aria-expanded="false"
+        aria-controls="bp-drawer-top"
+      >
+        <span class="bp-drawer-handle__label">Outline</span>
+        <span class="bp-drawer-handle__chevron">&#9662;</span>
+      </button>
       <div class="bp-layout-container">
         <div class="bp-layout">
-          <nav class="bp-sidebar bp-sidebar--left">
+          <nav class="bp-sidebar bp-sidebar--left" id="bp-drawer-top">
             <!-- Navigation will go here -->
           </nav>
           <main class="bp-main">
             <!-- Main Bible content will go here -->
           </main>
-          <aside class="bp-sidebar bp-sidebar--right">
+          <aside class="bp-sidebar bp-sidebar--right" id="bp-drawer-bottom">
             <div class="bp-sidebar-sticky-controls">
               <div class="sticky-highlight-toggle-bar">
                 <label class="sticky-highlight-toggle-label">
@@ -167,6 +179,15 @@
           <div id="bp-book-scrollbar" class="bp-book-scrollbar"></div>
         </div>
       </div>
+      <button
+        class="bp-drawer-handle bp-drawer-handle--bottom"
+        id="bp-drawer-bottom-toggle"
+        aria-expanded="false"
+        aria-controls="bp-drawer-bottom"
+      >
+        <span class="bp-drawer-handle__label">Highlights</span>
+        <span class="bp-drawer-handle__chevron">&#9652;</span>
+      </button>
       <div class="bp-footer__legend"></div>
       <footer class="bp-footer">
         <span id="bp-char-count">Character count: 0</span>

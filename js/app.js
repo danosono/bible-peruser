@@ -44,6 +44,20 @@
   }
 }());
 
+// Mobile layout is default-on below 900px. ?mobile=0 opts out for the
+// session (survives pushState navigation, like the debug flag) as a debug
+// escape hatch; ?mobile=1 re-enables.
+(function () {
+  if (/[?&]mobile=0/.test(location.search)) {
+    sessionStorage.setItem("_bpMobileOff", "1");
+  } else if (/[?&]mobile=1/.test(location.search)) {
+    sessionStorage.removeItem("_bpMobileOff");
+  }
+  if (!sessionStorage.getItem("_bpMobileOff")) {
+    document.documentElement.classList.add("bp-mobile");
+  }
+}());
+
 function bpGetBreakpoint() {
   const w = window.innerWidth;
   if (w < 900) return "mobile";
@@ -51,21 +65,66 @@ function bpGetBreakpoint() {
   return "hd";
 }
 
-function bpHandleBreakpoint() {
-  const bp = bpGetBreakpoint();
-  // Example: add logic for each breakpoint
-  if (bp === "mobile") {
-    // Mobile/tablet overlay is handled by CSS
-  } else if (bp === "hd") {
-    // HD rules (900px - 2999px)
-    // Add JS logic for HD screens here
-  } else if (bp === "ultrawide") {
-    // Ultra-wide rules (>=3000px)
-    // Add JS logic for ultra-wide screens here
+function bpIsMobileMode() {
+  return (
+    window.innerWidth < 900 &&
+    document.documentElement.classList.contains("bp-mobile")
+  );
+}
+// bible-loader.js (separate module) checks this for popup positioning.
+window.bpIsMobileMode = bpIsMobileMode;
+
+let _bpLastUiMode = null;
+// Moves the 66-book strip into the top drawer when the mobile layout is
+// active (and back out on desktop), and re-renders the current view when the
+// 899/900 boundary is crossed so the JS-chosen column/font classes match the
+// new width (column classes are otherwise only computed on chapter load).
+function bpSyncMobileUi() {
+  const mode = bpIsMobileMode() ? "mobile" : "desktop";
+  if (mode === _bpLastUiMode) return;
+  const leftSidebar = document.querySelector(".bp-sidebar--left");
+  const strip = document.querySelector(".bp-book-scrollbar-container");
+  const layoutContainer = document.querySelector(".bp-layout-container");
+  if (!leftSidebar || !strip || !layoutContainer) return;
+  // Wait until the chapter nav shell has been injected: the book strip must
+  // only ever be APPENDED after it, because bible-loader inserts
+  // #chapter-topic-bar at nav.children[1] assuming .chapter-nav-sticky is
+  // children[0].
+  if (!leftSidebar.querySelector(".chapter-nav-sticky")) return;
+
+  if (mode === "mobile") {
+    leftSidebar.appendChild(strip);
+  } else if (strip.parentElement !== layoutContainer) {
+    layoutContainer.appendChild(strip);
+  }
+
+  const crossed = _bpLastUiMode !== null;
+  _bpLastUiMode = mode;
+  if (crossed && window._currentBookId) {
+    if (window._currentViewMode === "entireBook" && window.loadBibleBook) {
+      window.loadBibleBook(window._currentBookId, {
+        preserveOrigin: true,
+        skipBookHistory: true,
+      });
+    } else if (window.loadBibleChapter) {
+      window.loadBibleChapter(
+        window._currentBookId,
+        window._currentChapterNum || 1,
+        false,
+      );
+    }
   }
 }
 
-window.addEventListener("resize", bpHandleBreakpoint);
+function bpHandleBreakpoint() {
+  bpSyncMobileUi();
+}
+
+let _bpResizeTimer = null;
+window.addEventListener("resize", () => {
+  if (_bpResizeTimer) clearTimeout(_bpResizeTimer);
+  _bpResizeTimer = setTimeout(bpHandleBreakpoint, 250);
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   let bpBibleDataPromise = null;
@@ -683,6 +742,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     updateEntireBookButton(window._currentViewMode || "chapter");
     updateBookViewNavButtons();
+    // Keep the mobile top drawer handle labeled with the current position.
+    const topHandleLabel = document.querySelector(
+      "#bp-drawer-top-toggle .bp-drawer-handle__label",
+    );
+    if (topHandleLabel) {
+      const bookLabel = bookNameById[bookId] || bookId;
+      topHandleLabel.textContent = inBookMode
+        ? `${bookLabel} — Book Outline`
+        : `${bookLabel} ${chapterNum} — Outline`;
+    }
   };
 
   // Placeholder: Notes/context
@@ -735,4 +804,127 @@ document.addEventListener("DOMContentLoaded", () => {
   // Expose for other modules (e.g., bible-loader.js)
   window.renderStickyHighlightToggle = renderStickyHighlightToggle;
 
+  // --- Mobile drawers (top: outline/nav, bottom: highlights) ---
+  function bpInitMobileDrawers() {
+    const app = document.querySelector(".bp-app");
+    const topToggle = document.getElementById("bp-drawer-top-toggle");
+    const bottomToggle = document.getElementById("bp-drawer-bottom-toggle");
+    if (!app || !topToggle || !bottomToggle) return;
+
+    function syncToggles() {
+      const topOpen = app.classList.contains("bp-drawer-top-open");
+      const bottomOpen = app.classList.contains("bp-drawer-bottom-open");
+      topToggle.setAttribute("aria-expanded", topOpen ? "true" : "false");
+      bottomToggle.setAttribute("aria-expanded", bottomOpen ? "true" : "false");
+      const topChevron = topToggle.querySelector(".bp-drawer-handle__chevron");
+      const bottomChevron = bottomToggle.querySelector(
+        ".bp-drawer-handle__chevron",
+      );
+      if (topChevron) topChevron.textContent = topOpen ? "▴" : "▾";
+      if (bottomChevron) {
+        bottomChevron.textContent = bottomOpen ? "▾" : "▴";
+      }
+    }
+
+    topToggle.onclick = () => {
+      app.classList.remove("bp-drawer-bottom-open");
+      app.classList.toggle("bp-drawer-top-open");
+      syncToggles();
+    };
+    bottomToggle.onclick = () => {
+      app.classList.remove("bp-drawer-top-open");
+      app.classList.toggle("bp-drawer-bottom-open");
+      syncToggles();
+    };
+
+    // Tapping the text area closes whichever drawer is open.
+    const main = document.querySelector(".bp-main");
+    if (main) {
+      main.addEventListener("click", () => {
+        if (
+          app.classList.contains("bp-drawer-top-open") ||
+          app.classList.contains("bp-drawer-bottom-open")
+        ) {
+          app.classList.remove("bp-drawer-top-open", "bp-drawer-bottom-open");
+          syncToggles();
+        }
+      });
+    }
+
+    // After an outline/label tap applies its verse highlight, bring the first
+    // highlighted verse into the visible region below the open drawer.
+    // (Entire-book mode self-scrolls via activateBookWideRangeEntry.)
+    const leftSidebar = document.querySelector(".bp-sidebar--left");
+    if (leftSidebar) {
+      leftSidebar.addEventListener("click", (e) => {
+        if (!bpIsMobileMode()) return;
+        if (window._currentViewMode === "entireBook") return;
+        if (e.target.closest(".outline-link-icon, .note-link-icon")) return;
+        const btn = e.target.closest(".topic-btn");
+        if (!btn || !leftSidebar.contains(btn)) return;
+        setTimeout(() => {
+          if (!btn.classList.contains("active")) return;
+          const firstHighlight = document.querySelector(
+            ".bp-main .verse-highlight",
+          );
+          if (firstHighlight) {
+            firstHighlight.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+          }
+        }, 0);
+      });
+    }
+
+    syncToggles();
+  }
+  bpInitMobileDrawers();
+
+  // One-time tip pointing mobile users at the richer desktop experience:
+  // shown once per device (localStorage), dismissible, with a Copy Link
+  // action so they can send the page to themselves.
+  function bpMaybeShowDesktopTip() {
+    if (!bpIsMobileMode()) return;
+    if (localStorage.getItem("bpDesktopTipShown")) return;
+    const tip = document.createElement("div");
+    tip.className = "bp-desktop-tip";
+    tip.setAttribute("role", "status");
+    tip.innerHTML = `
+      <span class="bp-desktop-tip__text">
+        Tip: on a desktop or large screen, Bible Peruser shows the outline,
+        scripture, and highlights side by side.
+      </span>
+      <button class="bp-desktop-tip__copy" type="button">Copy Link</button>
+      <button class="bp-desktop-tip__close" type="button" aria-label="Dismiss tip">&times;</button>
+    `;
+    const handleTap = (e) => {
+      if (e.target.closest(".bp-drawer-handle")) dismiss();
+    };
+    const dismiss = () => {
+      localStorage.setItem("bpDesktopTipShown", "1");
+      tip.remove();
+      document.removeEventListener("click", handleTap);
+    };
+    // The tip floats above the drawers, so get out of the way as soon as the
+    // user starts using them.
+    document.addEventListener("click", handleTap);
+    tip.querySelector(".bp-desktop-tip__close").onclick = dismiss;
+    const copyBtn = tip.querySelector(".bp-desktop-tip__copy");
+    copyBtn.onclick = async () => {
+      try {
+        await copyTextToClipboard(getCurrentChapterLink());
+        copyBtn.textContent = "Copied!";
+      } catch {
+        copyBtn.textContent = "Copy failed";
+      }
+      setTimeout(dismiss, 1200);
+    };
+    document.body.appendChild(tip);
+  }
+  setTimeout(bpMaybeShowDesktopTip, 1500);
+
+  // Now that the chapter nav shell exists, place the book strip for the
+  // current mode (no-op on desktop widths or when opted out via ?mobile=0).
+  bpHandleBreakpoint();
 });

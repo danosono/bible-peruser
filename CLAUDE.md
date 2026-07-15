@@ -66,15 +66,24 @@ Topic entry fields: `outline` (or `label`), `verses` (string array of ranges), `
 ### Rendering & Layout
 
 `bible-loader.js` drives the responsive column layout:
-- **< 900px**: Mobile overlay (no study view)
+- **< 320px**: "Requires a wider screen" overlay
+- **320–899px**: Mobile drawer layout (see Mobile Layout below)
 - **900–2999px**: 2–3 columns, font size determined by chapter character count
 - **≥ 3000px**: 1–4 columns, 4K-optimized typography
 
-Column count and font-size class (`font-small`, `font-xsmall`, etc.) are computed from character count per chapter in the `getLayoutConfig()` path around line 420.
+Column count and font-size class (`font-small`, `font-xsmall`, etc.) are computed from chapter character count and `window.innerWidth` inline in `loadBibleChapter()` (`js/bible-loader.js`, the block that assigns `columnsClass`/`fontClass`). Below 900px no column/font class applies — the text naturally flows as a single column.
+
+### Mobile Layout
+
+The phone layout for `<900px` is **default-on**: the `bp-mobile` class is added to `<html>` unconditionally at the top of `js/app.js` unless `?mobile=0` opted out (persists via `sessionStorage._bpMobileOff` for the session; `?mobile=1` re-enables). `window.bpIsMobileMode()` is the shared check (`<900px` **and** class present). A one-time dismissible tip toast (`.bp-desktop-tip`, `bpMaybeShowDesktopTip()` in app.js, shown-once via `localStorage.bpDesktopTipShown`) points mobile users at the desktop experience and offers Copy Link.
+
+Mobile structure: compact one-row header; the left sidebar slides down as a top drawer (chapter nav + outline/label buttons + the relocated 66-book strip) and the right sidebar slides up as a bottom drawer (sticky toggle + search + highlight buttons), toggled by the `.bp-drawer-handle` buttons in `index.html`. Drawers overlay the text so highlights stay visible; only one opens at a time. `bpSyncMobileUi()` in `app.js` moves the book strip in/out of the drawer and re-renders on 899/900 crossings (the strip must only ever be **appended** to the left sidebar — bible-loader inserts `#chapter-topic-bar` at `nav.children[1]`). Reference/note popups become fixed bottom sheets via the `reference-menu--sheet` class added in `positionFloatingMenu()`. All mobile CSS lives in one `html.bp-mobile`-prefixed `@media (max-width: 899px)` block at the end of `css/style.css`.
+
+The old "requires 900px" overlay (`.bp-mobile-overlay`) survives only as a `<320px` too-narrow fallback (`@media (max-width: 319px)` in style.css).
 
 ### State
 
-`localStorage` keys: `bibleLastBook`, `bibleLastChapter`, `bookBarScroll`, `bpEntireBookOrigin`, `bibleAppTheme`.
+`localStorage` keys: `bibleLastBook`, `bibleLastChapter`, `bookBarScroll`, `bpEntireBookOrigin`, `bpFontScale`, `stickyHighlightMode`, `bpDesktopTipShown`.
 
 Window globals for cross-module state: `window._currentBookId`, `window._currentChapterNum`, `window._currentViewMode` (`"chapter"` | `"entireBook"`), `window._lastLoadedTopics`.
 

@@ -100,6 +100,14 @@ function parseReferenceDetails(reference) {
 }
 
 function positionFloatingMenu(icon, menu) {
+  // Mobile layout: render as a fixed bottom sheet instead of anchoring to the
+  // icon (the .reference-menu--sheet CSS overrides the inline positioning).
+  if (window.bpIsMobileMode && window.bpIsMobileMode()) {
+    menu.classList.add("reference-menu--sheet");
+    menu.style.top = "";
+    menu.style.left = "";
+    return;
+  }
   const gap = 2;
   const viewportPadding = 8;
   const anchorRect = icon.getBoundingClientRect();
@@ -326,6 +334,9 @@ function openReferenceMenu(
   }
 
   function attachReferencePreviewBehavior(refItem, ref) {
+    // Hover previews only make sense with a real hover pointer; on touch
+    // devices tapping a reference navigates to it directly.
+    if (!window.matchMedia("(hover: hover)").matches) return;
     if (!parseReferenceForPreview(ref)) return;
 
     refItem.addEventListener("mouseenter", () => {
