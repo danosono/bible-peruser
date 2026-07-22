@@ -453,7 +453,8 @@
         },
         {
           "label": "Prophecy fulfilled",
-          "verses": ["1-2", "5-6"]
+          "verses": ["1-2", "5-6"],
+          "references": ["John 10:39-42 (Interesting later event)"]
         },
         {
           "label": "Repent/kingdom",
@@ -759,12 +760,23 @@
           ]
         },
         {
+          "label": "Fasting",
+          "verses": ["2"],
+          "references": [
+            "Exodus 34:28 (Moses fasted 40 days)",
+            "1 Kings 19:8 (Elijah fasted 40 days)",
+            "Isaiah 58:6 (Jesus set people free)",
+            "Acts 13:3 (Example for disciples)"
+          ]
+        },
+        {
           "label": "40 days",
           "verses": ["2"],
           "references": [
             "Genesis 7:12",
             "Acts 7:29-30",
             "Exodus 24:18",
+            "Exodus 34:28",
             "Deuteronomy 9:18 (also v25)",
             "Deuteronomy 25:3",
             "Numbers 13:25",
@@ -851,16 +863,40 @@
           "verses": ["1", "20", "22"]
         },
         {
+          "label": "Tempted by satan",
+          "verses": ["1"],
+          "references": [
+            "Genesis 3:1 (Eve)",
+            "Job 1:6-12 (Job)",
+            "Luke 22:31-32 (Peter)"
+          ]
+        },
+        {
           "label": "Temptations",
-          "verses": ["3-10"]
+          "verses": ["3", "5-6", "8-9"],
+          "references": ["Psalms 91:11-12", "Daniel 10:13", ""]
         },
         {
           "label": "Jesus' response to temptations",
-          "verses": ["4", "7", "10"]
+          "verses": ["4", "7", "10"],
+          "references": [
+            "Deuteronomy 8:3 (bread alone)",
+            "Deuteronomy 6:16 (test)",
+            "Deuteronomy 6:13 (Worship God)",
+            "-",
+            "John 6:35 (Jesus is the bread of life)",
+            "Matthew 12:39 (test)"
+          ]
         },
         {
           "label": "Angels",
-          "verses": ["11"]
+          "verses": ["11"],
+          "references": [
+            "Ministering:",
+            "Hebrews 1:14",
+            "Luke 22:43",
+            "1 Kings 19:5-7"
+          ]
         },
         {
           "label": "Repent",
@@ -4329,7 +4365,8 @@
             "1 Corinthians 15:42-44",
             "1 Corinthians 15:51-52",
             "1 Thessalonians 4:16-17",
-            "Matthew 22:31-32"
+            "Matthew 22:31-32",
+            "John 5:28"
           ],
           "note": "So many questions, but this is a foreshadowing of the resurrection of the followers of Jesus."
         },

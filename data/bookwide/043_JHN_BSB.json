@@ -1,5 +1,58 @@
 {
   "bookWideOutline": [],
   "bookWideLabels": [],
-  "bookWideHighlights": []
+  "bookWideHighlights": [
+    {
+      "highlight": "Light",
+      "text": ["light"]
+    },
+    {
+      "highlight": "The way",
+      "text": ["The way"]
+    },
+    {
+      "highlight": "Truth",
+      "text": ["truth"]
+    },
+    {
+      "highlight": "Life",
+      "text": ["life"]
+    },
+    {
+      "highlight": "Hour",
+      "text": ["My hour", "His hour", " My time", "this hour"]
+    },
+    {
+      "highlight": "Faith/Belief/Trust",
+      "text": [" faith", "believe", "believed", "trust"]
+    },
+    {
+      "highlight": "Gospel",
+      "text": ["gospel", "good news"]
+    },
+    {
+      "highlight": "Good",
+      "text": ["good"]
+    },
+    {
+      "highlight": "Father",
+      "text": ["father"]
+    },
+    {
+      "highlight": "truly, truly",
+      "text": ["truly, truly"]
+    },
+    {
+      "highlight": "truly",
+      "text": ["truly"]
+    },
+    {
+      "highlight": "Kill",
+      "text": ["kill"]
+    },
+    {
+      "highlight": "Bethany",
+      "text": ["Bethany"]
+    }
+  ]
 }
