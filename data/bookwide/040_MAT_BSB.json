@@ -295,6 +295,14 @@
     {
       "highlight": "Righteous",
       "text": ["righteous", "righteousness"]
+    },
+    {
+      "highlight": "Teach",
+      "text": ["teach"]
+    },
+    {
+      "highlight": "Fire",
+      "text": ["fire"]
     }
   ]
 }

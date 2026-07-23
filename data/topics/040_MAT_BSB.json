@@ -797,7 +797,8 @@
         },
         {
           "label": "Prophecy",
-          "verses": ["14-16"]
+          "verses": ["14-16"],
+          "references": ["Isaiah 9:1-2"]
         },
         {
           "label": "Prophecy fulfilled",
@@ -820,15 +821,21 @@
           ]
         },
         {
+          "label": "Repent",
+          "verses": ["17"],
+          "references": ["Matthew 3:2 (John the baptist)"]
+        },
+        {
           "label": "Repent/kingdom",
           "verses": ["17"],
           "references": [
-            "Repent:",
+            "REPENT:",
             "Matthew 3:2",
             "Matthew 11:20-21",
             "Matthew 12:41",
             "Matthew 21:32",
-            "Kingdom:",
+            " ",
+            "KINGDOM:",
             "Matthew 5:3",
             "Matthew 5:10",
             "Matthew 5:19-20",
@@ -899,12 +906,13 @@
           ]
         },
         {
-          "label": "Repent",
-          "verses": ["17"]
-        },
-        {
           "label": "Obedience",
           "verses": ["1", "20", "22"]
+        },
+        {
+          "label": "Jesus sent to the lost sheep of Israel",
+          "verses": ["23"],
+          "references": ["Matthew 10:5-6", "Matthew 15:24"]
         },
         {
           "highlight": "Persons",
@@ -1002,7 +1010,7 @@
         },
         {
           "highlight": "Jesus sent to the lost sheep of Israel",
-          "text": ["teaching in their synagogues"]
+          "text": ["synagogues", "gospel"]
         },
         {
           "highlight": "Teaching Preaching",
