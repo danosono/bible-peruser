@@ -49,6 +49,28 @@ function extractReferenceCore(reference) {
   return match ? match[0] : null;
 }
 
+// Some topic entries mix real references with organizational filler
+// ("REPENT:", "KINGDOM:", "-", " ") used to group/space out the list for
+// readers. Those aren't real Bible references, so they're excluded from
+// compare — they still render fine in the plain reference popup, which
+// isn't touched by this check.
+function isComparableReference(reference) {
+  return Boolean(extractReferenceCore(reference));
+}
+
+// "Matthew 4:17" / "Matthew 4:3, 5-6, 8-9" for the compare header — only
+// meaningful for chapter-scoped topics, where verses are simple in-chapter
+// numbers/ranges (book-wide entries use a different cross-chapter format).
+function formatChapterVerseLabel(bookId, chapterNum, verses) {
+  if (!bookId || !chapterNum || !Array.isArray(verses) || !verses.length) {
+    return null;
+  }
+  const versePart = verses.filter(Boolean).join(", ");
+  if (!versePart) return null;
+  const bookLabel = bookNames[bookId] || bookId;
+  return `${bookLabel} ${chapterNum}:${versePart}`;
+}
+
 function normalizePhraseList(phrases) {
   const list = Array.isArray(phrases) ? phrases : [];
   const seen = new Set();
@@ -99,6 +121,281 @@ function parseReferenceDetails(reference) {
   };
 }
 
+// Full passage lookup for the compare view. Unlike the hover-preview
+// resolver (which caps unbounded refs to two lines), a reference with no
+// verse range shows the whole chapter here since side-by-side reading is
+// the point of comparing.
+async function resolveReferenceForCompare(reference) {
+  const details = parseReferenceDetails(reference);
+  if (!details || !details.bookId || !details.chapterNum) return null;
+
+  const data = await getBibleData();
+  const books = Array.isArray(data?.books) ? data.books : [];
+  const book = books.find((b) => b.id === details.bookId);
+  if (!book || !Array.isArray(book.chapters)) return null;
+
+  const chapter = book.chapters.find((c) => c.number === details.chapterNum);
+  if (!chapter || !Array.isArray(chapter.verses) || !chapter.verses.length) {
+    return null;
+  }
+
+  const bookLabel = bookNames[details.bookId] || details.bookId;
+  let title = `${bookLabel} ${details.chapterNum}`;
+  let verses = chapter.verses;
+
+  if (Number.isInteger(details.verseStart) && details.verseStart > 0) {
+    const verseEnd =
+      Number.isInteger(details.verseEnd) &&
+      details.verseEnd >= details.verseStart
+        ? details.verseEnd
+        : details.verseStart;
+    title = `${bookLabel} ${details.chapterNum}:${details.verseStart}${verseEnd > details.verseStart ? `-${verseEnd}` : ""}`;
+    verses = chapter.verses.filter((v) => {
+      const n = parseInt(v?.n, 10);
+      return Number.isInteger(n) && n >= details.verseStart && n <= verseEnd;
+    });
+  }
+
+  if (!verses.length) return null;
+  return {
+    title,
+    verses: verses.map((v) => ({ n: v.n, text: v.text })),
+  };
+}
+
+function openCompareModal(references, compareContext) {
+  document.querySelectorAll(".bp-compare-overlay").forEach((el) => el.remove());
+
+  const refs = Array.from(
+    new Set((references || []).filter(isComparableReference)),
+  );
+  if (!refs.length) return;
+
+  const overlay = document.createElement("div");
+  overlay.className = "bp-compare-overlay";
+
+  const modal = document.createElement("div");
+  modal.className = "bp-compare-modal";
+  overlay.appendChild(modal);
+
+  const header = document.createElement("div");
+  header.className = "bp-compare-modal__header";
+
+  const title = document.createElement("h2");
+  title.className = "bp-compare-modal__title";
+  const contextLabel = compareContext?.title
+    ? `${compareContext.title}${compareContext.verseRef ? ` (${compareContext.verseRef})` : ""}`
+    : "";
+  title.textContent = contextLabel
+    ? `Compare References — ${contextLabel}`
+    : "Compare References";
+
+  const closeBtn = document.createElement("button");
+  closeBtn.type = "button";
+  closeBtn.className = "bp-compare-modal__close";
+  closeBtn.innerHTML = "&#x2715;";
+  closeBtn.setAttribute("aria-label", "Close compare view");
+
+  header.appendChild(title);
+  header.appendChild(closeBtn);
+  modal.appendChild(header);
+
+  const body = document.createElement("div");
+  body.className = "bp-compare-modal__body";
+  modal.appendChild(body);
+
+  const sidebar = document.createElement("div");
+  sidebar.className = "bp-compare-sidebar";
+  const sidebarHint = document.createElement("div");
+  sidebarHint.className = "bp-compare-sidebar__hint";
+  sidebarHint.textContent = "Drag ≡ to reorder. Uncheck to hide.";
+  sidebar.appendChild(sidebarHint);
+  const sidebarList = document.createElement("div");
+  sidebarList.className = "bp-compare-sidebar__list";
+  sidebar.appendChild(sidebarList);
+  body.appendChild(sidebar);
+
+  const content = document.createElement("div");
+  content.className = "bp-compare-modal__list";
+  body.appendChild(content);
+
+  const emptyMsg = document.createElement("div");
+  emptyMsg.className = "bp-compare-modal__empty";
+  emptyMsg.textContent = "Check a reference on the left to show it here.";
+  content.appendChild(emptyMsg);
+
+  function closeModal() {
+    document.removeEventListener("keydown", onKeydown);
+    overlay.remove();
+  }
+
+  function onKeydown(e) {
+    if (e.key === "Escape") closeModal();
+  }
+
+  overlay.addEventListener("mousedown", (e) => {
+    if (e.target === overlay) closeModal();
+  });
+  closeBtn.addEventListener("click", closeModal);
+  document.addEventListener("keydown", onKeydown);
+
+  const entries = new Map();
+
+  function syncContentOrder() {
+    let anyVisible = false;
+    Array.from(sidebarList.querySelectorAll(".bp-compare-sidebar__row")).forEach(
+      (row) => {
+        const entry = entries.get(row.dataset.ref);
+        if (!entry) return;
+        if (entry.checkbox.checked) {
+          anyVisible = true;
+          entry.card.style.display = "";
+          content.appendChild(entry.card);
+        } else {
+          entry.card.style.display = "none";
+        }
+      },
+    );
+    emptyMsg.style.display = anyVisible ? "none" : "";
+  }
+
+  function attachDragReorder(row, handle) {
+    handle.addEventListener("pointerdown", (e) => {
+      if (typeof e.button === "number" && e.button !== 0) return;
+      e.preventDefault();
+      // Capture on the stable list container, not on `row`/`handle` — those
+      // get reparented on every swap below, and reparenting the captured
+      // element mid-drag causes some browsers to silently release capture,
+      // which stops onUp from ever firing and leaves the row stuck floating.
+      sidebarList.setPointerCapture(e.pointerId);
+
+      row.classList.add("bp-compare-sidebar__row--dragging");
+      row.style.position = "relative";
+      row.style.zIndex = "5";
+      // Hidden from hit-testing so elementFromPoint below finds the row
+      // underneath the cursor instead of the dragged row itself.
+      row.style.pointerEvents = "none";
+
+      let lastY = e.clientY;
+      let translateY = 0;
+
+      function onMove(ev) {
+        translateY += ev.clientY - lastY;
+        lastY = ev.clientY;
+        row.style.transform = `translateY(${translateY}px)`;
+
+        const target = document.elementFromPoint(ev.clientX, ev.clientY);
+        const overRow = target && target.closest(".bp-compare-sidebar__row");
+        if (!overRow || overRow === row || !sidebarList.contains(overRow)) {
+          return;
+        }
+        const overRect = overRow.getBoundingClientRect();
+        const before = ev.clientY < overRect.top + overRect.height / 2;
+
+        // FLIP-style compensation: measure the row's natural (untransformed)
+        // position before/after the DOM move so it can keep tracking the
+        // cursor smoothly instead of visually jumping.
+        row.style.transform = "";
+        const beforeTop = row.getBoundingClientRect().top;
+        sidebarList.insertBefore(row, before ? overRow : overRow.nextSibling);
+        const afterTop = row.getBoundingClientRect().top;
+        translateY -= afterTop - beforeTop;
+        row.style.transform = `translateY(${translateY}px)`;
+
+        syncContentOrder();
+      }
+      function onUp() {
+        row.classList.remove("bp-compare-sidebar__row--dragging");
+        row.style.transform = "";
+        row.style.position = "";
+        row.style.zIndex = "";
+        row.style.pointerEvents = "";
+        sidebarList.removeEventListener("pointermove", onMove);
+        sidebarList.removeEventListener("pointerup", onUp);
+        sidebarList.removeEventListener("pointercancel", onUp);
+      }
+      sidebarList.addEventListener("pointermove", onMove);
+      sidebarList.addEventListener("pointerup", onUp);
+      sidebarList.addEventListener("pointercancel", onUp);
+    });
+  }
+
+  refs.forEach((ref) => {
+    const row = document.createElement("div");
+    row.className = "bp-compare-sidebar__row";
+    row.dataset.ref = ref;
+
+    const handle = document.createElement("span");
+    handle.className = "bp-compare-drag-handle";
+    handle.innerHTML = "&#x2261;";
+    handle.setAttribute("aria-label", "Drag to reorder");
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = true;
+    checkbox.className = "bp-compare-sidebar__checkbox";
+    checkbox.setAttribute("aria-label", `Show ${ref} in comparison`);
+
+    const label = document.createElement("span");
+    label.className = "bp-compare-sidebar__label";
+    label.textContent = ref;
+
+    row.appendChild(handle);
+    row.appendChild(checkbox);
+    row.appendChild(label);
+    sidebarList.appendChild(row);
+
+    const card = document.createElement("div");
+    card.className = "bp-compare-card";
+
+    const cardTitle = document.createElement("div");
+    cardTitle.className = "bp-compare-card__title";
+    cardTitle.textContent = ref;
+    card.appendChild(cardTitle);
+
+    const cardBody = document.createElement("div");
+    cardBody.className = "bp-compare-card__body";
+    cardBody.textContent = "Loading…";
+    card.appendChild(cardBody);
+
+    content.appendChild(card);
+
+    entries.set(ref, { row, checkbox, card });
+
+    checkbox.addEventListener("change", syncContentOrder);
+    attachDragReorder(row, handle);
+
+    resolveReferenceForCompare(ref).then((resolved) => {
+      if (!entries.has(ref)) return;
+      cardBody.innerHTML = "";
+      if (!resolved) {
+        cardBody.textContent = "Couldn't load this passage.";
+        return;
+      }
+      // Preserve any trailing note the user added after the reference
+      // (e.g. "Deuteronomy 8:3 (bread alone)") — ignored for lookup, but
+      // still useful to show alongside the resolved, cleanly-formatted title.
+      const core = extractReferenceCore(ref);
+      const annotation = core ? ref.slice(ref.indexOf(core) + core.length).trim() : "";
+      cardTitle.textContent = annotation
+        ? `${resolved.title} ${annotation}`
+        : resolved.title;
+      resolved.verses.forEach((v) => {
+        const verseEl = document.createElement("p");
+        verseEl.className = "bp-compare-card__verse";
+        const num = document.createElement("sup");
+        num.textContent = v.n;
+        verseEl.appendChild(num);
+        verseEl.appendChild(document.createTextNode(` ${v.text}`));
+        cardBody.appendChild(verseEl);
+      });
+    });
+  });
+
+  syncContentOrder();
+  document.body.appendChild(overlay);
+}
+
 function positionFloatingMenu(icon, menu) {
   // Mobile layout: render as a fixed bottom sheet instead of anchoring to the
   // icon (the .reference-menu--sheet CSS overrides the inline positioning).
@@ -147,6 +444,7 @@ function openReferenceMenu(
   links,
   onSelectReference,
   onClose,
+  compareContext,
 ) {
   document.querySelectorAll(".reference-menu").forEach((m) => m.remove());
   document
@@ -378,14 +676,15 @@ function openReferenceMenu(
   menu.style.borderRadius = "6px";
   menu.style.fontSize = "14px";
   menu.style.minWidth = "180px";
-  menu.style.maxWidth = "320px";
+  menu.style.maxWidth = "min(448px, 85vw)";
   menu.style.maxHeight = "70vh";
   menu.style.overflowY = "auto";
   menu.style.color = "#222";
   menu.style.cursor = "default";
 
-  (references || []).forEach((ref) => {
-    if (!ref) return;
+  const compareCandidates = (references || []).filter(Boolean);
+
+  compareCandidates.forEach((ref) => {
     const refItem = document.createElement("div");
     refItem.className = "reference-menu-item";
     refItem.textContent = ref;
@@ -401,6 +700,22 @@ function openReferenceMenu(
     });
     menu.appendChild(refItem);
   });
+
+  const comparableCount = compareCandidates.filter(isComparableReference).length;
+
+  if (comparableCount > 1) {
+    menu.appendChild(document.createElement("hr"));
+    const compareBtn = document.createElement("button");
+    compareBtn.type = "button";
+    compareBtn.className = "reference-menu-compare-btn";
+    compareBtn.textContent = "Compare These References";
+    compareBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      closeReferenceUi(true);
+      openCompareModal(compareCandidates, compareContext);
+    });
+    menu.appendChild(compareBtn);
+  }
 
   (links || []).forEach((link) => {
     if (!link || !link.url || !link.label) return;
@@ -512,6 +827,7 @@ function decorateTopicButtonWithReferences(
   onSelectReference,
   helperText,
   onClose,
+  compareContext,
 ) {
   const hasRefs = Array.isArray(references) && references.length;
   const hasLinks = Array.isArray(links) && links.length;
@@ -531,7 +847,14 @@ function decorateTopicButtonWithReferences(
   linkIcon.style.cursor = "pointer";
   linkIcon.addEventListener("click", (e) => {
     e.stopPropagation();
-    openReferenceMenu(linkIcon, references, links, onSelectReference, onClose);
+    openReferenceMenu(
+      linkIcon,
+      references,
+      links,
+      onSelectReference,
+      onClose,
+      compareContext,
+    );
   });
   btn.appendChild(linkIcon);
   btn.appendChild(document.createTextNode(` ${label}`));
@@ -993,6 +1316,11 @@ async function loadBibleChapter(
             topic.links,
             openChapterTopicReference,
             "Click to follow reference",
+            undefined,
+            {
+              title: topic.label,
+              verseRef: formatChapterVerseLabel(bookId, chapterNum, topic.verses),
+            },
           );
           decorateTopicButtonWithNote(btn, topic.note, "Click to view note");
           type = "label";
@@ -1007,6 +1335,10 @@ async function loadBibleChapter(
             openChapterTopicReference,
             "Click to follow reference",
             () => pinTopicButton(btn),
+            {
+              title: topic.outline,
+              verseRef: formatChapterVerseLabel(bookId, chapterNum, topic.verses),
+            },
           );
           decorateTopicButtonWithNote(
             btn,
@@ -1687,6 +2019,8 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
           outlineEntry.links,
           openBookWideOutlineReference,
           "Click to open referenced book in Entire Book view",
+          undefined,
+          { title: outlineEntry.outline },
         );
         decorateTopicButtonWithNote(
           btn,
@@ -1719,6 +2053,8 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
           labelEntry.links,
           openBookWideOutlineReference,
           "Click to open referenced book in Entire Book view",
+          undefined,
+          { title: labelEntry.label },
         );
         decorateTopicButtonWithNote(btn, labelEntry.note, "Click to view note");
         btn.onclick = () => {
