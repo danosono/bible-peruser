@@ -40,6 +40,14 @@
         "outline": "Jesus Calls Philip and Nathanael",
         "verses": ["43-51"],
         "references": []
+      },
+      {
+        "highlight": "Jesus is God",
+        "text": [
+          "the Word was God",
+          "Through Him all things were made, and without Him nothing was made that has been made",
+          "The Word became flesh and made His dwelling among us"
+        ]
       }
     ],
     "2": [
@@ -316,6 +324,10 @@
         "outline": "Jesus Predicts Peter’s Denial",
         "verses": ["36-38"],
         "references": ["Matthew 26:31–35", "Mark 14:27–31", "Luke 22:31–38"]
+      },
+      {
+        "highlight": "Jesus is God",
+        "text": ["God will also glorify the Son"]
       }
     ],
     "14": [
@@ -338,6 +350,16 @@
         "outline": "Peace I Leave with You",
         "verses": ["27-31"],
         "references": []
+      },
+      {
+        "label": "Jesus is God",
+        "verses": ["8-9"]
+      },
+      {
+        "highlight": "Jesus is God",
+        "text": [
+          "still you do not know Me? Anyone who has seen Me has seen the Father"
+        ]
       }
     ],
     "15": [
@@ -355,6 +377,11 @@
         "outline": "The Hatred of the World",
         "verses": ["18-27"],
         "references": []
+      },
+      {
+        "label": "from beginning",
+        "verses": ["27"],
+        "references": ["Acts 1:21-22"]
       }
     ],
     "16": [
@@ -377,6 +404,57 @@
         "outline": "Ask in My Name",
         "verses": ["23-33"],
         "references": ["Matthew 18:19–20"]
+      },
+      {
+        "label": "convict",
+        "verses": ["8-10"],
+        "note": [
+          "Sin: believing in Jesus is the only remedy for sin.",
+          "Righteousness: Jesus was a model of righeousness while He was in the world"
+        ]
+      },
+      {
+        "highlight": "Jesus is God",
+        "text": ["Everything that belongs to the Father is Mine"]
+      },
+      {
+        "highlight": "Spirit",
+        "text": ["spirit"]
+      },
+      {
+        "highlight": "Truth",
+        "text": ["truth"]
+      },
+      {
+        "highlight": "Father",
+        "text": ["Father"]
+      },
+      {
+        "highlight": "going to the Father",
+        "text": [
+          "going",
+          "going to the Father",
+          "go to the Father",
+          "go away",
+          "if I go"
+        ]
+      },
+      {
+        "highlight": "speak plainly",
+        "text": ["tell", "told", "plainly", "a little while", ""]
+      },
+      {
+        "highlight": "believe",
+        "text": [
+          "they do not believe in Me",
+          "have believed that I came from God",
+          "Because of this, we believe that You came from God",
+          "Do you finally believe?"
+        ]
+      },
+      {
+        "highlight": "100",
+        "text": ["I have overcome the world!"]
       }
     ],
     "17": [
@@ -394,6 +472,18 @@
         "outline": "Prayer for All Believers",
         "verses": ["20-26"],
         "references": []
+      },
+      {
+        "label": "100",
+        "verses": ["3", "17"]
+      },
+      {
+        "label": "Jesus is God",
+        "verses": ["5", "10", "24"]
+      },
+      {
+        "highlight": "Sent",
+        "text": ["sent"]
       }
     ],
     "18": [

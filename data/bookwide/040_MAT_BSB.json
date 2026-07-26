@@ -303,6 +303,17 @@
     {
       "highlight": "Fire",
       "text": ["fire"]
+    },
+    {
+      "highlight": "Jesus is God",
+      "text": [
+        "the Word was God",
+        "Through Him all things were made, and without Him nothing was made that has been made",
+        "The Word became flesh and made His dwelling among us",
+        "God will also glorify the Son",
+        "still you do not know Me? Anyone who has seen Me has seen the Father",
+        "Everything that belongs to the Father is Mine"
+      ]
     }
   ]
 }
