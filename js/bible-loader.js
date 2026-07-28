@@ -720,7 +720,7 @@ function openPlacesModal(bookId, chapterNum, metadata) {
 
 const BP_TIMELINE_ERA_LABELS = {
   ot: "Old Testament",
-  gospels: "Life of Christ",
+  gospels: "Christ in the Flesh and on the Earth",
   earlyChurch: "Early Church",
 };
 const BP_TIMELINE_ERA_ORDER = ["ot", "gospels", "earlyChurch"];
@@ -1038,9 +1038,7 @@ function openTimelineModal(bookId, chapterNum, metadata) {
   // Now that the modal is in the document, scroll the current era's track
   // so the current chapter's earliest event is centered — otherwise, with
   // the whole era in the track by default, the view opens on its leftmost
-  // (earliest-in-era) events rather than "you are here". Reading
-  // offsetLeft/clientWidth forces synchronous layout, so this doesn't need
-  // to wait for a paint frame.
+  // (earliest-in-era) events rather than "you are here".
   //
   // Center on just the first highlighted marker, not a span across all of
   // them: a chapter's own events aren't necessarily clustered together in
@@ -1051,8 +1049,19 @@ function openTimelineModal(bookId, chapterNum, metadata) {
   if (firstHighlighted) {
     const expandedTrack = firstHighlighted.closest(".bp-timeline-zone__track");
     if (expandedTrack) {
-      const center =
-        firstHighlighted.offsetLeft + firstHighlighted.offsetWidth / 2;
+      // Measure relative to the track itself, not offsetLeft — offsetLeft
+      // is relative to the nearest *positioned* ancestor (here,
+      // .bp-timeline-overlay, which is position:fixed), not the scroll
+      // container. That happens to look right when the OT zone (always
+      // leftmost) is the current era, since nothing precedes it, but is
+      // wrong whenever a later zone (Christ in the Flesh, Early Church) is
+      // current — its offsetLeft is inflated by the width of whatever
+      // zone(s) come before it.
+      const trackRect = expandedTrack.getBoundingClientRect();
+      const markerRect = firstHighlighted.getBoundingClientRect();
+      const markerContentLeft =
+        markerRect.left - trackRect.left + expandedTrack.scrollLeft;
+      const center = markerContentLeft + markerRect.width / 2;
       expandedTrack.scrollLeft = Math.max(0, center - expandedTrack.clientWidth / 2);
     }
   }

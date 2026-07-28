@@ -204,11 +204,17 @@ function buildTimelineData() {
     groups.forEach(({ bookId, chapter, verseNums }, key) => {
       const verseStart = Math.min(...verseNums);
       const verseEnd = Math.max(...verseNums);
+      // The source dataset draws its "gospels" era cutoff partway through
+      // Acts (chapters 1-9 are tagged "gospels", presumably by a strict
+      // year-based boundary), but the entire book of Acts narrates
+      // post-Ascension church life — reclassify the whole book regardless
+      // of the source era field.
+      const era = bookId === "ACT" ? "earlyChurch" : ev.era;
       flatEvents.push({
         id: ev.id,
         title: ev.title,
         year: ev.year,
-        era: ev.era,
+        era,
         sortKey: ev.sortKey,
         book: bookId,
         chapter,
