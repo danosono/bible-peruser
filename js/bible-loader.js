@@ -16,6 +16,112 @@ async function getBibleData() {
   return bpBibleDataCache;
 }
 
+const BIBLE_METADATA_CREDIT = "Theographic Bible Metadata (CC BY-SA 4.0, viz.bible)";
+
+let bpBibleMetadataPromise = null;
+
+async function fetchJsonOrNull(url) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) return null;
+    return await response.json();
+  } catch {
+    return null;
+  }
+}
+
+// Timeline/People/Places data, generated offline by js/build-bible-metadata.js
+// from Theographic Bible Metadata. Fetched once and cached; any file that
+// fails to load (e.g. optional overrides.json) just yields empty data rather
+// than breaking the rest of the app.
+function getBibleMetadata() {
+  if (!bpBibleMetadataPromise) {
+    bpBibleMetadataPromise = Promise.all([
+      fetchJsonOrNull("data/timeline/events.json"),
+      fetchJsonOrNull("data/timeline/milestones.json"),
+      fetchJsonOrNull("data/timeline/overrides.json"),
+      fetchJsonOrNull("data/verse-tags/people.json"),
+      fetchJsonOrNull("data/verse-tags/places.json"),
+    ]).then(([timeline, milestones, overrides, people, places]) => ({
+      timeline: timeline || { events: [], byChapter: {} },
+      milestones: milestones || { ot: [], gospels: [], earlyChurch: [] },
+      overrides: overrides || {},
+      people: people || { byChapter: {}, people: {} },
+      places: places || { byChapter: {}, places: {} },
+    }));
+  }
+  return bpBibleMetadataPromise;
+}
+
+const bpFullTextPromises = { people: null, places: null };
+
+// Full, untruncated person/place descriptions are a separate, lazily-fetched
+// file — only downloaded the first time a reader actually expands a card,
+// not as part of the eager per-chapter metadata load.
+function getFullTextMap(kind) {
+  if (!bpFullTextPromises[kind]) {
+    bpFullTextPromises[kind] = fetchJsonOrNull(
+      `data/verse-tags/${kind}-full.json`,
+    ).then((data) => data || {});
+  }
+  return bpFullTextPromises[kind];
+}
+
+const STUDY_NOTES_PREF_KEY = "bpShowStudyNotes";
+
+function getStudyNotesPref() {
+  if (typeof window === "undefined" || !window.localStorage) return true;
+  const stored = localStorage.getItem(STUDY_NOTES_PREF_KEY);
+  return stored === null ? true : stored === "1";
+}
+
+function applyStudyNotesPref(show) {
+  document.documentElement.classList.toggle("bp-hide-study-notes", !show);
+}
+
+// A persistent footer toggle for the developer's own study-note buttons —
+// "label" buttons (left sidebar) and "highlight" toggle buttons (right
+// sidebar), both hand-curated annotations layered on top of the neutral
+// chapter outline. Outline buttons (topic-outline-btn) are never affected.
+// Hiding is pure CSS (buttons stay in the DOM, just display:none), so no
+// other rendering logic needs to change.
+function ensureStudyNotesToggle(footer) {
+  applyStudyNotesPref(getStudyNotesPref());
+
+  let btn = document.getElementById("bp-study-notes-toggle");
+
+  function refreshButton() {
+    const shown = getStudyNotesPref();
+    btn.classList.toggle("bp-meta-btn--off", !shown);
+    const tooltip = shown
+      ? "Don't show developer's own Bible study notes"
+      : "Show developer's own Bible study notes";
+    // Custom tooltip (data-tooltip + .bp-tooltip-up) instead of the native
+    // title attribute — native tooltips always open downward, which clips
+    // or runs off-screen for a button sitting at the bottom of the page.
+    btn.dataset.tooltip = tooltip;
+    btn.setAttribute("aria-label", tooltip);
+  }
+
+  if (!btn) {
+    btn = document.createElement("button");
+    btn.id = "bp-study-notes-toggle";
+    btn.type = "button";
+    btn.className = "bp-meta-btn bp-tooltip-up";
+    btn.textContent = "\u{1F3F7}\u{FE0F} Notes";
+    btn.addEventListener("click", () => {
+      const nowShow = !getStudyNotesPref();
+      if (typeof window !== "undefined" && window.localStorage) {
+        localStorage.setItem(STUDY_NOTES_PREF_KEY, nowShow ? "1" : "0");
+      }
+      applyStudyNotesPref(nowShow);
+      refreshButton();
+    });
+    footer.appendChild(btn);
+  }
+  refreshButton();
+}
+
 function setBpViewMode(mode) {
   const app = document.querySelector(".bp-app");
   if (!app) return;
@@ -394,6 +500,562 @@ function openCompareModal(references, compareContext) {
 
   syncContentOrder();
   document.body.appendChild(overlay);
+}
+
+// Shared plumbing for the People/Places modals — a simple scrollable card
+// list with the same overlay/header/close/Escape/click-outside pattern as
+// openCompareModal, plus a data-source credit line at the bottom.
+function openInfoListModal(titleText, entries, renderCard, disclaimerText) {
+  document.querySelectorAll(".bp-info-overlay").forEach((el) => el.remove());
+
+  const overlay = document.createElement("div");
+  overlay.className = "bp-info-overlay";
+
+  const modal = document.createElement("div");
+  modal.className = "bp-info-modal";
+  overlay.appendChild(modal);
+
+  const header = document.createElement("div");
+  header.className = "bp-info-modal__header";
+
+  const title = document.createElement("h2");
+  title.className = "bp-info-modal__title";
+  title.textContent = titleText;
+
+  const closeBtn = document.createElement("button");
+  closeBtn.type = "button";
+  closeBtn.className = "bp-info-modal__close";
+  closeBtn.innerHTML = "&#x2715;";
+  closeBtn.setAttribute("aria-label", "Close");
+
+  header.appendChild(title);
+  header.appendChild(closeBtn);
+  modal.appendChild(header);
+
+  const list = document.createElement("div");
+  list.className = "bp-info-modal__list";
+  modal.appendChild(list);
+
+  if (!entries.length) {
+    const empty = document.createElement("div");
+    empty.className = "bp-info-modal__empty";
+    empty.textContent = "Nothing to show for this chapter.";
+    list.appendChild(empty);
+  } else {
+    entries.forEach((entry) => list.appendChild(renderCard(entry)));
+  }
+
+  if (disclaimerText) {
+    const disclaimer = document.createElement("div");
+    disclaimer.className = "bp-info-modal__disclaimer";
+    disclaimer.textContent = disclaimerText;
+    modal.appendChild(disclaimer);
+  }
+
+  const credit = document.createElement("div");
+  credit.className = "bp-info-modal__credit";
+  credit.textContent = `Data: ${BIBLE_METADATA_CREDIT}`;
+  modal.appendChild(credit);
+
+  function closeModal() {
+    document.removeEventListener("keydown", onKeydown);
+    overlay.remove();
+  }
+  function onKeydown(e) {
+    if (e.key === "Escape") closeModal();
+  }
+  overlay.addEventListener("mousedown", (e) => {
+    if (e.target === overlay) closeModal();
+  });
+  closeBtn.addEventListener("click", closeModal);
+  document.addEventListener("keydown", onKeydown);
+
+  document.body.appendChild(overlay);
+}
+
+function formatBirthDeathYear(year) {
+  if (!Number.isInteger(year)) return null;
+  return year < 0 ? `${-year} BC` : `${year} AD`;
+}
+
+// Toggles a card's truncated description to the full text (fetched lazily,
+// once per session) and back. No-op if this entry was never truncated.
+function attachReadMoreToggle(card, bodyEl, entry, kind) {
+  if (!entry.truncated) return;
+  const toggle = document.createElement("button");
+  toggle.type = "button";
+  toggle.className = "bp-info-card__toggle";
+  toggle.textContent = "Read more";
+  let expanded = false;
+  let fullText = null;
+  toggle.addEventListener("click", async () => {
+    if (expanded) {
+      bodyEl.textContent = entry.description;
+      toggle.textContent = "Read more";
+      expanded = false;
+      return;
+    }
+    if (fullText === null) {
+      toggle.textContent = "Loading…";
+      toggle.disabled = true;
+      const fullMap = await getFullTextMap(kind);
+      fullText = fullMap[entry.id] || entry.description;
+      toggle.disabled = false;
+    }
+    bodyEl.textContent = fullText;
+    toggle.textContent = "Show less";
+    expanded = true;
+  });
+  card.appendChild(toggle);
+}
+
+function openPeopleModal(bookId, chapterNum, metadata) {
+  const chapterKey = `${bookId}_${chapterNum}`;
+  const ids = metadata.people.byChapter[chapterKey] || [];
+  const bookLabel = bookNames[bookId] || bookId;
+  const entries = ids
+    .map((id) => metadata.people.people[id] && { id, ...metadata.people.people[id] })
+    .filter(Boolean)
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  openInfoListModal(`People in ${bookLabel} ${chapterNum}`, entries, (person) => {
+    const card = document.createElement("div");
+    card.className = "bp-info-card";
+
+    const nameEl = document.createElement("div");
+    nameEl.className = "bp-info-card__title";
+    nameEl.textContent = person.alsoCalled
+      ? `${person.name} (${person.alsoCalled
+          .split(",")
+          .map((s) => s.trim())
+          .join(", ")})`
+      : person.name;
+    card.appendChild(nameEl);
+
+    const metaParts = [];
+    if (person.gender) metaParts.push(person.gender);
+    const birth = formatBirthDeathYear(person.birthYear);
+    const death = formatBirthDeathYear(person.deathYear);
+    if (birth || death) {
+      metaParts.push([birth, death].filter(Boolean).join(" – "));
+    }
+    if (metaParts.length) {
+      const metaEl = document.createElement("div");
+      metaEl.className = "bp-info-card__meta";
+      metaEl.textContent = metaParts.join(" · ");
+      card.appendChild(metaEl);
+    }
+
+    if (person.description) {
+      const bodyEl = document.createElement("div");
+      bodyEl.className = "bp-info-card__body";
+      bodyEl.textContent = person.description;
+      card.appendChild(bodyEl);
+      attachReadMoreToggle(card, bodyEl, person, "people");
+    }
+
+    return card;
+  }, "Names and identifications are intended to give a general overview of Bible people — not an interpretation of Scripture.");
+}
+
+// The source dataset occasionally has two separate place records for the
+// same real location (e.g. "Judea" and a "Judean" adjective-form entry)
+// with identical name/coordinates/description — safe to merge for display,
+// unlike people, where two entries sharing a name are usually genuinely
+// different individuals and must never be collapsed.
+function dedupePlaceEntries(entries) {
+  const seen = new Map();
+  const result = [];
+  entries.forEach((place) => {
+    const key = `${place.name}|${place.lat}|${place.lon}`;
+    const existing = seen.get(key);
+    if (!existing) {
+      seen.set(key, place);
+      result.push(place);
+    } else if (!existing.featureType && place.featureType) {
+      result[result.indexOf(existing)] = place;
+      seen.set(key, place);
+    }
+  });
+  return result;
+}
+
+function openPlacesModal(bookId, chapterNum, metadata) {
+  const chapterKey = `${bookId}_${chapterNum}`;
+  const ids = metadata.places.byChapter[chapterKey] || [];
+  const bookLabel = bookNames[bookId] || bookId;
+  const entries = dedupePlaceEntries(
+    ids
+      .map((id) => metadata.places.places[id] && { id, ...metadata.places.places[id] })
+      .filter(Boolean),
+  ).sort((a, b) => a.name.localeCompare(b.name));
+
+  openInfoListModal(`Places in ${bookLabel} ${chapterNum}`, entries, (place) => {
+    const card = document.createElement("div");
+    card.className = "bp-info-card";
+
+    const nameEl = document.createElement("div");
+    nameEl.className = "bp-info-card__title";
+    nameEl.textContent = place.name;
+    card.appendChild(nameEl);
+
+    if (place.featureType) {
+      const metaEl = document.createElement("div");
+      metaEl.className = "bp-info-card__meta";
+      metaEl.textContent = place.featureType;
+      card.appendChild(metaEl);
+    }
+
+    if (place.description) {
+      const bodyEl = document.createElement("div");
+      bodyEl.className = "bp-info-card__body";
+      bodyEl.textContent = place.description;
+      card.appendChild(bodyEl);
+      attachReadMoreToggle(card, bodyEl, place, "places");
+    }
+
+    return card;
+  }, "Place identifications are intended to give a general overview of Bible geography — not an interpretation of Scripture.");
+}
+
+const BP_TIMELINE_ERA_LABELS = {
+  ot: "Old Testament",
+  gospels: "Life of Christ",
+  earlyChurch: "Early Church",
+};
+const BP_TIMELINE_ERA_ORDER = ["ot", "gospels", "earlyChurch"];
+
+function formatTimelineEventYear(year) {
+  if (!Number.isInteger(year)) return "";
+  return year < 0 ? `${-year} BC` : `${year} AD`;
+}
+
+function openTimelineModal(bookId, chapterNum, metadata) {
+  document
+    .querySelectorAll(".bp-timeline-overlay")
+    .forEach((el) => el.remove());
+
+  const chapterKey = `${bookId}_${chapterNum}`;
+  const chapterEntries = metadata.timeline.byChapter[chapterKey] || [];
+  if (!chapterEntries.length) return;
+
+  const uniqueEventsById = new Map();
+  metadata.timeline.events.forEach((ev) => {
+    if (!uniqueEventsById.has(ev.id)) uniqueEventsById.set(ev.id, ev);
+  });
+
+  const currentIds = new Set(chapterEntries.map((e) => e.id));
+  const currentEvents = Array.from(currentIds)
+    .map((id) => uniqueEventsById.get(id))
+    .filter(Boolean)
+    .sort((a, b) => a.sortKey - b.sortKey);
+  if (!currentEvents.length) return;
+
+  const currentEra = currentEvents[0].era;
+
+  const eraSorted = Array.from(uniqueEventsById.values())
+    .filter((e) => e.era === currentEra)
+    .sort((a, b) => a.sortKey - b.sortKey);
+
+  const currentIndexes = eraSorted
+    .map((e, i) => (currentIds.has(e.id) ? i : -1))
+    .filter((i) => i !== -1);
+  const firstIdx = Math.min(...currentIndexes);
+  const lastIdx = Math.max(...currentIndexes);
+
+  const override = metadata.overrides[chapterKey] || {};
+
+  // The current chapter's own events aren't necessarily contiguous in the
+  // era's sortKey order — parallel Gospel accounts (Matthew/Mark/Luke/John)
+  // interleave by chronology, so a chapter's events can have unrelated
+  // events from OTHER books' chapters sorted in between them. Use
+  // `currentEvents` directly for the highlighted middle (not an index-range
+  // slice from first to last), so only genuinely-before/after neighbors —
+  // never interleaved events from other chapters — surround it.
+  let neighborhood;
+  if (Array.isArray(override.before) || Array.isArray(override.after)) {
+    const beforeEvents = (override.before || [])
+      .map((id) => uniqueEventsById.get(id))
+      .filter(Boolean);
+    const afterEvents = (override.after || [])
+      .map((id) => uniqueEventsById.get(id))
+      .filter(Boolean);
+    neighborhood = [...beforeEvents, ...currentEvents, ...afterEvents];
+  } else if (
+    Number.isInteger(override.beforeCount) ||
+    Number.isInteger(override.afterCount)
+  ) {
+    const beforeCount = Number.isInteger(override.beforeCount)
+      ? override.beforeCount
+      : 3;
+    const afterCount = Number.isInteger(override.afterCount)
+      ? override.afterCount
+      : 3;
+    const before = eraSorted.slice(Math.max(0, firstIdx - beforeCount), firstIdx);
+    const after = eraSorted.slice(lastIdx + 1, lastIdx + 1 + afterCount);
+    neighborhood = [...before, ...currentEvents, ...after];
+  } else {
+    // Default: the entire era, auto-centered on the current chapter's
+    // events once rendered — gives full context to explore (the other two
+    // eras stay compact, curated landmark strips) rather than a narrow
+    // fixed window.
+    neighborhood = eraSorted;
+  }
+
+  const overlay = document.createElement("div");
+  overlay.className = "bp-timeline-overlay";
+
+  const modal = document.createElement("div");
+  modal.className = "bp-timeline-modal";
+  overlay.appendChild(modal);
+
+  const header = document.createElement("div");
+  header.className = "bp-timeline-modal__header";
+  const bookLabel = bookNames[bookId] || bookId;
+  const title = document.createElement("h2");
+  title.className = "bp-timeline-modal__title";
+  title.textContent = `Timeline — ${bookLabel} ${chapterNum}`;
+  const closeBtn = document.createElement("button");
+  closeBtn.type = "button";
+  closeBtn.className = "bp-timeline-modal__close";
+  closeBtn.innerHTML = "&#x2715;";
+  closeBtn.setAttribute("aria-label", "Close timeline");
+  header.appendChild(title);
+  header.appendChild(closeBtn);
+  modal.appendChild(header);
+
+  const body = document.createElement("div");
+  body.className = "bp-timeline-modal__body";
+  modal.appendChild(body);
+
+  const detail = document.createElement("div");
+  detail.className = "bp-timeline-detail";
+  modal.appendChild(detail);
+
+  const disclaimer = document.createElement("div");
+  disclaimer.className = "bp-timeline-disclaimer";
+  disclaimer.textContent =
+    "Dates and event order are intended to give a general historical overview — not an interpretation of Scripture.";
+  modal.appendChild(disclaimer);
+
+  const credit = document.createElement("div");
+  credit.className = "bp-timeline-credit";
+  credit.textContent = `Data: ${BIBLE_METADATA_CREDIT}`;
+  modal.appendChild(credit);
+
+  function showDetail(ev, zoneEra) {
+    detail.innerHTML = "";
+    const t = document.createElement("div");
+    t.className = "bp-timeline-detail__title";
+    t.classList.toggle("bp-timeline-detail__title--current", currentIds.has(ev.id));
+    t.textContent = ev.title;
+    const meta = document.createElement("div");
+    meta.className = "bp-timeline-detail__meta";
+    const evBookLabel = bookNames[ev.book] || ev.book;
+    const verseRef = Number.isInteger(ev.verseStart)
+      ? `${evBookLabel} ${ev.chapter}:${ev.verseStart}${
+          ev.verseEnd > ev.verseStart ? `-${ev.verseEnd}` : ""
+        }`
+      : "";
+    // Landmark events are hand-curated into a zone regardless of their own
+    // recorded era (e.g. Pentecost sits right at the gospels/earlyChurch
+    // boundary in the source data) — label with the zone they're shown in,
+    // not the raw field, so it never contradicts where it's displayed.
+    meta.textContent = [
+      formatTimelineEventYear(ev.year),
+      BP_TIMELINE_ERA_LABELS[zoneEra || ev.era],
+      verseRef,
+    ]
+      .filter(Boolean)
+      .join(" · ");
+    detail.appendChild(t);
+    detail.appendChild(meta);
+  }
+
+  function makeMarker(ev, { highlighted, compact, zoneEra }) {
+    const marker = document.createElement("button");
+    marker.type = "button";
+    marker.className = compact ? "bp-timeline-landmark" : "bp-timeline-marker";
+    if (highlighted) marker.classList.add("bp-timeline-marker--current");
+    const dot = document.createElement("span");
+    dot.className = compact
+      ? "bp-timeline-landmark__dot"
+      : "bp-timeline-marker__dot";
+    const label = document.createElement("span");
+    label.className = compact
+      ? "bp-timeline-landmark__label"
+      : "bp-timeline-marker__label";
+    label.textContent = ev.title;
+    marker.appendChild(dot);
+    marker.appendChild(label);
+    marker.addEventListener("click", () => showDetail(ev, zoneEra));
+    return marker;
+  }
+
+  // Mouse users have no native way to pan a horizontally-scrolling flex
+  // row (only the scrollbar itself, or a wheel/trackpad gesture) — add
+  // click-and-drag panning, plus vertical-wheel-scrolls-horizontally so a
+  // plain mouse wheel works too. Touch already scrolls this natively via
+  // the browser, so pointerType "touch"/"pen" are left alone entirely.
+  function attachDragScroll(track) {
+    let dragging = false;
+    let capturing = false;
+    let pointerId = null;
+    let startX = 0;
+    let startScrollLeft = 0;
+    let moved = false;
+
+    track.addEventListener("pointerdown", (e) => {
+      if (e.pointerType !== "mouse") return;
+      if (typeof e.button === "number" && e.button !== 0) return;
+      // Ignore mousedowns on the native scrollbar strip itself — letting
+      // the browser drive that directly avoids fighting our own panning,
+      // which is inverted from how dragging a scrollbar thumb works.
+      const trackRect = track.getBoundingClientRect();
+      if (e.clientY - trackRect.top > track.clientHeight) return;
+      dragging = true;
+      moved = false;
+      capturing = false;
+      pointerId = e.pointerId;
+      startX = e.clientX;
+      startScrollLeft = track.scrollLeft;
+    });
+    track.addEventListener("pointermove", (e) => {
+      if (!dragging) return;
+      const dx = e.clientX - startX;
+      // Defer pointer capture until an actual drag is confirmed — capturing
+      // unconditionally on every mousedown retargets the eventual 'click'
+      // to `track` instead of the marker button that was visually clicked,
+      // silently breaking plain (non-drag) clicks on the cards.
+      if (!moved && Math.abs(dx) > 4) {
+        moved = true;
+        track.setPointerCapture(pointerId);
+        capturing = true;
+        track.classList.add("bp-timeline-zone__track--dragging");
+      }
+      if (moved) track.scrollLeft = startScrollLeft - dx;
+    });
+    function endDrag() {
+      if (!dragging) return;
+      dragging = false;
+      if (capturing) {
+        track.releasePointerCapture(pointerId);
+        capturing = false;
+      }
+      track.classList.remove("bp-timeline-zone__track--dragging");
+      if (moved) {
+        // A drag shouldn't also trigger the marker button's click — but
+        // only suppress the click that fires (if any) as an immediate
+        // byproduct of THIS release, not indefinitely: whether a mouseup
+        // over a different element than mousedown produces a trailing
+        // click varies by browser, so an unconditional `once` listener can
+        // sit armed and silently eat the user's next unrelated click.
+        const suppressClick = (ev) => {
+          ev.stopPropagation();
+          ev.preventDefault();
+        };
+        track.addEventListener("click", suppressClick, { capture: true });
+        setTimeout(() => {
+          track.removeEventListener("click", suppressClick, true);
+        }, 0);
+      }
+    }
+    track.addEventListener("pointerup", endDrag);
+    track.addEventListener("pointercancel", endDrag);
+
+    track.addEventListener(
+      "wheel",
+      (e) => {
+        if (e.deltaY === 0) return;
+        e.preventDefault();
+        track.scrollLeft += e.deltaY;
+      },
+      { passive: false },
+    );
+  }
+
+  BP_TIMELINE_ERA_ORDER.forEach((era) => {
+    const zone = document.createElement("div");
+    zone.className = "bp-timeline-zone";
+
+    const zoneHeader = document.createElement("div");
+    zoneHeader.className = "bp-timeline-zone__header";
+    zoneHeader.textContent = BP_TIMELINE_ERA_LABELS[era];
+    zone.appendChild(zoneHeader);
+
+    if (era === currentEra) {
+      zone.classList.add("bp-timeline-zone--expanded");
+      const hint = document.createElement("div");
+      hint.className = "bp-timeline-zone__hint";
+      hint.innerHTML =
+        "This chapter's events are <strong>highlighted in gold</strong> below — drag, scroll, or use your mouse wheel to see what comes before and after.";
+      zone.appendChild(hint);
+      const track = document.createElement("div");
+      track.className = "bp-timeline-zone__track";
+      attachDragScroll(track);
+      neighborhood.forEach((ev) => {
+        track.appendChild(
+          makeMarker(ev, {
+            highlighted: currentIds.has(ev.id),
+            compact: false,
+            zoneEra: era,
+          }),
+        );
+      });
+      zone.appendChild(track);
+    } else {
+      zone.classList.add("bp-timeline-zone--compact");
+      const landmarkIds = metadata.milestones[era] || [];
+      landmarkIds.forEach((id) => {
+        const ev = uniqueEventsById.get(id);
+        if (!ev) return;
+        zone.appendChild(
+          makeMarker(ev, { highlighted: false, compact: true, zoneEra: era }),
+        );
+      });
+    }
+
+    body.appendChild(zone);
+  });
+
+  showDetail(currentEvents[0], currentEra);
+
+  function closeModal() {
+    document.removeEventListener("keydown", onKeydown);
+    overlay.remove();
+  }
+  function onKeydown(e) {
+    if (e.key === "Escape") closeModal();
+  }
+  overlay.addEventListener("mousedown", (e) => {
+    if (e.target === overlay) closeModal();
+  });
+  closeBtn.addEventListener("click", closeModal);
+  document.addEventListener("keydown", onKeydown);
+
+  document.body.appendChild(overlay);
+
+  // Now that the modal is in the document, scroll the current era's track
+  // so the current chapter's earliest event is centered — otherwise, with
+  // the whole era in the track by default, the view opens on its leftmost
+  // (earliest-in-era) events rather than "you are here". Reading
+  // offsetLeft/clientWidth forces synchronous layout, so this doesn't need
+  // to wait for a paint frame.
+  //
+  // Center on just the first highlighted marker, not a span across all of
+  // them: a chapter's own events aren't necessarily clustered together in
+  // the full era list (parallel Gospel accounts interleave by chronology),
+  // so spanning first-to-last could center on an unrelated stretch of the
+  // timeline sitting between two widely-separated highlighted events.
+  const firstHighlighted = body.querySelector(".bp-timeline-marker--current");
+  if (firstHighlighted) {
+    const expandedTrack = firstHighlighted.closest(".bp-timeline-zone__track");
+    if (expandedTrack) {
+      const center =
+        firstHighlighted.offsetLeft + firstHighlighted.offsetWidth / 2;
+      expandedTrack.scrollLeft = Math.max(0, center - expandedTrack.clientWidth / 2);
+    }
+  }
 }
 
 function positionFloatingMenu(icon, menu) {
@@ -1200,27 +1862,54 @@ async function loadBibleChapter(
         window.renderStickyHighlightToggle(aside);
       }
 
+      // The first field is always visible; the extra ones only show once
+      // the developer's study-note buttons are toggled off (see the
+      // html.bp-hide-study-notes CSS), reusing the space that would
+      // otherwise be full of highlight-toggle buttons — and giving the
+      // Sticky Highlights toggle more than one typed phrase to apply to.
+      const EXTRA_CHAPTER_SEARCH_FIELDS = 2;
+      const chapterSearchFields = [];
       let chapterSearchField = null;
       if (aside) {
         aside
-          .querySelectorAll(".bp-chapter-search-field, .bp-book-search-field")
+          .querySelectorAll(
+            ".bp-chapter-search-field, .bp-book-search-field, .bp-study-notes-hint",
+          )
           .forEach((el) => el.remove());
-
-        chapterSearchField = document.createElement("input");
-        chapterSearchField.type = "text";
-        chapterSearchField.id = "chapter-search-field";
-        chapterSearchField.className = "bp-chapter-search-field";
-        chapterSearchField.placeholder = "Highlight text...";
-        chapterSearchField.setAttribute("autocomplete", "off");
 
         const stickyControls = aside.querySelector(
           ".bp-sidebar-sticky-controls",
         );
-        if (stickyControls) {
-          stickyControls.appendChild(chapterSearchField);
-        } else {
-          aside.insertBefore(chapterSearchField, aside.firstChild);
+        const insertField = (field) => {
+          if (stickyControls) {
+            stickyControls.appendChild(field);
+          } else {
+            aside.insertBefore(field, aside.firstChild);
+          }
+        };
+
+        for (let i = 0; i <= EXTRA_CHAPTER_SEARCH_FIELDS; i++) {
+          const field = document.createElement("input");
+          field.type = "text";
+          field.id =
+            i === 0 ? "chapter-search-field" : `chapter-search-field-${i + 1}`;
+          field.className =
+            i === 0
+              ? "bp-chapter-search-field"
+              : "bp-chapter-search-field bp-chapter-search-field--extra";
+          field.placeholder =
+            i === 0 ? "Highlight text..." : `Highlight text ${i + 1}...`;
+          field.setAttribute("autocomplete", "off");
+          insertField(field);
+          chapterSearchFields.push(field);
         }
+        chapterSearchField = chapterSearchFields[0];
+
+        const studyNotesHint = document.createElement("div");
+        studyNotesHint.className = "bp-study-notes-hint";
+        studyNotesHint.innerHTML =
+          "Click <strong>Notes</strong> at the bottom to see the developer's Bible study notes.";
+        insertField(studyNotesHint);
       }
 
       let highlightBar = document.getElementById("chapter-highlight-bar");
@@ -1400,10 +2089,10 @@ async function loadBibleChapter(
               });
             });
         }
-        const typedPhrase = getLiteralSearchPhrase(chapterSearchField);
-        if (typedPhrase) {
-          phrases.push(typedPhrase);
-        }
+        chapterSearchFields.forEach((field) => {
+          const typedPhrase = getLiteralSearchPhrase(field);
+          if (typedPhrase) phrases.push(typedPhrase);
+        });
         return normalizePhraseList(phrases);
       }
 
@@ -1445,15 +2134,15 @@ async function loadBibleChapter(
         }
       });
 
-      if (chapterSearchField) {
-        let chapterSearchDebounce = null;
-        chapterSearchField.addEventListener("input", () => {
-          clearTimeout(chapterSearchDebounce);
-          chapterSearchDebounce = setTimeout(() => {
+      chapterSearchFields.forEach((field) => {
+        let debounceTimer = null;
+        field.addEventListener("input", () => {
+          clearTimeout(debounceTimer);
+          debounceTimer = setTimeout(() => {
             rerenderActiveHighlights();
           }, 300);
         });
-      }
+      });
 
       const stickyToggle = document.getElementById("sticky-highlight-toggle");
       if (stickyToggle) {
@@ -1603,6 +2292,56 @@ async function loadBibleChapter(
       }
       // Reset for next chapter load
       window._chapterWords = [];
+
+      // Timeline / People / Places buttons — each shown only if this
+      // chapter has matching data. Buttons persist across chapter loads
+      // (footer.innerHTML is never reset), so just toggle visibility.
+      const metadata = await getBibleMetadata();
+      const chapterKey = `${bookId}_${chapterNum}`;
+      const timelineEntries = metadata.timeline.byChapter[chapterKey] || [];
+      const peopleEntries = metadata.people.byChapter[chapterKey] || [];
+      const placesEntries = metadata.places.byChapter[chapterKey] || [];
+
+      function ensureMetaButton(id, label, entries, onClick) {
+        let btn = document.getElementById(id);
+        if (!entries.length) {
+          if (btn) btn.style.display = "none";
+          return;
+        }
+        if (!btn) {
+          btn = document.createElement("button");
+          btn.id = id;
+          btn.type = "button";
+          btn.className = "bp-meta-btn";
+          footer.appendChild(btn);
+        }
+        btn.textContent = label;
+        btn.style.display = "";
+        btn.onclick = onClick;
+      }
+
+      // Notes is created first (and thus always leftmost) so its position
+      // stays fixed regardless of which of the three conditional buttons
+      // below happen to show for a given chapter.
+      ensureStudyNotesToggle(footer);
+      ensureMetaButton(
+        "bp-timeline-btn",
+        "\u{1F4C5} Timeline",
+        timelineEntries,
+        () => openTimelineModal(bookId, chapterNum, metadata),
+      );
+      ensureMetaButton(
+        "bp-people-btn",
+        "\u{1F464} People",
+        peopleEntries,
+        () => openPeopleModal(bookId, chapterNum, metadata),
+      );
+      ensureMetaButton(
+        "bp-places-btn",
+        "\u{1F4CD} Places",
+        placesEntries,
+        () => openPlacesModal(bookId, chapterNum, metadata),
+      );
     }
     if (typeof window !== "undefined" && window.localStorage) {
       saveLastRead(bookId, chapterNum);

@@ -293,6 +293,29 @@ body {
   box-shadow: 0 0 0 2px var(--accent);
 }
 
+/* Extra typed-highlight fields and the study-notes hint only take up space
+   once the developer's own label/highlight buttons are toggled off —
+   otherwise they'd just add clutter on top of an already-full sidebar. */
+.bp-chapter-search-field--extra {
+  display: none;
+}
+html.bp-hide-study-notes .bp-chapter-search-field--extra {
+  display: block;
+}
+.bp-study-notes-hint {
+  display: none;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--text-muted, #9aa5b1);
+  margin: 0.3em 0 0.6em;
+}
+.bp-study-notes-hint strong {
+  color: var(--accent, #ffe082);
+}
+html.bp-hide-study-notes .bp-study-notes-hint {
+  display: block;
+}
+
 .bp-app.bp-entire-book-mode #prev-chapter-btn,
 .bp-app.bp-entire-book-mode #next-chapter-btn,
 .bp-app.bp-entire-book-mode #chapter-dropdown {
@@ -1182,6 +1205,423 @@ footer {
     padding: 0.75rem;
   }
   .bp-compare-modal {
+    max-height: min(92vh, 92dvh);
+  }
+}
+
+/* Timeline / People / Places footer buttons */
+.bp-meta-btn {
+  background: #2f3640;
+  color: #f5f6fa;
+  border: 1px solid #cfab5a;
+  border-radius: 6px;
+  padding: 0.25em 0.6em;
+  margin-left: 0.6em;
+  font-size: 0.85em;
+  cursor: pointer;
+}
+.bp-meta-btn:hover {
+  background: #3d4b85;
+  border-color: #ffe082;
+}
+.bp-meta-btn--off {
+  color: #ffe082;
+  border: 2px solid #ffe082;
+  font-weight: 600;
+}
+.bp-meta-btn--off:hover {
+  background: #3d4b85;
+}
+@media (min-width: 3000px) {
+  .bp-meta-btn {
+    font-size: 1.05em;
+    padding: 0.4em 0.9em;
+  }
+}
+
+/* Custom tooltip that opens upward — footer buttons sit at the bottom of
+   the viewport, where a native title tooltip (which always opens downward)
+   gets clipped or runs off-screen. */
+.bp-tooltip-up {
+  position: relative;
+}
+.bp-tooltip-up::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  background: #16181b;
+  color: #f5f6fa;
+  border: 1px solid #444;
+  border-radius: 6px;
+  padding: 0.35em 0.6em;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px #000a;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.12s,
+    visibility 0.12s;
+  z-index: 1300;
+}
+.bp-tooltip-up:hover::after,
+.bp-tooltip-up:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Hides the developer's own study-note buttons — "label" buttons (left
+   sidebar) and "highlight" toggle buttons (right sidebar) — when the
+   footer's Notes toggle is switched off. Structural outline buttons
+   (topic-outline-btn) and the reader's own typed-highlight search field
+   are untouched. */
+html.bp-hide-study-notes .topic-label-btn,
+html.bp-hide-study-notes .topic-highlight-btn {
+  display: none;
+}
+
+/* Shared People/Places "info list" modal */
+.bp-info-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+.bp-info-modal {
+  background: #23272a;
+  color: #f5f6fa;
+  border: 1px solid #444;
+  border-radius: 10px;
+  box-shadow: 0 8px 32px #000a;
+  width: min(560px, 100%);
+  max-height: min(85vh, 85dvh);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.bp-info-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.1rem;
+  border-bottom: 1px solid #333;
+  flex: none;
+}
+.bp-info-modal__title {
+  margin: 0;
+  font-size: 1.15rem;
+}
+.bp-info-modal__close {
+  background: none;
+  border: none;
+  color: #f5f6fa;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+}
+.bp-info-modal__close:hover {
+  background: #3d4b85;
+}
+.bp-info-modal__list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.9rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.bp-info-modal__empty {
+  color: #9aa5b1;
+  font-size: 0.9rem;
+}
+.bp-info-card {
+  background: #1b1e21;
+  border: 1px solid #3a3f44;
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+}
+.bp-info-card__title {
+  font-weight: 600;
+  color: #ffe082;
+}
+.bp-info-card__meta {
+  font-size: 0.8rem;
+  color: #8bd3ff;
+  margin-top: 0.2rem;
+}
+.bp-info-card__body {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-top: 0.4rem;
+}
+.bp-info-card__toggle {
+  background: none;
+  border: none;
+  color: #8bd3ff;
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 0.3rem 0 0;
+}
+.bp-info-card__toggle:hover {
+  text-decoration: underline;
+}
+.bp-info-card__toggle:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+.bp-info-modal__disclaimer {
+  flex: none;
+  padding: 0.6rem 1.1rem 0;
+  border-top: 1px solid #333;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: #7c8894;
+  font-style: italic;
+}
+.bp-info-modal__credit {
+  flex: none;
+  padding: 0.4rem 1.1rem 0.6rem;
+  font-size: 0.75rem;
+  color: #9aa5b1;
+}
+@media (max-width: 480px) {
+  .bp-info-overlay {
+    padding: 0.75rem;
+  }
+  .bp-info-modal {
+    max-height: min(92vh, 92dvh);
+  }
+}
+
+/* Timeline modal */
+.bp-timeline-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+.bp-timeline-modal {
+  background: #23272a;
+  color: #f5f6fa;
+  border: 1px solid #444;
+  border-radius: 10px;
+  box-shadow: 0 8px 32px #000a;
+  width: min(70vw, 2200px);
+  max-height: min(85vh, 85dvh);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.bp-timeline-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.1rem;
+  border-bottom: 1px solid #333;
+  flex: none;
+}
+.bp-timeline-modal__title {
+  margin: 0;
+  font-size: 1.15rem;
+}
+.bp-timeline-modal__close {
+  background: none;
+  border: none;
+  color: #f5f6fa;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+}
+.bp-timeline-modal__close:hover {
+  background: #3d4b85;
+}
+.bp-timeline-modal__body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+.bp-timeline-zone {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border-right: 1px solid #333;
+  padding: 0.7rem 0.8rem;
+}
+.bp-timeline-zone:last-child {
+  border-right: none;
+}
+.bp-timeline-zone--compact {
+  flex: 0 0 150px;
+  overflow-y: auto;
+}
+.bp-timeline-zone--expanded {
+  flex: 1;
+  min-width: 0;
+}
+.bp-timeline-zone__hint {
+  font-size: 0.75rem;
+  color: #9aa5b1;
+  margin: -0.2rem 0 0.5rem;
+  flex: none;
+}
+.bp-timeline-zone__hint strong {
+  color: #ffe082;
+  font-weight: 600;
+}
+.bp-timeline-zone__header {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #9aa5b1;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.5rem;
+  flex: none;
+}
+.bp-timeline-zone__track {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  gap: 0.6rem;
+  overflow-x: auto;
+  padding-bottom: 1.2rem;
+  cursor: grab;
+}
+.bp-timeline-zone__track--dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+.bp-timeline-marker {
+  flex: none;
+  width: 140px;
+  background: #1b1e21;
+  border: 1px solid #3a3f44;
+  border-radius: 8px;
+  padding: 0.5rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
+  cursor: pointer;
+  color: #f5f6fa;
+  text-align: left;
+}
+.bp-timeline-marker:hover {
+  border-color: #8bd3ff;
+}
+.bp-timeline-marker--current {
+  background: #3d4b85;
+  border-color: #ffe082;
+}
+.bp-timeline-marker__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #8bd3ff;
+  flex: none;
+}
+.bp-timeline-marker--current .bp-timeline-marker__dot {
+  background: #ffe082;
+}
+.bp-timeline-marker__label {
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+.bp-timeline-landmark {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  background: none;
+  border: none;
+  color: #f5f6fa;
+  cursor: pointer;
+  padding: 0.25rem 0;
+  text-align: left;
+  font-size: 0.8rem;
+}
+.bp-timeline-landmark:hover {
+  color: #8bd3ff;
+}
+.bp-timeline-landmark__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #9aa5b1;
+  flex: none;
+}
+.bp-timeline-detail {
+  flex: none;
+  padding: 0.7rem 1.1rem;
+  border-top: 1px solid #333;
+}
+.bp-timeline-detail__title {
+  font-weight: 600;
+  color: #f5f6fa;
+}
+.bp-timeline-detail__title--current {
+  color: #ffe082;
+}
+.bp-timeline-detail__meta {
+  font-size: 0.85rem;
+  color: #8bd3ff;
+  margin-top: 0.2rem;
+}
+.bp-timeline-disclaimer {
+  flex: none;
+  padding: 0.6rem 1.1rem 0;
+  border-top: 1px solid #333;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: #7c8894;
+  font-style: italic;
+}
+.bp-timeline-credit {
+  flex: none;
+  padding: 0.4rem 1.1rem 0.7rem;
+  font-size: 0.75rem;
+  color: #9aa5b1;
+}
+@media (max-width: 700px) {
+  .bp-timeline-modal {
+    width: 100%;
+  }
+  .bp-timeline-modal__body {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  .bp-timeline-zone {
+    border-right: none;
+    border-bottom: 1px solid #333;
+  }
+  .bp-timeline-zone--compact {
+    flex: none;
+    max-height: none;
+    overflow-y: visible;
+  }
+  .bp-timeline-zone--expanded {
+    flex: none;
+  }
+}
+@media (max-width: 480px) {
+  .bp-timeline-overlay {
+    padding: 0.75rem;
+  }
+  .bp-timeline-modal {
     max-height: min(92vh, 92dvh);
   }
 }
