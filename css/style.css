@@ -2199,17 +2199,33 @@ html.bp-hide-study-notes .topic-highlight-btn {
   }
 
   /* Notes/Book/Timeline/People/Places row, relocated by bpSyncMobileUi()
-     into the bottom drawer's sticky controls — icon-only to save space. */
+     into the bottom drawer's sticky controls. Labels stay visible (no
+     tooltip affordance on touch) and the row scrolls horizontally instead
+     of wrapping, matching the .bp-book-scrollbar treatment used for the
+     66-book strip in the top drawer. */
   html.bp-mobile .bp-meta-btn-row {
+    flex-wrap: nowrap;
+    overflow-x: auto;
     gap: 0.5em;
     margin: 0.5em 0 0.6em;
+    padding-bottom: 0.15em;
+    scrollbar-color: var(--accent) var(--bg-sidebar);
+    scrollbar-width: thin;
+  }
+  html.bp-mobile .bp-meta-btn-row::-webkit-scrollbar {
+    height: 6px;
+  }
+  html.bp-mobile .bp-meta-btn-row::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 4px;
+  }
+  html.bp-mobile .bp-meta-btn-row::-webkit-scrollbar-track {
+    background: var(--bg-sidebar);
   }
   html.bp-mobile .bp-meta-btn-row .bp-meta-btn {
+    flex: none;
     margin-left: 0;
-    padding: 0.4em 0.55em;
-  }
-  html.bp-mobile .bp-meta-btn-row .bp-meta-btn__label {
-    display: none;
+    padding: 0.4em 0.65em;
   }
 
   /* --- Tap ergonomics --- */
