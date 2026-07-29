@@ -93,6 +93,23 @@ function applyStudyNotesPref(show) {
 // chapter outline. Outline buttons (topic-outline-btn) are never affected.
 // Hiding is pure CSS (buttons stay in the DOM, just display:none), so no
 // other rendering logic needs to change.
+// Splits a "<emoji> <Text>" footer-button label into separate icon/label
+// spans so mobile CSS can hide just the label and keep icon-only buttons.
+function setMetaBtnContent(btn, label) {
+  const spaceIdx = label.indexOf(" ");
+  const icon = label.slice(0, spaceIdx);
+  const text = label.slice(spaceIdx + 1);
+  btn.innerHTML = "";
+  const iconSpan = document.createElement("span");
+  iconSpan.className = "bp-meta-btn__icon";
+  iconSpan.textContent = icon;
+  const labelSpan = document.createElement("span");
+  labelSpan.className = "bp-meta-btn__label";
+  labelSpan.textContent = " " + text;
+  btn.append(iconSpan, labelSpan);
+  if (!btn.hasAttribute("aria-label")) btn.setAttribute("aria-label", text);
+}
+
 function ensureStudyNotesToggle(footer) {
   applyStudyNotesPref(getStudyNotesPref());
 
@@ -116,7 +133,7 @@ function ensureStudyNotesToggle(footer) {
     btn.id = "bp-study-notes-toggle";
     btn.type = "button";
     btn.className = "bp-meta-btn bp-tooltip-up";
-    btn.textContent = "\u{1F3F7}\u{FE0F} Notes";
+    setMetaBtnContent(btn, "\u{1F3F7}\u{FE0F} Notes");
     btn.addEventListener("click", () => {
       const nowShow = !getStudyNotesPref();
       if (typeof window !== "undefined" && window.localStorage) {
@@ -2238,6 +2255,11 @@ async function loadBibleChapter(
     // Update character count in footer
     const footer = document.querySelector(".bp-footer");
     if (footer) {
+      // Looked up by document-wide id, not as a footer descendant — on
+      // mobile, bpSyncMobileUi() may already have relocated this row into
+      // the bottom drawer's sticky controls before this async callback
+      // runs, so it's no longer inside `footer` at all.
+      const metaBtnRow = document.getElementById("bp-meta-btn-row") || footer;
       let cc = document.getElementById("bp-char-count");
       // Compute top 5 words in chapter
       let words = (window._chapterWords || [])
@@ -2374,9 +2396,9 @@ async function loadBibleChapter(
           btn.id = id;
           btn.type = "button";
           btn.className = "bp-meta-btn";
-          footer.appendChild(btn);
+          metaBtnRow.appendChild(btn);
         }
-        btn.textContent = label;
+        setMetaBtnContent(btn, label);
         btn.style.display = "";
         btn.onclick = onClick;
       }
@@ -2387,7 +2409,7 @@ async function loadBibleChapter(
       // Notes, it's unconditional (every book has an entry), so it's
       // built with ensureMetaButton passing a non-empty placeholder array
       // rather than the real (always-true) condition.
-      ensureStudyNotesToggle(footer);
+      ensureStudyNotesToggle(metaBtnRow);
       ensureMetaButton(
         "bp-book-info-btn",
         "\u{1F4D5} Book",

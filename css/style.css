@@ -1232,6 +1232,11 @@ footer {
 .bp-meta-btn--off:hover {
   background: #3d4b85;
 }
+.bp-meta-btn-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
 @media (min-width: 3000px) {
   .bp-meta-btn {
     font-size: 1.05em;
@@ -2190,6 +2195,20 @@ html.bp-hide-study-notes .topic-highlight-btn {
   }
   html.bp-mobile .bp-footer,
   html.bp-mobile .bp-footer__legend {
+    display: none;
+  }
+
+  /* Notes/Book/Timeline/People/Places row, relocated by bpSyncMobileUi()
+     into the bottom drawer's sticky controls — icon-only to save space. */
+  html.bp-mobile .bp-meta-btn-row {
+    gap: 0.5em;
+    margin: 0.5em 0 0.6em;
+  }
+  html.bp-mobile .bp-meta-btn-row .bp-meta-btn {
+    margin-left: 0;
+    padding: 0.4em 0.55em;
+  }
+  html.bp-mobile .bp-meta-btn-row .bp-meta-btn__label {
     display: none;
   }
 

@@ -98,6 +98,21 @@ function bpSyncMobileUi() {
     layoutContainer.appendChild(strip);
   }
 
+  // Moves the Notes/Book/Timeline/People/Places button row into the bottom
+  // drawer's sticky (non-scrolling) controls on mobile — icon-only there via
+  // CSS — and back into the desktop footer otherwise. Guarded independently
+  // of the book-strip lookups above since it doesn't depend on them.
+  const footer = document.querySelector(".bp-footer");
+  const stickyControls = document.querySelector(".bp-sidebar-sticky-controls");
+  const metaBtnRow = document.getElementById("bp-meta-btn-row");
+  if (footer && stickyControls && metaBtnRow) {
+    if (mode === "mobile") {
+      stickyControls.appendChild(metaBtnRow);
+    } else if (metaBtnRow.parentElement !== footer) {
+      footer.appendChild(metaBtnRow);
+    }
+  }
+
   const crossed = _bpLastUiMode !== null;
   _bpLastUiMode = mode;
   if (crossed && window._currentBookId) {
