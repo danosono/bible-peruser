@@ -42,27 +42,35 @@ function getBibleMetadata() {
       fetchJsonOrNull("data/timeline/overrides.json"),
       fetchJsonOrNull("data/verse-tags/people.json"),
       fetchJsonOrNull("data/verse-tags/places.json"),
-    ]).then(([timeline, milestones, overrides, people, places]) => ({
+      fetchJsonOrNull("data/book-info.json"),
+    ]).then(([timeline, milestones, overrides, people, places, bookInfo]) => ({
       timeline: timeline || { events: [], byChapter: {} },
       milestones: milestones || { ot: [], gospels: [], earlyChurch: [] },
       overrides: overrides || {},
       people: people || { byChapter: {}, people: {} },
       places: places || { byChapter: {}, places: {} },
+      bookInfo: bookInfo || { books: {} },
     }));
   }
   return bpBibleMetadataPromise;
 }
 
-const bpFullTextPromises = { people: null, places: null };
+const FULL_TEXT_URLS = {
+  people: "data/verse-tags/people-full.json",
+  places: "data/verse-tags/places-full.json",
+  book: "data/book-info-full.json",
+};
 
-// Full, untruncated person/place descriptions are a separate, lazily-fetched
-// file — only downloaded the first time a reader actually expands a card,
-// not as part of the eager per-chapter metadata load.
+const bpFullTextPromises = { people: null, places: null, book: null };
+
+// Full, untruncated descriptions are a separate, lazily-fetched file —
+// only downloaded the first time a reader actually expands a card, not as
+// part of the eager per-chapter metadata load.
 function getFullTextMap(kind) {
   if (!bpFullTextPromises[kind]) {
-    bpFullTextPromises[kind] = fetchJsonOrNull(
-      `data/verse-tags/${kind}-full.json`,
-    ).then((data) => data || {});
+    bpFullTextPromises[kind] = fetchJsonOrNull(FULL_TEXT_URLS[kind]).then(
+      (data) => data || {},
+    );
   }
   return bpFullTextPromises[kind];
 }
@@ -505,7 +513,13 @@ function openCompareModal(references, compareContext) {
 // Shared plumbing for the People/Places modals — a simple scrollable card
 // list with the same overlay/header/close/Escape/click-outside pattern as
 // openCompareModal, plus a data-source credit line at the bottom.
-function openInfoListModal(titleText, entries, renderCard, disclaimerText) {
+function openInfoListModal(
+  titleText,
+  entries,
+  renderCard,
+  disclaimerText,
+  creditText,
+) {
   document.querySelectorAll(".bp-info-overlay").forEach((el) => el.remove());
 
   const overlay = document.createElement("div");
@@ -539,7 +553,7 @@ function openInfoListModal(titleText, entries, renderCard, disclaimerText) {
   if (!entries.length) {
     const empty = document.createElement("div");
     empty.className = "bp-info-modal__empty";
-    empty.textContent = "Nothing to show for this chapter.";
+    empty.textContent = "Nothing to show.";
     list.appendChild(empty);
   } else {
     entries.forEach((entry) => list.appendChild(renderCard(entry)));
@@ -554,7 +568,7 @@ function openInfoListModal(titleText, entries, renderCard, disclaimerText) {
 
   const credit = document.createElement("div");
   credit.className = "bp-info-modal__credit";
-  credit.textContent = `Data: ${BIBLE_METADATA_CREDIT}`;
+  credit.textContent = creditText || `Data: ${BIBLE_METADATA_CREDIT}`;
   modal.appendChild(credit);
 
   function closeModal() {
@@ -716,6 +730,44 @@ function openPlacesModal(bookId, chapterNum, metadata) {
 
     return card;
   }, "Place identifications are intended to give a general overview of Bible geography — not an interpretation of Scripture.");
+}
+
+const BOOK_INFO_CREDIT =
+  "Summary: Easton's Bible Dictionary (1897, public domain, via ccel.org)";
+
+// Unlike Timeline/People/Places, every book has an entry — this modal is
+// always reachable, so unlike the other three it isn't gated behind a
+// "does this chapter have data" check.
+function openBookModal(bookId, metadata) {
+  const bookLabel = bookNames[bookId] || bookId;
+  const info = metadata.bookInfo.books[bookId];
+  const entries = info ? [{ id: bookId, ...info }] : [];
+
+  openInfoListModal(bookLabel, entries, (book) => {
+    const card = document.createElement("div");
+    card.className = "bp-info-card";
+
+    const metaEl = document.createElement("div");
+    metaEl.className = "bp-info-card__meta";
+    const authorsText = (book.authors || []).join(", ");
+    metaEl.textContent = [
+      book.dateWritten ? `Written: ${book.dateWritten}` : "",
+      authorsText ? `Author: ${authorsText}` : "",
+    ]
+      .filter(Boolean)
+      .join(" · ");
+    card.appendChild(metaEl);
+
+    if (book.description) {
+      const bodyEl = document.createElement("div");
+      bodyEl.className = "bp-info-card__body";
+      bodyEl.textContent = book.description;
+      card.appendChild(bodyEl);
+      attachReadMoreToggle(card, bodyEl, book, "book");
+    }
+
+    return card;
+  }, "This information is provided for big-picture context — not an interpretation of Scripture.", BOOK_INFO_CREDIT);
 }
 
 const BP_TIMELINE_ERA_LABELS = {
@@ -2331,8 +2383,17 @@ async function loadBibleChapter(
 
       // Notes is created first (and thus always leftmost) so its position
       // stays fixed regardless of which of the three conditional buttons
-      // below happen to show for a given chapter.
+      // below happen to show for a given chapter. Book is second — like
+      // Notes, it's unconditional (every book has an entry), so it's
+      // built with ensureMetaButton passing a non-empty placeholder array
+      // rather than the real (always-true) condition.
       ensureStudyNotesToggle(footer);
+      ensureMetaButton(
+        "bp-book-info-btn",
+        "\u{1F4D5} Book",
+        [true],
+        () => openBookModal(bookId, metadata),
+      );
       ensureMetaButton(
         "bp-timeline-btn",
         "\u{1F4C5} Timeline",
