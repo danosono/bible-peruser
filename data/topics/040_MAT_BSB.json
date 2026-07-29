@@ -1100,6 +1100,38 @@
           "references": ["Leviticus 24:17–23", "Luke 6:27–36"]
         },
         {
+          "label": "Poor in spirit",
+          "verses": ["3"],
+          "references": [
+            "Psalms 51:17",
+            "Isaiah 66:2",
+            "James 4:6",
+            "1 Peter 5:5"
+          ]
+        },
+        {
+          "label": "Mourn",
+          "verses": ["4"],
+          "references": [
+            "Psalms 126:5",
+            "Isaiah 61:1-3",
+            "Luke 4:18-19",
+            "2 Corinthians 1:3-4",
+            "Matthew 11:28-30"
+          ]
+        },
+        {
+          "label": "Meek",
+          "verses": ["5"],
+          "references": [
+            "Numbers 12:3",
+            "Psalms 37:10-12 (Entire chapter seems relevant.)",
+            "Matthew 11:29",
+            "Philippians 2:5-8",
+            "John 13:14-15"
+          ]
+        },
+        {
           "highlight": "Blessed are",
           "text": [
             "the poor in spirit",
