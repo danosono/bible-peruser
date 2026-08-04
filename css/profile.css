@@ -1,0 +1,88 @@
+/* Profile-page layout for profile.html. Loaded alongside css/style.css,
+   which supplies shared dark-theme vars, .bp-suggest-* form/link styles,
+   and the shared sign-in gate (js/bp-auth-ui.js) styles reused here. */
+body {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+.bp-profile-title {
+  margin: 0 0 1rem;
+  font-size: 1.4rem;
+}
+.bp-profile-section {
+  border-bottom: 1px solid #333;
+  padding-bottom: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+.bp-profile-section:last-child {
+  border-bottom: none;
+}
+.bp-profile-section__title {
+  font-size: 1.1rem;
+  margin: 0 0 0.8rem;
+  color: #ffe082;
+}
+.bp-profile-msg {
+  font-size: 0.85rem;
+  color: #9aa5b1;
+}
+.bp-profile-msg--error {
+  color: #ff9c8a;
+}
+
+.bp-profile-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 0.7rem;
+  margin-top: 0.8rem;
+}
+.bp-profile-stat-tile {
+  background: #1b1e21;
+  border: 1px solid #3a3f44;
+  border-radius: 8px;
+  padding: 0.7rem;
+  text-align: center;
+}
+.bp-profile-stat-tile__count {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f5f6fa;
+}
+.bp-profile-stat-tile__label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #9aa5b1;
+  margin-top: 0.2em;
+}
+
+.bp-profile-leaderboard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.bp-profile-leaderboard-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  padding: 0.4em 0.6em;
+  border-radius: 6px;
+}
+.bp-profile-leaderboard-row:nth-child(odd) {
+  background: #1b1e21;
+}
+.bp-profile-leaderboard-row__rank {
+  color: #9aa5b1;
+  width: 1.8em;
+  text-align: right;
+}
+.bp-profile-leaderboard-row__name {
+  flex: 1;
+  color: #f5f6fa;
+}
+.bp-profile-leaderboard-row__count {
+  color: #a8e6a3;
+  font-weight: 600;
+}

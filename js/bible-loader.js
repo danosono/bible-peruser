@@ -4,6 +4,11 @@ import {
   saveLastRead,
   getLastRead,
 } from "./bible-utils.js";
+import {
+  openSuggestModal,
+  buildSuggestNewLink,
+  maybeResumeSuggestDraft,
+} from "./bp-suggest.js";
 
 // js/bible-loader.js - loads a chapter from bible.json and displays it in <main>
 
@@ -1697,6 +1702,28 @@ function decorateTopicButtonWithNote(btn, noteText, helperText, onClose) {
   btn.appendChild(noteIcon);
 }
 
+// ctx: { action:'correct'|'add', scope:'chapter'|'bookwide', bookId,
+//        chapterNum, entryKind:'label'|'highlight', entry, entryIndex }
+// Hidden by default, revealed on hover/focus of the whole button (see
+// .suggest-link-icon in css/style.css) so it doesn't visually compete with
+// the 📖/📝 icons that already exist on busy buttons.
+function decorateTopicButtonWithSuggest(btn, ctx) {
+  btn.classList.add("topic-btn--with-reference");
+  const icon = document.createElement("span");
+  icon.className = "outline-link-icon suggest-link-icon";
+  icon.innerHTML = "&#x270F;&#xFE0F;";
+  const tooltipText = "Suggest a correction";
+  icon.setAttribute("aria-label", tooltipText);
+  const hideTooltip = attachIconHoverTooltip(icon, tooltipText);
+  icon.style.cursor = "pointer";
+  icon.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if (hideTooltip) hideTooltip();
+    openSuggestModal(ctx);
+  });
+  btn.appendChild(icon);
+}
+
 function buildVerseTextCache(verseElements) {
   const cache = new Map();
   (Array.isArray(verseElements) ? verseElements : []).forEach((el) => {
@@ -2142,7 +2169,7 @@ async function loadBibleChapter(
       }
 
       // LEFT: label and outline buttons (with highlight logic)
-      chapterTopics.forEach((topic) => {
+      chapterTopics.forEach((topic, topicIdx) => {
         let btn = null;
         let type = null;
         if (topic.label) {
@@ -2162,6 +2189,15 @@ async function loadBibleChapter(
             },
           );
           decorateTopicButtonWithNote(btn, topic.note, "Click to view note");
+          decorateTopicButtonWithSuggest(btn, {
+            action: "correct",
+            scope: "chapter",
+            bookId,
+            chapterNum,
+            entryKind: "label",
+            entry: topic,
+            entryIndex: topicIdx,
+          });
           type = "label";
         } else if (topic.outline) {
           btn = document.createElement("button");
@@ -2223,6 +2259,11 @@ async function loadBibleChapter(
           if (topicBar) topicBar.appendChild(btn);
         }
       });
+      if (topicBar) {
+        topicBar.appendChild(
+          buildSuggestNewLink("label", { scope: "chapter", bookId, chapterNum }),
+        );
+      }
       // RIGHT: highlight buttons + typed field (supports sticky multi-select)
 
       function collectActivePhrases() {
@@ -2253,13 +2294,13 @@ async function loadBibleChapter(
         );
       }
 
-      chapterTopics.forEach((topic) => {
+      chapterTopics.forEach((topic, topicIdx) => {
         const highlightLabel =
           typeof topic.highlight === "string" ? topic.highlight.trim() : "";
         const highlightPhrases = normalizePhraseList(topic.text);
         if (highlightLabel && highlightPhrases.length && highlightBar) {
           const btn = document.createElement("button");
-          btn.textContent = highlightLabel;
+          btn.appendChild(document.createTextNode(highlightLabel));
           btn.className = "topic-btn topic-highlight-btn";
           btn._highlightPhrases = highlightPhrases;
           btn.onclick = () => {
@@ -2280,9 +2321,23 @@ async function loadBibleChapter(
 
             rerenderActiveHighlights();
           };
+          decorateTopicButtonWithSuggest(btn, {
+            action: "correct",
+            scope: "chapter",
+            bookId,
+            chapterNum,
+            entryKind: "highlight",
+            entry: topic,
+            entryIndex: topicIdx,
+          });
           highlightBar.appendChild(btn);
         }
       });
+      if (highlightBar) {
+        highlightBar.appendChild(
+          buildSuggestNewLink("highlight", { scope: "chapter", bookId, chapterNum }),
+        );
+      }
 
       chapterSearchFields.forEach((field) => {
         let debounceTimer = null;
@@ -2940,7 +2995,7 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
 
     // ── Left panel: bookWideLabels ────────────────────────────────────────────
     if (bookWideLabels.length) {
-      bookWideLabels.forEach((labelEntry) => {
+      bookWideLabels.forEach((labelEntry, labelIdx) => {
         if (
           !labelEntry ||
           !labelEntry.label ||
@@ -2960,11 +3015,25 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
           { title: labelEntry.label },
         );
         decorateTopicButtonWithNote(btn, labelEntry.note, "Click to view note");
+        decorateTopicButtonWithSuggest(btn, {
+          action: "correct",
+          scope: "bookwide",
+          bookId,
+          chapterNum: null,
+          entryKind: "label",
+          entry: labelEntry,
+          entryIndex: labelIdx,
+        });
         btn.onclick = () => {
           activateBookWideRangeEntry(btn, labelEntry);
         };
         topicBar.appendChild(btn);
       });
+    }
+    if (topicBar) {
+      topicBar.appendChild(
+        buildSuggestNewLink("label", { scope: "bookwide", bookId, chapterNum: null }),
+      );
     }
 
     // ── Right panel: sticky toggle + search field + bookWideHighlights ────────
@@ -3001,8 +3070,10 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
         searchDebounceTimer = setTimeout(() => rerenderBookHighlights(), 300);
       });
 
-      // Highlight buttons from bookWideHighlights
-      if (bookWideHighlights.length) {
+      // Highlight buttons from bookWideHighlights (bar always created, even
+      // with zero entries, so the "+ Suggest a new highlight" link always
+      // has somewhere to live).
+      {
         bookHighlightBar = document.createElement("div");
         bookHighlightBar.id = "book-highlight-bar";
         bookHighlightBar.style.cssText =
@@ -3011,13 +3082,13 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
           bookHighlightBar,
         );
 
-        bookWideHighlights.forEach((entry) => {
+        bookWideHighlights.forEach((entry, entryIdx) => {
           const label =
             typeof entry?.highlight === "string" ? entry.highlight.trim() : "";
           const phrases = normalizePhraseList(entry?.text);
           if (!label || !phrases.length) return;
           const btn = document.createElement("button");
-          btn.textContent = label;
+          btn.appendChild(document.createTextNode(label));
           btn.className = "topic-btn topic-highlight-btn";
           btn._highlightPhrases = phrases;
           btn.onclick = () => {
@@ -3036,8 +3107,24 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
             }
             rerenderBookHighlights();
           };
+          decorateTopicButtonWithSuggest(btn, {
+            action: "correct",
+            scope: "bookwide",
+            bookId,
+            chapterNum: null,
+            entryKind: "highlight",
+            entry,
+            entryIndex: entryIdx,
+          });
           bookHighlightBar.appendChild(btn);
         });
+        bookHighlightBar.appendChild(
+          buildSuggestNewLink("highlight", {
+            scope: "bookwide",
+            bookId,
+            chapterNum: null,
+          }),
+        );
 
         // Wire sticky toggle change to rerender
         const stickyToggle = document.getElementById("sticky-highlight-toggle");
@@ -3218,5 +3305,6 @@ if (typeof window !== "undefined") {
       topicBar.style.margin = "12px 0";
       nav.insertBefore(topicBar, nav.children[1]);
     }
+    maybeResumeSuggestDraft();
   });
 }

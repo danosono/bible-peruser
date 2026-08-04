@@ -14,7 +14,8 @@
     gap: 1.35em;
   }
   .bp-header__explorer-link,
-  .bp-header__berean-link {
+  .bp-header__berean-link,
+  .bp-header__profile-link {
     font-size: 1.05em;
   }
   .bible-chapter {
@@ -537,6 +538,14 @@ html.bp-hide-study-notes .bp-study-notes-hint {
   white-space: nowrap;
 }
 
+.bp-header__profile-link {
+  color: var(--accent);
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 0.98em;
+  white-space: nowrap;
+}
+
 .bp-header__copy-link-btn {
   background: #222;
   color: #fff;
@@ -978,6 +987,27 @@ footer {
 .note-link-icon {
   color: #8bd3ff;
 }
+.suggest-link-icon {
+  color: #a8e6a3;
+}
+/* Hover/focus-reveal so the new suggest icon doesn't visually compete with
+   an existing 📖/📝 pair on the same button; on touch devices (no hover)
+   it's always present, just muted, since there's no hover to reveal it. */
+@media (hover: hover) {
+  .suggest-link-icon {
+    opacity: 0;
+    transition: opacity 0.12s;
+  }
+  .topic-btn:hover .suggest-link-icon,
+  .topic-btn:focus-within .suggest-link-icon {
+    opacity: 1;
+  }
+}
+@media (hover: none) {
+  .suggest-link-icon {
+    opacity: 0.55;
+  }
+}
 
 /* Custom hover tooltip for the outline/note icons (js: attachIconHoverTooltip),
    replacing the native title attribute. It's appended to document.body
@@ -1268,6 +1298,42 @@ footer {
   }
   .bp-compare-modal {
     max-height: min(92vh, 92dvh);
+  }
+}
+@media (min-width: 3000px) {
+  .bp-compare-modal__header {
+    padding: 1.2rem 1.5rem;
+  }
+  .bp-compare-modal__title {
+    font-size: 1.5rem;
+  }
+  .bp-compare-modal__close {
+    font-size: 1.4rem;
+  }
+  .bp-compare-sidebar__hint {
+    font-size: 1.05rem;
+  }
+  .bp-compare-sidebar__label {
+    font-size: 1.15rem;
+  }
+  .bp-compare-modal__list {
+    padding: 1.2rem 1.5rem;
+    gap: 1.1rem;
+  }
+  .bp-compare-modal__empty {
+    font-size: 1.15rem;
+  }
+  .bp-compare-card {
+    padding: 0.8rem 1.1rem;
+  }
+  .bp-compare-card__title {
+    font-size: 1.2rem;
+  }
+  .bp-compare-card__body {
+    font-size: 1.2rem;
+  }
+  .bp-compare-drag-handle {
+    font-size: 1.5em;
   }
 }
 
@@ -1906,6 +1972,9 @@ html.bp-hide-study-notes .topic-highlight-btn {
   .bp-header__explorer-link {
     font-size: 0.82em;
   }
+  .bp-header__profile-link {
+    font-size: 0.82em;
+  }
   .bp-header__info {
     margin-left: 0.3em;
     font-size: 0.82em;
@@ -1978,6 +2047,7 @@ html.bp-hide-study-notes .topic-highlight-btn {
 
   .bp-header__explorer-link,
   .bp-header__berean-link,
+  .bp-header__profile-link,
   .bp-header__info {
     font-size: 0.74em;
   }
@@ -2041,6 +2111,267 @@ html.bp-hide-study-notes .topic-highlight-btn {
   max-height: 50dvh !important;
   overflow-y: auto !important;
   z-index: 1000 !important;
+}
+
+/* ── Suggestion modal (js/bp-suggest.js) ── */
+html.bp-suggestions-hidden .suggest-link-icon,
+html.bp-suggestions-hidden .bp-suggest-new-link {
+  display: none !important;
+}
+.bp-suggest-new-link {
+  display: block;
+  background: none;
+  border: none;
+  color: #9aa5b1;
+  font-size: 0.8rem;
+  text-align: left;
+  cursor: pointer;
+  padding: 0.3em 0.2em;
+  margin-top: 0.2em;
+}
+.bp-suggest-new-link:hover {
+  color: #ffe082;
+  text-decoration: underline;
+}
+.bp-suggest-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+.bp-suggest-modal {
+  background: #23272a;
+  color: #f5f6fa;
+  border: 1px solid #444;
+  border-radius: 10px;
+  box-shadow: 0 8px 32px #000a;
+  width: min(560px, 100%);
+  max-height: min(85vh, 85dvh);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.bp-suggest-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.1rem;
+  border-bottom: 1px solid #333;
+  flex: none;
+}
+.bp-suggest-modal__title {
+  margin: 0;
+  font-size: 1.15rem;
+}
+.bp-suggest-modal__close {
+  background: none;
+  border: none;
+  color: #f5f6fa;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+}
+.bp-suggest-modal__close:hover {
+  background: #3d4b85;
+}
+.bp-suggest-modal__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.9rem 1.1rem;
+}
+.bp-suggest-modal__footer {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.7rem 1.1rem;
+  border-top: 1px solid #333;
+}
+.bp-suggest-help {
+  font-size: 0.85rem;
+  color: #9aa5b1;
+  margin: 0 0 0.6rem;
+}
+.bp-suggest-account-line {
+  font-size: 0.78rem;
+  color: #9aa5b1;
+}
+.bp-suggest-link-btn {
+  background: none;
+  border: none;
+  color: #8bd3ff;
+  font-size: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+.bp-suggest-link-btn:hover {
+  text-decoration: underline;
+}
+.bp-suggest-field {
+  margin-bottom: 0.8rem;
+}
+.bp-suggest-field label {
+  display: block;
+  font-size: 0.85rem;
+  color: #ffe082;
+  margin-bottom: 0.3em;
+}
+.bp-suggest-field input,
+.bp-suggest-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--bg-sidebar);
+  color: var(--text-main);
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  padding: 0.4em 0.6em;
+  font: inherit;
+  outline: none;
+}
+.bp-suggest-field textarea {
+  min-height: 5.5em;
+  resize: vertical;
+  line-height: 1.45;
+}
+.bp-suggest-field input:focus,
+.bp-suggest-field textarea:focus {
+  border-color: #fff;
+  box-shadow: 0 0 0 2px var(--accent);
+}
+.bp-suggest-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+.bp-suggest-submit {
+  background: #2f3640;
+  color: #f5f6fa;
+  border: 1px solid #cfab5a;
+  border-radius: 6px;
+  padding: 0.45em 0.9em;
+  cursor: pointer;
+}
+.bp-suggest-submit:hover:not(:disabled) {
+  background: #3d4b85;
+}
+.bp-suggest-submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+.bp-suggest-msg {
+  font-size: 0.85rem;
+  margin: 0.4rem 0;
+  min-height: 1.2em;
+}
+.bp-suggest-msg--error {
+  color: #ff9c8a;
+}
+.bp-suggest-msg--ok {
+  color: #a8e6a3;
+}
+.bp-suggest-my-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 0.8rem;
+}
+.bp-suggest-my-item {
+  background: #1b1e21;
+  border: 1px solid #3a3f44;
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+}
+.bp-suggest-my-item__title {
+  font-weight: 600;
+  color: #ffe082;
+  margin-bottom: 0.3em;
+}
+.bp-suggest-status {
+  display: inline-block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.1em 0.5em;
+  border-radius: 999px;
+  background: #2f3640;
+  color: #9aa5b1;
+}
+.bp-suggest-status--approved,
+.bp-suggest-status--applied {
+  color: #a8e6a3;
+}
+.bp-suggest-status--rejected,
+.bp-suggest-status--unmatched {
+  color: #ff9c8a;
+}
+@media (max-width: 480px) {
+  .bp-suggest-overlay {
+    padding: 0.75rem;
+  }
+  .bp-suggest-modal {
+    max-height: min(92vh, 92dvh);
+  }
+  .bp-suggest-field input,
+  .bp-suggest-field textarea {
+    font-size: 16px; /* prevents iOS Safari zoom-on-focus */
+  }
+}
+@media (min-width: 3000px) {
+  .bp-suggest-modal {
+    width: min(760px, 100%);
+  }
+  .bp-suggest-modal__header {
+    padding: 1.2rem 1.5rem;
+  }
+  .bp-suggest-modal__title {
+    font-size: 1.5rem;
+  }
+  .bp-suggest-modal__close {
+    font-size: 1.4rem;
+  }
+  .bp-suggest-modal__body {
+    padding: 1.2rem 1.5rem;
+  }
+  .bp-suggest-field label,
+  .bp-suggest-help,
+  .bp-suggest-msg {
+    font-size: 1.05rem;
+  }
+}
+
+/* ── Shared sign-in gate (js/bp-auth-ui.js) ──
+   Reused by the suggestion modal (js/bp-suggest.js), the admin sign-in
+   (js/bp-admin.js), and the profile page (js/bp-profile.js) — one visual
+   source of truth for the OTP code-entry step, layered on top of the
+   .bp-suggest-field/.bp-suggest-submit/.bp-suggest-link-btn classes above. */
+.bp-auth-code-field input {
+  font-size: 1.4rem;
+  letter-spacing: 0.35em;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  max-width: 8em;
+}
+.bp-auth-resend-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  font-size: 0.82rem;
+  color: #9aa5b1;
+  margin-top: 0.3em;
+}
+.bp-auth-resend-row .bp-suggest-link-btn:disabled {
+  color: #6b7280;
+  cursor: default;
+  text-decoration: none;
 }
 
 /* =====================================================================
