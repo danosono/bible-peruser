@@ -1136,6 +1136,76 @@ function openTimelineModal(bookId, chapterNum, metadata) {
   }
 }
 
+function positionIconTooltip(icon, tooltip) {
+  const gap = 6;
+  const viewportPadding = 8;
+  const anchorRect = icon.getBoundingClientRect();
+  const tipRect = tooltip.getBoundingClientRect();
+
+  const viewportTop = window.scrollY;
+  const viewportBottom = window.scrollY + window.innerHeight;
+  const viewportLeft = window.scrollX;
+  const viewportRight = window.scrollX + window.innerWidth;
+
+  let top = anchorRect.bottom + window.scrollY + gap;
+  let left = anchorRect.left + window.scrollX;
+
+  if (top + tipRect.height > viewportBottom - viewportPadding) {
+    top = anchorRect.top + window.scrollY - tipRect.height - gap;
+  }
+
+  const minTop = viewportTop + viewportPadding;
+  const maxTop = viewportBottom - tipRect.height - viewportPadding;
+  top = Math.max(minTop, Math.min(top, maxTop));
+
+  const minLeft = viewportLeft + viewportPadding;
+  const maxLeft = viewportRight - tipRect.width - viewportPadding;
+  left = Math.max(minLeft, Math.min(left, maxLeft));
+
+  tooltip.style.top = `${top}px`;
+  tooltip.style.left = `${left}px`;
+}
+
+// Custom hover tooltip for the small outline/note icons. A native `title`
+// attribute would float above everything unclipped, but these icons live
+// inside the scrollable sidebars (overflow-y: auto), so a CSS-positioned
+// tooltip anchored to the icon gets clipped at the sidebar edge. Appending
+// to document.body (like the reference-menu popups) escapes that clipping.
+function attachIconHoverTooltip(el, text) {
+  if (!text) return;
+  if (!window.matchMedia("(hover: hover)").matches) return;
+
+  let tooltipEl = null;
+  let showTimer = null;
+
+  function hide() {
+    clearTimeout(showTimer);
+    if (tooltipEl) {
+      tooltipEl.remove();
+      tooltipEl = null;
+    }
+  }
+
+  function show() {
+    hide();
+    tooltipEl = document.createElement("div");
+    tooltipEl.className = "bp-icon-tooltip-popover";
+    tooltipEl.textContent = text;
+    document.body.appendChild(tooltipEl);
+    positionIconTooltip(el, tooltipEl);
+  }
+
+  el.addEventListener("mouseenter", () => {
+    clearTimeout(showTimer);
+    showTimer = setTimeout(show, 150);
+  });
+  el.addEventListener("mouseleave", hide);
+  el.addEventListener("focus", show);
+  el.addEventListener("blur", hide);
+
+  return hide;
+}
+
 function positionFloatingMenu(icon, menu) {
   // Mobile layout: render as a fixed bottom sheet instead of anchoring to the
   // icon (the .reference-menu--sheet CSS overrides the inline positioning).
@@ -1349,19 +1419,15 @@ function openReferenceMenu(
     activePreviewPopover.innerHTML = "";
 
     const titleEl = document.createElement("div");
-    titleEl.style.fontWeight = "600";
-    titleEl.style.marginBottom = "6px";
+    titleEl.className = "reference-preview-popover__title";
     titleEl.textContent = safeTitle;
 
     const textEl = document.createElement("div");
-    textEl.style.fontSize = "13px";
-    textEl.style.lineHeight = "1.35";
+    textEl.className = "reference-preview-popover__text";
     textEl.textContent = safeText;
 
     const helperEl = document.createElement("div");
-    helperEl.style.marginTop = "6px";
-    helperEl.style.fontSize = "11px";
-    helperEl.style.color = "#666";
+    helperEl.className = "reference-preview-popover__helper";
     helperEl.textContent = "Hover preview. Click preview to pin/unpin.";
 
     activePreviewPopover.appendChild(titleEl);
@@ -1414,7 +1480,6 @@ function openReferenceMenu(
   menu.style.boxShadow = "0 2px 8px rgba(0,0,0,0.15)";
   menu.style.padding = "6px 10px";
   menu.style.borderRadius = "6px";
-  menu.style.fontSize = "14px";
   menu.style.minWidth = "180px";
   menu.style.maxWidth = "min(448px, 85vw)";
   menu.style.maxHeight = "70vh";
@@ -1517,7 +1582,6 @@ function openNoteMenu(icon, noteText, onClose) {
   menu.style.boxShadow = "0 2px 8px rgba(0,0,0,0.15)";
   menu.style.padding = "6px 10px";
   menu.style.borderRadius = "6px";
-  menu.style.fontSize = "14px";
   menu.style.minWidth = "220px";
   menu.style.maxWidth = "min(483px, 85vw)";
   menu.style.maxHeight = "70vh";
@@ -1583,10 +1647,15 @@ function decorateTopicButtonWithReferences(
   const refsPart = hasRefs ? references.filter(Boolean).join("; ") : "";
   const linksPart = hasLinks ? links.map((l) => l.label).join("; ") : "";
   const tooltipCore = [refsPart, linksPart].filter(Boolean).join("; ");
-  linkIcon.title = helperText ? `${tooltipCore}\n${helperText}` : tooltipCore;
+  const tooltipText = helperText
+    ? `${tooltipCore}\n${helperText}`
+    : tooltipCore;
+  linkIcon.setAttribute("aria-label", tooltipText);
+  const hideLinkTooltip = attachIconHoverTooltip(linkIcon, tooltipText);
   linkIcon.style.cursor = "pointer";
   linkIcon.addEventListener("click", (e) => {
     e.stopPropagation();
+    if (hideLinkTooltip) hideLinkTooltip();
     openReferenceMenu(
       linkIcon,
       references,
@@ -1616,10 +1685,13 @@ function decorateTopicButtonWithNote(btn, noteText, helperText, onClose) {
   const noteIcon = document.createElement("span");
   noteIcon.className = "outline-link-icon note-link-icon";
   noteIcon.innerHTML = "&#x1F4DD;";
-  noteIcon.title = helperText || "Show note";
+  const noteTooltipText = helperText || "Show note";
+  noteIcon.setAttribute("aria-label", noteTooltipText);
+  const hideNoteTooltip = attachIconHoverTooltip(noteIcon, noteTooltipText);
   noteIcon.style.cursor = "pointer";
   noteIcon.addEventListener("click", (e) => {
     e.stopPropagation();
+    if (hideNoteTooltip) hideNoteTooltip();
     openNoteMenu(noteIcon, normalizedNote, onClose);
   });
   btn.appendChild(noteIcon);

@@ -979,13 +979,41 @@ footer {
   color: #8bd3ff;
 }
 
+/* Custom hover tooltip for the outline/note icons (js: attachIconHoverTooltip),
+   replacing the native title attribute. It's appended to document.body
+   rather than positioned relative to the icon so it isn't clipped by the
+   sidebars' overflow-y: auto, and so its text can be resized for 4K below. */
+.bp-icon-tooltip-popover {
+  position: absolute;
+  z-index: 1300;
+  background: #16181b;
+  color: #f5f6fa;
+  border: 1px solid #444;
+  border-radius: 6px;
+  padding: 0.45em 0.65em;
+  font-size: 13px;
+  line-height: 1.35;
+  white-space: pre-line;
+  width: max-content;
+  max-width: 320px;
+  box-shadow: 0 2px 8px #000a;
+  pointer-events: none;
+}
+@media (min-width: 3000px) {
+  .bp-icon-tooltip-popover {
+    font-size: 17px;
+    max-width: 420px;
+    padding: 0.5em 0.8em;
+  }
+}
+
 /* Dark mode for outline reference menu tooltip */
 .reference-menu {
   background: #23272a !important;
   color: #f5f6fa !important;
   border: 1px solid #444 !important;
   box-shadow: 0 2px 12px #000a !important;
-  font-size: 1em;
+  font-size: 14px;
   border-radius: 8px;
   padding: 8px 14px;
   z-index: 1000;
@@ -1031,6 +1059,40 @@ footer {
 }
 .reference-menu-compare-btn:hover {
   background: #3d4b85;
+}
+
+/* Hover-preview popover shown when hovering a reference inside an open
+   reference-menu (verse text preview). */
+.reference-preview-popover__title {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.reference-preview-popover__text {
+  font-size: 13px;
+  line-height: 1.35;
+}
+.reference-preview-popover__helper {
+  margin-top: 6px;
+  font-size: 11px;
+  color: #666;
+}
+
+/* 4K: the reference/note menu and its hover-preview popover are appended
+   to document.body (outside .bp-app), so they don't inherit the app-wide
+   1.18em 4K bump above and need their own scale-up here. */
+@media (min-width: 3000px) {
+  .reference-menu {
+    font-size: 18px;
+  }
+  .reference-preview-popover__title {
+    font-size: 1.3em;
+  }
+  .reference-preview-popover__text {
+    font-size: 17px;
+  }
+  .reference-preview-popover__helper {
+    font-size: 14px;
+  }
 }
 
 /* Compare References modal */
