@@ -1154,11 +1154,14 @@ function positionIconTooltip(icon, tooltip) {
   const viewportLeft = window.scrollX;
   const viewportRight = window.scrollX + window.innerWidth;
 
-  let top = anchorRect.bottom + window.scrollY + gap;
+  // Default above the icon (the cursor sits on/near the icon while
+  // hovering, so a tooltip below gets partly covered by the cursor);
+  // flip below only when there isn't room above.
+  let top = anchorRect.top + window.scrollY - tipRect.height - gap;
   let left = anchorRect.left + window.scrollX;
 
-  if (top + tipRect.height > viewportBottom - viewportPadding) {
-    top = anchorRect.top + window.scrollY - tipRect.height - gap;
+  if (top < viewportTop + viewportPadding) {
+    top = anchorRect.bottom + window.scrollY + gap;
   }
 
   const minTop = viewportTop + viewportPadding;
@@ -1630,6 +1633,20 @@ function openNoteMenu(icon, noteText, onClose) {
   }, 0);
 }
 
+// Reference/note icons share one small cluster on the trailing side of the
+// button (rather than reference-before-text, note-after-text as in earlier
+// versions) so they only cost one text-to-icons gap instead of two, and the
+// icons themselves sit tighter together than that gap.
+function getTopicBtnIcons(btn) {
+  let wrap = btn.querySelector(":scope > .topic-btn__icons");
+  if (!wrap) {
+    wrap = document.createElement("span");
+    wrap.className = "topic-btn__icons";
+    btn.appendChild(wrap);
+  }
+  return wrap;
+}
+
 function decorateTopicButtonWithReferences(
   btn,
   label,
@@ -1672,8 +1689,8 @@ function decorateTopicButtonWithReferences(
       compareContext,
     );
   });
-  btn.appendChild(linkIcon);
-  btn.appendChild(document.createTextNode(` ${label}`));
+  btn.appendChild(document.createTextNode(label));
+  getTopicBtnIcons(btn).appendChild(linkIcon);
 }
 
 function decorateTopicButtonWithNote(btn, noteText, helperText, onClose) {
@@ -1701,7 +1718,7 @@ function decorateTopicButtonWithNote(btn, noteText, helperText, onClose) {
     if (hideNoteTooltip) hideNoteTooltip();
     openNoteMenu(noteIcon, normalizedNote, onClose);
   });
-  btn.appendChild(noteIcon);
+  getTopicBtnIcons(btn).appendChild(noteIcon);
 }
 
 // ctx: { action:'correct'|'add', scope:'chapter'|'bookwide', bookId,

@@ -923,6 +923,7 @@ footer {
 }
 
 .topic-btn {
+  position: relative;
   background: var(--bg-sidebar);
   color: var(--text-main);
   border: 1px solid var(--accent);
@@ -973,6 +974,14 @@ footer {
   align-items: center;
   gap: 0.35em;
 }
+/* Reference/note icons live in one trailing cluster (js: getTopicBtnIcons)
+   instead of split across both sides of the label — one text-to-icons gap
+   instead of two, with the icons themselves packed tighter than that. */
+.topic-btn__icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15em;
+}
 .topic-book-outline-btn {
   display: inline-flex;
   align-items: center;
@@ -989,6 +998,13 @@ footer {
 }
 .suggest-link-icon {
   color: #a8e6a3;
+  /* Takes zero layout space (rather than reserved-but-invisible) so it
+     never affects text wrap/wrap width, hidden or not — it floats over
+     the button's own right edge instead. */
+  position: absolute;
+  right: -0.6em;
+  top: 50%;
+  transform: translateY(-50%);
 }
 /* Hover/focus-reveal so the new suggest icon doesn't visually compete with
    an existing 📖/📝 pair on the same button; on touch devices (no hover)
