@@ -19,6 +19,8 @@ import {
 
 const DRAFT_KEY = "bpSuggestDraft";
 const COOLDOWN_MS = 15000;
+const MODAL_POS_KEY = "bpSuggestModalPos";
+const DRAG_THRESHOLD_PX = 4;
 let lastSubmitAt = 0;
 
 function el(tag, className, text) {
@@ -87,6 +89,115 @@ export function buildSuggestNewLink(entryKind, ctx) {
 
 // -------------------- the modal --------------------
 
+// Clamps a modal position so it always stays fully reachable on screen,
+// leaving enough of the header visible to grab even if the window shrinks
+// after a position was saved.
+function clampModalPosition(left, top, modalWidth) {
+  const maxLeft = Math.max(8, window.innerWidth - modalWidth - 8);
+  const maxTop = Math.max(8, window.innerHeight - 60);
+  return {
+    left: Math.min(Math.max(left, 8), maxLeft),
+    top: Math.min(Math.max(top, 8), maxTop),
+  };
+}
+
+// Docks the modal off to the side (below the header) instead of centered,
+// restoring the last dragged position for this session if one was saved.
+function applyDockedPosition(modal) {
+  const modalWidth = Math.min(440, window.innerWidth * 0.92);
+  let left = window.innerWidth - modalWidth - 24;
+  let top = 88;
+  const headerEl = document.querySelector(".bp-header");
+  if (headerEl) top = headerEl.getBoundingClientRect().bottom + 16;
+
+  const saved = sessionStorage.getItem(MODAL_POS_KEY);
+  if (saved) {
+    try {
+      const parsed = JSON.parse(saved);
+      if (Number.isFinite(parsed.left) && Number.isFinite(parsed.top)) {
+        left = parsed.left;
+        top = parsed.top;
+      }
+    } catch {
+      // ignore malformed saved position
+    }
+  }
+
+  const clamped = clampModalPosition(left, top, modalWidth);
+  modal.style.left = `${clamped.left}px`;
+  modal.style.top = `${clamped.top}px`;
+  modal.style.right = "auto";
+}
+
+// Drag-to-reposition via the modal header, mirroring the confirmed-drag /
+// pointer-capture pattern already used for the timeline pan-drag in
+// bible-loader.js's attachDragScroll (pointerdown/move/up/cancel, only
+// treated as a real drag past a small movement threshold so a plain click
+// on the close button isn't hijacked).
+function makeModalDraggable(modal, header) {
+  let dragging = false;
+  let moved = false;
+  let pointerId = null;
+  let startX = 0;
+  let startY = 0;
+  let startLeft = 0;
+  let startTop = 0;
+
+  header.addEventListener("pointerdown", (e) => {
+    if (e.target.closest(".bp-suggest-modal__close")) return;
+    dragging = true;
+    moved = false;
+    pointerId = e.pointerId;
+    startX = e.clientX;
+    startY = e.clientY;
+    const rect = modal.getBoundingClientRect();
+    startLeft = rect.left;
+    startTop = rect.top;
+  });
+
+  header.addEventListener("pointermove", (e) => {
+    if (!dragging || e.pointerId !== pointerId) return;
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    if (!moved) {
+      if (Math.hypot(dx, dy) < DRAG_THRESHOLD_PX) return;
+      moved = true;
+      header.classList.add("bp-suggest-modal__header--dragging");
+      header.setPointerCapture(pointerId);
+    }
+    const clamped = clampModalPosition(
+      startLeft + dx,
+      startTop + dy,
+      modal.getBoundingClientRect().width,
+    );
+    modal.style.left = `${clamped.left}px`;
+    modal.style.top = `${clamped.top}px`;
+    modal.style.right = "auto";
+  });
+
+  function endDrag(e) {
+    if (!dragging) return;
+    dragging = false;
+    header.classList.remove("bp-suggest-modal__header--dragging");
+    if (moved) {
+      try {
+        header.releasePointerCapture(pointerId);
+      } catch {
+        // already released
+      }
+      sessionStorage.setItem(
+        MODAL_POS_KEY,
+        JSON.stringify({
+          left: parseFloat(modal.style.left),
+          top: parseFloat(modal.style.top),
+        }),
+      );
+    }
+  }
+  header.addEventListener("pointerup", endDrag);
+  header.addEventListener("pointercancel", endDrag);
+}
+
 export function openSuggestModal(ctx) {
   document.querySelectorAll(".bp-suggest-overlay").forEach((n) => n.remove());
 
@@ -106,6 +217,14 @@ export function openSuggestModal(ctx) {
 
   const body = el("div", "bp-suggest-modal__body");
   modal.appendChild(body);
+
+  const docked = !window.bpIsMobileMode?.();
+  if (docked) {
+    overlay.classList.add("bp-suggest-overlay--docked");
+    modal.classList.add("bp-suggest-modal--docked");
+    applyDockedPosition(modal);
+    makeModalDraggable(modal, header);
+  }
 
   function closeModal() {
     document.removeEventListener("keydown", onKeydown);

@@ -2156,6 +2156,30 @@ html.bp-suggestions-hidden .bp-suggest-new-link {
   flex-direction: column;
   overflow: hidden;
 }
+/* Desktop-only: the modal docks off to the side (not centered) and the
+   backdrop stops blocking the page, so filling out a suggestion no longer
+   requires closing the form to re-read the scripture behind it. Applied
+   via JS (js/bp-suggest.js) only when !bpIsMobileMode() — mobile keeps the
+   original centered/dimmed/blocking behavior untouched. */
+.bp-suggest-overlay--docked {
+  background: transparent;
+  pointer-events: none;
+}
+.bp-suggest-overlay--docked .bp-suggest-modal {
+  pointer-events: auto;
+}
+.bp-suggest-modal--docked {
+  position: fixed;
+  width: min(440px, 92vw);
+  max-height: min(80vh, 80dvh);
+}
+.bp-suggest-modal--docked .bp-suggest-modal__header {
+  cursor: grab;
+  user-select: none;
+}
+.bp-suggest-modal--docked .bp-suggest-modal__header--dragging {
+  cursor: grabbing;
+}
 .bp-suggest-modal__header {
   display: flex;
   align-items: center;
