@@ -3,12 +3,14 @@ import {
   bookOrder,
   saveLastRead,
   getLastRead,
+  parseBookChapterInput,
 } from "./bible-utils.js";
 import {
   openSuggestModal,
   buildSuggestNewLink,
   maybeResumeSuggestDraft,
 } from "./bp-suggest.js";
+import { initAccountWidget } from "./bp-account-widget.js";
 
 // js/bible-loader.js - loads a chapter from bible.json and displays it in <main>
 
@@ -3278,6 +3280,10 @@ if (typeof window !== "undefined") {
   window.loadBibleChapter = loadBibleChapter;
   window.loadBibleBook = loadBibleBook;
   window.buildBibleChapterUrl = buildChapterUrl;
+  window.bookNames = bookNames;
+  window.bookOrder = bookOrder;
+  window.parseBookChapterInput = parseBookChapterInput;
+  window.bookNameFor = (id) => bookNames[id] || id;
   document.addEventListener("DOMContentLoaded", () => {
     let bookId = "MAT";
     let chapterNum = 1;
@@ -3306,5 +3312,6 @@ if (typeof window !== "undefined") {
       nav.insertBefore(topicBar, nav.children[1]);
     }
     maybeResumeSuggestDraft();
+    initAccountWidget();
   });
 }

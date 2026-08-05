@@ -11,6 +11,11 @@ import {
   getClient,
 } from "./bp-supabase.js";
 import { renderSignInGate as renderAuthGate } from "./bp-auth-ui.js";
+import {
+  validateChapterVerses,
+  validateBookwideVerses,
+  validateReferenceLines,
+} from "./bp-verse-validate.js";
 
 const DRAFT_KEY = "bpSuggestDraft";
 const COOLDOWN_MS = 15000;
@@ -21,6 +26,14 @@ function el(tag, className, text) {
   if (className) node.className = className;
   if (text !== undefined) node.textContent = text;
   return node;
+}
+
+function debounce(fn, ms) {
+  let timer = null;
+  return (...args) => {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => fn(...args), ms);
+  };
 }
 
 function parseLines(text) {
@@ -236,10 +249,15 @@ function renderForm(body, ctx, session, closeModal) {
     fields.name = addTextField(form, "Label", ctx.entry?.label, draft?.name);
     fields.verses = addTextField(
       form,
-      "Verses (comma-separated, e.g. 7-12, 14)",
+      ctx.scope === "bookwide"
+        ? "Verses (Chapter:Verse, comma-separated, e.g. 5:1-7:29, 9:35-10:42, 13:1-13:52, 18:1-18:35, 23:1-25:46)"
+        : "Verses (comma-separated, e.g. 7-12, 14)",
       Array.isArray(ctx.entry?.verses) ? ctx.entry.verses.join(", ") : "",
       draft?.verses,
     );
+    fields.versesError = el("div", "bp-suggest-help bp-suggest-msg--error");
+    fields.versesError.style.display = "none";
+    form.appendChild(fields.versesError);
     fields.note = addTextArea(
       form,
       "Note",
@@ -247,12 +265,18 @@ function renderForm(body, ctx, session, closeModal) {
       draft?.note,
       "Add a note…",
     );
+    form.appendChild(
+      el("p", "bp-suggest-help", "Press Enter twice to start a new paragraph."),
+    );
     fields.references = addTextArea(
       form,
       "References (one per line)",
       Array.isArray(ctx.entry?.references) ? ctx.entry.references.join("\n") : "",
       draft?.references,
     );
+    fields.referencesError = el("div", "bp-suggest-help bp-suggest-msg--error");
+    fields.referencesError.style.display = "none";
+    form.appendChild(fields.referencesError);
   }
   fields.rationale = addTextArea(
     form,
@@ -313,6 +337,44 @@ function renderForm(body, ctx, session, closeModal) {
     );
   }
 
+  const validationState = { verses: true, references: true };
+  let submitting = false;
+
+  function showFieldError(target, result) {
+    target.style.display = result.ok ? "none" : "";
+    target.textContent = result.ok ? "" : result.error;
+  }
+
+  function updateSubmitEnabled() {
+    submitBtn.disabled =
+      submitting || !validationState.verses || !validationState.references;
+  }
+
+  if (ctx.entryKind !== "highlight") {
+    const runVerses = debounce(async () => {
+      const result =
+        ctx.scope === "bookwide"
+          ? await validateBookwideVerses(fields.verses.value, ctx.bookId)
+          : await validateChapterVerses(fields.verses.value, ctx.bookId, ctx.chapterNum);
+      validationState.verses = result.ok;
+      showFieldError(fields.versesError, result);
+      updateSubmitEnabled();
+    }, 300);
+    fields.verses.addEventListener("input", runVerses);
+    fields.verses.addEventListener("blur", runVerses);
+    runVerses();
+
+    const runRefs = debounce(async () => {
+      const result = await validateReferenceLines(parseLines(fields.references.value));
+      validationState.references = result.ok;
+      showFieldError(fields.referencesError, result);
+      updateSubmitEnabled();
+    }, 300);
+    fields.references.addEventListener("input", runRefs);
+    fields.references.addEventListener("blur", runRefs);
+    runRefs();
+  }
+
   submitBtn.addEventListener("click", async () => {
     if (honey.value) {
       msg.className = "bp-suggest-msg bp-suggest-msg--ok";
@@ -340,7 +402,8 @@ function renderForm(body, ctx, session, closeModal) {
       return;
     }
 
-    submitBtn.disabled = true;
+    submitting = true;
+    updateSubmitEnabled();
     try {
       const client = await getClient();
       const { error: insertError } = await client
@@ -356,7 +419,8 @@ function renderForm(body, ctx, session, closeModal) {
     } catch (err) {
       msg.className = "bp-suggest-msg bp-suggest-msg--error";
       msg.textContent = mapSupabaseError(err);
-      submitBtn.disabled = false;
+      submitting = false;
+      updateSubmitEnabled();
     }
   });
 }

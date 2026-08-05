@@ -25,6 +25,13 @@ export function renderSignInGate(container, opts) {
   function renderEmailStep() {
     container.innerHTML = "";
     if (helpText) container.appendChild(el("p", "bp-suggest-help", helpText));
+    container.appendChild(
+      el(
+        "p",
+        "bp-suggest-help",
+        "You'll stay signed in on this device — no need to check your email again for future suggestions.",
+      ),
+    );
 
     const field = el("div", "bp-suggest-field");
     field.appendChild(el("label", null, "Email"));

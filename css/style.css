@@ -2374,6 +2374,93 @@ html.bp-suggestions-hidden .bp-suggest-new-link {
   text-decoration: none;
 }
 
+/* ── Floating account widget (js/bp-account-widget.js) ──
+   Persistent bottom-right icon on the main reading page; the only account
+   entry point on mobile, where .bp-header__right is hidden entirely. */
+.bp-account-widget {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 600; /* above .bp-desktop-tip (500), below .reference-menu/.bp-suggest-overlay (1000/1200) */
+}
+.bp-account-widget__btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #23272a;
+  border: 2px solid #55606e;
+  color: #9aa5b1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+  position: relative;
+  padding: 0;
+}
+.bp-account-widget__btn svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.bp-account-widget__btn--signed-in {
+  border-color: #ffe082;
+  color: #ffe082;
+}
+.bp-account-widget__badge {
+  display: none;
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #a8e6a3;
+  border: 2px solid #23272a;
+}
+.bp-account-widget__btn--signed-in .bp-account-widget__badge {
+  display: block;
+}
+.bp-account-widget__popover {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 0.6rem);
+  right: 0;
+  width: min(300px, calc(100vw - 2rem));
+  background: #23272a;
+  color: #f5f6fa;
+  border: 1px solid #444;
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  padding: 0.9rem 1rem;
+  box-sizing: border-box;
+}
+.bp-account-widget__popover--open {
+  display: block;
+}
+.bp-account-widget__email {
+  font-size: 0.85rem;
+  color: #9aa5b1;
+  margin-bottom: 0.6rem;
+  word-break: break-all;
+}
+.bp-account-widget__link {
+  display: block;
+  background: none;
+  border: none;
+  color: #8bd3ff;
+  font-size: 0.9rem;
+  text-align: left;
+  cursor: pointer;
+  padding: 0.35em 0;
+  text-decoration: none;
+}
+.bp-account-widget__link:hover {
+  text-decoration: underline;
+}
+
 /* =====================================================================
    Mobile layout (<900px), opt-in via html.bp-mobile
    (?mobile=1 or the overlay's "Try Mobile View" button).
@@ -2683,6 +2770,16 @@ html.bp-suggestions-hidden .bp-suggest-new-link {
     padding: 0.1em 0.25em;
     cursor: pointer;
     touch-action: manipulation;
+  }
+
+  /* --- Floating account widget: clear the bottom drawer handle --- */
+  html.bp-mobile .bp-account-widget {
+    right: 0.75rem;
+    bottom: calc(2.9em + env(safe-area-inset-bottom, 0px) + 0.5rem);
+  }
+  html.bp-mobile .bp-account-widget__btn {
+    width: 46px;
+    height: 46px;
   }
 }
 

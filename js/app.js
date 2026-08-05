@@ -169,12 +169,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return null;
   }
 
-  function normalizeBookAlias(value) {
-    return String(value || "")
-      .toLowerCase()
-      .replace(/[^a-z0-9]/g, "");
-  }
-
   // Update the selected book button in the horizontal scrollbar
   function updateBookScrollbar(bookId) {
     const bookBar = document.getElementById("bp-book-scrollbar");
@@ -311,177 +305,14 @@ document.addEventListener("DOMContentLoaded", () => {
     dateElem.textContent = now.toLocaleDateString();
   }
 
-  // Book list for 66 books (id, short name)
-  const books = [
-    { id: "GEN", name: "Genesis" },
-    { id: "EXO", name: "Exodus" },
-    { id: "LEV", name: "Leviticus" },
-    { id: "NUM", name: "Numbers" },
-    { id: "DEU", name: "Deuteronomy" },
-    { id: "JOS", name: "Joshua" },
-    { id: "JDG", name: "Judges" },
-    { id: "RUT", name: "Ruth" },
-    { id: "1SA", name: "1 Samuel" },
-    { id: "2SA", name: "2 Samuel" },
-    { id: "1KI", name: "1 Kings" },
-    { id: "2KI", name: "2 Kings" },
-    { id: "1CH", name: "1 Chronicles" },
-    { id: "2CH", name: "2 Chronicles" },
-    { id: "EZR", name: "Ezra" },
-    { id: "NEH", name: "Nehemiah" },
-    { id: "EST", name: "Esther" },
-    { id: "JOB", name: "Job" },
-    { id: "PSA", name: "Psalms" },
-    { id: "PRO", name: "Proverbs" },
-    { id: "ECC", name: "Ecclesiastes" },
-    { id: "SNG", name: "Song of Songs" },
-    { id: "ISA", name: "Isaiah" },
-    { id: "JER", name: "Jeremiah" },
-    { id: "LAM", name: "Lamentations" },
-    { id: "EZK", name: "Ezekiel" },
-    { id: "DAN", name: "Daniel" },
-    { id: "HOS", name: "Hosea" },
-    { id: "JOL", name: "Joel" },
-    { id: "AMO", name: "Amos" },
-    { id: "OBA", name: "Obadiah" },
-    { id: "JON", name: "Jonah" },
-    { id: "MIC", name: "Micah" },
-    { id: "NAM", name: "Nahum" },
-    { id: "HAB", name: "Habakkuk" },
-    { id: "ZEP", name: "Zephaniah" },
-    { id: "HAG", name: "Haggai" },
-    { id: "ZEC", name: "Zechariah" },
-    { id: "MAL", name: "Malachi" },
-    { id: "MAT", name: "Matthew" },
-    { id: "MRK", name: "Mark" },
-    { id: "LUK", name: "Luke" },
-    { id: "JHN", name: "John" },
-    { id: "ACT", name: "Acts" },
-    { id: "ROM", name: "Romans" },
-    { id: "1CO", name: "1 Corinthians" },
-    { id: "2CO", name: "2 Corinthians" },
-    { id: "GAL", name: "Galatians" },
-    { id: "EPH", name: "Ephesians" },
-    { id: "PHP", name: "Philippians" },
-    { id: "COL", name: "Colossians" },
-    { id: "1TH", name: "1 Thessalonians" },
-    { id: "2TH", name: "2 Thessalonians" },
-    { id: "1TI", name: "1 Timothy" },
-    { id: "2TI", name: "2 Timothy" },
-    { id: "TIT", name: "Titus" },
-    { id: "PHM", name: "Philemon" },
-    { id: "HEB", name: "Hebrews" },
-    { id: "JAS", name: "James" },
-    { id: "1PE", name: "1 Peter" },
-    { id: "2PE", name: "2 Peter" },
-    { id: "1JN", name: "1 John" },
-    { id: "2JN", name: "2 John" },
-    { id: "3JN", name: "3 John" },
-    { id: "JUD", name: "Jude" },
-    { id: "REV", name: "Revelation" },
-  ];
-
-  const bookNameById = books.reduce((acc, book) => {
-    acc[book.id] = book.name;
-    return acc;
-  }, {});
-
-  function buildBookAliasMap(bookList) {
-    const aliasMap = new Map();
-    const ordinalByNumber = {
-      1: ["first", "1st"],
-      2: ["second", "2nd"],
-      3: ["third", "3rd"],
-    };
-
-    function addAlias(rawAlias, bookId) {
-      const key = normalizeBookAlias(rawAlias);
-      if (!key || aliasMap.has(key)) return;
-      aliasMap.set(key, bookId);
-    }
-
-    bookList.forEach(({ id, name }) => {
-      const nameLower = name.toLowerCase();
-      const normalizedName = nameLower.replace(/\s+/g, " ").trim();
-      const compactName = normalizeBookAlias(normalizedName);
-
-      addAlias(id.toLowerCase(), id);
-      addAlias(normalizedName, id);
-      addAlias(compactName, id);
-
-      const short = compactName.slice(0, 3);
-      if (short.length === 3) addAlias(short, id);
-
-      const numberedMatch = id.match(/^([1-3])(.*)$/);
-      if (numberedMatch) {
-        const number = parseInt(numberedMatch[1], 10);
-        const baseIdLetters = numberedMatch[2].toLowerCase();
-        const baseName = normalizedName.replace(/^[1-3]\s+/, "").trim();
-        const baseCompact = normalizeBookAlias(baseName);
-
-        addAlias(`${number}${baseIdLetters}`, id);
-        addAlias(`${number}${baseCompact}`, id);
-        addAlias(`${number} ${baseName}`, id);
-        addAlias(`${number}.${baseName}`, id);
-
-        (ordinalByNumber[number] || []).forEach((ord) => {
-          addAlias(`${ord}${baseCompact}`, id);
-          addAlias(`${ord} ${baseName}`, id);
-        });
-      }
-    });
-
-    // Common alternates and shorthand spellings.
-    addAlias("ps", "PSA");
-    addAlias("psalm", "PSA");
-    addAlias("psalms", "PSA");
-    addAlias("song", "SNG");
-    addAlias("songs", "SNG");
-    addAlias("songofsongs", "SNG");
-    addAlias("songofsolomon", "SNG");
-    addAlias("canticles", "SNG");
-    addAlias("matt", "MAT");
-    addAlias("jn", "JHN");
-    addAlias("joh", "JHN");
-    addAlias("phil", "PHP");
-    addAlias("philip", "PHP");
-    addAlias("phlm", "PHM");
-    addAlias("judg", "JDG");
-
-    return aliasMap;
-  }
-
-  const bookAliasMap = buildBookAliasMap(books);
-
-  function parseBookChapterInput(rawInput) {
-    const source = String(rawInput || "")
-      .trim()
-      .toLowerCase();
-    if (!source) return { ok: false, reason: "Enter a reference." };
-
-    const cleaned = source.replace(/[^a-z0-9\s._:-]/g, " ");
-    const match = cleaned.match(/^(.+?)[\s._:-]*(\d+)$/);
-    if (!match) {
-      const bookToken = normalizeBookAlias(cleaned.trim());
-      const bookId = bookAliasMap.get(bookToken) || null;
-      if (bookId) return { ok: true, bookId, chapterNum: 1 };
-      return {
-        ok: false,
-        reason: "Use format like mat4 or matthew 4.",
-      };
-    }
-
-    const bookToken = normalizeBookAlias(match[1]);
-    const chapterNum = parseInt(match[2], 10);
-    const bookId = bookAliasMap.get(bookToken) || null;
-
-    if (!bookId) return { ok: false, reason: "Unknown book name." };
-    if (!Number.isInteger(chapterNum) || chapterNum < 1) {
-      return { ok: false, reason: "Chapter must be 1 or greater." };
-    }
-
-    return { ok: true, bookId, chapterNum };
-  }
+  // Book list for the scrollbar, sourced from js/bible-utils.js via the
+  // window bridge bible-loader.js sets up (app.js is a classic script and
+  // can't import an ES module directly).
+  const books = (window.bookOrder || []).map((id) => ({
+    id,
+    name: (window.bookNames || {})[id] || id,
+  }));
+  const bookNameById = window.bookNames || {};
 
   // Populate book scrollbar
   const bookBar = document.getElementById("bp-book-scrollbar");
@@ -556,7 +387,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function submitHeaderJump() {
     if (!headerJumpInput) return;
-    const parsed = parseBookChapterInput(headerJumpInput.value);
+    const parsed = (
+      window.parseBookChapterInput ||
+      (() => ({ ok: false, reason: "Not ready yet." }))
+    )(headerJumpInput.value);
     if (!parsed.ok) {
       setHeaderJumpError(parsed.reason);
       return;
