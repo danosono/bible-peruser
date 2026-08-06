@@ -462,7 +462,7 @@
           "references": ["Matthew 4:17", "Matthew 10:7"]
         },
         {
-          "label": "Various",
+          "label": "John B / Elijah",
           "verses": ["1", "4"],
           "references": [
             "2 Kings 1:8",
@@ -552,6 +552,7 @@
             "Jeremiah 17:27",
             "Isaiah 66:24",
             "Malachi 4:1",
+            "Mark 9:43-48",
             "Hebrews 12:29",
             "Revelation 20:10"
           ]
@@ -574,7 +575,6 @@
           "references": [
             "Isaiah 40:3 | Identified Jesus as the promised Messiah",
             "Malachi 3:1 | Marked new covenant, joining it to the old",
-            "God the Father, Spirit and Son (v16-17)",
             "Hebrews 4:15  | Jesus is righteous",
             "2 Corinthians 5:21 | Jesus became sin so we could become righteous",
             "1 Peter 2:22  | Jesus did not sin",
@@ -1116,6 +1116,7 @@
           "references": [
             "Psalms 126:5",
             "Isaiah 61:1-3",
+            "Matthew 9:15",
             "Luke 4:18-19",
             "2 Corinthians 1:3-4",
             "Matthew 11:28-30"
@@ -1130,6 +1131,34 @@
             "Matthew 11:29",
             "Philippians 2:5-8",
             "John 13:14-15"
+          ],
+          "links": [
+            {
+              "label": "Bible Explorer",
+              "url": "https://bible-explorer.gospelgo.org/?dataset=topics&topic=MEEKNESS"
+            }
+          ]
+        },
+        {
+          "label": "Hunger and thirst for righteousness",
+          "verses": ["6"],
+          "references": [
+            "Psalms 42:1-2",
+            "Amos 5:24)",
+            "Isaiah 55:1-2",
+            "John 7:37-38",
+            "Matthew 6:33",
+            "Romans 3:21-22",
+            "2 Corinthians 5:21",
+            "James 1:27",
+            "John 4:14",
+            "Revelation 21:6"
+          ],
+          "links": [
+            {
+              "label": "",
+              "url": ""
+            }
           ]
         },
         {
@@ -4748,10 +4777,7 @@
         },
         {
           "label": "Jesus is God",
-          "verses": [
-            "9",
-            "17"
-          ]
+          "verses": ["9", "17"]
         }
       ]
     }
