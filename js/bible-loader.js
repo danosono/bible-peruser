@@ -1944,7 +1944,12 @@ async function loadBibleChapter(
       html += `<span class="verse-num" data-verse="${verse.n}">${verse.n}</span> <span class="verse-text" data-verse="${verse.n}" data-original="${encodeURIComponent(verse.text)}">${verse.text}</span><br>`;
       // Collect words for frequency analysis
       if (!window._chapterWords) window._chapterWords = [];
-      window._chapterWords.push(...verse.text.split(/\W+/));
+      window._chapterWords.push(
+        ...verse.text
+          .split(/[^A-Za-z']+/)
+          .map((w) => w.replace(/^'+|'+$/g, ""))
+          .filter(Boolean),
+      );
     }
     html += "</div>";
     main.innerHTML = html;
