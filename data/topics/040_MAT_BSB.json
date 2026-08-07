@@ -1144,7 +1144,7 @@
           "verses": ["6"],
           "references": [
             "Psalms 42:1-2",
-            "Amos 5:24)",
+            "Amos 5:24",
             "Isaiah 55:1-2",
             "John 7:37-38",
             "Matthew 6:33",
@@ -1153,11 +1153,24 @@
             "James 1:27",
             "John 4:14",
             "Revelation 21:6"
+          ]
+        },
+        {
+          "label": "Merciful",
+          "verses": ["7"],
+          "references": [
+            "Micah 6:8",
+            "Matthew 23:23",
+            "Luke 6:36",
+            "Ephesians 2:4-5",
+            "Titus 3:5",
+            "James 2:13",
+            "Hebrews 4:16"
           ],
           "links": [
             {
-              "label": "",
-              "url": ""
+              "label": "Bible Explorer",
+              "url": "https://bible-explorer.gospelgo.org/?dataset=bsb-topics&topic=Mercy"
             }
           ]
         },
