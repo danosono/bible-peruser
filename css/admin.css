@@ -43,12 +43,20 @@ body {
 }
 
 .bp-admin-banner {
-  background: #2f3640;
+  background: var(--gold-accent);
+  color: #1b1e21;
   border: 1px solid var(--gold-accent-border);
   border-radius: 8px;
-  padding: 0.6rem 0.9rem;
+  padding: 0.7rem 1rem;
   margin-bottom: 1rem;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.bp-admin-banner code {
+  background: rgba(27, 30, 33, 0.12);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+  font-weight: 700;
 }
 
 .bp-admin-tabs {

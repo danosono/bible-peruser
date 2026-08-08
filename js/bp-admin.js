@@ -156,7 +156,15 @@ async function renderAdmin(root, session) {
       .eq("status", "approved");
     if (count) {
       banner.style.display = "";
-      banner.textContent = `${count} approved suggestion${count === 1 ? "" : "s"} waiting to be written to the JSON files. Run: node scripts/apply-approved-suggestions.js`;
+      banner.textContent = "";
+      banner.appendChild(
+        document.createTextNode(
+          `${count} approved suggestion${count === 1 ? "" : "s"} waiting to be written to the JSON files. Run: `,
+        ),
+      );
+      const code = document.createElement("code");
+      code.textContent = "node scripts/apply-approved-suggestions.js";
+      banner.appendChild(code);
     } else {
       banner.style.display = "none";
     }
@@ -296,6 +304,7 @@ async function buildRowCard(row, client, list, refreshAll) {
     const textarea = document.createElement("textarea");
     textarea.className = "bp-admin-edit-field";
     textarea.value = formatCellValue(value, true);
+    textarea.dataset.wasArray = Array.isArray(value) ? "1" : "";
     proposedEdits[key] = textarea;
     proposedCell.appendChild(textarea);
     tr.appendChild(keyCell);
@@ -322,7 +331,7 @@ async function buildRowCard(row, client, list, refreshAll) {
       let parseError = null;
       Object.entries(proposedEdits).forEach(([key, textarea]) => {
         try {
-          edited[key] = parseCellValue(textarea.value);
+          edited[key] = parseCellValue(textarea.value, textarea.dataset.wasArray === "1");
         } catch {
           parseError = key;
         }
@@ -419,9 +428,13 @@ function formatCellValue(value, forEdit = false) {
   return String(value);
 }
 
-function parseCellValue(text) {
+function parseCellValue(text, forceArray = false) {
   const lines = text.split("\n").filter((l) => l.trim() !== "");
-  if (lines.length > 1) return lines.map((l) => l.trim());
+  // An array-typed field (e.g. a highlight's `text`, or `verses`/`references`)
+  // must stay an array even when edited down to a single line — otherwise it
+  // silently collapses to a bare string and downstream consumers that
+  // require an array (e.g. bible-loader.js's normalizePhraseList()) break.
+  if (forceArray || lines.length > 1) return lines.map((l) => l.trim());
   return text.trim();
 }
 
