@@ -4,7 +4,7 @@
 // hidden. Built purely in JS and appended to document.body, matching the
 // hand-rolled convention used by every other overlay/toast in this app
 // (see js/app.js's bpMaybeShowDesktopTip for the same pattern).
-import { getSession, getClient, signOut } from "./bp-supabase.js";
+import { getSession, getClient, signOut, isAdmin } from "./bp-supabase.js";
 import { renderSignInGate } from "./bp-auth-ui.js";
 
 function el(tag, className, text) {
@@ -40,6 +40,7 @@ export function initAccountWidget() {
 
   let session = null;
   let open = false;
+  let renderToken = 0;
 
   function closePopover() {
     open = false;
@@ -47,6 +48,7 @@ export function initAccountWidget() {
   }
 
   function renderPopoverContent() {
+    const token = ++renderToken;
     popover.innerHTML = "";
     if (!session) {
       const gateRoot = el("div");
@@ -64,6 +66,22 @@ export function initAccountWidget() {
     profileLink.className = "bp-account-widget__link";
     profileLink.textContent = "My profile";
     popover.appendChild(profileLink);
+
+    isAdmin()
+      .then((admin) => {
+        // Popover may have closed or re-rendered by the time this RPC
+        // resolves — only insert if it's still the render we started from.
+        if (!admin || !open || token !== renderToken) return;
+        const adminLink = document.createElement("a");
+        adminLink.href = "admin.html";
+        adminLink.target = "_blank";
+        adminLink.rel = "noopener";
+        adminLink.className = "bp-account-widget__link";
+        adminLink.textContent = "Admin page";
+        popover.insertBefore(adminLink, popover.lastElementChild);
+      })
+      .catch(() => {});
+
     const signOutBtn = el("button", "bp-account-widget__link", "Sign out");
     signOutBtn.type = "button";
     signOutBtn.addEventListener("click", async () => {
