@@ -22,14 +22,14 @@ body {
 .bp-profile-section__title {
   font-size: 1.1rem;
   margin: 0 0 0.8rem;
-  color: #ffe082;
+  color: var(--gold-accent);
 }
 .bp-profile-msg {
   font-size: 0.85rem;
-  color: #9aa5b1;
+  color: var(--text-tertiary);
 }
 .bp-profile-msg--error {
-  color: #ff9c8a;
+  color: var(--error);
 }
 
 .bp-profile-stats-grid {
@@ -54,7 +54,7 @@ body {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.03em;
-  color: #9aa5b1;
+  color: var(--text-tertiary);
   margin-top: 0.2em;
 }
 
@@ -74,7 +74,7 @@ body {
   background: #1b1e21;
 }
 .bp-profile-leaderboard-row__rank {
-  color: #9aa5b1;
+  color: var(--text-tertiary);
   width: 1.8em;
   text-align: right;
 }
@@ -83,6 +83,6 @@ body {
   color: #f5f6fa;
 }
 .bp-profile-leaderboard-row__count {
-  color: #a8e6a3;
+  color: var(--success);
   font-weight: 600;
 }

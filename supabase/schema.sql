@@ -279,7 +279,7 @@ language sql stable security definer set search_path = public, pg_temp as $$
     count(*) as approved_count
   from public.bp_suggestions s
   left join public.usernames u on u.userid = s.user_id::text
-  where s.status = 'approved'
+  where s.status in ('approved', 'applied')
   group by s.user_id, u.username
   order by approved_count desc
   limit limit_n;

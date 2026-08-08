@@ -46,7 +46,7 @@ async function renderLeaderboard(section) {
     section.appendChild(el("h2", "bp-profile-section__title", "Top Contributors"));
     if (!data.length) {
       section.appendChild(
-        el("p", "bp-suggest-help", "No approved suggestions yet — be the first!"),
+        el("p", "bp-suggest-help", "No approved suggestions yet — make your first suggestion!"),
       );
       return;
     }

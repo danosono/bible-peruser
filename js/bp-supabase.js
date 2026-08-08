@@ -80,7 +80,12 @@ export async function verifyOtp(email, token) {
 
 export async function signOut() {
   const client = await getClient();
-  await client.auth.signOut();
+  // scope: "local" clears this browser's session without a network round
+  // trip to revoke it server-side. Using the default "global" scope here
+  // POSTs to /auth/v1/logout, which 403s (and leaves the local session
+  // intact, so the UI silently stays "signed in") whenever the stored
+  // session is already stale — e.g. an expired/rotated refresh token.
+  await client.auth.signOut({ scope: "local" });
   flagCache = null;
 }
 

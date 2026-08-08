@@ -215,16 +215,88 @@
 
 /* style.css - Bible Peruser dark mode layout */
 :root {
+  /* layout / neutrals — constant across every theme */
   --bg-main: #181a1b;
   --bg-header: #23272a;
   --bg-footer: #23272a;
   --bg-sidebar: #202225;
   --text-main: #f5f6fa;
   --text-secondary: #b9bbbe;
-  --accent: #3d4b85;
-  --verse-highlight: #185398;
   --sidebar-width: 14em; /* 224px at 16px base */
   --sidebar-double-width: 28em; /* 448px at 16px base */
+
+  /* accent trio — default/blue theme (js/bp-theme.js swaps these via [data-theme]) */
+  --accent: #5b7fd6;
+  --accent-light: #b9c8f0;
+  --accent-vivid: #3f63d0;
+  --verse-highlight: #185398;
+
+  /* constant (non-themed) tokens — same everywhere regardless of active theme */
+  --gold-accent: #ffe082;
+  --gold-accent-border: #cfab5a;
+  --text-tertiary: #9aa5b1;
+  --success: #a8e6a3;
+  --error: #ff9c8a;
+  --search-highlight: #ffe923;
+}
+
+/* Seasonal / holiday accent themes — js/bp-theme.js sets data-theme on <html>.
+   Only the accent trio + verse-highlight shift; backgrounds, text, and
+   structural chrome stay constant so the UI never looks "broken" on any
+   given day. */
+:root[data-theme="teal"] {
+  --accent: #2a6e5c;
+  --accent-light: #a3e0cf;
+  --accent-vivid: #17a589;
+  --verse-highlight: #17392f;
+}
+:root[data-theme="spring"] {
+  --accent: #4f9e6e;
+  --accent-light: #a9d9b8;
+  --accent-vivid: #2f8a52;
+  --verse-highlight: #1f5c3a;
+}
+:root[data-theme="summer"] {
+  --accent: #e0a344;
+  --accent-light: #f3cf8e;
+  --accent-vivid: #d4881a;
+  --verse-highlight: #6b4a12;
+}
+:root[data-theme="autumn"] {
+  --accent: #c1652f;
+  --accent-light: #e8b48c;
+  --accent-vivid: #a8431a;
+  --verse-highlight: #5c2b12;
+}
+:root[data-theme="winter"] {
+  --accent: #6fb8d9;
+  --accent-light: #cdeaf5;
+  --accent-vivid: #3a93c2;
+  --verse-highlight: #1c4a5c;
+}
+:root[data-theme="patriotic"] {
+  --accent: #3b5fc4;
+  --accent-light: #eef1f8;
+  --accent-vivid: #c0392b;
+  --verse-highlight: #7a1f1f;
+}
+:root[data-theme="christmas"] {
+  --accent: #2f7d4f;
+  --accent-light: #ffe082;
+  --accent-vivid: #c23b3b;
+  --verse-highlight: #7a1f2b;
+}
+:root[data-theme="good-friday"] {
+  --accent: #7a1f1f;
+  --accent-light: #b56a63;
+  --accent-vivid: #9e1b1b;
+  --verse-highlight: #4a0f0f;
+}
+:root[data-theme="easter"] {
+  --accent: #d4af37;
+  --accent-light: #fdf6e3;
+  --accent-vivid: #f0c419;
+  --verse-highlight: #6b5215;
 }
 
 html,
@@ -307,11 +379,11 @@ html.bp-hide-study-notes .bp-chapter-search-field--extra {
   display: none;
   font-size: 0.8rem;
   line-height: 1.4;
-  color: var(--text-muted, #9aa5b1);
+  color: var(--text-muted, var(--text-tertiary));
   margin: 0.3em 0 0.6em;
 }
 .bp-study-notes-hint strong {
-  color: var(--accent, #ffe082);
+  color: var(--accent);
 }
 html.bp-hide-study-notes .bp-study-notes-hint {
   display: block;
@@ -414,7 +486,7 @@ html.bp-hide-study-notes .bp-study-notes-hint {
   opacity: 0.9;
 }
 .bp-header__jump-input:focus {
-  border-color: #ffe082;
+  border-color: var(--gold-accent);
   box-shadow: 0 0 0 2px rgba(255, 224, 130, 0.2);
 }
 .bp-header__jump-input.bp-header__jump-input--error {
@@ -433,8 +505,8 @@ html.bp-hide-study-notes .bp-study-notes-hint {
 }
 .bp-header__jump-btn:hover {
   background: #333;
-  color: #ffe082;
-  border: 1px solid #ffe082;
+  color: var(--gold-accent);
+  border: 1px solid var(--gold-accent);
 }
 .bp-header__nav-center button {
   background: #222;
@@ -455,8 +527,8 @@ html.bp-hide-study-notes .bp-study-notes-hint {
 }
 .bp-header__nav-center button:hover:not(:disabled) {
   background: #333;
-  color: #ffe082;
-  border: 1px solid #ffe082;
+  color: var(--gold-accent);
+  border: 1px solid var(--gold-accent);
 }
 .bp-header {
   position: relative;
@@ -501,8 +573,8 @@ html.bp-hide-study-notes .bp-study-notes-hint {
 .bp-header__nav-group button:hover:not(:disabled),
 .bp-header__chapter-group button:hover:not(:disabled) {
   background: #333;
-  color: #ffe082;
-  border: 1px solid #ffe082;
+  color: var(--gold-accent);
+  border: 1px solid var(--gold-accent);
 }
 
 .bp-header__right {
@@ -562,8 +634,8 @@ html.bp-hide-study-notes .bp-study-notes-hint {
 
 .bp-header__copy-link-btn:hover {
   background: #333;
-  color: #ffe082;
-  border: 1px solid #ffe082;
+  color: var(--gold-accent);
+  border: 1px solid var(--gold-accent);
 }
 
 html,
@@ -638,7 +710,7 @@ body {
   cursor: not-allowed;
 }
 .chapter-nav-sticky button:not(:disabled):hover {
-  background: var(--accent, #7289da);
+  background: var(--accent);
   color: #fff;
 }
 .bp-sidebar--right {
@@ -819,7 +891,7 @@ body {
 }
 .bp-book-scrollbar__btn.selected,
 .bp-book-scrollbar__btn:focus {
-  background: var(--accent);
+  background: color-mix(in srgb, var(--accent) 70%, black);
   color: #fff;
 }
 .bp-book-scrollbar__btn:hover {
@@ -872,8 +944,8 @@ footer {
   background: linear-gradient(
     to bottom,
     transparent 15%,
-    var(--verse-highlight, #343b54) 35%,
-    var(--verse-highlight, #343b54) 65%,
+    var(--verse-highlight) 35%,
+    var(--verse-highlight) 65%,
     transparent 85%
   );
   color: #fff;
@@ -883,7 +955,7 @@ footer {
 }
 
 .search-highlight {
-  color: #ffe923;
+  color: var(--search-highlight);
   border-radius: 4px;
   padding: 0 0px;
   transition: background 0.2s;
@@ -908,8 +980,8 @@ footer {
 
 /* Overview mode: maximum contrast — highlights read as colored blocks at minimum font size */
 .bible-book.bible-book--dense.bp-overview-active .verse-highlight {
-  background: #2070d0;
-  box-shadow: 0 0 0 2px #2070d0;
+  background: var(--verse-highlight);
+  box-shadow: 0 0 0 2px var(--verse-highlight);
   border-radius: 2px;
 }
 .bible-book.bible-book--dense.bp-overview-active .search-highlight {
@@ -955,7 +1027,7 @@ footer {
 /* Special style for topic label buttons (dark mode friendly) */
 .topic-label-btn {
   background: #2d3a4a;
-  color: #ffe082;
+  color: var(--gold-accent);
   border: 1px solid #3e4c5a;
   border-radius: 6px;
   font-weight: 600;
@@ -997,7 +1069,7 @@ footer {
   color: #8bd3ff;
 }
 .suggest-link-icon {
-  color: #a8e6a3;
+  color: var(--success);
   /* Takes zero layout space (rather than reserved-but-invisible) so it
      never affects text wrap/wrap width, hidden or not — it floats over
      the button's own right edge instead. */
@@ -1070,7 +1142,7 @@ footer {
   margin: 8px 0;
 }
 .reference-menu-item {
-  color: #ffe082 !important;
+  color: var(--gold-accent) !important;
   padding: 4px 0;
   cursor: pointer;
   border-radius: 4px;
@@ -1207,7 +1279,7 @@ footer {
 .bp-compare-sidebar__hint {
   padding: 0.7rem 0.9rem 0.4rem;
   font-size: 0.8rem;
-  color: #9aa5b1;
+  color: var(--text-tertiary);
 }
 .bp-compare-sidebar__list {
   display: flex;
@@ -1235,7 +1307,7 @@ footer {
 }
 .bp-compare-sidebar__label {
   font-size: 0.9rem;
-  color: #ffe082;
+  color: var(--gold-accent);
   overflow-wrap: anywhere;
 }
 
@@ -1250,7 +1322,7 @@ footer {
   min-width: 0;
 }
 .bp-compare-modal__empty {
-  color: #9aa5b1;
+  color: var(--text-tertiary);
   font-size: 0.9rem;
   padding: 0.5rem 0.1rem;
 }
@@ -1263,7 +1335,7 @@ footer {
 .bp-compare-drag-handle {
   cursor: grab;
   touch-action: none;
-  color: #9aa5b1;
+  color: var(--text-tertiary);
   user-select: none;
   font-size: 1.2em;
   line-height: 1;
@@ -1280,7 +1352,7 @@ footer {
 }
 .bp-compare-card__title {
   font-weight: 600;
-  color: #ffe082;
+  color: var(--gold-accent);
   margin-bottom: 0.4rem;
 }
 .bp-compare-card__body {
@@ -1357,7 +1429,7 @@ footer {
 .bp-meta-btn {
   background: #2f3640;
   color: #f5f6fa;
-  border: 1px solid #cfab5a;
+  border: 1px solid var(--gold-accent-border);
   border-radius: 6px;
   padding: 0.25em 0.6em;
   margin-left: 0.6em;
@@ -1366,11 +1438,11 @@ footer {
 }
 .bp-meta-btn:hover {
   background: #3d4b85;
-  border-color: #ffe082;
+  border-color: var(--gold-accent);
 }
 .bp-meta-btn--off {
-  color: #ffe082;
-  border: 2px solid #ffe082;
+  color: var(--gold-accent);
+  border: 2px solid var(--gold-accent);
   font-weight: 600;
 }
 .bp-meta-btn--off:hover {
@@ -1489,7 +1561,7 @@ html.bp-hide-study-notes .topic-highlight-btn {
   gap: 0.7rem;
 }
 .bp-info-modal__empty {
-  color: #9aa5b1;
+  color: var(--text-tertiary);
   font-size: 0.9rem;
 }
 .bp-info-card {
@@ -1500,7 +1572,7 @@ html.bp-hide-study-notes .topic-highlight-btn {
 }
 .bp-info-card__title {
   font-weight: 600;
-  color: #ffe082;
+  color: var(--gold-accent);
 }
 .bp-info-card__meta {
   font-size: 0.8rem;
@@ -1540,7 +1612,7 @@ html.bp-hide-study-notes .topic-highlight-btn {
   flex: none;
   padding: 0.4rem 1.1rem 0.6rem;
   font-size: 0.75rem;
-  color: #9aa5b1;
+  color: var(--text-tertiary);
 }
 @media (max-width: 480px) {
   .bp-info-overlay {
@@ -1667,18 +1739,18 @@ html.bp-hide-study-notes .topic-highlight-btn {
 }
 .bp-timeline-zone__hint {
   font-size: 0.75rem;
-  color: #9aa5b1;
+  color: var(--text-tertiary);
   margin: -0.2rem 0 0.5rem;
   flex: none;
 }
 .bp-timeline-zone__hint strong {
-  color: #ffe082;
+  color: var(--gold-accent);
   font-weight: 600;
 }
 .bp-timeline-zone__header {
   font-size: 0.8rem;
   font-weight: 600;
-  color: #9aa5b1;
+  color: var(--text-tertiary);
   text-transform: uppercase;
   letter-spacing: 0.03em;
   margin-bottom: 0.5rem;
@@ -1717,7 +1789,7 @@ html.bp-hide-study-notes .topic-highlight-btn {
 }
 .bp-timeline-marker--current {
   background: #3d4b85;
-  border-color: #ffe082;
+  border-color: var(--gold-accent);
 }
 .bp-timeline-marker__dot {
   width: 8px;
@@ -1727,7 +1799,7 @@ html.bp-hide-study-notes .topic-highlight-btn {
   flex: none;
 }
 .bp-timeline-marker--current .bp-timeline-marker__dot {
-  background: #ffe082;
+  background: var(--gold-accent);
 }
 .bp-timeline-marker__label {
   font-size: 0.8rem;
@@ -1752,7 +1824,7 @@ html.bp-hide-study-notes .topic-highlight-btn {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #9aa5b1;
+  background: var(--text-tertiary);
   flex: none;
 }
 .bp-timeline-detail {
@@ -1765,7 +1837,7 @@ html.bp-hide-study-notes .topic-highlight-btn {
   color: #f5f6fa;
 }
 .bp-timeline-detail__title--current {
-  color: #ffe082;
+  color: var(--gold-accent);
 }
 .bp-timeline-detail__meta {
   font-size: 0.85rem;
@@ -1785,7 +1857,7 @@ html.bp-hide-study-notes .topic-highlight-btn {
   flex: none;
   padding: 0.4rem 1.1rem 0.7rem;
   font-size: 0.75rem;
-  color: #9aa5b1;
+  color: var(--text-tertiary);
 }
 @media (max-width: 700px) {
   .bp-timeline-modal {
@@ -2138,7 +2210,7 @@ html.bp-suggestions-hidden .bp-suggest-new-link {
   display: block;
   background: none;
   border: none;
-  color: #9aa5b1;
+  color: var(--text-tertiary);
   font-size: 0.8rem;
   text-align: left;
   cursor: pointer;
@@ -2146,7 +2218,7 @@ html.bp-suggestions-hidden .bp-suggest-new-link {
   margin-top: 0.2em;
 }
 .bp-suggest-new-link:hover {
-  color: #ffe082;
+  color: var(--gold-accent);
   text-decoration: underline;
 }
 .bp-suggest-overlay {
@@ -2236,12 +2308,12 @@ html.bp-suggestions-hidden .bp-suggest-new-link {
 }
 .bp-suggest-help {
   font-size: 0.85rem;
-  color: #9aa5b1;
+  color: var(--text-tertiary);
   margin: 0 0 0.6rem;
 }
 .bp-suggest-account-line {
   font-size: 0.78rem;
-  color: #9aa5b1;
+  color: var(--text-tertiary);
 }
 .bp-suggest-link-btn {
   background: none;
@@ -2260,7 +2332,7 @@ html.bp-suggestions-hidden .bp-suggest-new-link {
 .bp-suggest-field label {
   display: block;
   font-size: 0.85rem;
-  color: #ffe082;
+  color: var(--gold-accent);
   margin-bottom: 0.3em;
 }
 .bp-suggest-field input,
@@ -2295,7 +2367,7 @@ html.bp-suggestions-hidden .bp-suggest-new-link {
 .bp-suggest-submit {
   background: #2f3640;
   color: #f5f6fa;
-  border: 1px solid #cfab5a;
+  border: 1px solid var(--gold-accent-border);
   border-radius: 6px;
   padding: 0.45em 0.9em;
   cursor: pointer;
@@ -2313,10 +2385,10 @@ html.bp-suggestions-hidden .bp-suggest-new-link {
   min-height: 1.2em;
 }
 .bp-suggest-msg--error {
-  color: #ff9c8a;
+  color: var(--error);
 }
 .bp-suggest-msg--ok {
-  color: #a8e6a3;
+  color: var(--success);
 }
 .bp-suggest-my-list {
   display: flex;
@@ -2332,7 +2404,7 @@ html.bp-suggestions-hidden .bp-suggest-new-link {
 }
 .bp-suggest-my-item__title {
   font-weight: 600;
-  color: #ffe082;
+  color: var(--gold-accent);
   margin-bottom: 0.3em;
 }
 .bp-suggest-status {
@@ -2343,15 +2415,15 @@ html.bp-suggestions-hidden .bp-suggest-new-link {
   padding: 0.1em 0.5em;
   border-radius: 999px;
   background: #2f3640;
-  color: #9aa5b1;
+  color: var(--text-tertiary);
 }
 .bp-suggest-status--approved,
 .bp-suggest-status--applied {
-  color: #a8e6a3;
+  color: var(--success);
 }
 .bp-suggest-status--rejected,
 .bp-suggest-status--unmatched {
-  color: #ff9c8a;
+  color: var(--error);
 }
 @media (max-width: 480px) {
   .bp-suggest-overlay {
@@ -2405,7 +2477,7 @@ html.bp-suggestions-hidden .bp-suggest-new-link {
   align-items: center;
   gap: 0.6em;
   font-size: 0.82rem;
-  color: #9aa5b1;
+  color: var(--text-tertiary);
   margin-top: 0.3em;
 }
 .bp-auth-resend-row .bp-suggest-link-btn:disabled {
@@ -2429,7 +2501,7 @@ html.bp-suggestions-hidden .bp-suggest-new-link {
   border-radius: 50%;
   background: #23272a;
   border: 2px solid #55606e;
-  color: #9aa5b1;
+  color: var(--text-tertiary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2446,8 +2518,8 @@ html.bp-suggestions-hidden .bp-suggest-new-link {
   stroke-linejoin: round;
 }
 .bp-account-widget__btn--signed-in {
-  border-color: #ffe082;
-  color: #ffe082;
+  border-color: var(--gold-accent);
+  color: var(--gold-accent);
 }
 .bp-account-widget__badge {
   display: none;
@@ -2457,7 +2529,7 @@ html.bp-suggestions-hidden .bp-suggest-new-link {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: #a8e6a3;
+  background: var(--success);
   border: 2px solid #23272a;
 }
 .bp-account-widget__btn--signed-in .bp-account-widget__badge {
@@ -2482,7 +2554,7 @@ html.bp-suggestions-hidden .bp-suggest-new-link {
 }
 .bp-account-widget__email {
   font-size: 0.85rem;
-  color: #9aa5b1;
+  color: var(--text-tertiary);
   margin-bottom: 0.6rem;
   word-break: break-all;
 }
@@ -2614,7 +2686,7 @@ html.bp-suggestions-hidden .bp-suggest-new-link {
     white-space: nowrap;
   }
   html.bp-mobile .bp-drawer-handle__chevron {
-    color: #ffe082;
+    color: var(--gold-accent);
   }
 
   /* --- Sidebars become slide-in drawers over the text --- */

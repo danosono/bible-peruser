@@ -12,7 +12,7 @@ body {
   margin: 1rem 0;
 }
 .bp-admin-msg--error {
-  color: #ff9c8a;
+  color: var(--error);
 }
 
 .bp-admin-header {
@@ -32,19 +32,19 @@ body {
 .bp-admin-kill-switch {
   background: #2f3640;
   color: #f5f6fa;
-  border: 1px solid #cfab5a;
+  border: 1px solid var(--gold-accent-border);
   border-radius: 6px;
   padding: 0.4em 0.8em;
   cursor: pointer;
 }
 .bp-admin-kill-switch--paused {
-  border-color: #ff9c8a;
-  color: #ff9c8a;
+  border-color: var(--error);
+  color: var(--error);
 }
 
 .bp-admin-banner {
   background: #2f3640;
-  border: 1px solid #cfab5a;
+  border: 1px solid var(--gold-accent-border);
   border-radius: 8px;
   padding: 0.6rem 0.9rem;
   margin-bottom: 1rem;
@@ -88,7 +88,7 @@ body {
   align-items: center;
   gap: 0.5em;
   font-weight: 600;
-  color: #ffe082;
+  color: var(--gold-accent);
   margin-bottom: 0.3em;
 }
 .bp-admin-badge {
@@ -102,8 +102,8 @@ body {
 }
 .bp-admin-warning {
   background: rgba(255, 156, 138, 0.12);
-  border: 1px solid #ff9c8a;
-  color: #ff9c8a;
+  border: 1px solid var(--error);
+  color: var(--error);
   border-radius: 6px;
   padding: 0.4em 0.7em;
   font-size: 0.85rem;
@@ -161,8 +161,8 @@ body {
   background: #3d4b85;
 }
 .bp-admin-btn--danger {
-  border-color: #ff9c8a;
-  color: #ff9c8a;
+  border-color: var(--error);
+  color: var(--error);
 }
 
 @media (max-width: 700px) {
