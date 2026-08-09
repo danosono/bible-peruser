@@ -1106,8 +1106,8 @@
           "references": [
             "Psalms 51:17",
             "Isaiah 66:2",
-            "James 4:6",
-            "1 Peter 5:5"
+            "1 Peter 5:5",
+            "James 4:6"
           ]
         },
         {
@@ -1117,9 +1117,9 @@
             "Psalms 126:5",
             "Isaiah 61:1-3",
             "Matthew 9:15",
+            "Matthew 11:28-30",
             "Luke 4:18-19",
-            "2 Corinthians 1:3-4",
-            "Matthew 11:28-30"
+            "2 Corinthians 1:3-4"
           ]
         },
         {
@@ -1129,8 +1129,8 @@
             "Numbers 12:3",
             "Psalms 37:10-12 (Entire chapter seems relevant.)",
             "Matthew 11:29",
-            "Philippians 2:5-8",
-            "John 13:14-15"
+            "John 13:14-15",
+            "Philippians 2:5-8"
           ],
           "links": [
             {
@@ -1146,12 +1146,12 @@
             "Psalms 42:1-2",
             "Amos 5:24",
             "Isaiah 55:1-2",
-            "John 7:37-38",
             "Matthew 6:33",
+            "John 4:14",
+            "John 7:37-38",
             "Romans 3:21-22",
             "2 Corinthians 5:21",
             "James 1:27",
-            "John 4:14",
             "Revelation 21:6"
           ]
         },
@@ -1164,13 +1164,47 @@
             "Luke 6:36",
             "Ephesians 2:4-5",
             "Titus 3:5",
-            "James 2:13",
-            "Hebrews 4:16"
+            "Hebrews 4:16",
+            "James 2:13"
           ],
           "links": [
             {
               "label": "Bible Explorer",
               "url": "https://bible-explorer.gospelgo.org/?dataset=bsb-topics&topic=Mercy"
+            }
+          ]
+        },
+        {
+          "label": "Pure in heart",
+          "verses": ["8"],
+          "references": [
+            "Psalms 24:2-4",
+            "Psalms 51:10",
+            "Titus 1:15",
+            "James 4:8",
+            "1 John 3:2-3"
+          ],
+          "links": [
+            {
+              "label": "Bible Explorer",
+              "url": "https://bible-explorer.gospelgo.org/?dataset=topics&topic=PURITY"
+            }
+          ]
+        },
+        {
+          "label": "Peacemakers",
+          "verses": ["9"],
+          "references": [
+            "Psalms 34:14",
+            "Isaiah 52:7",
+            "Romans 12:18",
+            "Colossians 1:20",
+            "James 3:17-18"
+          ],
+          "links": [
+            {
+              "label": "Bible Explorer",
+              "url": "https://bible-explorer.gospelgo.org/?dataset=topics&topic=PEACE"
             }
           ]
         },
