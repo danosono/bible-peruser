@@ -4,6 +4,11 @@
 import { getSession, getClient, signOut, mapSupabaseError } from "./bp-supabase.js";
 import { renderSignInGate } from "./bp-auth-ui.js";
 
+// Bump this by hand as the last step of every deploy (commit + push) so
+// anyone on the profile page can confirm what's actually live, rather than
+// trusting that a push landed — see js/bp-profile.js's build-info footer.
+const APP_VERSION = "v20260811_0846";
+
 const STATUSES = ["pending", "approved", "applied", "rejected", "unmatched"];
 const STATUS_LABELS = {
   pending: "Pending",
@@ -32,6 +37,8 @@ async function main() {
   const statsSection = el("section", "bp-profile-section");
   root.appendChild(statsSection);
   renderMyStats(statsSection);
+
+  root.appendChild(el("div", "bp-profile-msg", `Build ${APP_VERSION}`));
 }
 
 async function renderLeaderboard(section) {

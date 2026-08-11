@@ -24,6 +24,8 @@ Two standalone Node.js utilities regenerate data files; run them directly with N
 - `js/usfm-outline-extractor.js` parses `.sfm` source files from `sfm/` and generates topic JSON output.
 - `js/build-bible-metadata.js` reads the Theographic Bible Metadata dataset (external paths hardcoded at the top of the script, under `C:\Unity Projects\_BibleDatasets\GospelgoMapDatasets\`) and generates `data/timeline/` and `data/verse-tags/` (see Data Layer below).
 
+Deploy is push-to-`main` auto-deploy (no CI step in this repo triggers it — a connected static host watches GitHub directly), and takes roughly 20-30 seconds to propagate after the push actually lands. **Bump `APP_VERSION` in `js/bp-profile.js`** (format `vYYYYMMDD_HHMM`) as the last step of every commit+push cycle — it's shown in a small "Build vX" footer on `profile.html` specifically so it's possible to confirm what's actually live without guessing, since `git push` succeeding and the change being live are two different things to verify.
+
 ## Architecture
 
 ### Key Files
