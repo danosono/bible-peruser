@@ -571,6 +571,20 @@
         "outline": "The Ascension",
         "verses": ["19-20"],
         "references": ["Luke 24:50–53", "Acts 1:6–11"]
+      },
+      {
+        "label": "Annoint",
+        "verses": ["1", "6"],
+        "emphasis": [
+          "bought spices so they could go and anoint the body of Jesus",
+          "He has risen! He is not here! See the place where they put Him."
+        ],
+        "references": ["Mark 14:3-9 (Anointed in advance)"],
+        "note": [
+          "Jesus was anointed in advance at Bethany.",
+          "--",
+          "Now, there is no dead body to anoint, because He had risen!"
+        ]
       }
     ]
   }

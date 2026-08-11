@@ -1209,6 +1209,30 @@
           ]
         },
         {
+          "label": "Persecuted for righteousness",
+          "verses": ["10-12"],
+          "references": [
+            "1 Kings 18:4",
+            "1 Kings 19:2-3",
+            "2 Chronicles 36:16",
+            "Jeremiah 37:15-16",
+            "Jeremiah 38:6",
+            "Matthew 14:3-5",
+            "John 15:20",
+            "Acts 5:41",
+            "Romans 8:17",
+            "Philippians 1:29",
+            "2 Timothy 3:12",
+            "1 Peter 4:12-14"
+          ],
+          "links": [
+            {
+              "label": "Bible Explorer",
+              "url": "https://bible-explorer.gospelgo.org/?dataset=topics&topic=PEACE"
+            }
+          ]
+        },
+        {
           "highlight": "Blessed are",
           "text": [
             "the poor in spirit",

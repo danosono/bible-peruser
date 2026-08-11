@@ -238,6 +238,7 @@
   --success: #a8e6a3;
   --error: #ff9c8a;
   --search-highlight: #ffe923;
+  --emphasis-highlight: #26ff7b;
 }
 
 /* Seasonal / holiday accent themes — js/bp-theme.js sets data-theme on <html>.
@@ -992,6 +993,50 @@ footer {
 .bible-book.bible-book--dense.bp-overview-active .verse-highlight .search-highlight {
   background: none;
   font-weight: bold;
+}
+
+/* Label-scoped phrase emphasis (topic.emphasis) — distinct from
+   .search-highlight's yellow, mirrors its minimal styling exactly (plain
+   color at the default tier, bold+tinted background at dense/overview),
+   themed via --emphasis-highlight (aliased to --accent-vivid by default)
+   so it shifts with the seasonal color scheme. */
+.emphasis-highlight {
+  color: var(--emphasis-highlight);
+  border-radius: 4px;
+}
+
+.bible-book.bible-book--dense .emphasis-highlight {
+  font-weight: bold;
+  background: color-mix(in srgb, var(--emphasis-highlight) 18%, transparent);
+  border-radius: 2px;
+}
+.bible-book.bible-book--dense .verse-highlight .emphasis-highlight {
+  background: none;
+  font-weight: bold;
+}
+
+.bible-book.bible-book--dense.bp-overview-active .emphasis-highlight {
+  font-weight: bold;
+  background: color-mix(in srgb, var(--emphasis-highlight) 50%, transparent);
+  border-radius: 2px;
+}
+.bible-book.bible-book--dense.bp-overview-active .verse-highlight .emphasis-highlight {
+  background: none;
+  font-weight: bold;
+}
+
+/* Where a search/topic-highlight phrase and a label's emphasis phrase
+   overlap the same text, js/bible-loader.js's collectNonOverlappingMatches
+   splits the shared portion into a span carrying BOTH classes, so it
+   blends instead of one color winning outright. */
+.search-highlight.emphasis-highlight {
+  color: color-mix(in srgb, var(--search-highlight), var(--emphasis-highlight));
+}
+.bible-book.bible-book--dense .search-highlight.emphasis-highlight {
+  background: color-mix(in srgb, color-mix(in srgb, var(--search-highlight), var(--emphasis-highlight)) 18%, transparent);
+}
+.bible-book.bible-book--dense.bp-overview-active .search-highlight.emphasis-highlight {
+  background: color-mix(in srgb, color-mix(in srgb, var(--search-highlight), var(--emphasis-highlight)) 50%, transparent);
 }
 
 .topic-btn {

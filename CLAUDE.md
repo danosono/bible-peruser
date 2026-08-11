@@ -59,9 +59,11 @@ Two standalone Node.js utilities regenerate data files; run them directly with N
 }
 ```
 
-Topic entry fields: `outline` (or `label`), `verses` (string array of ranges), `references`, `links`, `note`, `highlight`, `text`.
+Topic entry fields: `outline` (or `label`), `verses` (string array of ranges), `references`, `links`, `note`, `highlight`, `text`, `emphasis`.
 
 `links` is optional and manual-only (like `note`/`highlight`/`text` — `js/usfm-outline-extractor.js` never generates it and overwrites the whole file on regeneration). Each entry is `{ label, url }`; the label is shown in the references popup, clicking opens `url` in a new tab instead of navigating within the app. Used the same way in `data/bookwide/` entries.
+
+`emphasis` is only meaningful on `label` entries: an array of exact phrase substrings (same matching semantics as `text`), highlighted with the `.emphasis-highlight` CSS class on top of the label's own whole-verse `.verse-highlight` when that label is clicked. Unlike `text` (which highlights chapter-wide/book-wide whenever its button is active), `emphasis` phrases are matched only within that same entry's own `verses` — never elsewhere, even on an exact text match. Used the same way in `data/bookwide/` `label` entries.
 
 **`data/bookwide/`** — Optional book-wide highlights and labels.
 

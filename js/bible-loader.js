@@ -224,6 +224,43 @@ function normalizePhraseList(phrases) {
   return out.sort((a, b) => b.length - a.length);
 }
 
+// Expands a topic.verses-style token array (e.g. ["1-5","7"]) into a flat
+// array of verse numbers. Shared by whole-verse .verse-highlight targeting
+// and by emphasis-phrase verse-key scoping.
+function expandVerseRangeTokens(tokens) {
+  const verses = [];
+  (Array.isArray(tokens) ? tokens : []).forEach((v) => {
+    if (typeof v === "string" && v.includes("-")) {
+      const [start, end] = v.split("-").map(Number);
+      if (!isNaN(start) && !isNaN(end)) {
+        for (let i = start; i <= end; i++) verses.push(i);
+      }
+    } else {
+      const n = Number(v);
+      if (!isNaN(n)) verses.push(n);
+    }
+  });
+  return verses;
+}
+
+// Like normalizePhraseList but for { phrase, className, scopeVerseKeys }
+// entries. Dedupes by className+phrase (not phrase alone) since the same
+// text under two different classes/scopes must stay two distinct entries.
+function normalizePhraseEntries(entries) {
+  const list = Array.isArray(entries) ? entries : [];
+  const seen = new Set();
+  const out = [];
+  list.forEach((e) => {
+    if (!e || typeof e.phrase !== "string" || !e.phrase.trim()) return;
+    const className = e.className || "search-highlight";
+    const key = className + " " + e.phrase.toLowerCase();
+    if (seen.has(key)) return;
+    seen.add(key);
+    out.push({ phrase: e.phrase, className, scopeVerseKeys: e.scopeVerseKeys || null });
+  });
+  return out.sort((a, b) => b.phrase.length - a.phrase.length);
+}
+
 function getLiteralSearchPhrase(inputEl) {
   if (!inputEl || typeof inputEl.value !== "string") return "";
   return inputEl.value.trim() ? inputEl.value : "";
@@ -1760,9 +1797,10 @@ function resetVerseTextFromCache(verseTextCache) {
   });
 }
 
-function collectNonOverlappingMatches(lowerText, lowerPhrases) {
+function collectNonOverlappingMatches(lowerText, phraseEntries) {
   const matches = [];
-  lowerPhrases.forEach((phrase) => {
+  phraseEntries.forEach((pe) => {
+    const phrase = (pe.phrase || "").toLowerCase();
     if (!phrase) return;
     let fromIdx = 0;
     while (true) {
@@ -1772,26 +1810,48 @@ function collectNonOverlappingMatches(lowerText, lowerPhrases) {
         start: idx,
         end: idx + phrase.length,
         len: phrase.length,
+        className: pe.className,
       });
       fromIdx = idx + 1;
     }
   });
   matches.sort((a, b) => a.start - b.start || b.len - a.len);
 
+  // Overlaps between two DIFFERENT-class matches are split into up to 3
+  // segments (leading non-overlap, shared overlap, trailing non-overlap)
+  // rather than one match winning and the other being dropped outright —
+  // the leading/trailing pieces keep their own class/color, and the shared
+  // middle piece carries both classes so the "<classA>.<classB>" CSS rule
+  // can render it as a blend. Overlaps between two matches of the SAME
+  // class just extend the existing span (no blend needed, same color).
   const merged = [];
-  let lastEnd = 0;
   matches.forEach((m) => {
-    if (m.start >= lastEnd) {
+    if (!merged.length) {
       merged.push(m);
-      lastEnd = m.end;
       return;
     }
-
     const prev = merged[merged.length - 1];
-    // When overlaps occur, prefer the longer phrase match.
-    if (prev && m.len > prev.len) {
-      merged[merged.length - 1] = m;
-      lastEnd = m.end;
+    if (m.start >= prev.end) {
+      merged.push(m);
+      return;
+    }
+    if (m.className === prev.className) {
+      if (m.end > prev.end) prev.end = m.end;
+      return;
+    }
+    merged.pop();
+    if (m.start > prev.start) {
+      merged.push({ start: prev.start, end: m.start, className: prev.className });
+    }
+    const overlapEnd = Math.min(prev.end, m.end);
+    merged.push({ start: m.start, end: overlapEnd, className: prev.className + " " + m.className });
+    const tailEnd = Math.max(prev.end, m.end);
+    if (tailEnd > overlapEnd) {
+      merged.push({
+        start: overlapEnd,
+        end: tailEnd,
+        className: prev.end > m.end ? prev.className : m.className,
+      });
     }
   });
   return merged;
@@ -1802,9 +1862,10 @@ function renderHighlightedHtml(text, matches) {
   let out = text;
   for (let i = matches.length - 1; i >= 0; i--) {
     const m = matches[i];
+    const cls = m.className || "search-highlight";
     out =
       out.slice(0, m.start) +
-      '<span class="search-highlight">' +
+      `<span class="${cls}">` +
       out.slice(m.start, m.end) +
       "</span>" +
       out.slice(m.end);
@@ -1812,16 +1873,23 @@ function renderHighlightedHtml(text, matches) {
   return out;
 }
 
-function applyPhraseHighlightsFromCache(verseTextCache, phrases) {
-  const normalized = normalizePhraseList(phrases);
+function applyPhraseHighlightsFromCache(verseTextCache, phraseEntries) {
+  const normalized = normalizePhraseEntries(phraseEntries);
   if (!normalized.length) {
     resetVerseTextFromCache(verseTextCache);
     return;
   }
-  const lowerPhrases = normalized.map((p) => p.toLowerCase());
   try {
     verseTextCache.forEach((entry, el) => {
-      const matches = collectNonOverlappingMatches(entry.lower, lowerPhrases);
+      const verseKey = el.getAttribute("data-verse-key");
+      const scoped = normalized.filter(
+        (pe) => pe.scopeVerseKeys === null || (verseKey && pe.scopeVerseKeys.has(verseKey)),
+      );
+      if (!scoped.length) {
+        el.innerHTML = entry.text;
+        return;
+      }
+      const matches = collectNonOverlappingMatches(entry.lower, scoped);
       el.innerHTML = renderHighlightedHtml(entry.text, matches);
     });
   } catch (e) {
@@ -1941,7 +2009,7 @@ async function loadBibleChapter(
     html += `<div class="bible-chapter${columnClass ? " " + columnClass : ""}${fontClass ? " " + fontClass : ""}">`;
     for (const verse of chapter.verses) {
       // Store original verse text in a data attribute for safe re-highlighting
-      html += `<span class="verse-num" data-verse="${verse.n}">${verse.n}</span> <span class="verse-text" data-verse="${verse.n}" data-original="${encodeURIComponent(verse.text)}">${verse.text}</span><br>`;
+      html += `<span class="verse-num" data-verse="${verse.n}" data-verse-key="${chapterNum}:${verse.n}">${verse.n}</span> <span class="verse-text" data-verse="${verse.n}" data-verse-key="${chapterNum}:${verse.n}" data-original="${encodeURIComponent(verse.text)}">${verse.text}</span><br>`;
       // Collect words for frequency analysis
       if (!window._chapterWords) window._chapterWords = [];
       window._chapterWords.push(
@@ -2222,6 +2290,13 @@ async function loadBibleChapter(
             entry: topic,
             entryIndex: topicIdx,
           });
+          const emphasisPhrases = normalizePhraseList(topic.emphasis);
+          if (emphasisPhrases.length) {
+            btn._emphasisPhrases = emphasisPhrases;
+            btn._emphasisScopeKeys = new Set(
+              expandVerseRangeTokens(topic.verses).map((v) => `${chapterNum}:${v}`),
+            );
+          }
           type = "label";
         } else if (topic.outline) {
           btn = document.createElement("button");
@@ -2258,19 +2333,7 @@ async function loadBibleChapter(
               .forEach((el) => el.classList.remove("verse-highlight"));
             if (!isActive) {
               btn.classList.add("active");
-              let verses = [];
-              topic.verses &&
-                topic.verses.forEach((v) => {
-                  if (typeof v === "string" && v.includes("-")) {
-                    const [start, end] = v.split("-").map(Number);
-                    if (!isNaN(start) && !isNaN(end)) {
-                      for (let i = start; i <= end; i++) verses.push(i);
-                    }
-                  } else {
-                    verses.push(Number(v));
-                  }
-                });
-              verses.forEach((v) => {
+              expandVerseRangeTokens(topic.verses).forEach((v) => {
                 document
                   .querySelectorAll(`.verse-num[data-verse='${v}']`)
                   .forEach((el) => el.classList.add("verse-highlight"));
@@ -2279,6 +2342,7 @@ async function loadBibleChapter(
                   .forEach((el) => el.classList.add("verse-highlight"));
               });
             }
+            rerenderActiveHighlights();
           };
           if (topicBar) topicBar.appendChild(btn);
         }
@@ -2291,7 +2355,7 @@ async function loadBibleChapter(
       // RIGHT: highlight buttons + typed field (supports sticky multi-select)
 
       function collectActivePhrases() {
-        const phrases = [];
+        const entries = [];
         if (highlightBar) {
           highlightBar
             .querySelectorAll(".topic-highlight-btn.active")
@@ -2300,15 +2364,27 @@ async function loadBibleChapter(
                 ? activeBtn._highlightPhrases
                 : [];
               arr.forEach((p) => {
-                if (p) phrases.push(p);
+                if (p) entries.push({ phrase: p, className: "search-highlight", scopeVerseKeys: null });
               });
             });
         }
         chapterSearchFields.forEach((field) => {
           const typedPhrase = getLiteralSearchPhrase(field);
-          if (typedPhrase) phrases.push(typedPhrase);
+          if (typedPhrase) entries.push({ phrase: typedPhrase, className: "search-highlight", scopeVerseKeys: null });
         });
-        return normalizePhraseList(phrases);
+        const activeLabelBtn = topicBar ? topicBar.querySelector(".topic-label-btn.active") : null;
+        if (activeLabelBtn && Array.isArray(activeLabelBtn._emphasisPhrases)) {
+          activeLabelBtn._emphasisPhrases.forEach((p) => {
+            if (p) {
+              entries.push({
+                phrase: p,
+                className: "emphasis-highlight",
+                scopeVerseKeys: activeLabelBtn._emphasisScopeKeys || null,
+              });
+            }
+          });
+        }
+        return normalizePhraseEntries(entries);
       }
 
       function rerenderActiveHighlights() {
@@ -2903,7 +2979,7 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
     // Phrase pass uses data-original to reset, then wraps matches in search-highlight.
     // Range pass then re-applies verse-highlight class on top without touching innerHTML.
     function collectBookPhrases() {
-      const phrases = [];
+      const entries = [];
       if (bookHighlightBar) {
         bookHighlightBar
           .querySelectorAll(".topic-highlight-btn.active")
@@ -2912,15 +2988,27 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
               ? activeBtn._highlightPhrases
               : []
             ).forEach((p) => {
-              if (p) phrases.push(p);
+              if (p) entries.push({ phrase: p, className: "search-highlight", scopeVerseKeys: null });
             });
           });
       }
       const typedPhrase = getLiteralSearchPhrase(bookSearchField);
       if (typedPhrase) {
-        phrases.push(typedPhrase);
+        entries.push({ phrase: typedPhrase, className: "search-highlight", scopeVerseKeys: null });
       }
-      return [...new Set(phrases)];
+      const activeLabelBtn = topicBar ? topicBar.querySelector(".topic-label-btn.active") : null;
+      if (activeLabelBtn && Array.isArray(activeLabelBtn._emphasisPhrases)) {
+        activeLabelBtn._emphasisPhrases.forEach((p) => {
+          if (p) {
+            entries.push({
+              phrase: p,
+              className: "emphasis-highlight",
+              scopeVerseKeys: activeLabelBtn._emphasisScopeKeys || null,
+            });
+          }
+        });
+      }
+      return normalizePhraseEntries(entries);
     }
 
     function reapplyBookRangeHighlights() {
@@ -3048,6 +3136,14 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
           entry: labelEntry,
           entryIndex: labelIdx,
         });
+        if (labelEntry.emphasis) {
+          const emphasisPhrases = normalizePhraseList(labelEntry.emphasis);
+          if (emphasisPhrases.length) {
+            const { verseKeys } = buildBookWideLabelVerseKeys(labelEntry, chapterMaxVerseMap);
+            btn._emphasisPhrases = emphasisPhrases;
+            btn._emphasisScopeKeys = new Set(verseKeys);
+          }
+        }
         btn.onclick = () => {
           activateBookWideRangeEntry(btn, labelEntry);
         };
