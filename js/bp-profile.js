@@ -4,10 +4,32 @@
 import { getSession, getClient, signOut, mapSupabaseError } from "./bp-supabase.js";
 import { renderSignInGate } from "./bp-auth-ui.js";
 
-// Bump this by hand as the last step of every deploy (commit + push) so
-// anyone on the profile page can confirm what's actually live, rather than
-// trusting that a push landed — see js/bp-profile.js's build-info footer.
-const APP_VERSION = "v20260811_0846";
+// Build-info footer: fetches the latest commit on main from GitHub's public
+// API and shows it as a plain YYYYMMDD number (never decreases, so "is my
+// change live" is a direct comparison, not a guess) — self-maintaining,
+// no manual bump step, no build pipeline needed.
+const GITHUB_MAIN_COMMIT_URL = "https://api.github.com/repos/danosono/bible-peruser/commits/main";
+
+function formatDateAsNumber(dateStr) {
+  const d = new Date(dateStr);
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return Number(`${y}${m}${day}`);
+}
+
+async function renderBuildInfo(root) {
+  const buildEl = el("div", "bp-profile-msg", "Build …");
+  root.appendChild(buildEl);
+  try {
+    const res = await fetch(GITHUB_MAIN_COMMIT_URL);
+    if (!res.ok) throw new Error(`GitHub API ${res.status}`);
+    const data = await res.json();
+    buildEl.textContent = `Build ${formatDateAsNumber(data.commit.committer.date)}`;
+  } catch {
+    buildEl.textContent = "Build unavailable";
+  }
+}
 
 const STATUSES = ["pending", "approved", "applied", "rejected", "unmatched"];
 const STATUS_LABELS = {
@@ -38,7 +60,7 @@ async function main() {
   root.appendChild(statsSection);
   renderMyStats(statsSection);
 
-  root.appendChild(el("div", "bp-profile-msg", `Build ${APP_VERSION}`));
+  renderBuildInfo(root);
 }
 
 async function renderLeaderboard(section) {
