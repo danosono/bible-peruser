@@ -4,30 +4,32 @@
 import { getSession, getClient, signOut, mapSupabaseError } from "./bp-supabase.js";
 import { renderSignInGate } from "./bp-auth-ui.js";
 
-// Build-info footer: fetches the latest commit on main from GitHub's public
-// API and shows it as a plain YYYYMMDD number (never decreases, so "is my
-// change live" is a direct comparison, not a guess) — self-maintaining,
-// no manual bump step, no build pipeline needed.
+// "Last updated" footer: fetches the latest commit on main from GitHub's
+// public API and shows when it landed — not a version number (git handles
+// that), just a plain date/time so "is my change live" is a direct look,
+// not a guess. Self-maintaining, no manual bump step, no build pipeline.
 const GITHUB_MAIN_COMMIT_URL = "https://api.github.com/repos/danosono/bible-peruser/commits/main";
 
-function formatDateAsNumber(dateStr) {
+function formatDateTime(dateStr) {
   const d = new Date(dateStr);
   const y = d.getFullYear();
   const m = String(d.getMonth() + 1).padStart(2, "0");
   const day = String(d.getDate()).padStart(2, "0");
-  return Number(`${y}${m}${day}`);
+  const hh = String(d.getHours()).padStart(2, "0");
+  const mm = String(d.getMinutes()).padStart(2, "0");
+  return `${y}-${m}-${day} ${hh}:${mm}`;
 }
 
 async function renderBuildInfo(root) {
-  const buildEl = el("div", "bp-profile-msg", "Build …");
+  const buildEl = el("div", "bp-profile-msg", "Last updated: …");
   root.appendChild(buildEl);
   try {
     const res = await fetch(GITHUB_MAIN_COMMIT_URL);
     if (!res.ok) throw new Error(`GitHub API ${res.status}`);
     const data = await res.json();
-    buildEl.textContent = `Build ${formatDateAsNumber(data.commit.committer.date)}`;
+    buildEl.textContent = `Last updated: ${formatDateTime(data.commit.committer.date)}`;
   } catch {
-    buildEl.textContent = "Build unavailable";
+    buildEl.textContent = "Last updated: unavailable";
   }
 }
 
