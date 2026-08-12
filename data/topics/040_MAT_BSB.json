@@ -2113,12 +2113,18 @@
           "verses": ["4-6"]
         },
         {
-          "label": "This generation / dirge",
-          "verses": ["16-19"]
+          "label": "Elijah to come",
+          "verses": ["13-14"],
+          "references": [
+            "Malachi 4:5–6",
+            "Matthew 17:10-13",
+            "Mark 9:11-13",
+            "Luke 1:17"
+          ]
         },
         {
-          "label": "Elijah to come",
-          "verses": ["13-14"]
+          "label": "This generation / dirge",
+          "verses": ["16-19"]
         },
         {
           "label": "Comparative judgement",
