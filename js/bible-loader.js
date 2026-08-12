@@ -82,6 +82,18 @@ function getFullTextMap(kind) {
   return bpFullTextPromises[kind];
 }
 
+const OUTLINE_PREF_KEY = "bpShowOutlines";
+
+function getOutlinePref() {
+  if (typeof window === "undefined" || !window.localStorage) return true;
+  const stored = localStorage.getItem(OUTLINE_PREF_KEY);
+  return stored === null ? true : stored === "1";
+}
+
+function applyOutlinePref(show) {
+  document.documentElement.classList.toggle("bp-hide-outlines", !show);
+}
+
 const STUDY_NOTES_PREF_KEY = "bpShowStudyNotes";
 
 function getStudyNotesPref() {
@@ -117,6 +129,38 @@ function setMetaBtnContent(btn, label) {
   if (!btn.hasAttribute("aria-label")) btn.setAttribute("aria-label", text);
 }
 
+function ensureOutlineToggle(footer) {
+  applyOutlinePref(getOutlinePref());
+
+  let btn = document.getElementById("bp-outline-toggle");
+
+  function refreshButton() {
+    const shown = getOutlinePref();
+    btn.classList.toggle("bp-meta-btn--off", !shown);
+    const tooltip = shown ? "Don't show outline" : "Show outline";
+    btn.dataset.tooltip = tooltip;
+    btn.setAttribute("aria-label", tooltip);
+  }
+
+  if (!btn) {
+    btn = document.createElement("button");
+    btn.id = "bp-outline-toggle";
+    btn.type = "button";
+    btn.className = "bp-meta-btn bp-tooltip-up";
+    setMetaBtnContent(btn, "\u{1F4D1} Outline");
+    btn.addEventListener("click", () => {
+      const nowShow = !getOutlinePref();
+      if (typeof window !== "undefined" && window.localStorage) {
+        localStorage.setItem(OUTLINE_PREF_KEY, nowShow ? "1" : "0");
+      }
+      applyOutlinePref(nowShow);
+      refreshButton();
+    });
+    footer.appendChild(btn);
+  }
+  refreshButton();
+}
+
 function ensureStudyNotesToggle(footer) {
   applyStudyNotesPref(getStudyNotesPref());
 
@@ -125,9 +169,7 @@ function ensureStudyNotesToggle(footer) {
   function refreshButton() {
     const shown = getStudyNotesPref();
     btn.classList.toggle("bp-meta-btn--off", !shown);
-    const tooltip = shown
-      ? "Don't show developer's own Bible study notes"
-      : "Show developer's own Bible study notes";
+    const tooltip = shown ? "Don't show notes" : "Show notes";
     // Custom tooltip (data-tooltip + .bp-tooltip-up) instead of the native
     // title attribute — native tooltips always open downward, which clips
     // or runs off-screen for a button sitting at the bottom of the page.
@@ -152,6 +194,21 @@ function ensureStudyNotesToggle(footer) {
     footer.appendChild(btn);
   }
   refreshButton();
+}
+
+// Builds a fresh pair of off-state sidebar hints (Outlines, then Notes) —
+// called at every left/right panel insertion point so ordering (outline
+// hint above notes hint, when both toggles are off) stays consistent.
+function buildOffToggleHints() {
+  const outlineHint = document.createElement("div");
+  outlineHint.className = "bp-outline-hint";
+  outlineHint.innerHTML =
+    "Outlines are off. Click the <strong>Outlines</strong> button at the bottom to turn them on.";
+  const notesHint = document.createElement("div");
+  notesHint.className = "bp-study-notes-hint";
+  notesHint.innerHTML =
+    "Notes are off. Click the <strong>Notes</strong> button at the bottom to turn them on.";
+  return { outlineHint, notesHint };
 }
 
 function setBpViewMode(mode) {
@@ -338,6 +395,75 @@ async function resolveReferenceForCompare(reference) {
   };
 }
 
+// Makes the compare modal draggable by its header, so the reader can slide
+// it aside to read a referenced verse in its chapter context underneath —
+// the overlay no longer dims/blocks the page (see .bp-compare-overlay CSS),
+// so dragging is the only way to reveal what's behind it. Desktop only.
+function attachModalDrag(modalEl, headerEl) {
+  if (window.bpIsMobileMode && window.bpIsMobileMode()) return;
+
+  headerEl.classList.add("bp-compare-modal__header--draggable");
+  let dragging = false;
+  let hasSwitchedToFixed = false;
+  let startX = 0;
+  let startY = 0;
+  let startTop = 0;
+  let startLeft = 0;
+
+  headerEl.addEventListener("pointerdown", (e) => {
+    if (typeof e.button === "number" && e.button !== 0) return;
+    if (e.target.closest(".bp-compare-modal__close")) return;
+
+    if (!hasSwitchedToFixed) {
+      const rect = modalEl.getBoundingClientRect();
+      modalEl.style.position = "fixed";
+      modalEl.style.margin = "0";
+      modalEl.style.top = `${rect.top}px`;
+      modalEl.style.left = `${rect.left}px`;
+      hasSwitchedToFixed = true;
+    }
+
+    dragging = true;
+    headerEl.setPointerCapture(e.pointerId);
+    startX = e.clientX;
+    startY = e.clientY;
+    startTop = parseFloat(modalEl.style.top);
+    startLeft = parseFloat(modalEl.style.left);
+    headerEl.classList.add("bp-compare-modal__header--dragging");
+  });
+
+  headerEl.addEventListener("pointermove", (e) => {
+    if (!dragging) return;
+    const margin = 80; // keep at least this much of the modal reachable
+    const modalRect = modalEl.getBoundingClientRect();
+    let newTop = startTop + (e.clientY - startY);
+    let newLeft = startLeft + (e.clientX - startX);
+    newTop = Math.max(
+      margin - modalRect.height,
+      Math.min(newTop, window.innerHeight - margin),
+    );
+    newLeft = Math.max(
+      margin - modalRect.width,
+      Math.min(newLeft, window.innerWidth - margin),
+    );
+    modalEl.style.top = `${newTop}px`;
+    modalEl.style.left = `${newLeft}px`;
+  });
+
+  function endDrag(e) {
+    if (!dragging) return;
+    dragging = false;
+    headerEl.classList.remove("bp-compare-modal__header--dragging");
+    if (e && e.pointerId != null) {
+      try {
+        headerEl.releasePointerCapture(e.pointerId);
+      } catch {}
+    }
+  }
+  headerEl.addEventListener("pointerup", endDrag);
+  headerEl.addEventListener("pointercancel", endDrag);
+}
+
 function openCompareModal(references, compareContext) {
   document.querySelectorAll(".bp-compare-overlay").forEach((el) => el.remove());
 
@@ -374,6 +500,7 @@ function openCompareModal(references, compareContext) {
   header.appendChild(title);
   header.appendChild(closeBtn);
   modal.appendChild(header);
+  attachModalDrag(modal, header);
 
   const body = document.createElement("div");
   body.className = "bp-compare-modal__body";
@@ -408,9 +535,6 @@ function openCompareModal(references, compareContext) {
     if (e.key === "Escape") closeModal();
   }
 
-  overlay.addEventListener("mousedown", (e) => {
-    if (e.target === overlay) closeModal();
-  });
   closeBtn.addEventListener("click", closeModal);
   document.addEventListener("keydown", onKeydown);
 
@@ -2142,7 +2266,7 @@ async function loadBibleChapter(
       if (aside) {
         aside
           .querySelectorAll(
-            ".bp-chapter-search-field, .bp-book-search-field, .bp-study-notes-hint",
+            ".bp-chapter-search-field, .bp-book-search-field, .bp-study-notes-hint, .bp-outline-hint",
           )
           .forEach((el) => el.remove());
 
@@ -2174,11 +2298,9 @@ async function loadBibleChapter(
         }
         chapterSearchField = chapterSearchFields[0];
 
-        const studyNotesHint = document.createElement("div");
-        studyNotesHint.className = "bp-study-notes-hint";
-        studyNotesHint.innerHTML =
-          "Click <strong>Notes</strong> at the bottom to see the developer's Bible study notes.";
-        insertField(studyNotesHint);
+        const { outlineHint, notesHint } = buildOffToggleHints();
+        insertField(outlineHint);
+        insertField(notesHint);
       }
 
       let highlightBar = document.getElementById("chapter-highlight-bar");
@@ -2351,6 +2473,9 @@ async function loadBibleChapter(
         topicBar.appendChild(
           buildSuggestNewLink("label", { scope: "chapter", bookId, chapterNum }),
         );
+        const leftHints = buildOffToggleHints();
+        topicBar.appendChild(leftHints.outlineHint);
+        topicBar.appendChild(leftHints.notesHint);
       }
       // RIGHT: highlight buttons + typed field (supports sticky multi-select)
 
@@ -2630,12 +2755,14 @@ async function loadBibleChapter(
         btn.onclick = onClick;
       }
 
-      // Notes is created first (and thus always leftmost) so its position
-      // stays fixed regardless of which of the three conditional buttons
-      // below happen to show for a given chapter. Book is second — like
-      // Notes, it's unconditional (every book has an entry), so it's
-      // built with ensureMetaButton passing a non-empty placeholder array
-      // rather than the real (always-true) condition.
+      // Outline and Notes are created first (and thus always leftmost, in
+      // that fixed order) so their position stays stable regardless of
+      // which of the content-dependent buttons below happen to show for a
+      // given chapter. Book is next — like the first two, it's
+      // unconditional (every book has an entry), so it's built with
+      // ensureMetaButton passing a non-empty placeholder array rather than
+      // the real (always-true) condition.
+      ensureOutlineToggle(metaBtnRow);
       ensureStudyNotesToggle(metaBtnRow);
       ensureMetaButton(
         "bp-book-info-btn",
@@ -3154,6 +3281,9 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
       topicBar.appendChild(
         buildSuggestNewLink("label", { scope: "bookwide", bookId, chapterNum: null }),
       );
+      const leftHints = buildOffToggleHints();
+      topicBar.appendChild(leftHints.outlineHint);
+      topicBar.appendChild(leftHints.notesHint);
     }
 
     // ── Right panel: sticky toggle + search field + bookWideHighlights ────────
@@ -3167,7 +3297,9 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
       }
 
       aside
-        .querySelectorAll(".bp-chapter-search-field, .bp-book-search-field")
+        .querySelectorAll(
+          ".bp-chapter-search-field, .bp-book-search-field, .bp-study-notes-hint, .bp-outline-hint",
+        )
         .forEach((el) => el.remove());
 
       // Text search field
@@ -3182,6 +3314,14 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
         stickyControls.appendChild(bookSearchField);
       } else {
         aside.insertBefore(bookSearchField, aside.firstChild);
+      }
+      const { outlineHint, notesHint } = buildOffToggleHints();
+      if (stickyControls) {
+        stickyControls.appendChild(outlineHint);
+        stickyControls.appendChild(notesHint);
+      } else {
+        aside.appendChild(outlineHint);
+        aside.appendChild(notesHint);
       }
 
       let searchDebounceTimer = null;

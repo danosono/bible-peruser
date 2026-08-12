@@ -91,7 +91,7 @@ The old "requires 900px" overlay (`.bp-mobile-overlay`) survives only as a `<320
 
 ### State
 
-`localStorage` keys: `bibleLastBook`, `bibleLastChapter`, `bookBarScroll`, `bpEntireBookOrigin`, `bpFontScale`, `stickyHighlightMode`, `bpDesktopTipShown`.
+`localStorage` keys: `bibleLastBook`, `bibleLastChapter`, `bookBarScroll`, `bpEntireBookOrigin`, `bpFontScale`, `stickyHighlightMode`, `bpDesktopTipShown`, `bpShowStudyNotes`, `bpShowOutlines`.
 
 Window globals for cross-module state: `window._currentBookId`, `window._currentChapterNum`, `window._currentViewMode` (`"chapter"` | `"entireBook"`), `window._lastLoadedTopics`.
 

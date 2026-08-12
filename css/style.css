@@ -14,9 +14,8 @@
     gap: 1.35em;
   }
   .bp-header__explorer-link,
-  .bp-header__berean-link,
-  .bp-header__profile-link {
-    font-size: 1.05em;
+  .bp-header__berean-link {
+    font-size: 0.85em;
   }
   .bible-chapter {
     columns: 4;
@@ -389,6 +388,19 @@ html.bp-hide-study-notes .bp-chapter-search-field--extra {
 html.bp-hide-study-notes .bp-study-notes-hint {
   display: block;
 }
+.bp-outline-hint {
+  display: none;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--text-muted, var(--text-tertiary));
+  margin: 0.3em 0 0.6em;
+}
+.bp-outline-hint strong {
+  color: var(--accent);
+}
+html.bp-hide-outlines .bp-outline-hint {
+  display: block;
+}
 
 .bp-app.bp-entire-book-mode #prev-chapter-btn,
 .bp-app.bp-entire-book-mode #next-chapter-btn,
@@ -594,11 +606,19 @@ html.bp-hide-study-notes .bp-study-notes-hint {
   gap: 0.95em;
 }
 
+.bp-header__stacked-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.05em;
+  line-height: 1.2;
+}
+
 .bp-header__explorer-link {
   color: var(--accent);
   font-weight: bold;
   text-decoration: underline;
-  font-size: 0.98em;
+  font-size: 0.78em;
   white-space: nowrap;
 }
 
@@ -606,16 +626,8 @@ html.bp-hide-study-notes .bp-study-notes-hint {
   color: var(--accent);
   font-weight: bold;
   text-decoration: underline;
-  font-size: 1.02em;
+  font-size: 0.8em;
   margin-right: 0;
-  white-space: nowrap;
-}
-
-.bp-header__profile-link {
-  color: var(--accent);
-  font-weight: bold;
-  text-decoration: underline;
-  font-size: 0.98em;
   white-space: nowrap;
 }
 
@@ -1258,11 +1270,15 @@ footer {
   }
 }
 
-/* Compare References modal */
+/* Compare References modal. No dimmed backdrop by design — the reader can
+   drag the modal aside to read a referenced verse in its chapter context
+   underneath, so the overlay wrapper is only used for its flex-centering on
+   initial open and never blocks or dims the page (pointer-events: none). */
 .bp-compare-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.55);
+  background: transparent;
+  pointer-events: none;
   z-index: 1200;
   display: flex;
   align-items: center;
@@ -1281,6 +1297,18 @@ footer {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  pointer-events: auto;
+}
+.bp-compare-modal__header--draggable {
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+.bp-compare-modal__header--draggable .bp-compare-modal__close {
+  cursor: pointer;
+}
+.bp-compare-modal__header--dragging {
+  cursor: grabbing;
 }
 .bp-compare-modal__header {
   display: flex;
@@ -1546,6 +1574,14 @@ footer {
    are untouched. */
 html.bp-hide-study-notes .topic-label-btn,
 html.bp-hide-study-notes .topic-highlight-btn {
+  display: none;
+}
+
+/* Hides the auto-generated structural outline buttons when the footer's
+   Outline toggle is switched off. The developer's own label/highlight
+   buttons (see bp-hide-study-notes above) are a separate, independent
+   toggle — untouched here. */
+html.bp-hide-outlines .topic-outline-btn {
   display: none;
 }
 
@@ -2099,14 +2135,11 @@ html.bp-hide-study-notes .topic-highlight-btn {
     margin: 0 0.25em;
   }
   .bp-header__berean-link {
-    font-size: 0.82em;
+    font-size: 0.68em;
     margin-right: 0;
   }
   .bp-header__explorer-link {
-    font-size: 0.82em;
-  }
-  .bp-header__profile-link {
-    font-size: 0.82em;
+    font-size: 0.68em;
   }
   .bp-header__info {
     margin-left: 0.3em;
@@ -2180,7 +2213,6 @@ html.bp-hide-study-notes .topic-highlight-btn {
 
   .bp-header__explorer-link,
   .bp-header__berean-link,
-  .bp-header__profile-link,
   .bp-header__info {
     font-size: 0.74em;
   }
