@@ -1233,6 +1233,21 @@
           ]
         },
         {
+          "label": "Reward in heaven",
+          "verses": ["12"],
+          "references": ["Matthew 6:19-21", "Matthew 19:29"]
+        },
+        {
+          "label": "Fullfill Law and Prophets",
+          "verses": ["17-20"],
+          "references": [
+            "Matthew 3:15",
+            "Luke 24:25-27",
+            "John 5:39",
+            "John 5:46"
+          ]
+        },
+        {
           "highlight": "Blessed are",
           "text": [
             "the poor in spirit",
