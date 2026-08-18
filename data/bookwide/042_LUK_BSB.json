@@ -1,5 +1,14 @@
 {
   "bookWideOutline": [],
   "bookWideLabels": [],
-  "bookWideHighlights": []
+  "bookWideHighlights": [
+    {
+      "highlight": "I tell you",
+      "text": ["I tell you"]
+    },
+    {
+      "highlight": "Listen",
+      "text": ["Listen", " hear ", "hear.", "hears", "hear,", " ears", " ears."]
+    }
+  ]
 }
