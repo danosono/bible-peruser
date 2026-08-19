@@ -129,6 +129,21 @@ function setMetaBtnContent(btn, label) {
   if (!btn.hasAttribute("aria-label")) btn.setAttribute("aria-label", text);
 }
 
+// Appends the decorative iOS-style switch (track + thumb) used by the
+// Outline/Notes footer toggles. Purely visual (aria-hidden) — the button's
+// own aria-pressed attribute carries the actual state; .bp-meta-btn--off
+// (already toggled by each button's refreshButton()) drives which way the
+// track/thumb render via CSS, so no JS here needs to touch on/off state.
+function appendToggleSwitch(btn) {
+  const track = document.createElement("span");
+  track.className = "toggle-switch";
+  track.setAttribute("aria-hidden", "true");
+  const thumb = document.createElement("span");
+  thumb.className = "toggle-switch__thumb";
+  track.appendChild(thumb);
+  btn.appendChild(track);
+}
+
 function ensureOutlineToggle(footer) {
   applyOutlinePref(getOutlinePref());
 
@@ -137,6 +152,7 @@ function ensureOutlineToggle(footer) {
   function refreshButton() {
     const shown = getOutlinePref();
     btn.classList.toggle("bp-meta-btn--off", !shown);
+    btn.setAttribute("aria-pressed", shown ? "true" : "false");
     const tooltip = shown ? "Don't show outline" : "Show outline";
     btn.dataset.tooltip = tooltip;
     btn.setAttribute("aria-label", tooltip);
@@ -146,8 +162,9 @@ function ensureOutlineToggle(footer) {
     btn = document.createElement("button");
     btn.id = "bp-outline-toggle";
     btn.type = "button";
-    btn.className = "bp-meta-btn bp-tooltip-up";
+    btn.className = "bp-meta-btn bp-meta-btn--toggle bp-tooltip-up";
     setMetaBtnContent(btn, "\u{1F4D1} Outline");
+    appendToggleSwitch(btn);
     btn.addEventListener("click", () => {
       const nowShow = !getOutlinePref();
       if (typeof window !== "undefined" && window.localStorage) {
@@ -169,6 +186,7 @@ function ensureStudyNotesToggle(footer) {
   function refreshButton() {
     const shown = getStudyNotesPref();
     btn.classList.toggle("bp-meta-btn--off", !shown);
+    btn.setAttribute("aria-pressed", shown ? "true" : "false");
     const tooltip = shown ? "Don't show notes" : "Show notes";
     // Custom tooltip (data-tooltip + .bp-tooltip-up) instead of the native
     // title attribute — native tooltips always open downward, which clips
@@ -181,8 +199,9 @@ function ensureStudyNotesToggle(footer) {
     btn = document.createElement("button");
     btn.id = "bp-study-notes-toggle";
     btn.type = "button";
-    btn.className = "bp-meta-btn bp-tooltip-up";
+    btn.className = "bp-meta-btn bp-meta-btn--toggle bp-tooltip-up";
     setMetaBtnContent(btn, "\u{1F3F7}\u{FE0F} Notes");
+    appendToggleSwitch(btn);
     btn.addEventListener("click", () => {
       const nowShow = !getStudyNotesPref();
       if (typeof window !== "undefined" && window.localStorage) {
@@ -199,15 +218,23 @@ function ensureStudyNotesToggle(footer) {
 // Builds a fresh pair of off-state sidebar hints (Outlines, then Notes) —
 // called at every left/right panel insertion point so ordering (outline
 // hint above notes hint, when both toggles are off) stays consistent.
-function buildOffToggleHints() {
+// isEntireBook must match how the caller is rendering (chapter view vs.
+// Entire Book view): the footer — and thus the Outline/Notes toggles
+// themselves — is hidden entirely in Entire Book mode (.bp-entire-book-mode
+// .bp-footer { display: none }), so that variant tells the reader to exit
+// the mode first instead of pointing at a toggle they can't see.
+function buildOffToggleHints(isEntireBook) {
+  const scope = isEntireBook ? "Book" : "Chapter";
   const outlineHint = document.createElement("div");
   outlineHint.className = "bp-outline-hint";
-  outlineHint.innerHTML =
-    "Outlines are off. Click the <strong>Outlines</strong> button at the bottom to turn them on.";
+  outlineHint.innerHTML = isEntireBook
+    ? `${scope} outlines are off. Exit Entire Book mode and use the <strong>Outlines</strong> toggle at the bottom of the page to turn them on.`
+    : `${scope} outlines are off. Click the <strong>Outlines</strong> toggle at the bottom to turn them on.`;
   const notesHint = document.createElement("div");
   notesHint.className = "bp-study-notes-hint";
-  notesHint.innerHTML =
-    "Notes are off. Click the <strong>Notes</strong> button at the bottom to turn them on.";
+  notesHint.innerHTML = isEntireBook
+    ? `${scope} notes are off. Exit Entire Book mode and use the <strong>Notes</strong> toggle at the bottom of the page to turn them on.`
+    : `${scope} notes are off. Click the <strong>Notes</strong> toggle at the bottom to turn them on.`;
   return { outlineHint, notesHint };
 }
 
@@ -2298,8 +2325,11 @@ async function loadBibleChapter(
         }
         chapterSearchField = chapterSearchFields[0];
 
-        const { outlineHint, notesHint } = buildOffToggleHints();
-        insertField(outlineHint);
+        // Outline hint only ever shows on the left panel (topicBar) —
+        // outline buttons never render on the right. Notes hint shows on
+        // both, since study notes span both the left "label" buttons and
+        // the right "highlight" buttons.
+        const { notesHint } = buildOffToggleHints(false);
         insertField(notesHint);
       }
 
@@ -2473,7 +2503,7 @@ async function loadBibleChapter(
         topicBar.appendChild(
           buildSuggestNewLink("label", { scope: "chapter", bookId, chapterNum }),
         );
-        const leftHints = buildOffToggleHints();
+        const leftHints = buildOffToggleHints(false);
         topicBar.appendChild(leftHints.outlineHint);
         topicBar.appendChild(leftHints.notesHint);
       }
@@ -3281,7 +3311,7 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
       topicBar.appendChild(
         buildSuggestNewLink("label", { scope: "bookwide", bookId, chapterNum: null }),
       );
-      const leftHints = buildOffToggleHints();
+      const leftHints = buildOffToggleHints(true);
       topicBar.appendChild(leftHints.outlineHint);
       topicBar.appendChild(leftHints.notesHint);
     }
@@ -3315,12 +3345,12 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
       } else {
         aside.insertBefore(bookSearchField, aside.firstChild);
       }
-      const { outlineHint, notesHint } = buildOffToggleHints();
+      // Outline hint only ever shows on the left panel (topicBar) — outline
+      // buttons never render on the right. Notes hint shows on both.
+      const { notesHint } = buildOffToggleHints(true);
       if (stickyControls) {
-        stickyControls.appendChild(outlineHint);
         stickyControls.appendChild(notesHint);
       } else {
-        aside.appendChild(outlineHint);
         aside.appendChild(notesHint);
       }
 

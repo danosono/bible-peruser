@@ -1521,15 +1521,99 @@ footer {
 .bp-meta-btn--off:hover {
   background: #3d4b85;
 }
+
+/* Outline/Notes footer toggles — real iOS-style switches instead of a
+   plain button. The <button> itself is reduced to plain inline icon+label
+   text (chrome stripped: no background/border/padding/radius); the switch
+   look comes entirely from the decorative .toggle-switch/.toggle-switch__
+   thumb spans appended after the label (appendToggleSwitch() in
+   bible-loader.js). This single rule applies identically whether
+   .bp-meta-btn--off (the click handlers' existing off-state class) is
+   present or not — text color/weight/border never differ between on and
+   off, only the switch does, so the button's own box size never changes
+   and nothing else in the footer row shifts when a toggle flips (verified
+   with getBoundingClientRect() before/after). Two classes on the selector
+   is deliberate: it out-specifies the plain .bp-meta-btn/.bp-meta-btn--off/
+   :hover rules above (and the 3000px bump below) regardless of source
+   order, so this always wins without needing !important. */
+.bp-meta-btn.bp-meta-btn--toggle {
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  color: #f5f6fa;
+  font-weight: normal;
+}
+.bp-meta-btn.bp-meta-btn--toggle:hover {
+  background: none;
+  color: var(--gold-accent);
+}
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  flex: none;
+  width: 1.9em;
+  height: 1.05em;
+  border-radius: 999px;
+  background: var(--accent-vivid); /* on */
+  transition: background 0.15s ease;
+}
+.bp-meta-btn--off .toggle-switch {
+  background: #55606e; /* off */
+}
+.toggle-switch__thumb {
+  position: absolute;
+  top: 0.12em;
+  left: calc(1.9em - 0.8em - 0.12em); /* right side = on */
+  width: 0.8em;
+  height: 0.8em;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  transition: left 0.15s ease;
+}
+.bp-meta-btn--off .toggle-switch__thumb {
+  left: 0.12em; /* left side = off */
+}
+
 .bp-meta-btn-row {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
 }
+/* Right-anchors the button row to the footer's own right edge (rather than
+   flowing after #bp-char-count, whose "Top words" text varies in length
+   every chapter) and pins its box to the width of the full 6-button set
+   (Outline, Notes, Book, Timeline, People, Places — measured live in
+   Chrome via getBoundingClientRect(), not guessed). Outline/Notes/Book are
+   unconditional and always render first, so — combined with the row never
+   shrinking below its full width — their on-screen position stays fixed
+   whether Timeline/People/Places show or not; a narrower conditional set
+   just leaves empty trailing space instead of the row (and Outline) drifting
+   right. margin-right holds the row's own anchor point (and thus the
+   leftmost button, Outline) a fixed distance in from the viewport's right
+   edge, clear of the floating .bp-account-widget (fixed, 52px circle,
+   right: 1.5rem / bottom: 1.5rem — js/bp-account-widget.js) that overlaps
+   this corner; 4rem leaves ~20px of real clearance past the widget's left
+   edge, confirmed via getBoundingClientRect() on both elements together.
+   Re-measure and update this, the 3000px min-width below, and the
+   margin-right if a button is added/removed, a label changes, or the
+   widget's own size/position changes. */
+.bp-footer .bp-meta-btn-row {
+  margin-left: auto;
+  margin-right: 4rem;
+  min-width: 508px;
+}
 @media (min-width: 3000px) {
   .bp-meta-btn {
     font-size: 1.05em;
     padding: 0.4em 0.9em;
+  }
+  .bp-footer .bp-meta-btn-row {
+    min-width: 684px;
   }
 }
 
@@ -2895,6 +2979,13 @@ html.bp-suggestions-hidden .bp-suggest-new-link {
     flex: none;
     margin-left: 0;
     padding: 0.4em 0.65em;
+  }
+  /* Same specificity as the rule above (three ancestor classes each) so
+     source order — this comes after — decides the tie: keeps the Outline/
+     Notes toggle buttons chrome-free in the mobile drawer too, instead of
+     inheriting the generic mobile button padding/pill look. */
+  html.bp-mobile .bp-meta-btn-row .bp-meta-btn--toggle {
+    padding: 0;
   }
 
   /* --- Tap ergonomics --- */
