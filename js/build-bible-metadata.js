@@ -12,9 +12,9 @@ const fs = require("fs");
 const path = require("path");
 
 const GAME_DATA_DIR =
-  "C:\\Unity Projects\\_BibleDatasets\\GospelgoMapDatasets\\GameData";
+  "C:\\Unity Projects\\_BibleDatasets\\GospelGo_GoMap_Datasets\\GameData";
 const VERSES_CSV_PATH =
-  "C:\\Unity Projects\\_BibleDatasets\\GospelgoMapDatasets\\RawDataInclude\\theographic-bible-metadata-master\\theographic-bible-metadata-master\\CSV\\Verses.csv";
+  "C:\\Unity Projects\\_BibleDatasets\\GospelGo_GoMap_Datasets\\RawDataInclude\\theographic-bible-metadata-master\\theographic-bible-metadata-master\\CSV\\Verses.csv";
 
 const OUT_DIR = path.join(__dirname, "..", "data");
 
@@ -98,6 +98,16 @@ function readJson(filePath) {
 function writeJson(filePath, data) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, JSON.stringify(data), "utf8");
+}
+
+// Theographic descriptions are full of Markdown-style cross-reference links
+// like "[John 1:44](/john#John.1.44)" \u2014 internal anchors into the source
+// site that don't resolve to anything here. Reduced to just the visible
+// label so they read as plain text instead of literal bracket/paren
+// clutter (most descriptions contain at least one of these).
+function stripMarkdownLinks(text) {
+  if (typeof text !== "string") return text;
+  return text.replace(/\[([^\]]+)\]\([^)]*\)/g, "$1");
 }
 
 // Returns { text, truncated }. The full, untruncated text ships separately
@@ -340,7 +350,8 @@ function buildVerseTagData() {
   referencedPeopleIds.forEach((id) => {
     const p = peopleById.get(id);
     if (!p) return;
-    const desc = truncate(p.description, 320);
+    const cleanDescription = stripMarkdownLinks(p.description);
+    const desc = truncate(cleanDescription, 320);
     people[id] = {
       name: p.name,
       alsoCalled: p.alsoCalled || null,
@@ -350,7 +361,7 @@ function buildVerseTagData() {
       description: desc.text,
       truncated: desc.truncated,
     };
-    if (desc.truncated) peopleFull[id] = p.description.trim();
+    if (desc.truncated) peopleFull[id] = cleanDescription.trim();
   });
 
   const places = {};
@@ -358,7 +369,8 @@ function buildVerseTagData() {
   referencedPlaceIds.forEach((id) => {
     const p = placesById.get(id);
     if (!p) return;
-    const desc = truncate(p.description, 320);
+    const cleanDescription = stripMarkdownLinks(p.description);
+    const desc = truncate(cleanDescription, 320);
     places[id] = {
       name: p.name,
       lat: typeof p.lat === "number" ? p.lat : null,
@@ -367,7 +379,7 @@ function buildVerseTagData() {
       description: desc.text,
       truncated: desc.truncated,
     };
-    if (desc.truncated) placesFull[id] = p.description.trim();
+    if (desc.truncated) placesFull[id] = cleanDescription.trim();
   });
 
   const peopleByChapterOut = {};

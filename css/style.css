@@ -1748,6 +1748,11 @@ html.bp-hide-outlines .topic-outline-btn {
   font-size: 0.9rem;
   line-height: 1.4;
   margin-top: 0.4rem;
+  /* Theographic descriptions use \n\n paragraph breaks — collapsed by the
+     default white-space: normal, which is why they read as one wall of
+     text. pre-line preserves the breaks while still collapsing the
+     dataset's own incidental runs of spaces/tabs within a line. */
+  white-space: pre-line;
 }
 .bp-info-card__toggle {
   background: none;
