@@ -341,7 +341,13 @@
         "label": "Women",
         "verses": ["1-3"],
         "references": ["Luke 23:27", "Luke 23:49", "Luke 23:55"],
-        "emphasis": ["Mary", "Joanna", "Susanna", "many others", "ministering to them out of their own means"]
+        "emphasis": [
+          "Mary",
+          "Joanna",
+          "Susanna",
+          "many others",
+          "ministering to them out of their own means"
+        ]
       },
       {
         "highlight": "Hear",
@@ -426,9 +432,9 @@
         "emphasis": ["the Christ of God"]
       },
       {
-        "label": "Jesus' death and resurrection",
+        "label": "Jesus predicts His death & resurrection",
         "verses": ["22", "44"],
-        "emphasis": ["suffer", " rejected","killed", " raised to life"]
+        "emphasis": ["suffer", " rejected", "killed", " raised to life"]
       },
       {
         "highlight": "Who Jesus is",
@@ -536,6 +542,71 @@
         "outline": "Woes to Pharisees and Experts in the Law",
         "verses": ["37-54"],
         "references": ["Matthew 23:1–36"]
+      },
+      {
+        "label": "Pray",
+        "verses": ["1-13"],
+        "emphasis": ["say:", "persistence", "ask", "seek", "knock"]
+      },
+      {
+        "label": "Pray",
+        "verses": ["1-13"],
+        "emphasis": [
+          "say:",
+          "given",
+          "receive",
+          "find",
+          "opened",
+          "give the Holy Spirit"
+        ]
+      },
+      {
+        "label": "a man with a demon?",
+        "verses": ["14-16"],
+        "emphasis": ["it is by Beelzebul"]
+      },
+      {
+        "label": "stronger than demons",
+        "verses": ["17-23"],
+        "emphasis": ["someone stronger attacks and overpowers"]
+      },
+      {
+        "label": "beware demons",
+        "verses": ["24-26"],
+        "emphasis": ["final plight of that man is worse than the first"]
+      },
+      {
+        "label": "Woes to Pharisees",
+        "verses": ["37-44"],
+        "emphasis": ["woe", "Pharisees"]
+      },
+      {
+        "label": "Woes to Pharisees",
+        "verses": ["37-44"],
+        "emphasis": [
+          "but inside",
+          "greed and wickedness",
+          "disregard justice and the love of God.",
+          " love the chief seats",
+          "and the greetings",
+          "you are like unmarked graves"
+        ]
+      },
+      {
+        "label": "Woes to law experts",
+        "verses": ["45-52"],
+        "emphasis": ["woe", "experts in the law"]
+      },
+      {
+        "label": "Woes to law experts",
+        "verses": ["45-52"],
+        "emphasis": [
+          "weigh men down with heavy burdens",
+          "will not lift a finger to lighten their load",
+          "they killed the prophets, and you build their tombs.",
+          "have taken away the key to knowledge",
+          "hindered those who were entering"
+        ]
       }
     ],
     "12": [
@@ -654,40 +725,95 @@
         "references": ["Matthew 5:13–16", "Mark 9:49–50"]
       }
     ],
-    "15": [
-      {
-        "outline": "The Parable of the Lost Sheep",
-        "verses": ["1-7"],
-        "references": ["Matthew 18:10–14"]
+    "15": {
+      "meta": {
+        "Context": "Envy",
+        "Type": "Gospels",
+        "Audience": "Jews, others"
       },
-      {
-        "outline": "The Parable of the Lost Coin",
-        "verses": ["8-10"],
-        "references": []
+      "topics": [
+        {
+          "outline": "The Parable of the Lost Sheep",
+          "verses": ["1-7"],
+          "references": ["Matthew 18:10–14"]
+        },
+        {
+          "outline": "The Parable of the Lost Coin",
+          "verses": ["8-10"],
+          "references": []
+        },
+        {
+          "label": "Grumbling",
+          "verses": ["2", "30"]
+        },
+        {
+          "highlight": "Lost and Found",
+          "text": [
+            "rejoice",
+            "found my lost",
+            "celebrate.",
+            "celebrate and be glad",
+            "was dead and is alive again"
+          ]
+        }
+      ]
+    },
+    "16": {
+      "meta": {
+        "Context": "Greed, money, stewardship, responsibility",
+        "Type": "Gospels",
+        "Audience": "Jews, others"
       },
-      {
-        "outline": "The Parable of the Prodigal Son",
-        "verses": ["11-32"],
-        "references": ["Deuteronomy 21:18–21"]
-      }
-    ],
-    "16": [
-      {
-        "outline": "The Parable of the Shrewd Manager",
-        "verses": ["1-13"],
-        "references": []
-      },
-      {
-        "outline": "The Law and the Prophets",
-        "verses": ["14-18"],
-        "references": []
-      },
-      {
-        "outline": "The Rich Man and Lazarus",
-        "verses": ["19-31"],
-        "references": ["John 5:39–47"]
-      }
-    ],
+      "topics": [
+        {
+          "outline": "The Parable of the Shrewd Manager",
+          "verses": ["1-13"],
+          "references": []
+        },
+        {
+          "outline": "The Law and the Prophets",
+          "verses": ["14-18"],
+          "references": []
+        },
+        {
+          "outline": "The Rich Man and Lazarus",
+          "verses": ["19-31"],
+          "references": ["John 5:39–47"]
+        },
+        {
+          "label": "The heart?",
+          "verses": ["31"],
+          "references": ["Luke 8:8", "Luke 8:15"],
+          "note": [
+            "This seems to refer to the children of Abraham who denied Jesus, even after He raised others and even Himself from the dead."
+          ]
+        },
+        {
+          "highlight": "Money",
+          "text": [
+            "use worldly wealth",
+            "faithful",
+            "You cannot serve both God and money"
+          ]
+        },
+        {
+          "highlight": "Money",
+          "text": [
+            "You cannot serve both God and money",
+            "lovers of money",
+            "scoffing at Jesus",
+            "God knows your hearts"
+          ]
+        },
+        {
+          "highlight": "Compare/Contrast",
+          "text": [
+            "longing to be fed with the crumbs that fell from the rich man’s table",
+            "send Lazarus to dip the tip of his finger in water and cool my tongue"
+          ]
+        }
+      ]
+    },
     "17": [
       {
         "outline": "Temptations and Trespasses",
@@ -740,6 +866,89 @@
         "outline": "Jesus Heals a Blind Beggar",
         "verses": ["35-43"],
         "references": ["Matthew 20:29–34", "Mark 10:46–52"]
+      },
+      {
+        "label": "Pray persistently",
+        "verses": ["1-8"],
+        "emphasis": [
+          "pestering",
+          "perpetual requests",
+          "cry out to Him day and night"
+        ]
+      },
+      {
+        "label": "Pray humbly",
+        "verses": ["9-14"],
+        "emphasis": [
+          "unwilling even to lift up his eyes to heaven",
+          "God, have mercy on me, a sinner!",
+          "the one who humbles himself will be exalted"
+        ]
+      },
+      {
+        "label": "Example 1",
+        "verses": ["15-17"],
+        "note": ["Children are persistent, humble  and trusting"]
+      },
+      {
+        "label": "God first",
+        "verses": ["18-30"],
+        "note": [
+          "God first. Trust Him!",
+          "God will provide all you need with abundance!"
+        ],
+        "emphasis": [
+          "everything",
+          "treasure in heaven",
+          "come, follow me",
+          "receive many times more in this age",
+          "and in the age to come, eternal life"
+        ]
+      },
+      {
+        "label": "Example 2",
+        "verses": ["31-34"],
+        "note": [
+          "Jesus persistently prayed in solitude and made his way toward the cross.",
+          "Jesus humbly submitted to the will of God and didn't mistreat others.",
+          "Jesus trusted God completely.",
+          "Jesus gave up all He had on heaven to "
+        ]
+      },
+      {
+        "label": "Example 3",
+        "verses": ["35-43"],
+        "note": [
+          "Blind man was persistent, humble and trusted that Jesus could heal him."
+        ],
+        "emphasis": [
+          "called out",
+          "have mercy on me",
+          "cried out all the louder",
+          "let me see again"
+        ]
+      },
+      {
+        "label": "--------"
+      },
+      {
+        "label": "reaction to Jesus",
+        "verses": ["22-23"],
+        "references": ["Luke 19:6-9"],
+        "note": [
+          "Ruler: very sad, claimed to be righteous, everything",
+          "Zaccaeus: joyfully, repented, half"
+        ],
+        "emphasis": [
+          "eternal life",
+          "Sell everything you own",
+          "wealthy",
+          "very sad"
+        ]
+      },
+      {
+        "highlight": "have mercy on me",
+        "text": ["have mercy on me"]
       }
     ],
     "19": [
@@ -804,6 +1013,11 @@
         "outline": "Beware of the Scribes",
         "verses": ["45-47"],
         "references": ["Mark 12:38–40"]
+      },
+      {
+        "label": "Christ",
+        "verses": ["41-44"],
+        "references": ["Psalms 110:1"]
       }
     ],
     "21": [
