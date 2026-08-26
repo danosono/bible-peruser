@@ -282,7 +282,7 @@
         "verses": ["30"]
       },
       {
-        "label": "Exponential irony",
+        "label": "The irony",
         "verses": ["36-50"],
         "emphasis": [
           "said to himself",
@@ -1190,6 +1190,16 @@
         "outline": "The Ascension",
         "verses": ["50-53"],
         "references": ["Mark 16:19–20", "Acts 1:6–11"]
+      },
+      {
+        "label": "No dead body",
+        "verses": ["3", "23"],
+        "references": ["Matthew 26:12", "Mark 14:8", "John 12:7"],
+        "emphasis": ["did not find", "body"]
+      },
+      {
+        "highlight": "Jesus is God",
+        "text": ["When Jesus", "worshiped Him", "praising God"]
       }
     ]
   }

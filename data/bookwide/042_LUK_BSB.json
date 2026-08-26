@@ -42,6 +42,10 @@
     {
       "highlight": "Death",
       "text": ["death"]
+    },
+    {
+      "highlight": "Third day",
+      "text": ["third day"]
     }
   ]
 }
