@@ -219,6 +219,51 @@
         "outline": "Sharing among Believers",
         "verses": ["32-37"],
         "references": ["Acts 2:42–47"]
+      },
+      {
+        "label": "rejected Cornerstone",
+        "verses": ["10-11"],
+        "references": [
+          "Psalms 118:22",
+          "Isaiah 28:16",
+          "Matthew 21:42",
+          "Mark 12:10–11",
+          "Luke 20:17",
+          "Romans 9:33",
+          "Ephesians 2:20",
+          "1 Peter 2:6–8"
+        ],
+        "emphasis": ["rejected", "cornerstone"]
+      },
+      {
+        "label": "only Jesus",
+        "verses": ["12"],
+        "references": [
+          "John 14:6",
+          "Romans 10:9-10",
+          "1 Timothy 2:5-6",
+          "Philippians 2:9-11",
+          "Revelation 19:12-13"
+        ]
+      },
+      {
+        "label": "marveled",
+        "verses": ["13"],
+        "references": [
+          "Matthew 13:54-55",
+          "Mark 1:22",
+          "Luke 2:46-47  |  Jesus at 12 years old",
+          "Luke 4:22",
+          "John 7:15"
+        ]
+      },
+      {
+        "highlight": "Religious leaders",
+        "text": ["priests", "captain of the temple guard", "Sadducees", "seized", "rulers,", "elders", "scribes", "rejected", "high priest", "marveled", "seeing the man who had been healed", "Sanhedrin", "conferred together", "cannot deny it", "keep this message from spreading", "not to speak or teach at all in the name of Jesus", "threats", "could not find a way to punish them"]
+      },
+      {
+        "highlight": "despite persecution",
+        "text": ["lifted up their voices to God", "Sovereign Lord", "Lord, consider their threats", "meeting place was shaken", "they were all filled with the Holy Spirit and spoke the word of God boldly", "one in heart and soul", "continued to give their testimony about the resurrection of the Lord Jesus", "grace was upon them all"]
       }
     ],
     "5": [

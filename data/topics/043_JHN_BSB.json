@@ -42,6 +42,17 @@
         "references": []
       },
       {
+        "label": "Jesus is the Word of God",
+        "verses": ["1-3", 14],
+        "references": [
+          "Genesis 1:3 | God said. God used words to create.",
+          "Colossians 1:15-17  |  Creation",
+          "Hebrews 1:1-3  |  God spoke ",
+          "Revelation 19:13"
+        ],
+        "emphasis": ["Word", "made", "became flesh"]
+      },
+      {
         "highlight": "Jesus is God",
         "text": [
           "the Word was God",

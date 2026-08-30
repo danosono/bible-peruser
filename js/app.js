@@ -256,14 +256,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }, ms);
   }
 
+  function flashButtonHtml(button, nextHtml, restoreHtml, ms = 1500) {
+    if (!button) return;
+    button.innerHTML = nextHtml;
+    setTimeout(() => {
+      button.innerHTML = restoreHtml;
+    }, ms);
+  }
+
   const desktopCopyLinkBtn = document.getElementById("bp-copy-link-btn");
   if (desktopCopyLinkBtn) {
+    const desktopCopyLinkIconHtml = desktopCopyLinkBtn.innerHTML;
+    const desktopCopyLinkCheckHtml =
+      '<svg class="bp-header__copy-link-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>';
     desktopCopyLinkBtn.onclick = async () => {
       try {
         await copyTextToClipboard(getCurrentChapterLink());
-        flashButtonText(desktopCopyLinkBtn, "Copied!", "Copy Link");
+        flashButtonHtml(desktopCopyLinkBtn, desktopCopyLinkCheckHtml, desktopCopyLinkIconHtml);
       } catch {
-        flashButtonText(desktopCopyLinkBtn, "Copy Failed", "Copy Link", 1800);
+        flashButtonHtml(desktopCopyLinkBtn, "Copy Failed", desktopCopyLinkIconHtml, 1800);
       }
     };
   }

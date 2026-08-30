@@ -632,17 +632,26 @@ html.bp-hide-outlines .bp-outline-hint {
 }
 
 .bp-header__copy-link-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: #222;
   color: #fff;
   border: 1px solid #444;
   border-radius: 6px;
-  padding: 0.35em 0.9em;
+  padding: 0.45em;
   font-size: 0.95em;
   cursor: pointer;
   transition:
     background 0.2s,
     color 0.2s,
     border 0.2s;
+}
+
+.bp-header__copy-link-icon {
+  display: block;
+  width: 1.1em;
+  height: 1.1em;
 }
 
 .bp-header__copy-link-btn:hover {
