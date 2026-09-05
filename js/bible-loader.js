@@ -422,6 +422,189 @@ async function resolveReferenceForCompare(reference) {
   };
 }
 
+// Parses a topic.verses-style token ("15" or "3-6") into { start, end },
+// keeping ranges grouped (unlike expandVerseRangeTokens, which flattens them
+// into individual verse numbers) since callers here want one passage per token.
+function parseVerseToken(token) {
+  if (typeof token !== "string") return null;
+  const trimmed = token.trim();
+  const rangeMatch = trimmed.match(/^(\d+)-(\d+)$/);
+  if (rangeMatch) {
+    const start = parseInt(rangeMatch[1], 10);
+    const end = parseInt(rangeMatch[2], 10);
+    if (Number.isNaN(start) || Number.isNaN(end)) return null;
+    return { start, end: end >= start ? end : start };
+  }
+  const n = parseInt(trimmed, 10);
+  if (Number.isNaN(n)) return null;
+  return { start: n, end: n };
+}
+
+// Builds passage descriptors for a chapter-scoped topic's own verses, so the
+// compare modal/menu can include the source verse(s) in copy/share output
+// even though they aren't one of the topic's compared cross-references.
+function buildChapterSourcePassages(bookId, chapterNum, verses) {
+  if (!bookId || !chapterNum) return [];
+  return (Array.isArray(verses) ? verses : [])
+    .map((token) => {
+      const range = parseVerseToken(token);
+      if (!range) return null;
+      return {
+        bookId,
+        startChapter: chapterNum,
+        startVerse: range.start,
+        endChapter: chapterNum,
+        endVerse: range.end,
+      };
+    })
+    .filter(Boolean);
+}
+
+// Same idea for bookWideLabels/bookWideOutline entries, whose verses tokens
+// are "chapter:verse" or "chapter:verse-chapter:verse" (parseBookWideRangeToken,
+// defined further below — safe to call here since function declarations hoist).
+function buildBookWideSourcePassages(bookId, verses) {
+  if (!bookId) return [];
+  return (Array.isArray(verses) ? verses : [])
+    .map((token) => {
+      const parsed = parseBookWideRangeToken(token);
+      if (!parsed) return null;
+      return {
+        bookId,
+        startChapter: parsed.startChapter,
+        startVerse: parsed.startVerse,
+        endChapter: parsed.endChapter,
+        endVerse: parsed.endVerse,
+      };
+    })
+    .filter(Boolean);
+}
+
+// Resolves an explicit passage descriptor (bookId + start/end chapter+verse)
+// into a display title and ordered verse texts. Unlike resolveReferenceForCompare
+// (string-based, single-chapter only), this walks chapter/verse numbers
+// directly, so it also covers bookWideLabels' cross-chapter passages. The
+// title format ("Book C:V", "Book C:V-V", "Book C1:V1-C2:V2") matches the
+// GospelGo Verse List app's reference grammar exactly.
+async function resolvePassage(passage) {
+  if (!passage || !passage.bookId) return null;
+  const data = await getBibleData();
+  const books = Array.isArray(data?.books) ? data.books : [];
+  const book = books.find((b) => b.id === passage.bookId);
+  if (!book || !Array.isArray(book.chapters)) return null;
+
+  const bookLabel = bookNames[passage.bookId] || passage.bookId;
+  const verses = [];
+  for (let ch = passage.startChapter; ch <= passage.endChapter; ch++) {
+    const chapter = book.chapters.find((c) => c.number === ch);
+    if (!chapter || !Array.isArray(chapter.verses)) continue;
+    const fromVerse = ch === passage.startChapter ? passage.startVerse : 1;
+    const toVerse = ch === passage.endChapter ? passage.endVerse : Infinity;
+    chapter.verses.forEach((v) => {
+      const n = parseInt(v?.n, 10);
+      if (Number.isInteger(n) && n >= fromVerse && n <= toVerse) {
+        verses.push({ n: v.n, text: v.text });
+      }
+    });
+  }
+  if (!verses.length) return null;
+
+  let title = `${bookLabel} ${passage.startChapter}:${passage.startVerse}`;
+  if (passage.endChapter !== passage.startChapter) {
+    title += `-${passage.endChapter}:${passage.endVerse}`;
+  } else if (passage.endVerse !== passage.startVerse) {
+    title += `-${passage.endVerse}`;
+  }
+  return { title, verses };
+}
+
+// Clipboard helper duplicated from js/app.js's private DOMContentLoaded
+// closure (not reachable from this ES module) — same navigator.clipboard-
+// with-textarea-fallback pattern, returning success instead of throwing.
+async function copyTextToClipboard(text) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch {
+      // fall through to the execCommand fallback below
+    }
+  }
+  try {
+    const temp = document.createElement("textarea");
+    temp.value = text;
+    temp.setAttribute("readonly", "");
+    temp.style.position = "fixed";
+    temp.style.left = "-9999px";
+    document.body.appendChild(temp);
+    temp.select();
+    document.execCommand("copy");
+    document.body.removeChild(temp);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+// Briefly swaps a button's label to show copy feedback, then restores it.
+function flashButtonText(button, nextText, ms = 1500) {
+  if (!button.dataset.originalLabel) {
+    button.dataset.originalLabel = button.textContent;
+  }
+  const original = button.dataset.originalLabel;
+  button.textContent = nextText;
+  setTimeout(() => {
+    button.textContent = original;
+  }, ms);
+}
+
+// Resolves the source passage(s) a topic's own button represents (if any,
+// via compareContext.sourcePassages) followed by each given reference string
+// — source first, per the modal's "include the verse(s) referenced in the
+// button from which the modal arose" requirement — into one ordered list of
+// { title, verses } ready for copy/share formatting.
+async function resolveCompareRefsAndSources(refs, compareContext) {
+  const sourcePassages = compareContext?.sourcePassages || [];
+  const sourceResolved = await Promise.all(
+    sourcePassages.map((p) => resolvePassage(p)),
+  );
+  const refResolved = await Promise.all(
+    (refs || []).map(async (ref) => {
+      const resolved = await resolveReferenceForCompare(ref);
+      if (!resolved) return null;
+      const core = extractReferenceCore(ref);
+      const annotation = core
+        ? ref.slice(ref.indexOf(core) + core.length).trim()
+        : "";
+      return {
+        title: annotation ? `${resolved.title} ${annotation}` : resolved.title,
+        verses: resolved.verses,
+      };
+    }),
+  );
+  return [...sourceResolved.filter(Boolean), ...refResolved.filter(Boolean)];
+}
+
+function formatReferenceListText(resolvedList) {
+  return resolvedList.map((r) => `"${r.title}"`).join(", ");
+}
+
+function formatVersesText(resolvedList) {
+  return resolvedList
+    .map((r) => {
+      const verseLines = r.verses.map((v) => `${v.n} ${v.text}`).join("\n");
+      return `${r.title}\n${verseLines}`;
+    })
+    .join("\n\n");
+}
+
+function buildVerseListShareUrl(resolvedList, title) {
+  const params = new URLSearchParams();
+  params.set("refs", resolvedList.map((r) => r.title).join(";"));
+  if (title) params.set("title", title);
+  return `https://verselist.gospelgo.org/#${params.toString()}`;
+}
+
 // Makes the compare modal draggable by its header, so the reader can slide
 // it aside to read a referenced verse in its chapter context underneath —
 // the overlay no longer dims/blocks the page (see .bp-compare-overlay CSS),
@@ -553,6 +736,68 @@ function openCompareModal(references, compareContext) {
   emptyMsg.textContent = "Check a reference on the left to show it here.";
   content.appendChild(emptyMsg);
 
+  const footer = document.createElement("div");
+  footer.className = "bp-compare-modal__footer";
+  modal.appendChild(footer);
+
+  function addFooterButton(label, tooltip) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "bp-compare-modal__footer-btn";
+    button.textContent = label;
+    button.title = tooltip;
+    button.setAttribute("aria-label", tooltip);
+    footer.appendChild(button);
+    return button;
+  }
+
+  const refListBtn = addFooterButton(
+    "Reference List",
+    "Copy verse references (comma separated)",
+  );
+  const copyVersesBtn = addFooterButton(
+    "Copy Verses",
+    "Copy Verse references with verse text",
+  );
+  const shareRefsBtn = addFooterButton(
+    "Share References",
+    "Create a link to share. Link will open referenced verses in the GospelGo Verse List web app.",
+  );
+  addFooterButton(
+    "Verse List",
+    "Visit Verse List web app to see and share verse lists.",
+  ).addEventListener("click", () => {
+    window.open("https://verselist.gospelgo.org/", "_blank", "noopener,noreferrer");
+  });
+
+  refListBtn.addEventListener("click", async () => {
+    const resolved = await resolveCompareRefsAndSources(
+      getOrderedCheckedRefs(),
+      compareContext,
+    );
+    const ok = await copyTextToClipboard(formatReferenceListText(resolved));
+    flashButtonText(refListBtn, ok ? "Copied!" : "Copy failed");
+  });
+
+  copyVersesBtn.addEventListener("click", async () => {
+    const resolved = await resolveCompareRefsAndSources(
+      getOrderedCheckedRefs(),
+      compareContext,
+    );
+    const ok = await copyTextToClipboard(formatVersesText(resolved));
+    flashButtonText(copyVersesBtn, ok ? "Copied!" : "Copy failed");
+  });
+
+  shareRefsBtn.addEventListener("click", async () => {
+    const resolved = await resolveCompareRefsAndSources(
+      getOrderedCheckedRefs(),
+      compareContext,
+    );
+    const url = buildVerseListShareUrl(resolved, compareContext?.title);
+    const ok = await copyTextToClipboard(url);
+    flashButtonText(shareRefsBtn, ok ? "Link copied!" : "Copy failed");
+  });
+
   function closeModal() {
     document.removeEventListener("keydown", onKeydown);
     overlay.remove();
@@ -583,6 +828,17 @@ function openCompareModal(references, compareContext) {
       },
     );
     emptyMsg.style.display = anyVisible ? "none" : "";
+  }
+
+  // "The current modal's list" for copy/share purposes: the checked
+  // references, in their current (possibly drag-reordered) sidebar order.
+  function getOrderedCheckedRefs() {
+    return Array.from(
+      sidebarList.querySelectorAll(".bp-compare-sidebar__row"),
+    )
+      .map((row) => entries.get(row.dataset.ref))
+      .filter((entry) => entry && entry.checkbox.checked)
+      .map((entry) => entry.ref);
   }
 
   function attachDragReorder(row, handle) {
@@ -686,7 +942,7 @@ function openCompareModal(references, compareContext) {
 
     content.appendChild(card);
 
-    entries.set(ref, { row, checkbox, card });
+    entries.set(ref, { ref, row, checkbox, card });
 
     checkbox.addEventListener("change", syncContentOrder);
     attachDragReorder(row, handle);
@@ -1718,6 +1974,22 @@ function openReferenceMenu(
       openCompareModal(compareCandidates, compareContext);
     });
     menu.appendChild(compareBtn);
+
+    const copyVersesBtn = document.createElement("button");
+    copyVersesBtn.type = "button";
+    copyVersesBtn.className = "reference-menu-compare-btn";
+    copyVersesBtn.textContent = "Copy Verses";
+    copyVersesBtn.title = "Copy Verse references with verse text";
+    copyVersesBtn.addEventListener("click", async (e) => {
+      e.stopPropagation();
+      const resolved = await resolveCompareRefsAndSources(
+        compareCandidates,
+        compareContext,
+      );
+      const ok = await copyTextToClipboard(formatVersesText(resolved));
+      flashButtonText(copyVersesBtn, ok ? "Copied!" : "Copy failed");
+    });
+    menu.appendChild(copyVersesBtn);
   }
 
   (links || []).forEach((link) => {
@@ -2430,6 +2702,7 @@ async function loadBibleChapter(
             {
               title: topic.label,
               verseRef: formatChapterVerseLabel(bookId, chapterNum, topic.verses),
+              sourcePassages: buildChapterSourcePassages(bookId, chapterNum, topic.verses),
             },
           );
           decorateTopicButtonWithNote(btn, topic.note, "Click to view note");
@@ -2464,6 +2737,7 @@ async function loadBibleChapter(
             {
               title: topic.outline,
               verseRef: formatChapterVerseLabel(bookId, chapterNum, topic.verses),
+              sourcePassages: buildChapterSourcePassages(bookId, chapterNum, topic.verses),
             },
           );
           decorateTopicButtonWithNote(
@@ -3247,7 +3521,10 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
           openBookWideOutlineReference,
           "Click to open referenced book in Entire Book view",
           undefined,
-          { title: outlineEntry.outline },
+          {
+            title: outlineEntry.outline,
+            sourcePassages: buildBookWideSourcePassages(bookId, outlineEntry.verses),
+          },
         );
         decorateTopicButtonWithNote(
           btn,
@@ -3281,7 +3558,10 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
           openBookWideOutlineReference,
           "Click to open referenced book in Entire Book view",
           undefined,
-          { title: labelEntry.label },
+          {
+            title: labelEntry.label,
+            sourcePassages: buildBookWideSourcePassages(bookId, labelEntry.verses),
+          },
         );
         decorateTopicButtonWithNote(btn, labelEntry.note, "Click to view note");
         decorateTopicButtonWithSuggest(btn, {

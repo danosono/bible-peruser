@@ -118,7 +118,7 @@
         ]
       },
       {
-        "label": "Messiah",
+        "label": "right hand",
         "verses": ["34-35"],
         "references": [
           "Psalms 110:1",
@@ -126,6 +126,7 @@
           "Matthew 22:41-45",
           "Mark 12:35-37",
           "Luke 20:41-44",
+          "Acts 5:31",
           "Colossians 3:1",
           "Hebrews 1:13"
         ],
@@ -291,6 +292,97 @@
         "outline": "Gamaliel’s Advice",
         "verses": ["33-42"],
         "references": []
+      },
+      {
+        "label": "right hand",
+        "verses": ["31"],
+        "references": [
+          "Psalms 110:1",
+          "Romans 8:34",
+          "Matthew 22:41-45",
+          "Mark 12:35-37",
+          "Luke 20:41-44",
+          "Acts 2:34-35",
+          "Colossians 3:1",
+          "Hebrews 1:13"
+        ],
+        "links": [
+          {
+            "label": "Right hand",
+            "url": "https://bible-explorer.gospelgo.org/?dataset=bsb-topics&topic=Right+Hand+of+God"
+          }
+        ]
+      },
+      {
+        "label": "Set record straight",
+        "verses": ["30-32"],
+        "references": [],
+        "links": [
+          {
+            "label": "Pharisees",
+            "url": "https://bible-explorer.gospelgo.org/?dataset=bsb-topics&topic=Pharisees"
+          },
+          {
+            "label": "Sadducees",
+            "url": "https://bible-explorer.gospelgo.org/?dataset=bsb-topics&topic=Sadducees"
+          },
+          {
+            "label": "Sanhedrin",
+            "url": "http://127.0.0.1:5502/index.html?chapter=12&dataset=concordance&topic=Sanhedrin"
+          }
+        ],
+        "emphasis": ["you had killed by hanging Him on a tree", "Holy Spirit, whom God has given to those who obey Him"]
+      },
+      {
+        "label": "rejoice",
+        "verses": ["41-42"],
+        "references": [
+          "Matthew 5:11-12",
+          "Luke 6:22-23",
+          "Acts 16:25",
+          "Romans 5:3-5",
+          "Romans 8:18",
+          "2 Corinthians 1:5",
+          "2 Corinthians 4:17",
+          "Philippians 1:29",
+          "Colossians 1:24",
+          "James 1:2-4",
+          "1 Peter 1:6-7",
+          "1 Peter 4:12-16",
+          "Revelation 2:10"
+        ]
+      },
+      {
+        "highlight": "Religious leaders",
+        "text": [
+          "chief priests",
+          "captain of the temple guard",
+          "Sadducees",
+          "filled with jealousy",
+          "arrested the apostles and put them in the public jail",
+          "elders",
+          "blood",
+          "you had killed by hanging Him on a tree",
+          "high priest",
+          "marveled",
+          "they resolved to put the apostles to death",
+          "Sanhedrin",
+          "but a Pharisee named Gamaliel",
+          "they yielded to Gamaliel",
+          "had them flogged",
+          "ordered them not to speak in the name of Jesus, and released them"
+        ]
+      },
+      {
+        "highlight": "despite persecution",
+        "text": [
+          "an angel of the Lord opened the doors of the jail",
+          "Go,",
+          "entered the temple courts as they had been told and began to teach the people",
+          "We must obey God rather than men",
+          "rejoicing",
+          "did not stop teaching and proclaiming the good news that Jesus is the Christ"
+        ]
       }
     ],
     "6": [
@@ -303,6 +395,101 @@
         "outline": "The Arrest of Stephen",
         "verses": ["8-15"],
         "references": []
+      },
+      {
+        "label": "widows",
+        "verses": ["1"],
+        "references": [
+          "Exodus 22:22",
+          "Deuteronomy 10:18",
+          "Deuteronomy 24:19-21",
+          "Psalms 68:5",
+          "Psalms 146:9",
+          "Isaiah 1:17",
+          "Acts 6:1",
+          "1 Timothy 5:3-4",
+          "1 Timothy 5:16",
+          "James 1:27"
+        ]
+      },
+      {
+        "label": "Word of God grows church",
+        "verses": ["7"],
+        "references": [
+          "Isaiah 55:11",
+          "Matthew 13:8",
+          "Matthew 13:31-32",
+          "Mark 4:26-28",
+          "Luke 8:15",
+          "Acts 2:38-41",
+          "Acts 4:4",
+          "Acts 6:7",
+          "Acts 8:4-8",
+          "Acts 8:25",
+          "Acts 11:1",
+          "Acts 12:24",
+          "Acts 13:5",
+          "Acts 13:7",
+          "Acts 13:12",
+          "Acts 13:44-49",
+          "Acts 14:1",
+          "Acts 15:14-15",
+          "Acts 15:35-36",
+          "Acts 16:14",
+          "Acts 16:31-33",
+          "Acts 17:2-4",
+          "Acts 17:17",
+          "Acts 17:34",
+          "Acts 18:5",
+          "Acts 18:11",
+          "Acts 19:4-6",
+          "Acts 19:10-12",
+          "Acts 19:20",
+          "Acts 20:32",
+          "1 Corinthians 3:6",
+          "Colossians 1:6"
+        ],
+        "emphasis": [
+          ""
+        ]
+      },
+      {
+        "label": "false witness",
+        "verses": ["8-14"],
+        "references": [
+          "Exodus 20:16",
+          "Exodus 23:1",
+          "Deuteronomy 19:18-19",
+          "Proverbs 6:16-19",
+          "Proverbs 19:5",
+          "Proverbs 25:18",
+          "Matthew 15:19",
+          "Matthew 26:59-60",
+          "Mark 14:56-57",
+          "Colossians 3:9"
+        ],
+        "emphasis": [
+          "prompted",
+          "stirred up the people, elders, and scribes",
+          "false witnesses"
+        ]
+      },
+      {
+        "label": "face of an angel",
+        "verses": ["15"],
+        "references": [
+          "Exodus 34:29-30",
+          "Exodus 34:35",
+          "Psalms 34:4-5",
+          "Daniel 10:6",
+          "Matthew 17:1-3",
+          "Matthew 28:2-3",
+          "Luke 9:28-29",
+          "2 Corinthians 3:7-8",
+          "2 Corinthians 3:18",
+          "Revelation 1:16-18",
+          "Revelation 10:1"
+        ]
       }
     ],
     "7": [
@@ -350,6 +537,68 @@
         "outline": "The Stoning of Stephen",
         "verses": ["54-60"],
         "references": []
+      },
+      {
+        "label": "Jesus Christ",
+        "verses": [32, 37, 52, "55-56", "59-60"],
+        "references": [
+          "John 8:58-59 - I am"
+        ],
+        "emphasis": ["I am", "a prophet like me", "Righteous One", "Jesus", "Son of Man standing at the right hand of God"]
+      },
+      {
+        "label": "Joseph, type of Christ",
+        "verses": [9, 13, 14, 16],
+        "note": [
+          "v9 Betrayed people of Israel",
+          "v13 revealed himself to people of Israel",
+          "v14 rescued people of Israel",
+          "v16 buried in an unusual way"
+        ],
+        "emphasis": ["sold him", "revealed his identity"]
+      },
+      {
+        "label": "Moses, type of Christ",
+        "verses": ["19-20", 27, "34-36", "38-39"],
+        "note": [
+          "vv19-20 Betrayed people of Israel",
+          "-",
+          "v27, v35 Visited people of Israel and rejected by them",
+          "-",
+          "v34 Sent by God to deliver people of Israel",
+          "-",
+          "v35 redeemer of the people of Israel",
+          "-",
+          "v36 performed wonders and signs",
+          "-",
+          "vv38-39 gave living words to people of Israel but rejected for a lesser kingdom"
+        ],
+        "emphasis": [
+          "rejected",
+          "God sent to be their ruler and redeemer",
+          " performed wonders and signs",
+          "living words"
+        ]
+      },
+      {
+        "label": "Stephen, type of Christ",
+        "verses": ["50-60"],
+        "note": [
+          "vv51-53 Confronted Israel's religious leaders",
+          "v54 Israel's religious leaders were against him",
+          "v55 was not swayed by fear, threats and attacks",
+          "v58 killed by Israel's religious leaders",
+          "v59 yielded his spirit near death",
+          "v60 asked God to forgive those who killed him as they killed him"
+        ],
+        "emphasis": [
+          "stiff-necked people",
+          "always resist the Holy Spirit",
+          "enraged",
+          "stone him",
+          "Lord Jesus, receive my spirit.",
+          "Lord, do not hold this sin against them"
+        ]
       }
     ],
     "8": [
