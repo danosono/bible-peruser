@@ -260,11 +260,39 @@
       },
       {
         "highlight": "Religious leaders",
-        "text": ["priests", "captain of the temple guard", "Sadducees", "seized", "rulers,", "elders", "scribes", "rejected", "high priest", "marveled", "seeing the man who had been healed", "Sanhedrin", "conferred together", "cannot deny it", "keep this message from spreading", "not to speak or teach at all in the name of Jesus", "threats", "could not find a way to punish them"]
+        "text": [
+          "priests",
+          "captain of the temple guard",
+          "Sadducees",
+          "seized",
+          "rulers,",
+          "elders",
+          "scribes",
+          "rejected",
+          "high priest",
+          "marveled",
+          "seeing the man who had been healed",
+          "Sanhedrin",
+          "conferred together",
+          "cannot deny it",
+          "keep this message from spreading",
+          "not to speak or teach at all in the name of Jesus",
+          "threats",
+          "could not find a way to punish them"
+        ]
       },
       {
         "highlight": "despite persecution",
-        "text": ["lifted up their voices to God", "Sovereign Lord", "Lord, consider their threats", "meeting place was shaken", "they were all filled with the Holy Spirit and spoke the word of God boldly", "one in heart and soul", "continued to give their testimony about the resurrection of the Lord Jesus", "grace was upon them all"]
+        "text": [
+          "lifted up their voices to God",
+          "Sovereign Lord",
+          "Lord, consider their threats",
+          "meeting place was shaken",
+          "they were all filled with the Holy Spirit and spoke the word of God boldly",
+          "one in heart and soul",
+          "continued to give their testimony about the resurrection of the Lord Jesus",
+          "grace was upon them all"
+        ]
       }
     ],
     "5": [
@@ -328,10 +356,13 @@
           },
           {
             "label": "Sanhedrin",
-            "url": "http://127.0.0.1:5502/index.html?chapter=12&dataset=concordance&topic=Sanhedrin"
+            "url": "https://bible-explorer.gospelgo.org/?dataset=concordance&topic=Sanhedrin"
           }
         ],
-        "emphasis": ["you had killed by hanging Him on a tree", "Holy Spirit, whom God has given to those who obey Him"]
+        "emphasis": [
+          "you had killed by hanging Him on a tree",
+          "Holy Spirit, whom God has given to those who obey Him"
+        ]
       },
       {
         "label": "rejoice",
@@ -449,9 +480,7 @@
           "1 Corinthians 3:6",
           "Colossians 1:6"
         ],
-        "emphasis": [
-          ""
-        ]
+        "emphasis": [""]
       },
       {
         "label": "false witness",
@@ -541,10 +570,14 @@
       {
         "label": "Jesus Christ",
         "verses": [32, 37, 52, "55-56", "59-60"],
-        "references": [
-          "John 8:58-59 - I am"
-        ],
-        "emphasis": ["I am", "a prophet like me", "Righteous One", "Jesus", "Son of Man standing at the right hand of God"]
+        "references": ["John 8:58-59 - I am"],
+        "emphasis": [
+          "I am",
+          "a prophet like me",
+          "Righteous One",
+          "Jesus",
+          "Son of Man standing at the right hand of God"
+        ]
       },
       {
         "label": "Joseph, type of Christ",
@@ -621,6 +654,132 @@
         "outline": "Philip and the Ethiopian",
         "verses": ["26-36", "38-40"],
         "references": ["Isaiah 53:1–8"]
+      },
+      {
+        "label": "Miracles",
+        "verses": ["6-7", "12-13", "39-40"],
+        "emphasis": [
+          "signs",
+          "unclean spirits came out",
+          "paralyzed and lame were healed",
+          "great signs and miracles",
+          "the Spirit of the Lord carried Philip away",
+          "Philip appeared at Azotus"
+        ],
+        "links": [
+          {
+            "label": "Miracles",
+            "url": "https://bible-explorer.gospelgo.org/?dataset=bsb-topics&topic=Miracles"
+          }
+        ]
+      },
+      {
+        "label": "Receive the Holy Spirit",
+        "verses": ["14-17"],
+        "references": [
+          "Ezekiel 36:26-27",
+          "Joel 2:28",
+          "John 3:5",
+          "John 7:39",
+          "John 14:16-17",
+          "John 20:22",
+          "Acts 1:4-5",
+          "Acts 1:8",
+          "Acts 2:4",
+          "Acts 2:38",
+          "Acts 9:17",
+          "Acts 10:44-47",
+          "Acts 19:1-7",
+          "Romans 8:10-11",
+          "1 Corinthians 2:10-12",
+          "Galatians 3:2",
+          "Galatians 4:6",
+          "Ephesians 1:13"
+        ],
+        "emphasis": [
+          "received the word of God",
+          "receive the Holy Spirit",
+          "received the Holy Spirit"
+        ],
+        "links": [
+          {
+            "label": "Receive the Holy Spirit",
+            "url": "https://bible-explorer.gospelgo.org/?dataset=bsb-topics&topic=Receiving+the+Holy+Spirit"
+          }
+        ]
+      },
+      {
+        "label": "Laying hands",
+        "verses": ["17"],
+        "references": [
+          "Numbers 27:18-23",
+          "Deuteronomy 34:9",
+          "Mark 16:18",
+          "Luke 4:40",
+          "Acts 9:17",
+          "Acts 13:2-3",
+          "Acts 19:6",
+          "1 Timothy 4:14",
+          "2 Timothy 1:6",
+          "Hebrews 6:1-2"
+        ],
+        "links": [
+          {
+            "label": "Laying hands",
+            "url": "https://bible-explorer.gospelgo.org/?dataset=bsb-topics&topic=Laying+on+of+Hands"
+          }
+        ]
+      },
+      {
+        "label": "God's intervention",
+        "verses": [26, 29]
+      },
+      {
+        "label": "Jesus in scripture",
+        "verses": ["30-35"],
+        "references": ["Isaiah 53:1–8"],
+        "emphasis": [
+          "Jesus",
+          "He was led like a sheep to the slaughter, and as a lamb before the shearer is silent, so He did not open His mouth",
+          "In His humiliation He was deprived of justice. Who can recount His descendants? For His life was removed from the earth."
+        ],
+        "links": [
+          {
+            "label": "Jesus in scripture",
+            "url": "https://bible-explorer.gospelgo.org/?dataset=topics&topic=JESUS%2C+THE+CHRIST"
+          }
+        ]
+      },
+      {
+        "highlight": "Holy Spirit",
+        "text": ["Holy Spirit", "the Spirit"]
+      },
+      {
+        "highlight": "Baptism",
+        "text": ["water", "baptized"]
+      },
+      {
+        "highlight": "Gospel",
+        "text": ["proclaimed the Christ to them", "good news", "Gospel"]
+      },
+      {
+        "highlight": "Jesus",
+        "text": [
+          "the name of Jesus",
+          "Christ",
+          "the Lord Jesus",
+          "the good news about Jesus"
+        ]
+      },
+      {
+        "highlight": "the Lord",
+        "text": [
+          "the Lord Jesus",
+          "pray to the Lord",
+          "word of the Lord",
+          "angel of the Lord",
+          "Spirit of the Lord"
+        ]
       }
     ],
     "9": [

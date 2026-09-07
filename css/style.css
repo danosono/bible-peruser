@@ -1208,11 +1208,13 @@ footer {
   margin: 8px 0;
 }
 .reference-menu-item {
+  display: block;
   color: var(--gold-accent) !important;
   padding: 4px 0;
   cursor: pointer;
   border-radius: 4px;
   transition: background 0.15s;
+  text-decoration: none;
 }
 .reference-menu-item:hover {
   background: #3d4b85;

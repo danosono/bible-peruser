@@ -1994,7 +1994,10 @@ function openReferenceMenu(
 
   (links || []).forEach((link) => {
     if (!link || !link.url || !link.label) return;
-    const linkItem = document.createElement("div");
+    const linkItem = document.createElement("a");
+    linkItem.href = link.url;
+    linkItem.target = "_blank";
+    linkItem.rel = "noopener noreferrer";
     linkItem.className = "reference-menu-item reference-menu-item--external";
     linkItem.style.padding = "4px 0";
     linkItem.style.cursor = "pointer";
@@ -2004,6 +2007,7 @@ function openReferenceMenu(
     arrow.textContent = " ↗";
     linkItem.appendChild(arrow);
     linkItem.addEventListener("click", (e) => {
+      e.preventDefault();
       e.stopPropagation();
       clearPreviewTimers();
       removePreview(true);
