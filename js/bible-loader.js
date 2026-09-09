@@ -565,10 +565,18 @@ function flashButtonText(button, nextText, ms = 1500) {
 // { title, verses } ready for copy/share formatting.
 async function resolveCompareRefsAndSources(refs, compareContext) {
   const sourcePassages = compareContext?.sourcePassages || [];
-  const sourceResolved = await Promise.all(
-    sourcePassages.map((p) => resolvePassage(p)),
-  );
-  const refResolved = await Promise.all(
+  const sourceResolved = (
+    await Promise.all(sourcePassages.map((p) => resolvePassage(p)))
+  ).filter(Boolean);
+
+  // Both resolvePassage (source verses) and resolveReferenceForCompare
+  // (references) format their title the same way ("Book C:V-V"), so a
+  // reference that names the same passage as a source verse resolves to an
+  // identical core title — used below to skip it as a duplicate. Compared
+  // pre-annotation so "Matthew 5:3-5 see also" still matches "Matthew 5:3-5".
+  const seenTitles = new Set(sourceResolved.map((r) => r.title));
+
+  const refResolvedRaw = await Promise.all(
     (refs || []).map(async (ref) => {
       const resolved = await resolveReferenceForCompare(ref);
       if (!resolved) return null;
@@ -576,13 +584,21 @@ async function resolveCompareRefsAndSources(refs, compareContext) {
       const annotation = core
         ? ref.slice(ref.indexOf(core) + core.length).trim()
         : "";
-      return {
-        title: annotation ? `${resolved.title} ${annotation}` : resolved.title,
-        verses: resolved.verses,
-      };
+      return { coreTitle: resolved.title, annotation, verses: resolved.verses };
     }),
   );
-  return [...sourceResolved.filter(Boolean), ...refResolved.filter(Boolean)];
+
+  const refResolved = [];
+  refResolvedRaw.filter(Boolean).forEach(({ coreTitle, annotation, verses }) => {
+    if (seenTitles.has(coreTitle)) return;
+    seenTitles.add(coreTitle);
+    refResolved.push({
+      title: annotation ? `${coreTitle} ${annotation}` : coreTitle,
+      verses,
+    });
+  });
+
+  return [...sourceResolved, ...refResolved];
 }
 
 function formatReferenceListText(resolvedList) {
