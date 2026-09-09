@@ -2081,9 +2081,14 @@ function openNoteMenu(icon, noteText, onClose) {
 
   const noteItem = document.createElement("div");
   noteItem.className = "reference-menu-item";
-  noteItem.textContent = noteText;
-  noteItem.style.whiteSpace = "pre-wrap";
   noteItem.style.cursor = "default";
+  noteText.split("\n").forEach((line, i) => {
+    const lineEl = document.createElement("div");
+    lineEl.style.whiteSpace = "pre-wrap";
+    if (i > 0) lineEl.style.marginTop = "0.5em";
+    lineEl.textContent = line;
+    noteItem.appendChild(lineEl);
+  });
   menu.appendChild(noteItem);
 
   const closeItem = document.createElement("div");
