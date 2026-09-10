@@ -1,6 +1,7 @@
 import {
   bookNames,
   bookOrder,
+  osisBookAbbr,
   saveLastRead,
   getLastRead,
   parseBookChapterInput,
@@ -1003,6 +1004,7 @@ function openInfoListModal(
   renderCard,
   disclaimerText,
   creditText,
+  actionBar,
 ) {
   document.querySelectorAll(".bp-info-overlay").forEach((el) => el.remove());
 
@@ -1029,6 +1031,8 @@ function openInfoListModal(
   header.appendChild(title);
   header.appendChild(closeBtn);
   modal.appendChild(header);
+
+  if (actionBar) modal.appendChild(actionBar);
 
   const list = document.createElement("div");
   list.className = "bp-info-modal__list";
@@ -1178,6 +1182,21 @@ function dedupePlaceEntries(entries) {
   return result;
 }
 
+function buildBiblePlacesMapUrl(bookId, chapterNum, placeIds) {
+  if (!placeIds.length) return null;
+  const params = new URLSearchParams();
+  if (placeIds.length === 1) {
+    params.set("place", placeIds[0]);
+  } else {
+    params.set("places", placeIds.join(","));
+  }
+  const osisBook = osisBookAbbr[bookId] || bookId;
+  params.set("ref", `${osisBook}.${chapterNum}`);
+  const backUrl = buildChapterUrl(bookId, chapterNum);
+  if (backUrl) params.set("back", backUrl);
+  return `https://bibleplaces.gospelgo.org/?${params.toString()}`;
+}
+
 function openPlacesModal(bookId, chapterNum, metadata) {
   const chapterKey = `${bookId}_${chapterNum}`;
   const ids = metadata.places.byChapter[chapterKey] || [];
@@ -1187,6 +1206,28 @@ function openPlacesModal(bookId, chapterNum, metadata) {
       .map((id) => metadata.places.places[id] && { id, ...metadata.places.places[id] })
       .filter(Boolean),
   ).sort((a, b) => a.name.localeCompare(b.name));
+
+  let actionBar;
+  const mapUrl = buildBiblePlacesMapUrl(
+    bookId,
+    chapterNum,
+    entries.map((entry) => entry.id),
+  );
+  if (mapUrl) {
+    actionBar = document.createElement("div");
+    actionBar.className = "bp-info-modal__action-bar";
+    const mapLink = document.createElement("a");
+    mapLink.href = mapUrl;
+    mapLink.target = "_blank";
+    mapLink.rel = "noopener noreferrer";
+    mapLink.className = "bp-info-modal__action-link";
+    mapLink.textContent = "Show on map ↗";
+    mapLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.open(mapUrl, "_blank", "noopener,noreferrer");
+    });
+    actionBar.appendChild(mapLink);
+  }
 
   openInfoListModal(`Places in ${bookLabel} ${chapterNum}`, entries, (place) => {
     const card = document.createElement("div");
@@ -1213,7 +1254,7 @@ function openPlacesModal(bookId, chapterNum, metadata) {
     }
 
     return card;
-  }, "Place identifications are intended to give a general overview of Bible geography — not an interpretation of Scripture.");
+  }, "Place identifications are intended to give a general overview of Bible geography — not an interpretation of Scripture.", undefined, actionBar);
 }
 
 const BOOK_INFO_CREDIT =

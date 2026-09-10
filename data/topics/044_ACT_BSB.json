@@ -831,6 +831,32 @@
         "outline": "The Raising of Tabitha",
         "verses": ["36-43"],
         "references": ["John 11:38–44"]
+      },
+      {
+        "label": "Grecian Jews",
+        "verses": [29],
+        "references": [
+          "Acts 6:1 - Grecian Jews who were also Christian it seems.",
+          "Acts 6:9-14 - Grecian Jews, not Christians it seems.",
+          "Acts 9:29 - Grecian Jews, not Christians it seems.",
+          "Acts 11:20 - Grecian Jews who were also Christians."
+        ],
+        "note": [
+          "Generally speaking, first century Jewish communities were split into two groups.",
+          "Hellenistic Jews grew up speaking Greek, lived Greek-style lives, and picked up Greek habits and ways of thinking.",
+          "Hebraic Jews spoke Aramaic or Hebrew and preferred to keep Greek culture at arm's length.",
+          "Most Hebraic Jews came from Palestine itself, while Hellenistic Jews came from elsewhere in the Roman Empire.",
+          "Even in Jerusalem, the two groups kept apart — there were Greek-speaking synagogues and Hebrew-speaking ones. Each side looked down on the other: Hebraic Jews saw the Hellenists as too loose and worldly, while Hellenists thought the Hebraic Jews were rigid and smug.",
+          "Interestingly, the need to read the Old Testament in a language the Grecian Jews understood led to the Greek translation known as the Septuagint in the 2nd century B.C"
+        ],
+        "emphasis": ["Grecian"]
+      },
+      {
+        "label": "Lydda <-> Joppa",
+        "verses": [38],
+        "references": [],
+        "note": ["Lydda is approximately 9 miles east of Joppa."],
+        "emphasis": []
       }
     ],
     "10": [
@@ -875,6 +901,25 @@
         "outline": "The Church at Antioch",
         "verses": ["19-30"],
         "references": []
+      },
+      {
+        "label": "Grecian Jews",
+        "verses": [20],
+        "references": [
+          "Acts 6:1 - Grecian Jews who were also Christian it seems.",
+          "Acts 6:9-14 - Grecian Jews, not Christians it seems.",
+          "Acts 9:29 - Grecian Jews, not Christians it seems.",
+          "Acts 11:20 - Grecian Jews who were also Christians."
+        ],
+        "note": [
+          "Generally speaking, first century Jewish communities were split into two groups.",
+          "Hellenistic Jews grew up speaking Greek, lived Greek-style lives, and picked up Greek habits and ways of thinking.",
+          "Hebraic Jews spoke Aramaic or Hebrew and preferred to keep Greek culture at arm's length.",
+          "Most Hebraic Jews came from Palestine itself, while Hellenistic Jews came from elsewhere in the Roman Empire.",
+          "Even in Jerusalem, the two groups kept apart — there were Greek-speaking synagogues and Hebrew-speaking ones. Each side looked down on the other: Hebraic Jews saw the Hellenists as too loose and worldly, while Hellenists thought the Hebraic Jews were rigid and smug.",
+          "Interestingly, the need to read the Old Testament in a language the Grecian Jews understood led to the Greek translation known as the Septuagint in the 2nd century B.C"
+        ],
+        "emphasis": ["Cyprus", "Cyrene"]
       }
     ],
     "12": [

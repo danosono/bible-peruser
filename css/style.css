@@ -1760,6 +1760,20 @@ html.bp-hide-outlines .topic-outline-btn {
 .bp-info-modal__close:hover {
   background: #3d4b85;
 }
+.bp-info-modal__action-bar {
+  flex: none;
+  padding: 0.7rem 1.1rem 0;
+}
+.bp-info-modal__action-link {
+  display: inline-block;
+  color: #8bd3ff;
+  font-size: 0.85rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+.bp-info-modal__action-link:hover {
+  text-decoration: underline;
+}
 .bp-info-modal__list {
   flex: 1;
   overflow-y: auto;
@@ -1847,6 +1861,12 @@ html.bp-hide-outlines .topic-outline-btn {
   }
   .bp-info-modal__close {
     font-size: 1.4rem;
+  }
+  .bp-info-modal__action-bar {
+    padding: 0.9rem 1.5rem 0;
+  }
+  .bp-info-modal__action-link {
+    font-size: 1.05rem;
   }
   .bp-info-modal__list {
     padding: 1.2rem 1.5rem;
