@@ -2690,7 +2690,7 @@ async function loadBibleChapter(
         verseEnd,
       ) {
         const sidebarTopicBar = document.getElementById("chapter-topic-bar");
-        if (!sidebarTopicBar || !verseStart) return;
+        if (!sidebarTopicBar || !verseStart) return false;
         const topics = window._lastLoadedTopics;
         const targetChapterTopics =
           (topics &&
@@ -2724,10 +2724,47 @@ async function loadBibleChapter(
           return targetVerses.every((verse) => entryVerses.includes(verse));
         });
 
-        if (matchingIndex === -1) return;
+        if (matchingIndex === -1) return false;
         const buttons = sidebarTopicBar.querySelectorAll(".topic-btn");
         if (buttons[matchingIndex]) {
           buttons[matchingIndex].click();
+          return true;
+        }
+        return false;
+      }
+
+      // Fallback for when the followed reference doesn't line up with any
+      // study-note topic entry in the target chapter (no matching label/
+      // outline verses to auto-select) — highlight the referenced verses
+      // directly so the reader can still see what the link pointed to.
+      // Reuses the .verse-highlight class so it clears the same way a topic
+      // button's highlight does: the next topic/highlight click, or leaving
+      // the chapter (DOM is torn down on navigation).
+      function highlightReferencedVerses(verseStart, verseEnd) {
+        const sidebarTopicBar = document.getElementById("chapter-topic-bar");
+        if (sidebarTopicBar) {
+          sidebarTopicBar
+            .querySelectorAll(".topic-btn")
+            .forEach((b) => b.classList.remove("active"));
+        }
+        document
+          .querySelectorAll(".verse-highlight")
+          .forEach((el) => el.classList.remove("verse-highlight"));
+        const rangeEnd = verseEnd || verseStart;
+        let firstEl = null;
+        for (let verse = verseStart; verse <= rangeEnd; verse++) {
+          document
+            .querySelectorAll(`.verse-num[data-verse='${verse}']`)
+            .forEach((el) => el.classList.add("verse-highlight"));
+          document
+            .querySelectorAll(`.verse-text[data-verse='${verse}']`)
+            .forEach((el) => {
+              el.classList.add("verse-highlight");
+              if (!firstEl) firstEl = el;
+            });
+        }
+        if (firstEl) {
+          firstEl.scrollIntoView({ behavior: "smooth", block: "center" });
         }
       }
 
@@ -2737,11 +2774,14 @@ async function loadBibleChapter(
         loadBibleChapter(details.bookId, details.chapterNum, true);
         if (details.verseStart) {
           setTimeout(() => {
-            autoSelectMatchingChapterTopic(
+            const matched = autoSelectMatchingChapterTopic(
               details.chapterNum,
               details.verseStart,
               details.verseEnd,
             );
+            if (!matched) {
+              highlightReferencedVerses(details.verseStart, details.verseEnd);
+            }
           }, 500);
         }
       }

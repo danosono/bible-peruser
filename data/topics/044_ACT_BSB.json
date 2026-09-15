@@ -863,9 +863,9 @@
         "note": ["Lydda is approximately 10 miles east of Joppa."],
         "links": [
           {
-          "label": "Lydda <-> Joppa",
-          "url": "https://bibleplaces.gospelgo.org/?places=lydda_741%2Cjoppa_652"
-        }
+            "label": "Lydda <-> Joppa",
+            "url": "https://bibleplaces.gospelgo.org/?places=lydda_741%2Cjoppa_652"
+          }
         ],
         "emphasis": []
       }
@@ -902,6 +902,16 @@
         "references": ["Acts 19:1–7"]
       },
       {
+        "label": "God said what?",
+        "verses": ["10-16"],
+        "references": [
+          "Genesis 22:2",
+          "1 Kings 17:4-6 -ravens are unclean",
+          "Hosea 1:2"
+        ],
+        "emphasis": ["unclean"]
+      },
+      {
         "label": "God hears/sees",
         "verses": [4, 31],
         "references": [],
@@ -911,6 +921,7 @@
         "label": "The Spirit speaks",
         "verses": ["19"],
         "references": [
+          "[The promised Spirit speaks directly to Christians]",
           "John 14:16-17",
           "John 14:26",
           "John 16:13",
@@ -918,26 +929,16 @@
           "Acts 10:19",
           "Acts 11:12",
           "Acts 13:2",
-          "Acts 20:23"
-        ],
-        "emphasis": ["the Spirit said to him"]
-      },
-      {
-        "label": "The Spirit speaks",
-        "verses": ["19"],
-        "references": [
+          "Acts 20:23",
+          " - ",
+          "[General references to the Spirit speaking]",
           "Nehemiah 9:30",
           "Ezekiel 11:5",
           "Matthew 10:20",
           "Mark 13:11",
           "Luke 2:26-27",
-          "Acts 8:29 *",
-          "Acts 10:19 *",
-          "Acts 11:12 *",
-          "Acts 13:2 *",
           "Acts 15:28",
           "Acts 16:6-7",
-          "Acts 20:23 *",
           "Acts 21:4",
           "Acts 21:11",
           "1 Timothy 4:1",
@@ -955,10 +956,155 @@
         "emphasis": ["the Spirit said to him"]
       },
       {
+        "label": "Holy Spirit fell on",
+        "verses": ["44-47"],
+        "references": [
+          "Judges 3:10",
+          "Judges 6:34",
+          "Judges 11:29",
+          "Judges 13:25",
+          "Judges 14:6",
+          "Judges 14:19",
+          "Judges 15:14",
+          "1 Samuel 10:6",
+          "1 Samuel 10:9-10",
+          "1 Samuel 11:6",
+          "1 Samuel 16:13",
+          "1 Samuel 16:14",
+          "1 Samuel 19:20",
+          "1 Samuel 19:23-24",
+          "2 Chronicles 15:1",
+          "2 Chronicles 20:14",
+          "2 Chronicles 24:20",
+          "Ezekiel 11:5",
+          "Ezekiel 37:1",
+          "Ezekiel 37:14",
+          "Ezekiel 43:5",
+          "Micah 3:8",
+          "Isaiah 11:2",
+          "Isaiah 42:1",
+          "Isaiah 59:21",
+          "Joel 2:28-29",
+          " - ",
+          "[NEW TESTAMENT]",
+          "Acts 1:5",
+          "Acts 1:8",
+          "Acts 2:1-4",
+          "Acts 2:17-18",
+          "Acts 2:33",
+          "Acts 8:15-17",
+          "Acts 10:44-47",
+          "Acts 11:15-17",
+          "Acts 19:6",
+          "Luke 1:15",
+          "Luke 1:35",
+          "Luke 1:41",
+          "Luke 1:67",
+          "Luke 2:25-27",
+          "John 20:22",
+          "1 Corinthians 12:7-11",
+          "Titus 3:5-6",
+          "Romans 5:5",
+          "Romans 15:13",
+          "Galatians 3:2",
+          "Galatians 3:5",
+          "Ephesians 1:13-14",
+          "Ephesians 3:16",
+          "Ephesians 5:18",
+          "1 Thessalonians 1:5-6"
+        ],
+        "emphasis": [
+          "Holy Spirit",
+          "fell",
+          "speaking in tongues and exalting God"
+        ]
+      },
+      {
         "label": "Gospel to Gentiles",
-        "verses": ["34-43"],
-        "references": ["John 15:26"],
-        "emphasis": ["before God", "heard", "ascended", "remembered"]
+        "verses": [15, 28, "34-48"],
+        "references": [
+          "[In these verses, the Spirit is testifying through Peter]",
+          "John 15:26",
+          " - ",
+          "[Promise to Abraham]",
+          "Genesis 12:3",
+          "Genesis 18:18",
+          "Genesis 22:18",
+          "Genesis 26:4",
+          "Genesis 28:14",
+          "Galatians 3:8",
+          "Galatians 3:28",
+          "Romans 15:9-12",
+          "Acts 13:46-47",
+          " - ",
+          "[Not my people -> My people]",
+          "Hosea 2:23",
+          "Romans 9:25-26",
+          "1 Peter 2:9-10",
+          " - ",
+          "[Provoke Israel to jealousy]",
+          "Deuteronomy 32:21",
+          "Romans 10:19-20",
+          "Romans 11:11-12",
+          " - ",
+          "[Other]",
+          "1 Kings 8:41-43",
+          "Psalms 67:1-4",
+          "Psalms 87:4-6",
+          "Isaiah 2:2-3",
+          "Isaiah 11:10",
+          "Isaiah 42:6",
+          "Isaiah 45:22-23",
+          "Isaiah 49:6",
+          "Isaiah 56:3-7",
+          "Isaiah 56:8",
+          "Isaiah 60:3",
+          "Isaiah 66:18-20",
+          "Amos 9:11-12",
+          "Zechariah 2:11",
+          "Malachi 1:11",
+          "Matthew 8:11",
+          "Matthew 12:21",
+          "Matthew 21:43",
+          "Matthew 28:19",
+          "Mark 11:17",
+          "Luke 2:32",
+          "John 10:16",
+          "John 11:51-52",
+          "John 12:32",
+          "Acts 10:34-35",
+          "Acts 13:46-47",
+          "Acts 15:14-17",
+          "Acts 28:28",
+          "Ephesians 2:11-13",
+          "Ephesians 3:6",
+          "Colossians 1:27",
+          "Revelation 5:9",
+          "Revelation 7:9"
+        ],
+        "emphasis": [
+          "every nation",
+          "He has sent this message to the people of Israel,",
+          "gospel of peace through Jesus Christ",
+          "baptism that John proclaimed",
+          "God anointed Jesus of Nazareth with the Holy Spirit and with power",
+          "We are witnesses",
+          "they put Him to death by hanging Him on a tree",
+          "God raised Him up on the third day and caused Him to be seen",
+          "He commanded us to preach",
+          "testify that He is the One",
+          "All the prophets testify",
+          "everyone who believes in Him receives forgiveness of sins through His name",
+          "Can anyone withhold the water to baptize these people? "
+        ]
+      },
+      {
+        "highlight": "God",
+        "text": ["God"]
+      },
+      {
+        "highlight": "people",
+        "text": ["people"]
       }
     ],
     "11": [
@@ -971,6 +1117,24 @@
         "outline": "The Church at Antioch",
         "verses": ["19-30"],
         "references": []
+      },
+      {
+        "label": "Gentile Inclusion",
+        "verses": ["18"],
+        "references": [
+          "[Preparation for Gentile Inclusion]",
+          "-",
+          "Matthew 8:5-13",
+          "Matthew 15:21-28",
+          "Matthew 28:19",
+          "Mark 7:24-30",
+          "Luke 4:27",
+          "Luke 7:1-10",
+          "Luke 9:51-56",
+          "Luke 17:11-19",
+          "John 4:1-30",
+          "John 4:30-41"
+        ]
       },
       {
         "label": "Grecian Jews",
@@ -1007,6 +1171,42 @@
         "outline": "The Death of Herod",
         "verses": ["20-25"],
         "references": []
+      },
+      {
+        "label": "Rescued by God",
+        "verses": ["7-11"],
+        "references": [
+          "Genesis 19:15-16",
+          "Exodus 14:21-22",
+          "Psalms 18:16-19",
+          "Psalms 34:17-19",
+          "Psalms 91:14-15",
+          "Daniel 3:28-30",
+          "Daniel 6:22-23",
+          "Jonah 2:10",
+          "Acts 12:7-11",
+          "2 Timothy 4:16-18"
+        ]
+      },
+      {
+        "label": "Judged by God",
+        "verses": ["21-24"],
+        "references": [
+          "Genesis 19:24-25",
+          "Numbers 16:31-35",
+          "Numbers 20:12",
+          "Judges 9:54-57",
+          "2 Samuel 6:6-7",
+          "1 Kings 13:4",
+          "2 Kings 1:10-12",
+          "Acts 5:1-10",
+          "Revelation 2:20-23"
+        ]
+      },
+      {
+        "label": "Contributions",
+        "verses": ["25"],
+        "references": ["Acts 11:29-30"]
       }
     ],
     "13": [
