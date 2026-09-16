@@ -381,6 +381,98 @@ function parseReferenceDetails(reference) {
   };
 }
 
+// Looks for a chapter-topic label/outline entry (in the chapter that was
+// just loaded) whose verses exactly cover [verseStart, verseEnd], and if
+// found, clicks it — reusing its normal highlight/active/note/pin behavior
+// rather than drawing a separate ad-hoc highlight. Shared by in-app
+// reference-following (openChapterTopicReference) and the external verse
+// deep link (?book=&chapter=&verse=, e.g. from BiblePlaces).
+function autoSelectMatchingChapterTopic(chapterNum, verseStart, verseEnd) {
+  const sidebarTopicBar = document.getElementById("chapter-topic-bar");
+  if (!sidebarTopicBar || !verseStart) return false;
+  const topics = window._lastLoadedTopics;
+  const targetChapterTopics =
+    (topics && topics.chapterTopics && topics.chapterTopics[chapterNum]) ||
+    [];
+  const renderableTopics = targetChapterTopics.filter(
+    (entry) =>
+      entry &&
+      Array.isArray(entry.verses) &&
+      (typeof entry.label === "string" || typeof entry.outline === "string"),
+  );
+  const targetVerses = [];
+  const rangeEnd = verseEnd || verseStart;
+  for (let verse = verseStart; verse <= rangeEnd; verse++) {
+    targetVerses.push(verse);
+  }
+
+  const matchingIndex = renderableTopics.findIndex((entry) => {
+    const entryVerses = entry.verses.flatMap((value) => {
+      if (typeof value === "string" && value.includes("-")) {
+        const [start, end] = value.split("-").map(Number);
+        return Array.from({ length: end - start + 1 }, (_, idx) => start + idx);
+      }
+      return [Number(value)];
+    });
+    return targetVerses.every((verse) => entryVerses.includes(verse));
+  });
+
+  if (matchingIndex === -1) return false;
+  const buttons = sidebarTopicBar.querySelectorAll(".topic-btn");
+  if (buttons[matchingIndex]) {
+    buttons[matchingIndex].click();
+    return true;
+  }
+  return false;
+}
+
+// Fallback for when a followed/linked reference doesn't line up with any
+// study-note topic entry in the target chapter (no matching label/outline
+// verses to auto-select) — highlight the referenced verses directly so the
+// reader can still see what the link pointed to. Reuses the .verse-highlight
+// class so it clears the same way a topic button's highlight does: the next
+// topic/highlight click, or leaving the chapter (DOM is torn down on
+// navigation). Shared by in-app reference-following and the external verse
+// deep link (?book=&chapter=&verse=, e.g. from BiblePlaces).
+function highlightReferencedVerses(verseStart, verseEnd) {
+  const sidebarTopicBar = document.getElementById("chapter-topic-bar");
+  if (sidebarTopicBar) {
+    sidebarTopicBar
+      .querySelectorAll(".topic-btn")
+      .forEach((b) => b.classList.remove("active"));
+  }
+  document
+    .querySelectorAll(".verse-highlight")
+    .forEach((el) => el.classList.remove("verse-highlight"));
+  const rangeEnd = verseEnd || verseStart;
+  let firstEl = null;
+  for (let verse = verseStart; verse <= rangeEnd; verse++) {
+    document
+      .querySelectorAll(`.verse-num[data-verse='${verse}']`)
+      .forEach((el) => el.classList.add("verse-highlight"));
+    document
+      .querySelectorAll(`.verse-text[data-verse='${verse}']`)
+      .forEach((el) => {
+        el.classList.add("verse-highlight");
+        if (!firstEl) firstEl = el;
+      });
+  }
+  if (firstEl) {
+    firstEl.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+}
+
+// Selects the topic entry matching [verseStart, verseEnd] if one exists,
+// otherwise falls back to a direct verse-range highlight. Used after
+// navigating to a chapter via reference/deep-link, once the chapter (and its
+// topic sidebar) has had time to render.
+function autoHighlightVerseRange(chapterNum, verseStart, verseEnd) {
+  const matched = autoSelectMatchingChapterTopic(chapterNum, verseStart, verseEnd);
+  if (!matched) {
+    highlightReferencedVerses(verseStart, verseEnd);
+  }
+}
+
 // Full passage lookup for the compare view. Unlike the hover-preview
 // resolver (which caps unbounded refs to two lines), a reference with no
 // verse range shows the whole chapter here since side-by-side reading is
@@ -2684,89 +2776,6 @@ async function loadBibleChapter(
         );
       }
       if (highlightBar) highlightBar.innerHTML = "";
-      function autoSelectMatchingChapterTopic(
-        chapterNum,
-        verseStart,
-        verseEnd,
-      ) {
-        const sidebarTopicBar = document.getElementById("chapter-topic-bar");
-        if (!sidebarTopicBar || !verseStart) return false;
-        const topics = window._lastLoadedTopics;
-        const targetChapterTopics =
-          (topics &&
-            topics.chapterTopics &&
-            topics.chapterTopics[chapterNum]) ||
-          [];
-        const renderableTopics = targetChapterTopics.filter(
-          (entry) =>
-            entry &&
-            Array.isArray(entry.verses) &&
-            (typeof entry.label === "string" ||
-              typeof entry.outline === "string"),
-        );
-        const targetVerses = [];
-        const rangeEnd = verseEnd || verseStart;
-        for (let verse = verseStart; verse <= rangeEnd; verse++) {
-          targetVerses.push(verse);
-        }
-
-        const matchingIndex = renderableTopics.findIndex((entry) => {
-          const entryVerses = entry.verses.flatMap((value) => {
-            if (typeof value === "string" && value.includes("-")) {
-              const [start, end] = value.split("-").map(Number);
-              return Array.from(
-                { length: end - start + 1 },
-                (_, idx) => start + idx,
-              );
-            }
-            return [Number(value)];
-          });
-          return targetVerses.every((verse) => entryVerses.includes(verse));
-        });
-
-        if (matchingIndex === -1) return false;
-        const buttons = sidebarTopicBar.querySelectorAll(".topic-btn");
-        if (buttons[matchingIndex]) {
-          buttons[matchingIndex].click();
-          return true;
-        }
-        return false;
-      }
-
-      // Fallback for when the followed reference doesn't line up with any
-      // study-note topic entry in the target chapter (no matching label/
-      // outline verses to auto-select) — highlight the referenced verses
-      // directly so the reader can still see what the link pointed to.
-      // Reuses the .verse-highlight class so it clears the same way a topic
-      // button's highlight does: the next topic/highlight click, or leaving
-      // the chapter (DOM is torn down on navigation).
-      function highlightReferencedVerses(verseStart, verseEnd) {
-        const sidebarTopicBar = document.getElementById("chapter-topic-bar");
-        if (sidebarTopicBar) {
-          sidebarTopicBar
-            .querySelectorAll(".topic-btn")
-            .forEach((b) => b.classList.remove("active"));
-        }
-        document
-          .querySelectorAll(".verse-highlight")
-          .forEach((el) => el.classList.remove("verse-highlight"));
-        const rangeEnd = verseEnd || verseStart;
-        let firstEl = null;
-        for (let verse = verseStart; verse <= rangeEnd; verse++) {
-          document
-            .querySelectorAll(`.verse-num[data-verse='${verse}']`)
-            .forEach((el) => el.classList.add("verse-highlight"));
-          document
-            .querySelectorAll(`.verse-text[data-verse='${verse}']`)
-            .forEach((el) => {
-              el.classList.add("verse-highlight");
-              if (!firstEl) firstEl = el;
-            });
-        }
-        if (firstEl) {
-          firstEl.scrollIntoView({ behavior: "smooth", block: "center" });
-        }
-      }
 
       function openChapterTopicReference(reference) {
         const details = parseReferenceDetails(reference);
@@ -2774,14 +2783,11 @@ async function loadBibleChapter(
         loadBibleChapter(details.bookId, details.chapterNum, true);
         if (details.verseStart) {
           setTimeout(() => {
-            const matched = autoSelectMatchingChapterTopic(
+            autoHighlightVerseRange(
               details.chapterNum,
               details.verseStart,
               details.verseEnd,
             );
-            if (!matched) {
-              highlightReferencedVerses(details.verseStart, details.verseEnd);
-            }
           }, 500);
         }
       }
@@ -3917,6 +3923,25 @@ function getBookWideFilename(bid) {
   return `data/bookwide/${num}_${bid}_BSB.json`;
 }
 
+// verse param format: "7" (single verse) or "7-11" (range), e.g. from
+// BiblePlaces: ?book=ACT&chapter=12&verse=7-11
+function parseDeepLinkVerseParam(rawVerse) {
+  const trimmed = (rawVerse || "").trim();
+  if (!trimmed) return { verseStart: null, verseEnd: null };
+  const match = trimmed.match(/^(\d+)(?:-(\d+))?$/);
+  if (!match) return { verseStart: null, verseEnd: null };
+  const verseStart = parseInt(match[1], 10);
+  const verseEnd = match[2] ? parseInt(match[2], 10) : null;
+  if (!Number.isInteger(verseStart) || verseStart < 1) {
+    return { verseStart: null, verseEnd: null };
+  }
+  return {
+    verseStart,
+    verseEnd:
+      Number.isInteger(verseEnd) && verseEnd >= verseStart ? verseEnd : null,
+  };
+}
+
 function parseChapterDeepLink() {
   if (typeof window === "undefined" || !window.location) return null;
   const params = new URLSearchParams(window.location.search || "");
@@ -3929,7 +3954,9 @@ function parseChapterDeepLink() {
   const chapterNum = parseInt(rawChapter, 10);
   if (!Number.isInteger(chapterNum) || chapterNum < 1) return null;
 
-  return { bookId: rawBook, chapterNum };
+  const { verseStart, verseEnd } = parseDeepLinkVerseParam(params.get("verse"));
+
+  return { bookId: rawBook, chapterNum, verseStart, verseEnd };
 }
 
 function buildChapterUrl(bookId, chapterNum) {
@@ -3974,6 +4001,11 @@ if (typeof window !== "undefined") {
       }
     }
     loadBibleChapter(bookId, chapterNum);
+    if (deepLink && deepLink.verseStart) {
+      setTimeout(() => {
+        autoHighlightVerseRange(chapterNum, deepLink.verseStart, deepLink.verseEnd);
+      }, 500);
+    }
     // Add topic bar under chapter nav in left sidebar
     const nav = document.querySelector(".bp-sidebar--left");
     if (nav && !document.getElementById("chapter-topic-bar")) {

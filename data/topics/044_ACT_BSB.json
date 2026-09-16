@@ -1229,6 +1229,52 @@
         "outline": "A Light for the Gentiles",
         "verses": ["42-52"],
         "references": ["Isaiah 49:1–6"]
+      },
+      {
+        "label": "~ 400 years",
+        "verses": ["17-20"],
+        "references": ["Genesis 15:13-16", "Exodus 12:40-41"]
+      },
+      {
+        "label": "Judges",
+        "verses": ["20"],
+        "references": [
+          "Judges 3:7-11 - Othniel: Caleb's nephew",
+          "Judges 3:12-30 - Ehud: Left-handed; assassinated Eglon",
+          "Judges 3:31 - Shamgar: Killed 600 Philistines w/ oxgoad",
+          "Judges 4:4 - Deborah: Prophetess and leader",
+          "Judges 6:12 - Gideon: Victory with 300 men",
+          "Judges 11:1-6 - Jephthah",
+          "Judges 13:1-5 - Samson: Nazirite, superhuman strength",
+          "1 Samuel 1:20-22 - Samuel: Dedicated to the Lord"
+        ],
+        "note": [""]
+      },
+      {
+        "label": "Israel asks for a king",
+        "verses": ["21"],
+        "references": ["1 Samuel 8:4-7", "1 Samuel 8:19-20", "1 Samuel 10:19"]
+      },
+      {
+        "highlight": "Places",
+        "text": [
+          "Antioch",
+          "Cyprus",
+          "Pisidian",
+          "Canaan",
+          "",
+          "Egypt",
+          "Galilee",
+          "Iconium",
+          "Jerusalem",
+          "Pamphylia",
+          "Paphos",
+          "Perga",
+          "Pisidia",
+          "Salamis",
+          "Seleucia",
+          "Syria"
+        ]
       }
     ],
     "14": [
