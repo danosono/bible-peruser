@@ -1251,9 +1251,170 @@
         "note": [""]
       },
       {
-        "label": "Israel asks for a king",
+        "label": "Israel asks for king",
         "verses": ["21"],
         "references": ["1 Samuel 8:4-7", "1 Samuel 8:19-20", "1 Samuel 10:19"]
+      },
+      {
+        "label": "Saul -> David",
+        "verses": ["22"],
+        "references": [
+          "Saul removed",
+          "1 Samuel 13:13-14",
+          "1 Samuel 15:26-28",
+          "1 Samuel 31:6",
+          "1 Samuel 15:19-21 - Saul's excuses",
+          "",
+          "-",
+          "David raised as king",
+          "1 Samuel 16:1",
+          "1 Samuel 16:12-13",
+          "2 Samuel 2:4",
+          "2 Samuel 5:3-5",
+          "Psalms 51:1 - David's repentance",
+          "-",
+          "after My own heart",
+          "1 Samuel 13:14",
+          "1 Samuel 16:7"
+        ]
+      },
+      {
+        "label": "David's line",
+        "verses": ["23"],
+        "references": ["Matthew 1:1"]
+      },
+      {
+        "label": "Baptism of John",
+        "verses": ["24"],
+        "references": ["Luke 3:3"]
+      },
+      {
+        "label": "forerunner",
+        "verses": ["25"],
+        "references": ["Luke 3:15-16"]
+      },
+      {
+        "label": "reject Messiah",
+        "verses": ["27-28"],
+        "references": [
+          "- did not recognize Him",
+          "John 1:10-11",
+          "Luke 13:34",
+          "Luke 19:41-44",
+          "-",
+          "- condemned Him",
+          "Luke 23:13-23",
+          "-",
+          "- fullfilled words of the prophets",
+          "Isaiah 53:3",
+          "Isaiah 53:7-8",
+          "Psalms 118:22",
+          "Zechariah 12:10",
+          "-",
+          "- read every Sabbath",
+          "Acts 13:15"
+        ]
+      },
+      {
+        "label": "tomb",
+        "verses": ["29"],
+        "references": ["Luke 23:53", "Isaiah 53:9"]
+      },
+      {
+        "label": "raised",
+        "verses": ["30"],
+        "references": [
+          "Matthew 28:6",
+          "Mark 16:6",
+          "Luke 24:6-7",
+          "John 20:16-17",
+          "Acts 2:24",
+          "Psalms 16:10"
+        ]
+      },
+      {
+        "label": "seen",
+        "verses": ["31"],
+        "references": [
+          "Matthew 28:9-10",
+          "Matthew 28:16-17",
+          "Mark 16:9",
+          "Mark 16:12",
+          "Mark 16:14",
+          "Luke 24:31",
+          "Luke 24:36",
+          "John 20:16-17",
+          "John 20:20",
+          "John 20:27",
+          "John 21:14",
+          "Acts 2:24",
+          "Psalms 16:10"
+        ]
+      },
+      {
+        "label": "witnesses",
+        "verses": ["31"],
+        "references": [
+          "Matthew 28:19-20",
+          "Mark 16:19-20",
+          "Luke 24:48",
+          "John 20:21-22"
+        ]
+      },
+      {
+        "label": "good news",
+        "verses": ["32-37"],
+        "references": [
+          "-Son",
+          "Psalms 2:7",
+          "-",
+          "-Blessings promised to David",
+          "2 Samuel 7:12-13",
+          "Isaiah 55:3",
+          "-",
+          "-not see decay",
+          "Psalms 16:10",
+          "-",
+          "-David's burial",
+          "1 Kings 2:10",
+          "1 Chronicles 29:27-28"
+        ],
+        "emphasis": ["good news", "decay", "son", "buried", "blessings promised"]
+      },
+      {
+        "label": "placeholder",
+        "verses": ["24"],
+        "references": [""]
+      },
+      {
+        "label": "placeholder",
+        "verses": ["24"],
+        "references": [""]
+      },
+      {
+        "label": "placeholder",
+        "verses": ["24"],
+        "references": [""]
+      },
+      {
+        "label": "placeholder",
+        "verses": ["24"],
+        "references": [""]
+      },
+      {
+        "label": "placeholder",
+        "verses": ["24"],
+        "references": [""]
+      },
+      {
+        "label": "placeholder",
+        "verses": ["24"],
+        "references": [""]
+      },
+      {
+        "label": "placeholder",
+        "verses": ["24"],
+        "references": [""]
       },
       {
         "highlight": "Places",
