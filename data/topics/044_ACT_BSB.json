@@ -178,6 +178,7 @@
           "Matthew 15:24",
           "Luke 24:47",
           "John 4:22",
+          "Acts 1:8",
           "Acts 3:26",
           "Acts 13:46",
           "Acts 13:5",
@@ -187,8 +188,7 @@
           "Acts 18:19",
           "Acts 19:8",
           "Acts 22:21",
-          "Acts 28:17",
-          "Acts 28:23",
+          "Acts 28:17-28",
           "Romans 1:16",
           "Romans 2:9-10",
           "Romans 3:1-2",
@@ -196,7 +196,7 @@
           "Romans 10:19",
           "Romans 11:1",
           "Romans 11:11",
-          "Romans 15:8"
+          "Romans 15:8-12"
         ]
       }
     ],
@@ -1295,7 +1295,7 @@
       },
       {
         "label": "reject Messiah",
-        "verses": ["27-28"],
+        "verses": ["27"],
         "references": [
           "- did not recognize Him",
           "John 1:10-11",
@@ -1316,9 +1316,39 @@
         ]
       },
       {
-        "label": "tomb",
+        "label": "no ground, crucify",
+        "verses": ["28"],
+        "references": ["Matthew 27:22-25"]
+      },
+      {
+        "label": "all written, tomb",
         "verses": ["29"],
-        "references": ["Luke 23:53", "Isaiah 53:9"]
+        "references": [
+          "- all that was written about Him",
+          "-",
+          "- tree",
+          "Deuteronomy 21:23",
+          "John 19:17-18",
+          "Galatians 3:13",
+          "-",
+          "- lamb",
+          "Isaiah 53:7-9",
+          "Matthew 27:12-14",
+          "Mark 14:56",
+          "-",
+          "- cast lots for garment",
+          "Psalms 22:18",
+          "John 19:23-24",
+          "-",
+          "- no bone broken",
+          "Exodus 12:46",
+          "Psalms 34:20",
+          "John 19:33-36",
+          "-",
+          "- laid Him in a tomb",
+          "Isaiah 53:9",
+          "Luke 23:53"
+        ]
       },
       {
         "label": "raised",
@@ -1333,9 +1363,10 @@
         ]
       },
       {
-        "label": "seen",
+        "label": "seen, witnesses",
         "verses": ["31"],
         "references": [
+          "-seen",
           "Matthew 28:9-10",
           "Matthew 28:16-17",
           "Mark 16:9",
@@ -1348,13 +1379,9 @@
           "John 20:27",
           "John 21:14",
           "Acts 2:24",
-          "Psalms 16:10"
-        ]
-      },
-      {
-        "label": "witnesses",
-        "verses": ["31"],
-        "references": [
+          "Psalms 16:10",
+          "-",
+          "- witnesses",
           "Matthew 28:19-20",
           "Mark 16:19-20",
           "Luke 24:48",
@@ -1363,58 +1390,126 @@
       },
       {
         "label": "good news",
-        "verses": ["32-37"],
+        "verses": ["32-39"],
         "references": [
-          "-Son",
+          "- good news",
+          "The promises of God are fullfilled in the resurrection of His Son who did not see decay",
+          "-",
+          "-You are My Son",
           "Psalms 2:7",
           "-",
           "-Blessings promised to David",
           "2 Samuel 7:12-13",
           "Isaiah 55:3",
           "-",
-          "-not see decay",
+          "-Son will not see decay",
           "Psalms 16:10",
           "-",
-          "-David's burial",
+          "-David's burial (David saw decay)",
           "1 Kings 2:10",
           "1 Chronicles 29:27-28"
         ],
-        "emphasis": ["good news", "decay", "son", "buried", "blessings promised"]
+        "emphasis": [
+          "good news",
+          "decay",
+          "son",
+          "buried",
+          "blessings promised"
+        ]
       },
       {
-        "label": "placeholder",
-        "verses": ["24"],
-        "references": [""]
+        "label": "I am doing a work",
+        "verses": ["40-41"],
+        "references": ["Habakkuk 1:5-11"]
       },
       {
-        "label": "placeholder",
-        "verses": ["24"],
-        "references": [""]
+        "label": "reject the gospel stir up crowds",
+        "verses": [45, 50],
+        "references": [
+          "Matthew 27:18",
+          "Matthew 27:20-23",
+          "Mark 15:10-11",
+          "Luke 23:13-23",
+          "Acts 4:1-3",
+          "Acts 4:17-18",
+          "Acts 5:17-18",
+          "Acts 6:8-14",
+          "Acts 13:45",
+          "Acts 13:50",
+          "Acts 17:5",
+          "Acts 18:5-6",
+          "Acts 19:23-29",
+          "Acts 21:27-30"
+        ]
       },
       {
-        "label": "placeholder",
-        "verses": ["24"],
-        "references": [""]
+        "label": "Jews then Gentiles",
+        "verses": [5, "46-49"],
+        "references": [
+          "Genesis 12:3",
+          "Isaiah 2:3",
+          "Isaiah 49:6",
+          "Jeremiah 31:31",
+          "Hosea 1:10",
+          "Matthew 10:5-6",
+          "Matthew 15:24",
+          "Luke 24:47",
+          "John 4:22",
+          "Acts 1:8",
+          "Acts 3:26",
+          "Acts 14:1",
+          "Acts 17:1-2",
+          "Acts 18:4",
+          "Acts 18:19",
+          "Acts 19:8",
+          "Acts 22:21",
+          "Acts 28:17-28",
+          "Romans 1:16",
+          "Romans 2:9-10",
+          "Romans 3:1-2",
+          "Romans 9:4-5",
+          "Romans 10:19",
+          "Romans 11:1",
+          "Romans 11:11",
+          "Romans 15:8-12"
+        ]
       },
       {
-        "label": "placeholder",
-        "verses": ["24"],
-        "references": [""]
+        "label": "shake dust",
+        "verses": ["51"],
+        "references": [
+          "Matthew 10:14-15",
+          "Mark 6:11",
+          "Luke 9:5",
+          "Luke 10:11",
+          "Acts 18:6"
+        ]
       },
       {
-        "label": "placeholder",
-        "verses": ["24"],
-        "references": [""]
-      },
-      {
-        "label": "placeholder",
-        "verses": ["24"],
-        "references": [""]
-      },
-      {
-        "label": "placeholder",
-        "verses": ["24"],
-        "references": [""]
+        "label": "joy in the Spirit",
+        "verses": ["52"],
+        "references": [
+          "Nehemiah 8:10",
+          "Psalms 16:9-11",
+          "Psalms 119:111",
+          "Isaiah 61:1-3",
+          "Isaiah 61:3",
+          "Habakkuk 3:17-18",
+          "Acts 2:46",
+          "Acts 5:41",
+          "Acts 8:39",
+          "Romans 5:3-4",
+          "Romans 14:17",
+          "Romans 15:13",
+          "2 Corinthians 6:10",
+          "2 Corinthians 8:2",
+          "Galatians 5:22",
+          "1 Thessalonians 1:6",
+          "1 Thessalonians 5:16",
+          "James 1:2-4",
+          "1 Peter 1:8",
+          "1 Peter 4:13-14"
+        ]
       },
       {
         "highlight": "Places",
