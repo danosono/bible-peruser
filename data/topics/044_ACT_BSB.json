@@ -1107,42 +1107,42 @@
         "text": ["people"]
       },
       {
-        "chiasm": "Cornelius & Peter's Vision",
+        "chiasm": "Gentiles added to God's kingdom",
         "parts": [
           {
             "part": "A1",
             "verses": ["1-8"],
-            "label": "Cornelius's vision — sends for Peter"
+            "label": "Cornelius (Gentile) visited by an angel of God"
           },
           {
             "part": "B1",
             "verses": ["9-16"],
-            "label": "Peter's rooftop vision"
+            "label": "Peter (Jew) is prepared for Gentile inclusion"
           },
           {
             "part": "C1",
             "verses": ["17-23"],
-            "label": "Cornelius's men find Peter; he agrees to go"
+            "label": "Peter obeys God and visits Cornelius"
           },
           {
             "part": "X",
             "verses": ["24-33"],
-            "label": "Peter and Cornelius meet in Caesarea"
+            "label": "Jew and Gentile fellowship at God's orchestration"
           },
           {
             "part": "C2",
             "verses": ["34-43"],
-            "label": "Peter preaches the gospel to the household"
+            "label": "Peter obeys God and preaches the gospel Gentiles"
           },
           {
             "part": "B2",
             "verses": ["44-46"],
-            "label": "The Holy Spirit falls on the Gentiles"
+            "label": "Gentiles are added to God's kingdom"
           },
           {
             "part": "A2",
             "verses": ["47-48"],
-            "label": "Cornelius's household is baptized"
+            "label": "Gentile household is baptized"
           }
         ]
       }

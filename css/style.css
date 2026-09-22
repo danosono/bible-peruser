@@ -248,7 +248,7 @@
   /* Chiasm viewer focus color (the "X" part) — deliberately not part of
      the seasonal accent trio, so a chiasm's center reads the same
      regardless of the active color theme. */
-  --chiasm-focus: #e8c547;
+  --chiasm-focus: #a78e33;
 }
 
 /* Seasonal / holiday accent themes — js/bp-theme.js sets data-theme on <html>.
@@ -778,9 +778,13 @@ body {
   border-top: 1px solid #333;
   background: var(--bg-sidebar);
 }
+/* No horizontal padding here — .bp-sidebar already gives the whole aside
+   1rem of left/right padding (same inset the highlight buttons sit in via
+   .bp-sidebar__scroll-body, which adds none of its own); adding more here
+   would double up and leave the chiasm button narrower than the others. */
 .bp-chiasm-section__header {
   flex-shrink: 0;
-  padding: 0.5em 0.8em 0.3em;
+  padding: 0.5em 0 0.3em;
   font-size: 0.85em;
   font-weight: 600;
   text-transform: uppercase;
@@ -793,15 +797,15 @@ body {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  padding: 0 0.8em 0.6em;
+  padding: 0 0 0.6em;
 }
-.bp-chiasm-btn-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
+/* Full width (unlike the short single-word highlight pills) — chiasm
+   titles tend to be longer descriptive phrases, so wrapping to two lines
+   inside a narrow auto-width button reads as excess padding; spanning the
+   section's width instead gives the text room without inflating padding. */
 .topic-chiasm-btn {
-  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
   text-align: left;
   background: #2d2a3a;
   color: var(--gold-accent);
@@ -812,31 +816,26 @@ body {
    chiasm focus color must stay gold, not the seasonal accent color. */
 .topic-btn.topic-chiasm-btn.active {
   background: var(--chiasm-focus);
-  color: #2a2408;
+  color: #fff8e1;
   border-color: var(--chiasm-focus);
   box-shadow: 0 0 8px var(--chiasm-focus);
 }
-.bp-chiasm-info-btn {
-  flex-shrink: 0;
-  width: 1.8em;
-  height: 1.8em;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  color: var(--text-secondary);
-  border: 1px solid #444;
+/* Chi (X) icon that opens the chiasm structure modal — lives in the
+   button's trailing icon cluster (getTopicBtnIcons), same spot as the
+   📖/📝 reference/note icons on other topic buttons. */
+.chiasm-chi-icon {
+  font-weight: 700;
+  color: var(--chiasm-focus);
+  /* Padding + matching negative margin enlarges the actual clickable/
+     tappable box without enlarging the glyph itself or shifting the
+     surrounding button layout — it's a little hard to hit at the glyph's
+     own size alone. */
+  padding: 0.4em;
+  margin: -0.4em;
   border-radius: 4px;
-  font-size: 0.8em;
-  cursor: pointer;
-  transition:
-    background 0.2s,
-    color 0.2s;
 }
-.bp-chiasm-info-btn:hover,
-.bp-chiasm-info-btn:focus-visible {
-  background: var(--accent);
-  color: #fff;
+.topic-btn.topic-chiasm-btn.active .chiasm-chi-icon {
+  color: #fff8e1;
 }
 
 /* Chiasm verse highlighting — graduated shades set inline via --chiasm-shade
@@ -2228,6 +2227,38 @@ html.bp-hide-outlines .topic-outline-btn {
 }
 .bp-chiasm-explainer-modal__body p:last-child {
   margin-bottom: 0;
+}
+@media (min-width: 3000px) {
+  .bp-chiasm-modal {
+    width: min(680px, 100%);
+  }
+  .bp-chiasm-modal__title {
+    font-size: 1.3rem;
+  }
+  .bp-chiasm-modal__explain-btn {
+    font-size: 0.92rem;
+  }
+  .bp-chiasm-modal__close {
+    font-size: 1.35rem;
+  }
+  .bp-chiasm-modal__row {
+    font-size: 1.15rem;
+  }
+  .bp-chiasm-modal__verses {
+    font-size: 1rem;
+  }
+  .bp-chiasm-explainer-modal {
+    width: min(500px, 100%);
+  }
+  .bp-chiasm-explainer-modal__title {
+    font-size: 1.25rem;
+  }
+  .bp-chiasm-explainer-modal__close {
+    font-size: 1.35rem;
+  }
+  .bp-chiasm-explainer-modal__body {
+    font-size: 1.08rem;
+  }
 }
 
 /* Timeline modal */

@@ -405,7 +405,7 @@ function computeChiasmLayout(parts) {
   // reads the same regardless of the active color theme. X gets a fixed
   // focus color instead of a shade of grey.
   function shadeOf(entry) {
-    if (entry.isX) return "var(--chiasm-focus, #e8c547)";
+    if (entry.isX) return "var(--chiasm-focus, #a78e33)";
     const level = levelByLetter[entry.letter] || 0;
     const lightness =
       letters.length <= 1 ? 32 : 22 + (level / (letters.length - 1)) * 40;
@@ -455,13 +455,10 @@ function renderChiasmSection(aside, entries, resolveElements) {
   entries.forEach((topic) => {
     const layout = computeChiasmLayout(topic.parts);
 
-    const row = document.createElement("div");
-    row.className = "bp-chiasm-btn-row";
-
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "topic-btn topic-chiasm-btn";
-    btn.textContent = topic.chiasm;
+    btn.className = "topic-btn topic-chiasm-btn topic-btn--with-reference";
+    btn.appendChild(document.createTextNode(topic.chiasm));
     btn.onclick = () => {
       const wasActive = btn.classList.contains("active");
       clearChiasmHighlight();
@@ -479,23 +476,24 @@ function renderChiasmSection(aside, entries, resolveElements) {
       });
     };
 
-    const infoBtn = document.createElement("button");
-    infoBtn.type = "button";
-    infoBtn.className = "bp-chiasm-info-btn";
-    infoBtn.innerHTML = "&#x2715;";
-    infoBtn.setAttribute(
-      "aria-label",
-      `View ${topic.chiasm} chiasm structure`,
-    );
-    infoBtn.title = "View chiasm structure";
-    infoBtn.onclick = (e) => {
+    // "Chi" (X, the letter chiasm gets its name from) mirrors the
+    // 📖/📝 reference/note icons on other topic buttons — an inline icon
+    // in the button's trailing icon cluster, not a separate button.
+    const chiIcon = document.createElement("span");
+    chiIcon.className = "outline-link-icon chiasm-chi-icon";
+    chiIcon.textContent = "Χ";
+    const chiTooltipText = `View ${topic.chiasm} chiasm structure`;
+    chiIcon.setAttribute("aria-label", chiTooltipText);
+    const hideChiTooltip = attachIconHoverTooltip(chiIcon, chiTooltipText);
+    chiIcon.style.cursor = "pointer";
+    chiIcon.addEventListener("click", (e) => {
       e.stopPropagation();
+      if (hideChiTooltip) hideChiTooltip();
       openChiasmModal(topic.chiasm, layout);
-    };
+    });
+    getTopicBtnIcons(btn).appendChild(chiIcon);
 
-    row.appendChild(btn);
-    row.appendChild(infoBtn);
-    buttonsWrap.appendChild(row);
+    buttonsWrap.appendChild(btn);
   });
 }
 
@@ -532,6 +530,7 @@ function openChiasmModal(titleText, layout) {
   header.appendChild(explainBtn);
   header.appendChild(closeBtn);
   modal.appendChild(header);
+  attachModalDrag(modal, header);
 
   const list = document.createElement("div");
   list.className = "bp-chiasm-modal__list";
@@ -1016,7 +1015,11 @@ function attachModalDrag(modalEl, headerEl) {
 
   headerEl.addEventListener("pointerdown", (e) => {
     if (typeof e.button === "number" && e.button !== 0) return;
-    if (e.target.closest(".bp-compare-modal__close")) return;
+    // Generic: skip drag-start on any button inside the header (close,
+    // and whatever other action buttons a given modal's header has —
+    // e.g. the chiasm modal's "What's a Chiasm?" button) rather than one
+    // modal's specific close-button class.
+    if (e.target.closest("button")) return;
 
     if (!hasSwitchedToFixed) {
       const rect = modalEl.getBoundingClientRect();
