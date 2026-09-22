@@ -3317,6 +3317,20 @@ html.bp-suggestions-hidden .bp-suggest-new-link {
   html.bp-mobile .bp-app.bp-drawer-bottom-open .bp-sidebar--right {
     transform: translateY(0);
   }
+  /* .bp-chiasm-section's `max-height: 25%` (css/style.css's non-mobile
+     rule) never actually constrains it here: the mobile drawer's own
+     height is auto/content-driven (bounded only by max-height, which
+     doesn't make it a definite height for percentage-child resolution),
+     so 25% of an indefinite height computes as unconstrained. With
+     several chiasms, or a longer title plus several highlight buttons
+     above it, the section can grow past the drawer's own max-height and
+     get silently clipped by its `overflow: hidden` — invisible rather
+     than scrollable. A fixed cap here always applies regardless of the
+     drawer's own height, and the section still scrolls internally
+     (.bp-chiasm-section__buttons) past that cap. */
+  html.bp-mobile .bp-chiasm-section {
+    max-height: 9em;
+  }
 
   /* Chapter nav inside the top drawer: one wrapping row instead of a tall
      stack. !important beats the inline styles on the injected elements. */
@@ -3434,12 +3448,16 @@ html.bp-suggestions-hidden .bp-suggest-new-link {
     font-size: 16px; /* <16px triggers iOS focus auto-zoom */
   }
 
-  /* --- One-time "try it on desktop" tip toast (created in app.js) --- */
+  /* --- One-time "try it on desktop" tip toast (created in app.js) ---
+     Raised clear of the floating .bp-account-widget circle (46px on
+     mobile, same base bottom offset, right: 0.75rem) — the tip spans
+     left:0.5rem to right:0.5rem, so without the extra offset its Copy
+     Link/close buttons sit directly behind the profile button. */
   html.bp-mobile .bp-desktop-tip {
     position: fixed;
     left: 0.5rem;
     right: 0.5rem;
-    bottom: calc(2.9em + env(safe-area-inset-bottom, 0px) + 0.5rem);
+    bottom: calc(2.9em + env(safe-area-inset-bottom, 0px) + 0.5rem + 46px + 0.6rem);
     z-index: 500; /* above drawers (150), below reference menus (1000) */
     display: flex;
     align-items: center;
