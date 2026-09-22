@@ -1105,6 +1105,46 @@
       {
         "highlight": "people",
         "text": ["people"]
+      },
+      {
+        "chiasm": "Cornelius & Peter's Vision",
+        "parts": [
+          {
+            "part": "A1",
+            "verses": ["1-8"],
+            "label": "Cornelius's vision — sends for Peter"
+          },
+          {
+            "part": "B1",
+            "verses": ["9-16"],
+            "label": "Peter's rooftop vision"
+          },
+          {
+            "part": "C1",
+            "verses": ["17-23"],
+            "label": "Cornelius's men find Peter; he agrees to go"
+          },
+          {
+            "part": "X",
+            "verses": ["24-33"],
+            "label": "Peter and Cornelius meet in Caesarea"
+          },
+          {
+            "part": "C2",
+            "verses": ["34-43"],
+            "label": "Peter preaches the gospel to the household"
+          },
+          {
+            "part": "B2",
+            "verses": ["44-46"],
+            "label": "The Holy Spirit falls on the Gentiles"
+          },
+          {
+            "part": "A2",
+            "verses": ["47-48"],
+            "label": "Cornelius's household is baptized"
+          }
+        ]
       }
     ],
     "11": [
@@ -1548,6 +1588,100 @@
         "outline": "Strengthening the Disciples",
         "verses": ["21-28"],
         "references": []
+      },
+      {
+        "label": "Gentiles included on both sides",
+        "verses": ["1-2", 5, 27],
+        "references": [],
+        "emphasis": ["Jews", "Gentiles", "Greeks"]
+      },
+      {
+        "label": "Stirred up crowd",
+        "verses": ["2"],
+        "references": [
+          "Mark 15:10-11",
+          "Acts 6:8-14",
+          "Acts 13:50",
+          "Acts 17:5",
+          "Acts 19:23-29",
+          "Acts 21:27-30"
+        ],
+        "links": [
+          {
+            "label": "Stirred up crowd",
+            "url": "https://bible-explorer.gospelgo.org/?dataset=custom&topic=Stir+up+crowd"
+          }
+        ]
+      },
+      {
+        "label": "Signs and Wonders",
+        "verses": [3, 10],
+        "references": []
+      },
+      {
+        "label": "Natural revelation",
+        "verses": ["17"]
+      },
+      {
+        "label": "Fickle crowd",
+        "verses": ["18-19"],
+        "emphasis": [
+          "crowds",
+          "sacrificing to them",
+          "stoned Paul and dragged him"
+        ]
+      },
+      {
+        "highlight": "Places",
+        "text": [
+          "Iconium",
+          "Lystra",
+          "Derbe",
+          "Antioch",
+          "Attalia",
+          "Derbe",
+          "Lycaonia",
+          "Pamphylia"
+        ]
+      },
+      {
+        "highlight": "What a trip",
+        "text": [
+          "speaking boldly for the Lord",
+          "signs and wonders",
+          "fled",
+          "continued to preach the gospel",
+          "Barnabas they called Zeus, and Paul they called Hermes",
+          "tore their clothes and rushed into the crowd",
+          "We too are only men",
+          "bringing you good news",
+          "hardly stop the crowds from sacrificing to them",
+          "stoned Paul and dragged him outside the city",
+          "got up and went back into the city",
+          "preached the gospel to that city and made many disciples",
+          "strengthening the souls",
+          "encouraging",
+          "We must endure many hardships to enter the kingdom of God",
+          "appointed elders",
+          "praying and fasting",
+          "spoken the word",
+          "commended to the grace of God",
+          "reported all that God had done"
+        ]
+      },
+      {
+        "highlight": "Paul in eyes of Iconium",
+        "text": [
+          "Iconium",
+          "speaking boldly for the Lord",
+          "signs and wonders",
+          "fled",
+          "hardly stop the crowds from sacrificing to them",
+          "stoned",
+          "dragged",
+          "got up and went back into the city",
+          "returned to"
+        ]
       }
     ],
     "15": [

@@ -161,7 +161,18 @@
                 >Berean Standard Bible</a
               >
             </div>
-            <div class="bp-header__info"><small>Best in 4K</small></div>
+            <div class="bp-header__info">
+              <small class="bp-header__4k-hint">Best in 4K</small>
+              <button
+                type="button"
+                id="bp-theme-picker-btn"
+                class="bp-theme-picker-trigger"
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-label="Choose color theme"
+                title="Color theme"
+              >&#127912;</button>
+            </div>
           </div>
         </div>
       </header>
@@ -217,5 +228,6 @@
     </div>
     <script type="module" src="js/bible-loader.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/bp-theme-picker.js"></script>
   </body>
 </html>

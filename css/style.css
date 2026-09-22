@@ -7,8 +7,18 @@
   .bp-header__jump {
     left: clamp(42rem, 30vw, 64rem) !important;
   }
+  /* "Best in 4K" hint is pointless once you're already at 4K — hide just the
+     text, but keep the container (and the theme-picker trigger inside it)
+     visible, laid out horizontally since there's width to spare here. */
   .bp-header__info {
-    display: none !important;
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.4em;
+    margin-left: 0.7em;
+  }
+  .bp-header__4k-hint {
+    display: none;
   }
   .bp-header__right {
     gap: 1.35em;
@@ -52,9 +62,6 @@
     max-width: 1800px;
     margin-left: auto;
     margin-right: auto;
-  }
-  .bp-header__info {
-    display: none !important;
   }
   .bp-book-scrollbar-container {
     height: 6em;
@@ -238,6 +245,10 @@
   --error: #ff9c8a;
   --search-highlight: #ffe923;
   --emphasis-highlight: #26ff7b;
+  /* Chiasm viewer focus color (the "X" part) — deliberately not part of
+     the seasonal accent trio, so a chiasm's center reads the same
+     regardless of the active color theme. */
+  --chiasm-focus: #e8c547;
 }
 
 /* Seasonal / holiday accent themes — js/bp-theme.js sets data-theme on <html>.
@@ -753,6 +764,91 @@ body {
   overflow-y: auto;
   min-height: 0;
 }
+
+/* Chiasms section — pinned to the bottom of the right sidebar, only
+   created/shown when the current chapter/book has chiasm data (see
+   renderChiasmSection in js/bible-loader.js). Capped at ~25% of the panel
+   so it never crowds out the highlight-button scroll area above it; scrolls
+   internally instead of growing past that cap. */
+.bp-chiasm-section {
+  flex-shrink: 0;
+  max-height: 25%;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #333;
+  background: var(--bg-sidebar);
+}
+.bp-chiasm-section__header {
+  flex-shrink: 0;
+  padding: 0.5em 0.8em 0.3em;
+  font-size: 0.85em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--text-secondary);
+}
+.bp-chiasm-section__buttons {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0 0.8em 0.6em;
+}
+.bp-chiasm-btn-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.topic-chiasm-btn {
+  flex: 1;
+  text-align: left;
+  background: #2d2a3a;
+  color: var(--gold-accent);
+  border: 1px solid #4a4560;
+}
+/* Three-class selector so this beats .topic-btn.active (same two-class
+   specificity, declared later in the cascade at .topic-btn.active) — the
+   chiasm focus color must stay gold, not the seasonal accent color. */
+.topic-btn.topic-chiasm-btn.active {
+  background: var(--chiasm-focus);
+  color: #2a2408;
+  border-color: var(--chiasm-focus);
+  box-shadow: 0 0 8px var(--chiasm-focus);
+}
+.bp-chiasm-info-btn {
+  flex-shrink: 0;
+  width: 1.8em;
+  height: 1.8em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid #444;
+  border-radius: 4px;
+  font-size: 0.8em;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+.bp-chiasm-info-btn:hover,
+.bp-chiasm-info-btn:focus-visible {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Chiasm verse highlighting — graduated shades set inline via --chiasm-shade
+   (computeChiasmLayout), so the number of levels is data-driven rather than
+   a fixed set of CSS classes. */
+.chiasm-highlight {
+  background: var(--chiasm-shade, #555);
+  color: #fff;
+  border-radius: 4px;
+  padding: 0 0px;
+  transition: background 0.2s;
+}
 /* Sticky highlight toggle bar in right sidebar */
 .sticky-highlight-toggle-bar {
   position: relative;
@@ -834,10 +930,77 @@ body {
 }
 
 .bp-header__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15em;
   font-size: 1em;
   color: var(--accent);
   margin-left: 0.7em;
   white-space: nowrap;
+}
+
+.bp-theme-picker-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5em;
+  height: 1.5em;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  color: var(--accent);
+  font-size: 0.8em;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+}
+.bp-theme-picker-trigger:hover,
+.bp-theme-picker-trigger:focus-visible {
+  background: var(--accent);
+  border-color: #fff;
+}
+
+.bp-theme-picker-popover {
+  position: fixed;
+  z-index: 1000;
+  background: var(--bg-sidebar);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+  padding: 0.6em;
+}
+.bp-theme-picker-popover__title {
+  font-size: 0.75em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin: 0 0 0.5em;
+}
+.bp-theme-picker-popover__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5em;
+}
+.bp-theme-picker-swatch {
+  position: relative;
+  width: 1.8em;
+  height: 1.8em;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  padding: 0;
+}
+.bp-theme-picker-swatch:hover,
+.bp-theme-picker-swatch:focus-visible {
+  border-color: var(--text-main);
+}
+.bp-theme-picker-swatch.active {
+  border-color: #fff;
+  box-shadow: 0 0 0 2px var(--accent-vivid);
 }
 
 .bp-main {
@@ -1896,6 +2059,175 @@ html.bp-hide-outlines .topic-outline-btn {
   .bp-info-modal__credit {
     font-size: 0.95rem;
   }
+}
+
+/* Chiasm structure modal */
+.bp-chiasm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+.bp-chiasm-modal {
+  background: #23272a;
+  color: #f5f6fa;
+  border: 1px solid #444;
+  border-radius: 10px;
+  width: min(560px, 100%);
+  max-height: min(85vh, 85dvh);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
+}
+.bp-chiasm-modal__header {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.1rem;
+  border-bottom: 1px solid #333;
+}
+.bp-chiasm-modal__title {
+  flex: 1;
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--gold-accent);
+}
+.bp-chiasm-modal__explain-btn {
+  flex: none;
+  background: transparent;
+  color: var(--accent-light);
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  padding: 0.3em 0.7em;
+  font-size: 0.78rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.bp-chiasm-modal__explain-btn:hover,
+.bp-chiasm-modal__explain-btn:focus-visible {
+  background: var(--accent);
+  color: #fff;
+}
+.bp-chiasm-modal__close {
+  flex: none;
+  background: transparent;
+  border: none;
+  color: #f5f6fa;
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.2rem;
+}
+.bp-chiasm-modal__list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.bp-chiasm-modal__row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6em;
+  border-left: 4px solid var(--chiasm-shade, #555);
+  padding: 0.3em 0 0.3em 0.6em;
+}
+.bp-chiasm-modal__marker {
+  flex: none;
+  font-weight: 700;
+  color: var(--chiasm-shade, #ccc);
+  min-width: 2em;
+}
+.bp-chiasm-modal__label {
+  flex: 1;
+  color: var(--text-main);
+}
+.bp-chiasm-modal__verses {
+  flex: none;
+  font-size: 0.85em;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+}
+@media (max-width: 480px) {
+  .bp-chiasm-overlay {
+    padding: 0.75rem;
+  }
+  .bp-chiasm-modal {
+    max-height: min(92vh, 92dvh);
+  }
+  .bp-chiasm-modal__header {
+    flex-wrap: wrap;
+  }
+}
+
+/* Chiasm explainer sub-modal */
+.bp-chiasm-explainer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 1250;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+.bp-chiasm-explainer-modal {
+  background: #23272a;
+  color: #f5f6fa;
+  border: 1px solid #444;
+  border-radius: 10px;
+  width: min(420px, 100%);
+  max-height: min(80vh, 80dvh);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
+}
+.bp-chiasm-explainer-modal__header {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.1rem;
+  border-bottom: 1px solid #333;
+}
+.bp-chiasm-explainer-modal__title {
+  flex: 1;
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--gold-accent);
+}
+.bp-chiasm-explainer-modal__close {
+  flex: none;
+  background: transparent;
+  border: none;
+  color: #f5f6fa;
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.2rem;
+}
+.bp-chiasm-explainer-modal__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 1.1rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+.bp-chiasm-explainer-modal__body p {
+  margin: 0 0 0.8em;
+}
+.bp-chiasm-explainer-modal__body p:last-child {
+  margin-bottom: 0;
 }
 
 /* Timeline modal */

@@ -27,6 +27,11 @@
   ];
   var OFF_VALUES = ["off", "blue", "default"];
 
+  // Exposed so js/bp-theme-picker.js (loaded later, after <body>) can build
+  // its swatch list from the same source of truth instead of duplicating it.
+  window.BP_VALID_THEMES = VALID_THEMES;
+  window.BP_THEME_KEY = THEME_KEY;
+
   var match = /[?&]theme=([a-z0-9-]+)/i.exec(location.search);
   if (match) {
     var requested = match[1].toLowerCase();

@@ -346,6 +346,291 @@ function normalizePhraseEntries(entries) {
   return out.sort((a, b) => b.phrase.length - a.phrase.length);
 }
 
+// ─── Chiasm viewer ──────────────────────────────────────────────────────
+// A chiasm is a mirrored literary structure (A, B, ..., X, ..., B, A) that
+// some chapters/books have. Entries live alongside outline/label/highlight
+// topics in the same JSON files, discriminated by `topic.chiasm` (button
+// label, a string) + `topic.parts` (array of { part: "A1"/"B2"/"X"/"X1"/
+// "X2"/..., verses, label? }). `parts` can be authored in any order and
+// with any number of letters (A/B/X, or A/B/C/D/X, ...) — the mirrored
+// display order and the shading/indent level are computed here rather than
+// stored redundantly in the JSON.
+
+// Parses a chiasm layout from its `parts` array: computes the mirrored
+// display order (A1, B1, ..., X..., ..., B2, A2), a shading level per
+// letter (0 = outermost/A, increasing = lighter, used for both highlight
+// color and modal indent depth), and a color for each part.
+function computeChiasmLayout(parts) {
+  const parsed = (Array.isArray(parts) ? parts : [])
+    .map((p) => {
+      const m = /^([A-Za-z]+)(1|2)?$/.exec(String(p && p.part ? p.part : "").trim());
+      if (!m) return null;
+      const letter = m[1].toUpperCase();
+      const suffix = m[2] || null;
+      return { part: p, letter, suffix, isX: letter === "X" };
+    })
+    .filter(Boolean);
+
+  const letters = Array.from(
+    new Set(parsed.filter((p) => !p.isX).map((p) => p.letter)),
+  ).sort();
+  const levelByLetter = {};
+  letters.forEach((letter, idx) => {
+    levelByLetter[letter] = idx;
+  });
+
+  const firstHalf = [];
+  letters.forEach((letter) => {
+    const entry =
+      parsed.find((p) => p.letter === letter && p.suffix === "1") ||
+      parsed.find((p) => p.letter === letter && !p.suffix);
+    if (entry) firstHalf.push(entry);
+  });
+  const xParts = parsed.filter((p) => p.isX);
+  const secondHalf = [];
+  for (let i = letters.length - 1; i >= 0; i--) {
+    const letter = letters[i];
+    const entry = parsed.find((p) => p.letter === letter && p.suffix === "2");
+    if (entry) secondHalf.push(entry);
+  }
+
+  const displayOrder = firstHalf.concat(xParts, secondHalf);
+
+  function levelOf(entry) {
+    return entry.isX ? letters.length : levelByLetter[entry.letter] || 0;
+  }
+
+  // Dark grey (level 0 / outermost) to light grey (innermost) — deliberately
+  // theme-independent (not tied to the seasonal accent colors), so a chiasm
+  // reads the same regardless of the active color theme. X gets a fixed
+  // focus color instead of a shade of grey.
+  function shadeOf(entry) {
+    if (entry.isX) return "var(--chiasm-focus, #e8c547)";
+    const level = levelByLetter[entry.letter] || 0;
+    const lightness =
+      letters.length <= 1 ? 32 : 22 + (level / (letters.length - 1)) * 40;
+    return `hsl(0, 0%, ${lightness}%)`;
+  }
+
+  return { displayOrder, levelOf, shadeOf };
+}
+
+function formatChiasmVerseRange(tokens) {
+  return (Array.isArray(tokens) ? tokens : []).join(", ");
+}
+
+function clearChiasmHighlight() {
+  document.querySelectorAll(".chiasm-highlight").forEach((el) => {
+    el.classList.remove("chiasm-highlight");
+    el.style.removeProperty("--chiasm-shade");
+  });
+}
+
+// Renders (or removes) the "Chiasms" section pinned to the bottom of the
+// right sidebar. `entries` is the pre-filtered list of topic objects with
+// `chiasm` + `parts`. `resolveElements(part)` maps one chiasm part to the
+// DOM verse-num/verse-text elements it covers — the only thing that
+// differs between per-chapter (data-verse) and book-wide (data-verse-key)
+// rendering, so it's injected by the caller.
+function renderChiasmSection(aside, entries, resolveElements) {
+  if (!aside) return;
+  const existing = aside.querySelector(".bp-chiasm-section");
+  if (!entries || !entries.length) {
+    if (existing) existing.remove();
+    return;
+  }
+
+  let section = existing;
+  if (!section) {
+    section = document.createElement("div");
+    section.className = "bp-chiasm-section";
+    section.innerHTML =
+      '<div class="bp-chiasm-section__header">Chiasms</div>' +
+      '<div class="bp-chiasm-section__buttons"></div>';
+    aside.appendChild(section);
+  }
+  const buttonsWrap = section.querySelector(".bp-chiasm-section__buttons");
+  buttonsWrap.innerHTML = "";
+
+  entries.forEach((topic) => {
+    const layout = computeChiasmLayout(topic.parts);
+
+    const row = document.createElement("div");
+    row.className = "bp-chiasm-btn-row";
+
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "topic-btn topic-chiasm-btn";
+    btn.textContent = topic.chiasm;
+    btn.onclick = () => {
+      const wasActive = btn.classList.contains("active");
+      clearChiasmHighlight();
+      buttonsWrap
+        .querySelectorAll(".topic-chiasm-btn")
+        .forEach((b) => b.classList.remove("active"));
+      if (wasActive) return;
+      btn.classList.add("active");
+      layout.displayOrder.forEach((entry) => {
+        const shade = layout.shadeOf(entry);
+        resolveElements(entry.part).forEach((el) => {
+          el.classList.add("chiasm-highlight");
+          el.style.setProperty("--chiasm-shade", shade);
+        });
+      });
+    };
+
+    const infoBtn = document.createElement("button");
+    infoBtn.type = "button";
+    infoBtn.className = "bp-chiasm-info-btn";
+    infoBtn.innerHTML = "&#x2715;";
+    infoBtn.setAttribute(
+      "aria-label",
+      `View ${topic.chiasm} chiasm structure`,
+    );
+    infoBtn.title = "View chiasm structure";
+    infoBtn.onclick = (e) => {
+      e.stopPropagation();
+      openChiasmModal(topic.chiasm, layout);
+    };
+
+    row.appendChild(btn);
+    row.appendChild(infoBtn);
+    buttonsWrap.appendChild(row);
+  });
+}
+
+function openChiasmModal(titleText, layout) {
+  document.querySelectorAll(".bp-chiasm-overlay").forEach((el) => el.remove());
+
+  const overlay = document.createElement("div");
+  overlay.className = "bp-chiasm-overlay";
+
+  const modal = document.createElement("div");
+  modal.className = "bp-chiasm-modal";
+  overlay.appendChild(modal);
+
+  const header = document.createElement("div");
+  header.className = "bp-chiasm-modal__header";
+
+  const title = document.createElement("h2");
+  title.className = "bp-chiasm-modal__title";
+  title.textContent = titleText;
+
+  const explainBtn = document.createElement("button");
+  explainBtn.type = "button";
+  explainBtn.className = "bp-chiasm-modal__explain-btn";
+  explainBtn.textContent = "What's a Chiasm?";
+  explainBtn.addEventListener("click", openChiasmExplainerModal);
+
+  const closeBtn = document.createElement("button");
+  closeBtn.type = "button";
+  closeBtn.className = "bp-chiasm-modal__close";
+  closeBtn.innerHTML = "&#x2715;";
+  closeBtn.setAttribute("aria-label", "Close");
+
+  header.appendChild(title);
+  header.appendChild(explainBtn);
+  header.appendChild(closeBtn);
+  modal.appendChild(header);
+
+  const list = document.createElement("div");
+  list.className = "bp-chiasm-modal__list";
+  layout.displayOrder.forEach((entry) => {
+    const row = document.createElement("div");
+    row.className = "bp-chiasm-modal__row";
+    row.style.paddingLeft = `${layout.levelOf(entry) * 1.4}em`;
+    row.style.setProperty("--chiasm-shade", layout.shadeOf(entry));
+
+    const marker = document.createElement("span");
+    marker.className = "bp-chiasm-modal__marker";
+    marker.textContent = entry.part.part;
+    row.appendChild(marker);
+
+    if (entry.part.label) {
+      const labelEl = document.createElement("span");
+      labelEl.className = "bp-chiasm-modal__label";
+      labelEl.textContent = entry.part.label;
+      row.appendChild(labelEl);
+    }
+
+    const verses = document.createElement("span");
+    verses.className = "bp-chiasm-modal__verses";
+    verses.textContent = formatChiasmVerseRange(entry.part.verses);
+    row.appendChild(verses);
+
+    list.appendChild(row);
+  });
+  modal.appendChild(list);
+
+  function closeModal() {
+    document.removeEventListener("keydown", onKeydown);
+    overlay.remove();
+  }
+  function onKeydown(e) {
+    if (e.key === "Escape") closeModal();
+  }
+  overlay.addEventListener("mousedown", (e) => {
+    if (e.target === overlay) closeModal();
+  });
+  closeBtn.addEventListener("click", closeModal);
+  document.addEventListener("keydown", onKeydown);
+
+  document.body.appendChild(overlay);
+}
+
+function openChiasmExplainerModal() {
+  document
+    .querySelectorAll(".bp-chiasm-explainer-overlay")
+    .forEach((el) => el.remove());
+
+  const overlay = document.createElement("div");
+  overlay.className = "bp-chiasm-explainer-overlay";
+
+  const modal = document.createElement("div");
+  modal.className = "bp-chiasm-explainer-modal";
+  overlay.appendChild(modal);
+
+  const header = document.createElement("div");
+  header.className = "bp-chiasm-explainer-modal__header";
+
+  const title = document.createElement("h2");
+  title.className = "bp-chiasm-explainer-modal__title";
+  title.textContent = "What is a Chiasm?";
+
+  const closeBtn = document.createElement("button");
+  closeBtn.type = "button";
+  closeBtn.className = "bp-chiasm-explainer-modal__close";
+  closeBtn.innerHTML = "&#x2715;";
+  closeBtn.setAttribute("aria-label", "Close");
+
+  header.appendChild(title);
+  header.appendChild(closeBtn);
+  modal.appendChild(header);
+
+  const body = document.createElement("div");
+  body.className = "bp-chiasm-explainer-modal__body";
+  body.innerHTML =
+    "<p>A <strong>chiasm</strong> (from the Greek letter chi, Χ — Χιασμός, “chiasmos”) is a literary pattern where ideas are presented, then presented again in reverse order, forming a mirror image: A, B, …, X, …, B, A.</p>" +
+    "<p>The center point, marked <strong>X</strong>, is usually the passage’s main idea or turning point — everything before and after it mirrors back outward from that center.</p>" +
+    "<p>Biblical authors used this structure often; recognizing it can reveal which verse or idea a passage is actually building toward.</p>";
+  modal.appendChild(body);
+
+  function closeModal() {
+    document.removeEventListener("keydown", onKeydown);
+    overlay.remove();
+  }
+  function onKeydown(e) {
+    if (e.key === "Escape") closeModal();
+  }
+  overlay.addEventListener("mousedown", (e) => {
+    if (e.target === overlay) closeModal();
+  });
+  closeBtn.addEventListener("click", closeModal);
+  document.addEventListener("keydown", onKeydown);
+
+  document.body.appendChild(overlay);
+}
+
 function getLiteralSearchPhrase(inputEl) {
   if (!inputEl || typeof inputEl.value !== "string") return "";
   return inputEl.value.trim() ? inputEl.value : "";
@@ -3019,6 +3304,29 @@ async function loadBibleChapter(
           },
         );
       }
+
+      // ── Chiasms section: bottom of the right panel, only when present ──────
+      renderChiasmSection(
+        aside,
+        chapterTopics.filter(
+          (t) =>
+            typeof t.chiasm === "string" &&
+            t.chiasm.trim() &&
+            Array.isArray(t.parts) &&
+            t.parts.length,
+        ),
+        (part) => {
+          const els = [];
+          expandVerseRangeTokens(part.verses).forEach((v) => {
+            document
+              .querySelectorAll(
+                `.verse-num[data-verse='${v}'], .verse-text[data-verse='${v}']`,
+              )
+              .forEach((el) => els.push(el));
+          });
+          return els;
+        },
+      );
     }); // End tryFetchTopicFile callback
     // Update character count in footer
     const footer = document.querySelector(".bp-footer");
@@ -3514,6 +3822,15 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
     const bookWideHighlights = Array.isArray(topicsData.bookWideHighlights)
       ? topicsData.bookWideHighlights
       : [];
+    const bookWideChiasms = Array.isArray(topicsData.bookWideChiasms)
+      ? topicsData.bookWideChiasms.filter(
+          (t) =>
+            typeof t?.chiasm === "string" &&
+            t.chiasm.trim() &&
+            Array.isArray(t.parts) &&
+            t.parts.length,
+        )
+      : [];
 
     // ── State for active verse-range keys (from left-panel label) ────────────
     let activeRangeKeys = new Set();
@@ -3839,6 +4156,21 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
           );
         }
       }
+
+      // ── Chiasms section: bottom of the right panel, only when present ──────
+      renderChiasmSection(aside, bookWideChiasms, (part) => {
+        const els = [];
+        const { verseKeys } = buildBookWideLabelVerseKeys(
+          part,
+          chapterMaxVerseMap,
+        );
+        verseKeys.forEach((k) => {
+          document
+            .querySelectorAll(`[data-verse-key='${k}']`)
+            .forEach((el) => els.push(el));
+        });
+        return els;
+      });
     }
 
     updateFooterCharCount(charCount, "");
