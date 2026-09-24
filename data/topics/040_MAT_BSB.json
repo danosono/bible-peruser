@@ -2782,7 +2782,7 @@
           "verses": ["27"]
         },
         {
-          "label": "Beginning of Next Chapter",
+          "label": "See Next Chapter",
           "verses": ["28"]
         },
         {
@@ -2852,6 +2852,37 @@
             "deny himself and take up his cross and follow Me",
             "the Son of Man will come in His Father’s glory with His angels"
           ]
+        },
+        {
+          "chiasm": "Gentiles added to God's kingdom",
+          "parts": [
+            {
+              "part": "A1",
+              "verses": ["13"],
+              "label": "Jesus pesents question"
+            },
+            {
+              "part": "B1",
+              "verses": ["14-16"],
+              "label": "Messiah, Son of God"
+            },
+            {
+              "part": "X",
+              "verses": ["17"],
+              "label": "Yawheh reveals to men that Jesus is the Christ"
+            },
+            {
+              "part": "B2",
+              "verses": ["18-19"],
+              "label": "Messiah's authority/church"
+            },
+            {
+              "part": "A2",
+              "verses": ["20"],
+              "label": "Jesus presents prohibition"
+            }
+          ],
+          "source": "John Breck, The Shape of Biblical Language"
         }
       ]
     },

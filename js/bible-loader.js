@@ -341,7 +341,12 @@ function normalizePhraseEntries(entries) {
     const key = className + " " + e.phrase.toLowerCase();
     if (seen.has(key)) return;
     seen.add(key);
-    out.push({ phrase: e.phrase, className, scopeVerseKeys: e.scopeVerseKeys || null });
+    out.push({
+      phrase: e.phrase,
+      className,
+      scopeVerseKeys: e.scopeVerseKeys || null,
+      wholeWord: !!e.wholeWord,
+    });
   });
   return out.sort((a, b) => b.phrase.length - a.phrase.length);
 }
@@ -489,7 +494,7 @@ function renderChiasmSection(aside, entries, resolveElements) {
     chiIcon.addEventListener("click", (e) => {
       e.stopPropagation();
       if (hideChiTooltip) hideChiTooltip();
-      openChiasmModal(topic.chiasm, layout);
+      openChiasmModal(topic.chiasm, layout, topic.source);
     });
     getTopicBtnIcons(btn).appendChild(chiIcon);
 
@@ -497,7 +502,7 @@ function renderChiasmSection(aside, entries, resolveElements) {
   });
 }
 
-function openChiasmModal(titleText, layout) {
+function openChiasmModal(titleText, layout, sourceText) {
   document.querySelectorAll(".bp-chiasm-overlay").forEach((el) => el.remove());
 
   const overlay = document.createElement("div");
@@ -560,6 +565,13 @@ function openChiasmModal(titleText, layout) {
     list.appendChild(row);
   });
   modal.appendChild(list);
+
+  if (typeof sourceText === "string" && sourceText.trim()) {
+    const source = document.createElement("div");
+    source.className = "bp-chiasm-modal__source";
+    source.textContent = `Source: ${sourceText.trim()}`;
+    modal.appendChild(source);
+  }
 
   function closeModal() {
     document.removeEventListener("keydown", onKeydown);
@@ -2666,6 +2678,8 @@ function resetVerseTextFromCache(verseTextCache) {
   });
 }
 
+const WORD_CHAR_RE = /[a-z0-9']/i;
+
 function collectNonOverlappingMatches(lowerText, phraseEntries) {
   const matches = [];
   phraseEntries.forEach((pe) => {
@@ -2675,13 +2689,22 @@ function collectNonOverlappingMatches(lowerText, phraseEntries) {
     while (true) {
       const idx = lowerText.indexOf(phrase, fromIdx);
       if (idx === -1) break;
+      fromIdx = idx + 1;
+      // Single-word Top Words buttons opt into word-boundary matching so
+      // e.g. "men" doesn't also light up inside "judgment"/"requirements" —
+      // other highlight sources (curated highlight/search phrases) keep the
+      // existing plain-substring behavior documented in CLAUDE.md.
+      if (pe.wholeWord) {
+        const before = idx > 0 ? lowerText[idx - 1] : "";
+        const after = lowerText[idx + phrase.length] || "";
+        if (WORD_CHAR_RE.test(before) || WORD_CHAR_RE.test(after)) continue;
+      }
       matches.push({
         start: idx,
         end: idx + phrase.length,
         len: phrase.length,
         className: pe.className,
       });
-      fromIdx = idx + 1;
     }
   });
   matches.sort((a, b) => a.start - b.start || b.len - a.len);
@@ -2915,6 +2938,11 @@ async function loadBibleChapter(
     })();
 
     let chapterVerseTextCache;
+    // Set once collectActivePhrases()/rerenderActiveHighlights() are defined
+    // below (inside the tryFetchTopicFile callback) — exposed here so the
+    // Top Words footer buttons, which render outside that callback, can
+    // trigger the same highlight re-render without duplicating its logic.
+    let rerenderActiveHighlightsRef = null;
     try {
       chapterVerseTextCache = buildVerseTextCache(
         Array.from(document.querySelectorAll(".verse-text[data-original]")),
@@ -3201,6 +3229,10 @@ async function loadBibleChapter(
           const typedPhrase = getLiteralSearchPhrase(field);
           if (typedPhrase) entries.push({ phrase: typedPhrase, className: "search-highlight", scopeVerseKeys: null });
         });
+        document.querySelectorAll(".top-word-btn.active").forEach((btn) => {
+          const w = btn._topWordPhrase;
+          if (w) entries.push({ phrase: w, className: "search-highlight", scopeVerseKeys: null, wholeWord: true });
+        });
         const activeLabelBtn = topicBar ? topicBar.querySelector(".topic-label-btn.active") : null;
         if (activeLabelBtn && Array.isArray(activeLabelBtn._emphasisPhrases)) {
           activeLabelBtn._emphasisPhrases.forEach((p) => {
@@ -3222,6 +3254,7 @@ async function loadBibleChapter(
           collectActivePhrases(),
         );
       }
+      rerenderActiveHighlightsRef = rerenderActiveHighlights;
 
       chapterTopics.forEach((topic, topicIdx) => {
         const highlightLabel =
@@ -3442,15 +3475,41 @@ async function loadBibleChapter(
       let topWords = Object.entries(freq)
         .sort((a, b) => b[1] - a[1])
         .slice(0, 5);
-      let topWordsStr = topWords.length
-        ? `<b>Top words:</b> ` +
-          topWords.map(([w, c]) => `${w} (${c})`).join(", ")
-        : "";
       if (cc) {
-        cc.innerHTML =
-          `<b>Character count:</b> ${charCount}` +
-          (topWordsStr ? ` | ${topWordsStr}` : "") +
-          " |  Jesus, name above all names!";
+        cc.innerHTML = "";
+        const countLabel = document.createElement("b");
+        countLabel.textContent = "Character count:";
+        cc.appendChild(countLabel);
+        cc.appendChild(document.createTextNode(` ${charCount}`));
+        if (topWords.length) {
+          cc.appendChild(document.createTextNode(" | "));
+          const topWordsLabel = document.createElement("b");
+          topWordsLabel.textContent = "Top words:";
+          cc.appendChild(topWordsLabel);
+          cc.appendChild(document.createTextNode(" "));
+          // Each word is an independent toggle: click to highlight every
+          // occurrence in the chapter (reusing the same highlight pipeline
+          // as the sidebar buttons, via rerenderActiveHighlightsRef — see
+          // collectActivePhrases()'s .top-word-btn.active handling above),
+          // click again to remove it. Not tied to sticky-highlight mode.
+          topWords.forEach(([w]) => {
+            const wordBtn = document.createElement("button");
+            wordBtn.type = "button";
+            wordBtn.className = "top-word-btn";
+            wordBtn.textContent = w;
+            wordBtn._topWordPhrase = w;
+            wordBtn.onclick = () => {
+              wordBtn.classList.toggle("active");
+              if (rerenderActiveHighlightsRef) rerenderActiveHighlightsRef();
+            };
+            cc.appendChild(wordBtn);
+          });
+        }
+        cc.appendChild(document.createTextNode(" |  "));
+        const tagline = document.createElement("span");
+        tagline.className = "bp-footer-tagline";
+        tagline.textContent = "Jesus, name above all names!";
+        cc.appendChild(tagline);
       }
       // Reset for next chapter load
       window._chapterWords = [];

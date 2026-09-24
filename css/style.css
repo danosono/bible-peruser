@@ -840,9 +840,20 @@ body {
 
 /* Chiasm verse highlighting — graduated shades set inline via --chiasm-shade
    (computeChiasmLayout), so the number of levels is data-driven rather than
-   a fixed set of CSS classes. */
+   a fixed set of CSS classes. A solid opaque fill (tried first) clips
+   descenders (g/j/p/y/q) on wrapped lines, and adding box-shadow/padding to
+   compensate just made the clipping more visible (a hard-edged box per
+   wrapped line). .verse-highlight below never has this problem because its
+   background fades to transparent well before the top/bottom edge — same
+   fix applied here, sourced from --chiasm-shade instead of a fixed var. */
 .chiasm-highlight {
-  background: var(--chiasm-shade, #555);
+  background: linear-gradient(
+    to bottom,
+    transparent 15%,
+    var(--chiasm-shade, #555) 35%,
+    var(--chiasm-shade, #555) 65%,
+    transparent 85%
+  );
   color: #fff;
   border-radius: 4px;
   padding: 0 0px;
@@ -1727,6 +1738,38 @@ footer {
   background: #3d4b85;
 }
 
+/* Top Words — one small toggle button per word inside #bp-char-count (see
+   the "Compute top 5 words" block in bible-loader.js). Deliberately more
+   compact than .bp-meta-btn (smaller padding/margin, no border) since this
+   sits inline in free-flowing footer text rather than the right-anchored
+   button row — .bp-meta-btn-row's width math above assumes that text stays
+   narrow, so this must not grow much wider than the plain "word (n)" text
+   it replaces. Independent multi-toggle (not tied to the sticky/exclusive
+   highlight-bar semantics): each word highlights/unhighlights on its own. */
+.top-word-btn {
+  display: inline-flex;
+  align-items: center;
+  background: none;
+  color: var(--gold-accent);
+  border: 1px solid var(--gold-accent-border);
+  border-radius: 4px;
+  padding: 0.2em 0.4em;
+  margin: 0 0.15em;
+  font-size: 0.92em;
+  line-height: 1.3;
+  cursor: pointer;
+}
+.top-word-btn:hover {
+  background: #3d4b85;
+  border-color: var(--gold-accent);
+}
+.top-word-btn.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: #fff;
+  box-shadow: 0 0 6px var(--accent);
+}
+
 /* Outline/Notes footer toggles — real iOS-style switches instead of a
    plain button. The <button> itself is reduced to plain inline icon+label
    text (chrome stripped: no background/border/padding/radius); the switch
@@ -1819,6 +1862,13 @@ footer {
   }
   .bp-footer .bp-meta-btn-row {
     min-width: 684px;
+  }
+  .top-word-btn {
+    font-size: 1.15em;
+    padding: 0.25em 0.55em;
+  }
+  .bp-footer-tagline {
+    font-size: 1.2em;
   }
 }
 
@@ -2155,6 +2205,13 @@ html.bp-hide-outlines .topic-outline-btn {
   color: var(--text-tertiary);
   white-space: nowrap;
 }
+.bp-chiasm-modal__source {
+  flex: none;
+  padding: 0.6rem 1.1rem;
+  border-top: 1px solid #333;
+  font-size: 0.8em;
+  color: var(--text-tertiary);
+}
 @media (max-width: 480px) {
   .bp-chiasm-overlay {
     padding: 0.75rem;
@@ -2246,6 +2303,9 @@ html.bp-hide-outlines .topic-outline-btn {
   }
   .bp-chiasm-modal__verses {
     font-size: 1rem;
+  }
+  .bp-chiasm-modal__source {
+    font-size: 0.95rem;
   }
   .bp-chiasm-explainer-modal {
     width: min(500px, 100%);

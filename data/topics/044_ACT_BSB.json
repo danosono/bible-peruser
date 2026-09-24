@@ -1023,7 +1023,7 @@
         "label": "Gospel to Gentiles",
         "verses": [15, 28, "34-48"],
         "references": [
-          "[In these verses, the Spirit is testifying through Peter]",
+          "[In Acts 10:34-48, the Spirit is testifying through Peter]",
           "John 15:26",
           " - ",
           "[Promise to Abraham]",
@@ -1073,8 +1073,10 @@
           "John 11:51-52",
           "John 12:32",
           "Acts 10:34-35",
+          "Acts 11:17-18",
           "Acts 13:46-47",
-          "Acts 15:14-17",
+          "Acts 15:7-11 - Peter",
+          "Acts 15:13-20 - James",
           "Acts 28:28",
           "Ephesians 2:11-13",
           "Ephesians 3:6",
@@ -1096,6 +1098,12 @@
           "All the prophets testify",
           "everyone who believes in Him receives forgiveness of sins through His name",
           "Can anyone withhold the water to baptize these people? "
+        ],
+        "links": [
+          {
+            "label": "Bible Explorer (topic)",
+            "url": "https://bible-explorer.gospelgo.org/?dataset=custom&topic=Gentiles+brought+in"
+          }
         ]
       },
       {
@@ -1127,7 +1135,7 @@
           {
             "part": "X",
             "verses": ["24-33"],
-            "label": "Jew and Gentile fellowship at God's orchestration"
+            "label": "Jews and Gentiles fellowship at God's orchestration"
           },
           {
             "part": "C2",
@@ -1160,7 +1168,7 @@
       },
       {
         "label": "Gentile Inclusion",
-        "verses": ["18"],
+        "verses": ["17-18"],
         "references": [
           "[Preparation for Gentile Inclusion]",
           "-",
@@ -1709,6 +1717,45 @@
         "outline": "Paul’s Second Missionary Journey Begins",
         "verses": ["36-41"],
         "references": ["Acts 13:1–3", "Acts 18:23–28"]
+      },
+      {
+        "label": "Judiazers",
+        "verses": [1, 5, 24],
+        "references": [
+          "Judiazer : transliteration via the Latin of the Greek verb ioudâzein which means “to live like Jews”  used in Galatians 2:14",
+          "-",
+          "Acts 16:3",
+          "Galatians 1:6-7",
+          "Galatians 2:3-5",
+          "Galatians 2:11-14",
+          "Galatians 5:1-4",
+          "Galatians 6:12-13"
+        ]
+      },
+      {
+        "label": "Peter/Cornelius",
+        "verses": ["7-9", 14],
+        "references": ["Acts 10:1-48", "Acts 11:1-18"]
+      },
+      {
+        "label": "Peace between Jews and Gentiles",
+        "verses": ["27-29"],
+        "references": []
+      },
+      {
+        "label": "Gentiles free from some customs of Moses",
+        "verses": ["30-31"],
+        "references": []
+      },
+      {
+        "label": "Jews from Jerusalem encourage Gentiles",
+        "verses": ["32-33"],
+        "references": []
+      },
+      {
+        "label": "Disagreement among Christians",
+        "verses": ["37-41"],
+        "references": []
       }
     ],
     "16": [
