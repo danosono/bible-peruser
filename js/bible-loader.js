@@ -361,6 +361,17 @@ function normalizePhraseEntries(entries) {
 // display order and the shading/indent level are computed here rather than
 // stored redundantly in the JSON.
 
+// Distinct hues for the chapter-text highlight (chapterColorOf below) — a
+// separate concern from shadeOf()'s grayscale-by-depth ramp, which the
+// chiasm modal still uses unchanged. Cycles via modulo for a hypothetical
+// 5th+ tier; X always uses --chiasm-focus instead, same as shadeOf().
+const CHIASM_TIER_PALETTE = [
+  "var(--chiasm-tier-1, #5b9bd5)", // A
+  "var(--chiasm-tier-2, #3fae8a)", // B
+  "var(--chiasm-tier-3, #9b7fd4)", // C
+  "var(--chiasm-tier-4, #d97a91)", // D (rare)
+];
+
 // Parses a chiasm layout from its `parts` array: computes the mirrored
 // display order (A1, B1, ..., X..., ..., B2, A2), a shading level per
 // letter (0 = outermost/A, increasing = lighter, used for both highlight
@@ -417,7 +428,29 @@ function computeChiasmLayout(parts) {
     return `hsl(0, 0%, ${lightness}%)`;
   }
 
-  return { displayOrder, levelOf, shadeOf };
+  // Same ramp as shadeOf(), but floored so the outermost (darkest) tiers
+  // stay legible as TEXT against the chiasm modal's own dark background —
+  // shadeOf()'s raw value is tuned for use as a highlight background
+  // instead, where a dark tier like A1 reads fine under fixed white text.
+  function markerColorOf(entry) {
+    if (entry.isX) return "var(--chiasm-focus, #a78e33)";
+    const level = levelByLetter[entry.letter] || 0;
+    const lightness =
+      letters.length <= 1 ? 32 : 22 + (level / (letters.length - 1)) * 40;
+    return `hsl(0, 0%, ${Math.max(lightness, 46)}%)`;
+  }
+
+  // Chapter-text highlight color: a distinct hue per tier (see
+  // CHIASM_TIER_PALETTE) instead of shadeOf()'s grayscale ramp, so A/B/C
+  // are told apart by color rather than by how dark/light they are —
+  // sidesteps the contrast problem a lightness ramp has at its light end.
+  function chapterColorOf(entry) {
+    if (entry.isX) return "var(--chiasm-focus, #a78e33)";
+    const level = levelByLetter[entry.letter] || 0;
+    return CHIASM_TIER_PALETTE[level % CHIASM_TIER_PALETTE.length];
+  }
+
+  return { displayOrder, levelOf, shadeOf, markerColorOf, chapterColorOf };
 }
 
 function formatChiasmVerseRange(tokens) {
@@ -427,7 +460,7 @@ function formatChiasmVerseRange(tokens) {
 function clearChiasmHighlight() {
   document.querySelectorAll(".chiasm-highlight").forEach((el) => {
     el.classList.remove("chiasm-highlight");
-    el.style.removeProperty("--chiasm-shade");
+    el.style.removeProperty("--chiasm-tier-color");
   });
 }
 
@@ -473,10 +506,10 @@ function renderChiasmSection(aside, entries, resolveElements) {
       if (wasActive) return;
       btn.classList.add("active");
       layout.displayOrder.forEach((entry) => {
-        const shade = layout.shadeOf(entry);
+        const tierColor = layout.chapterColorOf(entry);
         resolveElements(entry.part).forEach((el) => {
           el.classList.add("chiasm-highlight");
-          el.style.setProperty("--chiasm-shade", shade);
+          el.style.setProperty("--chiasm-tier-color", tierColor);
         });
       });
     };
@@ -544,6 +577,7 @@ function openChiasmModal(titleText, layout, sourceText) {
     row.className = "bp-chiasm-modal__row";
     row.style.paddingLeft = `${layout.levelOf(entry) * 1.4}em`;
     row.style.setProperty("--chiasm-shade", layout.shadeOf(entry));
+    row.style.setProperty("--chiasm-marker-shade", layout.markerColorOf(entry));
 
     const marker = document.createElement("span");
     marker.className = "bp-chiasm-modal__marker";
@@ -580,9 +614,10 @@ function openChiasmModal(titleText, layout, sourceText) {
   function onKeydown(e) {
     if (e.key === "Escape") closeModal();
   }
-  overlay.addEventListener("mousedown", (e) => {
-    if (e.target === overlay) closeModal();
-  });
+  // No click-outside-to-close: the overlay is pointer-events:none outside
+  // the modal box (see .bp-chiasm-overlay) so a click on, say, this
+  // chiasm's own sidebar toggle button reaches it instead of closing this
+  // modal — close via the ✕ button or Escape.
   closeBtn.addEventListener("click", closeModal);
   document.addEventListener("keydown", onKeydown);
 
@@ -1057,10 +1092,12 @@ function attachModalDrag(modalEl, headerEl) {
     const modalRect = modalEl.getBoundingClientRect();
     let newTop = startTop + (e.clientY - startY);
     let newLeft = startLeft + (e.clientX - startX);
-    newTop = Math.max(
-      margin - modalRect.height,
-      Math.min(newTop, window.innerHeight - margin),
-    );
+    // Unlike the other three edges, the top edge is never allowed off-screen
+    // (min 0, not margin - height) — the header (and its close button) lives
+    // there, and it's the only side without a keyboard-free way back once
+    // it's gone; Escape still closes the modal, but the mouse shouldn't have
+    // to fall back to that.
+    newTop = Math.max(0, Math.min(newTop, window.innerHeight - margin));
     newLeft = Math.max(
       margin - modalRect.width,
       Math.min(newLeft, window.innerWidth - margin),
@@ -1397,6 +1434,7 @@ function openInfoListModal(
   disclaimerText,
   creditText,
   actionBar,
+  onClose,
 ) {
   document.querySelectorAll(".bp-info-overlay").forEach((el) => el.remove());
 
@@ -1423,6 +1461,7 @@ function openInfoListModal(
   header.appendChild(title);
   header.appendChild(closeBtn);
   modal.appendChild(header);
+  attachModalDrag(modal, header);
 
   if (actionBar) modal.appendChild(actionBar);
 
@@ -1454,13 +1493,15 @@ function openInfoListModal(
   function closeModal() {
     document.removeEventListener("keydown", onKeydown);
     overlay.remove();
+    if (typeof onClose === "function") onClose();
   }
   function onKeydown(e) {
     if (e.key === "Escape") closeModal();
   }
-  overlay.addEventListener("mousedown", (e) => {
-    if (e.target === overlay) closeModal();
-  });
+  // No click-outside-to-close: the overlay is pointer-events:none outside
+  // the modal box (see .bp-info-overlay) so a click on the chapter/sidebar
+  // behind it reaches its real target instead of closing this modal —
+  // close via the ✕ button or Escape.
   closeBtn.addEventListener("click", closeModal);
   document.addEventListener("keydown", onKeydown);
 
@@ -1503,6 +1544,78 @@ function attachReadMoreToggle(card, bodyEl, entry, kind) {
   card.appendChild(toggle);
 }
 
+// Chapter-scoped state for the People/Places "highlight in chapter text"
+// buttons below. These are plain module-level Sets (rather than variables
+// local to loadBibleChapter) because openPeopleModal/openPlacesModal are
+// called from inside loadBibleChapter's closure but are themselves defined
+// outside it, so they need a shared place to read/write from; cleared
+// whenever the owning modal closes (see the onClose callbacks below) so a
+// highlight never outlives the modal that started it. Matches only each
+// entry's canonical `name` (never the uncurated alsoCalled aliases some
+// people entries carry) to avoid over-matching ordinary chapter text.
+const activePersonHighlightNames = new Set();
+const activePlaceHighlightNames = new Set();
+
+function triggerModalHighlightRerender() {
+  if (typeof window._bpRerenderActiveHighlights === "function") {
+    window._bpRerenderActiveHighlights();
+  }
+}
+
+// Small pill button added to a People/Places card, toggling that entry's
+// name as a highlight in the chapter text. `syncFns` is a shared array (one
+// per modal instance) that this button registers its own sync() into, and
+// also calls in full after its own clicks — so it and the "Highlight All"
+// button (below) always agree on state, regardless of which one a click
+// came from.
+function buildInfoCardHighlightBtn(name, activeNames, syncFns) {
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "bp-info-card__highlight-btn";
+  function sync() {
+    const isActive = activeNames.has(name);
+    btn.classList.toggle("active", isActive);
+    btn.textContent = isActive ? "Highlighted ✓" : "Highlight";
+  }
+  btn.addEventListener("click", () => {
+    if (activeNames.has(name)) activeNames.delete(name);
+    else activeNames.add(name);
+    syncFns.forEach((s) => s());
+    triggerModalHighlightRerender();
+  });
+  syncFns.push(sync);
+  sync();
+  return btn;
+}
+
+// Modal action-bar button toggling every listed name at once: "Highlight
+// All" when at least one is currently off, "Clear All" once every one of
+// them is on — so there's always a one-click way back to none, whether
+// "all" got there via this button or by hand-toggling each card.
+function buildHighlightAllBtn(names, activeNames, syncFns) {
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "bp-info-modal__highlight-all-btn";
+  function allActive() {
+    return names.length > 0 && names.every((n) => activeNames.has(n));
+  }
+  function sync() {
+    btn.textContent = allActive() ? "Clear All" : "Highlight All";
+  }
+  btn.addEventListener("click", () => {
+    if (allActive()) {
+      names.forEach((n) => activeNames.delete(n));
+    } else {
+      names.forEach((n) => activeNames.add(n));
+    }
+    syncFns.forEach((s) => s());
+    triggerModalHighlightRerender();
+  });
+  syncFns.push(sync);
+  sync();
+  return btn;
+}
+
 function openPeopleModal(bookId, chapterNum, metadata) {
   const chapterKey = `${bookId}_${chapterNum}`;
   const ids = metadata.people.byChapter[chapterKey] || [];
@@ -1511,6 +1624,20 @@ function openPeopleModal(bookId, chapterNum, metadata) {
     .map((id) => metadata.people.people[id] && { id, ...metadata.people.people[id] })
     .filter(Boolean)
     .sort((a, b) => a.name.localeCompare(b.name));
+
+  const highlightSyncFns = [];
+  let actionBar;
+  if (entries.length) {
+    actionBar = document.createElement("div");
+    actionBar.className = "bp-info-modal__action-bar";
+    actionBar.appendChild(
+      buildHighlightAllBtn(
+        entries.map((person) => person.name),
+        activePersonHighlightNames,
+        highlightSyncFns,
+      ),
+    );
+  }
 
   openInfoListModal(`People in ${bookLabel} ${chapterNum}`, entries, (person) => {
     const card = document.createElement("div");
@@ -1525,6 +1652,13 @@ function openPeopleModal(bookId, chapterNum, metadata) {
           .join(", ")})`
       : person.name;
     card.appendChild(nameEl);
+
+    const highlightBtn = buildInfoCardHighlightBtn(
+      person.name,
+      activePersonHighlightNames,
+      highlightSyncFns,
+    );
+    card.appendChild(highlightBtn);
 
     const metaParts = [];
     if (person.gender) metaParts.push(person.gender);
@@ -1549,7 +1683,10 @@ function openPeopleModal(bookId, chapterNum, metadata) {
     }
 
     return card;
-  }, "Names and identifications are intended to give a general overview of Bible people — not an interpretation of Scripture.");
+  }, "Names and identifications are intended to give a general overview of Bible people — not an interpretation of Scripture.", undefined, actionBar, () => {
+    activePersonHighlightNames.clear();
+    triggerModalHighlightRerender();
+  });
 }
 
 // The source dataset occasionally has two separate place records for the
@@ -1599,26 +1736,37 @@ function openPlacesModal(bookId, chapterNum, metadata) {
       .filter(Boolean),
   ).sort((a, b) => a.name.localeCompare(b.name));
 
+  const highlightSyncFns = [];
   let actionBar;
-  const mapUrl = buildBiblePlacesMapUrl(
-    bookId,
-    chapterNum,
-    entries.map((entry) => entry.id),
-  );
-  if (mapUrl) {
+  if (entries.length) {
     actionBar = document.createElement("div");
     actionBar.className = "bp-info-modal__action-bar";
-    const mapLink = document.createElement("a");
-    mapLink.href = mapUrl;
-    mapLink.target = "_blank";
-    mapLink.rel = "noopener noreferrer";
-    mapLink.className = "bp-info-modal__action-link";
-    mapLink.textContent = "Show on map ↗";
-    mapLink.addEventListener("click", (e) => {
-      e.preventDefault();
-      window.open(mapUrl, "_blank", "noopener,noreferrer");
-    });
-    actionBar.appendChild(mapLink);
+    actionBar.appendChild(
+      buildHighlightAllBtn(
+        entries.map((place) => place.name),
+        activePlaceHighlightNames,
+        highlightSyncFns,
+      ),
+    );
+
+    const mapUrl = buildBiblePlacesMapUrl(
+      bookId,
+      chapterNum,
+      entries.map((entry) => entry.id),
+    );
+    if (mapUrl) {
+      const mapLink = document.createElement("a");
+      mapLink.href = mapUrl;
+      mapLink.target = "_blank";
+      mapLink.rel = "noopener noreferrer";
+      mapLink.className = "bp-info-modal__action-link";
+      mapLink.textContent = "Show on map ↗";
+      mapLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.open(mapUrl, "_blank", "noopener,noreferrer");
+      });
+      actionBar.appendChild(mapLink);
+    }
   }
 
   openInfoListModal(`Places in ${bookLabel} ${chapterNum}`, entries, (place) => {
@@ -1629,6 +1777,13 @@ function openPlacesModal(bookId, chapterNum, metadata) {
     nameEl.className = "bp-info-card__title";
     nameEl.textContent = place.name;
     card.appendChild(nameEl);
+
+    const highlightBtn = buildInfoCardHighlightBtn(
+      place.name,
+      activePlaceHighlightNames,
+      highlightSyncFns,
+    );
+    card.appendChild(highlightBtn);
 
     if (place.featureType) {
       const metaEl = document.createElement("div");
@@ -1646,7 +1801,10 @@ function openPlacesModal(bookId, chapterNum, metadata) {
     }
 
     return card;
-  }, "Place identifications are intended to give a general overview of Bible geography — not an interpretation of Scripture.", undefined, actionBar);
+  }, "Place identifications are intended to give a general overview of Bible geography — not an interpretation of Scripture.", undefined, actionBar, () => {
+    activePlaceHighlightNames.clear();
+    triggerModalHighlightRerender();
+  });
 }
 
 const BOOK_INFO_CREDIT =
@@ -1792,6 +1950,7 @@ function openTimelineModal(bookId, chapterNum, metadata) {
   header.appendChild(title);
   header.appendChild(closeBtn);
   modal.appendChild(header);
+  attachModalDrag(modal, header);
 
   const body = document.createElement("div");
   body.className = "bp-timeline-modal__body";
@@ -1996,9 +2155,10 @@ function openTimelineModal(bookId, chapterNum, metadata) {
   function onKeydown(e) {
     if (e.key === "Escape") closeModal();
   }
-  overlay.addEventListener("mousedown", (e) => {
-    if (e.target === overlay) closeModal();
-  });
+  // No click-outside-to-close: the overlay is pointer-events:none outside
+  // the modal box (see .bp-timeline-overlay) so a click on the
+  // chapter/sidebar behind it reaches its real target instead of closing
+  // this modal — close via the ✕ button or Escape.
   closeBtn.addEventListener("click", closeModal);
   document.addEventListener("keydown", onKeydown);
 
@@ -2810,6 +2970,11 @@ async function loadBibleChapter(
   setBpViewMode("chapter");
   window._currentBookId = bookId;
   window._currentChapterNum = chapterNum;
+  // Safety net: normally cleared when the People/Places modal that set them
+  // closes, but a chapter navigation that bypasses that close path (direct
+  // URL change, etc.) shouldn't carry stray highlights into the new chapter.
+  activePersonHighlightNames.clear();
+  activePlaceHighlightNames.clear();
   // Push state for browser navigation only if not handling popstate
   // Update book scrollbar selection
   if (window.updateBookScrollbar) window.updateBookScrollbar(bookId);
@@ -3245,6 +3410,14 @@ async function loadBibleChapter(
             }
           });
         }
+        // People/Places modal "highlight in text" buttons — see
+        // openPeopleModal/openPlacesModal and window._bpRerenderActiveHighlights.
+        activePersonHighlightNames.forEach((name) => {
+          entries.push({ phrase: name, className: "search-highlight", scopeVerseKeys: null, wholeWord: true });
+        });
+        activePlaceHighlightNames.forEach((name) => {
+          entries.push({ phrase: name, className: "search-highlight", scopeVerseKeys: null, wholeWord: true });
+        });
         return normalizePhraseEntries(entries);
       }
 
@@ -3255,6 +3428,10 @@ async function loadBibleChapter(
         );
       }
       rerenderActiveHighlightsRef = rerenderActiveHighlights;
+      // Cross-boundary bridge for openPeopleModal/openPlacesModal, which are
+      // top-level functions defined outside this closure (same pattern as
+      // window.renderStickyHighlightToggle elsewhere in this file).
+      window._bpRerenderActiveHighlights = rerenderActiveHighlights;
 
       chapterTopics.forEach((topic, topicIdx) => {
         const highlightLabel =

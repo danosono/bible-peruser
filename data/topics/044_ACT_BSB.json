@@ -1484,7 +1484,8 @@
           "Acts 6:8-14",
           "Acts 13:45",
           "Acts 13:50",
-          "Acts 17:5",
+          "Acts 17:5-6",
+          "Acts 17:13",
           "Acts 18:5-6",
           "Acts 19:23-29",
           "Acts 21:27-30"
@@ -1610,7 +1611,8 @@
           "Mark 15:10-11",
           "Acts 6:8-14",
           "Acts 13:50",
-          "Acts 17:5",
+          "Acts 17:5-6",
+          "Acts 17:13",
           "Acts 19:23-29",
           "Acts 21:27-30"
         ],
@@ -1788,6 +1790,149 @@
         "outline": "An Official Apology",
         "verses": ["35-40"],
         "references": []
+      },
+      {
+        "label": "circumcised",
+        "verses": ["1-5"],
+        "references": [
+          "Acts 15:1",
+          "Acts 15:5",
+          "Acts 15:19-20",
+          "Acts 15:28-29",
+          "Galatians 2:1-5 see v3"
+        ],
+        "note": [
+          "The Jerusalem Council had just recognized that Gentiles do not need to be circumcised to be saved, but Timothy’s situation was different.",
+          "In Jewish eyes Titus for example was clearly a Gentile with two Gentile parents (Galatians 2:3), but with Timothy it was different.",
+          "Timothy was a Jew because his mother was a Jew, but she had violated the Old Testament law by failing to have her son circumcised. Timothy would have been viewed as a type of renegade Jew, which would have hindered his ministry among Jews. Even after the Jerusalem Council, we can see why Paul wanted Timothy circumcised to avoid problems among the Jewish community.",
+          " While circumcision made Timothy more of a Jew, it did not make him any more of a Christian. It did, however, demonstrate his faithfulness as a Christian in undergoing circumcision in order to remove that impediment to his preaching and ministry."
+        ]
+      },
+      {
+        "label": "First visits",
+        "verses": ["1-5"],
+        "emphasis": ["Derbe", "Lystra", "Iconium"]
+      },
+      {
+        "label": "Blocked from Asia",
+        "verses": ["6"],
+        "emphasis": ["Asia"]
+      },
+      {
+        "label": "Second visits",
+        "verses": ["6"],
+        "emphasis": ["Phrygia", "Galatia"]
+      },
+      {
+        "label": "Blocked from Bithynia",
+        "verses": ["7-8"],
+        "emphasis": ["Mysia", "Bithynia"]
+      },
+      {
+        "label": "Third visit",
+        "verses": ["8"],
+        "emphasis": ["Troas"]
+      },
+      {
+        "label": "Called to Macedonia",
+        "verses": ["9-10"],
+        "emphasis": ["Macedonia", "Samothrace", "Neapolis"]
+      },
+      {
+        "label": "Fourth visits",
+        "verses": ["11-12"],
+        "emphasis": ["Macedonia", "Samothrace", "Neapolis", "Philippi"]
+      },
+      {
+        "label": "Place of prayer 1",
+        "verses": ["13-15"],
+        "emphasis": [
+          "The Lord opened her heart to respond to Paul’s message",
+          "baptized"
+        ]
+      },
+      {
+        "label": "Place of prayer 2",
+        "verses": ["16-17"],
+        "emphasis": ["slave girl with a spirit of divination"]
+      },
+      {
+        "label": "commanded demon",
+        "verses": ["18"],
+        "emphasis": ["In the name of Jesus Christ I command you to come out"]
+      },
+      {
+        "label": "subject to some men",
+        "verses": ["19-24"],
+        "emphasis": [
+          "they seized Paul and Silas and dragged them",
+          "the magistrates ordered that they be stripped and beaten with rods",
+          "threw them into prison"
+        ]
+      },
+      {
+        "label": "all are subject to God",
+        "verses": ["25-26"],
+        "emphasis": [
+          "strong earthquake shook the foundations",
+          "all the doors flew open and everyone’s chains came loose"
+        ]
+      },
+      {
+        "label": "Lydia 1",
+        "verses": ["12-15"],
+        "emphasis": [
+          "Lydia, a dealer in purple cloth",
+          "baptized",
+          "stay at my house"
+        ]
+      },
+      {
+        "label": "Lydia 2",
+        "verses": ["16-40"],
+        "emphasis": [
+          "After Paul and Silas came out of the prison, they went to Lydia’s house to see the brothers and encourage them. Then they left the city"
+        ]
+      },
+      {
+        "label": "God's turnarounds",
+        "verses": ["23-24", "33-34"],
+        "emphasis": [
+          "jailer",
+          "placed them in the inner cell and fastened their feet in the stocks",
+          "washed their wounds",
+          "baptized",
+          "set a meal before them",
+          "rejoiced that they had come to believe in God"
+        ]
+      },
+      {
+        "highlight": "Places",
+        "text": [
+          "Asia",
+          "Bithynia",
+          "Derbe",
+          "Galatia",
+          "Iconium",
+          "Jerusalem",
+          "Lystra",
+          "Macedonia",
+          "Mysia",
+          "Neapolis",
+          "Philippi",
+          "Phrygia",
+          "Samothrace",
+          "Thyatira",
+          "Troas"
+        ]
+      },
+      {
+        "highlight": "Place of prayer",
+        "text": ["place of prayer"]
+      },
+      {
+        "highlight": "Lydia",
+        "text": ["Lydia"]
       }
     ],
     "17": [
@@ -1810,6 +1955,122 @@
         "outline": "Paul’s Address in the Areopagus",
         "verses": ["22-34"],
         "references": []
+      },
+      {
+        "label": "Mecedonia continued",
+        "verses": ["1"],
+        "references": ["Acts 16:9-11"]
+      },
+      {
+        "label": "Jason",
+        "verses": ["5-10"],
+        "references": ["Romans 16:21"],
+        "emphasis": [
+          "Jason",
+          "brothers",
+          "welcomed them into his home",
+          "sent Paul and Silas away to Berea"
+        ]
+      },
+      {
+        "label": "Troublemakers",
+        "verses": ["5-6", "13"],
+        "references": [
+          "Mark 15:10-11",
+          "Acts 6:8-14",
+          "Acts 13:50",
+          "Acts 14:2",
+          "Acts 19:23-29",
+          "Acts 21:27-30"
+        ],
+        "emphasis": [
+          "troublemakers",
+          "formed a mob",
+          "uproar",
+          "raided",
+          "dragged",
+          "incite",
+          "agitate",
+          "crowds"
+        ],
+        "links": [
+          {
+            "label": "Stirred up crowd",
+            "url": "https://bible-explorer.gospelgo.org/?dataset=custom&topic=Stir+up+crowd"
+          }
+        ]
+      },
+      {
+        "label": "Proclaiming Truth",
+        "verses": ["2-3", "11", "17-18", "22-31"],
+        "emphasis": [
+          "the Christ had to suffer and rise from the dead",
+          "This Jesus I am proclaiming to you is the Christ",
+          "the message",
+          "reasoned",
+          "good news of Jesus and the resurrection",
+          "God who made",
+          "He made",
+          "is the Lord of",
+          "He detrmined",
+          "intended",
+          "He is not far",
+          "For in Him we",
+          "commands",
+          "set a day",
+          "the Man He appointed",
+          "proof",
+          "raising Him from the dead"
+        ]
+      },
+      {
+        "label": "Responses to Truth",
+        "verses": ["4-9", "12-13", "19-20", "32-34"],
+        "emphasis": [
+          "persuaded and joined",
+          "jealous",
+          "formed a mob",
+          "uproar",
+          "believed",
+          "incite and agitate",
+          "may we know what this new teaching is",
+          "mock",
+          "we want to hear you again",
+          "joined him and believed"
+        ]
+      },
+      {
+        "label": "Not a man-made god",
+        "verses": ["24-31"],
+        "emphasis": [
+          "made the world and everything in it", "He Himself gives everyone life and breath and everything else", "He made every nation of men", "He determined", "in Him we live and move and have our being"
+        ]
+      },
+      {
+        "highlight": "the some of things",
+        "text": [
+          "some",
+          "of the Jews were persuaded",
+          "troublemakers",
+          "dragged Jason and",
+          "other brothers",
+          "Epicurean and Stoic philosophers",
+          "of them asked",
+          "strange notions to our ears",
+          "what you worship as something unknown, I now proclaim to you",
+          "of your own poets",
+          "began to mock him",
+          "joined him and believed"
+        ]
+      },
+      {
+        "highlight": "synagogue",
+        "text": [
+          "synagogue",
+          "Thessalonica, where there was a Jewish synagogue",
+          "Berea. On arriving there",
+          "Paul was waiting for them in Athens"
+        ]
       }
     ],
     "18": [
@@ -1832,6 +2093,61 @@
         "outline": "Paul’s Third Missionary Journey Begins",
         "verses": ["23-28"],
         "references": ["Acts 13:1–3", "Acts 15:36–41"]
+      },
+      {
+        "label": "Don't be afraid",
+        "verses": ["9-18"],
+        "emphasis": [
+          "Do not be afraid",
+          "I am with you and no one will lay a hand on you",
+          "the Jews coordinated an attack on Paul",
+          "I refuse to be a judge of such things",
+          "But none of this was of concern to Gallio",
+          " Paul remained in Corinth for quite some time"
+        ]
+      },
+      {
+        "label": "Synagogue",
+        "verses": ["1-4", "19", "24-26"],
+        "emphasis": ["Paul", "Synagogue", "Corinth", "Ephesus", "Apollos"]
+      },
+      {
+        "label": "Paul's letter to",
+        "verses": ["1", "19", "23"],
+        "emphasis": ["Corinth", "Ephesus", "Galatia"]
+      },
+      {
+        "highlight": "Paul",
+        "text": ["Paul"]
+      },
+      {
+        "highlight": "Aquila and Priscilla",
+        "text": ["Aquila", "Priscilla"]
+      },
+      {
+        "highlight": "Apollos",
+        "text": ["Apollos"]
+      },
+      {
+        "highlight": "Apologetics",
+        "text": [
+          "reasoned in the synagogue, trying to persuade",
+          "devoted himself fully to the word, testifying to the Jews that Jesus is the Christ.",
+          "went into the synagogue there and reasoned",
+          "strengthening all the disciples",
+          "eloquent man, well versed in the Scriptures",
+          "instructed in the way of the Lord and fervent in spirit",
+          "spoke and taught accurately about Jesus",
+          "speak boldly in the synagogue",
+          "explained to him the way of God more accurately",
+          "he was a great help",
+          "powerfully refuted",
+          "public debate, proving from the Scriptures that Jesus is the Christ"
+        ]
+      },
+      {
+        "highlight": "- 100% -",
+        "text": ["Jesus is the Christ"]
       }
     ],
     "19": [

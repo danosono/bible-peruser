@@ -249,6 +249,14 @@
      the seasonal accent trio, so a chiasm's center reads the same
      regardless of the active color theme. */
   --chiasm-focus: #a78e33;
+  /* Chapter-text chiasm highlight tiers (js/bible-loader.js's
+     chapterColorOf) — same "not themed" reasoning as --chiasm-focus above.
+     A distinct hue per tier (not a lightness ramp) so A1/A2 vs B1/B2 etc.
+     are told apart by color, not by squinting at shades of grey. */
+  --chiasm-tier-1: #5b9bd5; /* A */
+  --chiasm-tier-2: #3fae8a; /* B */
+  --chiasm-tier-3: #9b7fd4; /* C */
+  --chiasm-tier-4: #d97a91; /* D (rare) */
 }
 
 /* Seasonal / holiday accent themes — js/bp-theme.js sets data-theme on <html>.
@@ -834,30 +842,39 @@ body {
   margin: -0.4em;
   border-radius: 4px;
 }
+/* When the button is active, its own label and the icon both go to the
+   same cream color (needed for the label's contrast against the solid gold
+   background), which erases the color difference that otherwise marks the
+   icon as its own separate clickable target. A chip outline restores that
+   distinction so it still reads as clickable, not just more label text. */
 .topic-btn.topic-chiasm-btn.active .chiasm-chi-icon {
   color: #fff8e1;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 248, 225, 0.55);
 }
 
-/* Chiasm verse highlighting — graduated shades set inline via --chiasm-shade
-   (computeChiasmLayout), so the number of levels is data-driven rather than
-   a fixed set of CSS classes. A solid opaque fill (tried first) clips
-   descenders (g/j/p/y/q) on wrapped lines, and adding box-shadow/padding to
-   compensate just made the clipping more visible (a hard-edged box per
-   wrapped line). .verse-highlight below never has this problem because its
-   background fades to transparent well before the top/bottom edge — same
-   fix applied here, sourced from --chiasm-shade instead of a fixed var. */
-.chiasm-highlight {
-  background: linear-gradient(
-    to bottom,
-    transparent 15%,
-    var(--chiasm-shade, #555) 35%,
-    var(--chiasm-shade, #555) 65%,
-    transparent 85%
-  );
+/* Chiasm verse highlighting — a distinct color per tier set inline via
+   --chiasm-tier-color (computeChiasmLayout's chapterColorOf), so the number
+   of levels is data-driven rather than a fixed set of CSS classes. Verse
+   text itself is never recolored or given a background (unlike an earlier
+   solid-fill approach, which also had to fight descender (g/j/p/y/q)
+   clipping on wrapped lines) — only a left-edge bar, so readability is
+   never in tension with how visually distinct the highlight is. */
+.verse-num.chiasm-highlight {
+  background: var(--chiasm-tier-color, #5b9bd5);
   color: #fff;
   border-radius: 4px;
-  padding: 0 0px;
-  transition: background 0.2s;
+  padding: 0 0.35em;
+  font-weight: 700;
+}
+.verse-text.chiasm-highlight {
+  border-left: 3px solid var(--chiasm-tier-color, #5b9bd5);
+  padding-left: 0.5em;
+  /* Repeats the border on every wrapped line of a multi-line verse instead
+     of drawing one border around the whole (possibly multi-line) inline
+     box — this is what makes it read as a continuous margin bar. */
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 /* Sticky highlight toggle bar in right sidebar */
 .sticky-highlight-toggle-bar {
@@ -1928,7 +1945,19 @@ html.bp-hide-outlines .topic-outline-btn {
 .bp-info-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.55);
+  /* No dimming scrim (unlike other modal overlays): Book/People/Places are
+     draggable specifically so a reader can park them beside the chapter
+     text and use both at once — darkening the chapter behind them would
+     defeat that. The modal's own border/box-shadow (below) still gives it
+     enough separation from the text behind it. */
+  background: transparent;
+  /* Also click-through outside the modal box itself (re-enabled below), so
+     that "use both at once" is real: a sidebar/chapter click while this is
+     open reaches its actual target instead of landing on an invisible
+     full-viewport layer and closing the modal. Close via the ✕ button or
+     Escape only — see openInfoListModal, which no longer listens for an
+     outside click. */
+  pointer-events: none;
   z-index: 1200;
   display: flex;
   align-items: center;
@@ -1947,6 +1976,7 @@ html.bp-hide-outlines .topic-outline-btn {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  pointer-events: auto;
 }
 .bp-info-modal__header {
   display: flex;
@@ -1984,6 +2014,21 @@ html.bp-hide-outlines .topic-outline-btn {
   cursor: pointer;
 }
 .bp-info-modal__action-link:hover {
+  text-decoration: underline;
+}
+.bp-info-modal__highlight-all-btn {
+  display: inline-block;
+  background: none;
+  border: none;
+  padding: 0;
+  color: #8bd3ff;
+  font-size: 0.85rem;
+  font-family: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+.bp-info-modal__highlight-all-btn:hover {
   text-decoration: underline;
 }
 .bp-info-modal__list {
@@ -2037,6 +2082,29 @@ html.bp-hide-outlines .topic-outline-btn {
 .bp-info-card__toggle:disabled {
   cursor: default;
   opacity: 0.7;
+}
+.bp-info-card__highlight-btn {
+  display: inline-flex;
+  align-items: center;
+  background: none;
+  color: var(--gold-accent);
+  border: 1px solid var(--gold-accent-border);
+  border-radius: 5px;
+  padding: 0.5em 1.1em;
+  margin-top: 0.45rem;
+  min-height: 2.2rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+.bp-info-card__highlight-btn:hover {
+  background: #3d4b85;
+  border-color: var(--gold-accent);
+}
+.bp-info-card__highlight-btn.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: #fff;
+  box-shadow: 0 0 6px var(--accent);
 }
 .bp-info-modal__disclaimer {
   flex: none;
@@ -2114,7 +2182,12 @@ html.bp-hide-outlines .topic-outline-btn {
 .bp-chiasm-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.55);
+  /* See .bp-info-overlay — draggable, so no dimming scrim over the chapter,
+     and click-through outside the modal box (see openChiasmModal, which no
+     longer listens for an outside click to close) — otherwise the chiasm's
+     own sidebar toggle button becomes unreachable while this is open. */
+  background: transparent;
+  pointer-events: none;
   z-index: 1200;
   display: flex;
   align-items: center;
@@ -2133,6 +2206,7 @@ html.bp-hide-outlines .topic-outline-btn {
   flex-direction: column;
   overflow: hidden;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
+  pointer-events: auto;
 }
 .bp-chiasm-modal__header {
   flex: none;
@@ -2173,6 +2247,10 @@ html.bp-hide-outlines .topic-outline-btn {
   line-height: 1;
   cursor: pointer;
   padding: 0.2rem;
+  border-radius: 4px;
+}
+.bp-chiasm-modal__close:hover {
+  background: #3d4b85;
 }
 .bp-chiasm-modal__list {
   flex: 1;
@@ -2192,7 +2270,7 @@ html.bp-hide-outlines .topic-outline-btn {
 .bp-chiasm-modal__marker {
   flex: none;
   font-weight: 700;
-  color: var(--chiasm-shade, #ccc);
+  color: var(--chiasm-marker-shade, #ccc);
   min-width: 2em;
 }
 .bp-chiasm-modal__label {
@@ -2325,7 +2403,11 @@ html.bp-hide-outlines .topic-outline-btn {
 .bp-timeline-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.55);
+  /* See .bp-info-overlay — draggable, so no dimming scrim over the chapter,
+     and click-through outside the modal box (see openTimelineModal, which
+     no longer listens for an outside click to close). */
+  background: transparent;
+  pointer-events: none;
   z-index: 1200;
   display: flex;
   align-items: center;
@@ -2344,6 +2426,7 @@ html.bp-hide-outlines .topic-outline-btn {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  pointer-events: auto;
 }
 .bp-timeline-modal__header {
   display: flex;
