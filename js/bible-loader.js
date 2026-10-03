@@ -677,6 +677,475 @@ function openChiasmExplainerModal() {
   document.body.appendChild(overlay);
 }
 
+// ─── Diagram viewer ─────────────────────────────────────────────────────
+// A chapter or whole book can optionally carry one summary diagram — a
+// directed graph of `nodes` ({ id, label, note?, color? }) and `edges`
+// ({ from, to, label? }), e.g. Acts 17's Athens → Corinth → Ephesus, then
+// splitting into Paul's and Apollos's separate onward paths. Authors only
+// describe the relationships; layout (rank/row + left-to-right order) is
+// computed here rather than hand-placed, the same division of labor as
+// computeChiasmLayout() above. Order within a row follows the order nodes
+// first appear in `nodes` (and, secondarily, in `edges`) rather than a
+// crossing-minimization heuristic, so the on-screen layout stays
+// predictable from reading the JSON.
+//
+// A node's `color` names one of these four pre-matched tags (defined in
+// css/style.css's :root) instead of a hand-picked hex value — so JSON
+// authoring never needs a color picker. An unrecognized name falls through
+// to being used as a raw CSS color string (e.g. a hex value still works),
+// so existing hex-authored diagrams keep rendering unchanged.
+const DIAGRAM_NODE_COLORS = {
+  blue: "var(--diagram-color-blue, #3a4a6b)",
+  purple: "var(--diagram-color-purple, #5a3f7a)",
+  teal: "var(--diagram-color-teal, #2f6b5e)",
+  amber: "var(--diagram-color-amber, #8a5a2f)",
+};
+
+function computeDiagramLayout(nodes, edges) {
+  const safeNodes = (Array.isArray(nodes) ? nodes : []).filter(
+    (n) => n && typeof n.id === "string" && n.id,
+  );
+  const safeEdges = (Array.isArray(edges) ? edges : []).filter(
+    (e) => e && typeof e.from === "string" && typeof e.to === "string",
+  );
+  const byId = new Map(safeNodes.map((n) => [n.id, n]));
+  const outgoing = new Map(safeNodes.map((n) => [n.id, []]));
+  const indegree = new Map(safeNodes.map((n) => [n.id, 0]));
+  safeEdges.forEach((e) => {
+    if (!byId.has(e.from) || !byId.has(e.to)) return;
+    outgoing.get(e.from).push(e.to);
+    indegree.set(e.to, (indegree.get(e.to) || 0) + 1);
+  });
+
+  // Rank = longest path from a root (indegree-0 node), via Kahn's
+  // algorithm so a node reachable by more than one path lands below all
+  // of its parents. Any node left unvisited (a cycle, or indegree>0 with
+  // no reachable root — shouldn't happen in hand-authored data) is
+  // appended as its own trailing rank rather than dropped silently.
+  const rank = new Map();
+  const queue = safeNodes.filter((n) => (indegree.get(n.id) || 0) === 0).map((n) => n.id);
+  queue.forEach((id) => rank.set(id, 0));
+  const remaining = new Map(indegree);
+  let qi = 0;
+  while (qi < queue.length) {
+    const id = queue[qi++];
+    const r = rank.get(id) || 0;
+    (outgoing.get(id) || []).forEach((childId) => {
+      rank.set(childId, Math.max(rank.get(childId) || 0, r + 1));
+      remaining.set(childId, (remaining.get(childId) || 0) - 1);
+      if (remaining.get(childId) === 0) queue.push(childId);
+    });
+  }
+  let nextStrayRank = queue.length
+    ? Math.max(...queue.map((id) => rank.get(id) || 0)) + 1
+    : 0;
+  safeNodes.forEach((n) => {
+    if (!rank.has(n.id)) rank.set(n.id, nextStrayRank++);
+  });
+
+  const rows = [];
+  safeNodes.forEach((n) => {
+    const r = rank.get(n.id) || 0;
+    if (!rows[r]) rows[r] = [];
+    rows[r].push(n);
+  });
+
+  const colGap = 168;
+  const rowGap = 108;
+  const boxH = 44;
+  const maxRowWidth = rows.reduce(
+    (max, row) => Math.max(max, (row.length - 1) * colGap),
+    0,
+  );
+
+  // `x` below is each node's CENTER (not left edge) while rows are being
+  // laid out, since nodes in the same row can have different widths
+  // (auto-sized from label length) — only once every node's width is
+  // known does the bounding-box pass further down convert center to a
+  // left edge, so a wide label never gets clipped against its neighbors.
+  const positioned = [];
+  const posById = new Map();
+  rows.forEach((row, r) => {
+    if (!row) return;
+    const rowWidth = (row.length - 1) * colGap;
+    const offsetX = (maxRowWidth - rowWidth) / 2;
+    row.forEach((n, i) => {
+      const label = typeof n.label === "string" ? n.label : n.id;
+      const w = Math.max(90, Math.min(200, 16 + label.length * 7.5));
+      const note = typeof n.note === "string" ? n.note.trim() : "";
+      const ref = typeof n.ref === "string" ? n.ref.trim() : "";
+      // `note` and `ref` are shown as separate lines when both are present
+      // and differ (ref is also the click target, note is free-form
+      // context) — but authors will often set them to the same verse
+      // string, so avoid printing that string twice.
+      const subLines = [];
+      if (note) subLines.push({ text: note, isRef: false });
+      if (ref && ref !== note) subLines.push({ text: ref, isRef: true });
+      const h = subLines.length <= 1 ? boxH : boxH + (subLines.length - 1) * 16;
+      const entry = {
+        id: n.id,
+        label,
+        note,
+        ref,
+        subLines,
+        color:
+          typeof n.color === "string"
+            ? DIAGRAM_NODE_COLORS[n.color] || n.color
+            : "",
+        x: offsetX + i * colGap - w / 2,
+        y: r * rowGap,
+        w,
+        h,
+      };
+      positioned.push(entry);
+      posById.set(n.id, entry);
+    });
+  });
+
+  const laidOutEdges = [];
+  safeEdges.forEach((e) => {
+    const from = posById.get(e.from);
+    const to = posById.get(e.to);
+    if (!from || !to) return;
+    laidOutEdges.push({
+      from,
+      to,
+      label: typeof e.label === "string" ? e.label : "",
+    });
+  });
+
+  const padding = 28;
+  // Bounding box from the actual positioned+sized nodes, not an assumed
+  // average width — a single long label (e.g. "Achaia (Apollos)") can be
+  // wider than colGap, and a fixed guess would clip it.
+  const minX = positioned.length ? Math.min(...positioned.map((p) => p.x)) : 0;
+  const maxX = positioned.length
+    ? Math.max(...positioned.map((p) => p.x + p.w))
+    : 0;
+  const width = maxX - minX + padding * 2;
+  const maxH = positioned.length
+    ? Math.max(...positioned.map((p) => p.h))
+    : boxH;
+  const height = Math.max(0, rows.length - 1) * rowGap + maxH + padding * 2;
+  positioned.forEach((p) => {
+    p.x += padding - minX;
+    p.y += padding;
+  });
+
+  return { nodes: positioned, edges: laidOutEdges, width, height };
+}
+
+// Bare "chapter", "chapter:verse", or "chapter:verseStart-verseEnd" — a
+// diagram node's `ref` is scoped to the diagram's own book by default (no
+// book name needed), matching how `verses` tokens work elsewhere in the
+// topics JSON. A full "Book chapter:verse" string (parseReferenceDetails,
+// used by in-app cross-references) also works, for the rare node that
+// should jump to a different book. Deliberately NOT supported: a single
+// `ref` spanning chapters (e.g. "17:16-18:3") — the app only ever shows one
+// chapter at a time, so there's no single destination a cross-chapter span
+// could resolve to. A node describing a cross-chapter span should still
+// set `ref` to one concrete chapter/verse (its most relevant anchor) and
+// can say whatever it wants in `note`, which is display-only.
+const BARE_DIAGRAM_REF_RE = /^(\d+)(?::(\d+)(?:[-–](\d+))?)?$/;
+
+function resolveDiagramRef(ref, hostBookId) {
+  if (typeof ref !== "string" || !ref.trim()) return null;
+  const trimmed = ref.trim();
+  const bare = trimmed.match(BARE_DIAGRAM_REF_RE);
+  if (bare) {
+    if (!hostBookId) return null;
+    const chapterNum = parseInt(bare[1], 10);
+    if (Number.isNaN(chapterNum)) return null;
+    const verseStart = bare[2] ? parseInt(bare[2], 10) : null;
+    const verseEnd = bare[3] ? parseInt(bare[3], 10) : verseStart;
+    return { bookId: hostBookId, chapterNum, verseStart, verseEnd };
+  }
+  const details = parseReferenceDetails(trimmed);
+  if (details && details.bookId && details.chapterNum) {
+    return {
+      bookId: details.bookId,
+      chapterNum: details.chapterNum,
+      verseStart: details.verseStart,
+      verseEnd: details.verseEnd || details.verseStart,
+    };
+  }
+  return null;
+}
+
+// Navigates to a diagram node's target chapter and highlights its verse(s)
+// — same loadBibleChapter()+autoHighlightVerseRange() pattern as following
+// an in-chapter cross-reference (openChapterTopicReference above). The
+// diagram modal itself is untouched (it's appended to document.body, a
+// sibling of the chapter text that loadBibleChapter() replaces), so by
+// design it stays open and draggable while the reader clicks through
+// several nodes in sequence.
+function navigateDiagramNodeRef(ref, hostBookId) {
+  const target = resolveDiagramRef(ref, hostBookId);
+  if (!target) return;
+  loadBibleChapter(target.bookId, target.chapterNum, true);
+  if (target.verseStart) {
+    setTimeout(() => {
+      autoHighlightVerseRange(target.chapterNum, target.verseStart, target.verseEnd);
+    }, 500);
+  }
+}
+
+function buildDiagramSVG(layout, hostBookId) {
+  const svgNS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(svgNS, "svg");
+  svg.setAttribute("viewBox", `0 0 ${layout.width} ${layout.height}`);
+  svg.setAttribute("width", layout.width);
+  svg.setAttribute("height", layout.height);
+  svg.classList.add("bp-diagram-svg");
+
+  const defs = document.createElementNS(svgNS, "defs");
+  defs.innerHTML =
+    '<marker id="bp-diagram-arrow" viewBox="0 0 10 10" refX="9" refY="5" ' +
+    'markerWidth="7" markerHeight="7" orient="auto-start-reverse">' +
+    '<path d="M0,0 L10,5 L0,10 z" fill="var(--bp-diagram-edge, #8a9099)" />' +
+    "</marker>";
+  svg.appendChild(defs);
+
+  const edgeLayer = document.createElementNS(svgNS, "g");
+  edgeLayer.classList.add("bp-diagram-edges");
+  layout.edges.forEach((edge) => {
+    const x1 = edge.from.x + edge.from.w / 2;
+    const y1 = edge.from.y + edge.from.h;
+    const x2 = edge.to.x + edge.to.w / 2;
+    const y2 = edge.to.y;
+    const midY = (y1 + y2) / 2;
+    const path = document.createElementNS(svgNS, "path");
+    const d =
+      Math.abs(x1 - x2) < 1
+        ? `M${x1},${y1} L${x2},${y2}`
+        : `M${x1},${y1} C${x1},${midY} ${x2},${midY} ${x2},${y2}`;
+    path.setAttribute("d", d);
+    path.setAttribute("class", "bp-diagram-edge-path");
+    path.setAttribute("marker-end", "url(#bp-diagram-arrow)");
+    edgeLayer.appendChild(path);
+
+    if (edge.label) {
+      const lx = (x1 + x2) / 2;
+      const ly = midY;
+      const text = document.createElementNS(svgNS, "text");
+      text.setAttribute("x", lx);
+      text.setAttribute("y", ly);
+      text.setAttribute("class", "bp-diagram-edge-label");
+      text.textContent = edge.label;
+      edgeLayer.appendChild(text);
+    }
+  });
+  svg.appendChild(edgeLayer);
+
+  const nodeLayer = document.createElementNS(svgNS, "g");
+  nodeLayer.classList.add("bp-diagram-nodes");
+  layout.nodes.forEach((node) => {
+    const g = document.createElementNS(svgNS, "g");
+    g.setAttribute("transform", `translate(${node.x}, ${node.y})`);
+    g.setAttribute("class", "bp-diagram-node");
+
+    const clickable = !!resolveDiagramRef(node.ref, hostBookId);
+    if (clickable) g.classList.add("bp-diagram-node--clickable");
+
+    const rect = document.createElementNS(svgNS, "rect");
+    rect.setAttribute("width", node.w);
+    rect.setAttribute("height", node.h);
+    rect.setAttribute("rx", 8);
+    rect.setAttribute("class", "bp-diagram-node-rect");
+    if (node.color) rect.style.setProperty("--bp-diagram-node-color", node.color);
+    g.appendChild(rect);
+
+    const lineCount = node.subLines.length;
+    const label = document.createElementNS(svgNS, "text");
+    label.setAttribute("x", node.w / 2);
+    label.setAttribute("y", lineCount ? node.h / 2 - 6 : node.h / 2);
+    label.setAttribute("class", "bp-diagram-node-label");
+    label.textContent = node.label;
+    g.appendChild(label);
+
+    node.subLines.forEach((line, i) => {
+      const lineEl = document.createElementNS(svgNS, "text");
+      lineEl.setAttribute("x", node.w / 2);
+      lineEl.setAttribute("y", node.h / 2 + 12 + i * 16);
+      lineEl.setAttribute(
+        "class",
+        line.isRef ? "bp-diagram-node-ref" : "bp-diagram-node-note",
+      );
+      lineEl.textContent = line.text;
+      g.appendChild(lineEl);
+    });
+
+    if (clickable) {
+      g.addEventListener("click", () =>
+        navigateDiagramNodeRef(node.ref, hostBookId),
+      );
+    }
+
+    nodeLayer.appendChild(g);
+  });
+  svg.appendChild(nodeLayer);
+
+  return svg;
+}
+
+function openDiagramModal(diagramData, hostBookId) {
+  document.querySelectorAll(".bp-diagram-overlay").forEach((el) => el.remove());
+
+  const overlay = document.createElement("div");
+  overlay.className = "bp-diagram-overlay";
+
+  const modal = document.createElement("div");
+  modal.className = "bp-diagram-modal";
+  overlay.appendChild(modal);
+
+  const header = document.createElement("div");
+  header.className = "bp-diagram-modal__header";
+
+  const title = document.createElement("h2");
+  title.className = "bp-diagram-modal__title";
+  title.textContent = diagramData.title || diagramData.buttonLabel || "Diagram";
+
+  const zoomOutBtn = document.createElement("button");
+  zoomOutBtn.type = "button";
+  zoomOutBtn.className = "bp-diagram-modal__zoom-btn";
+  zoomOutBtn.textContent = "−";
+  zoomOutBtn.setAttribute("aria-label", "Zoom out");
+
+  const zoomLevel = document.createElement("span");
+  zoomLevel.className = "bp-diagram-modal__zoom-level";
+  zoomLevel.title = "Click to reset zoom";
+
+  const zoomInBtn = document.createElement("button");
+  zoomInBtn.type = "button";
+  zoomInBtn.className = "bp-diagram-modal__zoom-btn";
+  zoomInBtn.textContent = "+";
+  zoomInBtn.setAttribute("aria-label", "Zoom in");
+
+  const zoomWrap = document.createElement("div");
+  zoomWrap.className = "bp-diagram-modal__zoom";
+  zoomWrap.appendChild(zoomOutBtn);
+  zoomWrap.appendChild(zoomLevel);
+  zoomWrap.appendChild(zoomInBtn);
+
+  const closeBtn = document.createElement("button");
+  closeBtn.type = "button";
+  closeBtn.className = "bp-diagram-modal__close";
+  closeBtn.innerHTML = "&#x2715;";
+  closeBtn.setAttribute("aria-label", "Close");
+
+  header.appendChild(title);
+  header.appendChild(zoomWrap);
+  header.appendChild(closeBtn);
+  modal.appendChild(header);
+  attachModalDrag(modal, header);
+
+  const body = document.createElement("div");
+  body.className = "bp-diagram-modal__body";
+  const layout = computeDiagramLayout(diagramData.nodes, diagramData.edges);
+  const svgEl = buildDiagramSVG(layout, hostBookId);
+  body.appendChild(svgEl);
+  modal.appendChild(body);
+
+  // Simple zoom: scale the SVG in place (top-left anchored, so zooming in
+  // just grows the box down/right into the modal body's own scrollable
+  // overflow — see the body/svg CSS note about why that relies on block
+  // layout + margin:auto rather than flex centering). No click-drag pan or
+  // scroll/pinch zoom: trackpad two-finger scroll already pans a diagram
+  // too big to fit, and wheel/pinch zoom would fight the browser's own
+  // page zoom and the body's native scrolling.
+  const ZOOM_MIN = 0.5;
+  const ZOOM_MAX = 2.5;
+  const ZOOM_STEP = 0.15;
+  let zoom = 1;
+  function applyZoom() {
+    svgEl.style.transform = `scale(${zoom})`;
+    svgEl.style.transformOrigin = "top left";
+    zoomLevel.textContent = `${Math.round(zoom * 100)}%`;
+    zoomOutBtn.disabled = zoom <= ZOOM_MIN + 1e-9;
+    zoomInBtn.disabled = zoom >= ZOOM_MAX - 1e-9;
+  }
+  zoomOutBtn.addEventListener("click", () => {
+    zoom = Math.max(ZOOM_MIN, +(zoom - ZOOM_STEP).toFixed(2));
+    applyZoom();
+  });
+  zoomInBtn.addEventListener("click", () => {
+    zoom = Math.min(ZOOM_MAX, +(zoom + ZOOM_STEP).toFixed(2));
+    applyZoom();
+  });
+  zoomLevel.addEventListener("click", () => {
+    zoom = 1;
+    applyZoom();
+    body.scrollLeft = 0;
+    body.scrollTop = 0;
+  });
+  applyZoom();
+
+  if (typeof diagramData.source === "string" && diagramData.source.trim()) {
+    const source = document.createElement("div");
+    source.className = "bp-diagram-modal__source";
+    source.textContent = `Source: ${diagramData.source.trim()}`;
+    modal.appendChild(source);
+  }
+
+  function closeModal() {
+    document.removeEventListener("keydown", onKeydown);
+    overlay.remove();
+  }
+  function onKeydown(e) {
+    if (e.key === "Escape") closeModal();
+  }
+  closeBtn.addEventListener("click", closeModal);
+  document.addEventListener("keydown", onKeydown);
+
+  document.body.appendChild(overlay);
+}
+
+// Markup for the chapter-header Diagram button, shared by the per-chapter
+// and entire-book header templates. Starts hidden (shown only once
+// wireDiagramButton() confirms this chapter/book actually has one) with a
+// placeholder label — wireDiagramButton() always overwrites the label text
+// before revealing the button, from the JSON's own `buttonLabel`.
+function diagramButtonMarkup() {
+  return `<button class="bp-diagram-btn" id="bp-diagram-btn" type="button" style="display:none">
+    <svg class="bp-diagram-btn__icon" aria-hidden="true" viewBox="0 0 16 16" width="15" height="15">
+      <rect x="1" y="1" width="5" height="4" rx="1"></rect>
+      <rect x="10" y="1" width="5" height="4" rx="1"></rect>
+      <rect x="5.5" y="11" width="5" height="4" rx="1"></rect>
+      <path d="M3.5 5v2a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V5M8 8v3"></path>
+    </svg>
+    <span class="bp-diagram-btn__label" id="bp-diagram-btn-label">Diagram</span>
+  </button>`;
+}
+
+// Shows/hides a chapter-header Diagram button and wires its click handler.
+// `diagramData` is the raw `{ title, buttonLabel?, nodes, edges, source? }`
+// object (or null/undefined when this chapter/book has none). The button's
+// visible text comes from `buttonLabel` (author-set per diagram, since one
+// book can have several differently-scoped diagrams) and falls back to
+// "Diagram" when omitted.
+function wireDiagramButton(diagramData, hostBookId) {
+  const btn = document.getElementById("bp-diagram-btn");
+  if (!btn) return;
+  if (
+    !diagramData ||
+    !Array.isArray(diagramData.nodes) ||
+    !diagramData.nodes.length
+  ) {
+    btn.style.display = "none";
+    btn.onclick = null;
+    return;
+  }
+  const label = btn.querySelector("#bp-diagram-btn-label, .bp-diagram-btn__label");
+  if (label) {
+    label.textContent =
+      typeof diagramData.buttonLabel === "string" && diagramData.buttonLabel.trim()
+        ? diagramData.buttonLabel.trim()
+        : "Diagram";
+  }
+  btn.style.display = "";
+  btn.onclick = () => openDiagramModal(diagramData, hostBookId);
+}
+
 function getLiteralSearchPhrase(inputEl) {
   if (!inputEl || typeof inputEl.value !== "string") return "";
   return inputEl.value.trim() ? inputEl.value : "";
@@ -3159,6 +3628,7 @@ async function loadBibleChapter(
     // Book name mapping from app.js
     let bookName = bookNames[bookId] || bookId;
     let html = `<div class="bp-chapter-header">
+      <div class="bp-diagram-controls">${diagramButtonMarkup()}</div>
       <h2>${bookName} ${chapterNum}</h2>
       <div class="bp-font-controls">
         <span class="bp-font-label-sm" aria-hidden="true">A</span>
@@ -3295,6 +3765,10 @@ async function loadBibleChapter(
 
     tryFetchTopicFile(topicFileCandidates, (topics) => {
       if (!topics) return;
+      wireDiagramButton(
+        topics.chapterDiagrams && topics.chapterDiagrams[chapterNum],
+        bookId,
+      );
       let chapterTopics = topics.chapterTopics[chapterNum];
       let meta = null;
       // Support both new (object with meta/topics) and old (array) formats
@@ -4092,6 +4566,7 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
     const html = [];
     html.push(`<div class="bp-book-view">`);
     html.push(`<div class="bp-chapter-header">
+      <div class="bp-diagram-controls">${diagramButtonMarkup()}</div>
       <h2 class="bp-book-view__title">${bookName} (Entire Book)</h2>
       <div class="bp-font-controls">
         <span class="bp-font-label-sm" aria-hidden="true">A</span>
@@ -4193,6 +4668,7 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
 
     const topicsData = await resp.json();
     window._lastLoadedBookTopics = topicsData;
+    wireDiagramButton(topicsData.bookWideDiagram, bookId);
     const bookWideOutline = Array.isArray(topicsData.bookWideOutline)
       ? topicsData.bookWideOutline
       : [];

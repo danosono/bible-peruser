@@ -257,6 +257,16 @@
   --chiasm-tier-2: #3fae8a; /* B */
   --chiasm-tier-3: #9b7fd4; /* C */
   --chiasm-tier-4: #d97a91; /* D (rare) */
+  /* Diagram node color tags (js/bible-loader.js's DIAGRAM_NODE_COLORS) —
+     a small fixed, pre-matched palette so a diagram's `color` field can
+     name one of these instead of hand-picking a hex value. Deliberately
+     not themed, same reasoning as the chiasm tiers above, and kept at a
+     similar dark lightness to each other so no single node visually
+     dominates a diagram. */
+  --diagram-color-blue: #3a4a6b;
+  --diagram-color-purple: #5a3f7a;
+  --diagram-color-teal: #2f6b5e;
+  --diagram-color-amber: #8a5a2f;
 }
 
 /* Seasonal / holiday accent themes — js/bp-theme.js sets data-theme on <html>.
@@ -2345,6 +2355,233 @@ html.bp-hide-outlines .topic-outline-btn {
   }
 }
 
+/* Diagram button (bp-chapter-header, left corner) + viewer modal */
+.bp-diagram-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.bp-diagram-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  background: none;
+  border: 1px solid var(--text-secondary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 0.75em;
+  padding: 0.15em 0.55em;
+  border-radius: 3px;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+.bp-diagram-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.bp-diagram-btn__icon {
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.3;
+}
+
+.bp-diagram-overlay {
+  position: fixed;
+  inset: 0;
+  /* Same rationale as .bp-chiasm-overlay: draggable, so no dimming scrim
+     and click-through outside the modal box. */
+  background: transparent;
+  pointer-events: none;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.bp-diagram-modal {
+  background: #23272a;
+  color: #f5f6fa;
+  border: 1px solid #444;
+  border-radius: 10px;
+  width: min(820px, 100%);
+  max-height: min(85vh, 85dvh);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
+  pointer-events: auto;
+}
+.bp-diagram-modal__header {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.1rem;
+  border-bottom: 1px solid #333;
+}
+.bp-diagram-modal__title {
+  flex: 1;
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--gold-accent);
+}
+.bp-diagram-modal__zoom {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+}
+.bp-diagram-modal__zoom-btn {
+  flex: none;
+  background: transparent;
+  border: 1px solid var(--text-secondary, #9aa5b1);
+  color: #f5f6fa;
+  cursor: pointer;
+  width: 1.6em;
+  height: 1.6em;
+  border-radius: 4px;
+  font-size: 1rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.bp-diagram-modal__zoom-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.bp-diagram-modal__zoom-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+.bp-diagram-modal__zoom-level {
+  font-size: 0.78rem;
+  color: var(--text-secondary, #9aa5b1);
+  min-width: 3.2em;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+}
+.bp-diagram-modal__zoom-level:hover {
+  color: var(--accent);
+}
+.bp-diagram-modal__close {
+  flex: none;
+  background: transparent;
+  border: none;
+  color: #f5f6fa;
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.2rem;
+  border-radius: 4px;
+}
+.bp-diagram-modal__close:hover {
+  background: #3d4b85;
+}
+.bp-diagram-modal__body {
+  flex: 1;
+  overflow: auto;
+  padding: 1rem;
+}
+.bp-diagram-modal__source {
+  flex: none;
+  padding: 0.6rem 1.1rem;
+  border-top: 1px solid #333;
+  font-size: 0.8em;
+  color: var(--text-tertiary);
+}
+.bp-diagram-svg {
+  display: block;
+  /* Centered when it fits; when wider/taller than the modal body, auto
+     margins resolve to 0 (CSS block box model, not flex/grid alignment)
+     so the diagram overflows to the bottom-right and scrolls there at
+     full size instead of being squeezed down to fit — see the now-removed
+     `display:flex; justify-content:center` this replaced, which silently
+     shrank an oversized diagram via flex-shrink instead of letting the
+     modal body's `overflow:auto` scroll to it. */
+  margin: 0 auto;
+  max-width: none;
+}
+.bp-diagram-edge-path {
+  fill: none;
+  stroke: var(--bp-diagram-edge, #8a9099);
+  stroke-width: 1.6;
+}
+.bp-diagram-edge-label {
+  fill: var(--text-secondary, #aab);
+  font-size: 11px;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  paint-order: stroke;
+  stroke: #23272a;
+  stroke-width: 4px;
+}
+.bp-diagram-node-rect {
+  fill: var(--bp-diagram-node-color, #3a4a6b);
+  stroke: var(--accent, #5b9bd5);
+  stroke-width: 1.2;
+}
+.bp-diagram-node-label {
+  fill: #f5f6fa;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+.bp-diagram-node-note {
+  fill: #c7ccd6;
+  font-size: 10px;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+.bp-diagram-node-ref {
+  fill: var(--accent-light, #b9c8f0);
+  font-size: 10px;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  text-decoration: underline;
+}
+.bp-diagram-node--clickable {
+  cursor: pointer;
+}
+.bp-diagram-node--clickable .bp-diagram-node-rect {
+  stroke-width: 1.2;
+  transition: stroke-width 0.1s ease, filter 0.1s ease;
+}
+.bp-diagram-node--clickable:hover .bp-diagram-node-rect {
+  stroke-width: 2.2;
+  filter: brightness(1.15);
+}
+@media (max-width: 480px) {
+  .bp-diagram-overlay {
+    padding: 0.75rem;
+  }
+  .bp-diagram-modal {
+    max-height: min(92vh, 92dvh);
+  }
+  .bp-diagram-modal__header {
+    flex-wrap: wrap;
+  }
+}
+@media (min-width: 3000px) {
+  .bp-diagram-modal {
+    width: min(1100px, 100%);
+  }
+  .bp-diagram-modal__title {
+    font-size: 1.3rem;
+  }
+  .bp-diagram-modal__close {
+    font-size: 1.35rem;
+  }
+  .bp-diagram-svg {
+    transform: scale(1.3);
+    transform-origin: top center;
+  }
+}
+
 /* Chiasm explainer sub-modal */
 .bp-chiasm-explainer-overlay {
   position: fixed;
@@ -3687,14 +3924,20 @@ html.bp-suggestions-hidden .bp-suggest-new-link {
     column-gap: 0;
   }
   html.bp-mobile .bp-chapter-header {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: auto 1fr auto;
     padding: 0.15em 0 0.25em;
   }
   html.bp-mobile .bp-chapter-header h2 {
-    grid-column: 1;
+    grid-column: 2;
     text-align: left;
     font-size: 1.05em;
     margin: 0.15em 0;
+  }
+  html.bp-mobile .bp-diagram-btn__label {
+    display: none; /* icon-only on phone widths to save header space */
+  }
+  html.bp-mobile .bp-diagram-btn {
+    padding: 0.15em 0.4em;
   }
   html.bp-mobile .bp-font-slider {
     width: 5em;

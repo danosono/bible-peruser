@@ -2635,5 +2635,28 @@
         "references": ["Isaiah 6:1–13"]
       }
     ]
+  },
+  "chapterDiagrams": {
+    "18": {
+      "title": "Paul's and Apollos's Movements (Acts 17:16–18:23)",
+      "buttonLabel": "Journeys",
+      "nodes": [
+        { "id": "athens", "label": "Athens", "note": "17:16-34", "ref": "17:16-34" },
+        { "id": "corinth", "label": "Corinth", "note": "18:1-17", "ref": "18:1-17" },
+        { "id": "ephesus1", "label": "Ephesus", "note": "18:18-21", "ref": "18:18-21" },
+        { "id": "jerusalem", "label": "Jerusalem", "note": "18:22", "ref": "18:22" },
+        { "id": "achaia", "label": "Achaia (Apollos)", "note": "18:27-28", "ref": "18:27-28", "color": "purple" },
+        { "id": "antioch", "label": "Antioch", "note": "18:22", "ref": "18:22" },
+        { "id": "galatia", "label": "Galatia & Phrygia", "note": "18:23", "ref": "18:23" }
+      ],
+      "edges": [
+        { "from": "athens", "to": "corinth" },
+        { "from": "corinth", "to": "ephesus1" },
+        { "from": "ephesus1", "to": "jerusalem", "label": "Paul" },
+        { "from": "ephesus1", "to": "achaia", "label": "Apollos" },
+        { "from": "jerusalem", "to": "antioch" },
+        { "from": "antioch", "to": "galatia" }
+      ]
+    }
   }
 }
