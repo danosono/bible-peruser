@@ -279,6 +279,96 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
+  function openAboutModal() {
+    document.querySelectorAll(".bp-about-overlay").forEach((el) => el.remove());
+
+    const overlay = document.createElement("div");
+    overlay.className = "bp-about-overlay";
+
+    const modal = document.createElement("div");
+    modal.className = "bp-about-modal";
+    modal.setAttribute("role", "dialog");
+    modal.setAttribute("aria-modal", "true");
+    modal.setAttribute("aria-label", "About Bible Peruser");
+    overlay.appendChild(modal);
+
+    const header = document.createElement("div");
+    header.className = "bp-about-modal__header";
+
+    const title = document.createElement("h2");
+    title.className = "bp-about-modal__title";
+    title.textContent = "About Bible Peruser";
+
+    const closeBtn = document.createElement("button");
+    closeBtn.type = "button";
+    closeBtn.className = "bp-about-modal__close";
+    closeBtn.innerHTML = "&#x2715;";
+    closeBtn.setAttribute("aria-label", "Close");
+
+    header.appendChild(title);
+    header.appendChild(closeBtn);
+    modal.appendChild(header);
+    if (typeof window.bpAttachModalDrag === "function") {
+      window.bpAttachModalDrag(modal, header);
+    }
+
+    const body = document.createElement("div");
+    body.className = "bp-about-modal__body";
+    body.innerHTML =
+      "<p>Bible Peruser puts the Biblical text front and center. Read it — everything else here is in support of that.</p>" +
+      "<p>On the left panel, the blue buttons give each chapter's outline; the buttons below them hold custom study labels/notes with verse references, links, and emphasis.</p>" +
+      "<p>The right panel holds highlight controls and any chiasms present in the chapter.</p>" +
+      "<p>Along the bottom: buttons to highlight the chapter's most frequent words, a Book Summary, a Timeline centered on the current chapter, and buttons to display People and Places who appear in the chapter — with links out to Gospelgo's " +
+      '<a href="https://bibleplaces.gospelgo.org/" target="_blank" rel="noopener">Bible Places</a> live map and ' +
+      '<a href="https://bible-explorer.gospelgo.org/" target="_blank" rel="noopener">Bible Explorer</a>, which locates verses by topic.</p>' +
+      "<p>Spot something worth adding? Make a free account to suggest an edit, or your own labels and highlights — look for the ✏️ icon next to any button (on hover).</p>" +
+      "<p>Switch to Entire Book (top left) to view the entire book with similar features.</p>" +
+      "<p>Even the features have features — open any window here and look for more inside.</p>";
+    modal.appendChild(body);
+
+    const donateWrap = document.createElement("div");
+    donateWrap.className = "bp-about-modal__donate-wrap";
+    const donateLink = document.createElement("a");
+    donateLink.className = "bp-about-modal__donate-link";
+    donateLink.href = "https://gospelgo.org/donate/";
+    donateLink.target = "_blank";
+    donateLink.rel = "noopener";
+    donateLink.textContent = "Donate";
+    donateWrap.appendChild(donateLink);
+    const donateNote = document.createElement("div");
+    donateNote.className = "bp-about-modal__donate-note";
+    donateNote.textContent = "Donations are welcome, but zero pressure.";
+    donateWrap.appendChild(donateNote);
+    modal.appendChild(donateWrap);
+
+    function closeModal() {
+      document.removeEventListener("keydown", onKeydown);
+      overlay.remove();
+    }
+    function onKeydown(e) {
+      if (e.key === "Escape") closeModal();
+    }
+    // No click-outside-to-close: the overlay is pointer-events:none outside
+    // the modal box (see .bp-about-overlay) so a click on the page behind it
+    // reaches the page instead of closing this modal — close via the ✕
+    // button or Escape.
+    closeBtn.addEventListener("click", closeModal);
+    document.addEventListener("keydown", onKeydown);
+
+    document.body.appendChild(overlay);
+  }
+
+  const aboutTrigger = document.getElementById("bp-about-trigger");
+  if (aboutTrigger) {
+    aboutTrigger.addEventListener("click", openAboutModal);
+    aboutTrigger.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openAboutModal();
+      }
+    });
+  }
+
   // Mobile overlay actions
   const copyBtn = document.getElementById("bp-copy-btn");
   if (copyBtn) {

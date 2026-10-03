@@ -1119,6 +1119,9 @@ function attachModalDrag(modalEl, headerEl) {
   headerEl.addEventListener("pointerup", endDrag);
   headerEl.addEventListener("pointercancel", endDrag);
 }
+// Exposed for app.js (a classic script, outside this module) to make its own
+// modals (e.g. the About modal) draggable the same way.
+window.bpAttachModalDrag = attachModalDrag;
 
 function openCompareModal(references, compareContext) {
   document.querySelectorAll(".bp-compare-overlay").forEach((el) => el.remove());
