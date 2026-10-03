@@ -1857,7 +1857,7 @@
         "emphasis": ["slave girl with a spirit of divination"]
       },
       {
-        "label": "commanded demon",
+        "label": "demon subject to Paul",
         "verses": ["18"],
         "emphasis": ["In the name of Jesus Christ I command you to come out"]
       },
@@ -1907,6 +1907,14 @@
         ]
       },
       {
+        "label": "Thyatira",
+        "verses": ["14-15"],
+        "references": ["Revelation 1:11", "Revelation 2:18-29"],
+        "emphasis": [
+          "Lydia", "from the city of Thyatira"
+        ]
+      },
+      {
         "highlight": "Places",
         "text": [
           "Asia",
@@ -1933,6 +1941,10 @@
       {
         "highlight": "Lydia",
         "text": ["Lydia"]
+      },
+      {
+        "highlight": "Paul's Letter to ...",
+        "text": ["Galatia", "Philippi", "stayed there several days"]
       }
     ],
     "17": [
@@ -1957,9 +1969,27 @@
         "references": []
       },
       {
-        "label": "Mecedonia continued",
+        "label": "Macedonia continued",
         "verses": ["1"],
         "references": ["Acts 16:9-11"]
+      },
+      {
+        "label": "Map",
+        "verses": ["1"],
+        "links": [
+          {
+            "label": "Amphipolis -> Apollonia -> Thessalonica",
+            "url": "https://bibleplaces.gospelgo.org/?places=amphipolis_59%2Capollonia_76%2Cthessalonica_1158"
+          },
+          {
+            "label": "Thessalonica -> Berea -> Athens",
+            "url": "https://bibleplaces.gospelgo.org/?places=thessalonica_1158%2Cberea_177%2Cathens_118"
+          },
+          {
+            "label": "Amphipolis -> Apollonia -> Thessalonica -> Berea -> Athens",
+            "url": "https://bibleplaces.gospelgo.org/?places=amphipolis_59%2Capollonia_76%2Cthessalonica_1158%2Cberea_177%2Cathens_118"
+          }
+        ]
       },
       {
         "label": "Jason",
@@ -2043,7 +2073,11 @@
         "label": "Not a man-made god",
         "verses": ["24-31"],
         "emphasis": [
-          "made the world and everything in it", "He Himself gives everyone life and breath and everything else", "He made every nation of men", "He determined", "in Him we live and move and have our being"
+          "made the world and everything in it",
+          "He Himself gives everyone life and breath and everything else",
+          "He made every nation of men",
+          "He determined",
+          "in Him we live and move and have our being"
         ]
       },
       {
@@ -2117,6 +2151,64 @@
         "emphasis": ["Corinth", "Ephesus", "Galatia"]
       },
       {
+        "label": "not welcome",
+        "verses": ["6"],
+        "references": [
+          "Matthew 10:14-15",
+          "Mark 6:11",
+          "Luke 9:5",
+          "Luke 10:11",
+          "Acts 13:51"
+        ],
+        "emphasis": ["shook out his garments"]
+      },
+      {
+        "label": "verifiable facts",
+        "verses": ["2", "8", "12"],
+        "emphasis": [
+          "Claudius had ordered all the Jews to leave Rome",
+          "Crispus, the synagogue leader",
+          "While Gallio was proconsul of Achaia"
+        ]
+      },
+      {
+        "label": "return",
+        "verses": ["21"],
+        "references": [
+          "Acts 19:1",
+          "Acts 19:8",
+          "Acts 19:10"
+        ],
+        "emphasis": ["shook out his garments"]
+      },
+      
+      {
+        "label": "Map",
+        "verses": ["1"],
+        "links": [
+          {
+            "label": "v1 Paul: Athens to Corinth",
+            "url": "https://bibleplaces.gospelgo.org/?places=athens_118%2Ccorinth_306"
+          },
+          {
+            "label": "v19 Corinth to Ephesus",
+            "url": "https://bibleplaces.gospelgo.org/?places=corinth_306%2Cephesus_400"
+          },
+          {
+            "label": "v22 Paul: Ephesus to Caesarea/Jerusalem/Antioch",
+            "url": "https://bibleplaces.gospelgo.org/?places=ephesus_400%2Ccaesarea_266%2Cjerusalem_636%2Cantioch_68"
+          },
+          {
+            "label": "v23 Paul: Antioch to Galatia/Phrygia",
+            "url": "https://bibleplaces.gospelgo.org/?places=antioch_68%2Cgalatia_431%2Cphrygia_946"
+          },
+          {
+            "label": "v27 Apollos: Ephesus to Achaia",
+            "url": "https://bibleplaces.gospelgo.org/?places=ephesus_400%2Cachaia_16"
+          }
+        ]
+      },
+      {
         "highlight": "Paul",
         "text": ["Paul"]
       },
@@ -2170,6 +2262,214 @@
         "outline": "The Riot in Ephesus",
         "verses": ["21-41"],
         "references": []
+      },
+      {
+        "label": "Return to Ephesus",
+        "verses": ["1"],
+        "references": ["Acts 18:21"]
+      },
+      {
+        "label": "Map",
+        "verses": ["1"],
+        "links": [
+          {
+            "label": "Apollos at Corinth and Paul at Ephesus",
+            "url": "https://bibleplaces.gospelgo.org/?places=corinth_306%2Cephesus_400"
+          },
+          {
+            "label": "Apollos: Achaia (ch18) to Corinth",
+            "url": "https://bibleplaces.gospelgo.org/?places=achaia_16%2Ccorinth_306"
+          },
+          {
+            "label": "Paul: Galatia/Phrygia (ch18) to Ephesus",
+            "url": "https://bibleplaces.gospelgo.org/?places=galatia_431%2Cphrygia_946%2Cephesus_400"
+          }
+        ]
+      },
+      {
+        "label": "Receive Holy Spirit",
+        "verses": ["1-7"],
+        "links": [
+          {
+            "label": "Bible Explorer (Holy Spirit, receiving)",
+            "url": "https://bible-explorer.gospelgo.org/?dataset=custom&topic=Holy+Spirit%2C+receiving"
+          },
+          {
+            "label": "Bible Explorer (Holy Spirit falls or poured out)",
+            "url": "https://bible-explorer.gospelgo.org/?dataset=custom&topic=Holy+Spirit+falls+or+poured+out"
+          }
+        ],
+        "emphasis": [
+          "Did you receive the Holy Spirit",
+          "the Holy Spirit came upon them"
+        ],
+        "references": [
+          "Judges 3:10",
+          "Judges 6:34",
+          "Judges 11:29",
+          "Judges 13:25",
+          "Judges 14:6",
+          "Judges 14:19",
+          "Judges 15:14",
+          "1 Samuel 10:6",
+          "1 Samuel 10:9-10",
+          "1 Samuel 11:6",
+          "1 Samuel 16:13-14",
+          "1 Samuel 19:20",
+          "1 Samuel 19:23-24",
+          "2 Chronicles 15:1",
+          "2 Chronicles 20:14",
+          "2 Chronicles 24:20",
+          "Isaiah 11:2",
+          "Isaiah 42:1",
+          "Isaiah 59:21",
+          "Ezekiel 11:5",
+          "Ezekiel 36:26-27",
+          "Ezekiel 37:1",
+          "Ezekiel 37:14",
+          "Ezekiel 43:5",
+          "Joel 2:28",
+          "Joel 2:28-29",
+          "Micah 3:8",
+          "Luke 1:15",
+          "Luke 1:35",
+          "Luke 1:41",
+          "Luke 1:67",
+          "Luke 2:25-27",
+          "John 3:5",
+          "John 7:39",
+          "John 14:16-17",
+          "John 20:22",
+          "Acts 1:4-5",
+          "Acts 1:8",
+          "Acts 2:1-4",
+          "Acts 2:17-18",
+          "Acts 2:33",
+          "Acts 2:38",
+          "Acts 8:14-17",
+          "Acts 9:17",
+          "Acts 10:44-47",
+          "Acts 11:15-17",
+          "Acts 19:1-7",
+          "Romans 5:5",
+          "Romans 8:10-11",
+          "Romans 15:13",
+          "1 Corinthians 2:10-12",
+          "1 Corinthians 12:7-11",
+          "Galatians 3:2",
+          "Galatians 3:5",
+          "Galatians 4:6",
+          "Ephesians 1:13-14",
+          "Ephesians 3:16",
+          "Ephesians 5:18",
+          "1 Thessalonians 1:5-6",
+          "Titus 3:5-6"
+        ]
+      },
+      {
+        "label": "Jews then Gentiles",
+        "verses": ["8-9"],
+        "references": [
+          "Genesis 12:3",
+          "Isaiah 2:3",
+          "Isaiah 49:6",
+          "Jeremiah 31:31",
+          "Hosea 1:10",
+          "Matthew 10:5-6",
+          "Matthew 15:24",
+          "Luke 24:47",
+          "John 4:22",
+          "Acts 1:8",
+          "Acts 3:26",
+          "Acts 14:1",
+          "Acts 17:1-2",
+          "Acts 18:4",
+          "Acts 18:19",
+          "Acts 19:8",
+          "Acts 22:21",
+          "Acts 28:17-28",
+          "Romans 1:16",
+          "Romans 2:9-10",
+          "Romans 3:1-2",
+          "Romans 9:4-5",
+          "Romans 10:19",
+          "Romans 11:1",
+          "Romans 11:11",
+          "Romans 15:8-12"
+        ],
+        "emphasis": [
+          "synagogue",
+          "stubborn",
+          "left",
+          "lecture hall of Tyrannus"
+        ]
+      },
+      {
+        "label": "the Way (ὁ ὁδός)",
+        "verses": ["9", "23"],
+        "references": [
+          "John 14:6",
+          "Acts 22:4",
+          "Acts 24:14",
+          "Acts 24:22",
+          "Hebrews 10:20",
+          "2 Peter 2:15"
+        ],
+        "emphasis": ["the Way"]
+      },
+      {
+        "label": "Paul in Ephesus for 2 years",
+        "verses": ["10"],
+        "references": ["Ephesians 1:1"],
+        "emphasis": ["two years"]
+      },
+      {
+        "label": "The word of the Lord",
+        "verses": ["4-6", "10-12", "20"],
+        "references": [
+          "Isaiah 55:11",
+          "Matthew 13:31-32",
+          "Mark 4:26-28",
+          "Luke 8:15",
+          "Acts 2:38-41",
+          "Acts 4:4",
+          "Acts 6:7",
+          "Acts 8:4-8",
+          "Acts 8:25",
+          "Acts 11:1",
+          "Acts 12:24",
+          "Acts 13:5",
+          "Acts 13:7",
+          "Acts 13:12",
+          "Acts 13:44-49",
+          "Acts 14:1",
+          "Acts 15:14-15",
+          "Acts 15:35-36",
+          "Acts 16:14",
+          "Acts 16:31-33",
+          "Acts 17:2-4",
+          "Acts 17:17",
+          "Acts 17:34",
+          "Acts 18:5",
+          "Acts 18:11",
+          "Acts 20:32",
+          "1 Corinthians 3:6",
+          "Colossians 1:6"
+        ],
+        "emphasis": ["explained", "the word of the Lord", "power", "prevail"]
+      },
+      {
+        "highlight": "Paul's letter to Ephesus",
+        "text": [
+          "ephesus",
+          "two years",
+          "paul",
+          "ephesians",
+          "three months",
+          "synagogue",
+          "lecture hall of Tyrannus",
+          "So the word of the Lord powerfully continued to spread and prevail"
+        ]
       }
     ],
     "20": [

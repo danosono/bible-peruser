@@ -1971,7 +1971,11 @@ html.bp-hide-outlines .topic-outline-btn {
   border: 1px solid #444;
   border-radius: 10px;
   box-shadow: 0 8px 32px #000a;
-  width: min(560px, 100%);
+  /* 600px (not 560px) so the Places action bar — Highlight All, the partial-
+     match note, the sort-order toggle, and Show on Map — fits on one line
+     instead of wrapping Show on Map down by itself. min(,100%) still
+     shrinks it to fit on narrow/mobile viewports. */
+  width: min(600px, 100%);
   max-height: min(85vh, 85dvh);
   display: flex;
   flex-direction: column;
@@ -2031,6 +2035,28 @@ html.bp-hide-outlines .topic-outline-btn {
 .bp-info-modal__highlight-all-btn:hover {
   text-decoration: underline;
 }
+.bp-info-modal__sort-toggle-btn {
+  display: inline-block;
+  background: none;
+  border: none;
+  padding: 0;
+  color: #8bd3ff;
+  font-size: 0.85rem;
+  font-family: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+.bp-info-modal__sort-toggle-btn:hover {
+  text-decoration: underline;
+}
+.bp-info-modal__action-note {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--text-tertiary);
+  margin-right: 1rem;
+}
 .bp-info-modal__list {
   flex: 1;
   overflow-y: auto;
@@ -2057,6 +2083,13 @@ html.bp-hide-outlines .topic-outline-btn {
   font-size: 0.8rem;
   color: #8bd3ff;
   margin-top: 0.2rem;
+}
+.bp-info-card__xref-link {
+  color: inherit;
+  text-decoration: none;
+}
+.bp-info-card__xref-link:hover {
+  text-decoration: underline;
 }
 .bp-info-card__body {
   font-size: 0.9rem;

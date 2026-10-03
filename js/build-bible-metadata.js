@@ -295,10 +295,31 @@ function buildVerseTagData() {
   const idxPeople = header.indexOf("people");
   const idxPlaces = header.indexOf("places");
 
+  // Map<chapterKey, Map<id, Set<verseNumber>>> for both — tracks which
+  // verse(s) within the chapter mention each person/place (see
+  // peopleByChapterOut/placesByChapterOut below), so the People/Places
+  // modals can cite verses the way the companion Bible Places project's
+  // place cards do.
   const peopleByChapter = {};
   const placesByChapter = {};
   const referencedPeopleIds = new Set();
   const referencedPlaceIds = new Set();
+  // Map<id, Set<chapterKey>> across the WHOLE Bible (not scoped to one
+  // chapter) — lets the People/Places modals say "also mentioned in N other
+  // chapters" even though the modal itself only shows the current chapter's
+  // verses. Deliberately computed from this same exhaustive per-verse CSV
+  // rather than the source places.json's own `verses` field (people.json has
+  // no such field at all), because the sibling game pipeline
+  // (parse_theographic.js) truncates places' `verses` to the first 20 —
+  // fine for a sample there, but it would undercount a frequently-mentioned
+  // place like Jerusalem (754 real mentions) here. The raw Theographic
+  // People.csv does carry a full, uncapped `verses` column per person
+  // (verified: Paul's has all 179, matching its own verseCount exactly) —
+  // parse_theographic.js just never carries it into people.json — so the
+  // same per-person data exists at the source if a future consumer (e.g.
+  // Bible Explorer) wants to read People.csv directly for a full list.
+  const placeChapterKeysById = new Map();
+  const personChapterKeysById = new Map();
 
   for (let i = 1; i < rows.length; i++) {
     const row = rows[i];
@@ -309,9 +330,10 @@ function buildVerseTagData() {
     if (!osisRef) continue;
     const parts = osisRef.split(".");
     if (parts.length !== 3) continue;
-    const [abbr, chapterStr] = parts;
+    const [abbr, chapterStr, verseStr] = parts;
     const bookId = BOOK_ID_BY_ABBR[abbr];
     const chapter = parseInt(chapterStr, 10);
+    const verse = parseInt(verseStr, 10);
     if (!bookId || !Number.isInteger(chapter)) continue;
     const key = `${bookId}_${chapter}`;
 
@@ -325,17 +347,25 @@ function buildVerseTagData() {
       .filter(Boolean);
 
     if (peopleIds.length) {
-      if (!peopleByChapter[key]) peopleByChapter[key] = new Set();
+      if (!peopleByChapter[key]) peopleByChapter[key] = new Map();
+      const chapterMap = peopleByChapter[key];
       peopleIds.forEach((id) => {
-        peopleByChapter[key].add(id);
+        if (!chapterMap.has(id)) chapterMap.set(id, new Set());
+        if (Number.isInteger(verse)) chapterMap.get(id).add(verse);
         referencedPeopleIds.add(id);
+        if (!personChapterKeysById.has(id)) personChapterKeysById.set(id, new Set());
+        personChapterKeysById.get(id).add(key);
       });
     }
     if (placeIds.length) {
-      if (!placesByChapter[key]) placesByChapter[key] = new Set();
+      if (!placesByChapter[key]) placesByChapter[key] = new Map();
+      const chapterMap = placesByChapter[key];
       placeIds.forEach((id) => {
-        placesByChapter[key].add(id);
+        if (!chapterMap.has(id)) chapterMap.set(id, new Set());
+        if (Number.isInteger(verse)) chapterMap.get(id).add(verse);
         referencedPlaceIds.add(id);
+        if (!placeChapterKeysById.has(id)) placeChapterKeysById.set(id, new Set());
+        placeChapterKeysById.get(id).add(key);
       });
     }
   }
@@ -360,6 +390,10 @@ function buildVerseTagData() {
       deathYear: Number.isInteger(p.deathYear) ? p.deathYear : null,
       description: desc.text,
       truncated: desc.truncated,
+      // Distinct chapters across the whole Bible this person is tagged in
+      // (always includes whichever chapter the modal itself is showing) —
+      // the People modal subtracts 1 to get the "N other chapters" count.
+      chapterCount: personChapterKeysById.get(id)?.size || 0,
     };
     if (desc.truncated) peopleFull[id] = cleanDescription.trim();
   });
@@ -378,20 +412,34 @@ function buildVerseTagData() {
       featureType: p.featureType || null,
       description: desc.text,
       truncated: desc.truncated,
+      // Distinct chapters across the whole Bible this place is tagged in
+      // (always includes whichever chapter the modal itself is showing) —
+      // the Places modal subtracts 1 to get the "N other chapters" count.
+      chapterCount: placeChapterKeysById.get(id)?.size || 0,
     };
     if (desc.truncated) placesFull[id] = cleanDescription.trim();
   });
 
-  const peopleByChapterOut = {};
-  Object.entries(peopleByChapter).forEach(([key, set]) => {
-    const ids = Array.from(set).filter((id) => people[id]);
-    if (ids.length) peopleByChapterOut[key] = ids;
-  });
-  const placesByChapterOut = {};
-  Object.entries(placesByChapter).forEach(([key, set]) => {
-    const ids = Array.from(set).filter((id) => places[id]);
-    if (ids.length) placesByChapterOut[key] = ids;
-  });
+  // Turns a Map<chapterKey, Map<id, Set<verseNumber>>> into the output
+  // shape both people.json and places.json use: { chapterKey: [{id,
+  // verses}, ...] }, ids already in first-occurrence order (Map preserves
+  // insertion order) and dropped if they didn't make it into `dict` (e.g.
+  // filtered out upstream).
+  function finalizeByChapter(byChapter, dict) {
+    const out = {};
+    Object.entries(byChapter).forEach(([key, chapterMap]) => {
+      const entries = Array.from(chapterMap.entries())
+        .filter(([id]) => dict[id])
+        .map(([id, verseSet]) => ({
+          id,
+          verses: Array.from(verseSet).sort((a, b) => a - b),
+        }));
+      if (entries.length) out[key] = entries;
+    });
+    return out;
+  }
+  const peopleByChapterOut = finalizeByChapter(peopleByChapter, people);
+  const placesByChapterOut = finalizeByChapter(placesByChapter, places);
 
   writeJson(path.join(OUT_DIR, "verse-tags", "people.json"), {
     source: SOURCE_CREDIT,

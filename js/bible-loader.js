@@ -1562,6 +1562,28 @@ function triggerModalHighlightRerender() {
   }
 }
 
+// People/Places names sometimes carry a disambiguating suffix the dataset
+// uses to tell two same-named entries apart — e.g. "Antioch (Syria)" vs.
+// "Antioch (Pisidia)", or "Enoch (son of Cain)" — which never appears
+// literally in the chapter text. Highlighting the full name would therefore
+// never match anything (collectNonOverlappingMatches does a plain substring
+// search), so the highlight/search phrase strips a trailing "(...)" while
+// the card title still shows the full disambiguated name.
+function highlightNameFor(name) {
+  return name.replace(/\s*\([^)]*\)\s*$/, "").trim();
+}
+
+// Shown once per modal (in the action bar) rather than per card: the
+// highlight buttons do a plain substring search of the chapter text, so a
+// name that only partially overlaps chapter wording (or the parenthetical
+// stripping above) can under-highlight.
+function buildHighlightCaveatNote() {
+  const note = document.createElement("span");
+  note.className = "bp-info-modal__action-note";
+  note.textContent = "Partial matches may not be highlighted.";
+  return note;
+}
+
 // Small pill button added to a People/Places card, toggling that entry's
 // name as a highlight in the chapter text. `syncFns` is a shared array (one
 // per modal instance) that this button registers its own sync() into, and
@@ -1616,14 +1638,50 @@ function buildHighlightAllBtn(names, activeNames, syncFns) {
   return btn;
 }
 
+// Display-order preference for the People/Places modals — persists for the
+// rest of the session (not reset per chapter or on modal close) since it's
+// a reading preference ("I always want these A–Z"), not chapter-scoped
+// state like the highlight Sets above.
+let peopleSortMode = "chapter"; // "chapter" | "alpha"
+let placesSortMode = "chapter";
+
+// Action-bar toggle between the chapter's natural (first-occurrence) order
+// and A–Z. Phrased as a verb ("Sort A–Z" / "Sort by Chapter"), like
+// buildHighlightAllBtn's Highlight All/Clear All, so it reads as the action
+// a click performs rather than a label of the current state — a plain noun
+// like "Alphabetical Order" reads backwards if skimmed as a status header
+// instead of a button.
+function buildSortOrderToggleBtn(currentMode, onToggle) {
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "bp-info-modal__sort-toggle-btn";
+  btn.textContent = currentMode === "alpha" ? "Sort by Chapter" : "Sort A–Z";
+  btn.addEventListener("click", onToggle);
+  return btn;
+}
+
 function openPeopleModal(bookId, chapterNum, metadata) {
   const chapterKey = `${bookId}_${chapterNum}`;
-  const ids = metadata.people.byChapter[chapterKey] || [];
+  // Each entry is { id, verses } — verses are the specific verse numbers
+  // within THIS chapter that mention the person (see build-bible-metadata.js),
+  // already in first-occurrence order; alphabetical is an opt-in re-sort via
+  // the action-bar toggle below.
+  const chapterEntries = metadata.people.byChapter[chapterKey] || [];
   const bookLabel = bookNames[bookId] || bookId;
-  const entries = ids
-    .map((id) => metadata.people.people[id] && { id, ...metadata.people.people[id] })
-    .filter(Boolean)
-    .sort((a, b) => a.name.localeCompare(b.name));
+  const chapterOrderEntries = chapterEntries
+    .map(
+      ({ id, verses }) =>
+        metadata.people.people[id] && {
+          id,
+          ...metadata.people.people[id],
+          versesInChapter: verses,
+        },
+    )
+    .filter(Boolean);
+  const entries =
+    peopleSortMode === "alpha"
+      ? [...chapterOrderEntries].sort((a, b) => a.name.localeCompare(b.name))
+      : chapterOrderEntries;
 
   const highlightSyncFns = [];
   let actionBar;
@@ -1632,10 +1690,17 @@ function openPeopleModal(bookId, chapterNum, metadata) {
     actionBar.className = "bp-info-modal__action-bar";
     actionBar.appendChild(
       buildHighlightAllBtn(
-        entries.map((person) => person.name),
+        entries.map((person) => highlightNameFor(person.name)),
         activePersonHighlightNames,
         highlightSyncFns,
       ),
+    );
+    actionBar.appendChild(buildHighlightCaveatNote());
+    actionBar.appendChild(
+      buildSortOrderToggleBtn(peopleSortMode, () => {
+        peopleSortMode = peopleSortMode === "alpha" ? "chapter" : "alpha";
+        openPeopleModal(bookId, chapterNum, metadata);
+      }),
     );
   }
 
@@ -1654,7 +1719,7 @@ function openPeopleModal(bookId, chapterNum, metadata) {
     card.appendChild(nameEl);
 
     const highlightBtn = buildInfoCardHighlightBtn(
-      person.name,
+      highlightNameFor(person.name),
       activePersonHighlightNames,
       highlightSyncFns,
     );
@@ -1667,6 +1732,14 @@ function openPeopleModal(bookId, chapterNum, metadata) {
     if (birth || death) {
       metaParts.push([birth, death].filter(Boolean).join(" – "));
     }
+    const verseCitation = formatVerseCitation(person.versesInChapter);
+    if (verseCitation) metaParts.push(verseCitation);
+    // Plain text, not a link like the Places card's version — there's
+    // nowhere to send a reader for a person's full reference list yet (no
+    // People equivalent of the Bible Places site), so this is just a sense
+    // of scope, not a jumping-off point.
+    const xrefLabel = otherChaptersLabel(person.chapterCount);
+    if (xrefLabel) metaParts.push(xrefLabel);
     if (metaParts.length) {
       const metaEl = document.createElement("div");
       metaEl.className = "bp-info-card__meta";
@@ -1703,12 +1776,37 @@ function dedupePlaceEntries(entries) {
     if (!existing) {
       seen.set(key, place);
       result.push(place);
-    } else if (!existing.featureType && place.featureType) {
-      result[result.indexOf(existing)] = place;
-      seen.set(key, place);
+    } else {
+      const mergedVerses = Array.from(
+        new Set([...(existing.versesInChapter || []), ...(place.versesInChapter || [])]),
+      ).sort((a, b) => a - b);
+      const winner = !existing.featureType && place.featureType ? place : existing;
+      const merged = { ...winner, versesInChapter: mergedVerses };
+      result[result.indexOf(existing)] = merged;
+      seen.set(key, merged);
     }
   });
   return result;
+}
+
+// "v. 22" for a single verse, "vv. 22, 23" for more than one — mirrors the
+// verse citations shown on this place's card in the companion Bible Places
+// project, scoped to just the chapter currently open here.
+function formatVerseCitation(verses) {
+  if (!Array.isArray(verses) || !verses.length) return "";
+  return verses.length === 1 ? `v. ${verses[0]}` : `vv. ${verses.join(", ")}`;
+}
+
+// chapterCount is the distinct chapters across the WHOLE Bible an entry is
+// tagged in, including whichever chapter the modal itself is showing —
+// subtract that one for how many OTHER chapters mention it. "across the
+// Bible" is spelled out because "N other chapters" alone reads as if they're
+// all still in the current book, which looks absurd once N is in the
+// hundreds (e.g. Jerusalem).
+function otherChaptersLabel(chapterCount) {
+  const n = (chapterCount || 0) - 1;
+  if (n <= 0) return "";
+  return `Also in ${n} other chapter${n === 1 ? "" : "s"} across the Bible`;
 }
 
 function buildBiblePlacesMapUrl(bookId, chapterNum, placeIds) {
@@ -1728,13 +1826,28 @@ function buildBiblePlacesMapUrl(bookId, chapterNum, placeIds) {
 
 function openPlacesModal(bookId, chapterNum, metadata) {
   const chapterKey = `${bookId}_${chapterNum}`;
-  const ids = metadata.places.byChapter[chapterKey] || [];
+  // Each entry is { id, verses } — verses are the specific verse numbers
+  // within THIS chapter that mention the place (see build-bible-metadata.js),
+  // already in first-occurrence order; alphabetical is an opt-in re-sort via
+  // the action-bar toggle below.
+  const chapterEntries = metadata.places.byChapter[chapterKey] || [];
   const bookLabel = bookNames[bookId] || bookId;
-  const entries = dedupePlaceEntries(
-    ids
-      .map((id) => metadata.places.places[id] && { id, ...metadata.places.places[id] })
+  const chapterOrderEntries = dedupePlaceEntries(
+    chapterEntries
+      .map(
+        ({ id, verses }) =>
+          metadata.places.places[id] && {
+            id,
+            ...metadata.places.places[id],
+            versesInChapter: verses,
+          },
+      )
       .filter(Boolean),
-  ).sort((a, b) => a.name.localeCompare(b.name));
+  );
+  const entries =
+    placesSortMode === "alpha"
+      ? [...chapterOrderEntries].sort((a, b) => a.name.localeCompare(b.name))
+      : chapterOrderEntries;
 
   const highlightSyncFns = [];
   let actionBar;
@@ -1743,10 +1856,17 @@ function openPlacesModal(bookId, chapterNum, metadata) {
     actionBar.className = "bp-info-modal__action-bar";
     actionBar.appendChild(
       buildHighlightAllBtn(
-        entries.map((place) => place.name),
+        entries.map((place) => highlightNameFor(place.name)),
         activePlaceHighlightNames,
         highlightSyncFns,
       ),
+    );
+    actionBar.appendChild(buildHighlightCaveatNote());
+    actionBar.appendChild(
+      buildSortOrderToggleBtn(placesSortMode, () => {
+        placesSortMode = placesSortMode === "alpha" ? "chapter" : "alpha";
+        openPlacesModal(bookId, chapterNum, metadata);
+      }),
     );
 
     const mapUrl = buildBiblePlacesMapUrl(
@@ -1779,16 +1899,34 @@ function openPlacesModal(bookId, chapterNum, metadata) {
     card.appendChild(nameEl);
 
     const highlightBtn = buildInfoCardHighlightBtn(
-      place.name,
+      highlightNameFor(place.name),
       activePlaceHighlightNames,
       highlightSyncFns,
     );
     card.appendChild(highlightBtn);
 
-    if (place.featureType) {
+    const metaParts = [place.featureType, formatVerseCitation(place.versesInChapter)].filter(
+      Boolean,
+    );
+    // Linking out (rather than listing every reference here) avoids
+    // overwhelming the card for a place like Jerusalem, mentioned in
+    // hundreds of chapters.
+    const xrefLabel = otherChaptersLabel(place.chapterCount);
+    if (metaParts.length || xrefLabel) {
       const metaEl = document.createElement("div");
       metaEl.className = "bp-info-card__meta";
-      metaEl.textContent = place.featureType;
+      metaEl.textContent = metaParts.join(" · ");
+      if (xrefLabel) {
+        const xrefUrl = buildBiblePlacesMapUrl(bookId, chapterNum, [place.id]);
+        if (metaParts.length) metaEl.appendChild(document.createTextNode(" · "));
+        const xrefLink = document.createElement("a");
+        xrefLink.href = xrefUrl;
+        xrefLink.target = "_blank";
+        xrefLink.rel = "noopener noreferrer";
+        xrefLink.className = "bp-info-card__xref-link";
+        xrefLink.textContent = `${xrefLabel} ↗`;
+        metaEl.appendChild(xrefLink);
+      }
       card.appendChild(metaEl);
     }
 
