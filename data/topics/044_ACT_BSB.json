@@ -1910,9 +1910,7 @@
         "label": "Thyatira",
         "verses": ["14-15"],
         "references": ["Revelation 1:11", "Revelation 2:18-29"],
-        "emphasis": [
-          "Lydia", "from the city of Thyatira"
-        ]
+        "emphasis": ["Lydia", "from the city of Thyatira"]
       },
       {
         "highlight": "Places",
@@ -2174,14 +2172,10 @@
       {
         "label": "return",
         "verses": ["21"],
-        "references": [
-          "Acts 19:1",
-          "Acts 19:8",
-          "Acts 19:10"
-        ],
+        "references": ["Acts 19:1", "Acts 19:8", "Acts 19:10"],
         "emphasis": ["shook out his garments"]
       },
-      
+
       {
         "label": "Map",
         "verses": ["1"],
@@ -2459,6 +2453,103 @@
         "emphasis": ["explained", "the word of the Lord", "power", "prevail"]
       },
       {
+        "label": "resolved to go to Jerusalem",
+        "verses": ["21"],
+        "references": [
+          "-- before Jerusalem",
+          "Acts 19:21",
+          "Acts 20:16",
+          "Acts 20:22-25",
+          "Acts 21:4",
+          "Acts 21:10-15",
+          "-- at Jerusalem",
+          "Acts 21:27",
+          "Acts 21:31-33",
+          "Acts 22:22-23",
+          "Acts 23:10-12",
+          "-- after Jerusalem, 2 years in prison",
+          "Acts 23:33",
+          "Acts 24:27",
+          "Acts 26:31-32",
+          "-- journey to Rome",
+          "Acts 27:23-26",
+          "Acts 27:42-43",
+          "Acts 28:3-5",
+          "Acts 28:16",
+          "Acts 28:30-31"
+        ],
+        "emphasis": ["resolved in the Spirit to go to Jerusalem"]
+      },
+      {
+        "label": "Journey to Rome as planned",
+        "verses": ["21"],
+        "references": [
+          "Acts 20:1 - Macedonia",
+          "Acts 20:2 - Greece (area of Achaia)",
+          "Acts 27:1 - Rome",
+          "Acts 28:14 - Rome"
+        ],
+        "emphasis": ["Macedonia", "Achaia", "Jerusalem", "Rome"],
+        "links": [
+          {
+            "label": "Journey to Rome, general plan (map)",
+            "url": "https://bibleplaces.gospelgo.org/?places=ephesus_400%2Cmacedonia_747%2Cachaia_16%2Cjerusalem_636%2Crome_1013"
+          },
+          {
+            "label": "Journey to Rome, as it happened (map)",
+            "url": ""
+          }
+        ]
+      },
+      {
+        "label": "Journey to Rome in detail (map)",
+        "verses": ["21"],
+        "references": [
+          "Acts 20:1 - Macedonia",
+          "Acts 20:2 - Greece (area of Achaia) stayed 3 months",
+          "Acts 20:3 - Macedonia again",
+          "Acts 20:6 - Philippi -> Troas (Eutychus fell from window)",
+          "Acts 20:13-14 - Asos then Mitylene",
+          "Acts 20:15 - Chios, Samos, then Miletus",
+          "Acts 21:1 - Cos, Rhodes, then Patara",
+          "Acts 21:3 - Tyre (Syria)",
+          "Acts 21:7 - Ptolemais",
+          "Acts 21:8 - Caesarea - Philip & 4 prophesying daughters",
+          "Acts 21:15-17 - Jerusalem - Paul is arrested",
+          "Acts 23:11 - Promise from the Lord",
+          "Acts 23:31 - Antipatris",
+          "Acts 23:33 - Caesarea",
+          "> 2 year stretch in prison",
+          "Acts 27:1-3 - Sidon",
+          "Acts 27:5 - Myra after skirting Cilicia and Pamphylia",
+          "Acts 27:8 - Lasea",
+          "Acts 27:23-24 - angel of God reassures Paul of safety",
+          "Acts 28:1 - Malta (Melita) - Viper bites Paul",
+          "Acts 28:12 - Syracuse",
+          "Acts 28:13 - Rhegium then Puteoli",
+          "Acts 28:14-16 - Rome"
+        ],
+        "emphasis": ["Macedonia", "Achaia", "Jerusalem", "Rome"],
+        "links": [
+          {
+            "label": "Journey to Rome, as planned (map)",
+            "url": "https://bibleplaces.gospelgo.org/?places=ephesus_400%2Cmacedonia_747%2Cachaia_16%2Cjerusalem_636%2Crome_1013"
+          },
+          {
+            "label": "Journey to Rome, as it happened Part 1 (map)",
+            "url": "https://bibleplaces.gospelgo.org/?places=ephesus_400%2Cmacedonia_747%2Cachaia_16%2Cphilippi_942%2Ctroas_1182%2Cassos_110%2Cmitylene_808%2Cchios_296%2Csamos_1024%2Cmiletus_801%2Crhodes_1000%2Cpatara_924%2Ctyre_1184%2Cptolemais_959%2Ccaesarea_266%2Cjerusalem_636"
+          },
+          {
+            "label": "Journey to Rome, as it happened Part 2 (map)",
+            "url": "https://bibleplaces.gospelgo.org/?places=jerusalem_636%2Ccilicia_300%2Cpamphylia_918%2Cmyra_864%2Clasea_717%2Cmelita_761%2Csyracuse_1121%2Crhegium_999%2Cputeoli_963%2Crome_1013"
+          },
+          {
+            "label": "Journey to Rome, as it happened Complete (map)",
+            "url": "https://bibleplaces.gospelgo.org/?places=ephesus_400%2Cmacedonia_747%2Cachaia_16%2Cphilippi_942%2Ctroas_1182%2Cassos_110%2Cmitylene_808%2Cchios_296%2Csamos_1024%2Cmiletus_801%2Crhodes_1000%2Cpatara_924%2Ctyre_1184%2Cptolemais_959%2Ccaesarea_266%2Cjerusalem_636%2Ccilicia_300%2Cpamphylia_918%2Cmyra_864%2Clasea_717%2Cmelita_761%2Csyracuse_1121%2Crhegium_999%2Cputeoli_963%2Crome_1013"
+          }
+        ]
+      },
+      {
         "highlight": "Paul's letter to Ephesus",
         "text": [
           "ephesus",
@@ -2469,6 +2560,12 @@
           "synagogue",
           "lecture hall of Tyrannus",
           "So the word of the Lord powerfully continued to spread and prevail"
+        ]
+      },
+      {
+        "highlight": "100%",
+        "text": [
+          "the word of the Lord powerfully continued to spread and prevail"
         ]
       }
     ],
@@ -2492,6 +2589,70 @@
         "outline": "Paul’s Farewell to the Ephesians",
         "verses": ["17-38"],
         "references": []
+      },
+      {
+        "label": "People",
+        "verses": ["4"],
+        "references": [""],
+        "emphasis": ["Gaius", "Timothy", "Tychicus"]
+      },
+      {
+        "label": "to Jerusalem",
+        "verses": ["16", "22-25"],
+        "references": [
+          "-- before Jerusalem",
+          "Acts 19:21",
+          "Acts 20:16 (this chapter)",
+          "Acts 20:22-25 (this chapter)",
+          "Acts 21:4",
+          "Acts 21:10-15",
+          "-- at Jerusalem",
+          "Acts 21:27",
+          "Acts 21:31-33",
+          "Acts 22:22-23",
+          "Acts 23:10-12",
+          "-- after Jerusalem, 2 years in prison",
+          "Acts 23:33",
+          "Acts 24:27",
+          "Acts 26:31-32",
+          "-- journey to Rome",
+          "Acts 27:23-26",
+          "Acts 27:42-43",
+          "Acts 28:3-5",
+          "Acts 28:16",
+          "Acts 28:30-31"
+        ],
+        "emphasis": ["resolved in the Spirit to go to Jerusalem"]
+      },
+      {
+        "label": "Jesus' blood",
+        "verses": ["28"],
+        "references": ["Matthew 26:28", "Luke 22:20", "John 19:33-35"]
+      },
+      {
+        "label": "3 years in Ephesus",
+        "verses": ["31"],
+        "references": [
+          "Acts 19:1 - Ephesus",
+          "Acts 19:8 - 3 months",
+          "Acts 19:10 - 2 years",
+          "Acts 19:24-26 - changing minds in Ephesus"
+        ]
+      },
+      {
+        "label": "Love",
+        "verses": ["25", "28", "32", "37-38"],
+        "references": ["Acts 21:1"],
+        "emphasis": [
+          "none of you",
+          "will see my face again",
+          "Keep watch over yourselves",
+          "I commit you to God",
+          "wept openly",
+          "embraced",
+          "kissed",
+          "They were especially grieved by his statement that they would never see his face again"
+        ]
       }
     ],
     "21": [
@@ -2531,6 +2692,20 @@
         "outline": "Paul the Roman Citizen",
         "verses": ["22-30"],
         "references": []
+      },
+      {
+        "label": "the Way (ὁ ὁδός)",
+        "verses": ["4"],
+        "references": [
+          "John 14:6",
+          "Acts 19:9",
+          "Acts 19:23",
+          "Acts 24:14",
+          "Acts 24:22",
+          "Hebrews 10:20",
+          "2 Peter 2:15"
+        ],
+        "emphasis": ["Way"]
       }
     ],
     "23": [
@@ -2565,6 +2740,19 @@
         "outline": "The Verdict Postponed",
         "verses": ["22-27"],
         "references": []
+      },
+      {
+        "label": "the Way (ὁ ὁδός)",
+        "verses": ["14", "22"],
+        "references": [
+          "John 14:6",
+          "Acts 22:4",
+          "Acts 19:9",
+          "Acts 19:23",
+          "Hebrews 10:20",
+          "2 Peter 2:15"
+        ],
+        "emphasis": ["the Way"]
       }
     ],
     "25": [
@@ -2641,13 +2829,49 @@
       "title": "Paul's and Apollos's Movements (Acts 17:16–18:23)",
       "buttonLabel": "Journeys",
       "nodes": [
-        { "id": "athens", "label": "Athens", "note": "17:16-34", "ref": "17:16-34" },
-        { "id": "corinth", "label": "Corinth", "note": "18:1-17", "ref": "18:1-17" },
-        { "id": "ephesus1", "label": "Ephesus", "note": "18:18-21", "ref": "18:18-21" },
-        { "id": "jerusalem", "label": "Jerusalem", "note": "18:22", "ref": "18:22" },
-        { "id": "achaia", "label": "Achaia (Apollos)", "note": "18:27-28", "ref": "18:27-28", "color": "purple" },
-        { "id": "antioch", "label": "Antioch", "note": "18:22", "ref": "18:22" },
-        { "id": "galatia", "label": "Galatia & Phrygia", "note": "18:23", "ref": "18:23" }
+        {
+          "id": "athens",
+          "label": "Athens",
+          "note": "17:16-34",
+          "ref": "17:16-34"
+        },
+        {
+          "id": "corinth",
+          "label": "Corinth",
+          "note": "18:1-17",
+          "ref": "18:1-17"
+        },
+        {
+          "id": "ephesus1",
+          "label": "Ephesus",
+          "note": "18:18-21",
+          "ref": "18:18-21"
+        },
+        {
+          "id": "jerusalem",
+          "label": "Jerusalem",
+          "note": "18:22",
+          "ref": "18:22"
+        },
+        {
+          "id": "achaia",
+          "label": "Achaia (Apollos)",
+          "note": "18:27-28",
+          "ref": "18:27-28",
+          "color": "purple"
+        },
+        {
+          "id": "antioch",
+          "label": "Antioch",
+          "note": "18:22",
+          "ref": "18:22"
+        },
+        {
+          "id": "galatia",
+          "label": "Galatia & Phrygia",
+          "note": "18:23",
+          "ref": "18:23"
+        }
       ],
       "edges": [
         { "from": "athens", "to": "corinth" },

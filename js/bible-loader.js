@@ -1465,10 +1465,8 @@ async function resolveCompareRefsAndSources(refs, compareContext) {
   // Both resolvePassage (source verses) and resolveReferenceForCompare
   // (references) format their title the same way ("Book C:V-V"), so a
   // reference that names the same passage as a source verse resolves to an
-  // identical core title — used below to skip it as a duplicate. Compared
-  // pre-annotation so "Matthew 5:3-5 see also" still matches "Matthew 5:3-5".
-  const seenTitles = new Set(sourceResolved.map((r) => r.title));
-
+  // identical core title. Compared pre-annotation so "Matthew 5:3-5 see also"
+  // still matches "Matthew 5:3-5".
   const refResolvedRaw = await Promise.all(
     (refs || []).map(async (ref) => {
       const resolved = await resolveReferenceForCompare(ref);
@@ -1481,6 +1479,20 @@ async function resolveCompareRefsAndSources(refs, compareContext) {
     }),
   );
 
+  // A source passage already named in references is left at its own position
+  // there (keeping its annotation and any manual ordering) rather than being
+  // hoisted to the top as an unannotated duplicate.
+  const refTitlesPresent = new Set(
+    refResolvedRaw.filter(Boolean).map((r) => r.coreTitle),
+  );
+  const seenTitles = new Set();
+  const leadingSource = [];
+  sourceResolved.forEach((s) => {
+    if (seenTitles.has(s.title) || refTitlesPresent.has(s.title)) return;
+    seenTitles.add(s.title);
+    leadingSource.push(s);
+  });
+
   const refResolved = [];
   refResolvedRaw.filter(Boolean).forEach(({ coreTitle, annotation, verses }) => {
     if (seenTitles.has(coreTitle)) return;
@@ -1491,7 +1503,7 @@ async function resolveCompareRefsAndSources(refs, compareContext) {
     });
   });
 
-  return [...sourceResolved, ...refResolved];
+  return [...leadingSource, ...refResolved];
 }
 
 function formatReferenceListText(resolvedList) {
