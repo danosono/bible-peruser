@@ -1526,6 +1526,24 @@ function buildVerseListShareUrl(resolvedList, title) {
   return `https://verselist.gospelgo.org/#${params.toString()}`;
 }
 
+// Shared by every attachModalDrag caller: a small grip-dots icon prepended
+// to the modal's title so it reads as draggable at a glance, not only once
+// the reader happens to hover the header and notices the grab cursor. Every
+// caller appends its title as headerEl's first child before calling
+// attachModalDrag (and never re-renders that title afterward), so inserting
+// into it here is safe and keeps the icon out of each modal's own markup.
+const DRAG_GRIP_ICON_SVG =
+  '<svg class="bp-modal-drag-grip" aria-hidden="true" viewBox="0 0 16 16" width="13" height="13">' +
+  '<circle cx="5" cy="3" r="1.3"></circle><circle cx="11" cy="3" r="1.3"></circle>' +
+  '<circle cx="5" cy="8" r="1.3"></circle><circle cx="11" cy="8" r="1.3"></circle>' +
+  '<circle cx="5" cy="13" r="1.3"></circle><circle cx="11" cy="13" r="1.3"></circle>' +
+  "</svg>";
+function addModalDragGripIcon(headerEl) {
+  const titleEl = headerEl.firstElementChild;
+  if (!titleEl || titleEl.querySelector(".bp-modal-drag-grip")) return;
+  titleEl.insertAdjacentHTML("afterbegin", DRAG_GRIP_ICON_SVG);
+}
+
 // Makes the compare modal draggable by its header, so the reader can slide
 // it aside to read a referenced verse in its chapter context underneath —
 // the overlay no longer dims/blocks the page (see .bp-compare-overlay CSS),
@@ -1534,6 +1552,7 @@ function attachModalDrag(modalEl, headerEl) {
   if (window.bpIsMobileMode && window.bpIsMobileMode()) return;
 
   headerEl.classList.add("bp-compare-modal__header--draggable");
+  addModalDragGripIcon(headerEl);
   let dragging = false;
   let hasSwitchedToFixed = false;
   let startX = 0;
@@ -2057,6 +2076,24 @@ function highlightNameFor(name) {
   return name.replace(/\s*\([^)]*\)\s*$/, "").trim();
 }
 
+// Small inline-SVG icons for action-bar buttons/links, following the same
+// stroke-based convention as .bp-diagram-btn__icon. Kept as markup strings
+// (rather than built node-by-node) so they can be spliced into a button's
+// innerHTML alongside a separate label element — needed wherever the
+// button's own text is re-rendered later (e.g. Highlight All/Clear All),
+// since reassigning a shared textContent would otherwise wipe the icon too.
+const HIGHLIGHTER_ICON_SVG =
+  '<svg class="bp-icon-highlighter" aria-hidden="true" viewBox="0 0 16 16" width="14" height="14">' +
+  '<path d="M9.6 1.6 14.4 6.4 8.6 12.2 4.4 12.4 4.6 8.2 9.6 1.6Z"></path>' +
+  '<path d="M4.6 8.2 8.6 12.2"></path>' +
+  '<rect x="1.2" y="13.2" width="6" height="1.6" rx="0.6" style="fill:currentColor"></rect>' +
+  "</svg>";
+const MAP_PIN_ICON_SVG =
+  '<svg class="bp-icon-map-pin" aria-hidden="true" viewBox="0 0 16 16" width="13" height="13">' +
+  '<path d="M8 14.5s5-4.8 5-8.5a5 5 0 1 0-10 0c0 3.7 5 8.5 5 8.5Z"></path>' +
+  '<circle cx="8" cy="6" r="1.7"></circle>' +
+  "</svg>";
+
 // Shown once per modal (in the action bar) rather than per card: the
 // highlight buttons do a plain substring search of the chapter text, so a
 // name that only partially overlaps chapter wording (or the parenthetical
@@ -2102,11 +2139,13 @@ function buildHighlightAllBtn(names, activeNames, syncFns) {
   const btn = document.createElement("button");
   btn.type = "button";
   btn.className = "bp-info-modal__highlight-all-btn";
+  btn.innerHTML = `${HIGHLIGHTER_ICON_SVG}<span class="bp-info-modal__highlight-all-label"></span>`;
+  const label = btn.querySelector(".bp-info-modal__highlight-all-label");
   function allActive() {
     return names.length > 0 && names.every((n) => activeNames.has(n));
   }
   function sync() {
-    btn.textContent = allActive() ? "Clear All" : "Highlight All";
+    label.textContent = allActive() ? "Clear All" : "Highlight All";
   }
   btn.addEventListener("click", () => {
     if (allActive()) {
@@ -2364,7 +2403,7 @@ function openPlacesModal(bookId, chapterNum, metadata) {
       mapLink.target = "_blank";
       mapLink.rel = "noopener noreferrer";
       mapLink.className = "bp-info-modal__action-link";
-      mapLink.textContent = "Show on map ↗";
+      mapLink.innerHTML = `${MAP_PIN_ICON_SVG}<span>Show on map ↗</span>`;
       mapLink.addEventListener("click", (e) => {
         e.preventDefault();
         window.open(mapUrl, "_blank", "noopener,noreferrer");

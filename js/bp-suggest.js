@@ -134,7 +134,22 @@ function applyDockedPosition(modal) {
 // bible-loader.js's attachDragScroll (pointerdown/move/up/cancel, only
 // treated as a real drag past a small movement threshold so a plain click
 // on the close button isn't hijacked).
+// Same grip-dots markup/class as bible-loader.js's attachModalDrag (not
+// imported from there to avoid a circular import — bible-loader.js imports
+// this module). header's first child is always the title (see
+// openSuggestModal below), set once and never re-rendered afterward.
+const DRAG_GRIP_ICON_SVG =
+  '<svg class="bp-modal-drag-grip" aria-hidden="true" viewBox="0 0 16 16" width="13" height="13">' +
+  '<circle cx="5" cy="3" r="1.3"></circle><circle cx="11" cy="3" r="1.3"></circle>' +
+  '<circle cx="5" cy="8" r="1.3"></circle><circle cx="11" cy="8" r="1.3"></circle>' +
+  '<circle cx="5" cy="13" r="1.3"></circle><circle cx="11" cy="13" r="1.3"></circle>' +
+  "</svg>";
+
 function makeModalDraggable(modal, header) {
+  const titleEl = header.firstElementChild;
+  if (titleEl && !titleEl.querySelector(".bp-modal-drag-grip")) {
+    titleEl.insertAdjacentHTML("afterbegin", DRAG_GRIP_ICON_SVG);
+  }
   let dragging = false;
   let moved = false;
   let pointerId = null;

@@ -2031,7 +2031,9 @@ html.bp-hide-outlines .topic-outline-btn {
   padding: 0.7rem 1.1rem 0;
 }
 .bp-info-modal__action-link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
   color: #8bd3ff;
   font-size: 0.85rem;
   text-decoration: none;
@@ -2041,7 +2043,9 @@ html.bp-hide-outlines .topic-outline-btn {
   text-decoration: underline;
 }
 .bp-info-modal__highlight-all-btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
   background: none;
   border: none;
   padding: 0;
@@ -2384,6 +2388,27 @@ html.bp-hide-outlines .topic-outline-btn {
   fill: none;
   stroke: currentColor;
   stroke-width: 1.3;
+}
+.bp-icon-highlighter,
+.bp-icon-map-pin {
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.3;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+/* Grip-dots indicator prepended to every draggable modal's title (see
+   attachModalDrag in bible-loader.js and makeModalDraggable in
+   bp-suggest.js) so a modal reads as draggable without needing to hover
+   the header first and notice the grab cursor. */
+.bp-modal-drag-grip {
+  flex: none;
+  fill: currentColor;
+  opacity: 0.5;
+  margin-right: 0.4em;
+  vertical-align: -1px;
 }
 
 .bp-diagram-overlay {
