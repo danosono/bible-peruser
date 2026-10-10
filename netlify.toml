@@ -1,0 +1,33 @@
+# Bandwidth: the full Bible text and the People/Places/Timeline/Book-info
+# datasets change rarely (if ever), but are re-fetched on every new tab/page
+# load because the default response has no caching window (Cache-Control:
+# max-age=0, must-revalidate), forcing a conditional request every time.
+# A one-week cache lets repeat tab opens within that window skip the network
+# entirely; must-revalidate still guarantees an update is picked up within a
+# week of being deployed. data/topics/** and data/bookwide/** are under
+# active study-note editing, so they intentionally keep Netlify's default
+# (always-revalidate) behavior and aren't listed here.
+[[headers]]
+  for = "/data/bible.json"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, must-revalidate"
+
+[[headers]]
+  for = "/data/book-info.json"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, must-revalidate"
+
+[[headers]]
+  for = "/data/book-info-full.json"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, must-revalidate"
+
+[[headers]]
+  for = "/data/timeline/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, must-revalidate"
+
+[[headers]]
+  for = "/data/verse-tags/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, must-revalidate"

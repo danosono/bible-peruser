@@ -2140,15 +2140,22 @@ html.bp-hide-outlines .topic-outline-btn {
   cursor: default;
   opacity: 0.7;
 }
+.bp-info-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.45rem;
+}
 .bp-info-card__highlight-btn {
   display: inline-flex;
   align-items: center;
+  box-sizing: border-box;
   background: none;
   color: var(--gold-accent);
   border: 1px solid var(--gold-accent-border);
   border-radius: 5px;
   padding: 0.5em 1.1em;
-  margin-top: 0.45rem;
   min-height: 2.2rem;
   font-size: 0.95rem;
   cursor: pointer;
@@ -2162,6 +2169,10 @@ html.bp-hide-outlines .topic-outline-btn {
   color: #fff;
   border-color: #fff;
   box-shadow: 0 0 6px var(--accent);
+}
+.bp-info-card__link-btn {
+  text-decoration: none;
+  color: var(--gold-accent);
 }
 .bp-info-modal__disclaimer {
   flex: none;

@@ -2131,6 +2131,31 @@ function buildInfoCardHighlightBtn(name, activeNames, syncFns) {
   return btn;
 }
 
+// Bible Explorer (bible-explorer.gospelgo.org) is a separate Gospel Go site
+// built from the same Theographic People/Places dataset as this modal, keyed
+// by the exact same disambiguated `name` strings (e.g. "Antioch (Syria)") —
+// so the raw name, not the highlightNameFor-stripped version, is the correct
+// &topic= value.
+function buildBibleExplorerUrl(dataset, topicName) {
+  if (!topicName) return null;
+  const params = new URLSearchParams();
+  params.set("dataset", dataset);
+  params.set("topic", topicName);
+  return `https://bible-explorer.gospelgo.org/?${params.toString()}`;
+}
+
+// A small pill link styled like buildInfoCardHighlightBtn's button, for
+// per-card actions that navigate away (new tab) rather than toggle state.
+function buildInfoCardActionLink(label, url) {
+  const link = document.createElement("a");
+  link.href = url;
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  link.className = "bp-info-card__highlight-btn bp-info-card__link-btn";
+  link.textContent = label;
+  return link;
+}
+
 // Modal action-bar button toggling every listed name at once: "Highlight
 // All" when at least one is currently off, "Clear All" once every one of
 // them is on — so there's always a one-click way back to none, whether
@@ -2241,12 +2266,20 @@ function openPeopleModal(bookId, chapterNum, metadata) {
       : person.name;
     card.appendChild(nameEl);
 
-    const highlightBtn = buildInfoCardHighlightBtn(
-      highlightNameFor(person.name),
-      activePersonHighlightNames,
-      highlightSyncFns,
+    const actionsEl = document.createElement("div");
+    actionsEl.className = "bp-info-card__actions";
+    actionsEl.appendChild(
+      buildInfoCardHighlightBtn(
+        highlightNameFor(person.name),
+        activePersonHighlightNames,
+        highlightSyncFns,
+      ),
     );
-    card.appendChild(highlightBtn);
+    const explorerUrl = buildBibleExplorerUrl("people", person.name);
+    if (explorerUrl) {
+      actionsEl.appendChild(buildInfoCardActionLink("Bible Explorer ↗", explorerUrl));
+    }
+    card.appendChild(actionsEl);
 
     const metaParts = [];
     if (person.gender) metaParts.push(person.gender);
@@ -2421,12 +2454,24 @@ function openPlacesModal(bookId, chapterNum, metadata) {
     nameEl.textContent = place.name;
     card.appendChild(nameEl);
 
-    const highlightBtn = buildInfoCardHighlightBtn(
-      highlightNameFor(place.name),
-      activePlaceHighlightNames,
-      highlightSyncFns,
+    const actionsEl = document.createElement("div");
+    actionsEl.className = "bp-info-card__actions";
+    actionsEl.appendChild(
+      buildInfoCardHighlightBtn(
+        highlightNameFor(place.name),
+        activePlaceHighlightNames,
+        highlightSyncFns,
+      ),
     );
-    card.appendChild(highlightBtn);
+    const singleMapUrl = buildBiblePlacesMapUrl(bookId, chapterNum, [place.id]);
+    if (singleMapUrl) {
+      actionsEl.appendChild(buildInfoCardActionLink("Show on map ↗", singleMapUrl));
+    }
+    const explorerUrl = buildBibleExplorerUrl("places", place.name);
+    if (explorerUrl) {
+      actionsEl.appendChild(buildInfoCardActionLink("Bible Explorer ↗", explorerUrl));
+    }
+    card.appendChild(actionsEl);
 
     const metaParts = [place.featureType, formatVerseCitation(place.versesInChapter)].filter(
       Boolean,

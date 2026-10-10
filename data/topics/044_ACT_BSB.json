@@ -2627,7 +2627,8 @@
       {
         "label": "Jesus' blood",
         "verses": ["28"],
-        "references": ["Matthew 26:28", "Luke 22:20", "John 19:33-35"]
+        "references": ["Matthew 26:28", "Luke 22:20", "John 19:33-35"],
+        "emphasis": ["His own blood"]
       },
       {
         "label": "3 years in Ephesus",
@@ -2694,6 +2695,27 @@
         "references": []
       },
       {
+        "label": "Paul's testimony",
+        "verses": ["3-21"],
+        "references": [
+          "Acts 9:1–19 (Luke's account)",
+          "Acts 22:1–21",
+          "Acts 26:1–23",
+          "Galatians 1:11–24",
+          "Philippians 3:4–11",
+          "1 Timothy 1:12–17",
+          "1 Corinthians 15:8–10",
+          "2 Corinthians 11:22–23"
+        ],
+        "emphasis": ["I "],
+        "links":[
+          {
+            "label": "Bible Explorer",
+            "url": "https://bible-explorer.gospelgo.org/?dataset=bsb-topics&topic=Paul"
+          }
+        ]
+      },
+      {
         "label": "the Way (ὁ ὁδός)",
         "verses": ["4"],
         "references": [
@@ -2740,6 +2762,14 @@
         "outline": "The Verdict Postponed",
         "verses": ["22-27"],
         "references": []
+      },
+      {
+        "label": "Ananias",
+        "verses": ["1"],
+        "references": [
+          "Acts 23:2-5"
+        ],
+        "emphasis": ["the Way"]
       },
       {
         "label": "the Way (ὁ ὁδός)",
