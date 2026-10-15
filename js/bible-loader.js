@@ -1354,8 +1354,9 @@ function buildChapterSourcePassages(bookId, chapterNum, verses) {
 }
 
 // Same idea for bookWideLabels/bookWideOutline entries, whose verses tokens
-// are "chapter:verse" or "chapter:verse-chapter:verse" (parseBookWideRangeToken,
-// defined further below — safe to call here since function declarations hoist).
+// are "chapter:verse", "chapter:verse-verse" (same-chapter shorthand), or
+// "chapter:verse-chapter:verse" (parseBookWideRangeToken, defined further
+// below — safe to call here since function declarations hoist).
 function buildBookWideSourcePassages(bookId, verses) {
   if (!bookId) return [];
   return (Array.isArray(verses) ? verses : [])
@@ -4489,6 +4490,7 @@ function parseBookWideRangeToken(token) {
   let endVerse;
 
   const rangeMatch = trimmed.match(/^(\d+):(\d+)-(\d+):(\d+)$/);
+  const sameChapterRangeMatch = trimmed.match(/^(\d+):(\d+)-(\d+)$/);
   const singleVerseMatch = trimmed.match(/^(\d+):(\d+)$/);
 
   if (rangeMatch) {
@@ -4496,6 +4498,11 @@ function parseBookWideRangeToken(token) {
     startVerse = parseInt(rangeMatch[2], 10);
     endChapter = parseInt(rangeMatch[3], 10);
     endVerse = parseInt(rangeMatch[4], 10);
+  } else if (sameChapterRangeMatch) {
+    startChapter = parseInt(sameChapterRangeMatch[1], 10);
+    startVerse = parseInt(sameChapterRangeMatch[2], 10);
+    endChapter = startChapter;
+    endVerse = parseInt(sameChapterRangeMatch[3], 10);
   } else if (singleVerseMatch) {
     startChapter = parseInt(singleVerseMatch[1], 10);
     startVerse = parseInt(singleVerseMatch[2], 10);

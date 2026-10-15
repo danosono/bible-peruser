@@ -2453,7 +2453,7 @@
         "emphasis": ["explained", "the word of the Lord", "power", "prevail"]
       },
       {
-        "label": "resolved to go to Jerusalem",
+        "label": "resolved to go to Jerusalem/Rome",
         "verses": ["21"],
         "references": [
           "-- before Jerusalem",
@@ -2484,6 +2484,7 @@
         "label": "Journey to Rome in detail (map)",
         "verses": ["21"],
         "references": [
+          "Acts 19:21",
           "Acts 20:1 - Macedonia",
           "Acts 20:2 - Greece (area of Achaia) stayed 3 months",
           "Acts 20:3 - Macedonia again",
@@ -2665,7 +2666,7 @@
       },
       {
         "label": "Paul's testimony",
-        "verses": ["3-21"],
+        "verses": ["1-21"],
         "references": [
           "Acts 9:1–19 (Luke's account)",
           "Acts 22:1–21",
@@ -2714,6 +2715,30 @@
         "outline": "Paul Sent to Felix",
         "verses": ["23-35"],
         "references": []
+      },
+      {
+        "label": "God's promise",
+        "verses": ["11"],
+        "references": ["Acts 23:11", "Acts 27:23-24", "Acts 28:14"],
+        "emphasis": [""]
+      },
+      {
+        "label": "No food/drink Day 1",
+        "verses": ["12-16"],
+        "references": [],
+        "emphasis": ["oath", "not", "plot", "eat", "drink"]
+      },
+      {
+        "label": "No food/drink Day 2",
+        "verses": ["23", "31-33"],
+        "references": [],
+        "emphasis": [
+          "in the third hour of the night",
+          "next day",
+          "plot",
+          "eat",
+          "drink"
+        ]
       }
     ],
     "24": [
@@ -2733,10 +2758,37 @@
         "references": []
       },
       {
+        "label": "No food/drink Day 7",
+        "verses": ["1"],
+        "references": ["Acts 23:12 - Day 1", "Acts 23:32 - Day 2"],
+        "emphasis": ["Five days later"]
+      },
+      {
+        "label": "No food/drink Day 10+",
+        "verses": ["24"],
+        "references": [
+          "Acts 23:12 - Day 1",
+          "Acts 23:32 - Day 2",
+          "Acts 24:1 - Day 7"
+        ],
+        "emphasis": ["after several days"]
+      },
+      {
+        "label": "No food/drink Year 2 (fail)",
+        "verses": ["27"],
+        "references": [
+          "Acts 23:12 - Day 1",
+          "Acts 23:32 - Day 2",
+          "Acts 24:1 - Day 7",
+          "Acts 24:24 - Day 10+"
+        ],
+        "emphasis": ["after two years had passed"]
+      },
+      {
         "label": "Ananias",
         "verses": ["1"],
         "references": ["Acts 23:2-5"],
-        "emphasis": ["the Way"]
+        "emphasis": [""]
       },
       {
         "label": "the Way (ὁ ὁδός)",
@@ -2750,6 +2802,10 @@
           "2 Peter 2:15"
         ],
         "emphasis": ["the Way"]
+      },
+      {
+        "highlight": "Teaching",
+        "text": ["righteousness, self-control, and the coming judgment"]
       }
     ],
     "25": [
@@ -2772,7 +2828,44 @@
         "outline": "Paul before Agrippa and Bernice",
         "verses": ["23-27"],
         "references": []
-      }
+      },
+      {
+        "label": "No food/drink Year 2 (fail)",
+        "verses": ["1-4"],
+        "references": [
+          "Acts 23:12 - Day 1",
+          "Acts 23:32 - Day 2",
+          "Acts 24:1 - Day 7",
+          "Acts 24:24 - Day 10+",
+          "Acts 24:27 - Year 2"
+        ],
+        "emphasis": [
+          "they urged festus",
+          "to grant them a concession against Paul by summoning him to Jerusalem",
+          "preparing an ambush to kill him"
+        ]
+      },
+      {
+        "label": "No food/drink Year 2 (fail) still trying",
+        "verses": ["7-12"],
+        "references": [
+          "Acts 23:12 - Day 1",
+          "Acts 23:32 - Day 2",
+          "Acts 24:1 - Day 7",
+          "Acts 24:24 - Day 10+",
+          "Acts 24:27 - Year 2",
+          "Acts 25:2-3"
+        ],
+        "emphasis": [
+          "wishing to do the Jews a favor, said to Paul, “Are you willing to go up to Jerusalem",
+          "no truth to their accusations",
+          "no one has the right to hand me over to them. I appeal to Caesar!"
+        ]
+      },
+    {
+      "highlight": "Rome's influence on American law",
+      "text": ["appeal", "opportunity to face his accusers"]
+    }
     ],
     "26": [
       {
@@ -2784,6 +2877,37 @@
         "outline": "Festus Interrupts Paul’s Defense",
         "verses": ["24-32"],
         "references": []
+      },
+      {
+        "label": "Paul's testimony",
+        "verses": ["1-23"],
+        "references": [
+          "Acts 9:1–19 (Luke's account)",
+          "Acts 22:1–21",
+          "Acts 26:1–23",
+          "Galatians 1:11–24",
+          "Philippians 3:4–11",
+          "1 Timothy 1:12–17",
+          "1 Corinthians 15:8–10",
+          "2 Corinthians 11:22–23"
+        ],
+        "emphasis": ["I "],
+        "links": [
+          {
+            "label": "Bible Explorer",
+            "url": "https://bible-explorer.gospelgo.org/?dataset=bsb-topics&topic=Paul"
+          }
+        ]
+      },
+      {
+        "label": "Response to testimony",
+        "verses": ["24", "28"],
+        "emphasis": ["insane", "madness"]
+      },
+      {
+        "label": "Response to defense",
+        "verses": ["31-32"],
+        "emphasis": ["could have been released"]
       }
     ],
     "27": [
@@ -2801,6 +2925,67 @@
         "outline": "The Shipwreck",
         "verses": ["27-44"],
         "references": []
+      },
+      {
+        "label": "Map",
+        "verses": [""],
+        "links": [
+          {
+            "label": "Journey to Rome - Bible Places",
+            "url": "https://bibleplaces.gospelgo.org/?story=pauls-journey-to-rome"
+          }
+        ]
+      },
+      {
+        "label": "God's promise",
+        "verses": ["23-24"],
+        "references": ["Acts 23:11", "Acts 27:23-24", "Acts 28:14"],
+        "emphasis": [""]
+      },
+      {
+        "label": "Paul's warning",
+        "verses": ["9-10"],
+        "emphasis": ["advised", "disaster and great loss"]
+      },
+      {
+        "label": "Paul's warning rejected",
+        "verses": ["11-13"],
+        "emphasis": ["contrary to Paul’s advice"]
+      },
+      {
+        "label": "Paul's warning realized",
+        "verses": ["14-20"],
+        "emphasis": ["cyclone", "violently", "abandoned all hope"]
+      },
+      {
+        "label": "Paul's encouragement",
+        "verses": ["21-26"],
+        "emphasis": ["keep up your courage", "take courage"]
+      },
+      {
+        "label": "Trouble continues",
+        "verses": ["27-29"],
+        "emphasis": [""]
+      },
+      {
+        "label": "Paul's 2nd warning",
+        "verses": ["30-31"],
+        "emphasis": ["unless"]
+      },
+      {
+        "label": "Paul's 2nd warning heeded",
+        "verses": ["32"],
+        "emphasis": [""]
+      },
+      {
+        "label": "Paul's encouragement",
+        "verses": ["33-37"],
+        "emphasis": ["gave thanks to God", "they were all encouraged"]
+      },
+      {
+        "label": "Paul's 2nd warning verified",
+        "verses": ["38-44"],
+        "emphasis": ["everyone was brought safely to land"]
       }
     ],
     "28": [
@@ -2818,6 +3003,12 @@
         "outline": "Paul Preaches at Rome",
         "verses": ["16-28", "30-31"],
         "references": ["Isaiah 6:1–13"]
+      },
+      {
+        "label": "God's promise",
+        "verses": ["14", "16"],
+        "references": ["Acts 23:11", "Acts 27:23-24", "Acts 28:14"],
+        "emphasis": ["And so we came to Rome", "Paul"]
       }
     ]
   },
