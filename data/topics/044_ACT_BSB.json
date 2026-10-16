@@ -2862,10 +2862,10 @@
           "no one has the right to hand me over to them. I appeal to Caesar!"
         ]
       },
-    {
-      "highlight": "Rome's influence on American law",
-      "text": ["appeal", "opportunity to face his accusers"]
-    }
+      {
+        "highlight": "Rome's influence on American law",
+        "text": ["appeal", "opportunity to face his accusers"]
+      }
     ],
     "26": [
       {
@@ -2928,7 +2928,20 @@
       },
       {
         "label": "Map",
-        "verses": [""],
+        "verses": ["1-16"],
+        "emphasis": [
+          "Thessalonica",
+          "Sidon",
+          "Cyprus",
+          "Cilicia",
+          "Pamphylia",
+          "Myra",
+          "Lycia",
+          "Cnidus",
+          "Crete",
+          "Fair Havens",
+          "Cauda"
+        ],
         "links": [
           {
             "label": "Journey to Rome - Bible Places",
@@ -3006,9 +3019,78 @@
       },
       {
         "label": "God's promise",
-        "verses": ["14", "16"],
+        "verses": ["14", "16", "31"],
         "references": ["Acts 23:11", "Acts 27:23-24", "Acts 28:14"],
         "emphasis": ["And so we came to Rome", "Paul"]
+      },
+      {
+        "label": "Map (To Rome)",
+        "verses": ["1-14"],
+        "emphasis": ["Malta", "Syracuse", "Rhegium", "Puteoli", "Rome"],
+        "links": [
+          {
+            "label": "Journey to Rome - Bible Places",
+            "url": "https://bibleplaces.gospelgo.org/?story=pauls-journey-to-rome"
+          }
+        ]
+      },
+      {
+        "label": "To Rome ch.28",
+        "verses": ["1-14"],
+        "emphasis": ["Malta", "Syracuse", "Rhegium", "Puteoli", "Rome"],
+        "links": [
+          {
+            "label": "To Rome (Chapter 28) - Bible Places",
+            "url": "https://bibleplaces.gospelgo.org/?places=melita_761%2Csyracuse_1121%2Crhegium_999%2Cputeoli_963%2Crome_1013"
+          }
+        ]
+      },
+      {
+        "label": "Map (brothers)",
+        "verses": ["14-15"],
+        "emphasis": ["brothers", "Forum of Appius", "Three Taverns", "Rome"],
+        "links": [
+          {
+            "label": "Brothers traveled - Bible Places",
+            "url": "https://bibleplaces.gospelgo.org/?places=appii_forum_427%2Cthree_taverns_1159%2Crome_1013"
+          }
+        ]
+      },
+      {
+        "label": "Paul's preface",
+        "verses": ["17-20"],
+        "references": [],
+        "emphasis": [""]
+      },
+      {
+        "label": "Response",
+        "verses": ["21-22"],
+        "references": [],
+        "emphasis": [""]
+      },
+      {
+        "label": "Paul's Apologetics",
+        "verses": ["23"],
+        "references": [],
+        "emphasis": [""]
+      },
+      {
+        "label": "Mixed Response",
+        "verses": ["24"],
+        "references": [],
+        "emphasis": [""]
+      },
+      {
+        "label": "Paul's response",
+        "verses": ["25-28"],
+        "references": [],
+        "emphasis": [""]
+      },
+      {
+        "label": "Promise fulfilled",
+        "verses": ["30-31"],
+        "references": ["Acts 23:11"],
+        "emphasis": ["Boldly and freely he proclaimed the kingdom of God and taught about the Lord Jesus Christ"]
       }
     ]
   },
