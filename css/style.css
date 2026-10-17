@@ -1961,8 +1961,13 @@ html.bp-hide-outlines .topic-outline-btn {
   display: none;
 }
 
-/* Shared People/Places "info list" modal */
-.bp-info-overlay {
+/* Shared People/Places/Book "info list" modal. Book uses its own
+   .bp-book-overlay class (same rules, via this selector) rather than
+   .bp-info-overlay — it owns no highlight state, so it's kept out of the
+   People/Places mutual-exclusivity slot in openInfoListModal and can stay
+   open alongside either of them, same as Timeline already does. */
+.bp-info-overlay,
+.bp-book-overlay {
   position: fixed;
   inset: 0;
   /* No dimming scrim (unlike other modal overlays): Book/People/Places are
@@ -2190,7 +2195,8 @@ html.bp-hide-outlines .topic-outline-btn {
   color: var(--text-tertiary);
 }
 @media (max-width: 480px) {
-  .bp-info-overlay {
+  .bp-info-overlay,
+  .bp-book-overlay {
     padding: 0.75rem;
   }
   .bp-info-modal {

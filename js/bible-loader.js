@@ -1928,9 +1928,23 @@ function openCompareModal(references, compareContext) {
   document.body.appendChild(overlay);
 }
 
-// Shared plumbing for the People/Places modals — a simple scrollable card
-// list with the same overlay/header/close/Escape/click-outside pattern as
-// openCompareModal, plus a data-source credit line at the bottom.
+// Shared plumbing for the People/Places/Book modals — a simple scrollable
+// card list with the same overlay/header/close/Escape/click-outside pattern
+// as openCompareModal, plus a data-source credit line at the bottom.
+//
+// Tracks whichever instance of a given overlayClass is currently open so
+// that opening a new one runs the previous instance's own closeModal() (and
+// thus its onClose) instead of just yanking its DOM node below — otherwise
+// switching directly from Places to People left the first modal's
+// activePersonHighlightNames/activePlaceHighlightNames never cleared, since
+// nothing ever called its onClose. Keyed by overlayClass (rather than one
+// shared slot for all three modals) so Book — which owns no highlight state
+// and has nothing to clean up — gets its own slot and can stay open
+// alongside People/Places/Timeline, matching the "use both at once" intent
+// described on .bp-info-overlay in style.css; People and Places still share
+// a slot and remain mutually exclusive.
+const _bpActiveModalCloseByClass = new Map();
+
 function openInfoListModal(
   titleText,
   entries,
@@ -1939,11 +1953,17 @@ function openInfoListModal(
   creditText,
   actionBar,
   onClose,
+  overlayClass = "bp-info-overlay",
 ) {
-  document.querySelectorAll(".bp-info-overlay").forEach((el) => el.remove());
+  const prevClose = _bpActiveModalCloseByClass.get(overlayClass);
+  if (prevClose) {
+    _bpActiveModalCloseByClass.delete(overlayClass);
+    prevClose();
+  }
+  document.querySelectorAll(`.${overlayClass}`).forEach((el) => el.remove());
 
   const overlay = document.createElement("div");
-  overlay.className = "bp-info-overlay";
+  overlay.className = overlayClass;
 
   const modal = document.createElement("div");
   modal.className = "bp-info-modal";
@@ -1997,6 +2017,9 @@ function openInfoListModal(
   function closeModal() {
     document.removeEventListener("keydown", onKeydown);
     overlay.remove();
+    if (_bpActiveModalCloseByClass.get(overlayClass) === closeModal) {
+      _bpActiveModalCloseByClass.delete(overlayClass);
+    }
     if (typeof onClose === "function") onClose();
   }
   function onKeydown(e) {
@@ -2010,6 +2033,7 @@ function openInfoListModal(
   document.addEventListener("keydown", onKeydown);
 
   document.body.appendChild(overlay);
+  _bpActiveModalCloseByClass.set(overlayClass, closeModal);
 }
 
 function formatBirthDeathYear(year) {
@@ -2549,7 +2573,7 @@ function openBookModal(bookId, metadata) {
     }
 
     return card;
-  }, "This information is provided for big-picture context — not an interpretation of Scripture.", BOOK_INFO_CREDIT);
+  }, "This information is provided for big-picture context — not an interpretation of Scripture.", BOOK_INFO_CREDIT, undefined, undefined, "bp-book-overlay");
 }
 
 const BP_TIMELINE_ERA_LABELS = {
