@@ -2265,12 +2265,7 @@
       {
         "label": "Map (Acts 19:1)",
         "verses": ["1"],
-        "emphasis": [
-          "Apollos",
-          "Paul",
-          "Corinth",
-          "Ephesus"
-        ],
+        "emphasis": ["Apollos", "Paul", "Corinth", "Ephesus"],
         "links": [
           {
             "label": "Apollos at Corinth and Paul at Ephesus - Bible Places",
@@ -2463,7 +2458,7 @@
         "verses": ["21"],
         "references": [
           "-- before Jerusalem",
-          "Acts 19:21",
+          "Acts 19:21 (this chapter)",
           "Acts 20:16",
           "Acts 20:22-25",
           "Acts 21:4",
@@ -2598,7 +2593,14 @@
           "Acts 28:16",
           "Acts 28:30-31"
         ],
-        "emphasis": ["in a hurry to reach Jerusalem, if possible, by the day of Pentecost", "compelled by the Spirit", "Holy Spirit warns me that chains and afflictions await me", "but I consider my life of no value to me", "the Lord Jesus", "testifying to the good news of God’s grace"]
+        "emphasis": [
+          "in a hurry to reach Jerusalem, if possible, by the day of Pentecost",
+          "compelled by the Spirit",
+          "Holy Spirit warns me that chains and afflictions await me",
+          "but I consider my life of no value to me",
+          "the Lord Jesus",
+          "testifying to the good news of God’s grace"
+        ]
       },
       {
         "label": "Jesus' blood",
@@ -2666,11 +2668,11 @@
           "Acts 19:21",
           "Acts 20:16",
           "Acts 20:22-25",
-          "Acts 21:4",
-          "Acts 21:10-15",
+          "Acts 21:4 (this chapter)",
+          "Acts 21:10-15 (this chapter)",
           "-- at Jerusalem",
-          "Acts 21:27",
-          "Acts 21:30-33",
+          "Acts 21:27 (this chapter)",
+          "Acts 21:30-33 (this chapter)",
           "Acts 22:22-23",
           "Acts 23:10-12",
           "-- after Jerusalem, 2 years in prison",
@@ -2684,7 +2686,14 @@
           "Acts 28:16",
           "Acts 28:30-31"
         ],
-        "emphasis": ["Through the Spirit they kept telling Paul not to go up to Jerusalem", "prophet named Agabus", "The Holy Spirit says: ‘In this way the Jews of Jerusalem will bind the owner of this belt and hand him over to the Gentiles", "stirred up the whole crowd and seized him", "trying to kill him", "bound with two chains"]
+        "emphasis": [
+          "Through the Spirit they kept telling Paul not to go up to Jerusalem",
+          "prophet named Agabus",
+          "The Holy Spirit says: ‘In this way the Jews of Jerusalem will bind the owner of this belt and hand him over to the Gentiles",
+          "stirred up the whole crowd and seized him",
+          "trying to kill him",
+          "bound with two chains"
+        ]
       }
     ],
     "22": [
@@ -2739,14 +2748,14 @@
         "references": [
           "-- before Jerusalem",
           "Acts 19:21",
-          "Acts 20:16 (this chapter)",
-          "Acts 20:22-25 (this chapter)",
+          "Acts 20:16",
+          "Acts 20:22-25",
           "Acts 21:4",
           "Acts 21:10-15",
           "-- at Jerusalem",
           "Acts 21:27",
           "Acts 21:30-33",
-          "Acts 22:22-23",
+          "Acts 22:22-23 (this chapter)",
           "Acts 23:10-12",
           "-- after Jerusalem, 2 years in prison",
           "Acts 23:33",
@@ -2759,9 +2768,7 @@
           "Acts 28:16",
           "Acts 28:30-31"
         ],
-        "emphasis": [
-          "crowd", "Rid the earth of him! He is not fit to live!"
-        ]
+        "emphasis": ["crowd", "Rid the earth of him! He is not fit to live!"]
       }
     ],
     "23": [
@@ -2783,7 +2790,13 @@
       {
         "label": "God's promise",
         "verses": ["11"],
-        "references": ["Acts 23:11", "Acts 27:23-24", "Acts 28:14"],
+        "references": [
+          "Acts 23:11",
+          "Acts 27:23-24",
+          "Acts 28:5",
+          "Acts 28:16",
+          "Acts 28:31"
+        ],
         "emphasis": [""]
       },
       {
@@ -2792,17 +2805,17 @@
         "references": [
           "-- before Jerusalem",
           "Acts 19:21",
-          "Acts 20:16 (this chapter)",
-          "Acts 20:22-25 (this chapter)",
+          "Acts 20:16",
+          "Acts 20:22-25",
           "Acts 21:4",
           "Acts 21:10-15",
           "-- at Jerusalem",
           "Acts 21:27",
           "Acts 21:30-33",
           "Acts 22:22-23",
-          "Acts 23:10-12",
+          "Acts 23:10-12 (this chapter)",
           "-- after Jerusalem, 2 years in prison",
-          "Acts 23:33",
+          "Acts 23:33 (this chapter)",
           "Acts 24:27",
           "Acts 26:31-32",
           "-- journey to Rome",
@@ -2812,7 +2825,11 @@
           "Acts 28:16",
           "Acts 28:30-31"
         ],
-        "emphasis": ["violent", "the Lord stood near Paul and said, “Take courage! As you have testified about Me in Jerusalem, so also you must testify in Rome.", "conspiracy and bound themselves with an oath not to eat or drink until they had killed Pau"]
+        "emphasis": [
+          "violent",
+          "the Lord stood near Paul and said, “Take courage! As you have testified about Me in Jerusalem, so also you must testify in Rome.",
+          "conspiracy and bound themselves with an oath not to eat or drink until they had killed Pau"
+        ]
       },
       {
         "label": "No food/drink Day 1",
@@ -2905,8 +2922,8 @@
         "references": [
           "-- before Jerusalem",
           "Acts 19:21",
-          "Acts 20:16 (this chapter)",
-          "Acts 20:22-25 (this chapter)",
+          "Acts 20:16",
+          "Acts 20:22-25",
           "Acts 21:4",
           "Acts 21:10-15",
           "-- at Jerusalem",
@@ -2916,7 +2933,7 @@
           "Acts 23:10-12",
           "-- after Jerusalem, 2 years in prison",
           "Acts 23:33",
-          "Acts 24:27",
+          "Acts 24:27 (this chapter)",
           "Acts 26:31-32",
           "-- journey to Rome",
           "Acts 27:23-26",
@@ -2925,9 +2942,7 @@
           "Acts 28:16",
           "Acts 28:30-31"
         ],
-        "emphasis": [
-          "after two years", "left Paul in prison"
-        ]
+        "emphasis": ["after two years", "left Paul in prison"]
       }
     ],
     "25": [
@@ -3037,8 +3052,8 @@
         "references": [
           "-- before Jerusalem",
           "Acts 19:21",
-          "Acts 20:16 (this chapter)",
-          "Acts 20:22-25 (this chapter)",
+          "Acts 20:16",
+          "Acts 20:22-25",
           "Acts 21:4",
           "Acts 21:10-15",
           "-- at Jerusalem",
@@ -3049,7 +3064,7 @@
           "-- after Jerusalem, 2 years in prison",
           "Acts 23:33",
           "Acts 24:27",
-          "Acts 26:31-32",
+          "Acts 26:31-32 (this chapter)",
           "-- journey to Rome",
           "Acts 27:23-26",
           "Acts 27:42-43",
@@ -3057,9 +3072,7 @@
           "Acts 28:16",
           "Acts 28:30-31"
         ],
-        "emphasis": [
-          "This man could have been released"
-        ]
+        "emphasis": ["This man could have been released"]
       }
     ],
     "27": [
@@ -3125,7 +3138,13 @@
       {
         "label": "God's promise",
         "verses": ["23-24"],
-        "references": ["Acts 23:11", "Acts 27:23-24", "Acts 28:14"],
+        "references": [
+          "Acts 23:11",
+          "Acts 27:23-24",
+          "Acts 28:5",
+          "Acts 28:16",
+          "Acts 28:31"
+        ],
         "emphasis": [""]
       },
       {
@@ -3179,8 +3198,8 @@
         "references": [
           "-- before Jerusalem",
           "Acts 19:21",
-          "Acts 20:16 (this chapter)",
-          "Acts 20:22-25 (this chapter)",
+          "Acts 20:16",
+          "Acts 20:22-25",
           "Acts 21:4",
           "Acts 21:10-15",
           "-- at Jerusalem",
@@ -3193,14 +3212,16 @@
           "Acts 24:27",
           "Acts 26:31-32",
           "-- journey to Rome",
-          "Acts 27:23-26",
-          "Acts 27:42-43",
+          "Acts 27:23-26 (this chapter)",
+          "Acts 27:42-43 (this chapter)",
           "Acts 28:3-5",
           "Acts 28:16",
           "Acts 28:30-31"
         ],
         "emphasis": [
-          "an angel", "Do not be afraid, Paul; you must stand before Caesar", "spare Paul’s life"
+          "an angel",
+          "Do not be afraid, Paul; you must stand before Caesar",
+          "spare Paul’s life"
         ]
       }
     ],
@@ -3222,8 +3243,14 @@
       },
       {
         "label": "God's promise",
-        "verses": ["14", "16", "31"],
-        "references": ["Acts 23:11", "Acts 27:23-24", "Acts 28:14"],
+        "verses": ["3", "5", "14", "16", "31"],
+        "references": [
+          "Acts 23:11",
+          "Acts 27:23-24",
+          "Acts 28:5",
+          "Acts 28:16",
+          "Acts 28:31"
+        ],
         "emphasis": ["And so we came to Rome", "Paul"]
       },
       {
@@ -3260,16 +3287,39 @@
         ]
       },
       {
+        "label": "Protection",
+        "verses": ["3-6"],
+        "references": [
+          "- Protection for those trusting/following God -",
+          "Numbers 21:6-9",
+          "Daniel 3:25",
+          "Mark 16:17-18",
+          "Luke 10:19",
+          "2 Corinthians 1:9-10",
+          "2 Timothy 4:17-18"
+        ],
+        "emphasis": [
+          "viper",
+          "fastened itself to his hand",
+          "suffered no ill effects"
+        ]
+      },
+      {
         "label": "fickle",
         "verses": ["3-6"],
         "references": [],
-        "emphasis": ["Surely this man is a murderer", "they changed their minds and said he was a god"]
+        "emphasis": [
+          "Surely this man is a murderer",
+          "they changed their minds and said he was a god"
+        ]
       },
       {
         "label": "Ministry",
         "verses": ["7-10"],
         "references": [],
-        "emphasis": ["the rest of the sick on the island came and were cured as well"]
+        "emphasis": [
+          "the rest of the sick on the island came and were cured as well"
+        ]
       },
       {
         "label": "Paul's preface",
@@ -3315,8 +3365,8 @@
         "references": [
           "-- before Jerusalem",
           "Acts 19:21",
-          "Acts 20:16 (this chapter)",
-          "Acts 20:22-25 (this chapter)",
+          "Acts 20:16",
+          "Acts 20:22-25",
           "Acts 21:4",
           "Acts 21:10-15",
           "-- at Jerusalem",
@@ -3331,14 +3381,49 @@
           "-- journey to Rome",
           "Acts 27:23-26",
           "Acts 27:42-43",
-          "Acts 28:3-5",
-          "Acts 28:16",
-          "Acts 28:30-31"
+          "Acts 28:3-5 (this chapter)",
+          "Acts 28:16 (this chapter)",
+          "Acts 28:30-31 (this chapter)"
         ],
         "emphasis": [
           "Paul shook the creature off into the fire and suffered no ill effects",
           "Boldly and freely he proclaimed the kingdom of God and taught about the Lord Jesus Christ"
         ]
+      },
+      {
+        "label": "Jews first",
+        "verses": ["17-28"],
+        "references": [
+          "Genesis 12:3",
+          "Isaiah 2:3",
+          "Isaiah 49:6",
+          "Jeremiah 31:31",
+          "Hosea 1:10",
+          "Matthew 10:5-6",
+          "Matthew 15:24",
+          "Luke 24:47",
+          "John 4:22",
+          "Acts 1:8",
+          "Acts 3:26",
+          "Acts 13:46",
+          "Acts 13:5",
+          "Acts 14:1",
+          "Acts 17:1-2",
+          "Acts 18:4",
+          "Acts 18:19",
+          "Acts 19:8",
+          "Acts 22:21",
+          "Acts 28:17-28",
+          "Romans 1:16",
+          "Romans 2:9-10",
+          "Romans 3:1-2",
+          "Romans 9:4-5",
+          "Romans 10:19",
+          "Romans 11:1",
+          "Romans 11:11",
+          "Romans 15:8-12"
+        ],
+        "emphasis": ["disagreed among themselves and began to leave", "this people’s heart has grown callous", "God’s salvation has been sent to the Gentiles, and they will listen!"]
       }
     ]
   },
