@@ -183,6 +183,12 @@
         "references": []
       },
       {
+        "label": "to the thirsty",
+        "verses": ["37-38"],
+        "references": ["Exodus 17:6", "Isaiah 55:1", "Revelation 22:17"],
+        "emphasis": ["thirsty"]
+      },
+      {
         "highlight": "Kill",
         "text": ["kill"]
       }
