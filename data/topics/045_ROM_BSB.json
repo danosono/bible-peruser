@@ -457,6 +457,46 @@
         ],
         "emphasis": ["Grace and peace to you"],
         "links": []
+      },
+      {
+        "label": "impart sprtl gift",
+        "verses": ["11"],
+        "references": [
+          "Deuteronomy 34:9",
+          "Acts 8:14-19",
+          "Acts 9:17",
+          "Acts 19:6",
+          "1 Timothy 4:14",
+          "2 Timothy 1:6"
+        ],
+        "emphasis": ["impart", "spiritual gift"],
+        "links": []
+      },
+      {
+        "label": "planned to visit",
+        "verses": ["13"],
+        "references": [
+          "Acts 19:21 - I must see Rome",
+          "Acts 20:1-3 - Paul probably wrote Romans during his 3 month stay near Corinth",
+          "Romans 16:1 - Cenchreae is near Corinth",
+          "Romans 16:23 - Erastus likely city treasurer of Corinth"
+        ],
+        "emphasis": ["planned", "prevented"],
+        "note": [
+          "Claim: Paul likely wrote Romans during his 3 month stay near Corinth (Acts 2:3)",
+          "Supporting evidence: Cenchrea mentioned in Romans 16:1 is 6 miles from Corinth (see map linked under references on this button).",
+          "Supporting evidence: Erastus mentioned in Romans 16:23 was likely a city official in Corinth",
+          "In 1929, excavators from the American School of Classical Studies at Athens found a limestone paving slab in situ in the paved plaza east of the theatre at ancient Corinth. The Latin text reads: ",
+          "ERASTVS PRO AEDILIT[AT]E S[UA] P[ECUNIA] STRAVIT \"Erastus, in return for his aedileship, laid this pavement at his own expense.\"",
+          "Note that the letters in brackets are restored, not actually preserved — the bronze inlay letters are gone, leaving only the cuttings. The standard publication is Corinth VIII.3, no. 232 (John Harvey Kent, 1966); it's also catalogued as AE 1930, 118 and EDH HD025815. The slab is reportedly still visible in situ at the site.",
+          "This provides remarkable archaeological evidence supporting the historical existence of Erastus mentioned in Romans 16:23, but obviously not proof it was the same individual."
+        ],
+        "links": [
+          {
+            "label": "Corinth is between Greece and Achaia. Cenchrea is nearby.",
+            "url": "https://bibleplaces.gospelgo.org/?places=corinth_306%2Cgreece_495%2Cachaia_16%2Ccenchreae_281"
+          }
+        ]
       }
     ],
     "2": [
