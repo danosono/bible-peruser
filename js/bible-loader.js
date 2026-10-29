@@ -5,6 +5,7 @@ import {
   saveLastRead,
   getLastRead,
   parseBookChapterInput,
+  resolveBookAlias,
 } from "./bible-utils.js";
 import {
   openSuggestModal,
@@ -5290,11 +5291,17 @@ function parseDeepLinkVerseParam(rawVerse) {
 function parseChapterDeepLink() {
   if (typeof window === "undefined" || !window.location) return null;
   const params = new URLSearchParams(window.location.search || "");
-  const rawBook = (params.get("book") || "").trim().toUpperCase();
+  const rawBookParam = (params.get("book") || "").trim();
   const rawChapter = (params.get("chapter") || "").trim();
-  if (!rawBook || !rawChapter) return null;
+  if (!rawBookParam || !rawChapter) return null;
 
-  if (!bookOrder.includes(rawBook)) return null;
+  // Accept the canonical 3-letter USFM id, but also any alias the jump box
+  // accepts ("ACTS", "Acts", "1 John", "Psalms"), so hand-typed links from
+  // other apps don't silently fall back to the last-read chapter.
+  const rawBook = bookOrder.includes(rawBookParam.toUpperCase())
+    ? rawBookParam.toUpperCase()
+    : resolveBookAlias(rawBookParam);
+  if (!rawBook) return null;
 
   const chapterNum = parseInt(rawChapter, 10);
   if (!Number.isInteger(chapterNum) || chapterNum < 1) return null;
