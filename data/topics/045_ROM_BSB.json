@@ -495,8 +495,139 @@
           {
             "label": "Corinth is between Greece and Achaia. Cenchrea is nearby.",
             "url": "https://bibleplaces.gospelgo.org/?places=corinth_306%2Cgreece_495%2Cachaia_16%2Ccenchreae_281"
+          },
+          {
+            "label": "Bible Places: Paul's (here future) journey to Rome",
+            "url": "https://bibleplaces.gospelgo.org/?story=pauls-journey-to-rome"
           }
         ]
+      },
+      {
+        "label": "not ashamed",
+        "verses": ["16"],
+        "references": [
+          "Mark 8:38",
+          "John 12:42-43",
+          "Acts 5:41",
+          "Romans 1:16",
+          "Philippians 1:20",
+          "2 Timothy 1:8",
+          "2 Timothy 1:12",
+          "Hebrews 11:16",
+          "1 Peter 4:16"
+        ],
+        "emphasis": ["not ashamed"],
+        "note": [],
+        "links": []
+      },
+      {
+        "label": "power of God",
+        "verses": ["16"],
+        "references": [
+          "Matthew 11:28-30",
+          "Mark 10:45",
+          "Luke 19:10",
+          "John 3:16-17",
+          "John 3:36",
+          "John 5:24",
+          "John 14:6",
+          "Acts 2:21",
+          "Acts 4:12",
+          "Acts 13:38-39",
+          "Romans 1:16-17",
+          "Romans 10:9-10",
+          "Romans 10:13",
+          "1 Corinthians 1:18",
+          "2 Corinthians 5:17",
+          "Ephesians 2:8-9",
+          "Colossians 1:9-23",
+          "Titus 3:5",
+          "Hebrews 4:12",
+          "1 Peter 1:3-5",
+          "1 Peter 1:23",
+          "Jude 1:24",
+          "Revelation 1:12-18",
+          "Revelation 22:17"
+        ],
+        "emphasis": ["power of God for salvation"],
+        "note": [],
+        "links": []
+      },
+      {
+        "label": "believe",
+        "verses": ["16"],
+        "references": [
+          "Genesis 15:6",
+          "Psalms 62:8",
+          "John 3:16",
+          "John 3:18",
+          "John 3:36",
+          "John 5:24",
+          "John 6:47",
+          "John 11:25-26",
+          "John 20:31",
+          "Acts 10:43",
+          "Acts 16:31",
+          "Romans 1:16",
+          "Romans 3:22",
+          "Romans 4:5",
+          "Romans 9:33",
+          "Romans 10:4",
+          "Romans 10:9",
+          "Romans 10:11",
+          "Galatians 2:16",
+          "Ephesians 1:13",
+          "1 John 5:1",
+          "1 John 5:10"
+        ],
+        "emphasis": ["believes"],
+        "note": [],
+        "links": [
+          {
+            "label": "Bible Explorer: Believe",
+            "url": "https://bible-explorer.gospelgo.org/?dataset=concordance&topic=Believe"
+          }
+        ]
+      },
+      {
+        "label": "Jews first",
+        "verses": ["16"],
+        "references": [
+          "Genesis 12:3",
+          "Isaiah 2:3",
+          "Isaiah 49:6",
+          "Jeremiah 31:31",
+          "Hosea 1:10",
+          "Matthew 10:5-6",
+          "Matthew 15:24",
+          "Matthew 28:19",
+          "Luke 24:47",
+          "John 2:30-32",
+          "John 10:16",
+          "John 4:22",
+          "Acts 1:8",
+          "Acts 3:26",
+          "Acts 13:46",
+          "Acts 13:5",
+          "Acts 14:1",
+          "Acts 17:1-2",
+          "Acts 18:4",
+          "Acts 18:19",
+          "Acts 19:8",
+          "Acts 22:21",
+          "Acts 28:17-28",
+          "Romans 1:16",
+          "Romans 2:9-10",
+          "Romans 3:1-2",
+          "Romans 3:29-30",
+          "Romans 9:4-5",
+          "Romans 10:19",
+          "Romans 11:1",
+          "Romans 11:11",
+          "Romans 15:8-12",
+          "Ephesians 2:11-22"
+        ],
+        "emphasis": ["first to the Jew, then to the Greek"]
       }
     ],
     "2": [
