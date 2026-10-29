@@ -5299,6 +5299,7 @@ if (typeof window !== "undefined") {
   window.bookNames = bookNames;
   window.bookOrder = bookOrder;
   window.parseBookChapterInput = parseBookChapterInput;
+  window.autoHighlightVerseRange = autoHighlightVerseRange;
   window.bookNameFor = (id) => bookNames[id] || id;
   document.addEventListener("DOMContentLoaded", () => {
     let bookId = "MAT";

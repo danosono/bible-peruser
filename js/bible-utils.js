@@ -296,7 +296,12 @@ export function parseBookChapterInput(rawInput) {
   if (!source) return { ok: false, reason: "Enter a reference." };
 
   const cleaned = source.replace(/[^a-z0-9\s._:-]/g, " ");
-  const match = cleaned.match(/^(.+?)[\s._:-]*(\d+)$/);
+  // book + chapter, then an optional verse ("gen37.2", "jn 3:16") and an
+  // optional range end ("gen37.2-4"). Verse separator is "." or ":" only so
+  // "gen 3-5" isn't misread as Gen 3:5.
+  const match = cleaned.match(
+    /^(.+?)[\s._:-]*(\d+)(?:\s*[.:]\s*(\d+)(?:\s*-\s*(\d+))?)?$/,
+  );
   if (!match) {
     const bookToken = normalizeBookAlias(cleaned.trim());
     const bookId = bookAliasMap.get(bookToken) || null;
@@ -316,7 +321,20 @@ export function parseBookChapterInput(rawInput) {
     return { ok: false, reason: "Chapter must be 1 or greater." };
   }
 
-  return { ok: true, bookId, chapterNum };
+  const result = { ok: true, bookId, chapterNum };
+  if (match[3] !== undefined) {
+    const verseStart = parseInt(match[3], 10);
+    if (!Number.isInteger(verseStart) || verseStart < 1) {
+      return { ok: false, reason: "Verse must be 1 or greater." };
+    }
+    result.verseStart = verseStart;
+    const verseEnd = match[4] !== undefined ? parseInt(match[4], 10) : NaN;
+    result.verseEnd =
+      Number.isInteger(verseEnd) && verseEnd >= verseStart
+        ? verseEnd
+        : verseStart;
+  }
+  return result;
 }
 
 export function saveLastRead(bookId, chapterNum) {

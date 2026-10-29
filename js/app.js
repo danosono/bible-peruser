@@ -169,6 +169,17 @@ document.addEventListener("DOMContentLoaded", () => {
     return null;
   }
 
+  async function getVerseCountForChapter(bookId, chapterNum) {
+    const data = await getBibleDataForJump();
+    const book = Array.isArray(data?.books)
+      ? data.books.find((b) => b.id === bookId)
+      : null;
+    const chapter = Array.isArray(book?.chapters)
+      ? book.chapters.find((c) => c.number === chapterNum)
+      : null;
+    return Array.isArray(chapter?.verses) ? chapter.verses.length : null;
+  }
+
   // Update the selected book button in the horizontal scrollbar
   function updateBookScrollbar(bookId) {
     const bookBar = document.getElementById("bp-book-scrollbar");
@@ -516,13 +527,43 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    // A verse past the end of the chapter still jumps to the chapter (the
+    // reader gets most of what they asked for) but flashes the field red
+    // with the real verse count instead of highlighting nothing silently.
+    let verseStart = parsed.verseStart || null;
+    let verseEnd = parsed.verseEnd || null;
+    let verseWarning = null;
+    if (verseStart) {
+      const maxVerse = await getVerseCountForChapter(
+        parsed.bookId,
+        parsed.chapterNum,
+      );
+      if (Number.isInteger(maxVerse) && verseStart > maxVerse) {
+        const bookLabel = bookNameById[parsed.bookId] || parsed.bookId;
+        verseWarning = `${bookLabel} ${parsed.chapterNum} has ${maxVerse} verses.`;
+        verseStart = null;
+        verseEnd = null;
+      } else if (Number.isInteger(maxVerse) && verseEnd > maxVerse) {
+        verseEnd = maxVerse;
+      }
+    }
+
     clearHeaderJumpError();
     headerJumpInput.value = "";
+    if (verseWarning) setHeaderJumpError(verseWarning);
     if (window.loadBibleChapter) {
       window.loadBibleChapter(parsed.bookId, parsed.chapterNum);
     }
     if (window.updateBookScrollbar) {
       window.updateBookScrollbar(parsed.bookId);
+    }
+    if (verseStart && window.autoHighlightVerseRange) {
+      // Same deferred pattern as following a cross-reference: give the
+      // chapter (and its topic sidebar) time to render first.
+      const chapterNum = parsed.chapterNum;
+      setTimeout(() => {
+        window.autoHighlightVerseRange(chapterNum, verseStart, verseEnd);
+      }, 500);
     }
   }
 
