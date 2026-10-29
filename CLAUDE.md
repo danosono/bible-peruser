@@ -112,11 +112,15 @@ Reader-submitted corrections/additions to `label`/`highlight` entries (chapter-l
 ### URL / Deep Linking
 
 ```
-?book=MAT&chapter=5    → Matthew 5
-?book=PSA&chapter=23   → Psalm 23
+?book=MAT&chapter=5           → Matthew 5
+?book=PSA&chapter=23          → Psalm 23
+?book=JHN&chapter=3&verse=16  → John 3, verse 16 highlighted
+?book=ACT&chapter=12&verse=7-11 → Acts 12, verses 7–11 highlighted
 ```
 
-All 66 books use standard 3-letter USFM abbreviations. `parseBookChapterInput()` in `bible-utils.js` handles flexible user input (e.g., `"mat4"`, `"4th matthew"`, `"Matthew 4"`).
+All 66 books use standard 3-letter USFM abbreviations. `verse` is optional: `N` or `N-M`, validated against the chapter (a bad value falls back to the chapter with no highlight); if a sidebar outline/label matches the exact range, that button is auto-selected, otherwise the verses are highlighted directly (`autoHighlightVerseRange()` in `js/bible-loader.js`). This is the public contract other Gospel Go apps (BiblePlaces, Bible Explorer) link in with. The app also writes `verse=` outbound: the header jump box (`gen37.2`, `jn 3:16-18`), in-chapter cross-references, and diagram nodes pass the range to `loadBibleChapter()`, which puts it in the pushed URL and history state (so reload and back/forward restore the highlight), and the Copy Link button includes whatever `verse=` the current URL carries. Plain chapter navigation (prev/next, dropdown, book strip) drops it; sidebar highlight clicks never touch the URL.
+
+`parseBookChapterInput()` in `bible-utils.js` handles flexible jump-box input (e.g., `"mat4"`, `"4th matthew"`, `"Matthew 4"`, `"gen37.2"`, `"jn 3:16-18"`); the verse separator is `.` or `:` only, so `"gen 3-5"` is rejected rather than read as 3:5.
 
 ## Active Study Content
 

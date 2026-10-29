@@ -221,6 +221,18 @@ document.addEventListener("DOMContentLoaded", () => {
         window.loadBibleChapter
       ) {
         window.loadBibleChapter(e.state.bookId, e.state.chapterNum, false);
+        // Restore the verse highlight the entry was pushed with (jump box,
+        // cross-reference, deep link) so back/forward reproduces it.
+        const { chapterNum, verseStart, verseEnd } = e.state;
+        if (
+          Number.isInteger(verseStart) &&
+          verseStart > 0 &&
+          window.autoHighlightVerseRange
+        ) {
+          setTimeout(() => {
+            window.autoHighlightVerseRange(chapterNum, verseStart, verseEnd);
+          }, 500);
+        }
       }
       updateNavButtons();
     });
@@ -236,7 +248,25 @@ document.addEventListener("DOMContentLoaded", () => {
       typeof bookId === "string" &&
       Number.isInteger(chapterNum)
     ) {
-      const builtUrl = window.buildBibleChapterUrl(bookId, chapterNum);
+      // Carry the verse the current URL was pushed with (if any) so a shared
+      // link reproduces the highlight. Sidebar clicks never write the URL, so
+      // this is only ever a verse the reader explicitly navigated to.
+      let verseStart = null;
+      let verseEnd = null;
+      const rawVerse = new URLSearchParams(window.location.search || "").get(
+        "verse",
+      );
+      const verseMatch = (rawVerse || "").trim().match(/^(\d+)(?:-(\d+))?$/);
+      if (verseMatch) {
+        verseStart = parseInt(verseMatch[1], 10);
+        verseEnd = verseMatch[2] ? parseInt(verseMatch[2], 10) : null;
+      }
+      const builtUrl = window.buildBibleChapterUrl(
+        bookId,
+        chapterNum,
+        verseStart,
+        verseEnd,
+      );
       if (builtUrl) return builtUrl;
     }
     return window.location.href;
@@ -552,7 +582,12 @@ document.addEventListener("DOMContentLoaded", () => {
     headerJumpInput.value = "";
     if (verseWarning) setHeaderJumpError(verseWarning);
     if (window.loadBibleChapter) {
-      window.loadBibleChapter(parsed.bookId, parsed.chapterNum);
+      window.loadBibleChapter(
+        parsed.bookId,
+        parsed.chapterNum,
+        true,
+        verseStart ? { verseStart, verseEnd } : null,
+      );
     }
     if (window.updateBookScrollbar) {
       window.updateBookScrollbar(parsed.bookId);

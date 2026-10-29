@@ -882,7 +882,12 @@ function resolveDiagramRef(ref, hostBookId) {
 function navigateDiagramNodeRef(ref, hostBookId) {
   const target = resolveDiagramRef(ref, hostBookId);
   if (!target) return;
-  loadBibleChapter(target.bookId, target.chapterNum, true);
+  loadBibleChapter(
+    target.bookId,
+    target.chapterNum,
+    true,
+    target.verseStart ? target : null,
+  );
   if (target.verseStart) {
     setTimeout(() => {
       autoHighlightVerseRange(target.chapterNum, target.verseStart, target.verseEnd);
@@ -3693,10 +3698,25 @@ function bindSingleListener(el, eventName, propName, handler) {
   el.addEventListener(eventName, handler);
 }
 
+// Formats a verse range as the `verse=` URL param value ("2" or "2-5"), or
+// null when there's no valid start verse.
+function formatVerseParam(verseStart, verseEnd) {
+  if (!Number.isInteger(verseStart) || verseStart < 1) return null;
+  return Number.isInteger(verseEnd) && verseEnd > verseStart
+    ? `${verseStart}-${verseEnd}`
+    : String(verseStart);
+}
+
+// `verse` is an optional { verseStart, verseEnd } for navigations that will
+// highlight a verse range (jump box, cross-reference, deep link). It's written
+// into the pushed URL and history state so reload/back/forward and Copy Link
+// reproduce the highlight. Plain chapter navigation passes nothing, which
+// drops any earlier verse from the URL.
 async function loadBibleChapter(
   bookId = "MAT",
   chapterNum = 1,
   pushState = true,
+  verse = null,
 ) {
   setBpViewMode("chapter");
   window._currentBookId = bookId;
@@ -3710,14 +3730,19 @@ async function loadBibleChapter(
   // Update book scrollbar selection
   if (window.updateBookScrollbar) window.updateBookScrollbar(bookId);
   if (pushState && window.history && window.history.pushState) {
+    const verseParam = verse
+      ? formatVerseParam(verse.verseStart, verse.verseEnd)
+      : null;
     const state = {
       bookId,
       chapterNum,
+      verseStart: verseParam ? verse.verseStart : null,
+      verseEnd: verseParam ? verse.verseEnd || null : null,
     };
     window.history.pushState(
       state,
       "",
-      `?book=${bookId}&chapter=${chapterNum}`,
+      `?book=${bookId}&chapter=${chapterNum}${verseParam ? `&verse=${verseParam}` : ""}`,
     );
   }
   const main = document.querySelector(".bp-main");
@@ -3997,7 +4022,12 @@ async function loadBibleChapter(
       function openChapterTopicReference(reference) {
         const details = parseReferenceDetails(reference);
         if (!details || !details.bookId || !details.chapterNum) return;
-        loadBibleChapter(details.bookId, details.chapterNum, true);
+        loadBibleChapter(
+          details.bookId,
+          details.chapterNum,
+          true,
+          details.verseStart ? details : null,
+        );
         if (details.verseStart) {
           setTimeout(() => {
             autoHighlightVerseRange(
@@ -5274,12 +5304,15 @@ function parseChapterDeepLink() {
   return { bookId: rawBook, chapterNum, verseStart, verseEnd };
 }
 
-function buildChapterUrl(bookId, chapterNum) {
+// `verseStart`/`verseEnd` are optional; when given, the URL carries a
+// `verse=` param in the same format parseDeepLinkVerseParam() reads.
+function buildChapterUrl(bookId, chapterNum, verseStart = null, verseEnd = null) {
   const normalizedBook = String(bookId || "").toUpperCase();
   const normalizedChapter = parseInt(chapterNum, 10);
   if (!bookOrder.includes(normalizedBook)) return null;
   if (!Number.isInteger(normalizedChapter) || normalizedChapter < 1)
     return null;
+  const verseParam = formatVerseParam(verseStart, verseEnd);
   const origin =
     typeof window !== "undefined" && window.location
       ? window.location.origin
@@ -5288,7 +5321,7 @@ function buildChapterUrl(bookId, chapterNum) {
     typeof window !== "undefined" && window.location
       ? window.location.pathname
       : "/";
-  return `${origin}${path}?book=${normalizedBook}&chapter=${normalizedChapter}`;
+  return `${origin}${path}?book=${normalizedBook}&chapter=${normalizedChapter}${verseParam ? `&verse=${verseParam}` : ""}`;
 }
 
 // Optionally, call on load
@@ -5316,7 +5349,12 @@ if (typeof window !== "undefined") {
         chapterNum = parseInt(lastChapter, 10) || 1;
       }
     }
-    loadBibleChapter(bookId, chapterNum);
+    loadBibleChapter(
+      bookId,
+      chapterNum,
+      true,
+      deepLink && deepLink.verseStart ? deepLink : null,
+    );
     if (deepLink && deepLink.verseStart) {
       setTimeout(() => {
         autoHighlightVerseRange(chapterNum, deepLink.verseStart, deepLink.verseEnd);
