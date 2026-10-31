@@ -257,6 +257,11 @@ const bpBookNameToId = Object.entries(bookNames).reduce((acc, [id, name]) => {
   acc[String(name).toLowerCase()] = id;
   return acc;
 }, {});
+// Deliberately the only non-canonical name accepted in `references`: verse
+// lists pasted from outside sources often say "Psalm 23:1" for a single
+// psalm. Every other book must use its full bookNames name — run
+// scripts/check-references.js to find any that don't.
+bpBookNameToId["psalm"] = "PSA";
 
 const BOOK_AND_CHAPTER_RE =
   /^((?:[1-3]\s+)?[A-Za-z]+(?:\s+[A-Za-z]+)*)\s+(\d+)/;
