@@ -3779,9 +3779,35 @@ async function loadBibleChapter(
     }
     // Book name mapping from app.js
     let bookName = bookNames[bookId] || bookId;
+    // Chapter-position indicator in the header's left cell (visual only, not
+    // interactive): "4 of 28" plus a thin bar filled to chapter/count. Sits on
+    // the same row as the font slider so it costs no vertical space. Hidden
+    // on phone widths, where the "of N" moves into the title instead; omitted
+    // entirely for single-chapter books.
+    const chapterCount =
+      Number.isInteger(book.chapterCount) && book.chapterCount > 0
+        ? book.chapterCount
+        : Array.isArray(book.chapters)
+          ? book.chapters.length
+          : 0;
+    const chapterPosPct =
+      chapterCount > 0
+        ? Math.round((chapterNum / chapterCount) * 1000) / 10
+        : 0;
+    const chapterPosMarkup =
+      chapterCount > 1
+        ? `<div class="bp-chapter-pos" role="img" aria-label="Chapter ${chapterNum} of ${chapterCount}" title="Chapter ${chapterNum} of ${chapterCount}">
+        <span class="bp-chapter-pos__label">${chapterNum} of ${chapterCount}</span>
+        <span class="bp-chapter-pos__track"><span class="bp-chapter-pos__fill" style="width:${chapterPosPct}%"></span></span>
+      </div>`
+        : "";
+    const chapterOfMarkup =
+      chapterCount > 1
+        ? `<span class="bp-chapter-header__of"> of ${chapterCount}</span>`
+        : "";
     let html = `<div class="bp-chapter-header">
-      <div class="bp-diagram-controls">${diagramButtonMarkup()}</div>
-      <h2>${bookName} ${chapterNum}</h2>
+      <div class="bp-diagram-controls">${diagramButtonMarkup()}${chapterPosMarkup}</div>
+      <h2>${bookName} ${chapterNum}${chapterOfMarkup}</h2>
       <div class="bp-font-controls">
         <span class="bp-font-label-sm" aria-hidden="true">A</span>
         <input type="range" class="bp-font-slider" id="bp-font-slider"

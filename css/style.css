@@ -2381,6 +2381,42 @@ html.bp-hide-outlines .topic-outline-btn {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  gap: 0.75em;
+}
+
+/* Chapter-position indicator (header left cell; visual only, sized to
+   mirror .bp-font-controls on the right). Hidden on phones — see the
+   html.bp-mobile block, where the "of N" span in the title takes over. */
+.bp-chapter-pos {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.bp-chapter-pos__label {
+  font-size: 0.75em;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.bp-chapter-pos__track {
+  display: block;
+  width: 7em;
+  height: 4px;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--text-secondary) 28%, transparent);
+  overflow: hidden;
+}
+.bp-chapter-pos__fill {
+  display: block;
+  height: 100%;
+  border-radius: 2px;
+  background: var(--accent);
+}
+.bp-chapter-header__of {
+  display: none;
+  color: var(--text-secondary);
+  font-weight: normal;
+  font-size: 0.8em;
 }
 .bp-diagram-btn {
   display: inline-flex;
@@ -3977,6 +4013,12 @@ html.bp-suggestions-hidden .bp-suggest-new-link {
   }
   html.bp-mobile .bp-diagram-btn__label {
     display: none; /* icon-only on phone widths to save header space */
+  }
+  html.bp-mobile .bp-chapter-pos {
+    display: none; /* no room in the one-row phone header */
+  }
+  html.bp-mobile .bp-chapter-header__of {
+    display: inline; /* "Matthew 4 of 28" carries the position instead */
   }
   html.bp-mobile .bp-diagram-btn {
     padding: 0.15em 0.4em;
