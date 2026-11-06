@@ -57,11 +57,19 @@ function snapChapterPosTrack() {
   track.style.columnGap = "";
   const dpr = window.devicePixelRatio || 1;
   const gapCss = parseFloat(getComputedStyle(track).columnGap) || 0;
+  // No dividers (books over the --ticks threshold, e.g. Psalms, Isaiah): the
+  // slots read as one unbroken bar, so uneven slot widths are invisible and
+  // snapping would only throw away track width (floor() over 150 slots can
+  // lose nearly half of it). Keep the authored 10em.
+  if (gapCss === 0) {
+    for (const slot of track.children) slot.style.flexBasis = "";
+    return;
+  }
   const gapDev = Math.round(gapCss * dpr);
   // The authored 1px gap is 1.25 / 1.5 device px at 125% / 150% OS scaling,
   // which gives the slots a fractional pitch and makes them snap differently
   // along the track (one half visibly brighter). Pin it to whole device px.
-  if (gapCss > 0) track.style.columnGap = gapDev / dpr + "px";
+  track.style.columnGap = gapDev / dpr + "px";
   const trackDev = track.getBoundingClientRect().width * dpr;
   const slotDev = Math.floor((trackDev - (n - 1) * gapDev) / n);
   if (slotDev < 1) return; // too many chapters to snap; flex does its best
@@ -3826,8 +3834,9 @@ async function loadBibleChapter(
     // divider gap is only shown when slots are wide enough to read as slots
     // (Psalms' 150 slots on a 10em track would just alias into mush).
     // Sits on the same row as the font slider so it costs no vertical space.
-    // Hidden on phone widths, where the "of N" moves into the title instead;
-    // omitted entirely for single-chapter books.
+    // Hidden on phone widths, where the "of N" moves into the title instead.
+    // Single-chapter books (Obadiah, Philemon, 2–3 John, Jude) still get it,
+    // as "1 of 1" with one full-width slot, so the header cell isn't empty.
     const chapterCount =
       Number.isInteger(book.chapterCount) && book.chapterCount > 0
         ? book.chapterCount
@@ -3846,14 +3855,14 @@ async function loadBibleChapter(
           : '<span class="bp-chapter-pos__slot"></span>';
     }
     const chapterPosMarkup =
-      chapterCount > 1
+      chapterCount > 0
         ? `<div class="bp-chapter-pos" role="img" aria-label="Chapter ${chapterNum} of ${chapterCount}" title="Chapter ${chapterNum} of ${chapterCount}">
         <span class="bp-chapter-pos__label">${chapterNum} of ${chapterCount}</span>
         <span class="${chapterPosTrackClass}">${chapterPosSlots}</span>
       </div>`
         : "";
     const chapterOfMarkup =
-      chapterCount > 1
+      chapterCount > 0
         ? `<span class="bp-chapter-header__of"> of ${chapterCount}</span>`
         : "";
     let html = `<div class="bp-chapter-header">
