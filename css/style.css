@@ -2398,17 +2398,31 @@ html.bp-hide-outlines .topic-outline-btn {
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
 }
+/* The track is one flex slot per chapter (spans emitted by bible-loader.js),
+   the current chapter's slot in the accent color. Slots are elements rather
+   than a gradient so the divider gap is an exact 1px everywhere instead of
+   antialiasing unevenly at fractional-pixel positions. */
 .bp-chapter-pos__track {
-  display: block;
-  width: 7em;
-  height: 4px;
-  border-radius: 2px;
-  background: color-mix(in srgb, var(--text-secondary) 28%, transparent);
+  display: flex;
+  gap: 0;
+  width: 10em;
+  height: 10px;
+  border-radius: 3px;
   overflow: hidden;
 }
-.bp-chapter-pos__fill {
-  display: block;
-  height: 100%;
+/* Divider gaps, shown only when the slots are wide enough to read as slots. */
+.bp-chapter-pos__track--ticks {
+  gap: 1px;
+}
+.bp-chapter-pos__slot {
+  flex: 1 1 0;
+  min-width: 0;
+  background: color-mix(in srgb, var(--text-secondary) 28%, transparent);
+}
+/* Never narrower than 3px so it stays visible on 100+ chapter books; the
+   other slots shrink to make room. */
+.bp-chapter-pos__slot.is-current {
+  min-width: 3px;
   border-radius: 2px;
   background: var(--accent);
 }

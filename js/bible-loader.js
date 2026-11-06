@@ -43,6 +43,44 @@ async function fetchJsonOrNull(url) {
 // from Theographic Bible Metadata. Fetched once and cached; any file that
 // fails to load (e.g. optional overrides.json) just yields empty data rather
 // than breaking the rest of the app.
+// Snap the chapter-position track (see loadBibleChapter's header markup) to a
+// width where every slot is a whole number of device pixels. The track is
+// authored as 10em, which almost never divides evenly by the chapter count,
+// so without this adjacent slots render 2px/3px/2px and look unevenly spaced.
+// Re-run on resize because browser zoom changes devicePixelRatio.
+function snapChapterPosTrack() {
+  const track = document.querySelector(".bp-chapter-pos__track");
+  if (!track) return;
+  const n = track.children.length;
+  if (n < 2) return;
+  track.style.width = ""; // measure the authored em width, not a prior snap
+  track.style.columnGap = "";
+  const dpr = window.devicePixelRatio || 1;
+  const gapCss = parseFloat(getComputedStyle(track).columnGap) || 0;
+  const gapDev = Math.round(gapCss * dpr);
+  // The authored 1px gap is 1.25 / 1.5 device px at 125% / 150% OS scaling,
+  // which gives the slots a fractional pitch and makes them snap differently
+  // along the track (one half visibly brighter). Pin it to whole device px.
+  if (gapCss > 0) track.style.columnGap = gapDev / dpr + "px";
+  const trackDev = track.getBoundingClientRect().width * dpr;
+  const slotDev = Math.floor((trackDev - (n - 1) * gapDev) / n);
+  if (slotDev < 1) return; // too many chapters to snap; flex does its best
+  // The current slot has a CSS min-width; when slots are narrower than that
+  // it must get the extra room explicitly, or flex shaves it off the others.
+  const cur = track.querySelector(".is-current");
+  const curMinDev = cur
+    ? Math.round((parseFloat(getComputedStyle(cur).minWidth) || 0) * dpr)
+    : 0;
+  const curDev = Math.max(slotDev, curMinDev);
+  track.style.width =
+    (slotDev * (n - 1) + curDev + (n - 1) * gapDev) / dpr + "px";
+  // Explicit per-slot widths too, so nothing depends on flex rounding.
+  for (const slot of track.children) {
+    slot.style.flexBasis =
+      (slot.classList.contains("is-current") ? curDev : slotDev) / dpr + "px";
+  }
+}
+let _chapterPosResizeHooked = false;
 function getBibleMetadata() {
   if (!bpBibleMetadataPromise) {
     bpBibleMetadataPromise = Promise.all([
@@ -3780,25 +3818,38 @@ async function loadBibleChapter(
     // Book name mapping from app.js
     let bookName = bookNames[bookId] || bookId;
     // Chapter-position indicator in the header's left cell (visual only, not
-    // interactive): "4 of 28" plus a thin bar filled to chapter/count. Sits on
-    // the same row as the font slider so it costs no vertical space. Hidden
-    // on phone widths, where the "of N" moves into the title instead; omitted
-    // entirely for single-chapter books.
+    // interactive): "4 of 28" plus a thin track divided into one slot per
+    // chapter, with a marker sitting in the current chapter's slot. A marker
+    // (rather than a 0→N fill) so that landing mid-book doesn't read as "read
+    // everything up to here". Slots are real flex children (a CSS gradient
+    // divider at fractional-pixel positions antialiases unevenly), and the 1px
+    // divider gap is only shown when slots are wide enough to read as slots
+    // (Psalms' 150 slots on a 10em track would just alias into mush).
+    // Sits on the same row as the font slider so it costs no vertical space.
+    // Hidden on phone widths, where the "of N" moves into the title instead;
+    // omitted entirely for single-chapter books.
     const chapterCount =
       Number.isInteger(book.chapterCount) && book.chapterCount > 0
         ? book.chapterCount
         : Array.isArray(book.chapters)
           ? book.chapters.length
           : 0;
-    const chapterPosPct =
-      chapterCount > 0
-        ? Math.round((chapterNum / chapterCount) * 1000) / 10
-        : 0;
+    const chapterPosTrackClass =
+      chapterCount <= 50
+        ? "bp-chapter-pos__track bp-chapter-pos__track--ticks"
+        : "bp-chapter-pos__track";
+    let chapterPosSlots = "";
+    for (let i = 1; i <= chapterCount; i++) {
+      chapterPosSlots +=
+        i === chapterNum
+          ? '<span class="bp-chapter-pos__slot is-current"></span>'
+          : '<span class="bp-chapter-pos__slot"></span>';
+    }
     const chapterPosMarkup =
       chapterCount > 1
         ? `<div class="bp-chapter-pos" role="img" aria-label="Chapter ${chapterNum} of ${chapterCount}" title="Chapter ${chapterNum} of ${chapterCount}">
         <span class="bp-chapter-pos__label">${chapterNum} of ${chapterCount}</span>
-        <span class="bp-chapter-pos__track"><span class="bp-chapter-pos__fill" style="width:${chapterPosPct}%"></span></span>
+        <span class="${chapterPosTrackClass}">${chapterPosSlots}</span>
       </div>`
         : "";
     const chapterOfMarkup =
@@ -3867,6 +3918,11 @@ async function loadBibleChapter(
     }
     html += "</div>";
     main.innerHTML = html;
+    snapChapterPosTrack();
+    if (!_chapterPosResizeHooked) {
+      _chapterPosResizeHooked = true;
+      window.addEventListener("resize", snapChapterPosTrack);
+    }
 
     // Wire font-size slider
     (function () {
