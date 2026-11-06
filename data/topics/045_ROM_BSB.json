@@ -804,7 +804,16 @@
           "- Exchanged the glory of God for idols",
           "Jeremiah 2:11-13"
         ],
-        "emphasis": ["neither glorified", "nor gave thanks", "futile", "thinking", "darkened", "hearts", "fools", "exchanged"],
+        "emphasis": [
+          "neither glorified",
+          "nor gave thanks",
+          "futile",
+          "thinking",
+          "darkened",
+          "hearts",
+          "fools",
+          "exchanged"
+        ],
         "links": [
           {
             "label": "Bible Explorer: Righteousness",
@@ -813,16 +822,32 @@
         ]
       },
       {
-        "label": "next",
-        "verses": ["24"],
+        "label": "unnatural",
+        "verses": ["26-27"],
         "references": [
-          
+          "Sodom and Gomorrah",
+          "Genesis 19:4-11",
+          "Isaiah 3:9",
+          "-",
+          "Gibeah",
+          "Judges 19:22-30",
+          "Hosea 9:9",
+          "-",
+          "Leviticus 18:22",
+          "Romans 1:24-27",
+          "Jude 1:7",
+          "-",
+          "Romans 3:20-26"
         ],
-        "emphasis": ["", ""],
+        "emphasis": ["exchanged", "abandoned", "natural relations"],
         "links": [
           {
-            "label": "Bible Explorer: Righteousness",
-            "url": ""
+            "label": "Bible Explorer",
+            "url": "https://bible-explorer.gospelgo.org/?dataset=bsb-topics&topic=Homosexuality"
+          },
+          {
+            "label": "Bible Explorer",
+            "url": "https://bible-explorer.gospelgo.org/?dataset=bsb-topics&topic=Immorality"
           }
         ]
       }
