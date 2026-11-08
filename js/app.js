@@ -346,7 +346,19 @@ document.addEventListener("DOMContentLoaded", () => {
     closeBtn.innerHTML = "&#x2715;";
     closeBtn.setAttribute("aria-label", "Close");
 
+    const keysBtn = document.createElement("button");
+    keysBtn.type = "button";
+    keysBtn.className = "bp-about-modal__keys-btn";
+    keysBtn.title = "Keyboard shortcuts";
+    keysBtn.setAttribute("aria-label", "Keyboard shortcuts");
+    keysBtn.innerHTML =
+      '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<rect x="2" y="6" width="20" height="12" rx="2"></rect>' +
+      '<path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M6 14h.01M18 14h.01M9 14h6"></path></svg>';
+    keysBtn.addEventListener("click", () => openShortcutsModal());
+
     header.appendChild(title);
+    header.appendChild(keysBtn);
     header.appendChild(closeBtn);
     modal.appendChild(header);
     if (typeof window.bpAttachModalDrag === "function") {
@@ -398,6 +410,291 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.body.appendChild(overlay);
   }
+
+  // ── Keyboard shortcuts modal (opened from the About modal's keyboard
+  // icon, or by pressing ? anywhere). Reuses the About modal's styling.
+  // This table is the human-readable twin of bpGlobalKeydown() below —
+  // keep the two in step.
+  const BP_SHORTCUT_ROWS = [
+    ["↑ / ↓", "Scroll the text a few lines", "Same"],
+    ["PgUp / PgDn, Space", "Scroll a screen (Shift+Space scrolls up)", "Same"],
+    ["Home / End", "Top / bottom of the chapter", "Top / bottom of the book"],
+    ["← / →", "Previous / next chapter", "Jump to previous / next chapter heading"],
+    ["+ / −", "Font size up / down", "Same"],
+    ["0", "Reset font size", "Same"],
+    ["?", "Show this list", "Same"],
+    ["Esc", "Close any open window", "Same"],
+  ];
+
+  function openShortcutsModal() {
+    document.querySelectorAll(".bp-shortcuts-overlay").forEach((el) => el.remove());
+
+    const overlay = document.createElement("div");
+    overlay.className = "bp-about-overlay bp-shortcuts-overlay";
+
+    const modal = document.createElement("div");
+    modal.className = "bp-about-modal bp-shortcuts-modal";
+    modal.setAttribute("role", "dialog");
+    modal.setAttribute("aria-modal", "true");
+    modal.setAttribute("aria-label", "Keyboard shortcuts");
+    overlay.appendChild(modal);
+
+    const header = document.createElement("div");
+    header.className = "bp-about-modal__header";
+    const title = document.createElement("h2");
+    title.className = "bp-about-modal__title";
+    title.textContent = "Keyboard shortcuts";
+    const closeBtn = document.createElement("button");
+    closeBtn.type = "button";
+    closeBtn.className = "bp-about-modal__close";
+    closeBtn.innerHTML = "&#x2715;";
+    closeBtn.setAttribute("aria-label", "Close");
+    header.appendChild(title);
+    header.appendChild(closeBtn);
+    modal.appendChild(header);
+    if (typeof window.bpAttachModalDrag === "function") {
+      window.bpAttachModalDrag(modal, header);
+    }
+
+    const body = document.createElement("div");
+    body.className = "bp-about-modal__body";
+    const table = document.createElement("table");
+    table.className = "bp-shortcuts-table";
+    const thead = document.createElement("thead");
+    thead.innerHTML =
+      "<tr><th>Key</th><th>Chapter view</th><th>Entire Book</th></tr>";
+    table.appendChild(thead);
+    const tbody = document.createElement("tbody");
+    for (const [keys, chapter, book] of BP_SHORTCUT_ROWS) {
+      const tr = document.createElement("tr");
+      const tdKey = document.createElement("td");
+      tdKey.className = "bp-shortcuts-table__keys";
+      // "PgUp / PgDn, Space" → one <kbd> chip per key, separators kept as text.
+      keys.split(/( \/ |, )/).forEach((piece) => {
+        if (piece === " / " || piece === ", ") {
+          tdKey.appendChild(document.createTextNode(piece));
+        } else if (piece) {
+          const kbd = document.createElement("kbd");
+          kbd.textContent = piece;
+          tdKey.appendChild(kbd);
+        }
+      });
+      const tdChapter = document.createElement("td");
+      tdChapter.textContent = chapter;
+      const tdBook = document.createElement("td");
+      tdBook.textContent = book;
+      if (book === "Same") tdBook.classList.add("bp-shortcuts-table__same");
+      tr.append(tdKey, tdChapter, tdBook);
+      tbody.appendChild(tr);
+    }
+    table.appendChild(tbody);
+    body.appendChild(table);
+    const note = document.createElement("p");
+    note.className = "bp-shortcuts-note";
+    note.textContent =
+      "Shortcuts pause while you are typing in a text field or while a window like this one is open. Ctrl/Cmd combinations are left to the browser.";
+    body.appendChild(note);
+    modal.appendChild(body);
+
+    function closeModal() {
+      document.removeEventListener("keydown", onKeydown);
+      overlay.remove();
+    }
+    function onKeydown(e) {
+      if (e.key === "Escape") closeModal();
+    }
+    closeBtn.addEventListener("click", closeModal);
+    document.addEventListener("keydown", onKeydown);
+    document.body.appendChild(overlay);
+  }
+  window.bpOpenShortcutsModal = openShortcutsModal;
+
+  // ── Global reader shortcuts ─────────────────────────────────────────────
+  // Before this, arrows only did anything by accident of focus: they nudged
+  // the font slider after a drag, or scrolled .bp-main once it had been
+  // clicked. This handler makes them mean the same thing regardless of what
+  // happens to have focus, with guards so it never steals keys from a text
+  // field, the slider itself, a focused button (Space), or an open
+  // modal/popup (each of which owns Escape itself).
+  const BP_OPEN_POPUP_SELECTOR = [
+    '[role="dialog"]',
+    '[aria-modal="true"]',
+    ".bp-about-overlay",
+    ".bp-suggest-overlay",
+    ".bp-chiasm-overlay",
+    ".bp-chiasm-explainer-overlay",
+    ".bp-diagram-overlay",
+    ".bp-compare-overlay",
+    ".bp-timeline-overlay",
+    ".bp-info-modal",
+    ".reference-menu",
+    ".bp-theme-picker-popover",
+  ].join(",");
+
+  function bpKeyTargetIsEditable(el) {
+    if (!el || el === document.body || el === document.documentElement) return false;
+    const tag = el.tagName;
+    if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return true;
+    return !!el.isContentEditable;
+  }
+
+  function bpStepFontScale(delta) {
+    const slider = document.getElementById("bp-font-slider");
+    if (!slider || slider.disabled) return false;
+    const min = parseFloat(slider.min) || 1;
+    const max = parseFloat(slider.max) || 2;
+    const step = parseFloat(slider.step) || 0.1;
+    const cur = parseFloat(slider.value) || 1;
+    const next = Math.min(max, Math.max(min, Math.round((cur + delta * step) * 10) / 10));
+    if (next !== cur) {
+      slider.value = String(next);
+      // Reuse the slider's own "input" wiring (CSS var + localStorage).
+      slider.dispatchEvent(new Event("input", { bubbles: true }));
+    }
+    return true;
+  }
+
+  // Entire Book mode: ← / → scroll to the nearest "Chapter N" heading below
+  // (→) or above (←) the pane's top edge. Measured by on-screen position,
+  // not DOM order: the dense book view flows in CSS columns, so e.g.
+  // Matthew 2 and Matthew 17 can sit at the same height in adjacent
+  // columns, and DOM-order stepping would hop between columns.
+  function bpScrollToAdjacentBookChapter(main, dir) {
+    const headings = Array.from(main.querySelectorAll(".bp-book-view__chapter"));
+    if (!headings.length) return;
+    const mainTop = main.getBoundingClientRect().top;
+    // Headings in neighbouring columns can sit a few px apart vertically;
+    // anything within roughly one heading line of the top edge counts as
+    // the current row, so →/← never ping-pong between two such headings.
+    const tolerance = 20;
+    let best = null;
+    let bestOffset = null;
+    for (const h of headings) {
+      const offset = h.getBoundingClientRect().top - mainTop;
+      if (dir > 0 ? offset <= tolerance : offset >= -tolerance) continue;
+      if (bestOffset === null || (dir > 0 ? offset < bestOffset : offset > bestOffset)) {
+        best = h;
+        bestOffset = offset;
+      }
+    }
+    if (!best) {
+      // Nothing further in that direction: go to the very top / bottom.
+      main.scrollTo({ top: dir > 0 ? main.scrollHeight : 0, behavior: "smooth" });
+      return;
+    }
+    bpScrollTarget = null;
+    main.scrollTo({ top: main.scrollTop + bestOffset, behavior: "smooth" });
+  }
+
+  // Smooth scrollBy() calls issued while a previous smooth scroll is still
+  // in flight measure from the in-flight position, so three quick ↓ taps
+  // would net ~one step. Accumulate into an explicit target instead.
+  let bpScrollTarget = null;
+  let bpScrollTargetAt = 0;
+  function bpScrollMainBy(main, delta, behavior) {
+    const now = Date.now();
+    const base =
+      bpScrollTarget !== null && now - bpScrollTargetAt < 500 ? bpScrollTarget : main.scrollTop;
+    const maxTop = Math.max(0, main.scrollHeight - main.clientHeight);
+    const next = Math.min(maxTop, Math.max(0, base + delta));
+    bpScrollTarget = next;
+    bpScrollTargetAt = now;
+    main.scrollTo({ top: next, behavior });
+  }
+
+  function bpGlobalKeydown(e) {
+    if (e.defaultPrevented || e.ctrlKey || e.metaKey || e.altKey) return;
+    const active = document.activeElement;
+    if (bpKeyTargetIsEditable(active) || bpKeyTargetIsEditable(e.target)) return;
+    if (document.querySelector(BP_OPEN_POPUP_SELECTOR)) return;
+    const main = document.querySelector(".bp-main");
+    if (!main) return;
+    const inBookMode = window._currentViewMode === "entireBook";
+    const activeIsControl =
+      !!active &&
+      active !== document.body &&
+      (active.tagName === "BUTTON" ||
+        active.tagName === "A" ||
+        active.tagName === "SUMMARY" ||
+        active.getAttribute("role") === "button");
+    const lineStep = 60;
+    const pageStep = Math.max(80, main.clientHeight - 48);
+
+    switch (e.key) {
+      case "ArrowDown":
+        e.preventDefault();
+        bpScrollMainBy(main, lineStep, e.repeat ? "auto" : "smooth");
+        return;
+      case "ArrowUp":
+        e.preventDefault();
+        bpScrollMainBy(main, -lineStep, e.repeat ? "auto" : "smooth");
+        return;
+      case "PageDown":
+        e.preventDefault();
+        bpScrollMainBy(main, pageStep, "smooth");
+        return;
+      case "PageUp":
+        e.preventDefault();
+        bpScrollMainBy(main, -pageStep, "smooth");
+        return;
+      case " ":
+        // A focused button/link keeps its native Space activation.
+        if (activeIsControl) return;
+        e.preventDefault();
+        bpScrollMainBy(main, e.shiftKey ? -pageStep : pageStep, "smooth");
+        return;
+      case "Home":
+        e.preventDefault();
+        bpScrollTarget = null;
+        main.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      case "End":
+        e.preventDefault();
+        bpScrollTarget = null;
+        main.scrollTo({ top: main.scrollHeight, behavior: "smooth" });
+        return;
+      case "ArrowLeft":
+      case "ArrowRight": {
+        e.preventDefault();
+        // Holding the key must not blast through chapters (one history
+        // entry per step) — act on the initial press only.
+        if (e.repeat) return;
+        const dir = e.key === "ArrowRight" ? 1 : -1;
+        if (inBookMode) {
+          bpScrollToAdjacentBookChapter(main, dir);
+          return;
+        }
+        // Chapter mode: reuse the header nav buttons so disabled state and
+        // URL/history behavior stay identical to clicking them.
+        const btn = document.getElementById(dir > 0 ? "bp-chapter-next" : "bp-chapter-prev");
+        if (btn && !btn.disabled) btn.click();
+        return;
+      }
+      case "+":
+      case "=":
+        if (bpStepFontScale(1)) e.preventDefault();
+        return;
+      case "-":
+      case "_":
+        if (bpStepFontScale(-1)) e.preventDefault();
+        return;
+      case "0": {
+        const reset = document.getElementById("bp-font-reset");
+        if (reset) {
+          e.preventDefault();
+          reset.click();
+        }
+        return;
+      }
+      case "?":
+        e.preventDefault();
+        openShortcutsModal();
+        return;
+      default:
+        return;
+    }
+  }
+  document.addEventListener("keydown", bpGlobalKeydown);
 
   const aboutTrigger = document.getElementById("bp-about-trigger");
   if (aboutTrigger) {

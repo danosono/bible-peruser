@@ -2843,6 +2843,79 @@ html.bp-hide-outlines .topic-outline-btn {
   color: var(--text-secondary);
   opacity: 0.85;
 }
+/* Keyboard-shortcuts modal (js/app.js openShortcutsModal) — a second use of
+   the About modal shell, opened from the About header keyboard icon or the
+   ? key. */
+.bp-about-modal__keys-btn {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.2rem 0.3rem;
+  line-height: 1;
+}
+.bp-about-modal__keys-btn:hover,
+.bp-about-modal__keys-btn:focus-visible {
+  color: var(--gold-accent);
+}
+.bp-shortcuts-modal {
+  width: min(560px, 100%);
+}
+.bp-shortcuts-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  line-height: 1.35;
+}
+.bp-shortcuts-table th,
+.bp-shortcuts-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.45em 0.5em;
+  border-bottom: 1px solid #333;
+}
+.bp-shortcuts-table th {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+.bp-shortcuts-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.bp-shortcuts-table__keys {
+  white-space: nowrap;
+  color: var(--text-secondary);
+}
+.bp-shortcuts-table kbd {
+  display: inline-block;
+  font-family: inherit;
+  font-size: 0.85em;
+  color: #f5f6fa;
+  background: #2f353a;
+  border: 1px solid #555;
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  padding: 0.05em 0.45em;
+}
+.bp-shortcuts-table__same {
+  color: var(--text-secondary);
+  font-style: italic;
+}
+.bp-shortcuts-note {
+  margin: 0.9em 0 0;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+@media (max-width: 480px) {
+  .bp-shortcuts-table__keys {
+    white-space: normal;
+  }
+}
 @media (min-width: 3000px) {
   .bp-about-modal {
     width: min(560px, 100%);
@@ -2858,6 +2931,12 @@ html.bp-hide-outlines .topic-outline-btn {
   }
   .bp-about-modal__donate-link {
     font-size: 1.08rem;
+  }
+  .bp-shortcuts-modal {
+    width: min(680px, 100%);
+  }
+  .bp-shortcuts-table {
+    font-size: 1.02rem;
   }
 }
 @media (min-width: 3000px) {

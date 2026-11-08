@@ -850,6 +850,91 @@
             "url": "https://bible-explorer.gospelgo.org/?dataset=bsb-topics&topic=Immorality"
           }
         ]
+      },
+      {
+        "label": "rejected God",
+        "verses": ["24", "26", "28", "32"],
+        "references": [
+          "Genesis 6:5",
+          "Psalm 81:11-12",
+          "Proverbs 1:30-31",
+          "Isaiah 44:20",
+          "Jeremiah 17:9",
+          "Hosea 4:16-17",
+          "Mark 7:21-22",
+          "Romans 1:24",
+          "Romans 1:26",
+          "Romans 1:28",
+          "Romans 1:32",
+          "Ephesians 4:18-19",
+          "2 Timothy 3:8",
+          "Titus 1:15-16",
+          "2 Peter 2:14"
+        ],
+        "emphasis": [
+          "gave them",
+          "over in the desires of their hearts",
+          "over to dishonorable passions",
+          "up to a depraved mind"
+        ],
+        "links": [
+          {
+            "label": "Bible Explorer: Rebellion Against God",
+            "url": "http://127.0.0.1:5502/index.html?dataset=bsb-topics&topic=Rebellion+Against+God"
+          },
+          {
+            "label": "Bible Explorer: Depraved",
+            "url": "http://127.0.0.1:5502/index.html?dataset=concordance&topic=Depraved"
+          }
+        ]
+      },
+      {
+        "highlight": "rejected God",
+        "text": [
+          "without excuse",
+          "became futile in their thinking and darkened in their foolish hearts",
+          "became fools",
+          "exchanged the glory of the immortal God",
+          "desires of their hearts to impurity",
+          "exchanged the truth of God for a lie",
+          "did not see fit to acknowledge God",
+          "continue",
+          "approve"
+        ]
+      },
+      {
+        "highlight": "consequences",
+        "text": [
+          "God gave them over",
+          "gave them up to a depraved mind",
+          "received in themselves the due penalty for their error"
+        ]
+      },
+      {
+        "highlight": "traits",
+        "text": [
+          "wickedness",
+          "evil",
+          "greed",
+          "depravity",
+          "envy",
+          "murder",
+          "strife",
+          "deceit",
+          "malice",
+          "gossips",
+          "slanderers",
+          "God-haters",
+          "insolent",
+          "arrogant",
+          "boastful",
+          "invent new forms of evil",
+          "disobey their parents",
+          "senseless",
+          "faithless",
+          "heartless",
+          "merciless"
+        ]
       }
     ],
     "2": [
@@ -862,6 +947,37 @@
         "outline": "The Jews and the Law",
         "verses": ["17-29"],
         "references": []
+      },
+      {
+        "label": "Twist / trap",
+        "verses": ["1"],
+        "references": ["Romans 1:32 - they"],
+        "emphasis": ["you"]
+      },
+      {
+        "label": "Legalist/hypocrite",
+        "verses": ["17-24"],
+        "references": [
+          "Deuteronomy 30:11-14",
+          "Psalm 50:16-17",
+          "Isaiah 1:11-17",
+          "Isaiah 29:13",
+          "Amos 5:21-24",
+          "Micah 6:8",
+          "Zechariah 7:9-10",
+          "Malachi 1:6-8",
+          "Matthew 15:7-9",
+          "Matthew 23:2-4",
+          "Matthew 23:23-28",
+          "Luke 11:46 * <!>",
+          "Luke 18:9-14",
+          "Galatians 2:14",
+          "Galatians 6:13",
+          "Colossians 2:20-23",
+          "James 1:26-27",
+          "1 John 4:20"
+        ],
+        "emphasis": ["you who boast in the law, do you dishonor God by breaking the law?", "God’s name is blasphemed", "because of you"]
       }
     ],
     "3": [

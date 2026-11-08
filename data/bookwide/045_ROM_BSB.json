@@ -1,5 +1,12 @@
 {
   "bookWideOutline": [],
-  "bookWideLabels": [],
+  "bookWideLabels": [
+    {
+      "label": "twist/trap",
+      "verses": ["1:32", "2:1"],
+      "references": [""],
+      "emphasis": ["they", "you"]
+    }
+  ],
   "bookWideHighlights": []
 }
