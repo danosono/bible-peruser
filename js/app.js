@@ -573,9 +573,32 @@ document.addEventListener("DOMContentLoaded", () => {
     // anything within roughly one heading line of the top edge counts as
     // the current row, so →/← never ping-pong between two such headings.
     const tolerance = 20;
+    // Where to park the pane so a chapter's first line is fully visible. In
+    // the Flow layout the heading is an inline-block numeral sitting inside
+    // a taller line box (margin-top + bigger glyph), so its own box top is
+    // below the top of that line — aligning to it clipped the first line at
+    // large zoom. Use the higher of the heading box and the first verse's
+    // first line box, then back off a fraction of a line for breathing room.
+    const lineHeight = parseFloat(getComputedStyle(headings[0].parentElement).lineHeight) || 0;
+    // The chapter title bar (.bp-chapter-header) is sticky inside the pane,
+    // so the usable top edge is its bottom, not the pane's own top.
+    const hdr = main.querySelector(".bp-chapter-header");
+    const stickyBottom =
+      hdr && getComputedStyle(hdr).position === "sticky"
+        ? Math.max(0, hdr.getBoundingClientRect().bottom - mainTop)
+        : 0;
+    const gap = stickyBottom + Math.max(4, lineHeight * 0.35);
+    const anchorTop = (h) => {
+      let top = h.getBoundingClientRect().top;
+      let sib = h.nextElementSibling;
+      while (sib && !sib.classList.contains("verse-text")) sib = sib.nextElementSibling;
+      const firstLine = sib && sib.getClientRects()[0];
+      if (firstLine) top = Math.min(top, firstLine.top);
+      return main.scrollTop + top - mainTop - gap;
+    };
     let bestTop = null;
     for (const h of headings) {
-      const absTop = main.scrollTop + h.getBoundingClientRect().top - mainTop;
+      const absTop = anchorTop(h);
       const offset = absTop - reference;
       if (dir > 0 ? offset <= tolerance : offset >= -tolerance) continue;
       if (bestTop === null || (dir > 0 ? absTop < bestTop : absTop > bestTop)) bestTop = absTop;

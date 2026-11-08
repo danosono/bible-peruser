@@ -4925,7 +4925,7 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
 
       // ── Read Mode preset (header button, Entire Book only) ──
       // Nothing new in itself: it presses 1 Col + Flow + Hide # and zooms the
-      // slider to its max, and lights up whenever exactly that combination is
+      // slider to one step below max, and lights up whenever exactly that combination is
       // in effect (however it was reached). Clicking it while lit turns the
       // three toggles off and resets zoom. The three toggles already persist
       // on their own; the only extra persisted bit is the zoom, since the
@@ -4933,6 +4933,9 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
       const READ_MODE_IDS = ["bp-book-one-col", "bp-book-flow", "bp-book-hide-nums"];
       const readBtn = document.getElementById("bp-read-mode-btn");
       const sliderMax = slider ? parseFloat(slider.max) || 2 : 2;
+      const sliderStep = slider ? parseFloat(slider.step) || 0.1 : 0.1;
+      // One notch below max: max itself read as oversized in practice.
+      const readZoom = Math.round((sliderMax - sliderStep) * 10) / 10;
       function setZoom(v) {
         if (!slider) return;
         slider.value = String(v);
@@ -4944,7 +4947,7 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
         if (!READ_MODE_IDS.every((id) => toggleApi[id] && toggleApi[id].btn.classList.contains("active"))) {
           return false;
         }
-        return Math.abs(parseFloat(slider.value) - sliderMax) < 0.001;
+        return Math.abs(parseFloat(slider.value) - readZoom) < 0.001;
       }
       function syncReadMode() {
         const on = readModeInEffect();
@@ -4959,7 +4962,7 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
           readBtn.dataset.bpTipAttached = "1";
           attachIconHoverTooltip(
             readBtn,
-            "Read Mode: one click sets 1 Col + Flow + Hide # and zooms the text to its largest size, for reading the book straight through like a letter. " +
+            "Read Mode: one click sets 1 Col + Flow + Hide # and zooms the text up to a comfortable reading size, for reading the book straight through like a letter. " +
               "Click again to switch those off and reset zoom. The layout buttons on the right still work individually.",
           );
         }
@@ -4971,7 +4974,7 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
           } else {
             if (overview && overview.classList.contains("active")) overview.click();
             READ_MODE_IDS.forEach((id) => toggleApi[id] && toggleApi[id].set(true));
-            setZoom(sliderMax);
+            setZoom(readZoom);
           }
           syncReadMode();
         };
@@ -4979,7 +4982,7 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
       // Restore the zoom half of a persisted Read Mode (toggles restore
       // themselves above), then reflect whatever state we landed in.
       if (localStorage.getItem("bpBookReadMode") === "1" && READ_MODE_IDS.every((id) => toggleApi[id] && toggleApi[id].btn.classList.contains("active"))) {
-        setZoom(sliderMax);
+        setZoom(readZoom);
       }
       syncReadMode();
 
