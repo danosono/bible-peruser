@@ -179,7 +179,8 @@
 .bp-font-reset:hover {
   color: var(--accent);
 }
-.bp-font-overview {
+.bp-font-overview,
+.bp-font-toggle {
   background: none;
   border: 1px solid var(--text-secondary);
   color: var(--text-secondary);
@@ -190,11 +191,13 @@
   line-height: 1.3;
   white-space: nowrap;
 }
-.bp-font-overview:hover {
+.bp-font-overview:hover,
+.bp-font-toggle:hover {
   border-color: var(--accent);
   color: var(--accent);
 }
-.bp-font-overview.active {
+.bp-font-overview.active,
+.bp-font-toggle.active {
   background: var(--accent);
   border-color: var(--accent);
   color: #fff;
@@ -203,6 +206,30 @@
   opacity: 0.35;
   cursor: not-allowed;
   pointer-events: none;
+}
+.bp-font-toggle:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+/* Entire Book header: the four layout toggles (Overview / 1 Col / Flow /
+   Hide #) are grouped behind a hairline with a tiny "Layout" caption so they
+   read as one family, distinct from the font-size controls beside them.
+   Each carries an attachIconHoverTooltip explanation (js/bible-loader.js). */
+.bp-layout-toggles {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  margin-left: 0.45em;
+  padding-left: 0.7em;
+  border-left: 1px solid #444;
+}
+.bp-layout-toggles__label {
+  font-size: 0.66em;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-secondary);
+  opacity: 0.8;
+  margin-right: 0.15em;
 }
 .bible-book.bible-book--dense.bp-overview-active {
   columns: 5 !important;
@@ -358,6 +385,60 @@ body {
   display: none !important;
 }
 
+/* Header "Read Mode" preset (index.html #bp-read-mode-btn, wired in
+   loadBibleBook): takes the header centre that the Navigation/Chapter groups
+   vacate in Entire Book mode, and is hidden everywhere else. One click =
+   1 Col + Flow + Hide # + max zoom; lit whenever that exact combination is
+   in effect, however it was reached. */
+.bp-header__read-center {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+.bp-app.bp-entire-book-mode .bp-header__read-center {
+  display: flex;
+  align-items: center;
+}
+.bp-header__read-btn {
+  background: #222;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 6px;
+  padding: 0.4em 1.4em;
+  font-size: 1.1em;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border 0.2s;
+}
+.bp-header__read-btn:hover {
+  background: #333;
+  color: var(--gold-accent);
+  border-color: var(--gold-accent);
+}
+/* Selected state is deliberately quiet — a solid gold fill sat in the eye
+   line the whole time someone was reading. A dark warm fill with a gold
+   outline, dimmed gold text and a check mark says "on" without glowing. */
+.bp-header__read-btn.active {
+  background: #26231d;
+  border-color: var(--gold-accent);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.35);
+  color: var(--gold-accent);
+  opacity: 0.78;
+}
+.bp-header__read-btn.active::before {
+  content: "\2713\00a0";
+}
+.bp-header__read-btn.active:hover {
+  opacity: 1;
+  background: #2d2922;
+}
+
 .bp-app.bp-entire-book-mode .bp-layout {
   grid-template-columns: var(--sidebar-width) 1fr var(--sidebar-width);
 }
@@ -458,10 +539,13 @@ html.bp-hide-outlines .bp-outline-hint {
 }
 
 .bible-book.bible-book--dense {
+  /* Exposed as a variable so the Flow layout's generated markers (below)
+     can size themselves from it after zeroing their host span's font. */
+  --bp-dense-font: calc(clamp(0.62rem, 0.56rem + 0.18vw, 0.76rem) * var(--bp-font-scale, 1));
   columns: 1;
   column-gap: 1.4rem;
   width: 100%;
-  font-size: calc(clamp(0.62rem, 0.56rem + 0.18vw, 0.76rem) * var(--bp-font-scale, 1));
+  font-size: var(--bp-dense-font);
   line-height: 1.35;
 }
 
@@ -469,6 +553,71 @@ html.bp-hide-outlines .bp-outline-hint {
   color: #dd8181;
   font-size: 0.92em;
   font-weight: 600;
+}
+
+/* ── Entire Book "Flow" layout (#bp-book-flow toggles .bp-flow) ──
+   Verses run together as continuous prose: the per-verse <br> is hidden and
+   a space is generated after each verse; verse numbers collapse to small
+   raised numerals (verse 1 dropped — the chapter marker covers it); each
+   "Chapter N" heading becomes an inline bold numeral at the start of its
+   chapter's run, with the one <br> before it kept so chapters start on a
+   new line. The markup is unchanged and the heading keeps a real box, so
+   scroll-to-verse and ←/→ chapter stepping (js/app.js) still work. */
+.bible-book.bible-book--dense.bp-flow br {
+  display: none;
+}
+.bible-book.bible-book--dense.bp-flow br:has(+ .bp-book-view__chapter) {
+  display: inline;
+}
+.bible-book.bible-book--dense.bp-flow .verse-text::after {
+  content: " ";
+}
+.bible-book.bible-book--dense.bp-flow .verse-num {
+  font-size: 0; /* hides the "C:V" text; ::before supplies the numeral */
+}
+.bible-book.bible-book--dense.bp-flow .verse-num::before {
+  content: attr(data-verse);
+  font-size: calc(var(--bp-dense-font) * 0.68);
+  line-height: 0;
+  position: relative;
+  top: -0.45em;
+  font-weight: 600;
+}
+.bible-book.bible-book--dense.bp-flow .verse-num[data-verse="1"] {
+  display: none;
+}
+.bible-book.bible-book--dense.bp-flow .bp-book-view__chapter {
+  display: inline-block;
+  margin: 0.55rem 0.3em 0 0;
+  font-size: 0; /* hides "Chapter N"; ::before shows the bare number */
+  vertical-align: baseline;
+}
+.bible-book.bible-book--dense.bp-flow .bp-book-view__chapter::before {
+  content: attr(data-chapter);
+  font-size: calc(var(--bp-dense-font) * 1.15);
+  line-height: 1;
+  font-weight: 700;
+  color: #dd8181;
+}
+.bible-book.bible-book--dense.bp-flow .bp-book-view__chapter:first-child {
+  margin-top: 0;
+}
+
+/* "1 Col" (#bp-book-one-col toggles .bp-one-col): one centered column of
+   reading width instead of the side-by-side grid, so the book is read top to
+   bottom in order. The cap is in ch so zooming keeps ~80 characters per line.
+   Overview (many tiny columns) wins while it is active. */
+.bible-book.bible-book--dense.bp-one-col:not(.bp-overview-active) {
+  columns: 1;
+  max-width: 80ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* "Hide #" (#bp-book-hide-nums toggles .bp-hide-nums): drop verse numbers
+   in either layout. Chapter markers stay — they anchor ←/→ stepping. */
+.bible-book.bible-book--dense.bp-hide-nums .verse-num {
+  display: none;
 }
 
 @media (min-width: 1300px) {
@@ -4121,6 +4270,13 @@ html.bp-suggestions-hidden .bp-suggest-new-link {
   }
   html.bp-mobile .bp-font-overview {
     display: none; /* 0.3x overview scale is unusable on a phone */
+  }
+  html.bp-mobile #bp-book-one-col,
+  html.bp-mobile .bp-layout-toggles__label {
+    display: none; /* phones are already one column; save header width */
+  }
+  html.bp-mobile .bp-header__read-center {
+    display: none !important; /* compact one-row header has no room */
   }
   html.bp-mobile .bp-footer,
   html.bp-mobile .bp-footer__legend {

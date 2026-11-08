@@ -4829,7 +4829,13 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
                aria-label="Font size">
         <span class="bp-font-label-lg" aria-hidden="true">A</span>
         <button class="bp-font-reset" id="bp-font-reset" title="Reset font size">&#8634;</button>
-        <button class="bp-font-overview" id="bp-font-overview" title="Overview: show entire book at minimum size">Overview</button>
+        <span class="bp-layout-toggles" role="group" aria-label="Book layout">
+          <span class="bp-layout-toggles__label" aria-hidden="true">Layout</span>
+          <button class="bp-font-overview" id="bp-font-overview">Overview</button>
+          <button class="bp-font-toggle" id="bp-book-one-col" aria-pressed="false">1 Col</button>
+          <button class="bp-font-toggle" id="bp-book-flow" aria-pressed="false">Flow</button>
+          <button class="bp-font-toggle" id="bp-book-hide-nums" aria-pressed="false">Hide #</button>
+        </span>
       </div>
     </div>`);
     html.push(
@@ -4837,7 +4843,7 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
     );
     book.chapters.forEach((chapter) => {
       html.push(
-        `<h3 class="bp-book-view__chapter">Chapter ${chapter.number}</h3>`,
+        `<h3 class="bp-book-view__chapter" data-chapter="${chapter.number}">Chapter ${chapter.number}</h3>`,
       );
       (chapter.verses || []).forEach((verse) => {
         const safeText = encodeURIComponent(verse.text || "");
@@ -4860,11 +4866,129 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
       const overview = document.getElementById("bp-font-overview");
       const bookDense = main.querySelector(".bible-book.bible-book--dense");
 
+      // Flow / Hide # layout toggles — pure CSS class flips on the dense
+      // book container (see .bp-flow / .bp-hide-nums in style.css), so the
+      // DOM, highlights, search, and ←/→ chapter stepping are untouched.
+      // Persisted across visits like the font scale.
+      const layoutToggles = [
+        {
+          id: "bp-book-one-col",
+          cls: "bp-one-col",
+          key: "bpBookOneCol",
+          tip:
+            "One column: a single centered column of comfortable reading width, read top to bottom in order. " +
+            "Off: side-by-side columns, each running the full length of the book. Not available while Overview is on.",
+        },
+        {
+          id: "bp-book-flow",
+          cls: "bp-flow",
+          key: "bpBookFlow",
+          tip:
+            "Flow: run the verses together as continuous text, like a letter or scroll, with small raised verse numerals and a bold number at each chapter. " +
+            "Suits narrative and epistles; poetry (Psalms, Proverbs, the prophets) reads better with Flow off.",
+        },
+        {
+          id: "bp-book-hide-nums",
+          cls: "bp-hide-nums",
+          key: "bpBookHideNums",
+          tip: "Hide #: remove the verse numbers for uninterrupted reading. Chapter markers stay. Works with or without Flow.",
+        },
+      ];
+      if (overview) {
+        attachIconHoverTooltip(
+          overview,
+          "Overview: shrink the whole book to its smallest size across many columns, to see its shape and where the highlights fall at a glance. " +
+            "Zoom and 1 Col are locked while it is on.",
+        );
+      }
+      const oneColBtn = document.getElementById("bp-book-one-col");
+      // id → { btn, set(on) } so the Read Mode preset below can drive the
+      // same code path as a click (class flip + aria + persistence).
+      const toggleApi = {};
+      for (const t of layoutToggles) {
+        const btn = document.getElementById(t.id);
+        if (!btn || !bookDense) continue;
+        attachIconHoverTooltip(btn, t.tip);
+        const set = (on) => {
+          btn.classList.toggle("active", on);
+          btn.setAttribute("aria-pressed", on ? "true" : "false");
+          bookDense.classList.toggle(t.cls, on);
+          localStorage.setItem(t.key, on ? "1" : "0");
+        };
+        set(localStorage.getItem(t.key) === "1");
+        toggleApi[t.id] = { btn, set };
+        btn.addEventListener("click", () => {
+          set(!btn.classList.contains("active"));
+          syncReadMode();
+        });
+      }
+
+      // ── Read Mode preset (header button, Entire Book only) ──
+      // Nothing new in itself: it presses 1 Col + Flow + Hide # and zooms the
+      // slider to its max, and lights up whenever exactly that combination is
+      // in effect (however it was reached). Clicking it while lit turns the
+      // three toggles off and resets zoom. The three toggles already persist
+      // on their own; the only extra persisted bit is the zoom, since the
+      // slider otherwise resets to 1.0 on every load.
+      const READ_MODE_IDS = ["bp-book-one-col", "bp-book-flow", "bp-book-hide-nums"];
+      const readBtn = document.getElementById("bp-read-mode-btn");
+      const sliderMax = slider ? parseFloat(slider.max) || 2 : 2;
+      function setZoom(v) {
+        if (!slider) return;
+        slider.value = String(v);
+        document.documentElement.style.setProperty("--bp-font-scale", v);
+        localStorage.setItem("bpFontScale", String(v));
+      }
+      function readModeInEffect() {
+        if (!slider || slider.disabled) return false; // Overview on
+        if (!READ_MODE_IDS.every((id) => toggleApi[id] && toggleApi[id].btn.classList.contains("active"))) {
+          return false;
+        }
+        return Math.abs(parseFloat(slider.value) - sliderMax) < 0.001;
+      }
+      function syncReadMode() {
+        const on = readModeInEffect();
+        if (readBtn) {
+          readBtn.classList.toggle("active", on);
+          readBtn.setAttribute("aria-pressed", on ? "true" : "false");
+        }
+        localStorage.setItem("bpBookReadMode", on ? "1" : "0");
+      }
+      if (readBtn) {
+        if (!readBtn.dataset.bpTipAttached) {
+          readBtn.dataset.bpTipAttached = "1";
+          attachIconHoverTooltip(
+            readBtn,
+            "Read Mode: one click sets 1 Col + Flow + Hide # and zooms the text to its largest size, for reading the book straight through like a letter. " +
+              "Click again to switch those off and reset zoom. The layout buttons on the right still work individually.",
+          );
+        }
+        // Re-bound on every book load (the header button outlives this view).
+        readBtn.onclick = () => {
+          if (readModeInEffect()) {
+            READ_MODE_IDS.forEach((id) => toggleApi[id] && toggleApi[id].set(false));
+            setZoom(1.0);
+          } else {
+            if (overview && overview.classList.contains("active")) overview.click();
+            READ_MODE_IDS.forEach((id) => toggleApi[id] && toggleApi[id].set(true));
+            setZoom(sliderMax);
+          }
+          syncReadMode();
+        };
+      }
+      // Restore the zoom half of a persisted Read Mode (toggles restore
+      // themselves above), then reflect whatever state we landed in.
+      if (localStorage.getItem("bpBookReadMode") === "1" && READ_MODE_IDS.every((id) => toggleApi[id] && toggleApi[id].btn.classList.contains("active"))) {
+        setZoom(sliderMax);
+      }
+      syncReadMode();
+
       if (slider) {
         slider.addEventListener("input", () => {
           const v = parseFloat(slider.value);
           document.documentElement.style.setProperty("--bp-font-scale", v);
           localStorage.setItem("bpFontScale", v);
+          syncReadMode();
         });
       }
       if (reset) {
@@ -4872,9 +4996,11 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
           if (overview) overview.classList.remove("active");
           if (bookDense) bookDense.classList.remove("bp-overview-active");
           if (slider) slider.disabled = false;
+          if (oneColBtn) oneColBtn.disabled = false;
           slider.value = "1.0";
           document.documentElement.style.setProperty("--bp-font-scale", 1.0);
           localStorage.setItem("bpFontScale", "1.0");
+          syncReadMode();
         });
       }
       if (overview && bookDense) {
@@ -4884,12 +5010,18 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
             bookDense.classList.add("bp-overview-active");
             document.documentElement.style.setProperty("--bp-font-scale", 0.3);
             slider.disabled = true;
+            // Overview is a many-column scan; a single column contradicts
+            // it, so the 1 Col toggle is parked (its stored state survives
+            // and applies again when Overview is switched off).
+            if (oneColBtn) oneColBtn.disabled = true;
           } else {
             bookDense.classList.remove("bp-overview-active");
             const v = parseFloat(slider.value);
             document.documentElement.style.setProperty("--bp-font-scale", v);
             slider.disabled = false;
+            if (oneColBtn) oneColBtn.disabled = false;
           }
+          syncReadMode();
         });
       }
     })();

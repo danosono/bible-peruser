@@ -562,28 +562,31 @@ document.addEventListener("DOMContentLoaded", () => {
   function bpScrollToAdjacentBookChapter(main, dir) {
     const headings = Array.from(main.querySelectorAll(".bp-book-view__chapter"));
     if (!headings.length) return;
+    const now = Date.now();
+    // Measure from where the pane is *heading*, not where it is: a second
+    // → tapped while the previous smooth scroll is still in flight would
+    // otherwise re-pick the same heading.
+    const reference =
+      bpScrollTarget !== null && now - bpScrollTargetAt < 500 ? bpScrollTarget : main.scrollTop;
     const mainTop = main.getBoundingClientRect().top;
     // Headings in neighbouring columns can sit a few px apart vertically;
     // anything within roughly one heading line of the top edge counts as
     // the current row, so →/← never ping-pong between two such headings.
     const tolerance = 20;
-    let best = null;
-    let bestOffset = null;
+    let bestTop = null;
     for (const h of headings) {
-      const offset = h.getBoundingClientRect().top - mainTop;
+      const absTop = main.scrollTop + h.getBoundingClientRect().top - mainTop;
+      const offset = absTop - reference;
       if (dir > 0 ? offset <= tolerance : offset >= -tolerance) continue;
-      if (bestOffset === null || (dir > 0 ? offset < bestOffset : offset > bestOffset)) {
-        best = h;
-        bestOffset = offset;
-      }
+      if (bestTop === null || (dir > 0 ? absTop < bestTop : absTop > bestTop)) bestTop = absTop;
     }
-    if (!best) {
+    if (bestTop === null) {
       // Nothing further in that direction: go to the very top / bottom.
-      main.scrollTo({ top: dir > 0 ? main.scrollHeight : 0, behavior: "smooth" });
-      return;
+      bestTop = dir > 0 ? main.scrollHeight : 0;
     }
-    bpScrollTarget = null;
-    main.scrollTo({ top: main.scrollTop + bestOffset, behavior: "smooth" });
+    bpScrollTarget = bestTop;
+    bpScrollTargetAt = now;
+    main.scrollTo({ top: bestTop, behavior: "smooth" });
   }
 
   // Smooth scrollBy() calls issued while a previous smooth scroll is still
