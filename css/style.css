@@ -147,6 +147,51 @@
   margin: 0.2em 0;
   text-align: center;
 }
+/* Entire Book variant: the title (plus diagram button, when the book has
+   one) sits in the left cell and the font + layout controls take the rest,
+   so the layout toggle row has the whole header width to breathe in. */
+.bp-chapter-header--book {
+  grid-template-columns: auto 1fr;
+}
+.bp-chapter-header--book .bp-book-view__head {
+  gap: 1em;
+  min-width: 0;
+}
+/* When the pane is too narrow for slider + toggles on one line (roughly
+   900–1200px windows), the toggle group wraps under the slider instead of
+   running over the title. The header is sticky and ←/→ chapter stepping
+   measures its live height, so a taller header is fine. */
+.bp-chapter-header--book .bp-font-controls {
+  flex-wrap: wrap;
+  row-gap: 0.3em;
+  min-width: 0;
+}
+.bp-chapter-header--book .bp-book-view__title {
+  grid-column: auto;
+  text-align: left;
+  margin: 0.2em 0;
+  white-space: nowrap;
+}
+@media (max-width: 1299px) {
+  /* Narrower pane (single-column book layout, ~900–1300px windows): the
+     text pane is only ~400–600px wide, so stack the header — title on one
+     row, slider + toggles left-aligned on the next — and drop the LAYOUT
+     caption (the hairline divider still groups the toggles). The header is
+     sticky and ←/→ chapter stepping measures its live height, so the extra
+     row costs nothing there. */
+  .bp-chapter-header--book {
+    grid-template-columns: 1fr;
+  }
+  .bp-chapter-header--book .bp-book-view__title {
+    white-space: normal;
+  }
+  .bp-chapter-header--book .bp-font-controls {
+    justify-content: flex-start;
+  }
+  .bp-chapter-header--book .bp-layout-toggles__label {
+    display: none;
+  }
+}
 .bp-font-controls {
   display: flex;
   align-items: center;
@@ -222,6 +267,33 @@
   margin-left: 0.45em;
   padding-left: 0.7em;
   border-left: 1px solid #444;
+}
+/* Transient status pill while a layout toggle re-lays out a large book
+   (js: withBusy in loadBibleBook). Quiet by design — see the Read Mode
+   selected state above. */
+.bp-busy-pill {
+  position: fixed;
+  top: 0.6rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(-0.4rem);
+  z-index: 1400;
+  background: #26231d;
+  color: var(--gold-accent);
+  border: 1px solid var(--gold-accent);
+  border-radius: 999px;
+  padding: 0.25em 0.9em;
+  font-size: 0.82rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.12s ease, transform 0.12s ease;
+}
+.bp-busy-pill.is-visible {
+  opacity: 0.92;
+  transform: translateX(-50%) translateY(0);
+}
+html.bp-busy,
+html.bp-busy button {
+  cursor: progress;
 }
 .bp-layout-toggles__label {
   font-size: 0.66em;
@@ -614,6 +686,82 @@ html.bp-hide-outlines .bp-outline-hint {
   margin-right: auto;
 }
 
+/* ── Layout sidecar rendering (data/layout/, see js/build-bible-layout.js) ──
+   Psalm superscriptions show in every Entire Book layout (they're text that
+   was simply missing). Paragraph marks, poetry line segments and Psalm 119
+   acrostic headings only take effect under Flow + Lines; otherwise the
+   .bp-seg spans sit inline, separated by spaces, and the page is identical
+   to the pre-sidecar rendering. */
+.bible-book.bible-book--dense .bp-superscription {
+  display: block;
+  font-style: italic;
+  font-size: 0.92em;
+  color: var(--text-secondary);
+  margin: 0 0 0.15em;
+}
+.bible-book.bible-book--dense .bp-para,
+.bible-book.bible-book--dense .bp-acrostic {
+  display: none;
+}
+/* "Lines" (#bp-book-lines toggles .bp-lines; only meaningful with .bp-flow) */
+.bible-book.bible-book--dense.bp-flow.bp-lines .bp-para {
+  display: block;
+  height: 0.55em;
+}
+.bible-book.bible-book--dense.bp-flow.bp-lines .bp-acrostic {
+  display: block;
+  font-size: 0.72em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin: 0.35em 0 0.1em;
+}
+/* Each poetry/list segment is its own block line, so a verse always starts
+   on a fresh line even after a run of prose. The verse numeral floats left
+   so the first line wraps beside it (it can't be inline: an inline before a
+   block would sit alone on its own line). Its numeral is still drawn by the
+   Flow ::before rule above — don't add another ::before here. */
+.bible-book.bible-book--dense.bp-flow.bp-lines .bp-seg {
+  display: block;
+}
+.bible-book.bible-book--dense.bp-flow.bp-lines .verse-num.bp-vn--line {
+  /* Hanging numeral: floated into the left gutter so every poetry line
+     shares one left edge (a reader's-Bible margin number). */
+  float: left;
+  /* The host span's font-size is 0 under Flow (see above), so size the
+     gutter from the dense-font variable, not em. */
+  width: calc(var(--bp-dense-font) * 1.5);
+  margin-left: calc(var(--bp-dense-font) * -1.75);
+  margin-right: calc(var(--bp-dense-font) * 0.25);
+  text-align: right;
+}
+.bible-book.bible-book--dense.bp-flow.bp-lines .verse-num.bp-vn--line::before {
+  /* In the float, align the small numeral to the top of the first line
+     instead of the raised-superscript offset used for inline numerals. */
+  position: static;
+  line-height: inherit;
+  vertical-align: top;
+}
+.bible-book.bible-book--dense.bp-flow.bp-lines .bp-seg--q2,
+.bible-book.bible-book--dense.bp-flow.bp-lines .bp-seg--li2,
+.bible-book.bible-book--dense.bp-flow.bp-lines .bp-seg--qm2 {
+  padding-left: 1.6em;
+}
+.bible-book.bible-book--dense.bp-flow.bp-lines .bp-seg--q3,
+.bible-book.bible-book--dense.bp-flow.bp-lines .bp-seg--li3,
+.bible-book.bible-book--dense.bp-flow.bp-lines .bp-seg--qm3 {
+  padding-left: 3.2em;
+}
+.bible-book.bible-book--dense.bp-flow.bp-lines .bp-seg--q4,
+.bible-book.bible-book--dense.bp-flow.bp-lines .bp-seg--li4 {
+  padding-left: 4.8em;
+}
+.bible-book.bible-book--dense.bp-flow.bp-lines .bp-seg--qr {
+  text-align: right;
+}
+.bible-book.bible-book--dense.bp-flow.bp-lines .bp-seg--qc {
+  text-align: center;
+}
 /* "Hide #" (#bp-book-hide-nums toggles .bp-hide-nums): drop verse numbers
    in either layout. Chapter markers stay — they anchor ←/→ stepping. */
 .bible-book.bible-book--dense.bp-hide-nums .verse-num {
@@ -3501,6 +3649,10 @@ html.bp-hide-outlines .topic-outline-btn {
     padding: 0.2em 0.55em;
     font-size: 0.9em;
   }
+  .bp-header__read-btn {
+    padding: 0.25em 0.9em;
+    font-size: 0.9em;
+  }
   .bp-header__nav-group,
   .bp-header__chapter-group {
     padding: 0.2em 0.55em;
@@ -3633,6 +3785,28 @@ html.bp-hide-outlines .topic-outline-btn {
     padding: 0.14em 0.4em;
   }
 
+  /* In Entire Book mode the Navigation/Chapter groups (which this block
+     gives a second header row to) are hidden, so Read Mode would sit alone
+     on an otherwise empty row. Put it inline on the first row instead,
+     centred in the free space between the Jump box and the right-hand
+     links, and give the row back the height the hidden groups reserved. */
+  .bp-app.bp-entire-book-mode .bp-header__read-center {
+    order: 2;
+    position: static;
+    left: auto;
+    top: auto;
+    transform: none;
+    margin: 0 auto;
+    align-self: center;
+  }
+  .bp-app.bp-entire-book-mode .bp-header {
+    min-height: 0;
+    align-items: center;
+  }
+  .bp-header__read-btn {
+    font-size: 0.8em;
+    padding: 0.14em 0.7em;
+  }
 }
 
 /* =====================================================================
