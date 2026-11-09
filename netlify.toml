@@ -7,6 +7,19 @@
 # week of being deployed. data/topics/** and data/bookwide/** are under
 # active study-note editing, so they intentionally keep Netlify's default
 # (always-revalidate) behavior and aren't listed here.
+# Keep the signed-in-only pages out of search results at the HTTP level too
+# (their <meta name="robots"> tags already say so; crawlers that don't
+# execute HTML still honor the header).
+[[headers]]
+  for = "/admin.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/profile.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
 [[headers]]
   for = "/data/bible.json"
   [headers.values]

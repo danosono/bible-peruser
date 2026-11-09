@@ -1,0 +1,20 @@
+{
+  "name": "Bible Peruser",
+  "short_name": "Bible Peruser",
+  "description": "Read and study the Berean Standard Bible: chapter outlines, study notes, highlights, cross-references, timeline, people and places.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#181a1b",
+  "theme_color": "#181a1b",
+  "lang": "en",
+  "categories": ["books", "education", "reference"],
+  "icons": [
+    {
+      "src": "images/favicon-peruser-v1.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

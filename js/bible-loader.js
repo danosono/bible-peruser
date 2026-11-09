@@ -3889,6 +3889,9 @@ async function loadBibleChapter(
       chapterCount > 0
         ? `<span class="bp-chapter-header__of"> of ${chapterCount}</span>`
         : "";
+    // Tab title / history entries name the passage ("Matthew 5 — Bible
+    // Peruser") instead of every entry reading the same.
+    document.title = `${bookName} ${chapterNum} — Bible Peruser`;
     let html = `<div class="bp-chapter-header">
       <div class="bp-diagram-controls">${rsvpButtonMarkup()}${diagramButtonMarkup()}${chapterPosMarkup}</div>
       <h2>${bookName} ${chapterNum}${chapterOfMarkup}</h2>
@@ -4865,6 +4868,7 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
     // Entire Book header: title + optional diagram button share the left
     // cell; the font slider and layout toggles take the rest (chapter view
     // keeps its centered title — see .bp-chapter-header--book in style.css).
+    document.title = `${bookName} (Entire Book) — Bible Peruser`;
     html.push(`<div class="bp-chapter-header bp-chapter-header--book">
       <div class="bp-diagram-controls bp-book-view__head">
         <h2 class="bp-book-view__title">${bookName} (Entire Book)</h2>
