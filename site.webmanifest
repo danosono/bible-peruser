@@ -1,7 +1,7 @@
 {
   "name": "Bible Peruser",
   "short_name": "Bible Peruser",
-  "description": "Read and study the Berean Standard Bible: chapter outlines, study notes, highlights, cross-references, timeline, people and places.",
+  "description": "Read and study the Bible: chapter outlines, study notes, highlights, cross-references, timeline, people and places.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
