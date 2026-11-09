@@ -376,6 +376,7 @@ document.addEventListener("DOMContentLoaded", () => {
       '<a href="https://bible-explorer.gospelgo.org/" target="_blank" rel="noopener">Bible Explorer</a>, which locates verses by topic.</p>' +
       "<p>Spot something worth adding? Make a free account to suggest an edit, or your own labels and highlights — look for the ✏️ icon next to any button (on hover).</p>" +
       "<p>Switch to Entire Book (top left) to view the entire book with similar features.</p>" +
+      "<p>The eye button in the chapter header opens the Focus Reader, which shows the text one word at a time at a pace you set — a reading technique known as Rapid Serial Visual Presentation (RSVP). Useful as a pacer, and for anyone who finds a page of text hard to track.</p>" +
       "<p>Even the features have features — open any window here and look for more inside.</p>";
     modal.appendChild(body);
 
@@ -524,6 +525,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ".bp-chiasm-overlay",
     ".bp-chiasm-explainer-overlay",
     ".bp-diagram-overlay",
+    ".bp-rsvp-overlay",
     ".bp-compare-overlay",
     ".bp-timeline-overlay",
     ".bp-info-modal",

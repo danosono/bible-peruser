@@ -1157,6 +1157,30 @@ function openDiagramModal(diagramData, hostBookId) {
   document.body.appendChild(overlay);
 }
 
+// Markup for the chapter-header Focus Reader (eye) button, shared by the
+// per-chapter and entire-book header templates. Always shown (unlike the
+// Diagram button, it needs no per-chapter data). The click is handled by a
+// document-level listener in js/bp-rsvp.js, since this button is
+// re-rendered with every chapter load; only the hover tooltip is wired here.
+function rsvpButtonMarkup() {
+  return `<button class="bp-diagram-btn bp-rsvp-btn" id="bp-rsvp-btn" type="button" aria-pressed="false" aria-label="Focus Reader">
+    <svg class="bp-diagram-btn__icon" aria-hidden="true" viewBox="0 0 16 16" width="15" height="15">
+      <path d="M1.5 8s2.4-4.3 6.5-4.3S14.5 8 14.5 8s-2.4 4.3-6.5 4.3S1.5 8 1.5 8z"></path>
+      <circle cx="8" cy="8" r="2.1"></circle>
+    </svg>
+    <span class="bp-diagram-btn__label">Focus</span>
+  </button>`;
+}
+function wireRsvpButton() {
+  const btn = document.getElementById("bp-rsvp-btn");
+  if (!btn || btn._bpTooltipWired) return;
+  btn._bpTooltipWired = true;
+  attachIconHoverTooltip(
+    btn,
+    "Focus Reader: shows the text one word at a time at a pace you set, starting from the verse in view. Space pauses and shows the whole verse.",
+  );
+}
+
 // Markup for the chapter-header Diagram button, shared by the per-chapter
 // and entire-book header templates. Starts hidden (shown only once
 // wireDiagramButton() confirms this chapter/book actually has one) with a
@@ -3866,7 +3890,7 @@ async function loadBibleChapter(
         ? `<span class="bp-chapter-header__of"> of ${chapterCount}</span>`
         : "";
     let html = `<div class="bp-chapter-header">
-      <div class="bp-diagram-controls">${diagramButtonMarkup()}${chapterPosMarkup}</div>
+      <div class="bp-diagram-controls">${rsvpButtonMarkup()}${diagramButtonMarkup()}${chapterPosMarkup}</div>
       <h2>${bookName} ${chapterNum}${chapterOfMarkup}</h2>
       <div class="bp-font-controls">
         <span class="bp-font-label-sm" aria-hidden="true">A</span>
@@ -3927,6 +3951,7 @@ async function loadBibleChapter(
     }
     html += "</div>";
     main.innerHTML = html;
+    wireRsvpButton();
     snapChapterPosTrack();
     if (!_chapterPosResizeHooked) {
       _chapterPosResizeHooked = true;
@@ -4843,6 +4868,7 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
     html.push(`<div class="bp-chapter-header bp-chapter-header--book">
       <div class="bp-diagram-controls bp-book-view__head">
         <h2 class="bp-book-view__title">${bookName} (Entire Book)</h2>
+        ${rsvpButtonMarkup()}
         ${diagramButtonMarkup()}
       </div>
       <div class="bp-font-controls">
@@ -4922,6 +4948,7 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
     html.push(`</div>`);
     html.push(`</div>`);
     main.innerHTML = html.join("");
+    wireRsvpButton();
 
     // Wire font-size slider and Overview toggle
     (function () {
@@ -5710,6 +5737,9 @@ if (typeof window !== "undefined") {
   window.bookOrder = bookOrder;
   window.parseBookChapterInput = parseBookChapterInput;
   window.autoHighlightVerseRange = autoHighlightVerseRange;
+  // Cached bible.json for js/bp-rsvp.js (a separate module), so the Focus
+  // Reader never fetches the 6 MB file a second time.
+  window.bpGetBibleData = getBibleData;
   window.bookNameFor = (id) => bookNames[id] || id;
   document.addEventListener("DOMContentLoaded", () => {
     let bookId = "MAT";

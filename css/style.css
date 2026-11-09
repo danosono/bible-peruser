@@ -4213,6 +4213,325 @@ html.bp-suggestions-hidden .bp-suggest-new-link {
    Desktop (>=900px) is untouched: everything here is gated on both the
    media query and the html.bp-mobile class.
    ===================================================================== */
+
+/* ── Focus Reader (js/bp-rsvp.js) ──────────────────────────────────────────
+   RSVP word-at-a-time reader. Windowed by default — draggable, no scrim,
+   click-through outside the box, same rationale as .bp-diagram-overlay —
+   and .bp-rsvp-overlay--full grows it over a solid backdrop for
+   distraction-free reading (the browser Fullscreen API is layered on top
+   where available). The focal letter is tinted with the theme accent so the
+   eye has a fixed point to rest on; the guide ticks above and below mark
+   the same column. */
+.bp-rsvp-btn[aria-pressed="true"] {
+  border-color: var(--accent);
+  color: var(--accent);
+  opacity: 0.85;
+}
+.bp-rsvp-overlay {
+  position: fixed;
+  inset: 0;
+  background: transparent;
+  pointer-events: none;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+.bp-rsvp-modal {
+  pointer-events: auto;
+  background: #23272a;
+  color: #f5f6fa;
+  border: 1px solid #444;
+  border-radius: 10px;
+  width: min(720px, 100%);
+  max-height: min(90vh, 90dvh);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  outline: none;
+}
+.bp-rsvp__header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 0.7rem 0.55rem 1rem;
+  border-bottom: 1px solid #333;
+}
+.bp-rsvp__title {
+  flex: 1;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+.bp-rsvp__icon-btn {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.3rem 0.4rem;
+  line-height: 1;
+}
+.bp-rsvp__icon-btn:hover,
+.bp-rsvp__icon-btn:focus-visible {
+  color: var(--gold-accent);
+  border-color: #444;
+}
+.bp-rsvp__close {
+  font-size: 1.1rem;
+}
+.bp-rsvp__stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.6rem 1rem 1rem;
+  cursor: pointer;
+  user-select: none;
+  min-height: 11rem;
+}
+.bp-rsvp__guide {
+  width: 2px;
+  height: 0.55rem;
+  background: var(--text-tertiary);
+  opacity: 0.55;
+}
+.bp-rsvp__guide--top {
+  margin-bottom: 0.35rem;
+}
+.bp-rsvp__guide--bottom {
+  margin-top: 0.35rem;
+}
+/* Three cells, pivot letter in the auto-width middle one: the letter stays
+   on the same screen column no matter how long the word is. */
+.bp-rsvp__word {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: baseline;
+  width: 100%;
+  font-size: clamp(2rem, 6vw, 3.4rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  white-space: pre;
+  font-variant-numeric: tabular-nums;
+}
+.bp-rsvp__before {
+  text-align: right;
+}
+.bp-rsvp__pivot {
+  color: var(--accent-light);
+}
+.bp-rsvp__after {
+  text-align: left;
+}
+.bp-rsvp__word--heading {
+  grid-template-columns: 1fr;
+  text-align: center;
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+  color: var(--text-secondary);
+}
+.bp-rsvp__word--heading .bp-rsvp__pivot {
+  color: inherit;
+}
+.bp-rsvp__word--heading .bp-rsvp__before,
+.bp-rsvp__word--heading .bp-rsvp__after {
+  display: none;
+}
+.bp-rsvp__ref {
+  margin-top: 0.9rem;
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+  letter-spacing: 0.04em;
+  min-height: 1.2em;
+}
+/* Whole verse, shown only while paused (current word in bold). */
+.bp-rsvp__context {
+  margin-top: 0.7rem;
+  max-width: 56ch;
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  min-height: 3em;
+}
+.bp-rsvp__context b {
+  color: var(--text-main);
+  font-weight: 600;
+}
+/* Time-left estimate; paused-state only, like the verse above it. */
+.bp-rsvp__time {
+  margin-top: 0.6rem;
+  font-size: 0.74rem;
+  color: var(--text-tertiary);
+  text-align: center;
+  min-height: 1.2em;
+}
+.bp-rsvp__progress {
+  height: 3px;
+  background: #333;
+}
+.bp-rsvp__progress-fill {
+  height: 100%;
+  width: 0;
+  background: var(--accent);
+  opacity: 0.7;
+  transition: width 0.15s linear;
+}
+.bp-rsvp__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem 1.4rem;
+  padding: 0.8rem 1rem 0.5rem;
+}
+.bp-rsvp__transport {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.bp-rsvp__play {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  border: 1px solid var(--text-secondary);
+  background: transparent;
+  color: var(--text-main);
+  cursor: pointer;
+}
+.bp-rsvp__play:hover,
+.bp-rsvp__play:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent-light);
+}
+.bp-rsvp__speed,
+.bp-rsvp__chunk {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+.bp-rsvp__caption {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-tertiary);
+}
+.bp-rsvp__slider {
+  width: 9rem;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+.bp-rsvp__speed-value {
+  min-width: 4.6em;
+  font-variant-numeric: tabular-nums;
+}
+/* Segmented toggles (Words 1/2/3, Chapter end Stop/Continue): joined
+   buttons sharing borders, so the group reads as one control with a
+   selected state rather than a row of separate action buttons. */
+.bp-rsvp__segs {
+  display: inline-flex;
+}
+.bp-rsvp__seg {
+  background: none;
+  border: 1px solid var(--text-secondary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 0.75rem;
+  padding: 0.2em 0.7em;
+  border-radius: 0;
+  margin-left: -1px;
+  line-height: 1.3;
+  position: relative;
+}
+.bp-rsvp__seg:first-child {
+  margin-left: 0;
+  border-radius: 4px 0 0 4px;
+}
+.bp-rsvp__seg:last-child {
+  border-radius: 0 4px 4px 0;
+}
+.bp-rsvp__seg:hover {
+  color: var(--text-main);
+  z-index: 1;
+}
+.bp-rsvp__seg.active {
+  border-color: var(--accent);
+  color: var(--text-main);
+  background: rgba(91, 127, 214, 0.3);
+  background: color-mix(in srgb, var(--accent) 30%, transparent);
+  z-index: 2;
+}
+.bp-rsvp__hint {
+  padding: 0.3rem 1rem 0.75rem;
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--text-tertiary);
+}
+.bp-rsvp__hint kbd {
+  font-family: inherit;
+  font-size: 0.95em;
+  border: 1px solid #444;
+  border-radius: 3px;
+  padding: 0 0.35em;
+  background: #1d2022;
+}
+/* Full mode. The !important overrides undo attachModalDrag's inline
+   position/top/left so a dragged window still fills the viewport, and
+   come back untouched when full mode is left. */
+.bp-rsvp-overlay--full {
+  pointer-events: auto;
+  background: var(--bg-main);
+  padding: 0;
+}
+.bp-rsvp-overlay--full .bp-rsvp-modal {
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  margin: 0 !important;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: var(--bg-main);
+}
+.bp-rsvp-overlay--full .bp-rsvp__header {
+  border-bottom-color: transparent;
+}
+.bp-rsvp-overlay--full .bp-rsvp__stage {
+  flex: 1;
+  justify-content: center;
+}
+.bp-rsvp-overlay--full .bp-rsvp__word {
+  font-size: clamp(2.6rem, 7vw, 6rem);
+}
+.bp-rsvp-overlay--full .bp-rsvp__context {
+  font-size: 1.1rem;
+  max-width: 64ch;
+}
+.bp-rsvp-overlay--full .bp-rsvp__time {
+  font-size: 0.85rem;
+}
+.bp-rsvp-overlay--full .bp-rsvp__controls {
+  padding-bottom: 1rem;
+}
+
 @media (max-width: 899px) {
   html.bp-mobile .bp-app {
     height: 100vh;
@@ -4438,6 +4757,23 @@ html.bp-suggestions-hidden .bp-suggest-new-link {
   }
   html.bp-mobile .bp-diagram-btn {
     padding: 0.15em 0.4em;
+  }
+  html.bp-mobile .bp-rsvp-modal {
+    width: 100%;
+    max-height: min(92vh, 92dvh);
+  }
+  html.bp-mobile .bp-rsvp__slider {
+    width: 6.5rem;
+  }
+  /* A 20-char 3-word chunk must still fit a 320px phone in one line. */
+  html.bp-mobile .bp-rsvp__word {
+    font-size: clamp(1.5rem, 7vw, 2.4rem);
+  }
+  html.bp-mobile .bp-rsvp-overlay--full .bp-rsvp__word {
+    font-size: clamp(1.7rem, 8vw, 3rem);
+  }
+  html.bp-mobile .bp-rsvp__controls {
+    gap: 0.5rem 0.9rem;
   }
   html.bp-mobile .bp-font-slider {
     width: 5em;
