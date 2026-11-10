@@ -2,7 +2,42 @@
   "bookWideOutline": [],
   "bookWideLabels": [
     {
-      "label": "twist/trap",
+      "label": "Why listen to Paul",
+      "color": "blue",
+      "verses": ["1:1-7"],
+      "emphasis": ["Jesus", "Christ", "Lord", "apostle", "resurrection"]
+    },
+    {
+      "label": "Gospel is the message",
+      "color": "blue",
+      "verses": ["1:8-17"],
+      "emphasis": ["gospel", "His Son"]
+    },
+    {
+      "label": "Why gospel is needed",
+      "color": "blue",
+      "verses": ["1:18-3:20"],
+      "emphasis": [
+        "wrath of God",
+        "wickedness",
+        " sin",
+        "God “will repay each one according to his deeds.”",
+        "Therefore no one will be justified in His sight by works of the law. For the law merely brings awareness of sin"
+      ]
+    },
+    {
+      "label": "The gospel",
+      "color": "blue",
+      "verses": ["3:21-26"],
+      "emphasis": [
+        "righteousness from God comes through faith in Jesus Christ to all who believe",
+        "justified freely by His grace through the redemption that is in Christ Jesus",
+        "God presented Him as an atoning sacrifice in His blood through faith",
+        "to justify the one who has faith in Jesus."
+      ]
+    },
+    {
+      "label": "twist",
       "verses": ["1:32", "2:1"],
       "references": [""],
       "emphasis": ["they", "you"]

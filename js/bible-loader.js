@@ -3616,6 +3616,31 @@ function decorateTopicButtonWithNote(btn, noteText, helperText, onClose) {
 // Hidden by default, revealed on hover/focus of the whole button (see
 // .suggest-link-icon in css/style.css) so it doesn't visually compete with
 // the 📖/📝 icons that already exist on busy buttons.
+// Optional `color` on a label/highlight entry (chapter-level or book-wide):
+// tints that sidebar button's text and gives it a left edge, so a few
+// entries can be set apart from the rest or tied to each other (same color
+// = these belong together). Button appearance only — verse highlighting is
+// untouched. Same four tag names as diagram nodes, but lighter values
+// (--topic-color-* in css/style.css), since here the color is text on a dark
+// button rather than a node fill. An unrecognized string is used as a raw
+// CSS color, same escape hatch as DIAGRAM_NODE_COLORS.
+const TOPIC_TAG_COLORS = {
+  blue: "var(--topic-color-blue, #8fb4ff)",
+  purple: "var(--topic-color-purple, #c3a6f0)",
+  teal: "var(--topic-color-teal, #6fd0b8)",
+  amber: "var(--topic-color-amber, #f0a35e)",
+};
+
+function applyTopicButtonColor(btn, color) {
+  const key = typeof color === "string" ? color.trim() : "";
+  if (!btn || !key) return;
+  btn.dataset.color = key;
+  btn.style.setProperty(
+    "--topic-tag",
+    TOPIC_TAG_COLORS[key.toLowerCase()] || key,
+  );
+}
+
 function decorateTopicButtonWithSuggest(btn, ctx) {
   btn.classList.add("topic-btn--with-reference");
   const icon = document.createElement("span");
@@ -4199,6 +4224,7 @@ async function loadBibleChapter(
             entry: topic,
             entryIndex: topicIdx,
           });
+          applyTopicButtonColor(btn, topic.color);
           const emphasisPhrases = normalizePhraseList(topic.emphasis);
           if (emphasisPhrases.length) {
             btn._emphasisPhrases = emphasisPhrases;
@@ -4360,6 +4386,7 @@ async function loadBibleChapter(
             entry: topic,
             entryIndex: topicIdx,
           });
+          applyTopicButtonColor(btn, topic.color);
           highlightBar.appendChild(btn);
         }
       });
@@ -5409,6 +5436,7 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
           entry: labelEntry,
           entryIndex: labelIdx,
         });
+        applyTopicButtonColor(btn, labelEntry.color);
         if (labelEntry.emphasis) {
           const emphasisPhrases = normalizePhraseList(labelEntry.emphasis);
           if (emphasisPhrases.length) {
@@ -5522,6 +5550,7 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
             entry,
             entryIndex: entryIdx,
           });
+          applyTopicButtonColor(btn, entry.color);
           bookHighlightBar.appendChild(btn);
         });
         bookHighlightBar.appendChild(

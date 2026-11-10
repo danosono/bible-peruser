@@ -366,6 +366,15 @@ html.bp-busy button {
   --diagram-color-purple: #5a3f7a;
   --diagram-color-teal: #2f6b5e;
   --diagram-color-amber: #8a5a2f;
+  /* Label/highlight button color tags (js/bible-loader.js's
+     TOPIC_TAG_COLORS, the optional `color` field on a label/highlight
+     entry). Same four names as the diagram tags but lighter, because these
+     are text and a left edge on a dark button, not a fill. Amber leans
+     orange so it stays distinct from the default gold label text. */
+  --topic-color-blue: #8fb4ff;
+  --topic-color-purple: #c3a6f0;
+  --topic-color-teal: #6fd0b8;
+  --topic-color-amber: #f0a35e;
 }
 
 /* Seasonal / holiday accent themes — js/bp-theme.js sets data-theme on <html>.
@@ -1613,6 +1622,15 @@ footer {
 .topic-label-btn:active {
   background: #3e4c5a;
   color: #fffde7;
+}
+/* Entry-level `color` tag (applyTopicButtonColor sets data-color and
+   --topic-tag): tinted text plus a left edge. The edge survives the active
+   state; the text tint yields to the active colors. */
+.topic-btn[data-color] {
+  border-left: 3px solid var(--topic-tag);
+}
+.topic-btn[data-color]:not(.active) {
+  color: var(--topic-tag);
 }
 .topic-btn--with-reference {
   display: inline-flex;
@@ -4530,6 +4548,111 @@ html.bp-suggestions-hidden .bp-suggest-new-link {
 }
 .bp-rsvp-overlay--full .bp-rsvp__controls {
   padding-bottom: 1rem;
+}
+/* 4K: the reader is appended to <body>, outside .bp-app, so it gets none of
+   the app's 4K font bump and everything above is sized in rem. Scale the
+   whole window about 1.5x here (windowed and full). */
+@media (min-width: 3000px) {
+  .bp-rsvp-modal {
+    width: min(1080px, 100%);
+  }
+  .bp-rsvp__header {
+    padding: 0.8rem 1rem 0.8rem 1.5rem;
+    gap: 0.6rem;
+  }
+  .bp-rsvp__title {
+    font-size: 1.5rem;
+  }
+  .bp-rsvp__icon-btn {
+    padding: 0.45rem 0.6rem;
+  }
+  .bp-rsvp__icon-btn svg {
+    width: 27px;
+    height: 27px;
+  }
+  .bp-rsvp__close {
+    font-size: 1.65rem;
+  }
+  .bp-rsvp__stage {
+    padding: 2.4rem 1.5rem 1.5rem;
+    min-height: 16.5rem;
+  }
+  .bp-rsvp__guide {
+    width: 3px;
+    height: 0.8rem;
+  }
+  .bp-rsvp__guide--top {
+    margin-bottom: 0.5rem;
+  }
+  .bp-rsvp__guide--bottom {
+    margin-top: 0.5rem;
+  }
+  .bp-rsvp__word {
+    font-size: 5.1rem;
+  }
+  .bp-rsvp__word--heading {
+    font-size: 3.3rem;
+  }
+  .bp-rsvp__ref {
+    margin-top: 1.35rem;
+    font-size: 1.2rem;
+  }
+  .bp-rsvp__context {
+    margin-top: 1.05rem;
+    font-size: 1.4rem;
+  }
+  .bp-rsvp__time {
+    margin-top: 0.9rem;
+    font-size: 1.1rem;
+  }
+  .bp-rsvp__progress {
+    height: 4px;
+  }
+  .bp-rsvp__controls {
+    gap: 0.9rem 2.1rem;
+    padding: 1.2rem 1.5rem 0.75rem;
+  }
+  .bp-rsvp__transport {
+    gap: 0.6rem;
+  }
+  .bp-rsvp__play {
+    width: 4.2rem;
+    height: 4.2rem;
+  }
+  .bp-rsvp__play svg {
+    width: 33px;
+    height: 33px;
+  }
+  .bp-rsvp__speed,
+  .bp-rsvp__chunk {
+    gap: 0.7rem;
+    font-size: 1.2rem;
+  }
+  .bp-rsvp__caption {
+    font-size: 1.05rem;
+  }
+  .bp-rsvp__slider {
+    width: 13.5rem;
+  }
+  .bp-rsvp__seg {
+    font-size: 1.12rem;
+  }
+  .bp-rsvp__hint {
+    padding: 0.45rem 1.5rem 1.1rem;
+    font-size: 1.08rem;
+  }
+  .bp-rsvp-overlay--full .bp-rsvp__word {
+    font-size: 9rem;
+  }
+  .bp-rsvp-overlay--full .bp-rsvp__context {
+    font-size: 1.65rem;
+  }
+  .bp-rsvp-overlay--full .bp-rsvp__time {
+    font-size: 1.3rem;
+  }
+  .bp-rsvp-overlay--full .bp-rsvp__controls {
+    padding-bottom: 1.5rem;
+  }
 }
 
 @media (max-width: 899px) {

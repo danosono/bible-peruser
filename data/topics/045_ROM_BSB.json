@@ -17,6 +17,24 @@
         "references": []
       },
       {
+        "label": "Why listen to Paul?",
+        "color": "blue",
+        "verses": ["1-7"],
+        "emphasis": ["Jesus", "Christ", "Lord", "apostle", "resurrection"]
+      },
+      {
+        "label": "Gospel is the message",
+        "color": "blue",
+        "verses": ["8-17"],
+        "emphasis": ["gospel", "His Son"]
+      },
+      {
+        "label": "Why gospel is needed",
+        "color": "blue",
+        "verses": ["18-32"],
+        "emphasis": ["wrath of God", "wickedness"]
+      },
+      {
         "label": "Paul is an Apostle",
         "verses": ["1"],
         "references": [
@@ -880,16 +898,17 @@
         "links": [
           {
             "label": "Bible Explorer: Rebellion Against God",
-            "url": "http://127.0.0.1:5502/index.html?dataset=bsb-topics&topic=Rebellion+Against+God"
+            "url": "https://bible-explorer.gospelgo.org/?dataset=bsb-topics&topic=Rebellion+Against+God"
           },
           {
             "label": "Bible Explorer: Depraved",
-            "url": "http://127.0.0.1:5502/index.html?dataset=concordance&topic=Depraved"
+            "url": "https://bible-explorer.gospelgo.org/?dataset=concordance&topic=Depraved"
           }
         ]
       },
       {
         "highlight": "rejected God",
+        "color": "teal",
         "text": [
           "without excuse",
           "became futile in their thinking and darkened in their foolish hearts",
@@ -904,6 +923,7 @@
       },
       {
         "highlight": "consequences",
+        "color": "teal",
         "text": [
           "God gave them over",
           "gave them up to a depraved mind",
@@ -912,6 +932,7 @@
       },
       {
         "highlight": "traits",
+        "color": "teal",
         "text": [
           "wickedness",
           "evil",
@@ -949,9 +970,33 @@
         "references": []
       },
       {
-        "label": "Twist / trap",
+        "label": "Why gospel is needed",
+        "color": "blue",
+        "verses": ["1-29"],
+        "emphasis": ["God “will repay each one according to his deeds.”"]
+      },
+      {
+        "label": "Twist",
         "verses": ["1"],
         "references": ["Romans 1:32 - they"],
+        "emphasis": ["you"]
+      },
+      {
+        "label": "Deeds",
+        "verses": ["6"],
+        "references": [
+          "Romans 2:6",
+          "Psalm 62:12",
+          "Proverbs 24:12",
+          "Ecclesiastes 12:14",
+          "Jeremiah 17:10",
+          "Jeremiah 32:19",
+          "2 Timothy 4:14",
+          "1 Peter 1:17",
+          "Revelation 2:23",
+          "Revelation 20:12-13",
+          "Revelation 22:12"
+        ],
         "emphasis": ["you"]
       },
       {
@@ -977,7 +1022,11 @@
           "James 1:26-27",
           "1 John 4:20"
         ],
-        "emphasis": ["you who boast in the law, do you dishonor God by breaking the law?", "God’s name is blasphemed", "because of you"]
+        "emphasis": [
+          "you who boast in the law, do you dishonor God by breaking the law?",
+          "God’s name is blasphemed",
+          "because of you"
+        ]
       }
     ],
     "3": [
@@ -995,6 +1044,36 @@
         "outline": "Righteousness through Faith in Christ",
         "verses": ["21-31"],
         "references": ["Philippians 3:1–11"]
+      },
+      {
+        "label": "Why gospel is needed",
+        "color": "blue",
+        "verses": ["1-20"],
+        "emphasis": [
+          "There is no one righteous, not even one",
+          "All have turned away",
+          "Therefore no one will be justified in His sight by works of the law"
+        ]
+      },
+      {
+        "label": "The gospel",
+        "color": "blue",
+        "verses": ["21-26"],
+        "emphasis": [
+          "righteousness from God comes through faith in Jesus Christ to all who believe",
+          "justified freely by His grace through the redemption that is in Christ Jesus",
+          "God presented Him as an atoning sacrifice in His blood through faith",
+          "to justify the one who has faith in Jesus."
+        ]
+      },
+      {
+        "label": "Gospel contrast",
+        "verses": ["20-26"],
+        "emphasis": [
+          "no one will be justified in His sight by works of the law",
+          "justified freely by His grace through the redemption that is in Christ Jesus",
+          "justify the one who has faith in Jesus"
+        ]
       }
     ],
     "4": [
