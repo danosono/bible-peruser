@@ -11,8 +11,8 @@
 // touching the chapter view underneath. Only on close does it sync the page.
 //
 // Keys while open (also listed in the window's footer): Space play/pause,
-// ← / → previous/next verse, ↑ / ↓ speed, F fullscreen, Esc leaves
-// fullscreen first and closes on a second press.
+// ← / → previous/next verse, Shift+← / Shift+→ start of chapter / next
+// chapter, ↑ / ↓ speed, F fullscreen, Esc closes.
 import { bookNames, bookOrder } from "./bible-utils.js";
 
 const WPM_MIN = 100;
@@ -32,6 +32,10 @@ const CHUNK_MAX_CHARS = 20;
 // First few items after Play run slower and speed up to the set pace, so
 // the eye has time to settle on the focal point.
 const RAMP_ITEMS = 6;
+// While playing, a second "start of chapter" press within this window goes
+// on to the previous chapter — by then the reader has already moved a word
+// or two past verse 1, so "already at the start" can't be an exact test.
+const CHAPTER_REWIND_GRACE_MS = 1500;
 
 function lsGet(key) {
   try {
@@ -244,6 +248,10 @@ const ICON_PREV =
   '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 5v14M18 5.5v13L8.5 12z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></svg>';
 const ICON_NEXT =
   '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M18 5v14M6 5.5v13l9.5-6.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></svg>';
+const ICON_PREV_CHAPTER =
+  '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M11.5 6v12l-7-6zM19.5 6v12l-7-6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></svg>';
+const ICON_NEXT_CHAPTER =
+  '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4.5 6v12l7-6zM12.5 6v12l7-6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></svg>';
 const ICON_FULL =
   '<svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
 const ICON_UNFULL =
@@ -376,7 +384,19 @@ async function openRsvpReader() {
   nextBtn.title = "Next verse (→)";
   nextBtn.setAttribute("aria-label", "Next verse");
   nextBtn.innerHTML = ICON_NEXT;
-  transport.append(prevBtn, playBtn, nextBtn);
+  const prevChapterBtn = document.createElement("button");
+  prevChapterBtn.type = "button";
+  prevChapterBtn.className = "bp-rsvp__icon-btn";
+  prevChapterBtn.title = "Start of chapter, then previous chapter (Shift+←)";
+  prevChapterBtn.setAttribute("aria-label", "Start of chapter, then previous chapter");
+  prevChapterBtn.innerHTML = ICON_PREV_CHAPTER;
+  const nextChapterBtn = document.createElement("button");
+  nextChapterBtn.type = "button";
+  nextChapterBtn.className = "bp-rsvp__icon-btn";
+  nextChapterBtn.title = "Next chapter (Shift+→)";
+  nextChapterBtn.setAttribute("aria-label", "Next chapter");
+  nextChapterBtn.innerHTML = ICON_NEXT_CHAPTER;
+  transport.append(prevChapterBtn, prevBtn, playBtn, nextBtn, nextChapterBtn);
 
   const speedWrap = document.createElement("label");
   speedWrap.className = "bp-rsvp__speed";
@@ -450,6 +470,7 @@ async function openRsvpReader() {
   hint.className = "bp-rsvp__hint";
   hint.innerHTML =
     "<kbd>Space</kbd> play / pause &middot; <kbd>&larr;</kbd> <kbd>&rarr;</kbd> verse &middot; " +
+    "<kbd>Shift</kbd>+<kbd>&larr;</kbd> <kbd>&rarr;</kbd> chapter &middot; " +
     "<kbd>&uarr;</kbd> <kbd>&darr;</kbd> speed &middot; <kbd>F</kbd> fullscreen &middot; <kbd>Esc</kbd> close";
   modal.appendChild(hint);
 
@@ -832,6 +853,58 @@ async function openRsvpReader() {
     if (playing) schedule();
   }
 
+  // ⏪ : verse 1 of this chapter, or (already there) verse 1 of the one
+  // before. Lands on the verse itself, never a heading card.
+  let lastChapterRewindAt = 0;
+  function prevChapter() {
+    const now = performance.now();
+    if (finished) {
+      finished = false;
+      loadChapter({ bookId, chapterNum }, false);
+      idx = 0;
+    } else if (atChapterEnd) {
+      atChapterEnd = false;
+      idx = Math.max(
+        0,
+        items.findIndex((it) => !it.heading),
+      );
+    } else {
+      const first = Math.max(
+        0,
+        items.findIndex((it) => !it.heading),
+      );
+      const cur = items[idx];
+      const inFirstVerse = !!cur && !cur.heading && cur.verseN === items[first].verseN;
+      const atStart =
+        idx <= first ||
+        (playing && inFirstVerse && now - lastChapterRewindAt < CHAPTER_REWIND_GRACE_MS);
+      if (!atStart) {
+        idx = first;
+      } else {
+        const prev = neighbourChapter(-1);
+        if (prev && loadChapter(prev, false)) idx = 0;
+        else idx = first;
+      }
+    }
+    lastChapterRewindAt = now;
+    rampLeft = Math.max(rampLeft, 2);
+    render();
+    if (playing) schedule();
+  }
+  // ⏩ : verse 1 of the next chapter (no heading card, and no stop at the
+  // chapter-end card — the jump is the reader's own choice).
+  function nextChapter() {
+    if (finished) return;
+    const next = neighbourChapter(1);
+    if (!next || !loadChapter(next, false)) return;
+    atChapterEnd = false;
+    idx = 0;
+    lastChapterRewindAt = 0;
+    rampLeft = Math.max(rampLeft, 2);
+    render();
+    if (playing) schedule();
+  }
+
   // ── Fullscreen ──
   // "Full" is our own layout class (the window grows to fill the viewport
   // over a solid backdrop); the browser's Fullscreen API is layered on top
@@ -875,16 +948,20 @@ async function openRsvpReader() {
         togglePlay();
         return;
       case "ArrowLeft":
-        if (onSlider) return;
+        if (onSlider && !e.shiftKey) return;
         e.preventDefault();
         e.stopPropagation();
-        if (!e.repeat) prevVerse();
+        if (e.repeat) return;
+        if (e.shiftKey) prevChapter();
+        else prevVerse();
         return;
       case "ArrowRight":
-        if (onSlider) return;
+        if (onSlider && !e.shiftKey) return;
         e.preventDefault();
         e.stopPropagation();
-        if (!e.repeat) nextVerse();
+        if (e.repeat) return;
+        if (e.shiftKey) nextChapter();
+        else nextVerse();
         return;
       case "ArrowUp":
       case "+":
@@ -969,6 +1046,8 @@ async function openRsvpReader() {
   playBtn.addEventListener("click", togglePlay);
   prevBtn.addEventListener("click", prevVerse);
   nextBtn.addEventListener("click", nextVerse);
+  prevChapterBtn.addEventListener("click", prevChapter);
+  nextChapterBtn.addEventListener("click", nextChapter);
   fullBtn.addEventListener("click", () => setFull(!isFull()));
   closeBtn.addEventListener("click", () => close());
   speedSlider.addEventListener("input", () => setWpm(parseInt(speedSlider.value, 10)));

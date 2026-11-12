@@ -973,13 +973,31 @@
         "label": "Why gospel is needed",
         "color": "blue",
         "verses": ["1-29"],
-        "emphasis": ["God “will repay each one according to his deeds.”"]
+        "emphasis": [
+          "All who sin apart from the law will also perish apart from the law, and all who sin under the law will be judged by the law"
+        ]
       },
       {
         "label": "Twist",
         "verses": ["1"],
         "references": ["Romans 1:32 - they"],
         "emphasis": ["you"]
+      },
+      {
+        "label": "Choose to repent",
+        "verses": ["3-5"],
+        "emphasis": ["judgment", "others", "repentance", "unrepentant"]
+      },
+      {
+        "label": "God's kindness",
+        "verses": ["4"],
+        "emphasis": ["kindness", "tolerance", "patience"],
+        "links": [
+          {
+            "label": "Bible Explorer",
+            "url": "https://bible-explorer.gospelgo.org/?dataset=custom&topic=God%27s+love%2C+mercy%2C+compassion"
+          }
+        ]
       },
       {
         "label": "Deeds",
@@ -998,6 +1016,80 @@
           "Revelation 22:12"
         ],
         "emphasis": ["you"]
+      },
+      {
+        "label": "Jews and Gentiles",
+        "verses": ["9-13", "25-29"],
+        "references": [
+          "Genesis 12:3",
+          "Isaiah 2:3",
+          "Isaiah 49:6",
+          "Jeremiah 31:31",
+          "Hosea 1:10",
+          "Matthew 10:5-6",
+          "Matthew 15:24",
+          "Matthew 28:19",
+          "Luke 24:47",
+          "John 2:30-32",
+          "John 10:16",
+          "John 4:22",
+          "Acts 1:8",
+          "Acts 3:26",
+          "Acts 13:46",
+          "Acts 13:5",
+          "Acts 14:1",
+          "Acts 17:1-2",
+          "Acts 18:4",
+          "Acts 18:19",
+          "Acts 19:8",
+          "Acts 22:21",
+          "Acts 28:17-28",
+          "Romans 1:16",
+          "Romans 2:9-10",
+          "Romans 3:1-2",
+          "Romans 3:29-30",
+          "Romans 9:4-5",
+          "Romans 10:19",
+          "Romans 11:1",
+          "Romans 11:11",
+          "Romans 15:8-12",
+          "Ephesians 2:11-22"
+        ],
+        "emphasis": ["first for the Jew, then for the Greek"]
+      },
+      {
+        "label": "Hearers/Doers",
+        "verses": ["9-29"],
+        "references": [
+          "hear/do",
+          "Romans 2:13",
+          "Romans 2:14-16",
+          "James 1:22-25",
+          "Matthew 7:24-27",
+          "Luke 11:28",
+          "-",
+          "Love -> Obey",
+          "Exodus 20:6",
+          "Deuteronomy 6:4-9",
+          "John 14:15",
+          "John 14:21",
+          "John 14:23",
+          "1 John 2:3-6",
+          "1 John 3:18",
+          "1 John 5:3"
+        ],
+        "emphasis": [
+          "does evil",
+          "does good",
+          "not the hearers",
+          "but it is the doers",
+          "do by nature what the law requires",
+          "do you",
+          "observe",
+          "break",
+          "keeps",
+          "a matter of the heart, by the Spirit"
+        ]
       },
       {
         "label": "Legalist/hypocrite",
@@ -1026,6 +1118,36 @@
           "you who boast in the law, do you dishonor God by breaking the law?",
           "God’s name is blasphemed",
           "because of you"
+        ]
+      },
+      {
+        "highlight": "Good",
+        "text": [
+          "kindness",
+          "tolerance",
+          "patience",
+          "perseverance",
+          "doing good",
+          "glory",
+          "honor",
+          "immortality",
+          "peace",
+          "good"
+        ]
+      },
+      {
+        "highlight": "Bad",
+        "text": [
+          "kindness",
+          "tolerance",
+          "patience",
+          "perseverance",
+          "doing good",
+          "glory",
+          "honor",
+          "immortality",
+          "peace",
+          "good"
         ]
       }
     ],
