@@ -820,7 +820,8 @@ html.bp-hide-outlines .bp-outline-hint {
   margin: 0;
 }
 .bp-header__jump-input {
-  width: clamp(7.5rem, 9vw, 10rem);
+  /* Wide enough to see a short search phrase as it is typed. */
+  width: clamp(8.5rem, 10vw, 12rem);
   background: #1d1f22;
   color: var(--text-main);
   border: 1px solid #4b4f56;
@@ -855,6 +856,93 @@ html.bp-hide-outlines .bp-outline-hint {
   background: #333;
   color: var(--gold-accent);
   border: 1px solid var(--gold-accent);
+}
+/* ── Whole-Bible search results (js/bp-search.js) ─────────────────────────
+   Dropdown under the header jump box; positioned (left/top/width/max-height)
+   by positionPanel(). Above the header (200), drawers and the desktop tip
+   (500), below reference menus (1000) and modals (1200). */
+.bp-search-panel {
+  position: fixed;
+  z-index: 950;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background: #23272a;
+  color: var(--text-main);
+  border: 1px solid #444;
+  border-radius: 8px;
+  box-shadow: 0 6px 24px #000c;
+  overflow: hidden;
+}
+.bp-search__status {
+  flex: none;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid #333;
+}
+.bp-search__list {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.bp-search__result {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  background: transparent;
+  color: inherit;
+  border: none;
+  border-bottom: 1px solid #2f3336;
+  border-radius: 0;
+  padding: 0.5rem 0.8rem;
+  font: inherit;
+  cursor: pointer;
+}
+.bp-search__result:hover,
+.bp-search__result:focus-visible {
+  background: rgba(255, 255, 255, 0.06);
+  outline: none;
+}
+.bp-search__result:focus-visible {
+  box-shadow: inset 2px 0 0 var(--gold-accent);
+}
+.bp-search__ref {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--gold-accent);
+  margin-bottom: 0.15rem;
+}
+.bp-search__text {
+  display: block;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--text-main);
+}
+.bp-search__hit {
+  background: none;
+  color: var(--search-highlight);
+  font-weight: bold;
+}
+.bp-search__more {
+  flex: none;
+  background: transparent;
+  color: var(--text-secondary);
+  border: none;
+  border-top: 1px solid #333;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+.bp-search__more:hover,
+.bp-search__more:focus-visible {
+  color: var(--gold-accent);
+  outline: none;
+}
+.bp-search__more[hidden] {
+  display: none;
 }
 .bp-header__nav-center button {
   background: #222;
@@ -3655,7 +3743,7 @@ html.bp-hide-outlines .topic-outline-btn {
     gap: 0.25em;
   }
   .bp-header__jump-input {
-    width: clamp(6.2rem, 8vw, 8rem);
+    width: clamp(7.5rem, 9.5vw, 10.5rem);
     font-size: 0.78em;
     padding: 0.22em 0.45em;
   }
@@ -4696,6 +4784,11 @@ html.bp-suggestions-hidden .bp-suggest-new-link {
     width: clamp(5.5rem, 28vw, 8rem);
     min-width: 0;
     font-size: 16px; /* <16px triggers iOS focus auto-zoom */
+  }
+  /* The hint text may be smaller (only the field's own size triggers the
+     zoom), so "mat4 or search" fits the narrow box. */
+  html.bp-mobile .bp-header__jump-input::placeholder {
+    font-size: 14px;
   }
   html.bp-mobile .bp-header__nav-center {
     position: static;

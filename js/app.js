@@ -375,6 +375,7 @@ document.addEventListener("DOMContentLoaded", () => {
       '<a href="https://bibleplaces.gospelgo.org/" target="_blank" rel="noopener">Bible Places</a> live map and ' +
       '<a href="https://bible-explorer.gospelgo.org/" target="_blank" rel="noopener">Bible Explorer</a>, which locates verses by topic.</p>' +
       "<p>Spot something worth adding? Make a free account to suggest an edit, or your own labels and highlights — look for the ✏️ icon next to any button (on hover).</p>" +
+      "<p>The box in the header takes a reference (mat4, jn 3:16) to go straight there, or any word or phrase to search the whole Bible — click a result to open that verse.</p>" +
       "<p>Switch to Entire Book (top left) to view the entire book with similar features.</p>" +
       "<p>The eye button in the chapter header opens the Focus Reader, which shows the text one word at a time at a pace you set — a reading technique known as Rapid Serial Visual Presentation (RSVP). Useful as a pacer, and for anyone who finds a page of text hard to track.</p>" +
       "<p>Even the features have features — open any window here and look for more inside.</p>";
@@ -526,6 +527,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ".bp-chiasm-explainer-overlay",
     ".bp-diagram-overlay",
     ".bp-rsvp-overlay",
+    ".bp-search-panel",
     ".bp-compare-overlay",
     ".bp-timeline-overlay",
     ".bp-info-modal",
@@ -859,9 +861,16 @@ document.addEventListener("DOMContentLoaded", () => {
       (() => ({ ok: false, reason: "Not ready yet." }))
     )(headerJumpInput.value);
     if (!parsed.ok) {
+      // Not a reference: js/bp-search.js takes it as a whole-Bible phrase
+      // search, unless it is too short or a half-typed reference ("jn 3:").
+      if (window.bpBibleSearch && window.bpBibleSearch.submit(headerJumpInput.value)) {
+        clearHeaderJumpError();
+        return;
+      }
       setHeaderJumpError(parsed.reason);
       return;
     }
+    if (window.bpBibleSearch) window.bpBibleSearch.close();
 
     let maxChapter;
     try {

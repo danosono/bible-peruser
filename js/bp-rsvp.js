@@ -940,6 +940,17 @@ async function openRsvpReader() {
   // ── Events ──
   function onKeydown(e) {
     if (e.ctrlKey || e.metaKey || e.altKey) return;
+    // The page under the window stays usable, so typing in one of its text
+    // fields (the jump / search box, a highlight box) must reach that field
+    // — Space included — rather than drive the reader.
+    const t = e.target;
+    if (
+      t &&
+      t !== speedSlider &&
+      (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.tagName === "SELECT" || t.isContentEditable)
+    ) {
+      return;
+    }
     const onSlider = document.activeElement === speedSlider;
     switch (e.key) {
       case " ":
