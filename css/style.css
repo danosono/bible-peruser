@@ -23,8 +23,7 @@
   .bp-header__right {
     gap: 1.35em;
   }
-  .bp-header__explorer-link,
-  .bp-header__berean-link {
+  .bp-header__explorer-link {
     font-size: 0.85em;
   }
   .bible-chapter {
@@ -1045,13 +1044,15 @@ html.bp-hide-outlines .bp-outline-hint {
   white-space: nowrap;
 }
 
-.bp-header__berean-link {
-  color: var(--accent);
-  font-weight: bold;
-  text-decoration: underline;
-  font-size: 0.8em;
-  margin-right: 0;
-  white-space: nowrap;
+.bp-header__explorer-link:hover,
+.bp-header__explorer-link:focus-visible {
+  color: var(--gold-accent);
+}
+
+/* Second line of the stacked links: two sibling apps side by side. */
+.bp-header__link-row {
+  display: flex;
+  gap: 0.7em;
 }
 
 .bp-header__copy-link-btn {
@@ -3812,10 +3813,6 @@ html.bp-hide-outlines .topic-outline-btn {
     font-size: 0.8em;
     margin: 0 0.25em;
   }
-  .bp-header__berean-link {
-    font-size: 0.68em;
-    margin-right: 0;
-  }
   .bp-header__explorer-link {
     font-size: 0.68em;
   }
@@ -3890,7 +3887,6 @@ html.bp-hide-outlines .topic-outline-btn {
   }
 
   .bp-header__explorer-link,
-  .bp-header__berean-link,
   .bp-header__info {
     font-size: 0.74em;
   }

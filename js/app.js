@@ -425,6 +425,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "<p>The box in the header takes a reference (mat4, jn 3:16) to go straight there, or any word or phrase to search the whole Bible — click a result to open that verse.</p>" +
       "<p>Switch to Entire Book (top left) to view the entire book with similar features.</p>" +
       "<p>The eye button in the chapter header opens the Focus Reader, which shows the text one word at a time at a pace you set — a reading technique known as Rapid Serial Visual Presentation (RSVP). Useful as a pacer, and for anyone who finds a page of text hard to track.</p>" +
+      '<p>The Bible text is the <a href="https://bereanbible.com/" target="_blank" rel="noopener">Berean Standard Bible</a>.</p>' +
       "<p>Even the features have features — open any window here and look for more inside.</p>";
     modal.appendChild(body);
 
