@@ -44,6 +44,53 @@
   }
 }());
 
+// Install-as-app support. Chromium (desktop + Android) fires
+// beforeinstallprompt when the page is installable and not yet installed;
+// it can arrive before DOMContentLoaded, so listen here. Safari and Firefox
+// never fire it, so canPrompt() stays false there and the UI that offers
+// installing (the About modal) simply doesn't show the offer.
+// Android is left entirely to Chrome: it shows its own install banner
+// there, which works well and which preventDefault() would suppress — so
+// on Android the event is neither prevented nor kept.
+(function () {
+  var deferred = null;
+  window.addEventListener("beforeinstallprompt", function (e) {
+    if (/Android/i.test(navigator.userAgent)) return;
+    e.preventDefault();
+    deferred = e;
+    document.dispatchEvent(new Event("bp-install-change"));
+  });
+  window.addEventListener("appinstalled", function () {
+    deferred = null;
+    document.dispatchEvent(new Event("bp-install-change"));
+  });
+  window.bpInstall = {
+    canPrompt: function () {
+      return !!deferred;
+    },
+    // Resolves true if the user accepted. The event is single-use.
+    prompt: async function () {
+      if (!deferred) return false;
+      var evt = deferred;
+      deferred = null;
+      document.dispatchEvent(new Event("bp-install-change"));
+      try {
+        evt.prompt();
+        var choice = await evt.userChoice;
+        return !!choice && choice.outcome === "accepted";
+      } catch (err) {
+        return false;
+      }
+    },
+    isStandalone: function () {
+      return (
+        window.matchMedia("(display-mode: standalone)").matches ||
+        window.navigator.standalone === true
+      );
+    },
+  };
+}());
+
 // Mobile layout is default-on below 900px. ?mobile=0 opts out for the
 // session (survives pushState navigation, like the debug flag) as a debug
 // escape hatch; ?mobile=1 re-enables.
@@ -368,7 +415,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const body = document.createElement("div");
     body.className = "bp-about-modal__body";
     body.innerHTML =
-      "<p>Bible Peruser puts the Biblical text front and center. Read it — everything else here is in support of that.</p>" +
+      "<p>Bible Peruser puts the Biblical text front and center. Read it — everything else here is in support of that, and most of it can be hidden: the Outline and Notes switches along the bottom turn off the outline and the study notes/highlights.</p>" +
       "<p>On the left panel, the blue buttons give each chapter's outline; the buttons below them hold custom study labels/notes with verse references, links, and emphasis.</p>" +
       "<p>The right panel holds highlight controls and any chiasms present in the chapter.</p>" +
       "<p>Along the bottom: buttons to highlight the chapter's most frequent words, a Book Summary, a Timeline centered on the current chapter, and buttons to display People and Places who appear in the chapter — with links out to Gospelgo's " +
@@ -383,6 +430,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const donateWrap = document.createElement("div");
     donateWrap.className = "bp-about-modal__donate-wrap";
+    // Only where the browser says installing is possible right now (see
+    // window.bpInstall) — never a dead button.
+    const installBtn = document.createElement("button");
+    installBtn.type = "button";
+    installBtn.className =
+      "bp-about-modal__donate-link bp-about-modal__install-btn";
+    installBtn.textContent = "Install as an app";
+    installBtn.title =
+      "Opens Bible Peruser in its own window, with an icon you can pin to your taskbar or home screen";
+    installBtn.addEventListener("click", () => window.bpInstall.prompt());
+    const syncInstallBtn = () => {
+      installBtn.hidden = !window.bpInstall.canPrompt();
+    };
+    syncInstallBtn();
+    document.addEventListener("bp-install-change", syncInstallBtn);
+    donateWrap.appendChild(installBtn);
     const donateLink = document.createElement("a");
     donateLink.className = "bp-about-modal__donate-link";
     donateLink.href = "https://gospelgo.org/donate/";
@@ -394,10 +457,23 @@ document.addEventListener("DOMContentLoaded", () => {
     donateNote.className = "bp-about-modal__donate-note";
     donateNote.textContent = "Donations are welcome, but zero pressure.";
     donateWrap.appendChild(donateNote);
+    // Browsers that can't install (Firefox, Safari) get one line saying
+    // where it is possible. Not shown in Chromium: there a missing button
+    // almost always means it's already installed.
+    const isChromium =
+      !!navigator.userAgentData || /Chrome\//.test(navigator.userAgent);
+    if (!isChromium && !window.bpInstall.isStandalone()) {
+      const installNote = document.createElement("div");
+      installNote.className = "bp-about-modal__donate-note";
+      installNote.textContent =
+        "Bible Peruser can be installed as an app from Chrome or Edge.";
+      donateWrap.appendChild(installNote);
+    }
     modal.appendChild(donateWrap);
 
     function closeModal() {
       document.removeEventListener("keydown", onKeydown);
+      document.removeEventListener("bp-install-change", syncInstallBtn);
       overlay.remove();
     }
     function onKeydown(e) {
@@ -728,13 +804,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const aboutTrigger = document.getElementById("bp-about-trigger");
   if (aboutTrigger) {
+    // A real <button>, so Enter/Space already arrive as a click.
     aboutTrigger.addEventListener("click", openAboutModal);
-    aboutTrigger.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        openAboutModal();
-      }
-    });
   }
 
   // Mobile overlay actions
@@ -1254,6 +1325,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <span class="bp-desktop-tip__text">
         Tip: on a desktop or large screen, Bible Peruser shows the outline,
         scripture, and highlights side by side.
+        <span class="bp-desktop-tip__install"></span>
       </span>
       <button class="bp-desktop-tip__copy" type="button">Copy Link</button>
       <button class="bp-desktop-tip__close" type="button" aria-label="Dismiss tip">&times;</button>
@@ -1266,6 +1338,16 @@ document.addEventListener("DOMContentLoaded", () => {
       tip.remove();
       document.removeEventListener("click", handleTap);
     };
+    // iOS only: no page can trigger an install there and Safari shows no
+    // banner of its own, so spell out the manual steps. Android needs
+    // nothing here — Chrome shows its own install banner.
+    if (
+      /iPhone|iPad|iPod/.test(navigator.userAgent) &&
+      !window.bpInstall.isStandalone()
+    ) {
+      tip.querySelector(".bp-desktop-tip__install").textContent =
+        "On this phone: Share → Add to Home Screen.";
+    }
     // The tip floats above the drawers, so get out of the way as soon as the
     // user starts using them.
     document.addEventListener("click", handleTap);

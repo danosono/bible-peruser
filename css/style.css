@@ -1322,6 +1322,8 @@ body {
   margin: 0;
 }
 .bp-header__title-text {
+  color: inherit;
+  text-decoration: none;
   cursor: pointer;
   border-radius: 4px;
   transition: color 0.15s ease;
@@ -1379,6 +1381,30 @@ body {
   color: var(--accent);
   margin-left: 0.7em;
   white-space: nowrap;
+}
+
+/* About + theme picker share one row under the "Best in 4K" hint, so the
+   pair is about as wide as the hint and the header gets no wider. */
+.bp-header__info-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+}
+.bp-header__about-btn {
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--accent);
+  font: inherit;
+  font-size: 0.8em;
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.bp-header__about-btn:hover,
+.bp-header__about-btn:focus-visible {
+  color: var(--gold-accent);
+  outline: none;
 }
 
 .bp-theme-picker-trigger {
@@ -3240,6 +3266,17 @@ html.bp-hide-outlines .topic-outline-btn {
   border-color: var(--gold-accent);
   color: var(--gold-accent);
 }
+/* "Install as an app" — the Donate button's look on a <button>, shown only
+   when window.bpInstall.canPrompt() (js/app.js). */
+.bp-about-modal__install-btn {
+  background: none;
+  font-family: inherit;
+  cursor: pointer;
+  margin-right: 0.6em;
+}
+.bp-about-modal__install-btn[hidden] {
+  display: none;
+}
 .bp-about-modal__donate-note {
   margin-top: 0.5em;
   font-size: 0.78rem;
@@ -4291,6 +4328,36 @@ html.bp-suggestions-hidden .bp-suggest-new-link {
 }
 .bp-account-widget__popover--open {
   display: block;
+}
+.bp-account-widget__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+.bp-account-widget__title {
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+.bp-account-widget__close {
+  /* Negative margin keeps a finger-sized target without pushing the
+     glyph in from the popover's corner. */
+  margin: -0.4rem -0.5rem -0.4rem 0;
+  padding: 0.4rem 0.5rem;
+  background: none;
+  border: none;
+  color: var(--text-tertiary);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.bp-account-widget__close:hover,
+.bp-account-widget__close:focus-visible {
+  color: var(--gold-accent);
+  outline: none;
 }
 .bp-account-widget__email {
   font-size: 0.85rem;

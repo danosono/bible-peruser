@@ -50,6 +50,17 @@ export function initAccountWidget() {
   function renderPopoverContent() {
     const token = ++renderToken;
     popover.innerHTML = "";
+    // Visible way out: tapping outside also closes it, but nothing on
+    // screen says so.
+    const head = el("div", "bp-account-widget__head");
+    head.appendChild(el("span", "bp-account-widget__title", "Account"));
+    const closeBtn = el("button", "bp-account-widget__close");
+    closeBtn.type = "button";
+    closeBtn.innerHTML = "&#x2715;";
+    closeBtn.setAttribute("aria-label", "Close");
+    closeBtn.addEventListener("click", closePopover);
+    head.appendChild(closeBtn);
+    popover.appendChild(head);
     if (!session) {
       const gateRoot = el("div");
       popover.appendChild(gateRoot);
