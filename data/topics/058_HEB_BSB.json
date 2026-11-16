@@ -148,20 +148,25 @@
     "9": [
       {
         "outline": "The Earthly Tabernacle",
-        "verses": [
-          "1-10"
-        ],
-        "references": [
-          "Exodus 40:1–33",
-          "Acts 7:44–47"
-        ]
+        "verses": ["1-10"],
+        "references": ["Exodus 40:1–33", "Acts 7:44–47"]
       },
       {
         "outline": "Redemption through His Blood",
-        "verses": [
-          "11-28"
-        ],
+        "verses": ["11-28"],
         "references": []
+      },
+      {
+        "label": "Propitiation",
+        "verses": ["5", "11-12"],
+        "references": [
+          "Leviticus 16:14-15 - blood, mercy seat",
+          "Leviticus 17:11 - life is in the blood",
+          "Hebrews 9:5 - mercy seat [hilastērion (G2435): propitiation]",
+          "Hebrews 9:11-12 - Jesus' blood secures eternal redemption",
+          "1 John 2:2",
+          "1 John 4:10"
+        ]
       }
     ],
     "10": [
