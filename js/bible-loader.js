@@ -753,7 +753,49 @@ const DIAGRAM_NODE_COLORS = {
   amber: "var(--diagram-color-amber, #8a5a2f)",
 };
 
-function computeDiagramLayout(nodes, edges) {
+// Splits a node label into lines of at most `maxChars`, balanced rather
+// than greedy-filled (a 50-character label becomes three ~17-character
+// lines, not two full ones and an orphan word). A label that already fits
+// is returned as a single line, so short-label diagrams are unaffected.
+function wrapDiagramLabel(label, maxChars) {
+  const text = String(label || "").trim();
+  if (text.length <= maxChars) return [text];
+  const words = text.split(/\s+/);
+  const lineCount = Math.ceil(text.length / maxChars);
+  const limit = Math.min(maxChars, Math.ceil(text.length / lineCount) + 3);
+  const lines = [];
+  let current = "";
+  words.forEach((word) => {
+    if (!current) current = word;
+    else if (current.length + 1 + word.length <= limit) current += " " + word;
+    else {
+      lines.push(current);
+      current = word;
+    }
+  });
+  if (current) lines.push(current);
+  return lines;
+}
+
+// How a diagram joins its nodes — the diagram's own `connectors` value:
+// "arrows" (default), "lines" (same paths, no arrowheads), "none" (boxes
+// only), or "table" (a bordered grid, see computeDiagramLayout). A single
+// edge can override the first three with its own `connector`.
+const DIAGRAM_CONNECTORS = ["arrows", "lines", "none", "table"];
+function normalizeDiagramConnector(value, fallback) {
+  const v = typeof value === "string" ? value.trim().toLowerCase() : "";
+  return DIAGRAM_CONNECTORS.includes(v) ? v : fallback;
+}
+
+function computeDiagramLayout(nodes, edges, options) {
+  const connectors = normalizeDiagramConnector(
+    options && options.connectors,
+    "arrows",
+  );
+  const tableColumns =
+    options && Number.isInteger(options.columns) && options.columns > 0
+      ? options.columns
+      : 0;
   const safeNodes = (Array.isArray(nodes) ? nodes : []).filter(
     (n) => n && typeof n.id === "string" && n.id,
   );
@@ -802,9 +844,103 @@ function computeDiagramLayout(nodes, edges) {
     rows[r].push(n);
   });
 
-  const colGap = 168;
-  const rowGap = 108;
   const boxH = 44;
+  const lineH = 16;
+
+  // Size every node before placing any: a label longer than one line is
+  // wrapped (wrapDiagramLabel), and the column/row gaps grow to fit the
+  // widest/tallest node, so a diagram of short labels keeps the original
+  // 168 x 108 grid while one with sentence-length labels spreads out
+  // instead of overlapping.
+  const metrics = new Map();
+  safeNodes.forEach((n) => {
+    const label = typeof n.label === "string" ? n.label : n.id;
+    const labelLines = wrapDiagramLabel(label, 24);
+    const longest = labelLines.reduce((m, l) => Math.max(m, l.length), 0);
+    const w = Math.max(90, Math.min(200, 16 + longest * 7.5));
+    const note = typeof n.note === "string" ? n.note.trim() : "";
+    const ref = typeof n.ref === "string" ? n.ref.trim() : "";
+    // `note` and `ref` are shown as separate lines when both are present
+    // and differ (ref is also the click target, note is free-form
+    // context) — but authors will often set them to the same verse
+    // string, so avoid printing that string twice.
+    const subLines = [];
+    if (note) subLines.push({ text: note, isRef: false });
+    if (ref && ref !== note) subLines.push({ text: ref, isRef: true });
+    const h =
+      boxH +
+      Math.max(0, subLines.length - 1) * lineH +
+      (labelLines.length - 1) * lineH;
+    metrics.set(n.id, { label, labelLines, w, note, ref, subLines, h });
+  });
+  const allMetrics = Array.from(metrics.values());
+
+  // Table: a bordered grid instead of boxes and connectors. Rows come from
+  // `columns` (nodes fill row by row in authored order, no edges needed) or,
+  // without it, from the same edge-derived ranks as a normal diagram. Every
+  // cell takes its column's widest and its row's tallest content, and the
+  // first row is the header.
+  if (connectors === "table") {
+    const tableRows = [];
+    if (tableColumns) {
+      for (let i = 0; i < safeNodes.length; i += tableColumns) {
+        tableRows.push(safeNodes.slice(i, i + tableColumns));
+      }
+    } else {
+      rows.forEach((row) => {
+        if (row && row.length) tableRows.push(row);
+      });
+    }
+    const cellPadX = 20;
+    const cellPadY = 12;
+    const colW = [];
+    const rowH = [];
+    tableRows.forEach((row, r) => {
+      row.forEach((n, c) => {
+        const m = metrics.get(n.id);
+        colW[c] = Math.max(colW[c] || 0, m.w + cellPadX);
+        rowH[r] = Math.max(rowH[r] || 0, m.h + cellPadY);
+      });
+    });
+    const tablePad = 16;
+    const cells = [];
+    let y = tablePad;
+    tableRows.forEach((row, r) => {
+      let x = tablePad;
+      row.forEach((n, c) => {
+        const m = metrics.get(n.id);
+        cells.push({
+          id: n.id,
+          label: m.label,
+          labelLines: m.labelLines,
+          note: m.note,
+          ref: m.ref,
+          subLines: m.subLines,
+          color:
+            typeof n.color === "string"
+              ? DIAGRAM_NODE_COLORS[n.color] || n.color
+              : "",
+          x,
+          y,
+          w: colW[c],
+          h: rowH[r],
+          isHeader: r === 0,
+        });
+        x += colW[c];
+      });
+      y += rowH[r];
+    });
+    return {
+      nodes: cells,
+      edges: [],
+      width: colW.reduce((sum, w) => sum + w, 0) + tablePad * 2,
+      height: y + tablePad,
+      table: true,
+    };
+  }
+
+  const colGap = Math.max(168, ...allMetrics.map((m) => m.w + 24));
+  const rowGap = Math.max(108, ...allMetrics.map((m) => m.h + 48));
   const maxRowWidth = rows.reduce(
     (max, row) => Math.max(max, (row.length - 1) * colGap),
     0,
@@ -822,21 +958,11 @@ function computeDiagramLayout(nodes, edges) {
     const rowWidth = (row.length - 1) * colGap;
     const offsetX = (maxRowWidth - rowWidth) / 2;
     row.forEach((n, i) => {
-      const label = typeof n.label === "string" ? n.label : n.id;
-      const w = Math.max(90, Math.min(200, 16 + label.length * 7.5));
-      const note = typeof n.note === "string" ? n.note.trim() : "";
-      const ref = typeof n.ref === "string" ? n.ref.trim() : "";
-      // `note` and `ref` are shown as separate lines when both are present
-      // and differ (ref is also the click target, note is free-form
-      // context) — but authors will often set them to the same verse
-      // string, so avoid printing that string twice.
-      const subLines = [];
-      if (note) subLines.push({ text: note, isRef: false });
-      if (ref && ref !== note) subLines.push({ text: ref, isRef: true });
-      const h = subLines.length <= 1 ? boxH : boxH + (subLines.length - 1) * 16;
+      const { label, labelLines, w, note, ref, subLines, h } = metrics.get(n.id);
       const entry = {
         id: n.id,
         label,
+        labelLines,
         note,
         ref,
         subLines,
@@ -859,9 +985,11 @@ function computeDiagramLayout(nodes, edges) {
     const from = posById.get(e.from);
     const to = posById.get(e.to);
     if (!from || !to) return;
+    const connector = normalizeDiagramConnector(e.connector, connectors);
     laidOutEdges.push({
       from,
       to,
+      connector: connector === "table" ? connectors : connector,
       label: typeof e.label === "string" ? e.label : "",
     });
   });
@@ -947,6 +1075,82 @@ function navigateDiagramNodeRef(ref, hostBookId) {
   }
 }
 
+// Hover preview for a clickable diagram node: the verse text of its `ref`,
+// in the same popover look as the reference menu's preview. Display-only
+// (pointer-events: none, never pinned) so it cannot sit between the pointer
+// and the node — hovering shows it, leaving or clicking removes it, and the
+// click itself always reaches the node.
+let diagramPreviewTimer = null;
+let diagramPreviewToken = 0;
+
+function removeDiagramNodePreview() {
+  if (diagramPreviewTimer) {
+    clearTimeout(diagramPreviewTimer);
+    diagramPreviewTimer = null;
+  }
+  diagramPreviewToken++;
+  document.querySelectorAll(".bp-diagram-preview").forEach((el) => el.remove());
+}
+
+async function showDiagramNodePreview(anchorEl, target, token) {
+  const data = await getBibleData();
+  if (token !== diagramPreviewToken || !anchorEl.isConnected) return;
+  const book = (Array.isArray(data?.books) ? data.books : []).find(
+    (b) => b.id === target.bookId,
+  );
+  const chapter =
+    book && Array.isArray(book.chapters)
+      ? book.chapters.find((c) => c.number === target.chapterNum)
+      : null;
+  if (!chapter || !Array.isArray(chapter.verses)) return;
+  const end = target.verseEnd || target.verseStart;
+  const lines = chapter.verses
+    .filter((v) => {
+      const n = parseInt(v?.n, 10);
+      return Number.isInteger(n) && n >= target.verseStart && n <= end;
+    })
+    .map((v) => `${v.n}. ${v.text}`);
+  if (!lines.length) return;
+
+  const pop = document.createElement("div");
+  pop.className = "reference-preview-popover bp-diagram-preview";
+  const titleEl = document.createElement("div");
+  titleEl.className = "reference-preview-popover__title";
+  titleEl.textContent = `${bookNames[target.bookId] || target.bookId} ${target.chapterNum}:${target.verseStart}${end > target.verseStart ? `-${end}` : ""}`;
+  const textEl = document.createElement("div");
+  textEl.className = "reference-preview-popover__text";
+  textEl.textContent = lines.join("\n");
+  pop.appendChild(titleEl);
+  pop.appendChild(textEl);
+  document.body.appendChild(pop);
+
+  // Beside the node (right, else left), clamped to the viewport.
+  const pad = 8;
+  const a = anchorEl.getBoundingClientRect();
+  const p = pop.getBoundingClientRect();
+  let left = a.right + pad;
+  if (left + p.width > window.innerWidth - pad) left = a.left - p.width - pad;
+  left = Math.max(pad, Math.min(left, window.innerWidth - p.width - pad));
+  const top = Math.max(pad, Math.min(a.top, window.innerHeight - p.height - pad));
+  pop.style.left = `${left}px`;
+  pop.style.top = `${top}px`;
+}
+
+function attachDiagramNodePreview(el, target) {
+  if (!target || !target.verseStart) return;
+  if (!window.matchMedia("(hover: hover)").matches) return;
+  el.addEventListener("mouseenter", () => {
+    removeDiagramNodePreview();
+    const token = diagramPreviewToken;
+    diagramPreviewTimer = setTimeout(() => {
+      diagramPreviewTimer = null;
+      showDiagramNodePreview(el, target, token).catch(() => {});
+    }, 220);
+  });
+  el.addEventListener("mouseleave", removeDiagramNodePreview);
+  el.addEventListener("mousedown", removeDiagramNodePreview);
+}
+
 function buildDiagramSVG(layout, hostBookId) {
   const svgNS = "http://www.w3.org/2000/svg";
   const svg = document.createElementNS(svgNS, "svg");
@@ -954,6 +1158,7 @@ function buildDiagramSVG(layout, hostBookId) {
   svg.setAttribute("width", layout.width);
   svg.setAttribute("height", layout.height);
   svg.classList.add("bp-diagram-svg");
+  if (layout.table) svg.classList.add("bp-diagram-svg--table");
 
   const defs = document.createElementNS(svgNS, "defs");
   defs.innerHTML =
@@ -966,6 +1171,7 @@ function buildDiagramSVG(layout, hostBookId) {
   const edgeLayer = document.createElementNS(svgNS, "g");
   edgeLayer.classList.add("bp-diagram-edges");
   layout.edges.forEach((edge) => {
+    if (edge.connector === "none") return;
     const x1 = edge.from.x + edge.from.w / 2;
     const y1 = edge.from.y + edge.from.h;
     const x2 = edge.to.x + edge.to.w / 2;
@@ -978,7 +1184,9 @@ function buildDiagramSVG(layout, hostBookId) {
         : `M${x1},${y1} C${x1},${midY} ${x2},${midY} ${x2},${y2}`;
     path.setAttribute("d", d);
     path.setAttribute("class", "bp-diagram-edge-path");
-    path.setAttribute("marker-end", "url(#bp-diagram-arrow)");
+    if (edge.connector !== "lines") {
+      path.setAttribute("marker-end", "url(#bp-diagram-arrow)");
+    }
     edgeLayer.appendChild(path);
 
     if (edge.label) {
@@ -1003,27 +1211,41 @@ function buildDiagramSVG(layout, hostBookId) {
 
     const clickable = !!resolveDiagramRef(node.ref, hostBookId);
     if (clickable) g.classList.add("bp-diagram-node--clickable");
+    if (layout.table) {
+      g.classList.add(
+        node.isHeader ? "bp-diagram-node--header" : "bp-diagram-node--cell",
+      );
+    }
 
     const rect = document.createElementNS(svgNS, "rect");
     rect.setAttribute("width", node.w);
     rect.setAttribute("height", node.h);
-    rect.setAttribute("rx", 8);
+    rect.setAttribute("rx", layout.table ? 0 : 8);
     rect.setAttribute("class", "bp-diagram-node-rect");
     if (node.color) rect.style.setProperty("--bp-diagram-node-color", node.color);
     g.appendChild(rect);
 
     const lineCount = node.subLines.length;
-    const label = document.createElementNS(svgNS, "text");
-    label.setAttribute("x", node.w / 2);
-    label.setAttribute("y", lineCount ? node.h / 2 - 6 : node.h / 2);
-    label.setAttribute("class", "bp-diagram-node-label");
-    label.textContent = node.label;
-    g.appendChild(label);
+    // A wrapped label's extra lines push the block half a line up and the
+    // note/ref lines half a line down each, keeping the whole stack
+    // centered; with a one-line label both shifts are zero.
+    const labelLines =
+      node.labelLines && node.labelLines.length ? node.labelLines : [node.label];
+    const wrapShift = (labelLines.length - 1) * 8;
+    const labelY = (lineCount ? node.h / 2 - 6 : node.h / 2) - wrapShift;
+    labelLines.forEach((lineText, i) => {
+      const label = document.createElementNS(svgNS, "text");
+      label.setAttribute("x", node.w / 2);
+      label.setAttribute("y", labelY + i * 16);
+      label.setAttribute("class", "bp-diagram-node-label");
+      label.textContent = lineText;
+      g.appendChild(label);
+    });
 
     node.subLines.forEach((line, i) => {
       const lineEl = document.createElementNS(svgNS, "text");
       lineEl.setAttribute("x", node.w / 2);
-      lineEl.setAttribute("y", node.h / 2 + 12 + i * 16);
+      lineEl.setAttribute("y", node.h / 2 + 12 + wrapShift + i * 16);
       lineEl.setAttribute(
         "class",
         line.isRef ? "bp-diagram-node-ref" : "bp-diagram-node-note",
@@ -1032,6 +1254,36 @@ function buildDiagramSVG(layout, hostBookId) {
       g.appendChild(lineEl);
     });
 
+    // A clickable node is a real SVG link to its chapter URL, so the
+    // browser itself handles middle-click, Ctrl/Cmd/Shift+click and the
+    // right-click "open in new tab" menu. Only a plain left click is taken
+    // over, to navigate in place and keep the diagram open.
+    const target = clickable ? resolveDiagramRef(node.ref, hostBookId) : null;
+    const href = target
+      ? buildChapterUrl(
+          target.bookId,
+          target.chapterNum,
+          target.verseStart,
+          target.verseEnd,
+        )
+      : null;
+    if (target && href) {
+      const link = document.createElementNS(svgNS, "a");
+      link.setAttribute("href", href);
+      link.setAttribute("class", "bp-diagram-node-link");
+      link.addEventListener("click", (e) => {
+        if (e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) {
+          return;
+        }
+        e.preventDefault();
+        removeDiagramNodePreview();
+        navigateDiagramNodeRef(node.ref, hostBookId);
+      });
+      attachDiagramNodePreview(link, target);
+      link.appendChild(g);
+      nodeLayer.appendChild(link);
+      return;
+    }
     if (clickable) {
       g.addEventListener("click", () =>
         navigateDiagramNodeRef(node.ref, hostBookId),
@@ -1098,14 +1350,17 @@ function openDiagramModal(diagramData, hostBookId) {
 
   const body = document.createElement("div");
   body.className = "bp-diagram-modal__body";
-  const layout = computeDiagramLayout(diagramData.nodes, diagramData.edges);
+  const layout = computeDiagramLayout(diagramData.nodes, diagramData.edges, {
+    connectors: diagramData.connectors,
+    columns: diagramData.columns,
+  });
   const svgEl = buildDiagramSVG(layout, hostBookId);
   body.appendChild(svgEl);
   modal.appendChild(body);
 
-  // Simple zoom: scale the SVG in place (top-left anchored, so zooming in
-  // just grows the box down/right into the modal body's own scrollable
-  // overflow — see the body/svg CSS note about why that relies on block
+  // Simple zoom: resize the SVG in place (it stays centered while it fits
+  // and grows into the modal body's own scrollable overflow once it
+  // doesn't — see the body/svg CSS note about why that relies on block
   // layout + margin:auto rather than flex centering). No click-drag pan or
   // scroll/pinch zoom: trackpad two-finger scroll already pans a diagram
   // too big to fit, and wheel/pinch zoom would fight the browser's own
@@ -1113,10 +1368,15 @@ function openDiagramModal(diagramData, hostBookId) {
   const ZOOM_MIN = 0.5;
   const ZOOM_MAX = 2.5;
   const ZOOM_STEP = 0.15;
+  // The diagram is drawn in fixed px (12.5px labels), which is tiny on a 4K
+  // layout, so "100%" there is a larger base size. Sizing is done through
+  // the SVG's own width/height (the viewBox scales the drawing), not a CSS
+  // transform, so the modal body lays out and scrolls the real size.
+  const baseScale = window.innerWidth >= 3000 ? 1.75 : 1;
   let zoom = 1;
   function applyZoom() {
-    svgEl.style.transform = `scale(${zoom})`;
-    svgEl.style.transformOrigin = "top left";
+    svgEl.setAttribute("width", layout.width * baseScale * zoom);
+    svgEl.setAttribute("height", layout.height * baseScale * zoom);
     zoomLevel.textContent = `${Math.round(zoom * 100)}%`;
     zoomOutBtn.disabled = zoom <= ZOOM_MIN + 1e-9;
     zoomInBtn.disabled = zoom >= ZOOM_MAX - 1e-9;
@@ -1146,6 +1406,7 @@ function openDiagramModal(diagramData, hostBookId) {
 
   function closeModal() {
     document.removeEventListener("keydown", onKeydown);
+    removeDiagramNodePreview();
     overlay.remove();
   }
   function onKeydown(e) {
@@ -3365,7 +3626,23 @@ function openReferenceMenu(
   const compareCandidates = (references || []).filter(Boolean);
 
   compareCandidates.forEach((ref) => {
-    const refItem = document.createElement("div");
+    // A reference that resolves to a chapter is a real link to its URL, so
+    // middle-click, Ctrl/Cmd/Shift+click and the right-click menu open it
+    // in a new tab natively (the menu stays open, so several can be opened
+    // in a row). A plain left click is still taken over below and
+    // navigates in place. Section-header lines ("- proclaimed") and
+    // anything else unparseable stay plain divs.
+    const refDetails = parseReferenceForPreview(ref);
+    const refHref = refDetails
+      ? buildChapterUrl(
+          refDetails.bookId,
+          refDetails.chapterNum,
+          refDetails.verseStart,
+          refDetails.verseEnd || refDetails.verseStart,
+        )
+      : null;
+    const refItem = document.createElement(refHref ? "a" : "div");
+    if (refHref) refItem.href = refHref;
     refItem.className = "reference-menu-item";
     refItem.textContent = ref;
     refItem.style.padding = "4px 0";
@@ -3373,6 +3650,13 @@ function openReferenceMenu(
     attachReferencePreviewBehavior(refItem, ref);
     refItem.addEventListener("click", (e) => {
       e.stopPropagation();
+      if (
+        refHref &&
+        (e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey)
+      ) {
+        return;
+      }
+      e.preventDefault();
       clearPreviewTimers();
       removePreview(true);
       menu.remove();

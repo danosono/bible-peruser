@@ -1248,7 +1248,7 @@
         "emphasis": ["entrusted with the very words of God"]
       },
       {
-        "label": "man v/s God",
+        "label": "man / God",
         "verses": ["4"],
         "references": ["Psalm 116:11", "Psalm 51:4"],
         "emphasis": ["every man a liar", "You may be proved right"]
@@ -1384,6 +1384,89 @@
           "-",
           " - we are helpless without God's grace (none righteous)",
           "Jeremiah 17:9"
+        ],
+        "emphasis": ["justified freely by His grace"]
+      },
+      {
+        "label": "Redemtion in Jesus",
+        "verses": ["23-24"],
+        "references": [
+          "- proclaimed",
+          "Mark 10:45",
+          "Romans 3:24",
+          "1 Corinthians 6:20",
+          "1 Timothy 2:5-6",
+          "Galatians 3:13",
+          "Galatians 4:4-5",
+          "Ephesians 1:7",
+          "Colossians 1:13-14",
+          "Titus 2:14",
+          "Hebrews 9:12",
+          "1 Peter 1:18-19",
+          "-",
+          "- examples",
+          "Exodus 3:10",
+          "Leviticus 25:47-48",
+          "Joshua 6:25 - Rahab",
+          "Ruth 2:20 - Boaz/Ruth",
+          "Matthew 1:5 - Rahab & Boaz/Ruth",
+          "",
+          "2 Chronicles 33:12-13",
+          "Isaiah 43:1",
+          "Psalms 51:10",
+          "Luke 23:42-43",
+          "- Paul",
+          "Acts 9:1",
+          "Acts 9:8",
+          "Acts 9:17",
+          "Acts 9:20"
+        ],
+        "emphasis": ["through the redemption that is in Christ Jesus"]
+      },
+      {
+        "label": "Atonement",
+        "verses": ["25"],
+        "references": [
+          "Leviticus 16:14-15",
+          "Leviticus 16:21-22",
+          "Psalm 103:12",
+          "Romans 3:25",
+          "Hebrews 2:17",
+          "Hebrews 8:5",
+          "Hebrews 9:11-12",
+          "Hebrews 10:11-14"
+        ],
+        "emphasis": ["atoning sacrifice"],
+        "note": [
+          "atoning sacrifice is translated from the Greek word 'hilasterion' (atoning victim, propitiation).",
+          "Hilasterion is translated from the Hebrew word 'kapporet' (mercy seat) in the Septuagint (Greek translation of the Hebrew Old Testament written by Jewish scholarsin the 3rd-2nd century BC)"
+        ]
+      },
+      {
+        "label": "Atonement for sins before Jesus died",
+        "verses": ["25"],
+        "references": ["- proclaimed", "-", "- examples", "", "- Paul"],
+        "emphasis": ["atoning"]
+      },
+      {
+        "highlight": "Righteousness of God",
+        "text": [
+          "Righteousness of God",
+          "Righteousness from God",
+          "demonstrate His righteousness"
+        ]
+      },
+      {
+        "highlight": "\"righteousness\" of man",
+        "text": [
+          "no one righteous, not even one",
+          "no one who does good, not even one",
+          "deceit",
+          "venom",
+          "cursing and bitterness",
+          "shed blood",
+          "ruin",
+          "all have sinned"
         ]
       }
     ],
@@ -1608,5 +1691,65 @@
         "references": ["Jude 1:24–25"]
       }
     ]
+  },
+  "chapterDiagrams": {
+    "3": {
+      "title": "The Day of Atonement forshadows Christ’s Sacrifice",
+      "buttonLabel": "Atonement",
+      "connectors": "table",
+      "columns": 2,
+      "nodes": [
+        {
+          "id": "doa",
+          "label": "Day of Atonement",
+          "color": "amber"
+        },
+        {
+          "id": "christ",
+          "label": "Christ’s sacrifice",
+          "ref": "3:25",
+          "color": "teal"
+        },
+        {
+          "id": "doa-enter",
+          "label": "High priest enters the Most Holy Place once a year",
+          "ref": "Leviticus 16:34"
+        },
+        {
+          "id": "christ-enter",
+          "label": "Christ enters heaven itself “once for all”",
+          "ref": "Hebrews 9:11-12"
+        },
+        {
+          "id": "doa-blood",
+          "label": "Blood of goats and bulls sprinkled on the mercy seat",
+          "ref": "Leviticus 16:14-15"
+        },
+        {
+          "id": "christ-blood",
+          "label": "His own blood",
+          "ref": "Hebrews 9:12"
+        },
+        {
+          "id": "doa-covered",
+          "label": "Sins covered for a year, repeated annually"
+        },
+        {
+          "id": "christ-permanent",
+          "label": "Permanent, complete dealing with sin",
+          "ref": "Hebrews 10:11-14"
+        },
+        {
+          "id": "doa-scapegoat",
+          "label": "Live goat sent away carrying Israel’s sins (scapegoat)",
+          "ref": "Leviticus 16:21-22"
+        },
+        {
+          "id": "christ-removed",
+          "label": "Sin removed “as far as the east is from the west”",
+          "ref": "Psalm 103:12"
+        }
+      ]
+    }
   }
 }

@@ -3066,6 +3066,45 @@ html.bp-hide-outlines .topic-outline-btn {
   dominant-baseline: middle;
   text-decoration: underline;
 }
+/* Table mode (`"connectors": "table"`): square cells sharing borders, a
+   solid header row, and body cells that carry only a faint wash of their
+   color so the grid reads as a table rather than a wall of boxes. */
+.bp-diagram-svg--table .bp-diagram-node-rect {
+  stroke: #5a6270;
+  stroke-width: 1;
+}
+.bp-diagram-node--cell .bp-diagram-node-rect {
+  fill-opacity: 0.28;
+}
+.bp-diagram-node--cell .bp-diagram-node-label {
+  font-weight: 500;
+}
+.bp-diagram-node-link {
+  text-decoration: none;
+}
+.bp-diagram-node-link:focus-visible .bp-diagram-node-rect {
+  stroke-width: 2.2;
+  filter: brightness(1.15);
+}
+/* Hover preview of a diagram node's verses: the reference menu's popover
+   look, fixed above the diagram modal (z-index 1200) and never in the
+   pointer's way. */
+.bp-diagram-preview {
+  position: fixed;
+  z-index: 1300;
+  pointer-events: none;
+  background: #fff;
+  color: #222;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  padding: 8px 10px;
+  min-width: 260px;
+  max-width: min(480px, 80vw);
+  max-height: 60vh;
+  overflow: hidden;
+  white-space: pre-wrap;
+}
 .bp-diagram-node--clickable {
   cursor: pointer;
 }
@@ -3098,10 +3137,8 @@ html.bp-hide-outlines .topic-outline-btn {
   .bp-diagram-modal__close {
     font-size: 1.35rem;
   }
-  .bp-diagram-svg {
-    transform: scale(1.3);
-    transform-origin: top center;
-  }
+  /* The diagram itself is enlarged in JS (openDiagramModal's baseScale),
+     since the zoom buttons own the SVG's size. */
 }
 
 /* Chiasm explainer sub-modal */
