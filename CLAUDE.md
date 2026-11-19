@@ -64,6 +64,8 @@ Deploy is push-to-`main` auto-deploy (no CI step in this repo triggers it — a 
 
 Topic entry fields: `outline` (or `label`), `verses` (string array of ranges), `references`, `links`, `note`, `highlight`, `text`, `emphasis`.
 
+`note` (a string, or an array of strings shown as separate paragraphs) supports exactly two bits of markup in the note popup: `*italic*` and `**bold**` (`appendFormattedNoteText()` in `js/bible-loader.js` — text nodes wrapped in `<em>`/`<strong>`, never `innerHTML`; the asterisks must touch the words, so a spaced or lone `*` is left as typed). The suggestion form and the admin diff show the raw asterisks and each carry a one-line hint about the rule. Diagram node `note`s are separate SVG text and stay plain.
+
 `links` is optional and manual-only (like `note`/`highlight`/`text` — `js/usfm-outline-extractor.js` never generates it and overwrites the whole file on regeneration). Each entry is `{ label, url }`; the label is shown in the references popup, clicking opens `url` in a new tab instead of navigating within the app. Used the same way in `data/bookwide/` entries.
 
 `emphasis` is only meaningful on `label` entries: an array of exact phrase substrings (same matching semantics as `text`), highlighted with the `.emphasis-highlight` CSS class on top of the label's own whole-verse `.verse-highlight` when that label is clicked. Unlike `text` (which highlights chapter-wide/book-wide whenever its button is active), `emphasis` phrases are matched only within that same entry's own `verses` — never elsewhere, even on an exact text match. Used the same way in `data/bookwide/` `label` entries.

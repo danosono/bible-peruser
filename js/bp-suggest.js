@@ -400,7 +400,8 @@ function renderForm(body, ctx, session, closeModal) {
       "Add a note…",
     );
     form.appendChild(
-      el("p", "bp-suggest-help", "Press Enter twice to start a new paragraph."),
+      el("p", "bp-suggest-help", "Press Enter twice to start a new paragraph. Wrap words in *asterisks* for italics, or **two** for bold.",
+      ),
     );
     fields.references = addTextArea(
       form,

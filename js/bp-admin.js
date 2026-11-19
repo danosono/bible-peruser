@@ -307,6 +307,17 @@ async function buildRowCard(row, client, list, refreshAll) {
     textarea.dataset.wasArray = Array.isArray(value) ? "1" : "";
     proposedEdits[key] = textarea;
     proposedCell.appendChild(textarea);
+    if (key === "note") {
+      // Same rule the reader's note popup applies (appendFormattedNoteText
+      // in js/bible-loader.js); shown here as raw text on purpose.
+      const hint = document.createElement("div");
+      hint.style.fontSize = "0.8em";
+      hint.style.opacity = "0.7";
+      hint.style.marginTop = "0.25em";
+      hint.textContent =
+        "Formatting: *asterisks* show as italics, **two** as bold. Shown raw here.";
+      proposedCell.appendChild(hint);
+    }
     tr.appendChild(keyCell);
     tr.appendChild(currentCell);
     tr.appendChild(proposedCell);

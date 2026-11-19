@@ -3750,6 +3750,32 @@ function openReferenceMenu(
   }, 0);
 }
 
+// The only markup a note supports: *italic* and **bold**. Everything is
+// still inserted as text nodes (never innerHTML) — the marked spans are
+// just wrapped in <em>/<strong> — so a note can't inject HTML. The
+// asterisks must hug the words (`*even though*`), so a stray or spaced
+// asterisk ("2 * 3 * 4") is left alone; no nesting, no escaping.
+const NOTE_MARKUP_RE =
+  /\*\*([^\s*](?:[^*]*[^\s*])?)\*\*|\*([^\s*](?:[^*]*[^\s*])?)\*/g;
+function appendFormattedNoteText(parent, text) {
+  const source = String(text || "");
+  let last = 0;
+  let match;
+  NOTE_MARKUP_RE.lastIndex = 0;
+  while ((match = NOTE_MARKUP_RE.exec(source))) {
+    if (match.index > last) {
+      parent.appendChild(document.createTextNode(source.slice(last, match.index)));
+    }
+    const styled = document.createElement(match[1] !== undefined ? "strong" : "em");
+    styled.textContent = match[1] !== undefined ? match[1] : match[2];
+    parent.appendChild(styled);
+    last = match.index + match[0].length;
+  }
+  if (last < source.length) {
+    parent.appendChild(document.createTextNode(source.slice(last)));
+  }
+}
+
 function openNoteMenu(icon, noteText, onClose) {
   document.querySelectorAll(".reference-menu").forEach((m) => m.remove());
   const menu = document.createElement("div");
@@ -3775,7 +3801,7 @@ function openNoteMenu(icon, noteText, onClose) {
     const lineEl = document.createElement("div");
     lineEl.style.whiteSpace = "pre-wrap";
     if (i > 0) lineEl.style.marginTop = "0.5em";
-    lineEl.textContent = line;
+    appendFormattedNoteText(lineEl, line);
     noteItem.appendChild(lineEl);
   });
   menu.appendChild(noteItem);
