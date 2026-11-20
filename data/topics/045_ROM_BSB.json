@@ -1471,14 +1471,14 @@
         ]
       },
       {
-        "label": "just & justifies",
+        "label": "Just & justifies",
         "verses": ["26"],
         "references": [
+          "Isaiah 53:6",
           "Romans 3:26",
           "2 Corinthians 5:21",
           "1 Peter 3:18",
-          "Galatians 3:13",
-          "Isaiah 53:6"
+          "Galatians 3:13"
         ],
         "emphasis": [
           "demonstrate His righteousness",
@@ -1488,6 +1488,44 @@
         "note": [
           "God is just *even though* He justifies the ungodly, because of the atoning sacrifice in Jesus' blood (Jesus paid what was due for our sins)."
         ]
+      },
+      {
+        "label": "Justification",
+        "verses": ["9", "28"],
+        "references": [],
+        "emphasis": [
+          "Jews and Greeks alike are all under sin",
+          "a man is justified by faith apart from works of the law",
+          "to justify"
+        ]
+      },
+      {
+        "label": "one God",
+        "verses": ["30"],
+        "references": [
+          "Deuteronomy 6:4",
+          "Isaiah 45:22",
+          "Romans 3:30",
+          "Romans 10:12",
+          "Ephesians 2:14-16",
+          "Galatians 3:28",
+          "1 Timothy 2:5"
+        ],
+        "emphasis": ["one God"]
+      },
+      {
+        "label": "uphold the law",
+        "verses": ["31"],
+        "references": [
+          "Jeremiah 31:33",
+          "Ezekiel 36:27",
+          "Matthew 5:17",
+          "Romans 3:31",
+          "Romans 8:3-4",
+          "Romans 13:10",
+          "Hebrews 8:10"
+        ],
+        "emphasis": ["uphold the law"]
       },
       {
         "highlight": "Righteousness of God",
