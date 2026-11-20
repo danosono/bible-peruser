@@ -3326,7 +3326,9 @@ function attachIconHoverTooltip(el, text) {
     hide();
     tooltipEl = document.createElement("div");
     tooltipEl.className = "bp-icon-tooltip-popover";
-    tooltipEl.textContent = text;
+    // `text` is plain text, or a function that fills the tooltip itself.
+    if (typeof text === "function") text(tooltipEl);
+    else tooltipEl.textContent = text;
     document.body.appendChild(tooltipEl);
     positionIconTooltip(el, tooltipEl);
   }
@@ -3391,6 +3393,7 @@ function openReferenceMenu(
   onSelectReference,
   onClose,
   compareContext,
+  menuHint,
 ) {
   document.querySelectorAll(".reference-menu").forEach((m) => m.remove());
   document
@@ -3625,13 +3628,35 @@ function openReferenceMenu(
 
   const compareCandidates = (references || []).filter(Boolean);
 
+  // Optional one-line explanation of what clicking a reference does here,
+  // when it isn't the obvious "go to that verse" (Entire Book view).
+  if (menuHint && compareCandidates.some(isComparableReference)) {
+    const hintEl = document.createElement("div");
+    hintEl.className = "reference-menu__hint reference-menu__hint--top";
+    hintEl.textContent = menuHint;
+    menu.appendChild(hintEl);
+  }
+
   compareCandidates.forEach((ref) => {
     // A reference that resolves to a chapter is a real link to its URL, so
     // middle-click, Ctrl/Cmd/Shift+click and the right-click menu open it
     // in a new tab natively (the menu stays open, so several can be opened
     // in a row). A plain left click is still taken over below and
-    // navigates in place. Section-header lines ("- proclaimed") and
-    // anything else unparseable stay plain divs.
+    // navigates in place. A reference that names no known book stays
+    // a plain div.
+    // Entries with no reference in them at all ("- examples", "REPENT:",
+    // a bare "-") only organize the list: a small heading, or just a gap,
+    // with nothing to click.
+    if (!extractReferenceCore(ref)) {
+      const heading = String(ref).trim().replace(/^-+\s*/, "");
+      const groupEl = document.createElement("div");
+      groupEl.className = heading
+        ? "reference-menu-group"
+        : "reference-menu-group reference-menu-group--gap";
+      groupEl.textContent = heading;
+      menu.appendChild(groupEl);
+      return;
+    }
     const refDetails = parseReferenceForPreview(ref);
     const refHref = refDetails
       ? buildChapterUrl(
@@ -3776,8 +3801,13 @@ function appendFormattedNoteText(parent, text) {
   }
 }
 
-function openNoteMenu(icon, noteText, onClose) {
-  document.querySelectorAll(".reference-menu").forEach((m) => m.remove());
+// Two states, one element. A *preview* (options.preview — opened by hovering
+// the note icon) carries a "Click to keep open" hint and goes away when the
+// pointer leaves; *pinned* (a click on the icon or on the preview itself, or
+// any open on a touch device) swaps the hint for Close and stays until Close,
+// a click elsewhere, or a second click on the icon. Returns a small handle
+// so the icon's own listeners can pin/close what they opened.
+function openNoteMenu(icon, noteText, onClose, options) {
   const menu = document.createElement("div");
   menu.className = "reference-menu";
   menu.style.position = "absolute";
@@ -3806,31 +3836,73 @@ function openNoteMenu(icon, noteText, onClose) {
   });
   menu.appendChild(noteItem);
 
-  const closeItem = document.createElement("div");
-  closeItem.className = "reference-menu-item";
-  closeItem.textContent = "Close";
-  closeItem.style.padding = "4px 0";
-  closeItem.style.cursor = "pointer";
-  closeItem.style.color = "#0074d9";
-  closeItem.addEventListener("click", (e) => {
-    e.stopPropagation();
+  const footer = document.createElement("div");
+  menu.appendChild(footer);
+
+  let pinned = false;
+  let outsideHandler = null;
+
+  function close(runOnClose) {
     menu.remove();
-    if (onClose) onClose();
-  });
-  menu.appendChild(document.createElement("hr"));
-  menu.appendChild(closeItem);
+    if (outsideHandler) {
+      document.removeEventListener("mousedown", outsideHandler);
+      outsideHandler = null;
+    }
+    if (runOnClose && onClose) onClose();
+  }
 
-  document.body.appendChild(menu);
-  positionFloatingMenu(icon, menu);
-
-  setTimeout(() => {
-    document.addEventListener("mousedown", function handler(e) {
-      if (!menu.contains(e.target)) {
-        menu.remove();
-        document.removeEventListener("mousedown", handler);
-      }
+  function pin() {
+    if (pinned) return;
+    pinned = true;
+    document.querySelectorAll(".reference-menu").forEach((m) => {
+      if (m !== menu) m.remove();
     });
-  }, 0);
+    menu.classList.remove("reference-menu--preview");
+
+    const closeItem = document.createElement("div");
+    closeItem.className = "reference-menu-item";
+    closeItem.textContent = "Close";
+    closeItem.style.padding = "4px 0";
+    closeItem.style.cursor = "pointer";
+    closeItem.style.color = "#0074d9";
+    closeItem.addEventListener("click", (e) => {
+      e.stopPropagation();
+      close(true);
+    });
+    footer.textContent = "";
+    footer.appendChild(document.createElement("hr"));
+    footer.appendChild(closeItem);
+
+    if (!menu.isConnected) document.body.appendChild(menu);
+    positionFloatingMenu(icon, menu);
+
+    // The icon is left out on purpose: its own click handler toggles the
+    // pinned note closed, which a mousedown-close here would turn into a
+    // close-then-reopen.
+    setTimeout(() => {
+      if (!menu.isConnected) return;
+      outsideHandler = (e) => {
+        if (menu.contains(e.target) || icon.contains(e.target)) return;
+        close(false);
+      };
+      document.addEventListener("mousedown", outsideHandler);
+    }, 0);
+  }
+
+  if (options && options.preview) {
+    menu.classList.add("reference-menu--preview");
+    const hint = document.createElement("div");
+    hint.className = "reference-menu__hint";
+    hint.textContent = "Click to keep open";
+    footer.appendChild(hint);
+    menu.addEventListener("click", () => pin());
+    document.body.appendChild(menu);
+    positionFloatingMenu(icon, menu);
+  } else {
+    pin();
+  }
+
+  return { menu, pin, close, isPinned: () => pinned };
 }
 
 // Reference/note icons share one small cluster on the trailing side of the
@@ -3856,6 +3928,7 @@ function decorateTopicButtonWithReferences(
   helperText,
   onClose,
   compareContext,
+  menuHint,
 ) {
   const hasRefs = Array.isArray(references) && references.length;
   const hasLinks = Array.isArray(links) && links.length;
@@ -3875,7 +3948,55 @@ function decorateTopicButtonWithReferences(
     ? `${tooltipCore}\n${helperText}`
     : tooltipCore;
   linkIcon.setAttribute("aria-label", tooltipText);
-  const hideLinkTooltip = attachIconHoverTooltip(linkIcon, tooltipText);
+  // The hover tooltip is a list, one entry per line, rather than the
+  // "; "-joined string (kept above for aria-label): the reference itself
+  // stands out, whatever was typed after it is dimmed, and grouping lines
+  // ("- Grace", "REPENT:") read as small headings.
+  const hideLinkTooltip = attachIconHoverTooltip(linkIcon, (tip) => {
+    tip.classList.add("bp-icon-tooltip-popover--list");
+    (hasRefs ? references : []).forEach((ref) => {
+      if (typeof ref !== "string" || !ref.trim()) return;
+      const text = ref.trim();
+      const row = document.createElement("div");
+      const core = extractReferenceCore(text);
+      if (!core) {
+        // A bare "-" is a spacer; "- examples" is a heading.
+        const heading = text.replace(/^-+\s*/, "");
+        row.className = heading
+          ? "bp-ref-tip__group"
+          : "bp-ref-tip__group bp-ref-tip__group--gap";
+        row.textContent = heading;
+      } else {
+        row.className = "bp-ref-tip__row";
+        const at = text.indexOf(core);
+        const refEl = document.createElement("span");
+        refEl.className = "bp-ref-tip__ref";
+        refEl.textContent = text.slice(0, at + core.length);
+        row.appendChild(refEl);
+        const rest = text.slice(at + core.length).replace(/^\s*[-–—:]\s*/, "").trim();
+        if (rest) {
+          const noteEl = document.createElement("span");
+          noteEl.className = "bp-ref-tip__note";
+          noteEl.textContent = rest;
+          row.appendChild(noteEl);
+        }
+      }
+      tip.appendChild(row);
+    });
+    (hasLinks ? links : []).forEach((l) => {
+      if (!l || !l.label) return;
+      const row = document.createElement("div");
+      row.className = "bp-ref-tip__row bp-ref-tip__link";
+      row.textContent = `${l.label} ↗`;
+      tip.appendChild(row);
+    });
+    if (helperText) {
+      const help = document.createElement("div");
+      help.className = "bp-ref-tip__help";
+      help.textContent = helperText;
+      tip.appendChild(help);
+    }
+  });
   linkIcon.style.cursor = "pointer";
   linkIcon.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -3887,6 +4008,7 @@ function decorateTopicButtonWithReferences(
       onSelectReference,
       onClose,
       compareContext,
+      menuHint,
     );
   });
   btn.appendChild(document.createTextNode(label));
@@ -3911,13 +4033,83 @@ function decorateTopicButtonWithNote(btn, noteText, helperText, onClose) {
   noteIcon.innerHTML = "&#x1F4DD;";
   const noteTooltipText = helperText || "Show note";
   noteIcon.setAttribute("aria-label", noteTooltipText);
+  // Only reached in the phone layout on a hover-capable device; everywhere
+  // else with a hover pointer the note preview below takes its place.
   const hideNoteTooltip = attachIconHoverTooltip(noteIcon, noteTooltipText);
   noteIcon.style.cursor = "pointer";
+
+  let current = null; // handle from openNoteMenu
+  let showTimer = null;
+  let hideTimer = null;
+  const isOpen = () => !!current && current.menu.isConnected;
+  const clearTimers = () => {
+    clearTimeout(showTimer);
+    clearTimeout(hideTimer);
+  };
+
+  function hidePreview() {
+    clearTimers();
+    document.removeEventListener("mousemove", orphanGuard);
+    if (isOpen() && !current.isPinned()) current.close(false);
+  }
+  function scheduleHide() {
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(hidePreview, 200);
+  }
+  // A chapter re-render removes the icon without a mouseleave, which would
+  // strand the preview on screen.
+  function orphanGuard() {
+    if (!isOpen() || current.isPinned()) {
+      document.removeEventListener("mousemove", orphanGuard);
+    } else if (!noteIcon.isConnected) {
+      hidePreview();
+    }
+  }
+
   noteIcon.addEventListener("click", (e) => {
     e.stopPropagation();
     if (hideNoteTooltip) hideNoteTooltip();
-    openNoteMenu(noteIcon, normalizedNote, onClose);
+    clearTimers();
+    if (isOpen()) {
+      if (current.isPinned()) {
+        current.close(false);
+        current = null;
+      } else {
+        current.pin();
+      }
+      return;
+    }
+    current = openNoteMenu(noteIcon, normalizedNote, onClose);
   });
+
+  if (window.matchMedia("(hover: hover)").matches) {
+    noteIcon.addEventListener("mouseenter", () => {
+      // Phone layout shows notes as a bottom sheet — too heavy for a hover.
+      if (window.bpIsMobileMode && window.bpIsMobileMode()) return;
+      if (hideNoteTooltip) hideNoteTooltip();
+      clearTimers();
+      if (isOpen()) return;
+      showTimer = setTimeout(() => {
+        if (!noteIcon.isConnected || isOpen()) return;
+        current = openNoteMenu(noteIcon, normalizedNote, onClose, {
+          preview: true,
+        });
+        // Moving onto the preview keeps it up, so it can be clicked to pin.
+        current.menu.addEventListener("mouseenter", () =>
+          clearTimeout(hideTimer),
+        );
+        current.menu.addEventListener("mouseleave", () => {
+          if (isOpen() && !current.isPinned()) scheduleHide();
+        });
+        document.addEventListener("mousemove", orphanGuard);
+      }, 150);
+    });
+    noteIcon.addEventListener("mouseleave", () => {
+      clearTimeout(showTimer);
+      if (isOpen() && !current.isPinned()) scheduleHide();
+    });
+  }
+
   getTopicBtnIcons(btn).appendChild(noteIcon);
 }
 
@@ -4516,7 +4708,7 @@ async function loadBibleChapter(
             topic.references,
             topic.links,
             openChapterTopicReference,
-            "Click to follow reference",
+            "Click for more",
             undefined,
             {
               title: topic.label,
@@ -4524,7 +4716,7 @@ async function loadBibleChapter(
               sourcePassages: buildChapterSourcePassages(bookId, chapterNum, topic.verses),
             },
           );
-          decorateTopicButtonWithNote(btn, topic.note, "Click to view note");
+          decorateTopicButtonWithNote(btn, topic.note, "Show note");
           decorateTopicButtonWithSuggest(btn, {
             action: "correct",
             scope: "chapter",
@@ -4552,7 +4744,7 @@ async function loadBibleChapter(
             topic.references,
             topic.links,
             openChapterTopicReference,
-            "Click to follow reference",
+            "Click for more",
             () => pinTopicButton(btn),
             {
               title: topic.outline,
@@ -4563,7 +4755,7 @@ async function loadBibleChapter(
           decorateTopicButtonWithNote(
             btn,
             topic.note,
-            "Click to view note",
+            "Show note",
             () => pinTopicButton(btn),
           );
           type = "outline";
@@ -5692,17 +5884,18 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
           outlineEntry.references,
           outlineEntry.links,
           openBookWideOutlineReference,
-          "Click to open referenced book in Entire Book view",
+          "Click for more",
           undefined,
           {
             title: outlineEntry.outline,
             sourcePassages: buildBookWideSourcePassages(bookId, outlineEntry.verses),
           },
+          "Click a reference to open its book in Entire Book view",
         );
         decorateTopicButtonWithNote(
           btn,
           outlineEntry.note,
-          "Click to view note",
+          "Show note",
         );
 
         btn.onclick = () => {
@@ -5729,14 +5922,15 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
           labelEntry.references,
           labelEntry.links,
           openBookWideOutlineReference,
-          "Click to open referenced book in Entire Book view",
+          "Click for more",
           undefined,
           {
             title: labelEntry.label,
             sourcePassages: buildBookWideSourcePassages(bookId, labelEntry.verses),
           },
+          "Click a reference to open its book in Entire Book view",
         );
-        decorateTopicButtonWithNote(btn, labelEntry.note, "Click to view note");
+        decorateTopicButtonWithNote(btn, labelEntry.note, "Show note");
         decorateTopicButtonWithSuggest(btn, {
           action: "correct",
           scope: "bookwide",

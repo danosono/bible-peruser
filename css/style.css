@@ -1823,11 +1823,64 @@ footer {
   box-shadow: 0 2px 8px #000a;
   pointer-events: none;
 }
+/* Reference-icon tooltip: one reference per row, in two columns — the
+   reference, then whatever was typed after it, dimmed — so the references
+   line up and the notes line up (js: decorateTopicButtonWithReferences). */
+.bp-icon-tooltip-popover--list {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  column-gap: 0.9em;
+  row-gap: 0.2em;
+  max-width: 460px;
+  white-space: normal;
+}
+.bp-ref-tip__row {
+  display: contents;
+}
+.bp-ref-tip__ref {
+  grid-column: 1;
+  color: var(--gold-accent);
+  white-space: nowrap;
+}
+.bp-ref-tip__note {
+  grid-column: 2;
+  color: #a9afb6;
+}
+.bp-ref-tip__group,
+.bp-ref-tip__link,
+.bp-ref-tip__help {
+  grid-column: 1 / -1;
+}
+.bp-ref-tip__group {
+  margin-top: 0.3em;
+  font-size: 0.85em;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #c9ced4;
+}
+.bp-ref-tip__group:first-child {
+  margin-top: 0;
+}
+.bp-ref-tip__link {
+  display: block;
+  color: #8bd3ff;
+  font-style: italic;
+}
+.bp-ref-tip__help {
+  margin-top: 0.3em;
+  padding-top: 0.35em;
+  border-top: 1px solid #333;
+  font-size: 0.85em;
+  color: #8d939a;
+}
 @media (min-width: 3000px) {
   .bp-icon-tooltip-popover {
     font-size: 17px;
     max-width: 420px;
     padding: 0.5em 0.8em;
+  }
+  .bp-icon-tooltip-popover--list {
+    max-width: 600px;
   }
 }
 
@@ -1859,6 +1912,52 @@ footer {
 .reference-menu-item:hover {
   background: #3d4b85;
   color: #fff;
+}
+/* Note shown by hovering its icon (js: openNoteMenu, preview state). The
+   whole popup is the click target that pins it open; !important beats the
+   inline cursor styles. Sits above a pinned menu it may overlap. */
+.reference-menu--preview {
+  z-index: 1001 !important;
+}
+.reference-menu--preview,
+.reference-menu--preview .reference-menu-item {
+  cursor: pointer !important;
+}
+.reference-menu__hint {
+  margin-top: 6px;
+  padding-top: 5px;
+  border-top: 1px solid #333;
+  font-size: 0.8em;
+  color: #9aa0a6;
+}
+.reference-menu__hint--top {
+  margin: 0 0 6px;
+  padding: 0 0 5px;
+  border-top: none;
+  border-bottom: 1px solid #333;
+}
+/* Entries that only organize the list ("- examples", "REPENT:"): a small
+   heading with nothing to click. A bare "-" is just a gap. */
+.reference-menu-group {
+  margin-top: 0.6em;
+  padding: 2px 0;
+  font-size: 0.82em;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #a9afb6;
+  cursor: default;
+}
+.reference-menu-group:first-child {
+  margin-top: 0;
+}
+.reference-menu-group--gap {
+  margin-top: 0;
+  padding: 0;
+  height: 0.6em;
+}
+.bp-ref-tip__group--gap {
+  margin-top: 0;
+  height: 0.3em;
 }
 .reference-menu-item--external {
   color: #8bd3ff !important;

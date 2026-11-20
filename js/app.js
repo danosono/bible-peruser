@@ -608,7 +608,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ".bp-compare-overlay",
     ".bp-timeline-overlay",
     ".bp-info-modal",
-    ".reference-menu",
+    // A hover-only note preview is not an open popup: keys keep working.
+    ".reference-menu:not(.reference-menu--preview)",
     ".bp-theme-picker-popover",
   ].join(",");
 
