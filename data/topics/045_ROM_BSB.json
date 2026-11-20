@@ -1208,7 +1208,8 @@
         "label": "Entrusted",
         "verses": ["2"],
         "references": [
-          "Exodus 31:18 - Law",
+          "Law",
+          "Exodus 31:18",
           "Exodus 32:19",
           "Exodus 34:1",
           "Exodus 40:20",
@@ -1220,7 +1221,6 @@
           "Romans 3:1-3",
           "Romans 9:4-5",
           "Hebrews 9:4",
-          "-",
           "Ezekiel 36:26-27",
           "Micah 4:2",
           "-",
