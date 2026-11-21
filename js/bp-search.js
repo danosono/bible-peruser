@@ -13,6 +13,11 @@
 // no stop list: inside a phrase they narrow the result, and a lone common
 // word is simply capped (RESULTS_PAGE at a time, total always shown).
 //
+// A bare book name ("philemon", "mark", "job") still jumps on Enter, but the
+// word may be what the reader is after, so the panel then offers one row,
+// "Search the Bible for the word …" (showWordOffer). Taking it searches that
+// word, and the box keeps searching it until its text changes.
+//
 // Self-contained like bp-rsvp.js: reads the cached bible.json through
 // window.bpGetBibleData and touches the page only through loadBibleChapter.
 // app.js calls window.bpBibleSearch.submit() from the jump form's submit
@@ -158,6 +163,13 @@ function ensurePanel() {
   panel.addEventListener("keydown", onPanelKeydown);
   listEl.addEventListener("click", (e) => {
     const row = e.target.closest(".bp-search__result");
+    if (row && row.classList.contains("bp-search__alt")) {
+      forcedQuery = input.value;
+      clearTimeout(debounceTimer);
+      runSearch(forcedQuery);
+      input.focus();
+      return;
+    }
     if (row) openResult(current.results[parseInt(row.dataset.idx, 10)]);
   });
 }
@@ -302,6 +314,29 @@ async function runSearch(query) {
   return true;
 }
 
+// The box holds just a book name, which Enter jumps to: offer the word
+// search as a single row instead of results.
+let forcedQuery = null;
+function isBareBookName(text) {
+  return !/d/.test(text) && isReference(text);
+}
+function showWordOffer(text) {
+  searchSeq++;
+  current = { query: "", results: [], shown: 0, re: null };
+  showPanel();
+  const parsed = parseBookChapterInput(text);
+  const book = bookNames[parsed.bookId] || "that book";
+  statusEl.textContent = `Enter goes to ${book}.`;
+  listEl.textContent = "";
+  moreBtn.hidden = true;
+  const row = document.createElement("button");
+  row.type = "button";
+  row.className = "bp-search__result bp-search__alt";
+  row.textContent = `Search the Bible for the word “${text.trim()}” instead`;
+  listEl.appendChild(row);
+  positionPanel();
+}
+
 async function openResult(v) {
   if (!v) return;
   closePanel();
@@ -321,9 +356,20 @@ async function openResult(v) {
 function onInput() {
   clearTimeout(debounceTimer);
   const text = input.value;
-  if (searchableLength(text) < MIN_CHARS || isReference(text) || looksLikeReference(text)) {
+  if (text !== forcedQuery) forcedQuery = null;
+  if (searchableLength(text) < MIN_CHARS) {
     closePanel();
     return;
+  }
+  if (forcedQuery === null) {
+    if (isBareBookName(text)) {
+      debounceTimer = setTimeout(() => showWordOffer(text), DEBOUNCE_MS);
+      return;
+    }
+    if (isReference(text) || looksLikeReference(text)) {
+      closePanel();
+      return;
+    }
   }
   debounceTimer = setTimeout(() => runSearch(text), DEBOUNCE_MS);
 }

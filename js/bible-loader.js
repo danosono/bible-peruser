@@ -3286,16 +3286,27 @@ function positionIconTooltip(icon, tooltip) {
   let top = anchorRect.top + window.scrollY - tipRect.height - gap;
   let left = anchorRect.left + window.scrollX;
 
-  if (top < viewportTop + viewportPadding) {
-    top = anchorRect.bottom + window.scrollY + gap;
-  }
-
   const minTop = viewportTop + viewportPadding;
   const maxTop = viewportBottom - tipRect.height - viewportPadding;
-  top = Math.max(minTop, Math.min(top, maxTop));
-
   const minLeft = viewportLeft + viewportPadding;
   const maxLeft = viewportRight - tipRect.width - viewportPadding;
+
+  if (top < minTop) {
+    top = anchorRect.bottom + window.scrollY + gap;
+    if (top > maxTop) {
+      // Too tall to fit above or below (a long reference list): clamping
+      // it vertically would lay it across the hovered button, so put it
+      // beside the button instead — right, or left when right has no room.
+      const host = icon.closest(".topic-btn") || icon;
+      const hostRect = host.getBoundingClientRect();
+      const rightOf = hostRect.right + window.scrollX + gap;
+      const leftOf = hostRect.left + window.scrollX - tipRect.width - gap;
+      if (rightOf <= maxLeft) left = rightOf;
+      else if (leftOf >= minLeft) left = leftOf;
+    }
+  }
+
+  top = Math.max(minTop, Math.min(top, maxTop));
   left = Math.max(minLeft, Math.min(left, maxLeft));
 
   tooltip.style.top = `${top}px`;

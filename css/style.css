@@ -908,6 +908,17 @@ html.bp-hide-outlines .bp-outline-hint {
 .bp-search__result:focus-visible {
   box-shadow: inset 2px 0 0 var(--gold-accent);
 }
+/* "Search the Bible for the word … instead" — offered when the box holds
+   a bare book name, which Enter jumps to. */
+.bp-search__alt {
+  border-bottom: none;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+.bp-search__alt:hover,
+.bp-search__alt:focus-visible {
+  color: var(--gold-accent);
+}
 .bp-search__ref {
   display: block;
   font-size: 0.78rem;
