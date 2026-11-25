@@ -1,5 +1,11 @@
 {
   "bookWideOutline": [],
   "bookWideLabels": [],
-  "bookWideHighlights": []
+  "bookWideHighlights": 
+  [
+    {
+      "highlight": "mystery",
+      "text": ["mystery"]
+    }
+  ]
 }
