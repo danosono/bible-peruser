@@ -343,6 +343,7 @@ html.bp-busy button {
   --error: #ff9c8a;
   --search-highlight: #ffe923;
   --emphasis-highlight: #26ff7b;
+  --emphasis2-highlight: #ff8a4c;
   /* Chiasm viewer focus color (the "X" part) — deliberately not part of
      the seasonal accent trio, so a chiasm's center reads the same
      regardless of the active color theme. */
@@ -1658,32 +1659,41 @@ footer {
   font-weight: bold;
 }
 
-/* Label-scoped phrase emphasis (topic.emphasis) — distinct from
-   .search-highlight's yellow, mirrors its minimal styling exactly (plain
-   color at the default tier, bold+tinted background at dense/overview),
-   themed via --emphasis-highlight (aliased to --accent-vivid by default)
-   so it shifts with the seasonal color scheme. */
+/* Label-scoped phrase emphasis (topic.emphasis / topic.emphasis2) — distinct
+   from .search-highlight's yellow, mirrors its minimal styling exactly (plain
+   color at the default tier, bold+tinted background at dense/overview).
+   Two colors share every rule through --emph: emphasis is green
+   (--emphasis-highlight), emphasis2 a warm orange (--emphasis2-highlight) —
+   a second, contrasting color, deliberately not an alarm red, since it is
+   used for plain contrast as often as for "the negative side". */
 .emphasis-highlight {
-  color: var(--emphasis-highlight);
+  --emph: var(--emphasis-highlight);
+}
+.emphasis2-highlight {
+  --emph: var(--emphasis2-highlight);
+}
+.emphasis-highlight,
+.emphasis2-highlight {
+  color: var(--emph);
   border-radius: 4px;
 }
 
-.bible-book.bible-book--dense .emphasis-highlight {
+.bible-book.bible-book--dense :is(.emphasis-highlight, .emphasis2-highlight) {
   font-weight: bold;
-  background: color-mix(in srgb, var(--emphasis-highlight) 18%, transparent);
+  background: color-mix(in srgb, var(--emph) 18%, transparent);
   border-radius: 2px;
 }
-.bible-book.bible-book--dense .verse-highlight .emphasis-highlight {
+.bible-book.bible-book--dense .verse-highlight :is(.emphasis-highlight, .emphasis2-highlight) {
   background: none;
   font-weight: bold;
 }
 
-.bible-book.bible-book--dense.bp-overview-active .emphasis-highlight {
+.bible-book.bible-book--dense.bp-overview-active :is(.emphasis-highlight, .emphasis2-highlight) {
   font-weight: bold;
-  background: color-mix(in srgb, var(--emphasis-highlight) 50%, transparent);
+  background: color-mix(in srgb, var(--emph) 50%, transparent);
   border-radius: 2px;
 }
-.bible-book.bible-book--dense.bp-overview-active .verse-highlight .emphasis-highlight {
+.bible-book.bible-book--dense.bp-overview-active .verse-highlight :is(.emphasis-highlight, .emphasis2-highlight) {
   background: none;
   font-weight: bold;
 }
@@ -1692,14 +1702,14 @@ footer {
    overlap the same text, js/bible-loader.js's collectNonOverlappingMatches
    splits the shared portion into a span carrying BOTH classes, so it
    blends instead of one color winning outright. */
-.search-highlight.emphasis-highlight {
-  color: color-mix(in srgb, var(--search-highlight), var(--emphasis-highlight));
+.search-highlight:is(.emphasis-highlight, .emphasis2-highlight) {
+  color: color-mix(in srgb, var(--search-highlight), var(--emph));
 }
-.bible-book.bible-book--dense .search-highlight.emphasis-highlight {
-  background: color-mix(in srgb, color-mix(in srgb, var(--search-highlight), var(--emphasis-highlight)) 18%, transparent);
+.bible-book.bible-book--dense .search-highlight:is(.emphasis-highlight, .emphasis2-highlight) {
+  background: color-mix(in srgb, color-mix(in srgb, var(--search-highlight), var(--emph)) 18%, transparent);
 }
-.bible-book.bible-book--dense.bp-overview-active .search-highlight.emphasis-highlight {
-  background: color-mix(in srgb, color-mix(in srgb, var(--search-highlight), var(--emphasis-highlight)) 50%, transparent);
+.bible-book.bible-book--dense.bp-overview-active .search-highlight:is(.emphasis-highlight, .emphasis2-highlight) {
+  background: color-mix(in srgb, color-mix(in srgb, var(--search-highlight), var(--emph)) 50%, transparent);
 }
 
 .topic-btn {
@@ -1933,6 +1943,11 @@ footer {
 .reference-menu--preview,
 .reference-menu--preview .reference-menu-item {
   cursor: pointer !important;
+}
+/* The references preview is a working menu, not one big click target: only
+   its rows take the pointer cursor. */
+.reference-menu--preview.reference-menu--links {
+  cursor: default !important;
 }
 .reference-menu__hint {
   margin-top: 6px;

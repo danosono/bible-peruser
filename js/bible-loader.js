@@ -3405,11 +3405,15 @@ function openReferenceMenu(
   onClose,
   compareContext,
   menuHint,
+  options,
 ) {
-  document.querySelectorAll(".reference-menu").forEach((m) => m.remove());
-  document
-    .querySelectorAll(".reference-preview-popover")
-    .forEach((m) => m.remove());
+  // Same two states as openNoteMenu: a *preview* (options.preview — opened by
+  // hovering the icon) is the real, fully clickable menu, with a hint in
+  // place of Close, and goes away when the pointer leaves; *pinned* (a click
+  // on the icon, or any open on a touch device) stays until Close, a click
+  // elsewhere, or a second click on the icon. Returns a handle so the icon's
+  // listeners can pin/close what they opened.
+  const isPreview = !!(options && options.preview);
 
   const previewCache = new Map();
 
@@ -3560,6 +3564,8 @@ function openReferenceMenu(
       activePreviewPopover.addEventListener("click", (e) => {
         e.stopPropagation();
         previewPinned = !previewPinned;
+        // Pinning a verse pins the list it came from too.
+        if (previewPinned) pin();
       });
       document.body.appendChild(activePreviewPopover);
     }
@@ -3614,11 +3620,18 @@ function openReferenceMenu(
     });
   }
 
-  function closeReferenceUi(force = true) {
+  let pinned = false;
+  let outsideHandler = null;
+
+  function closeReferenceUi(runOnClose = true) {
     clearPreviewTimers();
-    removePreview(force);
+    removePreview(true);
     menu.remove();
-    if (onClose) onClose();
+    if (outsideHandler) {
+      document.removeEventListener("mousedown", outsideHandler);
+      outsideHandler = null;
+    }
+    if (runOnClose && onClose) onClose();
   }
 
   const menu = document.createElement("div");
@@ -3693,9 +3706,7 @@ function openReferenceMenu(
         return;
       }
       e.preventDefault();
-      clearPreviewTimers();
-      removePreview(true);
-      menu.remove();
+      closeReferenceUi(false);
       onSelectReference(ref);
     });
     menu.appendChild(refItem);
@@ -3750,40 +3761,81 @@ function openReferenceMenu(
     linkItem.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
-      clearPreviewTimers();
-      removePreview(true);
-      menu.remove();
+      closeReferenceUi(false);
       window.open(link.url, "_blank", "noopener,noreferrer");
     });
     menu.appendChild(linkItem);
   });
 
-  const closeItem = document.createElement("div");
-  closeItem.className = "reference-menu-item";
-  closeItem.textContent = "Close";
-  closeItem.style.padding = "4px 0";
-  closeItem.style.cursor = "pointer";
-  closeItem.style.color = "#0074d9";
-  closeItem.addEventListener("click", (e) => {
-    e.stopPropagation();
-    closeReferenceUi(true);
-  });
-  menu.appendChild(document.createElement("hr"));
-  menu.appendChild(closeItem);
+  const footer = document.createElement("div");
+  menu.appendChild(footer);
 
-  document.body.appendChild(menu);
-  positionFloatingMenu(icon, menu);
-
-  setTimeout(() => {
-    document.addEventListener("mousedown", function handler(e) {
-      const clickInsidePreview =
-        activePreviewPopover && activePreviewPopover.contains(e.target);
-      if (!menu.contains(e.target) && !clickInsidePreview) {
-        closeReferenceUi(true);
-        document.removeEventListener("mousedown", handler);
-      }
+  function pin() {
+    if (pinned) return;
+    pinned = true;
+    document.querySelectorAll(".reference-menu").forEach((m) => {
+      if (m !== menu) m.remove();
     });
-  }, 0);
+    document.querySelectorAll(".reference-preview-popover").forEach((m) => {
+      if (m !== activePreviewPopover) m.remove();
+    });
+    menu.classList.remove("reference-menu--preview", "reference-menu--links");
+
+    const closeItem = document.createElement("div");
+    closeItem.className = "reference-menu-item";
+    closeItem.textContent = "Close";
+    closeItem.style.padding = "4px 0";
+    closeItem.style.cursor = "pointer";
+    closeItem.style.color = "#0074d9";
+    closeItem.addEventListener("click", (e) => {
+      e.stopPropagation();
+      closeReferenceUi(true);
+    });
+    footer.textContent = "";
+    footer.appendChild(document.createElement("hr"));
+    footer.appendChild(closeItem);
+
+    if (!menu.isConnected) document.body.appendChild(menu);
+    positionFloatingMenu(icon, menu);
+
+    // The icon is left out on purpose: its own click handler toggles the
+    // pinned menu closed, which a mousedown-close here would turn into a
+    // close-then-reopen.
+    setTimeout(() => {
+      if (!menu.isConnected) return;
+      outsideHandler = (e) => {
+        const inVersePreview =
+          activePreviewPopover && activePreviewPopover.contains(e.target);
+        if (menu.contains(e.target) || icon.contains(e.target) || inVersePreview)
+          return;
+        closeReferenceUi(true);
+      };
+      document.addEventListener("mousedown", outsideHandler);
+    }, 0);
+  }
+
+  if (isPreview) {
+    menu.classList.add("reference-menu--preview", "reference-menu--links");
+    const hint = document.createElement("div");
+    hint.className = "reference-menu__hint";
+    hint.textContent = "Click \u{1F4D6} to keep open";
+    footer.appendChild(hint);
+    document.body.appendChild(menu);
+    positionFloatingMenu(icon, menu);
+  } else {
+    pin();
+  }
+
+  return {
+    menu,
+    pin,
+    close: closeReferenceUi,
+    isPinned: () => pinned,
+    // True while the pointer is on a verse popover opened from this menu,
+    // which sits outside the menu's own box.
+    isBusy: () =>
+      !!activePreviewPopover && activePreviewPopover.matches(":hover"),
+  };
 }
 
 // The only markup a note supports: *italic* and **bold**. Everything is
@@ -4009,9 +4061,19 @@ function decorateTopicButtonWithReferences(
     }
   });
   linkIcon.style.cursor = "pointer";
-  linkIcon.addEventListener("click", (e) => {
-    e.stopPropagation();
-    if (hideLinkTooltip) hideLinkTooltip();
+
+  // Hovering opens the real menu as a preview (the tooltip above is only
+  // reached in the phone layout on a hover-capable device), so the list a
+  // reader sees can be moved onto and clicked. Mirrors the note icon.
+  let current = null; // handle from openReferenceMenu
+  let showTimer = null;
+  let hideTimer = null;
+  const isOpen = () => !!current && current.menu.isConnected;
+  const clearTimers = () => {
+    clearTimeout(showTimer);
+    clearTimeout(hideTimer);
+  };
+  const openMenu = (preview) =>
     openReferenceMenu(
       linkIcon,
       references,
@@ -4020,8 +4082,76 @@ function decorateTopicButtonWithReferences(
       onClose,
       compareContext,
       menuHint,
+      { preview },
     );
+
+  function hidePreview() {
+    clearTimers();
+    if (isOpen() && !current.isPinned()) {
+      // Reading a verse popover beside the list: check again shortly.
+      if (current.isBusy() && linkIcon.isConnected) {
+        hideTimer = setTimeout(hidePreview, 200);
+        return;
+      }
+      current.close(false);
+    }
+    document.removeEventListener("mousemove", orphanGuard);
+  }
+  function scheduleHide() {
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(hidePreview, 200);
+  }
+  // A chapter re-render removes the icon without a mouseleave, which would
+  // strand the preview on screen.
+  function orphanGuard() {
+    if (!isOpen() || current.isPinned()) {
+      document.removeEventListener("mousemove", orphanGuard);
+    } else if (!linkIcon.isConnected) {
+      hidePreview();
+    }
+  }
+
+  linkIcon.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if (hideLinkTooltip) hideLinkTooltip();
+    clearTimers();
+    if (isOpen()) {
+      if (current.isPinned()) {
+        current.close(true);
+        current = null;
+      } else {
+        current.pin();
+      }
+      return;
+    }
+    current = openMenu(false);
   });
+
+  if (window.matchMedia("(hover: hover)").matches) {
+    linkIcon.addEventListener("mouseenter", () => {
+      // Phone layout shows the menu as a bottom sheet — too heavy for a hover.
+      if (window.bpIsMobileMode && window.bpIsMobileMode()) return;
+      if (hideLinkTooltip) hideLinkTooltip();
+      clearTimers();
+      if (isOpen()) return;
+      showTimer = setTimeout(() => {
+        if (!linkIcon.isConnected || isOpen()) return;
+        current = openMenu(true);
+        current.menu.addEventListener("mouseenter", () =>
+          clearTimeout(hideTimer),
+        );
+        current.menu.addEventListener("mouseleave", () => {
+          if (isOpen() && !current.isPinned()) scheduleHide();
+        });
+        document.addEventListener("mousemove", orphanGuard);
+      }, 150);
+    });
+    linkIcon.addEventListener("mouseleave", () => {
+      clearTimeout(showTimer);
+      if (isOpen() && !current.isPinned()) scheduleHide();
+    });
+  }
+
   btn.appendChild(document.createTextNode(label));
   getTopicBtnIcons(btn).appendChild(linkIcon);
 }
@@ -4739,8 +4869,11 @@ async function loadBibleChapter(
           });
           applyTopicButtonColor(btn, topic.color);
           const emphasisPhrases = normalizePhraseList(topic.emphasis);
-          if (emphasisPhrases.length) {
+          // emphasis2: a second, contrasting color for the same label.
+          const emphasis2Phrases = normalizePhraseList(topic.emphasis2);
+          if (emphasisPhrases.length || emphasis2Phrases.length) {
             btn._emphasisPhrases = emphasisPhrases;
+            btn._emphasis2Phrases = emphasis2Phrases;
             btn._emphasisScopeKeys = new Set(
               expandVerseRangeTokens(topic.verses).map((v) => `${chapterNum}:${v}`),
             );
@@ -4835,6 +4968,17 @@ async function loadBibleChapter(
               entries.push({
                 phrase: p,
                 className: "emphasis-highlight",
+                scopeVerseKeys: activeLabelBtn._emphasisScopeKeys || null,
+              });
+            }
+          });
+        }
+        if (activeLabelBtn && Array.isArray(activeLabelBtn._emphasis2Phrases)) {
+          activeLabelBtn._emphasis2Phrases.forEach((p) => {
+            if (p) {
+              entries.push({
+                phrase: p,
+                className: "emphasis2-highlight",
                 scopeVerseKeys: activeLabelBtn._emphasisScopeKeys || null,
               });
             }
@@ -5815,6 +5959,17 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
           }
         });
       }
+      if (activeLabelBtn && Array.isArray(activeLabelBtn._emphasis2Phrases)) {
+        activeLabelBtn._emphasis2Phrases.forEach((p) => {
+          if (p) {
+            entries.push({
+              phrase: p,
+              className: "emphasis2-highlight",
+              scopeVerseKeys: activeLabelBtn._emphasisScopeKeys || null,
+            });
+          }
+        });
+      }
       return normalizePhraseEntries(entries);
     }
 
@@ -5952,11 +6107,13 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
           entryIndex: labelIdx,
         });
         applyTopicButtonColor(btn, labelEntry.color);
-        if (labelEntry.emphasis) {
+        if (labelEntry.emphasis || labelEntry.emphasis2) {
           const emphasisPhrases = normalizePhraseList(labelEntry.emphasis);
-          if (emphasisPhrases.length) {
+          const emphasis2Phrases = normalizePhraseList(labelEntry.emphasis2);
+          if (emphasisPhrases.length || emphasis2Phrases.length) {
             const { verseKeys } = buildBookWideLabelVerseKeys(labelEntry, chapterMaxVerseMap);
             btn._emphasisPhrases = emphasisPhrases;
+            btn._emphasis2Phrases = emphasis2Phrases;
             btn._emphasisScopeKeys = new Set(verseKeys);
           }
         }

@@ -86,6 +86,22 @@
           "**Christ in you** is a mystery with glorious riches",
           "**Christ in you** is the hope of glory"
         ]
+      },
+      {
+        "label": "God working in us",
+        "verses": ["29"],
+        "references": [
+          "1 Corinthians 15:10",
+          "Philippians 2:12-13",
+          "Ephesians 1:11",
+          "Ephesians 3:7",
+          "Ephesians 3:20",
+          "Colossians 1:29",
+          "Colossians 2:1",
+          "1 Thessalonians 2:13",
+          "Hebrews 13:21"
+        ],
+        "emphasis": []
       }
     ],
     "2": [
@@ -100,9 +116,58 @@
         "references": ["Ephesians 2:1–10"]
       },
       {
+        "label": "treasures",
+        "verses": ["2-3"],
+        "references": [
+          "Proverbs 2:4-6",
+          "Proverbs 3:13-15",
+          "Isaiah 11:2",
+          "Matthew 12:42",
+          "Matthew 13:44",
+          "1 Corinthians 1:24",
+          "1 Corinthians 1:30",
+          "1 Corinthians 2:7-8",
+          "Ephesians 1:17",
+          "Ephesians 3:8",
+          "Colossians 2:2-3",
+          "James 1:5"
+        ],
+        "emphasis": [
+          "full riches of complete understanding",
+          "treasures of wisdom and knowledge"
+        ]
+      },
+      {
+        "label": "deception",
+        "verses": ["4", "8"],
+        "references": [
+          "Proverbs 26:28",
+          "Matthew 7:15",
+          "Matthew 24:24",
+          "Romans 16:17-18",
+          "2 Corinthians 2:17",
+          "2 Corinthians 4:2",
+          "2 Corinthians 11:3-4",
+          "2 Corinthians 11:13-14",
+          "Ephesians 4:14",
+          "Ephesians 5:6",
+          "Colossians 2:4",
+          "Colossians 2:8",
+          "1 Thessalonians 2:3-5",
+          "2 Timothy 4:3-4",
+          "2 Peter 2:3",
+          "1 John 4:1",
+          "2 John 1:7-9"
+        ],
+        "emphasis": [
+          ""
+        ]
+      },
+      {
         "label": "Source vs. substitute",
-        "verses": ["8"],
-        "emphasis": ["based on", "rather than on"]
+        "verses": ["1-23"],
+        "emphasis": ["mystery of God, namely Christ", "in whom are hidden all the treasures of wisdom and knowledge", "rooted and built up in Him, established in the faith", "rather than on Christ", "in Christ all the fullness of the Deity dwells", "you have been made complete in Christ", "putting off of your sinful nature", "performed by Christ", "buried with Him", "raised with Him", "God made you alive with Christ. He forgave us all our trespasses", "canceled the debt", "nailing it to the cross!", "triumphing over them by the cross", "disarmed the powers and authorities", "died with Christ "],
+        "emphasis2": ["deceive you by smooth rhetoric", "philosophy and empty deception, which are based on human tradition and the spiritual forces of the world", "judge you by what you eat or drink, or with regard to a feast, a New Moon, or a Sabbath", "delights in false humility and the worship of angels", "speculation about what he has seen", "unspiritual mind", "lost connection to the head", "spiritual forces of the world", "Do not handle, do not taste, do not touch!", "appearance of wisdom", "self-prescribed worship", "false humility", "harsh treatment of the body"]
       },
       {
         "label": "Jesus is God",
