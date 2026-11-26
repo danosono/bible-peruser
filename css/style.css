@@ -342,6 +342,10 @@ html.bp-busy button {
   --success: #a8e6a3;
   --error: #ff9c8a;
   --search-highlight: #ffe923;
+  /* Typed highlight fields 2 and 3 — picked to stay apart from the yellow
+     above, emphasis green/orange below, and the blue verse highlight. */
+  --search-highlight-2: #6fdcff;
+  --search-highlight-3: #ff9be3;
   --emphasis-highlight: #26ff7b;
   --emphasis2-highlight: #ff8a4c;
   /* Chiasm viewer focus color (the "X" part) — deliberately not part of
@@ -537,14 +541,66 @@ body {
   color: var(--text-main);
   border: 1px solid var(--accent);
   border-radius: 4px;
-  padding: 0.35em 0.6em;
+  border-left-width: 3px;
+  padding: 0.35em 3.6em 0.35em 0.6em;
   font-size: 0.88em;
-  margin-bottom: 0.6em;
   outline: none;
 }
-.bp-sidebar-sticky-controls .bp-book-search-field,
-.bp-sidebar-sticky-controls .bp-chapter-search-field {
+/* Each typed-highlight field sits in a .bp-hl-field row with its match
+   count (see buildTypedHighlightFields() in js/bible-loader.js). Rows 2 and
+   3 redefine --search-highlight, which colors the field's left edge and
+   count here and that field's matches in the text (.search-highlight--2/3). */
+.bp-hl-field {
+  position: relative;
+  margin-bottom: 0.6em;
+}
+.bp-sidebar-sticky-controls .bp-hl-field {
   margin: 0.45em 0 0;
+}
+.bp-hl-field--2 {
+  --search-highlight: var(--search-highlight-2);
+}
+.bp-hl-field--3 {
+  --search-highlight: var(--search-highlight-3);
+}
+.bp-hl-field input:not(:placeholder-shown) {
+  border-left-color: var(--search-highlight);
+}
+.bp-hl-field__count {
+  position: absolute;
+  right: 2.4em;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.75em;
+  font-variant-numeric: tabular-nums;
+  color: var(--search-highlight);
+  opacity: 0.85;
+  cursor: default;
+}
+.bp-hl-field__count--none {
+  color: var(--text-muted, #888);
+}
+/* × at the right end of a field that has text: empties it. */
+.bp-hl-field__clear {
+  position: absolute;
+  right: 0.15em;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
+  padding: 0.1em 0.4em;
+  border: none;
+  background: none;
+  color: var(--text-muted, #888);
+  font-size: 1.1em;
+  line-height: 1;
+  cursor: pointer;
+}
+.bp-hl-field__clear:hover,
+.bp-hl-field__clear:focus-visible {
+  color: var(--text-main);
+}
+.bp-hl-field__clear[hidden] {
+  display: none;
 }
 .bp-book-search-field::placeholder,
 .bp-chapter-search-field::placeholder {
@@ -557,13 +613,15 @@ body {
   box-shadow: 0 0 0 2px var(--accent);
 }
 
-/* Extra typed-highlight fields and the study-notes hint only take up space
-   once the developer's own label/highlight buttons are toggled off —
-   otherwise they'd just add clutter on top of an already-full sidebar. */
-.bp-chapter-search-field--extra {
+/* Typed-highlight fields 2 and 3 take no space until they're useful: each
+   opens once the one before it has text (.bp-hl-field--open, set in JS), or
+   whenever the study-note buttons are toggled off and the panel is empty
+   anyway. The study-notes hint only shows in that second case. */
+.bp-hl-field--extra {
   display: none;
 }
-html.bp-hide-study-notes .bp-chapter-search-field--extra {
+.bp-hl-field--extra.bp-hl-field--open,
+html.bp-hide-study-notes .bp-hl-field--extra {
   display: block;
 }
 .bp-study-notes-hint {
@@ -1619,6 +1677,15 @@ footer {
   transition: background 0.2s;
 }
 
+/* Matches from typed-highlight fields 2 and 3: same rules as
+   .search-highlight, in another color — the variable is redefined on the
+   span itself, so every rule below that reads it follows along. */
+.search-highlight--2 {
+  --search-highlight: var(--search-highlight-2);
+}
+.search-highlight--3 {
+  --search-highlight: var(--search-highlight-3);
+}
 .search-highlight {
   color: var(--search-highlight);
   border-radius: 4px;
@@ -1635,7 +1702,7 @@ footer {
 }
 .bible-book.bible-book--dense .search-highlight {
   font-weight: bold;
-  background: rgba(255, 233, 35, 0.18);
+  background: color-mix(in srgb, var(--search-highlight) 18%, transparent);
   border-radius: 2px;
 }
 .bible-book.bible-book--dense .verse-highlight .search-highlight {
@@ -1651,7 +1718,7 @@ footer {
 }
 .bible-book.bible-book--dense.bp-overview-active .search-highlight {
   font-weight: bold;
-  background: rgba(255, 233, 35, 0.5);
+  background: color-mix(in srgb, var(--search-highlight) 50%, transparent);
   border-radius: 2px;
 }
 .bible-book.bible-book--dense.bp-overview-active .verse-highlight .search-highlight {

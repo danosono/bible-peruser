@@ -1493,6 +1493,151 @@ function getLiteralSearchPhrase(inputEl) {
   return inputEl.value.trim() ? inputEl.value : "";
 }
 
+// ─── Typed highlight fields ─────────────────────────────────────────────
+// The right panel's "Highlight text…" boxes, shared by chapter view and
+// Entire Book. Three fields, each with its own color (field 1 is the same
+// yellow as the highlight buttons; 2 and 3 redefine --search-highlight on
+// their spans — see .search-highlight--2/3 in style.css), so two or three
+// words can be followed at once and told apart.
+//
+// What is typed is kept in memory for the session, so it stays lit while
+// paging through chapters or switching to Entire Book (the fields
+// themselves are rebuilt on every load).
+//
+// Fields 2 and 3 take no space until they're useful: each appears once the
+// one before it has text (or whenever study notes are hidden, where the
+// panel is otherwise empty).
+const BP_TYPED_HIGHLIGHT_CLASSES = [
+  "search-highlight",
+  "search-highlight search-highlight--2",
+  "search-highlight search-highlight--3",
+];
+const bpTypedHighlightPhrases = BP_TYPED_HIGHLIGHT_CLASSES.map(() => "");
+
+function countPhraseInCache(verseTextCache, phrase) {
+  let n = 0;
+  if (!phrase || !verseTextCache) return n;
+  // Same matcher the highlighting uses, so the number is what is lit.
+  const entries = [{ phrase, className: "search-highlight" }];
+  verseTextCache.forEach((entry) => {
+    n += collectNonOverlappingMatches(entry.lower, entries).length;
+  });
+  return n;
+}
+
+// insert(el): places a row in the panel. getCache(): the current verse text
+// cache (for the match counts). onChange(): re-render highlights.
+// Returns { entries(), hasAny(), refresh() }.
+function buildTypedHighlightFields({ isBook, insert, getCache, onChange }) {
+  const scopeWord = isBook ? "book" : "chapter";
+  const idBase = isBook ? "book-search-field" : "chapter-search-field";
+  const rows = BP_TYPED_HIGHLIGHT_CLASSES.map((className, i) => {
+    const row = document.createElement("div");
+    row.className =
+      i === 0 ? "bp-hl-field" : `bp-hl-field bp-hl-field--extra bp-hl-field--${i + 1}`;
+    const field = document.createElement("input");
+    field.type = "text";
+    field.id = i === 0 ? idBase : `${idBase}-${i + 1}`;
+    field.className = isBook ? "bp-book-search-field" : "bp-chapter-search-field";
+    field.placeholder = i === 0 ? "Highlight text…" : `Highlight text ${i + 1}…`;
+    field.setAttribute("autocomplete", "off");
+    field.value = bpTypedHighlightPhrases[i];
+    const count = document.createElement("span");
+    count.className = "bp-hl-field__count";
+    count.hidden = true;
+    count.addEventListener("click", () => field.focus());
+    const clear = document.createElement("button");
+    clear.type = "button";
+    clear.className = "bp-hl-field__clear";
+    clear.textContent = "×";
+    clear.title = "Clear (Esc)";
+    clear.setAttribute("aria-label", "Clear highlight text");
+    clear.hidden = true;
+    row.appendChild(field);
+    row.appendChild(count);
+    row.appendChild(clear);
+    insert(row);
+    return { row, field, count, clear, className };
+  });
+
+  function syncReveal() {
+    rows.forEach((r, i) => {
+      r.clear.hidden = !r.field.value;
+      if (i === 0) return;
+      const open =
+        !!getLiteralSearchPhrase(rows[i - 1].field) ||
+        !!getLiteralSearchPhrase(r.field) ||
+        document.activeElement === r.field;
+      r.row.classList.toggle("bp-hl-field--open", open);
+    });
+  }
+
+  function refresh() {
+    syncReveal();
+    const cache = getCache();
+    rows.forEach((r) => {
+      const phrase = getLiteralSearchPhrase(r.field);
+      if (!phrase) {
+        r.count.hidden = true;
+        return;
+      }
+      const n = countPhraseInCache(cache, phrase);
+      r.count.hidden = false;
+      r.count.textContent = String(n);
+      r.count.title = `${n} ${n === 1 ? "match" : "matches"} in this ${scopeWord}`;
+      r.count.classList.toggle("bp-hl-field__count--none", n === 0);
+    });
+  }
+
+  rows.forEach((r, i) => {
+    let debounceTimer = null;
+    r.field.addEventListener("input", () => {
+      bpTypedHighlightPhrases[i] = r.field.value;
+      syncReveal();
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        onChange();
+        refresh();
+      }, 300);
+    });
+    // × button, or Esc while typing: empty this field at once (no debounce).
+    const clearField = () => {
+      if (!r.field.value) return;
+      clearTimeout(debounceTimer);
+      r.field.value = "";
+      bpTypedHighlightPhrases[i] = "";
+      onChange();
+      refresh();
+    };
+    r.clear.addEventListener("click", () => {
+      clearField();
+      r.field.focus();
+    });
+    r.field.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && r.field.value) {
+        e.preventDefault();
+        e.stopPropagation();
+        clearField();
+      }
+    });
+  });
+
+  return {
+    entries() {
+      const out = [];
+      rows.forEach((r) => {
+        const phrase = getLiteralSearchPhrase(r.field);
+        if (phrase) out.push({ phrase, className: r.className, scopeVerseKeys: null });
+      });
+      return out;
+    },
+    hasAny() {
+      return rows.some((r) => !!getLiteralSearchPhrase(r.field));
+    },
+    refresh,
+  };
+}
+
 function getBookIdFromReference(reference) {
   const canonicalReference = extractReferenceCore(reference);
   if (!canonicalReference) return null;
@@ -4346,6 +4491,27 @@ function collectNonOverlappingMatches(lowerText, phraseEntries) {
         className: pe.className,
       });
     }
+    // A leading or trailing space in a phrase is the "whole word on this
+    // side" trick (" sing" so "blessing" stays dark). The start and end of
+    // a verse are word edges too, with no space there to match — so
+    // " children" also takes "Children, obey…" at the head of a verse.
+    if (/^\s/.test(phrase)) {
+      const head = phrase.replace(/^\s+/, "");
+      if (head && lowerText.startsWith(head)) {
+        matches.push({ start: 0, end: head.length, len: head.length, className: pe.className });
+      }
+    }
+    if (/\s$/.test(phrase)) {
+      const tail = phrase.replace(/\s+$/, "");
+      if (tail && lowerText.endsWith(tail)) {
+        matches.push({
+          start: lowerText.length - tail.length,
+          end: lowerText.length,
+          len: tail.length,
+          className: pe.className,
+        });
+      }
+    }
   });
   matches.sort((a, b) => a.start - b.start || b.len - a.len);
 
@@ -4747,18 +4913,12 @@ async function loadBibleChapter(
         window.renderStickyHighlightToggle(aside);
       }
 
-      // The first field is always visible; the extra ones only show once
-      // the developer's study-note buttons are toggled off (see the
-      // html.bp-hide-study-notes CSS), reusing the space that would
-      // otherwise be full of highlight-toggle buttons — and giving the
-      // Sticky Highlights toggle more than one typed phrase to apply to.
-      const EXTRA_CHAPTER_SEARCH_FIELDS = 2;
-      const chapterSearchFields = [];
-      let chapterSearchField = null;
+      // Typed highlight fields — see buildTypedHighlightFields().
+      let typedHighlights = null;
       if (aside) {
         aside
           .querySelectorAll(
-            ".bp-chapter-search-field, .bp-book-search-field, .bp-study-notes-hint, .bp-outline-hint",
+            ".bp-hl-field, .bp-study-notes-hint, .bp-outline-hint",
           )
           .forEach((el) => el.remove());
 
@@ -4773,22 +4933,14 @@ async function loadBibleChapter(
           }
         };
 
-        for (let i = 0; i <= EXTRA_CHAPTER_SEARCH_FIELDS; i++) {
-          const field = document.createElement("input");
-          field.type = "text";
-          field.id =
-            i === 0 ? "chapter-search-field" : `chapter-search-field-${i + 1}`;
-          field.className =
-            i === 0
-              ? "bp-chapter-search-field"
-              : "bp-chapter-search-field bp-chapter-search-field--extra";
-          field.placeholder =
-            i === 0 ? "Highlight text..." : `Highlight text ${i + 1}...`;
-          field.setAttribute("autocomplete", "off");
-          insertField(field);
-          chapterSearchFields.push(field);
-        }
-        chapterSearchField = chapterSearchFields[0];
+        typedHighlights = buildTypedHighlightFields({
+          isBook: false,
+          insert: insertField,
+          getCache: () => chapterVerseTextCache,
+          onChange: () => {
+            if (rerenderActiveHighlightsRef) rerenderActiveHighlightsRef();
+          },
+        });
 
         // Outline hint only ever shows on the left panel (topicBar) —
         // outline buttons never render on the right. Notes hint shows on
@@ -4953,10 +5105,7 @@ async function loadBibleChapter(
               });
             });
         }
-        chapterSearchFields.forEach((field) => {
-          const typedPhrase = getLiteralSearchPhrase(field);
-          if (typedPhrase) entries.push({ phrase: typedPhrase, className: "search-highlight", scopeVerseKeys: null });
-        });
+        if (typedHighlights) entries.push(...typedHighlights.entries());
         document.querySelectorAll(".top-word-btn.active").forEach((btn) => {
           const w = btn._topWordPhrase;
           if (w) entries.push({ phrase: w, className: "search-highlight", scopeVerseKeys: null, wholeWord: true });
@@ -5053,15 +5202,12 @@ async function loadBibleChapter(
         );
       }
 
-      chapterSearchFields.forEach((field) => {
-        let debounceTimer = null;
-        field.addEventListener("input", () => {
-          clearTimeout(debounceTimer);
-          debounceTimer = setTimeout(() => {
-            rerenderActiveHighlights();
-          }, 300);
-        });
-      });
+      // Phrases typed on an earlier chapter are still in the fields — light
+      // them here too, and show their counts for this chapter.
+      if (typedHighlights) {
+        if (typedHighlights.hasAny()) rerenderActiveHighlights();
+        typedHighlights.refresh();
+      }
 
       const stickyToggle = document.getElementById("sticky-highlight-toggle");
       if (stickyToggle) {
@@ -5925,6 +6071,7 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
 
     // ── State for active verse-range keys (from left-panel label) ────────────
     let activeRangeKeys = new Set();
+    let bookTypedHighlights = null;
 
     // ── Unified rerender: phrase highlights + verse-range highlights ──────────
     // Phrase pass uses data-original to reset, then wraps matches in search-highlight.
@@ -5943,10 +6090,7 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
             });
           });
       }
-      const typedPhrase = getLiteralSearchPhrase(bookSearchField);
-      if (typedPhrase) {
-        entries.push({ phrase: typedPhrase, className: "search-highlight", scopeVerseKeys: null });
-      }
+      if (bookTypedHighlights) entries.push(...bookTypedHighlights.entries());
       const activeLabelBtn = topicBar ? topicBar.querySelector(".topic-label-btn.active") : null;
       if (activeLabelBtn && Array.isArray(activeLabelBtn._emphasisPhrases)) {
         activeLabelBtn._emphasisPhrases.forEach((p) => {
@@ -6134,8 +6278,6 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
 
     // ── Right panel: sticky toggle + search field + bookWideHighlights ────────
     let bookHighlightBar = null;
-    let bookSearchField = null;
-
     if (aside) {
       // Sticky toggle (reuse existing renderer from app.js if available)
       if (window.renderStickyHighlightToggle) {
@@ -6144,23 +6286,26 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
 
       aside
         .querySelectorAll(
-          ".bp-chapter-search-field, .bp-book-search-field, .bp-study-notes-hint, .bp-outline-hint",
+          ".bp-hl-field, .bp-study-notes-hint, .bp-outline-hint",
         )
         .forEach((el) => el.remove());
 
-      // Text search field
-      bookSearchField = document.createElement("input");
-      bookSearchField.type = "text";
-      bookSearchField.id = "book-search-field";
-      bookSearchField.className = "bp-book-search-field";
-      bookSearchField.placeholder = "Highlight text…";
-      bookSearchField.setAttribute("autocomplete", "off");
+      // Typed highlight fields — see buildTypedHighlightFields(). Phrases
+      // typed in chapter view carry over, so they are lit straight away.
       const stickyControls = aside.querySelector(".bp-sidebar-sticky-controls");
-      if (stickyControls) {
-        stickyControls.appendChild(bookSearchField);
-      } else {
-        aside.insertBefore(bookSearchField, aside.firstChild);
+      bookTypedHighlights = buildTypedHighlightFields({
+        isBook: true,
+        insert: (row) => {
+          if (stickyControls) stickyControls.appendChild(row);
+          else aside.insertBefore(row, aside.firstChild);
+        },
+        getCache: () => bookVerseTextCache,
+        onChange: () => rerenderBookHighlights(),
+      });
+      if (bookTypedHighlights.hasAny()) {
+        applyPhraseHighlightsFromCache(bookVerseTextCache, collectBookPhrases());
       }
+      bookTypedHighlights.refresh();
       // Outline hint only ever shows on the left panel (topicBar) — outline
       // buttons never render on the right. Notes hint shows on both.
       const { notesHint } = buildOffToggleHints(true);
@@ -6169,12 +6314,6 @@ async function loadBibleBook(bookId = "MAT", options = {}) {
       } else {
         aside.appendChild(notesHint);
       }
-
-      let searchDebounceTimer = null;
-      bookSearchField.addEventListener("input", () => {
-        clearTimeout(searchDebounceTimer);
-        searchDebounceTimer = setTimeout(() => rerenderBookHighlights(), 300);
-      });
 
       // Highlight buttons from bookWideHighlights (bar always created, even
       // with zero entries, so the "+ Suggest a new highlight" link always
