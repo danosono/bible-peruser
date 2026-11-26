@@ -129,6 +129,7 @@
           "1 Corinthians 2:7-8",
           "Ephesians 1:17",
           "Ephesians 3:8",
+          "Colossians 1:27",
           "Colossians 2:2-3",
           "James 1:5"
         ],
@@ -159,15 +160,45 @@
           "1 John 4:1",
           "2 John 1:7-9"
         ],
-        "emphasis": [
-          ""
-        ]
+        "emphasis": ["deceive", "deception"]
       },
       {
         "label": "Source vs. substitute",
         "verses": ["1-23"],
-        "emphasis": ["mystery of God, namely Christ", "in whom are hidden all the treasures of wisdom and knowledge", "rooted and built up in Him, established in the faith", "rather than on Christ", "in Christ all the fullness of the Deity dwells", "you have been made complete in Christ", "putting off of your sinful nature", "performed by Christ", "buried with Him", "raised with Him", "God made you alive with Christ. He forgave us all our trespasses", "canceled the debt", "nailing it to the cross!", "triumphing over them by the cross", "disarmed the powers and authorities", "died with Christ "],
-        "emphasis2": ["deceive you by smooth rhetoric", "philosophy and empty deception, which are based on human tradition and the spiritual forces of the world", "judge you by what you eat or drink, or with regard to a feast, a New Moon, or a Sabbath", "delights in false humility and the worship of angels", "speculation about what he has seen", "unspiritual mind", "lost connection to the head", "spiritual forces of the world", "Do not handle, do not taste, do not touch!", "appearance of wisdom", "self-prescribed worship", "false humility", "harsh treatment of the body"]
+        "emphasis": [
+          "mystery of God, namely Christ",
+          "in whom are hidden all the treasures of wisdom and knowledge",
+          "rooted and built up in Him, established in the faith",
+          "rather than on Christ",
+          "in Christ all the fullness of the Deity dwells",
+          "you have been made complete in Christ",
+          "putting off of your sinful nature",
+          "performed by Christ",
+          "buried with Him",
+          "raised with Him",
+          "God made you alive with Christ. He forgave us all our trespasses",
+          "canceled the debt",
+          "nailing it to the cross!",
+          "triumphing over them by the cross",
+          "disarmed the powers and authorities",
+          "died with Christ "
+        ],
+        "emphasis2": [
+          "deceive you by smooth rhetoric",
+          "philosophy and empty deception, which are based on human tradition and the spiritual forces of the world",
+          "judge you by what you eat or drink, or with regard to a feast, a New Moon, or a Sabbath",
+          "delights in false humility and the worship of angels",
+          "speculation about what he has seen",
+          "unspiritual mind",
+          "lost connection to the head",
+          "spiritual forces of the world",
+          "Do not handle, do not taste, do not touch!",
+          "based on human commands and teachings",
+          "appearance of wisdom",
+          "self-prescribed worship",
+          "false humility",
+          "harsh treatment of the body"
+        ]
       },
       {
         "label": "Jesus is God",
@@ -210,6 +241,199 @@
         "outline": "Serving with Honor",
         "verses": ["22-25"],
         "references": ["Ephesians 6:5–9", "1 Timothy 6:1–2"]
+      },
+      {
+        "label": "raised",
+        "verses": ["1"],
+        "references": [""],
+        "emphasis": ["raised with Christ"]
+      },
+      {
+        "label": "right hand of God",
+        "verses": ["1"],
+        "references": [""],
+        "emphasis": ["Christ is seated at the right hand of God"]
+      },
+      {
+        "label": "things above",
+        "verses": ["1-2"],
+        "references": [""],
+        "emphasis": ["things above"]
+      },
+      {
+        "label": "you died",
+        "verses": ["3", "5", "9"],
+        "references": [""],
+        "emphasis": [
+          "you died",
+          "put to death",
+          "you have taken off the old self"
+        ],
+        "note": [
+          "If we die, we need a new life",
+          "Similar to Adam and Eve eating from the tree of knowledge of good and evil, they didn't die immediately physically but they did spiritually. They died a separation from life, but we die a separation from our old life"
+        ]
+      },
+      {
+        "label": "Christ is your life",
+        "verses": ["3-4"],
+        "references": [""],
+        "emphasis": [
+          "your life is now hidden with Christ in God",
+          "Christ, who is your life"
+        ]
+      },
+      {
+        "label": "Appear with Him",
+        "verses": ["4"],
+        "references": [""],
+        "emphasis": ["Appear with Him in glory"]
+      },
+      {
+        "label": "put to death",
+        "verses": ["3", "5", "9"],
+        "references": [""],
+        "emphasis": [
+          "you died",
+          "put to death",
+          "you have taken off the old self"
+        ]
+      },
+      {
+        "label": "wrath",
+        "verses": ["6"],
+        "references": [""],
+        "emphasis": ["wrath of God"]
+      },
+      {
+        "label": "you also",
+        "verses": ["7"],
+        "references": [""],
+        "emphasis": ["you also used to walk in these ways`"]
+      },
+      {
+        "label": "old nature versus new nature",
+        "verses": ["1-25"],
+        "emphasis": [
+          "things above",
+          "glory",
+          "renewed in knowledge in the image of its Creator",
+          "Christ is all and is in all",
+          "elect of God, holy and beloved",
+          "compassion",
+          "kindness",
+          "humility",
+          "gentleness",
+          "patience",
+          "bear with one another",
+          "forgive",
+          "love,",
+          "peace of Christ rule in your hearts",
+          "word of Christ richly dwell within you",
+          "admonish one another",
+          " sing",
+          "in the name of the Lord Jesus",
+          "giving thanks",
+          "submit to your husbands, as is fitting in the Lord",
+          "love your wives",
+          "obey your parents in everything, for this is pleasing to the Lord",
+          "obey your earthly masters in everything",
+          "with sincerity of heart and fear of the Lord",
+          "you will receive an inheritance from the Lord as your reward",
+          "It is the Lord Christ you are serving"
+        ],
+        "emphasis2": [
+          "sexual immorality",
+          "impurity",
+          "lust",
+          "evil desires",
+          "greed, which is idolatry",
+          "you also used to walk in these ways",
+          "anger",
+          " rage",
+          "malice",
+          "slander",
+          "filthy language",
+          "lie to one another",
+          "do not be harsh with them",
+          "do not provoke your children, so they will not become discouraged."
+        ]
+      },
+      {
+        "label": "new self old self",
+        "verses": ["9-10"],
+        "references": [""]
+      },
+      {
+        "label": "renewed",
+        "verses": ["10"],
+        "references": [""],
+        "note": ["renewed in knowledge in the image of its Creator"]
+      },
+      {
+        "label": "Christ is all in all",
+        "verses": ["11"],
+        "references": [""]
+      },
+      {
+        "label": "elect",
+        "verses": ["12"],
+        "references": [""]
+      },
+      {
+        "label": "forgive as the Lord forgave you",
+        "verses": ["13"],
+        "references": [""]
+      },
+      {
+        "label": "love",
+        "verses": ["14"],
+        "references": [""]
+      },
+      {
+        "label": "peace of Christ",
+        "verses": ["15"],
+        "references": [""]
+      },
+      {
+        "label": "one body",
+        "verses": ["15"],
+        "references": [""]
+      },
+      {
+        "label": "be thankful",
+        "verses": ["15-17"],
+        "references": [""],
+        "emphasis": ["thankful", "gratitude", "giving thanks"]
+      },
+      {
+        "label": "word of Christ",
+        "verses": ["16"],
+        "references": [""]
+      },
+      {
+        "label": "spiritual songs",
+        "verses": ["16"],
+        "references": [""]
+      },
+      {
+        "label": "in the name",
+        "verses": ["17"],
+        "references": [""],
+        "note": [
+          "whatever you do, in word or deed, do it all in the name of the Lord Jesus"
+        ]
+      },
+      {
+        "label": "family",
+        "verses": ["18-21"],
+        "references": [""],
+        "emphasis": ["wives", "husbands", "children", "fathers"]
+      },
+      {
+        "label": "slaves/prisoners",
+        "verses": ["22-25"],
+        "references": [""]
       }
     ],
     "4": [
